@@ -29,7 +29,6 @@ public class SideBarController implements Initializable
 	public void initialize(URL location, ResourceBundle resources)
 	{
 		SideBarManager.initManager(anpSideBar);
-		SideBarManager.initActions();
 
 		stpResizeBar.setOnMouseDragged(event ->
 		{

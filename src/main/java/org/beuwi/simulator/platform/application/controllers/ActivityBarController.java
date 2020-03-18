@@ -3,6 +3,7 @@ package org.beuwi.simulator.platform.application.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import org.beuwi.simulator.platform.application.actions.SelectActivityButtonAction;
 import org.beuwi.simulator.platform.application.managers.ActivityBarManager;
@@ -19,10 +20,9 @@ public class ActivityBarController implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         ActivityBarManager.initManager(anpActivityBar);
-        ActivityBarManager.initActions();
 
-        Button btnProjects = (Button) anpActivityBar.getChildren().get(0);
-        Button btnDebug = (Button) anpActivityBar.getChildren().get(1);
+        ToggleButton btnProjects = (ToggleButton) anpActivityBar.getChildren().get(0);
+        ToggleButton btnDebug = (ToggleButton) anpActivityBar.getChildren().get(1);
 
         btnProjects.setOnAction(event ->
         {

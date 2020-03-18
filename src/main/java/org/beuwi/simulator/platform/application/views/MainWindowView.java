@@ -4,6 +4,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import org.beuwi.simulator.platform.application.actions.ResizeSideBarAction;
+import org.beuwi.simulator.platform.application.actions.SelectActivityButtonAction;
 
 public class MainWindowView extends BorderPane
 {
@@ -24,6 +26,12 @@ public class MainWindowView extends BorderPane
 		setLeft(new HBox(anpActivityBar, anpSideBar));
 		setCenter(anpEditorArea);
 		setBottom(anpStatusBar);
+
+		// init Actions
+		// AddEditorTabAction.initAction();
+		// CloseEditorTabAction.initAction();
+		ResizeSideBarAction.initAction();
+		SelectActivityButtonAction.initAction();
 
 		// getStyleClass().add()
 	}
