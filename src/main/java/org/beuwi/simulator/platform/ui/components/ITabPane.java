@@ -1,5 +1,6 @@
 package org.beuwi.simulator.platform.ui.components;
 
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -10,6 +11,14 @@ public class ITabPane extends TabPane
 	{
 		// setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
 		// getStyleClass().add("i-tab-pane");
+	}
+
+	public void setTabs(ObservableList<ITab> list)
+	{
+		for (ITab itab : list)
+		{
+			this.addTab(itab);
+		}
 	}
 
 	public void addTab(ITab tab)

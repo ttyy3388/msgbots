@@ -10,7 +10,7 @@ public class SideBarView extends AnchorPane
 	public SideBarView() throws Exception
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/fxmls/ActiveView.fxml"));
+		loader.setLocation(getClass().getResource("/forms/ActiveView.fxml"));
 		loader.setController(new ActivityBarController());
 
 		Region root = loader.load();

@@ -16,7 +16,7 @@ public class WindowView extends Scene
 		super(content);
 
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/fxmls/WindowView.fxml"));
+		loader.setLocation(getClass().getResource("/forms/WindowView.fxml"));
 		loader.setController(new WindowController(stage, content, type));
 
 		try

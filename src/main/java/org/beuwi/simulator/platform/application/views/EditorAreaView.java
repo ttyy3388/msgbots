@@ -10,7 +10,7 @@ public class EditorAreaView extends AnchorPane
 	public EditorAreaView() throws Exception
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/fxmls/EditorView.fxml"));
+		loader.setLocation(getClass().getResource("/forms/EditorView.fxml"));
 		loader.setController(new EditorAreaController());
 
 		Region root = loader.load();
