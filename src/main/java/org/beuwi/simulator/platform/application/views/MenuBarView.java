@@ -10,7 +10,7 @@ public class MenuBarView extends AnchorPane
 	public MenuBarView() throws Exception
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/forms/MenuView.fxml"));
+		loader.setLocation(getClass().getResource("/forms/MenuBarForm.fxml"));
 		loader.setController(new MenuBarController());
 
 		Region root = loader.load();
@@ -21,6 +21,6 @@ public class MenuBarView extends AnchorPane
 		AnchorPane.setLeftAnchor  (root, .0);
 
 		getChildren().add(root);
-		getStylesheets().add("/styles/MenuView.css");
+		getStylesheets().add("/styles/MenuBarStyle.css");
 	}
 }

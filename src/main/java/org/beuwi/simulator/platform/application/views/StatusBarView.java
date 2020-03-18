@@ -10,7 +10,7 @@ public class StatusBarView extends AnchorPane
 	public StatusBarView() throws Exception
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/forms/StatusView.fxml"));
+		loader.setLocation(getClass().getResource("/forms/StatusBarForm.fxml"));
 		loader.setController(new StatusBarController());
 
 		Region root = loader.load();
@@ -21,6 +21,6 @@ public class StatusBarView extends AnchorPane
 		AnchorPane.setLeftAnchor  (root, .0);
 
 		getChildren().add(root);
-		getStylesheets().add("/styles/StatusView.css");
+		getStylesheets().add("/styles/StatusBarStyle.css");
 	}
 }

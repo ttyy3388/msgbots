@@ -10,7 +10,7 @@ public class ActivityBarView extends AnchorPane
 	public ActivityBarView() throws Exception
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/forms/ActiveBarForm.fxml"));
+		loader.setLocation(getClass().getResource("/forms/ActivityBarForm.fxml"));
 		loader.setController(new ActivityBarController());
 
 		Region root = loader.load();
@@ -21,6 +21,6 @@ public class ActivityBarView extends AnchorPane
 		setLeftAnchor  (root, .0);
 
 		getChildren().add(root);
-		getStylesheets().add("/styles/ActiveBarStyle.css");
+		getStylesheets().add("/styles/ActivityBarStyle.css");
 	}
 }

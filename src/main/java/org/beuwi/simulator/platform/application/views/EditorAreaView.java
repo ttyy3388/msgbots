@@ -10,7 +10,7 @@ public class EditorAreaView extends AnchorPane
 	public EditorAreaView() throws Exception
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/forms/EditorView.fxml"));
+		loader.setLocation(getClass().getResource("/forms/EditorAreaForm.fxml"));
 		loader.setController(new EditorAreaController());
 
 		Region root = loader.load();
@@ -21,6 +21,6 @@ public class EditorAreaView extends AnchorPane
 		AnchorPane.setLeftAnchor  (root, .0);
 
 		getChildren().add(root);
-		getStylesheets().add("/styles/EditorView.css");
+		getStylesheets().add("/styles/EditorAreaStyle.css");
 	}
 }

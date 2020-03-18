@@ -1,70 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="anpActiveArea" minWidth="60.0" prefWidth="250.0" styleClass="active-area" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anpActivityBar" prefHeight="200.0" prefWidth="40.0" stylesheets="@../themes/default.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TabPane fx:id="tapActiveArea" side="LEFT" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <tabs>
-            <Tab closable="false">
-               <content>
-                  <VBox styleClass="explorer-area">
-                     <children>
-                        <AnchorPane prefHeight="27.0" styleClass="upper-pane" VBox.vgrow="NEVER">
-                           <children>
-                              <Label layoutX="10.0" layoutY="6.0" text="EXPLORER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
-                           <content>
-                              <ListView id="test" fx:id="lsvExplorer" />
-                           </content>
-                        </ScrollPane>
-                     </children>
-                  </VBox>
-               </content>
-               <graphic>
-                  <Label styleClass="tab-label" text="1: Explorer" />
-               </graphic>
-            </Tab>
-            <Tab closable="false">
-               <content>
-                  <VBox styleClass="simulation-area">
-                     <children>
-                        <AnchorPane prefHeight="27.0" styleClass="upper-pane" VBox.vgrow="NEVER">
-                           <children>
-                              <Label layoutX="10.0" layoutY="6.0" text="SIMULATION" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane fx:id="anpSimulation" styleClass="simulation" VBox.vgrow="ALWAYS">
-                           <children>
-                              <Button layoutX="13.0" layoutY="14.0" prefHeight="25.0" prefWidth="150.0" text="Reload All Scripts (F8)" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="13.0" />
-                              <Button layoutX="13.0" layoutY="64.0" prefHeight="25.0" prefWidth="150.0" text="Open Debug Room (F9)" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="64.0" />
-                              <Button layoutX="14.0" layoutY="116.0" prefHeight="25.0" prefWidth="150.0" text="Show All Logs (F10)" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="115.0" />
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </VBox>
-               </content>
-               <graphic>
-                  <Label styleClass="tab-label" text="2: Simulation" />
-               </graphic>
-            </Tab>
-         </tabs>
-      </TabPane>
-      <StackPane fx:id="stpResizeBar" prefWidth="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <cursor>
-            <Cursor fx:constant="H_RESIZE" />
-         </cursor>
-      </StackPane>
+      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <graphic>
+            <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/explorer.png" />
+               </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+         <graphic>
+            <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/debug.png" />
+               </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>
