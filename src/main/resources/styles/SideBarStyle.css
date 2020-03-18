@@ -1,57 +1,11 @@
 
-.root
+.side-bar
 {
 	-fx-background-color: #3C3F41;
-	-fx-border-color: #323232;
-	-fx-border-width: 0 1 0 0;
 }
+
 .upper-pane
 {
 	-fx-border-color: #323232;
 	-fx-border-width: 0 0 1 0;
-}
-.tab-pane
-{
-
-}
-.tab-label
-{
-    -fx-padding: 0 5 0 5;
-    -fx-rotate: 0;
-}
-.tab:hover
-{
-	-fx-background-color: #353739;
-}
-.tab:selected
-{
-	-fx-background-color: #2D2F30;
-}
-.tab:selected .tab-label
-{
-	-fx-text-fill: #FFFFFF;
-}
-.tab-header-background
-{
-	-fx-background-color: #3C3F41;
-	-fx-border-color: #323232;
-	-fx-border-width: 0 0 1 0;
-}
-
-.explorer-area
-{
-
-}
-.simulation-area .button
-{
-	-fx-background-color: #0E639C;
-	-fx-cursor: hand;
-}
-.simulation-area .button:hover
-{
-	-fx-background-color: #146DA8;
-}
-.simulation-area .button:armed
-{
-	-fx-background-color: #197BBD;
 }

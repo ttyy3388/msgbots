@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anpActivityBar" prefHeight="200.0" prefWidth="40.0" stylesheets="@../themes/default.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anpActivityBar" prefHeight="200.0" prefWidth="40.0" styleClass="activity-bar" stylesheets="@../styles/ActivityBarStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <graphic>

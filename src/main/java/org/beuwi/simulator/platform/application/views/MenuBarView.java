@@ -21,6 +21,5 @@ public class MenuBarView extends AnchorPane
 		AnchorPane.setLeftAnchor  (root, .0);
 
 		getChildren().add(root);
-		getStylesheets().add("/styles/MenuBarStyle.css");
 	}
 }

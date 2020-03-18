@@ -21,6 +21,5 @@ public class ActivityBarView extends AnchorPane
 		setLeftAnchor  (root, .0);
 
 		getChildren().add(root);
-		getStylesheets().add("/styles/ActivityBarStyle.css");
 	}
 }

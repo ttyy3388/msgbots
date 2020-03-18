@@ -23,23 +23,24 @@ public class Launcher extends Application
 			System.setProperty("prism.subpixeltext", "false");
 
 			/* Load Fonts */
-			File[] fonts = new File(getClass().getResource("/fonts").toURI()).listFiles();
+			/* File[] fonts = new File(getClass().getResource("/fonts").toURI()).listFiles();
 
 			for (File font : fonts)
 			{
 				Font.loadFont(new FileInputStream(font), 0);
-			}
+			} */
 
 			// WindowStage.setPrimaryStage(stage);
 
 			AnchorPane root = new AnchorPane();
 
+			root.getStylesheets().add(getClass().getResource("/themes/default.css").toExternalForm());
+
 			BorderPane pane = new MainWindowView();
 
-			pane.getStyleClass().add("main");
-			root.getStyleClass().add("window");
+			// pane.getStyleClass().add("main");
+			// root.getStyleClass().add("window");
 
-			root.getStylesheets().add(getClass().getResource("/themes/default.css").toExternalForm());
 			root.getStylesheets().add(getClass().getResource("/themes/darcula.css").toExternalForm());
 
 			root.getChildren().add(pane);

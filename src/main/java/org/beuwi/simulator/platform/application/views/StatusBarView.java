@@ -21,6 +21,5 @@ public class StatusBarView extends AnchorPane
 		AnchorPane.setLeftAnchor  (root, .0);
 
 		getChildren().add(root);
-		getStylesheets().add("/styles/StatusBarStyle.css");
 	}
 }

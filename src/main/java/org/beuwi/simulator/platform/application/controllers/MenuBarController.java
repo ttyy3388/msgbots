@@ -10,13 +10,9 @@ import java.util.ResourceBundle;
 
 public class MenuBarController implements Initializable
 {
-    @FXML
-    private AnchorPane anpActivityBar;
-
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        // Button btnProjects;
-        // Button btnDebug;
+
     }
 }

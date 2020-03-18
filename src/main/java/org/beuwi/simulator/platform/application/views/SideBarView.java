@@ -21,6 +21,5 @@ public class SideBarView extends AnchorPane
 		setLeftAnchor  (root, .0);
 
 		getChildren().add(root);
-		getStylesheets().add("/styles/SideBarStyle.css");
 	}
 }

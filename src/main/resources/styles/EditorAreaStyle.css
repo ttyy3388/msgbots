@@ -1,0 +1,48 @@
+
+.editor-area
+{
+
+}
+
+.tab
+{
+	-fx-border-color: transparent;
+	-fx-border-width: 2 0 3 0;
+	-fx-padding: 0 8 0 8;
+}
+.tab-header
+{
+	-fx-spacing: 6;
+}
+.tab-pane
+{
+    -fx-open-tab-animation: NONE;
+    -fx-close-tab-animation: NONE;
+}
+.tab-content-area
+{
+    -fx-background-color: #1E1E1E;
+}
+.tab-header-background
+{
+	-fx-background-color: #3C3F41;
+	-fx-border-color: #323232;
+	-fx-border-width: 0 0 1 0;
+}
+.tab:hover
+{
+	-fx-background-color: #27292A;
+}
+.tab:selected
+{
+	-fx-background-color: #4E5254;
+	-fx-border-color: transparent transparent #4A88C7 transparent;
+}
+.tab:selected:hover
+{
+	-fx-background-color: #333537;
+}
+.tab:selected .tab-label
+{
+    -fx-text-fill: #FFFFFF;
+}

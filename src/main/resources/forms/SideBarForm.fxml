@@ -7,15 +7,15 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="anpSideBar" minWidth="60.0" prefHeight="800.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anpSideBar" minWidth="60.0" prefHeight="800.0" prefWidth="250.0" styleClass="side-bar" stylesheets="@../styles/SideBarStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane fx:id="anpBotPart" disable="true" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <AnchorPane prefHeight="25.0">
+                  <AnchorPane prefHeight="25.0" styleClass="upper-pane">
                      <children>
-                        <Label layoutX="28.0" layoutY="6.0" text="BOTS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
+                        <Label text="BOTS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                   <ListView VBox.vgrow="ALWAYS" />
@@ -23,13 +23,13 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anpDebugPart" disable="true" layoutX="10.0" layoutY="10.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="anpDebugPart" disable="true" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <AnchorPane prefHeight="25.0">
+                  <AnchorPane prefHeight="25.0" styleClass="upper-pane">
                      <children>
-                        <Label layoutX="28.0" layoutY="6.0" text="DEBUG" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
+                        <Label text="DEBUG" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                   <ListView VBox.vgrow="ALWAYS" />
