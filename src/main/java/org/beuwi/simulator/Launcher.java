@@ -23,12 +23,12 @@ public class Launcher extends Application
 			System.setProperty("prism.subpixeltext", "false");
 
 			/* Load Fonts */
-			/* File[] fonts = new File(getClass().getResource("/fonts").toURI()).listFiles();
+			File[] fonts = new File(getClass().getResource("/fonts").toURI()).listFiles();
 
 			for (File font : fonts)
 			{
 				Font.loadFont(new FileInputStream(font), 0);
-			} */
+			}
 
 			// WindowStage.setPrimaryStage(stage);
 

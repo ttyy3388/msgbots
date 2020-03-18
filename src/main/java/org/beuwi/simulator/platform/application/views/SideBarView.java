@@ -3,7 +3,7 @@ package org.beuwi.simulator.platform.application.views;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
-import org.beuwi.simulator.platform.application.controllers.ActivityBarController;
+import org.beuwi.simulator.platform.application.controllers.SideBarController;
 
 public class SideBarView extends AnchorPane
 {
@@ -11,7 +11,7 @@ public class SideBarView extends AnchorPane
 	{
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/forms/SideBarForm.fxml"));
-		loader.setController(new ActivityBarController());
+		loader.setController(new SideBarController());
 
 		Region root = loader.load();
 
