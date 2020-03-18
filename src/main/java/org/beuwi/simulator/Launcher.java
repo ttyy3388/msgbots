@@ -6,10 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import org.beuwi.simulator.platform.application.views.ActivityBarView;
-import org.beuwi.simulator.platform.application.views.EditorAreaView;
-import org.beuwi.simulator.platform.application.views.MenuBarView;
-import org.beuwi.simulator.platform.application.views.StatusBarView;
+import org.beuwi.simulator.platform.application.views.*;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -37,21 +34,13 @@ public class Launcher extends Application
 
 			AnchorPane root = new AnchorPane();
 
-			BorderPane pane = new BorderPane();
-
-			pane.setMinSize(1100, 700);
-			pane.setPrefSize(1300, 900);
-
-			pane.setTop(new MenuBarView());
-			pane.setLeft(new ActivityBarView());
-			pane.setCenter(new EditorAreaView());
-			pane.setBottom(new StatusBarView());
+			BorderPane pane = new MainWindowView();
 
 			pane.getStyleClass().add("main");
 			root.getStyleClass().add("window");
 
-			root.getStylesheets().add(getClass().getResource("/styles/default.css").toExternalForm());
-			root.getStylesheets().add(getClass().getResource("/styles/darcula.css").toExternalForm());
+			root.getStylesheets().add(getClass().getResource("/themes/default.css").toExternalForm());
+			root.getStylesheets().add(getClass().getResource("/themes/darcula.css").toExternalForm());
 
 			root.getChildren().add(pane);
 
