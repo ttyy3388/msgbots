@@ -1,0 +1,49 @@
+
+/* Default Style */
+*
+{
+	-fx-faint-focus-color: transparent;
+	-fx-background-color: transparent;
+	-fx-focus-color: transparent;
+
+	-fx-font-family: Roboto;
+ 	-fx-text-fill: #BBBBBB;
+ 	-fx-font-size: 12;
+
+	-fx-background-radius: 0;
+	-fx-background-insets: 0;
+	-fx-border-width: 0;
+	-fx-padding: 0;
+
+	-fx-shape: "";
+}
+
+.text
+{
+	-fx-font-smoothing-type: gray;
+}
+
+.scroll-bar
+{
+	/* -fx-skin: 'org.beuwi.simulator.platform.implement.skin.IScrollBarSkin'; */
+}
+.scroll-bar .track
+{
+	-fx-opacity: 0;
+}
+.scroll-bar .track-background
+{
+	-fx-opacity: 0;
+}
+.scroll-bar .thumb
+{
+	-fx-fill: rgba(100, 100, 100, 0.4);
+}
+.scroll-bar .thumb:hover
+{
+	-fx-fill: rgba(100, 100, 100, 0.6);
+}
+.scroll-bar .thumb:pressed
+{
+	-fx-fill: rgba(100, 100, 100, 0.8);
+}

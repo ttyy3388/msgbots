@@ -1,0 +1,55 @@
+plugins {
+	id 'java'
+	id 'application'
+	id 'org.openjfx.javafxplugin' version '0.0.8'
+	id 'org.beryx.jlink' version '2.17.3'
+}
+
+java {
+	// jdk 14
+	sourceCompatibility = JavaVersion.VERSION_14;
+	targetCompatibility = JavaVersion.VERSION_14;
+	compileJava.options.encoding = 'UTF-8'
+}
+
+mainClassName = "$moduleName/org.beuwi.simulator.Launcher"
+
+repositories {
+	mavenCentral()
+}
+
+group 'org.beuwi.simulator'
+version '0.4.0'
+
+javafx {
+	version = "14"
+	modules = ['javafx.controls', 'javafx.fxml']
+	// modules = [ 'javafx.controls', 'javafx.fxml','javafx.graphics','javafx.base' ]
+}
+
+dependencies {
+	// 일반적인 상황에서는 implementation 사용
+	implementation group: 'com.jfoenix', name: 'jfoenix', version: '9.0.8'
+	implementation group: 'org.fxmisc.richtext', name: 'richtextfx', version:'0.10.4'
+}
+
+jlink {
+	mergedModule {
+		requires "java.xml"
+	}
+	options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+	launcher {
+		name = 'MesengerBotSimulator'
+	}
+}
+
+jar {
+	manifest {
+		attributes 'Main-Class': 'org.beuwi.simulator.Launcher'
+	}
+	from {
+		configurations.compile.collect {
+			it.isDirectory() ? it : zipTree(it)
+		}
+	}
+}

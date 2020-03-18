@@ -1,0 +1,2 @@
+
+1. 자바 14로 jar 만들면 Scene Builder에서 Component를 인식 못하므로, 자바 8에서 패키지 구조를 똑같이 맞춘 다음 jar로 변환해야함.
