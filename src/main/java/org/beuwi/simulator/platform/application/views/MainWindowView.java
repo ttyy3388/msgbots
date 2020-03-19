@@ -2,10 +2,8 @@ package org.beuwi.simulator.platform.application.views;
 
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import org.beuwi.simulator.platform.application.actions.ResizeActivityAreaAction;
-import org.beuwi.simulator.platform.application.actions.SelectActivityTabAction;
+import org.beuwi.simulator.platform.application.actions.ResizeSideBarAction;
+import org.beuwi.simulator.platform.application.actions.SelectActivityButtonAction;
 
 public class MainWindowView extends BorderPane
 {
@@ -15,20 +13,20 @@ public class MainWindowView extends BorderPane
 		setPrefSize(1300, 900);
 
 		AnchorPane anpMenuBar      = new MenuBarView();
-		AnchorPane anpActivityArea = new ActivityAreaView();
+		AnchorPane anpActiveArea   = new ActiveAreaView();
 		AnchorPane anpEditorArea   = new EditorAreaView();
 		AnchorPane anpStatusBar    = new StatusBarView();
 
 		setTop(anpMenuBar);
-		setLeft(anpActivityArea);
+		setLeft(anpActiveArea);
 		setCenter(anpEditorArea);
 		setBottom(anpStatusBar);
 
 		// init Actions
 		// AddEditorTabAction.initAction();
 		// CloseEditorTabAction.initAction();
-		ResizeActivityAreaAction.initAction();
-		// SelectActivityTabAction.initAction();
+		ResizeSideBarAction.initAction();
+		SelectActivityButtonAction.initAction();
 
 		// getStyleClass().add()
 	}

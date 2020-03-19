@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox fx:id="hoxActiveArea" styleClass="active-area" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane fx:id="anpActivityBar" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" styleClass="activity-bar">
+         <children>
+            <ToggleButton fx:id="tgnExplorerPart" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" selected="true" styleClass="explorer-button" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <ToggleButton fx:id="tgnSimulationPart" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="simulation-button" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anpSideBar" prefWidth="210.0" styleClass="side-bar" HBox.hgrow="ALWAYS">
+         <children>
+            <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <AnchorPane prefHeight="27.0" styleClass="title-pane">
+                     <children>
+                        <Label text="EXPLORER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <ListView VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <VBox disable="true" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <AnchorPane prefHeight="27.0" styleClass="title-pane">
+                     <children>
+                        <Label styleClass="title-pane" text="PROJECTS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <StackPane fx:id="stpResizeBar" layoutX="10.0" layoutY="10.0" prefWidth="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </StackPane>
+         </children>
+      </AnchorPane>
+   </children>
+   <stylesheets>
+      <URL value="@../themes/default.css" />
+      <URL value="@../styles/ActiveAreaStyle.css" />
+   </stylesheets>
+</HBox>

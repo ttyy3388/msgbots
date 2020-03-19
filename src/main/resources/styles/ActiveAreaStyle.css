@@ -1,0 +1,53 @@
+
+.active-area
+{
+	-fx-background-color: #3C3F41;
+}
+.activity-bar
+{
+    -fx-border-color: #323232;
+    -fx-border-width: 0 1 0 0;
+}
+.activity-bar .toggle-button
+{
+	-fx-background-position: center;
+	-fx-background-size: 22;
+	-fx-border-color: transparent;
+	-fx-border-width: 0 0 0 1.5;
+}
+.activity-bar .toggle-button:selected
+{
+	-fx-border-color: #FFFFFF;
+}
+.activity-bar .explorer-button
+{
+	-fx-background-image: url('../images/tab_explorer.png');
+}
+.activity-bar .explorer-button:hover,
+.activity-bar .explorer-button:selected
+{
+	-fx-background-image: url('../images/tab_explorer_focused.png');
+}
+.activity-bar .simulation-button
+{
+	-fx-background-image: url('../images/tab_simulation.png');
+}
+.activity-bar .simulation-button:hover,
+.activity-bar .simulation-button:selected
+{
+	-fx-background-image: url('../images/tab_simulation_focused.png');
+}
+
+.side-bar
+{
+	-fx-background-color: #3E434C;
+}
+.side-bar .title-pane
+{
+	-fx-border-color: #323232;
+	-fx-border-width: 0 0 1 0;
+}
+.side-bar .title-pane .label
+{
+	-fx-text-fill: #CCCCCC;
+}

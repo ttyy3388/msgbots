@@ -3,15 +3,15 @@ package org.beuwi.simulator.platform.application.views;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
-import org.beuwi.simulator.platform.application.controllers.ActivityAreaController;
+import org.beuwi.simulator.platform.application.controllers.ActiveAreaController;
 
-public class ActivityAreaView extends AnchorPane
+public class ActiveAreaView extends AnchorPane
 {
-	public ActivityAreaView() throws Exception
+	public ActiveAreaView() throws Exception
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/forms/ActivityAreaForm.fxml"));
-		loader.setController(new ActivityAreaController());
+		loader.setLocation(getClass().getResource("/forms/ActiveAreaForm.fxml"));
+		loader.setController(new ActiveAreaController());
 
 		Region root = loader.load();
 

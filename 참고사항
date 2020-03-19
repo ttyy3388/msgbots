@@ -1,2 +1,44 @@
 
 1. 자바 14로 jar 만들면 Scene Builder에서 Component를 인식 못하므로, 자바 8에서 패키지 구조를 똑같이 맞춘 다음 jar로 변환해야함.
+
+2. 이미지 사이즈
+2.0 소 : 16px
+2.1 중 : 32px (이미지 : 높이 or 넓이 30px 맞추기)
+2.3 대 : 64px
+
+3. 헝가리안 표기법 네이밍
+
+// Control
+btn - Button
+cir - Circle
+chk - CheckBox
+cmb - ComboBox
+ctm - ContextMenu
+fch - FileChooser
+lbl - Label
+mnu - Menu
+mnb - MenuBar
+mni - MenuItem
+sld - Slider
+smb - Split Menu Button
+tgn - ToggleButton
+txa - TextArea
+txf - TextField
+imv - ImageView
+
+// Layout
+anp  - AnchorPane
+bop - BorderPane
+grp - GridPane
+tap  - TabPane
+stp  - StackPane
+vox - VBox
+hox - HBox
+lsv - ListView
+trv - TreeView
+lsc - ListCell
+trc - TreeCell
+
+// Customize Component
+itap : ITabPane
+icda : ICodeArea

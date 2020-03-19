@@ -2,13 +2,13 @@ package org.beuwi.simulator.platform.application.managers;
 
 import javafx.scene.layout.AnchorPane;
 
-public class ActivityAreaManager
+public class SideBarManager
 {
 	private static AnchorPane component = null;
 
-	public static void initManager(AnchorPane anpActivityBar)
+	public static void initManager(AnchorPane anpSideBar)
 	{
-		component = anpActivityBar;
+		component = anpSideBar;
 	}
 
 	public static AnchorPane getComponent()
