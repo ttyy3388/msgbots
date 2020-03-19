@@ -9,6 +9,7 @@
  	-fx-text-fill: #BBBBBB;
  	-fx-font-size: 12;
 
+    -fx-background-repeat: no-repeat;
 	-fx-background-radius: 0;
 	-fx-background-insets: 0;
 	-fx-border-width: 0;
