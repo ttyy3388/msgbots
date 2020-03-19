@@ -2,8 +2,6 @@
 .activity-bar
 {
 	-fx-background-color: #3C3F41;
-	-fx-border-color: #323232;
-	-fx-border-width: 0 1 0 0;
 }
 
 .button
