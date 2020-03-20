@@ -1,7 +1,21 @@
 
 .active-area
 {
+
+}
+
+/* Activity Bar */
+.tab-header-area
+{
 	-fx-background-color: #3C3F41;
+	-fx-border-color: #323232;
+	-fx-border-width: 1 0 0 0;
+}
+
+/* Side Bar */
+.tab-content-area
+{
+	-fx-background-color: #3E434C;
 	-fx-border-color: #323232;
 	-fx-border-width: 0 1 0 0;
 }
@@ -27,42 +41,32 @@
     -fx-border-color: #FFFFFF;
 }
 
-.tab-header-area
+.tab .button
 {
-	-fx-border-color: #323232;
-	-fx-border-width: 0 0 1 0;
-}
-.tab-content-area
-{
-	-fx-background-color: #3E434C;
-}
-
-.tab-button
-{
-    -fx-background-size: 24;
     -fx-background-position: center;
+    -fx-background-size: 24;
 }
-.tab-button:disabled
+.tab .button:disabled
 {
-    -fx-opacity: 1.0 ;
+    -fx-opacity: 1.0;
 }
 
-.explorer-tab .tab-button
+.explorer-tab .button
 {
     -fx-background-image: url('../images/tab_explorer.png');
 }
-.explorer-tab:hover .tab-button,
-.explorer-tab:selected .tab-button
+.explorer-tab:hover .button,
+.explorer-tab:selected .button
 {
     -fx-background-image: url('../images/tab_explorer_focused.png');
 }
 
-.simulation-tab .tab-button
+.debug-tab .button
 {
     -fx-background-image: url('../images/tab_simulation.png');
 }
-.simulation-tab:hover .tab-button,
-.simulation-tab:selected .tab-button
+.debug-tab:hover .button,
+.debug-tab:selected .button
 {
     -fx-background-image: url('../images/tab_simulation_focused.png');
 }

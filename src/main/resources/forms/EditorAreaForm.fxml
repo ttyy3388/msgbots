@@ -6,7 +6,7 @@
 
 <AnchorPane fx:id="anpEditorArea" minWidth="50.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ITabPane fx:id="itapEditorArea" layoutX="10.0" layoutY="10.0" styleClass="editor-area" stylesheets="@../styles/EditorAreaStyle.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ITabPane fx:id="tapEditorArea" layoutX="10.0" layoutY="10.0" styleClass="editor-area" stylesheets="@../styles/EditorAreaStyle.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
             <Tab text="Untitled Tab">
                <content>

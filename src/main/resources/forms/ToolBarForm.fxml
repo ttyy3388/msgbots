@@ -5,20 +5,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefWidth="500.0" styleClass="tool-bar" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anpToolBar" prefHeight="25.0" prefWidth="500.0" styleClass="tool-bar" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox layoutX="36.0" layoutY="-50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button mnemonicParsing="false" />
-            <Button mnemonicParsing="false" />
-          <Button mnemonicParsing="false" />
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" text="File" />
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" text="View" />
+          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" text="Debug" />
          </children>
       </HBox>
       <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button mnemonicParsing="false" />
-            <Button mnemonicParsing="false" />
-            <Button mnemonicParsing="false" />
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" />
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" />
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" />
          </children>
       </HBox>
    </children>

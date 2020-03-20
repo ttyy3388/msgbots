@@ -3,4 +3,4 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane fx:id="anpStatusBar" prefHeight="20.0" styleClass="status-bar" stylesheets="@../styles/StatusBarStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" />
+<AnchorPane fx:id="anpStatusBar" prefHeight="20.0" prefWidth="200.0" styleClass="status-bar" stylesheets="@../styles/StatusBarStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" />

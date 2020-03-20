@@ -11,34 +11,34 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="anpActiveArea" minWidth="42.0" prefWidth="250.0" styleClass="active-area" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anpActiveArea" minWidth="40.0" prefWidth="250.0" styleClass="active-area" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TabPane fx:id="tapActiveArea" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="40.0" tabMaxWidth="50.0" tabMinHeight="40.0" tabMinWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <tabs>
-          <Tab closable="false" styleClass="explorer-tab">
-            <content>
-              <AnchorPane>
+      <TabPane layoutX="20.0" layoutY="20.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="40.0" tabMaxWidth="50.0" tabMinHeight="40.0" tabMinWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <tabs>
+            <Tab styleClass="explorer-tab">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox>
                            <children>
                               <AnchorPane prefHeight="27.0" styleClass="title-pane">
                                  <children>
                                     <Label text="BOTS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
-                              <ListView fx:id="lsvExplorerPart" VBox.vgrow="ALWAYS" />
+                              <ListView VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                      </children>
                   </AnchorPane>
-            </content>
+               </content>
                <graphic>
-                  <Button disable="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="tab-button" />
+                  <Button disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="40.0" />
                </graphic>
-          </Tab>
-          <Tab closable="false" styleClass="simulation-tab">
-            <content>
-              <AnchorPane>
+            </Tab>
+            <Tab styleClass="debug-tab">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
@@ -47,19 +47,19 @@
                                     <Label text="SIMULATION" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="anpSimulationPart" VBox.vgrow="ALWAYS" />
+                              <AnchorPane VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                      </children>
                   </AnchorPane>
-            </content>
+               </content>
                <graphic>
-                  <Button disable="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="tab-button" />
+                  <Button disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="40.0" />
                </graphic>
-          </Tab>
-        </tabs>
+            </Tab>
+         </tabs>
       </TabPane>
-      <StackPane fx:id="stpResizeBar" prefWidth="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <StackPane fx:id="stpResizeBar" prefWidth="7.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <cursor>
             <Cursor fx:constant="H_RESIZE" />
          </cursor>

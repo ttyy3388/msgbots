@@ -1,4 +1,4 @@
-package org.beuwi.simulator.platform.application.parts.editorarea;
+package org.beuwi.simulator.platform.application.parts;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,5 +19,10 @@ public class EditorAreaPart
 		loader.setLocation(getClass().getResource("/forms/EditorAreaForm.fxml"));
 		loader.setController(this);
 		loader.load();
+	}
+
+	public AnchorPane getRoot()
+	{
+		return anpEditorArea;
 	}
 }

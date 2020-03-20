@@ -6,10 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import org.beuwi.simulator.platform.application.parts.activitybar.ActiveAreaView;
-import org.beuwi.simulator.platform.application.parts.editorarea.EditorAreaView;
-import org.beuwi.simulator.platform.application.parts.toolbar.ToolBarView;
-import org.beuwi.simulator.platform.application.views.*;
+import org.beuwi.simulator.platform.application.parts.*;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -41,26 +38,15 @@ public class Launcher extends Application
 
 			root.getStylesheets().add(getClass().getResource("/themes/default.css").toExternalForm());
 
-			BorderPane pane = new MainWindowView();
+			BorderPane pane = new BorderPane();
+
+			pane.setTop(new ToolBarPart().getRoot());
+			pane.setLeft(new ActiveAreaPart().getRoot());
+			pane.setCenter(new EditorAreaPart().getRoot());
+			pane.setBottom(new StatusBarPart().getRoot());
+
 			pane.setMinSize(1100, 700);
 			pane.setPrefSize(1300, 900);
-
-			AnchorPane anpMenuBar      = new ToolBarView();
-			AnchorPane anpActiveArea   = new ActiveAreaView();
-			AnchorPane anpEditorArea   = new EditorAreaView();
-			AnchorPane anpStatusBar    = new StatusBarView();
-
-			pane.setTop(anpMenuBar);
-			pane.setLeft(anpActiveArea);
-			pane.setCenter(anpEditorArea);
-			pane.setBottom(anpStatusBar);
-
-			// init Actions
-			// AddEditorTabAction.initialize();
-			// CloseEditorTabAction.initialize();
-			//ResizeActiveAreaAction.initialize();
-
-			// getStyleClass().add()
 
 			// pane.getStyleClass().add("main");
 			// root.getStyleClass().add("window");
