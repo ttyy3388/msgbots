@@ -1,15 +1,17 @@
 
-.menu-bar
+.tool-bar
 {
     -fx-background-color: #3C3F41;
 	-fx-border-color: #323232;
 	-fx-border-width: 0 0 1 0;
 }
-.menu-button
+
+.menu-bar
 {
-    -fx-padding: 4 8 4 8;
+
 }
-.menu-button:showing
+
+.button-bar
 {
-	-fx-background-color: #4B6EAF;
+
 }

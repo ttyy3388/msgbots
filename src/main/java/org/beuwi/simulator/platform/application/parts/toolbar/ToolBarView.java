@@ -1,17 +1,16 @@
-package org.beuwi.simulator.platform.application.views;
+package org.beuwi.simulator.platform.application.parts.toolbar;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
-import org.beuwi.simulator.platform.application.controllers.EditorAreaController;
 
-public class EditorAreaView extends AnchorPane
+public class ToolBarView extends AnchorPane
 {
-	public EditorAreaView() throws Exception
+	public ToolBarView() throws Exception
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/forms/EditorAreaForm.fxml"));
-		loader.setController(new EditorAreaController());
+		loader.setLocation(getClass().getResource("/forms/MenuBarForm.fxml"));
+		loader.setController(new ToolBarController());
 
 		Region root = loader.load();
 

@@ -1,9 +1,9 @@
-package org.beuwi.simulator.platform.application.views;
+package org.beuwi.simulator.platform.application.parts.activitybar;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
-import org.beuwi.simulator.platform.application.controllers.ActiveAreaController;
+import org.beuwi.simulator.platform.application.parts.activitybar.ActiveAreaController;
 
 public class ActiveAreaView extends AnchorPane
 {

@@ -6,6 +6,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import org.beuwi.simulator.platform.application.parts.activitybar.ActiveAreaView;
+import org.beuwi.simulator.platform.application.parts.editorarea.EditorAreaView;
+import org.beuwi.simulator.platform.application.parts.toolbar.ToolBarView;
 import org.beuwi.simulator.platform.application.views.*;
 
 import java.io.File;
@@ -32,11 +35,32 @@ public class Launcher extends Application
 
 			// WindowStage.setPrimaryStage(stage);
 
+
+
 			AnchorPane root = new AnchorPane();
 
 			root.getStylesheets().add(getClass().getResource("/themes/default.css").toExternalForm());
 
 			BorderPane pane = new MainWindowView();
+			pane.setMinSize(1100, 700);
+			pane.setPrefSize(1300, 900);
+
+			AnchorPane anpMenuBar      = new ToolBarView();
+			AnchorPane anpActiveArea   = new ActiveAreaView();
+			AnchorPane anpEditorArea   = new EditorAreaView();
+			AnchorPane anpStatusBar    = new StatusBarView();
+
+			pane.setTop(anpMenuBar);
+			pane.setLeft(anpActiveArea);
+			pane.setCenter(anpEditorArea);
+			pane.setBottom(anpStatusBar);
+
+			// init Actions
+			// AddEditorTabAction.initialize();
+			// CloseEditorTabAction.initialize();
+			//ResizeActiveAreaAction.initialize();
+
+			// getStyleClass().add()
 
 			// pane.getStyleClass().add("main");
 			// root.getStyleClass().add("window");
@@ -60,8 +84,10 @@ public class Launcher extends Application
 			// stage.setMaxHeight(Double.MAX_VALUE);
 
 			stage.setScene(new Scene(root));
-			stage.toFront();
 			stage.show();
+
+			// toFront가 안먹히는 문제점 수정해야됨
+			stage.toFront();
 		}
 		catch (Exception e)
 		{

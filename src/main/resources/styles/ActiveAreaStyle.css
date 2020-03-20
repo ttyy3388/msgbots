@@ -2,52 +2,67 @@
 .active-area
 {
 	-fx-background-color: #3C3F41;
-}
-.activity-bar
-{
-    -fx-border-color: #323232;
-    -fx-border-width: 0 1 0 0;
-}
-.activity-bar .toggle-button
-{
-	-fx-background-position: center;
-	-fx-background-size: 22;
-	-fx-border-color: transparent;
-	-fx-border-width: 0 0 0 1.5;
-}
-.activity-bar .toggle-button:selected
-{
-	-fx-border-color: #FFFFFF;
-}
-.activity-bar .explorer-button
-{
-	-fx-background-image: url('../images/tab_explorer.png');
-}
-.activity-bar .explorer-button:hover,
-.activity-bar .explorer-button:selected
-{
-	-fx-background-image: url('../images/tab_explorer_focused.png');
-}
-.activity-bar .simulation-button
-{
-	-fx-background-image: url('../images/tab_simulation.png');
-}
-.activity-bar .simulation-button:hover,
-.activity-bar .simulation-button:selected
-{
-	-fx-background-image: url('../images/tab_simulation_focused.png');
+	-fx-border-color: #323232;
+	-fx-border-width: 0 1 0 0;
 }
 
-.side-bar
-{
-	-fx-background-color: #3E434C;
-}
-.side-bar .title-pane
+.title-pane
 {
 	-fx-border-color: #323232;
 	-fx-border-width: 0 0 1 0;
 }
-.side-bar .title-pane .label
+.title-pane .label
 {
-	-fx-text-fill: #CCCCCC;
+    -fx-text-fill: #CCCCCC;
+}
+
+.tab
+{
+    -fx-border-color: transparent;
+    -fx-border-width: 1.5 0 0 0;
+    -fx-cursor: HAND;
+}
+.tab:selected
+{
+    -fx-border-color: #FFFFFF;
+}
+
+.tab-header-area
+{
+	-fx-border-color: #323232;
+	-fx-border-width: 0 0 1 0;
+}
+.tab-content-area
+{
+	-fx-background-color: #3E434C;
+}
+
+.tab-button
+{
+    -fx-background-size: 24;
+    -fx-background-position: center;
+}
+.tab-button:disabled
+{
+    -fx-opacity: 1.0 ;
+}
+
+.explorer-tab .tab-button
+{
+    -fx-background-image: url('../images/tab_explorer.png');
+}
+.explorer-tab:hover .tab-button,
+.explorer-tab:selected .tab-button
+{
+    -fx-background-image: url('../images/tab_explorer_focused.png');
+}
+
+.simulation-tab .tab-button
+{
+    -fx-background-image: url('../images/tab_simulation.png');
+}
+.simulation-tab:hover .tab-button,
+.simulation-tab:selected .tab-button
+{
+    -fx-background-image: url('../images/tab_simulation_focused.png');
 }
