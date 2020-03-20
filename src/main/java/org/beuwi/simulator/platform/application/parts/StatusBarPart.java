@@ -1,24 +1,29 @@
 package org.beuwi.simulator.platform.application.parts;
 
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
 public class StatusBarPart
 {
-	@FXML
-	private AnchorPane anpStatusBar;
+	private static AnchorPane anpStatusBar;
 
-	public StatusBarPart() throws Exception
+	public static void initialize() throws Exception
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/forms/StatusBarForm.fxml"));
-		loader.setController(this);
+		loader.setLocation(StatusBarPart.class.getResource("/forms/StatusBarForm.fxml"));
+		loader.setController(null);
 		loader.load();
+
+		anpStatusBar = (AnchorPane) loader.getNamespace().get("anpStatusBar");
 	}
 
-	public AnchorPane getRoot()
+	public static AnchorPane getRoot()
 	{
 		return anpStatusBar;
 	}
+
+	/* public static AnchorPane getComponent()
+	{
+		return anpStatusBar;
+	} */
 }

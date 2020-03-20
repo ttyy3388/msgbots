@@ -7,23 +7,19 @@
 /* Activity Bar */
 .tab-header-area
 {
-	-fx-background-color: #3C3F41;
-	-fx-border-color: #323232;
-	-fx-border-width: 1 0 0 0;
+	-fx-background-color: #333333;
 }
 
 /* Side Bar */
 .tab-content-area
 {
-	-fx-background-color: #3E434C;
-	-fx-border-color: #323232;
-	-fx-border-width: 0 1 0 0;
+	-fx-background-color: #252526;
 }
 
 .title-pane
 {
 	-fx-border-color: #323232;
-	-fx-border-width: 0 0 1 0;
+	-fx-border-width: 0 0 15 0;
 }
 .title-pane .label
 {
@@ -44,7 +40,7 @@
 .tab .button
 {
     -fx-background-position: center;
-    -fx-background-size: 24;
+    -fx-background-size: 22;
 }
 .tab .button:disabled
 {

@@ -6,9 +6,8 @@
 
 .tab
 {
-	-fx-border-color: transparent;
-	-fx-border-width: 2 0 3 0;
-	-fx-padding: 0 8 0 8;
+    -fx-background-color: #2D2D2D;
+	-fx-padding: 5 10 5 10;
 }
 .tab-header
 {
@@ -25,22 +24,11 @@
 }
 .tab-header-background
 {
-	-fx-background-color: #3C3F41;
-	-fx-border-color: #323232;
-	-fx-border-width: 0 0 1 0;
-}
-.tab:hover
-{
-	-fx-background-color: #27292A;
+	-fx-background-color: #252526;
 }
 .tab:selected
 {
-	-fx-background-color: #4E5254;
-	-fx-border-color: transparent transparent #4A88C7 transparent;
-}
-.tab:selected:hover
-{
-	-fx-background-color: #333537;
+	-fx-background-color: #1E1E1E;
 }
 .tab:selected .tab-label
 {

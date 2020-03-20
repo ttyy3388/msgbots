@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane fx:id="anpStatusBar" prefHeight="20.0" prefWidth="200.0" styleClass="status-bar" stylesheets="@../styles/StatusBarStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" />
+<AnchorPane fx:id="anpStatusBar" prefHeight="20.0" prefWidth="1000.0" styleClass="status-bar" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="961.0" layoutY="3.0" text="JavaScript" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="4.0" />
+      <Label layoutX="897.0" layoutY="4.0" text="CRLF" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="4.0" />
+      <Label layoutX="867.0" layoutY="7.0" text="Tab" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="4.0" />
+      <Label layoutX="907.0" layoutY="14.0" text="UTF-8" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="155.0" AnchorPane.topAnchor="4.0" />
+   </children>
+   <stylesheets>
+      <URL value="@../themes/default.css" />
+      <URL value="@../styles/StatusBarStyle.css" />
+   </stylesheets>
+</AnchorPane>

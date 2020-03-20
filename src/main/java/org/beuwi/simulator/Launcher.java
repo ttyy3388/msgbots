@@ -6,10 +6,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import org.beuwi.simulator.platform.application.actions.HideSideBarAction;
+import org.beuwi.simulator.platform.application.actions.ResizeSideBarAction;
 import org.beuwi.simulator.platform.application.parts.*;
-
-import java.io.File;
-import java.io.FileInputStream;
 
 public class Launcher extends Application
 {
@@ -19,20 +18,19 @@ public class Launcher extends Application
 		try
 		{
 			/* Text Anti Aliasing */
+			System.setProperty("prism.text", "t2k");
 			System.setProperty("prism.lcdtext", "false");
 			System.setProperty("prism.subpixeltext", "false");
 
 			/* Load Fonts */
-			File[] fonts = new File(getClass().getResource("/fonts").toURI()).listFiles();
-
-			for (File font : fonts)
-			{
-				Font.loadFont(new FileInputStream(font), 0);
-			}
+			Font.loadFont(getClass().getResourceAsStream("/fonts/Consola.ttf"), 0);
+			Font.loadFont(getClass().getResourceAsStream("/fonts/ConsolaBold.ttf"), 0);
+			Font.loadFont(getClass().getResourceAsStream("/fonts/D2Coding.ttf"), 0);
+			Font.loadFont(getClass().getResourceAsStream("/fonts/D2codingBold.ttf"), 0);
+			Font.loadFont(getClass().getResourceAsStream("/fonts/Roboto.ttf"), 0);
+			Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoBold.ttf"), 0);
 
 			// WindowStage.setPrimaryStage(stage);
-
-
 
 			AnchorPane root = new AnchorPane();
 
@@ -40,10 +38,18 @@ public class Launcher extends Application
 
 			BorderPane pane = new BorderPane();
 
-			pane.setTop(new ToolBarPart().getRoot());
-			pane.setLeft(new ActiveAreaPart().getRoot());
-			pane.setCenter(new EditorAreaPart().getRoot());
-			pane.setBottom(new StatusBarPart().getRoot());
+			ToolBarPart.initialize();
+			ActiveAreaPart.initialize();
+			EditorAreaPart.initialize();
+			StatusBarPart.initialize();
+
+			HideSideBarAction.initialize();
+			ResizeSideBarAction.initialize();
+
+			pane.setTop(ToolBarPart.getRoot());
+			pane.setLeft(ActiveAreaPart.getRoot());
+			pane.setCenter(EditorAreaPart.getRoot());
+			pane.setBottom(StatusBarPart.getRoot());
 
 			pane.setMinSize(1100, 700);
 			pane.setPrefSize(1300, 900);
@@ -62,8 +68,8 @@ public class Launcher extends Application
 
 			// new WindowView(stage, pane, WindowType.WINDOW);
 
-			stage.setMinWidth(250);
-			// stage.setMinHeight();
+			stage.setMinWidth(600);
+			stage.setMinHeight(400);
 			stage.setWidth(1300);
 			stage.setHeight(900);
 			// stage.setMaxWidth(Double.MAX_VALUE);

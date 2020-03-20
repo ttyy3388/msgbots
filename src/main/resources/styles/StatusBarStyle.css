@@ -3,3 +3,8 @@
 {
     -fx-background-color: #007ACC;
 }
+
+.label
+{
+    -fx-text-fill: #FFFFFF;
+}

@@ -1,25 +1,29 @@
 package org.beuwi.simulator.platform.application.parts;
 
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
 
 public class ToolBarPart
 {
-	@FXML
-	private AnchorPane anpToolBar;
+	private static AnchorPane anpToolBar;
 
-	public ToolBarPart() throws Exception
+	public static void initialize() throws Exception
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/forms/ToolBarForm.fxml"));
-		loader.setController(this);
+		loader.setLocation(StatusBarPart.class.getResource("/forms/ToolBarForm.fxml"));
+		loader.setController(null);
 		loader.load();
+
+		anpToolBar = (AnchorPane) loader.getNamespace().get("anpToolBar");
 	}
 
-	public AnchorPane getRoot()
+	public static AnchorPane getRoot()
 	{
 		return anpToolBar;
 	}
+
+	/* public static AnchorPane getComponent()
+	{
+		return anpToolBar;
+	} */
 }
