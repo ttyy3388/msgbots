@@ -14,7 +14,7 @@ public class HideSideBarAction
 		pane = ActiveAreaPart.getRoot();
 	}
 
-	public static void action(boolean hide)
+	public static void update(boolean hide)
 	{
 		isHided = hide;
 
@@ -25,7 +25,7 @@ public class HideSideBarAction
 		// Show
 		else
 		{
-			pane.setPrefWidth(220);
+			pane.setPrefWidth(200);
 		}
 	}
 

@@ -27,7 +27,7 @@ public class ActiveAreaPart
 
 		anchorPane.setOnMouseDragged(event ->
 		{
-			ResizeSideBarAction.action(event);
+			ResizeSideBarAction.update(event);
 		});
 	}
 

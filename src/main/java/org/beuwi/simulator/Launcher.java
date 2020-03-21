@@ -26,18 +26,17 @@ public class Launcher extends Application
 			System.setProperty("prism.subpixeltext", "false");
 
 			/* Load Fonts */
-			Font.loadFont(getClass().getResourceAsStream("/fonts/Consola.ttf"), 0);
+			/* Font.loadFont(getClass().getResourceAsStream("/fonts/Consola.ttf"), 0);
 			Font.loadFont(getClass().getResourceAsStream("/fonts/ConsolaBold.ttf"), 0);
 			Font.loadFont(getClass().getResourceAsStream("/fonts/D2Coding.ttf"), 0);
-			Font.loadFont(getClass().getResourceAsStream("/fonts/D2codingBold.ttf"), 0);
+			Font.loadFont(getClass().getResourceAsStream("/fonts/D2codingBold.ttf"), 0); */
 			Font.loadFont(getClass().getResourceAsStream("/fonts/Roboto.ttf"), 0);
 			Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoBold.ttf"), 0);
+			Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoMedium.ttf"), 0);
 
 			// WindowStage.setPrimaryStage(stage);
 
 			AnchorPane root = new AnchorPane();
-
-			root.getStylesheets().add(getClass().getResource("/themes/default.css").toExternalForm());
 
 			BorderPane pane = new BorderPane();
 
@@ -57,7 +56,8 @@ public class Launcher extends Application
 			// pane.getStyleClass().add("main");
 			// root.getStyleClass().add("window");
 
-			root.getStylesheets().add(getClass().getResource("/themes/darcula.css").toExternalForm());
+			root.getStylesheets().add(getClass().getResource("/themes/default.css").toExternalForm());
+			root.getStylesheets().add(getClass().getResource("/themes/dark.css").toExternalForm());
 
 			root.getChildren().add(pane);
 
@@ -90,7 +90,8 @@ public class Launcher extends Application
 
 			for (int i = 0 ; i < 10 ; i ++)
 			{
-				AddEditorTabAction.action(null, "test" + i, null, ITabType.SCRIPT);
+				AddEditorTabAction.update(null, "test" + i, null, ITabType.SCRIPT);
+				AddExplorerItemAction.update("test" + i);
 			}
 		}
 		catch (Exception e)

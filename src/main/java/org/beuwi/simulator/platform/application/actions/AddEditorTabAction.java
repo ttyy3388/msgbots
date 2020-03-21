@@ -15,7 +15,7 @@ public class AddEditorTabAction
 		pane = EditorAreaPart.getComponent();
 	}
 
-	public static void action(Image image, String title, Node node, int type)
+	public static void update(Image image, String title, Node node, int type)
 	{
 		pane.addTab(new ITab(image, title, node, type));
 	}

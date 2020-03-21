@@ -13,29 +13,34 @@ public class ResizeSideBarAction
 		pane = ActiveAreaPart.getRoot();
 	}
 
-	public static void action(MouseEvent event)
+	public static void update(MouseEvent event)
 	{
 		double sceneX = event.getSceneX();
 
 		// 이 부분에서 드래그 시 깜빡이는 문제점 방지
 		if (!(sceneX >= -5 && sceneX <= 5))
 		{
+			/* if (WindowStage.getPrimartStage() - editorArea.getMinWidth())
+			{
+				return ;
+			} */
+
 			if (HideSideBarAction.isHided())
 			{
-				if (150 <= sceneX)
+				if (125 <= sceneX)
 				{
-					HideSideBarAction.action(false);
+					HideSideBarAction.update(false);
 				}
 			}
 			else
 			{
-				// 200 안에서는 사이즈 변경 X
-				if (sceneX <= 220)
+				// 220 안에서는 사이즈 변경 X
+				if (sceneX <= 200)
 				{
 					// 150 안으로 드래그 시 숨김
-					if (sceneX <= 150)
+					if (sceneX <= 125)
 					{
-						HideSideBarAction.action(true);
+						HideSideBarAction.update(true);
 					}
 				}
 				else

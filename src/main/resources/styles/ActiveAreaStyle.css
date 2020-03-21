@@ -4,6 +4,16 @@
 
 }
 
+.title-pane
+{
+	-fx-border-color: #323232;
+	-fx-border-width: 0 0 15 0;
+}
+.title-pane .label
+{
+	-fx-text-fill: #CCCCCC;
+}
+
 /* Activity Bar */
 .tab-header-area
 {
@@ -16,53 +26,109 @@
 	-fx-background-color: #252526;
 }
 
-.title-pane
-{
-	-fx-border-color: #323232;
-	-fx-border-width: 0 0 15 0;
-}
-.title-pane .label
-{
-    -fx-text-fill: #CCCCCC;
-}
-
 .tab
 {
-    -fx-border-color: transparent;
-    -fx-border-width: 1.5 0 0 0;
-    -fx-cursor: HAND;
+	-fx-border-color: transparent;
+	-fx-border-width: 1.5 0 0 0;
+	-fx-cursor: HAND;
 }
-.tab:selected
-{
-    -fx-border-color: #FFFFFF;
-}
-
 .tab .button
 {
-    -fx-background-position: center;
-    -fx-background-size: 22;
+    -fx-background-color: transparent;
+	-fx-background-size: 22;
 }
 .tab .button:disabled
 {
-    -fx-opacity: 1.0;
+	-fx-opacity: 1.0;
+}
+.tab:selected
+{
+	-fx-border-color: #FFFFFF;
 }
 
 .explorer-tab .button
 {
-    -fx-background-image: url('../images/tab_explorer.png');
+	-fx-background-image: url('../images/tab_explorer.png');
 }
 .explorer-tab:hover .button,
 .explorer-tab:selected .button
 {
-    -fx-background-image: url('../images/tab_explorer_focused.png');
+	-fx-background-image: url('../images/tab_explorer_focused.png');
 }
 
 .debug-tab .button
 {
-    -fx-background-image: url('../images/tab_simulation.png');
+	-fx-background-image: url('../images/tab_simulation.png');
 }
 .debug-tab:hover .button,
 .debug-tab:selected .button
 {
-    -fx-background-image: url('../images/tab_simulation_focused.png');
+	-fx-background-image: url('../images/tab_simulation_focused.png');
 }
+
+/* Explorer Tab */
+.explorer-part .list-item
+{
+	-fx-cursor: HAND;
+}
+.explorer-part .list-cell .label *
+{
+	-fx-font-size: 15;
+}
+.explorer-part .list-cell .button
+{
+	-fx-background-radius: 15;
+	-fx-background-image: url('/images/reload_gray.png');
+	-fx-background-size: 22;
+}
+.explorer-part .list-cell .button:hover
+{
+	-fx-background-color: rgba(255, 255, 255, 0.1);
+}
+.explorer-part .list-cell .button:armed
+{
+	-fx-background-color: rgba(255, 255, 255, 0.2);
+}
+.explorer-part .list-cell .check-box .box
+{
+	-fx-background-radius: 10;
+	-fx-background-color: #BBBBBB;
+	-fx-padding: 4;
+}
+.explorer-part .list-cell .check-box .mark
+{
+	-fx-padding: 0;
+}
+.explorer-part .list-cell .jfx-toggle-button
+{
+	-jfx-toggle-color: #007ACC;
+	-jfx-untoggle-color: #BBBBBB;
+	-jfx-size: 6.5;
+}
+.jfx-toggle-button .jfx-rippler
+{
+	-fx-rippler-fill:RED;
+}
+.explorer-part .list-cell:selected
+{
+	-fx-background-color: #094771;
+}
+.explorer-part .list-cell:selected .label
+{
+	-fx-text-fill: #FFFFFF;
+}
+.explorer-part .list-cell:selected .button
+{
+	-fx-background-image: url('/images/reload_white.png');
+}
+.explorer-part .list-cell:selected .check-box .box
+{
+	-fx-background-color: #FFFFFF;
+}
+.explorer-part .list-cell:selected .jfx-toggle-button
+{
+	-jfx-untoggle-color: #FFFFFF;
+}
+
+
+/* Debug Tab */

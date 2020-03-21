@@ -1,15 +1,71 @@
 
-*
+.root,
+.arrow,
+.arrow-button,
+.box,
+.button,
+.check,
+.check-box,
+.content,
+.context-menu,
+.combo-box,
+.combo-box-base,
+.corner,
+.headers-region,
+.label,
+.line,
+.list-cell,
+.list-view,
+.mark,
+.menu,
+.menu-bar,
+.menu-button,
+.menu-down-arrow,
+.menu-item,
+.menu-up-arrow,
+.scroll-arrow,
+.scroll-bar,
+.scroll-pane,
+.separator,
+.slider,
+.split-button,
+.split-menu-button,
+.split-pane,
+.tab,
+.tab-close-button,
+.tab-container,
+.tab-content-area,
+.tab-down-button,
+.tab-header-area,
+.tab-header-background,
+.tab-label,
+.tab-pane,
+.text,
+.text-area,
+.text-field,
+.text-input,
+.thumb,
+.toggle-button,
+.tool-bar,
+.tooltip,
+.track,
+.tree-cell,
+.tree-disclosure-node,
+.tree-view,
+.viewport,
+.virtual-flow,
+VBox, HBox
 {
 	-fx-faint-focus-color: transparent;
 	-fx-background-color: transparent;
 	-fx-focus-color: transparent;
 
 	-fx-font-family: 'Roboto';
- 	-fx-text-fill: #BBBBBB;
- 	-fx-font-size: 12;
+	-fx-font-weight: BOLD;
+	-fx-text-fill: #CCCCCC;
+	-fx-font-size: 12;
 
-    -fx-background-repeat: no-repeat;
+	-fx-background-repeat: no-repeat;
 	-fx-background-radius: 0;
 	-fx-background-insets: 0;
 	-fx-border-width: 0;
@@ -21,6 +77,12 @@
 .text
 {
 	-fx-font-smoothing-type: gray;
+}
+
+.button
+{
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
 }
 
 .scroll-bar

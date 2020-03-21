@@ -21,7 +21,6 @@
 }
 .tab-close-button
 {
-    -fx-background-position: center;
     -fx-background-image: url('/images/tab_close.png');
     -fx-background-size: 16;
 }
