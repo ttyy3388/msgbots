@@ -6,24 +6,31 @@
 
 .context-menu
 {
+    -fx-padding: 7 0 7 0;
 	-fx-background-color: #252526;
+	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
 }
-.context-menu .separator *.line
+.context-menu .separator
 {
-	-fx-background-insets: 0 5 0 5;
+	-fx-background-insets: 4 10 4 10;
 	-fx-background-color: #616162;
-	-fx-border-width: 0.3;
+	-fx-padding: 4;
 }
 
 .menu-item
 {
-	-fx-padding: 3 10 3 10;
+	-fx-padding: 5 25 5 25;
+}
 /* }
 .menu-item *,
 .menu-item .label *
-{ */
-	-fx-font-family: Roboto;
-	-fx-font-size: 12;
+{
+
+	-fx-font-family: Roboto; */
+
+.menu-item .label *
+{
+	-fx-font-size: 13;
 }
 .menu-item:focused
 {

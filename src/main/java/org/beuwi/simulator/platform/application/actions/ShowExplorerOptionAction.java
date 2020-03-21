@@ -1,29 +1,38 @@
 package org.beuwi.simulator.platform.application.actions;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.input.MouseEvent;
 import org.beuwi.simulator.platform.application.parts.ActiveAreaPart;
-import org.beuwi.simulator.platform.ui.components.IContextMenu;
-import org.beuwi.simulator.platform.ui.components.IContextMenuType;
+import org.beuwi.simulator.platform.ui.components.IMenuItem;
 
 public class ShowExplorerOptionAction
 {
-    private static IContextMenu option;
-    private static Button button;
+	final static IMenuItem SHOW_COMPILED_CHECK_ITEM = new IMenuItem("Show Compiled Check");
+	final static IMenuItem SHOW_COMPILE_BUTTON_ITEM = new IMenuItem("Show Compile Button");
+	final static IMenuItem SHOW_POWER_SWITCH_ITEM   = new IMenuItem("Show Power Switch");
 
-    public static void initialize()
-    {
-        option = new IContextMenu(IContextMenuType.OPTION_EXPLORER);
-        button = (Button) ActiveAreaPart.getNameSpace().get("btnShowOption");
-    }
+	private static ContextMenu option;
+	private static Button button;
 
-    public static void update(MouseEvent event)
-    {
-        if (!event.isPrimaryButtonDown())
-        {
-            return ;
-        }
+	public static void initialize()
+	{
+		option = new ContextMenu();
+		button = (Button) ActiveAreaPart.getNameSpace().get("btnExplorerOption");
 
-        option.show(button, event.getScreenX(), event.getScreenY());
-    }
+		option.getItems().addAll
+		(
+			SHOW_COMPILED_CHECK_ITEM,
+            SHOW_COMPILE_BUTTON_ITEM,
+			SHOW_POWER_SWITCH_ITEM
+		);
+	}
+
+	public static void update(MouseEvent event)
+	{
+		if (event.isPrimaryButtonDown())
+		{
+			option.show(button, event.getScreenX(), event.getScreenY());
+		}
+	}
 }

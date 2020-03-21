@@ -82,7 +82,11 @@ public class Launcher extends Application
 
 			AddEditorTabAction.initialize();
 			AddExplorerItemAction.initialize();
+			// CloseEditorTabAction.initialize();
+			ShowDebugMenuAction.initialize();
 			ShowExplorerOptionAction.initialize();
+			ShowFileMenuAction.initialize();
+			ShowViewMenuAction.initialize();
 			HideSideBarAction.initialize();
 			ResizeSideBarAction.initialize();
 

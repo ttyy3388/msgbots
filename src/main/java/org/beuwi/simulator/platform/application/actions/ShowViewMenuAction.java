@@ -1,8 +1,10 @@
 package org.beuwi.simulator.platform.application.actions;
 
+import javafx.css.PseudoClass;
+import javafx.geometry.Side;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import org.beuwi.simulator.platform.application.parts.ActiveAreaPart;
+import org.beuwi.simulator.platform.application.parts.ToolBarPart;
 import org.beuwi.simulator.platform.ui.components.IContextMenu;
 import org.beuwi.simulator.platform.ui.components.IContextMenuType;
 
@@ -14,16 +16,16 @@ public class ShowViewMenuAction
     public static void initialize()
     {
         menu = new IContextMenu(IContextMenuType.MENU_FILE);
-        button = (Button) ActiveAreaPart.getNameSpace().get("btnViewMenu");
+        button = (Button) ToolBarPart.getNameSpace().get("btnViewMenu");
     }
 
     public static void update(MouseEvent event)
     {
-        if (!event.isPrimaryButtonDown())
-        {
-            return ;
-        }
+        menu.show(button, Side.BOTTOM);
 
-        menu.show(button, event.getScreenX(), event.getScreenY());
+        menu.showingProperty().addListener((observable, oldValue, newValue) ->
+        {
+            button.pseudoClassStateChanged(PseudoClass.getPseudoClass("showing"), newValue);
+        });
     }
 }
