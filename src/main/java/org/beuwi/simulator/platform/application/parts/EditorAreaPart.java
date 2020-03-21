@@ -1,13 +1,15 @@
 package org.beuwi.simulator.platform.application.parts;
 
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import org.beuwi.simulator.platform.ui.components.ITabPane;
 
 public class EditorAreaPart
 {
-	private static AnchorPane anpEditorArea;
-	private static ITabPane tapEditorArea;
+	private static ObservableMap<String, Object> nameSpace;
+	private static AnchorPane anchorPane;
+	private static ITabPane tabPane;
 
 	public static void initialize() throws Exception
 	{
@@ -16,17 +18,24 @@ public class EditorAreaPart
 		loader.setController(null);
 		loader.load();
 
-		anpEditorArea = (AnchorPane) loader.getNamespace().get("anpEditorArea");
-		tapEditorArea = (ITabPane) loader.getNamespace().get("tapEditorArea");
+		nameSpace = loader.getNamespace();
+
+		anchorPane = (AnchorPane) nameSpace.get("anpEditorArea");
+		tabPane = (ITabPane) nameSpace.get("tapEditorArea");
 	}
 
 	public static AnchorPane getRoot()
 	{
-		return anpEditorArea;
+		return anchorPane;
 	}
 
 	public static ITabPane getComponent()
 	{
-		return tapEditorArea;
+		return tabPane;
+	}
+
+	public static ObservableMap<String, Object> getNameSpace()
+	{
+		return nameSpace;
 	}
 }

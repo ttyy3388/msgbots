@@ -26,7 +26,7 @@
                                     <Label text="EXPLORER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
-                              <ListView VBox.vgrow="ALWAYS" />
+                              <ListView fx:id="lsvExplorerTab" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                      </children>

@@ -6,7 +6,7 @@ public class ITabPane extends TabPane
 {
 	public ITabPane()
 	{
-		super();
+		// super();
 	}
 
 	public void addTab(ITab itab)

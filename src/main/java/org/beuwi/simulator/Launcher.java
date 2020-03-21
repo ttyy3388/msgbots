@@ -7,6 +7,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.beuwi.simulator.platform.application.actions.AddEditorTabAction;
+import org.beuwi.simulator.platform.application.actions.AddExplorerItemAction;
 import org.beuwi.simulator.platform.application.actions.HideSideBarAction;
 import org.beuwi.simulator.platform.application.actions.ResizeSideBarAction;
 import org.beuwi.simulator.platform.application.parts.*;
@@ -45,10 +46,6 @@ public class Launcher extends Application
 			EditorAreaPart.initialize();
 			StatusBarPart.initialize();
 
-			AddEditorTabAction.initialize();
-			HideSideBarAction.initialize();
-			ResizeSideBarAction.initialize();
-
 			pane.setTop(ToolBarPart.getRoot());
 			pane.setLeft(ActiveAreaPart.getRoot());
 			pane.setCenter(EditorAreaPart.getRoot());
@@ -83,6 +80,13 @@ public class Launcher extends Application
 
 			// toFront가 안먹히는 문제점 수정해야됨
 			stage.toFront();
+
+			// lookup은 stage를 show해야 작동하므로 action들을 마지막에 초기화
+
+			AddEditorTabAction.initialize();
+			AddExplorerItemAction.initialize();
+			HideSideBarAction.initialize();
+			ResizeSideBarAction.initialize();
 
 			for (int i = 0 ; i < 10 ; i ++)
 			{

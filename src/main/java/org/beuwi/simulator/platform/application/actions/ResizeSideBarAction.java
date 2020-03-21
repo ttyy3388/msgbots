@@ -13,7 +13,7 @@ public class ResizeSideBarAction
 		pane = ActiveAreaPart.getRoot();
 	}
 
-	public static void update(MouseEvent event)
+	public static void action(MouseEvent event)
 	{
 		double sceneX = event.getSceneX();
 

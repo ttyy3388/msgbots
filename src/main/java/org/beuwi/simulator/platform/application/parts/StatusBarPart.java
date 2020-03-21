@@ -1,11 +1,13 @@
 package org.beuwi.simulator.platform.application.parts;
 
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
 public class StatusBarPart
 {
-	private static AnchorPane anpStatusBar;
+	private static ObservableMap<String, Object> nameSpace;
+	private static AnchorPane anchorPane;
 
 	public static void initialize() throws Exception
 	{
@@ -14,16 +16,22 @@ public class StatusBarPart
 		loader.setController(null);
 		loader.load();
 
-		anpStatusBar = (AnchorPane) loader.getNamespace().get("anpStatusBar");
+		nameSpace = loader.getNamespace();
+		anchorPane = (AnchorPane) nameSpace.get("anpStatusBar");
 	}
 
 	public static AnchorPane getRoot()
 	{
-		return anpStatusBar;
+		return anchorPane;
 	}
 
 	/* public static AnchorPane getComponent()
 	{
 		return anpStatusBar;
 	} */
+
+	public static ObservableMap<String, Object> getNameSpace()
+	{
+		return nameSpace;
+	}
 }

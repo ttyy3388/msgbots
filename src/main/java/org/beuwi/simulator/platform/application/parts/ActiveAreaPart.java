@@ -1,5 +1,7 @@
 package org.beuwi.simulator.platform.application.parts;
 
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
@@ -7,8 +9,9 @@ import org.beuwi.simulator.platform.application.actions.ResizeSideBarAction;
 
 public class ActiveAreaPart
 {
-	private static AnchorPane anpActiveArea;
-	private static TabPane tapActiveArea;
+	private static ObservableMap<String, Object> nameSpace;
+	private static AnchorPane anchorPane;
+	private static TabPane tabPane;
 
 	public static void initialize() throws Exception
 	{
@@ -17,22 +20,29 @@ public class ActiveAreaPart
 		loader.setController(null);
 		loader.load();
 
-		anpActiveArea = (AnchorPane) loader.getNamespace().get("anpActiveArea");
-		tapActiveArea = (TabPane) loader.getNamespace().get("tapActiveArea");
+		nameSpace = loader.getNamespace();
 
-		anpActiveArea.setOnMouseDragged(event ->
+		anchorPane = (AnchorPane) nameSpace.get("anpActiveArea");
+		tabPane = (TabPane) nameSpace.get("tapActiveArea");
+
+		anchorPane.setOnMouseDragged(event ->
 		{
-			ResizeSideBarAction.update(event);
+			ResizeSideBarAction.action(event);
 		});
 	}
 
 	public static AnchorPane getRoot()
 	{
-		return anpActiveArea;
+		return anchorPane;
 	}
 
 	public static TabPane getComponent()
 	{
-		return tapActiveArea;
+		return tabPane;
+	}
+
+	public static ObservableMap<String, Object> getNameSpace()
+	{
+		return nameSpace;
 	}
 }

@@ -1,11 +1,13 @@
 package org.beuwi.simulator.platform.application.parts;
 
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
 public class ToolBarPart
 {
-	private static AnchorPane anpToolBar;
+	private static ObservableMap<String, Object> nameSpace;
+	private static AnchorPane anchorPane;
 
 	public static void initialize() throws Exception
 	{
@@ -14,16 +16,21 @@ public class ToolBarPart
 		loader.setController(null);
 		loader.load();
 
-		anpToolBar = (AnchorPane) loader.getNamespace().get("anpToolBar");
+		anchorPane = (AnchorPane) loader.getNamespace().get("anpToolBar");
 	}
 
 	public static AnchorPane getRoot()
 	{
-		return anpToolBar;
+		return anchorPane;
 	}
 
 	/* public static AnchorPane getComponent()
 	{
 		return anpToolBar;
 	} */
+
+	public static ObservableMap<String, Object> getNameSpace()
+	{
+		return nameSpace;
+	}
 }
