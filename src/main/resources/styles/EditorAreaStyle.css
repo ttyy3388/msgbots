@@ -4,23 +4,38 @@
 
 }
 
+.tab-pane
+{
+	-fx-open-tab-animation: NONE;
+	-fx-close-tab-animation: NONE;
+}
 .tab
 {
-    -fx-background-color: #2D2D2D;
+	-fx-background-color: #2D2D2D;
 	-fx-padding: 5 10 5 10;
+	-fx-cursor: HAND;
 }
 .tab-header
 {
 	-fx-spacing: 6;
 }
-.tab-pane
+.tab-close-button
 {
-    -fx-open-tab-animation: NONE;
-    -fx-close-tab-animation: NONE;
+    -fx-background-position: center;
+    -fx-background-image: url('/images/tab_close.png');
+    -fx-background-size: 16;
+}
+.tab-close-button:hover
+{
+    -fx-background-image: url('/images/tab_close_focused.png');
+}
+.tab-title-label
+{
+    -fx-font-size: 14;
 }
 .tab-content-area
 {
-    -fx-background-color: #1E1E1E;
+	-fx-background-color: #1E1E1E;
 }
 .tab-header-background
 {
@@ -30,7 +45,11 @@
 {
 	-fx-background-color: #1E1E1E;
 }
-.tab:selected .tab-label
+.tab:selected .tab-title-label
 {
-    -fx-text-fill: #FFFFFF;
+	-fx-text-fill: #FFFFFF;
+}
+.tab:selected .tab-close-button
+{
+    -fx-background-image: url('/images/tab_close_focused.png');
 }

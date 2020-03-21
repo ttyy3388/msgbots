@@ -6,38 +6,11 @@ public class ITabPane extends TabPane
 {
 	public ITabPane()
 	{
-		// setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
-		// getStyleClass().add("i-tab-pane");
+		super();
 	}
 
-	/* public void setTabs(ObservableList<ITab> list)
+	public void addTab(ITab itab)
 	{
-		for (ITab itab : list)
-		{
-			this.addTab(itab);
-		}
+		getTabs().add(itab);
 	}
-
-	public void addTab(ITab tab)
-	{
-		tab.setOnMousePressed(event ->
-		{
-			if (event.isMiddleButtonDown())
-			{
-				closeTab(tab);
-			}
-		});
-
-		getTabs().add(tab);
-	}
-
-	public void addTab(String title, Node node)
-	{
-		addTab(new ITab(null, title, node));
-	}
-
-	public void closeTab(Tab tab)
-	{
-		getTabs().remove(tab);
-	} */
 }

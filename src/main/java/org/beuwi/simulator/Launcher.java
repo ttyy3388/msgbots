@@ -6,9 +6,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import org.beuwi.simulator.platform.application.actions.AddEditorTabAction;
 import org.beuwi.simulator.platform.application.actions.HideSideBarAction;
 import org.beuwi.simulator.platform.application.actions.ResizeSideBarAction;
 import org.beuwi.simulator.platform.application.parts.*;
+import org.beuwi.simulator.platform.ui.components.ITabType;
 
 public class Launcher extends Application
 {
@@ -43,6 +45,7 @@ public class Launcher extends Application
 			EditorAreaPart.initialize();
 			StatusBarPart.initialize();
 
+			AddEditorTabAction.initialize();
 			HideSideBarAction.initialize();
 			ResizeSideBarAction.initialize();
 
@@ -80,6 +83,11 @@ public class Launcher extends Application
 
 			// toFront가 안먹히는 문제점 수정해야됨
 			stage.toFront();
+
+			for (int i = 0 ; i < 10 ; i ++)
+			{
+				AddEditorTabAction.action(null, "test" + i, null, ITabType.SCRIPT);
+			}
 		}
 		catch (Exception e)
 		{

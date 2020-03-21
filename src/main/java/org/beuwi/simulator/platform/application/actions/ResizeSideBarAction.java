@@ -6,11 +6,11 @@ import org.beuwi.simulator.platform.application.parts.ActiveAreaPart;
 
 public class ResizeSideBarAction
 {
-	private static AnchorPane anpActiveArea = null;
+	private static AnchorPane pane = null;
 
 	public static void initialize()
 	{
-		anpActiveArea = ActiveAreaPart.getRoot();
+		pane = ActiveAreaPart.getRoot();
 	}
 
 	public static void update(MouseEvent event)
@@ -24,7 +24,7 @@ public class ResizeSideBarAction
 			{
 				if (150 <= sceneX)
 				{
-					HideSideBarAction.update(false);
+					HideSideBarAction.action(false);
 				}
 			}
 			else
@@ -35,12 +35,12 @@ public class ResizeSideBarAction
 					// 150 안으로 드래그 시 숨김
 					if (sceneX <= 150)
 					{
-						HideSideBarAction.update(true);
+						HideSideBarAction.action(true);
 					}
 				}
 				else
 				{
-					anpActiveArea.setPrefWidth(sceneX);
+					pane.setPrefWidth(sceneX);
 				}
 			}
 		}
