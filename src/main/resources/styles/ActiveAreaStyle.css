@@ -14,6 +14,22 @@
 	-fx-text-fill: #CCCCCC;
 }
 
+/* Option Button */
+.title-pane .button
+{
+    -fx-background-radius: 5;
+    -fx-background-image: url('../images/setting.png');
+    -fx-background-size: 18;
+}
+.title-pane .button:hover
+{
+	-fx-background-color: rgba(255, 255, 255, 0.05);
+}
+.title-pane .button:armed
+{
+	-fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
 /* Activity Bar */
 .tab-header-area
 {
@@ -78,7 +94,7 @@
 .explorer-part .list-cell .button
 {
 	-fx-background-radius: 15;
-	-fx-background-image: url('/images/reload_gray.png');
+	-fx-background-image: url('../images/reload_gray.png');
 	-fx-background-size: 22;
 }
 .explorer-part .list-cell .button:hover
@@ -119,7 +135,7 @@
 }
 .explorer-part .list-cell:selected .button
 {
-	-fx-background-image: url('/images/reload_white.png');
+	-fx-background-image: url('../images/reload_white.png');
 }
 .explorer-part .list-cell:selected .check-box .box
 {

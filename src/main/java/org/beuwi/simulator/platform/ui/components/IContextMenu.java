@@ -24,11 +24,15 @@ public class IContextMenu extends ContextMenu
 	final IMenuItem SHOW_IN_EXPLORER_ITEM   = new IMenuItem("Show In Explorer");
 	final IMenuItem COPY_RELATIVE_PATH_ITEM = new IMenuItem("Copy Relative Path");
 
+	final IMenuItem SHOW_COMPILED_CHECK_ITEM = new IMenuItem("Show Compiled Check");
+	final IMenuItem SHOW_COMPILE_BUTTON_ITEM = new IMenuItem("Show Compile Button");
+	final IMenuItem SHOW_POWER_SWITCH_ITEM   = new IMenuItem("Show Power Switch");
+
 	public IContextMenu(int type)
 	{
 		switch (type)
 		{
-			case IContextMenuType.WINDOW :
+			case IContextMenuType.MENU_FILE :
 				getItems().addAll
 				(
 					NEW_SCRIPT_ITEM,
@@ -39,6 +43,14 @@ public class IContextMenu extends ContextMenu
 					RELOAD_DISK_ITEM,
 					new SeparatorMenuItem(),
 					SAVE_ALL_ITEM
+				);
+				break;
+			case IContextMenuType.OPTION_EXPLORER :
+				getItems().addAll
+				(
+					SHOW_COMPILED_CHECK_ITEM,
+					SHOW_COMPILE_BUTTON_ITEM,
+					SHOW_POWER_SWITCH_ITEM
 				);
 				break;
 			case IContextMenuType.EDITOR :

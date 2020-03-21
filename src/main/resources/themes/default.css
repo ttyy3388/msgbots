@@ -87,7 +87,7 @@ VBox, HBox
 
 .scroll-bar
 {
-	/* -fx-skin: 'org.beuwi.simulator.platform.implement.skin.IScrollBarSkin'; */
+	-fx-skin: 'org.beuwi.simulator.platform.ui.skins.IScrollBarSkin';
 }
 .scroll-bar .track
 {

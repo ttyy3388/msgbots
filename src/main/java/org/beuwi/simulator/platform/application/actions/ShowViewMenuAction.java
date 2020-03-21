@@ -6,7 +6,7 @@ import org.beuwi.simulator.platform.application.parts.ActiveAreaPart;
 import org.beuwi.simulator.platform.ui.components.IContextMenu;
 import org.beuwi.simulator.platform.ui.components.IContextMenuType;
 
-public class ShowFileMenuAction
+public class ShowViewMenuAction
 {
     private static IContextMenu menu;
     private static Button button;
@@ -14,7 +14,7 @@ public class ShowFileMenuAction
     public static void initialize()
     {
         menu = new IContextMenu(IContextMenuType.MENU_FILE);
-        button = (Button) ActiveAreaPart.getNameSpace().get("btnFileMenu");
+        button = (Button) ActiveAreaPart.getNameSpace().get("btnViewMenu");
     }
 
     public static void update(MouseEvent event)

@@ -8,7 +8,7 @@ import org.beuwi.simulator.platform.ui.components.ITabPane;
 
 public class AddEditorTabAction
 {
-	private static ITabPane pane = null;
+	private static ITabPane pane ;
 
 	public static void initialize()
 	{

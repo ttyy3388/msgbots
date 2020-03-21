@@ -1,4 +1,4 @@
-open module org.beuwi.simulator  {
+open module org.beuwi.simulator {
 
     requires javafx.controls;
     requires javafx.fxml;

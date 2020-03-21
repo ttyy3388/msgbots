@@ -1,0 +1,35 @@
+
+.root
+{
+    -fx-background-color: #1E1E1E;
+}
+
+.context-menu
+{
+	-fx-background-color: #252526;
+}
+.context-menu .separator *.line
+{
+	-fx-background-insets: 0 5 0 5;
+	-fx-background-color: #616162;
+	-fx-border-width: 0.3;
+}
+
+.menu-item
+{
+	-fx-padding: 3 10 3 10;
+/* }
+.menu-item *,
+.menu-item .label *
+{ */
+	-fx-font-family: Roboto;
+	-fx-font-size: 12;
+}
+.menu-item:focused
+{
+	-fx-background-color: #094771;
+}
+.menu-item:focused .label
+{
+	-fx-text-fill: #FFFFFF;
+}

@@ -6,10 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import org.beuwi.simulator.platform.application.actions.AddEditorTabAction;
-import org.beuwi.simulator.platform.application.actions.AddExplorerItemAction;
-import org.beuwi.simulator.platform.application.actions.HideSideBarAction;
-import org.beuwi.simulator.platform.application.actions.ResizeSideBarAction;
+import org.beuwi.simulator.platform.application.actions.*;
 import org.beuwi.simulator.platform.application.parts.*;
 import org.beuwi.simulator.platform.ui.components.ITabType;
 
@@ -57,7 +54,7 @@ public class Launcher extends Application
 			// root.getStyleClass().add("window");
 
 			root.getStylesheets().add(getClass().getResource("/themes/default.css").toExternalForm());
-			root.getStylesheets().add(getClass().getResource("/themes/dark.css").toExternalForm());
+			root.getStylesheets().add(getClass().getResource("/themes/DarkTheme.css").toExternalForm());
 
 			root.getChildren().add(pane);
 
@@ -85,6 +82,7 @@ public class Launcher extends Application
 
 			AddEditorTabAction.initialize();
 			AddExplorerItemAction.initialize();
+			ShowExplorerOptionAction.initialize();
 			HideSideBarAction.initialize();
 			ResizeSideBarAction.initialize();
 

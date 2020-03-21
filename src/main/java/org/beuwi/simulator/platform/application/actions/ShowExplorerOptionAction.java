@@ -6,15 +6,15 @@ import org.beuwi.simulator.platform.application.parts.ActiveAreaPart;
 import org.beuwi.simulator.platform.ui.components.IContextMenu;
 import org.beuwi.simulator.platform.ui.components.IContextMenuType;
 
-public class ShowFileMenuAction
+public class ShowExplorerOptionAction
 {
-    private static IContextMenu menu;
+    private static IContextMenu option;
     private static Button button;
 
     public static void initialize()
     {
-        menu = new IContextMenu(IContextMenuType.MENU_FILE);
-        button = (Button) ActiveAreaPart.getNameSpace().get("btnFileMenu");
+        option = new IContextMenu(IContextMenuType.OPTION_EXPLORER);
+        button = (Button) ActiveAreaPart.getNameSpace().get("btnShowOption");
     }
 
     public static void update(MouseEvent event)
@@ -24,6 +24,6 @@ public class ShowFileMenuAction
             return ;
         }
 
-        menu.show(button, event.getScreenX(), event.getScreenY());
+        option.show(button, event.getScreenX(), event.getScreenY());
     }
 }

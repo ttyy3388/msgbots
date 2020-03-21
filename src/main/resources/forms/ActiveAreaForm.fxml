@@ -24,6 +24,7 @@
                               <AnchorPane prefHeight="47.0" styleClass="title-pane">
                                  <children>
                                     <Label text="EXPLORER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
+                                    <Button fx:id="btnExplorerOption" layoutX="193.0" layoutY="6.0" mnemonicParsing="false" prefWidth="25.0" AnchorPane.bottomAnchor="3.5" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.5" />
                                  </children>
                               </AnchorPane>
                               <ListView fx:id="lsvExplorerTab" VBox.vgrow="ALWAYS" />
@@ -67,6 +68,7 @@
    </children>
    <stylesheets>
       <URL value="@../themes/default.css" />
+      <URL value="@../themes/dark.css" />
       <URL value="@../styles/ActiveAreaStyle.css" />
    </stylesheets>
 </AnchorPane>

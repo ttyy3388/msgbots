@@ -23,12 +23,13 @@ version '0.4.0'
 
 javafx {
 	version = "14"
-	modules = ['javafx.controls', 'javafx.fxml']
+	modules = ['javafx.controls', 'javafx.fxml', 'javafx.graphics']
 	// modules = [ 'javafx.controls', 'javafx.fxml','javafx.graphics','javafx.base' ]
 }
 
 dependencies {
 	// 일반적인 상황에서는 implementation 사용
+
 	implementation group: 'com.jfoenix', name: 'jfoenix', version: '9.0.8'
 	implementation group: 'org.fxmisc.richtext', name: 'richtextfx', version:'0.10.4'
 }
@@ -53,4 +54,14 @@ jar {
 			it.isDirectory() ? it : zipTree(it)
 		}
 	}
+}
+
+compileJava {
+	options.encoding = "UTF-8"
+	options.incremental = true
+
+	options.compilerArgs.addAll([
+			"--add-exports",
+			"javafx.graphics/com.sun.javafx.util=ALL-UNNAMED"
+	])
 }
