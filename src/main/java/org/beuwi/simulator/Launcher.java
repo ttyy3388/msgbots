@@ -7,7 +7,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.beuwi.simulator.platform.application.actions.*;
-import org.beuwi.simulator.platform.application.parts.*;
+import org.beuwi.simulator.platform.application.parts.ActiveAreaPart;
+import org.beuwi.simulator.platform.application.parts.EditorAreaPart;
+import org.beuwi.simulator.platform.application.parts.StatusBarPart;
+import org.beuwi.simulator.platform.application.parts.ToolBarPart;
 import org.beuwi.simulator.platform.ui.components.ITabType;
 
 public class Launcher extends Application
@@ -23,13 +26,13 @@ public class Launcher extends Application
 			System.setProperty("prism.subpixeltext", "false");
 
 			/* Load Fonts */
-			/* Font.loadFont(getClass().getResourceAsStream("/fonts/Consola.ttf"), 0);
-			Font.loadFont(getClass().getResourceAsStream("/fonts/ConsolaBold.ttf"), 0);
-			Font.loadFont(getClass().getResourceAsStream("/fonts/D2Coding.ttf"), 0);
-			Font.loadFont(getClass().getResourceAsStream("/fonts/D2codingBold.ttf"), 0); */
-			Font.loadFont(getClass().getResourceAsStream("/fonts/Roboto.ttf"), 0);
-			Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoBold.ttf"), 0);
-			Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoMedium.ttf"), 0);
+			Font.loadFont(getClass().getResourceAsStream("/fonts/Consola.ttf"), 0);		// Family :
+			Font.loadFont(getClass().getResourceAsStream("/fonts/ConsolaBold.ttf"), 0);  // Family :
+			Font.loadFont(getClass().getResourceAsStream("/fonts/D2Coding.ttf"), 0); 	// Family :
+			Font.loadFont(getClass().getResourceAsStream("/fonts/D2codingBold.ttf"), 0); // Family :
+			Font.loadFont(getClass().getResourceAsStream("/fonts/Roboto.ttf"), 0); 		// Family : "Roboto"
+			Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoBold.ttf"), 0);   // Family : "Roboto Bold"
+			Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoMedium.ttf"), 0); // Family : "Roboto Medium"
 
 			// WindowStage.setPrimaryStage(stage);
 

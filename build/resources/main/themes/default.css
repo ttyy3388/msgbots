@@ -60,12 +60,11 @@ VBox, HBox
 	-fx-background-color: transparent;
 	-fx-focus-color: transparent;
 
-	-fx-font-family: 'Roboto';
-	-fx-font-weight: BOLD;
+	-fx-font-family: 'Roboto Medium';
 	-fx-text-fill: #CCCCCC;
 	-fx-font-size: 12;
 
-	-fx-background-repeat: no-repeat;
+	/* -fx-background-repeat: no-repeat; */
 	-fx-background-radius: 0;
 	-fx-background-insets: 0;
 	-fx-border-width: 0;

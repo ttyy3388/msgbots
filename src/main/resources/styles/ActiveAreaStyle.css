@@ -121,10 +121,6 @@
 	-jfx-untoggle-color: #BBBBBB;
 	-jfx-size: 6.5;
 }
-.jfx-toggle-button .jfx-rippler
-{
-	-fx-rippler-fill:RED;
-}
 .explorer-part .list-cell:selected
 {
 	-fx-background-color: #094771;
@@ -148,3 +144,16 @@
 
 
 /* Debug Tab */
+.debug-part .button
+{
+	-fx-background-color: #0E639C;
+	-fx-cursor: hand;
+}
+.debug-part .button.button:hover
+{
+	-fx-background-color: #146DA8;
+}
+.debug-part .button.button:armed
+{
+	-fx-background-color: #197BBD;
+}

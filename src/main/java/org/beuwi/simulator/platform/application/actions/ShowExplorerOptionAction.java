@@ -17,9 +17,9 @@ public class ShowExplorerOptionAction
 
 	public static void initialize()
 	{
-		option = new ContextMenu();
 		button = (Button) ActiveAreaPart.getNameSpace().get("btnExplorerOption");
 
+        option = new ContextMenu();
 		option.getItems().addAll
 		(
 			SHOW_COMPILED_CHECK_ITEM,
