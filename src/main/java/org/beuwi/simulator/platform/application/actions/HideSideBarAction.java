@@ -1,17 +1,17 @@
 package org.beuwi.simulator.platform.application.actions;
 
 import javafx.scene.layout.AnchorPane;
-import org.beuwi.simulator.platform.application.parts.ActiveAreaPart;
+import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 
 public class HideSideBarAction
 {
-	private static AnchorPane pane = null;
+	private static AnchorPane pane;
 
 	private static boolean isHided = false;
 
 	public static void initialize()
 	{
-		pane = ActiveAreaPart.getRoot();
+		pane = (AnchorPane) ActiveAreaPart.getNameSpace().get("anpActiveArea");
 	}
 
 	public static void update(boolean hide)

@@ -1,0 +1,47 @@
+
+.chat-part .label
+{
+	-fx-text-fill: #FFFFFF;
+	-fx-background-radius: 15;
+	-fx-background-insets: 5;
+	-fx-padding: 13;
+}
+.chat-part .label .user
+{
+	-fx-background-color: #0583f9;
+}
+.chat-part .label .bot
+{
+	-fx-background-color: #302F35;
+}
+
+.chat-part .list-cell
+{
+	-fx-padding: 3 7 3 7;
+}
+.chat-part .list-cell:selected .label .user
+{
+	-fx-background-color: #59AEFF;
+}
+.chat-part .list-cell:selected .label .bot
+{
+	-fx-background-color: #46454D;
+}
+/* Input Area */
+.chat-part .text-area
+{
+	-fx-background-radius: 15;
+	-fx-background-color: transparent, #303030, transparent, #303030;
+}
+/* Send Button */
+.chat-part .button
+{
+	-fx-background-image: url('../images/send.png');
+	-fx-background-size: 60;
+}
+
+.log-part
+{
+	-fx-border-color: #555555;
+	-fx-border-width: 0 0 0 1;
+}

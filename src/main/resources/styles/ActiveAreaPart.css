@@ -147,13 +147,10 @@
 .debug-part .button
 {
 	-fx-background-color: #0E639C;
+	-fx-text-fill: #FFFFFF;
 	-fx-cursor: hand;
 }
 .debug-part .button.button:hover
 {
-	-fx-background-color: #146DA8;
-}
-.debug-part .button.button:armed
-{
-	-fx-background-color: #197BBD;
+	-fx-background-color: #1177BB;
 }

@@ -2,15 +2,15 @@ package org.beuwi.simulator.platform.application.actions;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import org.beuwi.simulator.platform.application.parts.ActiveAreaPart;
+import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 
 public class ResizeSideBarAction
 {
-	private static AnchorPane pane = null;
+	private static AnchorPane pane;
 
 	public static void initialize()
 	{
-		pane = ActiveAreaPart.getRoot();
+		pane = (AnchorPane) ActiveAreaPart.getNameSpace().get("anpActiveArea");
 	}
 
 	public static void update(MouseEvent event)

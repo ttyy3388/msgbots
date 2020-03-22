@@ -10,7 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import org.beuwi.simulator.platform.application.parts.ActiveAreaPart;
+import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 
 public class AddExplorerItemAction
 {

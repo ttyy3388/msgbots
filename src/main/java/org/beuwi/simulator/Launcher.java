@@ -7,10 +7,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.beuwi.simulator.platform.application.actions.*;
-import org.beuwi.simulator.platform.application.parts.ActiveAreaPart;
-import org.beuwi.simulator.platform.application.parts.EditorAreaPart;
-import org.beuwi.simulator.platform.application.parts.StatusBarPart;
-import org.beuwi.simulator.platform.application.parts.ToolBarPart;
+import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
+import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
+import org.beuwi.simulator.platform.application.views.parts.StatusBarPart;
+import org.beuwi.simulator.platform.application.views.parts.ToolBarPart;
+import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
 import org.beuwi.simulator.platform.ui.components.ITabType;
 
 public class Launcher extends Application
@@ -45,6 +46,8 @@ public class Launcher extends Application
 			EditorAreaPart.initialize();
 			StatusBarPart.initialize();
 
+			DebugRoomTab.initialize();
+
 			pane.setTop(ToolBarPart.getRoot());
 			pane.setLeft(ActiveAreaPart.getRoot());
 			pane.setCenter(EditorAreaPart.getRoot());
@@ -57,7 +60,7 @@ public class Launcher extends Application
 			// root.getStyleClass().add("window");
 
 			root.getStylesheets().add(getClass().getResource("/themes/default.css").toExternalForm());
-			root.getStylesheets().add(getClass().getResource("/themes/DarkTheme.css").toExternalForm());
+			root.getStylesheets().add(getClass().getResource("/themes/dark.css").toExternalForm());
 
 			root.getChildren().add(pane);
 
@@ -86,6 +89,7 @@ public class Launcher extends Application
 			AddEditorTabAction.initialize();
 			AddExplorerItemAction.initialize();
 			// CloseEditorTabAction.initialize();
+			SendDebugRoomChatAction.initialize();
 			ShowDebugMenuAction.initialize();
 			ShowExplorerOptionAction.initialize();
 			ShowFileMenuAction.initialize();

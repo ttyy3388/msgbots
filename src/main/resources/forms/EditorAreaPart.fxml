@@ -12,6 +12,6 @@
    </children>
    <stylesheets>
       <URL value="@../themes/default.css" />
-      <URL value="@../styles/EditorAreaStyle.css" />
+      <URL value="@../styles/EditorAreaPart.css" />
    </stylesheets>
 </AnchorPane>

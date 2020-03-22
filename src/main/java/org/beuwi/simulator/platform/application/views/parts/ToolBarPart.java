@@ -1,4 +1,4 @@
-package org.beuwi.simulator.platform.application.parts;
+package org.beuwi.simulator.platform.application.views.parts;
 
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
@@ -11,25 +11,23 @@ import org.beuwi.simulator.platform.application.actions.ShowViewMenuAction;
 public class ToolBarPart
 {
 	private static ObservableMap<String, Object> nameSpace;
-	private static AnchorPane anchorPane;
 
-	private static Button btnFileMenu;
-	private static Button btnViewMenu;
-	private static Button btnDebugMenu;
+	private static AnchorPane anpToolBar;
 
 	public static void initialize() throws Exception
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(StatusBarPart.class.getResource("/forms/ToolBarForm.fxml"));
+		loader.setLocation(StatusBarPart.class.getResource("/forms/ToolBarPart.fxml"));
 		loader.setController(null);
 		loader.load();
 
 		nameSpace = loader.getNamespace();
 
-		anchorPane = (AnchorPane) nameSpace.get("anpToolBar");
-		btnFileMenu = (Button) nameSpace.get("btnFileMenu");
-		btnViewMenu = (Button) nameSpace.get("btnViewMenu");
-		btnDebugMenu = (Button) nameSpace.get("btnDebugMenu");
+		anpToolBar = (AnchorPane) nameSpace.get("anpToolBar");
+
+		Button btnFileMenu  = (Button) nameSpace.get("btnFileMenu");
+		Button btnViewMenu  = (Button) nameSpace.get("btnViewMenu");
+		Button btnDebugMenu = (Button) nameSpace.get("btnDebugMenu");
 
 		btnFileMenu.setOnMousePressed(event ->
 		{
@@ -49,13 +47,8 @@ public class ToolBarPart
 
 	public static AnchorPane getRoot()
 	{
-		return anchorPane;
-	}
-
-	/* public static AnchorPane getComponent()
-	{
 		return anpToolBar;
-	} */
+	}
 
 	public static ObservableMap<String, Object> getNameSpace()
 	{

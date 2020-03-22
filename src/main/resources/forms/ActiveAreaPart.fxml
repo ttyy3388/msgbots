@@ -24,7 +24,7 @@
                               <AnchorPane prefHeight="47.0" styleClass="title-pane">
                                  <children>
                                     <Label text="EXPLORER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
-                                    <Button fx:id="btnExplorerOption" layoutX="193.0" layoutY="6.0" mnemonicParsing="false" prefWidth="25.0" AnchorPane.bottomAnchor="3.5" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.5" />
+                                    <Button fx:id="btnShowExplorerOption" layoutX="193.0" layoutY="6.0" mnemonicParsing="false" prefWidth="25.0" AnchorPane.bottomAnchor="3.5" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.5" />
                                  </children>
                               </AnchorPane>
                               <ListView fx:id="lsvExplorerTab" VBox.vgrow="ALWAYS" />
@@ -50,9 +50,9 @@
                               </AnchorPane>
                               <AnchorPane VBox.vgrow="ALWAYS">
                                  <children>
-                                    <Button layoutX="15.0" layoutY="145.0" mnemonicParsing="false" prefHeight="25.0" text="Open Debug Room" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
-                                    <Button layoutX="15.0" layoutY="51.0" mnemonicParsing="false" prefHeight="25.0" text="Show All Logs" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="60.0" />
-                                    <Button layoutX="15.0" layoutY="86.0" mnemonicParsing="false" prefHeight="25.0" text="Reload All Bots" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="105.0" />
+                                    <Button fx:id="btnOpenDebugRoom" layoutX="15.0" layoutY="145.0" mnemonicParsing="false" prefHeight="25.0" text="Open Debug Room" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                                    <Button fx:id="btnShowAllLogs" layoutX="15.0" layoutY="51.0" mnemonicParsing="false" prefHeight="25.0" text="Show All Logs" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="60.0" />
+                                    <Button fx:id="btnReloadAllBots" layoutX="15.0" layoutY="86.0" mnemonicParsing="false" prefHeight="25.0" text="Reload All Bots" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="105.0" />
                                  </children></AnchorPane>
                            </children>
                         </VBox>
@@ -73,7 +73,6 @@
    </children>
    <stylesheets>
       <URL value="@../themes/default.css" />
-      <URL value="@../themes/dark.css" />
-      <URL value="@../styles/ActiveAreaStyle.css" />
+      <URL value="@../styles/ActiveAreaPart.css" />
    </stylesheets>
 </AnchorPane>
