@@ -29,10 +29,30 @@ javafx {
 
 dependencies {
 	// 일반적인 상황에서는 implementation 사용
-
 	implementation group: 'com.jfoenix', name: 'jfoenix', version: '9.0.8'
 	implementation group: 'org.fxmisc.richtext', name: 'richtextfx', version:'0.10.4'
 }
+
+compileJava {
+	// options.compilerArgs << "-Xlint:none"
+
+	moduleOptions {
+		addExports = [
+			// 안하면 package is not visible import 오류남
+			'javafx.graphics/com.sun.javafx.util' : 'org.beuwi.simulator'
+		]
+	}
+}
+
+/* compileJava {
+	options.encoding = "UTF-8"
+	options.incremental = true
+
+	options.compilerArgs.addAll([
+			"--add-exports",
+			"javafx.graphics/com.sun.javafx.util=ALL-UNNAMED"
+	])
+} */
 
 jlink {
 	// 없으면 오류남
@@ -54,14 +74,4 @@ jar {
 			it.isDirectory() ? it : zipTree(it)
 		}
 	}
-}
-
-compileJava {
-	options.encoding = "UTF-8"
-	options.incremental = true
-
-	options.compilerArgs.addAll([
-			"--add-exports",
-			"javafx.graphics/com.sun.javafx.util=ALL-UNNAMED"
-	])
 }

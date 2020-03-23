@@ -1,4 +1,4 @@
 package org.beuwi.simulator.platform.application.views.tabs;
 
-public class ShowAllLogsTab {
+public class GlobalLogTab {
 }

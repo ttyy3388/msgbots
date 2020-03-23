@@ -19,7 +19,7 @@
 {
     -fx-background-radius: 5;
     -fx-background-image: url('../images/setting.png');
-    -fx-background-size: 18;
+    -fx-background-size: 20;
 }
 .title-pane .button:hover
 {

@@ -11,14 +11,13 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane fx:id="anpDebugRoom" prefHeight="800.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" styleClass="debug" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane fx:id="anpChatArea" minWidth="300.0" prefWidth="400.0">
+            <AnchorPane fx:id="anpChatArea" minWidth="300.0" prefWidth="400.0" styleClass="chat-area">
                <children>
-                  <VBox alignment="CENTER" cacheShape="false" centerShape="false" scaleShape="false" styleClass="chat-area" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox alignment="CENTER" cacheShape="false" centerShape="false" scaleShape="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <AnchorPane VBox.vgrow="ALWAYS">
                            <children>
@@ -37,6 +36,9 @@
                      </children>
                   </VBox>
                </children>
+               <HBox.margin>
+                  <Insets bottom="7.0" left="7.0" top="7.0" />
+               </HBox.margin>
             </AnchorPane>
             <AnchorPane fx:id="anpLogArea" minWidth="200.0" styleClass="log-area" HBox.hgrow="ALWAYS">
                <children>

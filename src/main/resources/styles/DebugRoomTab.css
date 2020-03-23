@@ -5,31 +5,30 @@
 	-fx-background-color: #555555;
 }
 
-.chat-part .label
+.chat-area .list-cell
+{
+	-fx-padding: 3 7 3 7;
+}
+.chat-area .list-cell .label
 {
 	-fx-text-fill: #FFFFFF;
 	-fx-background-radius: 15;
 	-fx-background-insets: 5;
 	-fx-padding: 13;
 }
-.chat-part .label .user
+.chat-area .list-cell .sender-label
 {
 	-fx-background-color: #0583f9;
 }
-.chat-part .label .bot
+.chat-area .list-cell .bot-label
 {
 	-fx-background-color: #302F35;
 }
-
-.chat-part .list-cell
-{
-	-fx-padding: 3 7 3 7;
-}
-.chat-part .list-cell:selected .label .user
+.chat-area .list-cell:selected .sender-label
 {
 	-fx-background-color: #59AEFF;
 }
-.chat-part .list-cell:selected .label .bot
+.chat-area .list-cell:selected .bot-label
 {
 	-fx-background-color: #46454D;
 }
@@ -38,6 +37,7 @@
 {
 	-fx-background-radius: 15;
 	-fx-background-color: transparent, #303030, transparent, #303030;
+	-fx-padding: 10;
 }
 /* Send Button */
 .chat-area .button

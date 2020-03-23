@@ -6,7 +6,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
 
-public class SendDebugRoomChatAction
+public class SendChatMessageAction
 {
 	private static ListView listView;
 
@@ -29,14 +29,14 @@ public class SendDebugRoomChatAction
 		{
 			// Bot
 			case 0 :
-				itemLabel.getStyleClass().add("bot");
+				itemLabel.getStyleClass().add("bot-label");
 				itemCell.setAlignment(Pos.TOP_LEFT);
 				itemCell.getChildren().add(itemLabel);
 				break;
 
 			// Sender
 			case 1 :
-				itemLabel.getStyleClass().add("sender");
+				itemLabel.getStyleClass().add("sender-label");
 				itemCell.setAlignment(Pos.TOP_RIGHT);
 				itemCell.getChildren().add(itemLabel);
 				break;

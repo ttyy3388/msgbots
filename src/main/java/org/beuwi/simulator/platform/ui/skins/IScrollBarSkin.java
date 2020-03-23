@@ -1,6 +1,6 @@
 package org.beuwi.simulator.platform.ui.skins;
 
-// import com.sun.javafx.util.Utils;
+import com.sun.javafx.util.Utils;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
 import javafx.geometry.Orientation;
@@ -18,7 +18,7 @@ public class IScrollBarSkin implements Skin<ScrollBar>
 	private Rectangle thumb = new Rectangle();
     private Region group;
 
-	public IScrollBarSkin(final javafx.scene.control.ScrollBar scroll)
+	public IScrollBarSkin(final ScrollBar scroll)
 	{
 		this.scroll = scroll;
 
@@ -52,7 +52,7 @@ public class IScrollBarSkin implements Skin<ScrollBar>
 						if (getSkinnable().getMax() > getSkinnable().getMin())
 						{
 							dragStart = localToParent(event.getX(), event.getY());
-							double value = .0; //Utils.clamp(getSkinnable().getMin(), getSkinnable().getValue(), getSkinnable().getMax());
+							double value = Utils.clamp(getSkinnable().getMin(), getSkinnable().getValue(), getSkinnable().getMax());
 							dragPos = (value - getSkinnable().getMin()) / (getSkinnable().getMax() - getSkinnable().getMin());
 
 							event.consume();

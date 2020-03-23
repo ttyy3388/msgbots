@@ -1,14 +1,9 @@
 
 1. 자바 14로 jar 만들면 Scene Builder에서 Component를 인식 못하므로, 자바 8에서 패키지 구조를 똑같이 맞춘 다음 jar로 변환해야함.
 
-2. 배포할 때 jlink가 아닌 jpackage로 해야함
+2. 배포할 때 jlink가 아닌 'jpackage Image'로 해야함
 
-3. 이미지 사이즈
-3.0 소 : 16px
-3.1 중 : 32px (이미지 : 높이 or 넓이 30px 맞추기)
-3.3 대 : 64px
-
-4. 헝가리안 표기법 네이밍
+3. 헝가리안 표기법 네이밍
 anp - AnchorPane
 bop - BorderPane
 btn - Button
@@ -36,9 +31,3 @@ trv - TreeView
 txa - TextArea
 txf - TextField
 vox - VBox
-
-5. 변수명 네이밍
-5.1. 헝가리언 표기법 + 변수명 (하는 일)
-5.1.1 ex) anpEditorArea, btnShowOption
-5.2 한 클래스 안에 겹치는 타입이 없고 선언된 변수의 수가 없으면 컴포넌트의 이름 그대로 표기한다
-5.2.1 ex) ListView -> listView

@@ -7,6 +7,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.beuwi.simulator.platform.application.actions.*;
+import org.beuwi.simulator.platform.application.actions.OpenDebugRoomAction;
+import org.beuwi.simulator.platform.application.actions.ResizeChatAreaAction;
+import org.beuwi.simulator.platform.application.actions.SendChatMessageAction;
 import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
 import org.beuwi.simulator.platform.application.views.parts.StatusBarPart;
@@ -94,7 +97,7 @@ public class Launcher extends Application
 			// ReloadAllBotsAction.initialize();
 			ResizeChatAreaAction.initialize();
 			ResizeSideBarAction.initialize();
-			SendDebugRoomChatAction.initialize();
+			SendChatMessageAction.initialize();
 			ShowDebugMenuAction.initialize();
 			ShowExplorerOptionAction.initialize();
 			ShowFileMenuAction.initialize();

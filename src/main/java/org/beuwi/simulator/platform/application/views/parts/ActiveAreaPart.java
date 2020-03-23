@@ -4,7 +4,9 @@ import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import org.beuwi.simulator.platform.application.actions.*;
+import org.beuwi.simulator.platform.application.actions.ResizeSideBarAction;
+import org.beuwi.simulator.platform.application.actions.ShowExplorerOptionAction;
+import org.beuwi.simulator.platform.application.actions.OpenDebugRoomAction;
 
 public class ActiveAreaPart
 {

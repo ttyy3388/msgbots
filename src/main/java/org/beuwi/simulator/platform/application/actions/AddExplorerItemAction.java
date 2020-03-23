@@ -3,13 +3,8 @@ package org.beuwi.simulator.platform.application.actions;
 import com.jfoenix.controls.JFXToggleButton;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 
 public class AddExplorerItemAction
@@ -29,7 +24,6 @@ public class AddExplorerItemAction
 		Label 			itemName    = new Label(name);
 		Button 		    itemCompile = new Button();
 		JFXToggleButton itemSwitch  = new JFXToggleButton();
-
 
 		itemCell.setId(name);
 		itemCell.setPrefHeight(35);

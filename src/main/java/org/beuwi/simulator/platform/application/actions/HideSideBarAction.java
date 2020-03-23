@@ -22,7 +22,6 @@ public class HideSideBarAction
 		{
 			pane.setPrefWidth(40);
 		}
-		// Show
 		else
 		{
 			pane.setPrefWidth(200);

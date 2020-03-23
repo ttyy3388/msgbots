@@ -2,6 +2,7 @@ package org.beuwi.simulator.platform.application.actions;
 
 import javafx.scene.layout.AnchorPane;
 
+// Global Log Tab
 public class ShowAllLogsAction
 {
 	private static AnchorPane pane;

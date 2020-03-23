@@ -10,7 +10,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import org.beuwi.simulator.platform.application.actions.ResizeChatAreaAction;
-import org.beuwi.simulator.platform.application.actions.SendDebugRoomChatAction;
+import org.beuwi.simulator.platform.application.actions.SendChatMessageAction;
 
 public class DebugRoomTab
 {
@@ -41,10 +41,9 @@ public class DebugRoomTab
 
 		public static void initialize()
 		{
-            lsvChatList = (ListView) nameSpace.get("lsvChatList");
-
+            lsvChatList  = (ListView) nameSpace.get("lsvChatList");
             txaChatInput = (TextArea) nameSpace.get("txaChatInput");
-            btnChatSend = (Button) nameSpace.get("btnChatSend");
+            btnChatSend  = (Button) nameSpace.get("btnChatSend");
 
             txaChatInput.setOnKeyPressed(event ->
             {
@@ -63,7 +62,8 @@ public class DebugRoomTab
                     }
 
                     // 1 : Sender
-                    SendDebugRoomChatAction.update(txaChatInput.getText(), 1);
+                    SendChatMessageAction.update(txaChatInput.getText(), 1);
+					txaChatInput.clear();
                     event.consume();
                 }
             });
@@ -76,8 +76,9 @@ public class DebugRoomTab
             btnChatSend.setOnAction(event ->
             {
                 // 1 : Sender
-                SendDebugRoomChatAction.update(txaChatInput.getText(), 1);
+                SendChatMessageAction.update(txaChatInput.getText(), 1);
                 txaChatInput.requestFocus();
+				txaChatInput.clear();
             });
 
             Platform.runLater(() ->
