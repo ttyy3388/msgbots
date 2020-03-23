@@ -12,7 +12,7 @@ public class SendDebugRoomChatAction
 
 	public static void initialize()
 	{
-		listView = (ListView) DebugRoomTab.getNameSpace().get("lsvChatArea");
+		listView = (ListView) DebugRoomTab.getNameSpace().get("lsvChatList");
 	}
 
 	public static void update(String message, int type)

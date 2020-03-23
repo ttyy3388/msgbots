@@ -14,33 +14,34 @@
 
 <AnchorPane fx:id="anpDebugRoom" prefHeight="800.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="5.0" styleClass="debug" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" styleClass="debug" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox fx:id="voxChat" alignment="CENTER" cacheShape="false" centerShape="false" minWidth="350.0" prefWidth="400.0" scaleShape="false" styleClass="chat-part">
+            <AnchorPane fx:id="anpChatArea" minWidth="300.0" prefWidth="400.0">
                <children>
-                  <AnchorPane VBox.vgrow="ALWAYS">
+                  <VBox alignment="CENTER" cacheShape="false" centerShape="false" scaleShape="false" styleClass="chat-area" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <ListView fx:id="lsvChatArea" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <AnchorPane VBox.vgrow="ALWAYS">
+                           <children>
+                              <ListView fx:id="lsvChatList" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="ancUtil" maxHeight="60.0" VBox.vgrow="NEVER">
+                           <children>
+                              <TextArea fx:id="txaChatInput" layoutX="6.0" layoutY="46.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="0.0" />
+                              <Button fx:id="btnChatSend" contentDisplay="CENTER" disable="true" layoutX="355.0" layoutY="65.0" prefHeight="60.0" prefWidth="60.0" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </AnchorPane>
                      </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="ancUtil" maxHeight="60.0" VBox.vgrow="NEVER">
-                     <children>
-                        <TextArea fx:id="txaChatInput" layoutX="6.0" layoutY="46.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="0.0" />
-                        <Button fx:id="btnChatSend" contentDisplay="CENTER" disable="true" layoutX="355.0" layoutY="65.0" prefHeight="60.0" prefWidth="60.0" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </VBox.margin>
-                  </AnchorPane>
+                  </VBox>
                </children>
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </VBox>
-            <AnchorPane fx:id="anpLog" minWidth="100.0" styleClass="log-part" HBox.hgrow="ALWAYS">
+            </AnchorPane>
+            <AnchorPane fx:id="anpLogArea" minWidth="200.0" styleClass="log-area" HBox.hgrow="ALWAYS">
                <children>
                   <ListView fx:id="lsvLog" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <StackPane fx:id="stpResize" prefWidth="10.0" styleClass="resize-bar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <StackPane fx:id="stpResizeBar" prefWidth="7.0" styleClass="resize-bar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <cursor>
                         <Cursor fx:constant="E_RESIZE" />
                      </cursor>

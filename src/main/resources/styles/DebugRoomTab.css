@@ -1,4 +1,10 @@
 
+.resize-bar
+{
+	-fx-background-insets: 0 3 0 3;
+	-fx-background-color: #555555;
+}
+
 .chat-part .label
 {
 	-fx-text-fill: #FFFFFF;
@@ -28,20 +34,19 @@
 	-fx-background-color: #46454D;
 }
 /* Input Area */
-.chat-part .text-area
+.chat-area .text-area
 {
 	-fx-background-radius: 15;
 	-fx-background-color: transparent, #303030, transparent, #303030;
 }
 /* Send Button */
-.chat-part .button
+.chat-area .button
 {
 	-fx-background-image: url('../images/send.png');
 	-fx-background-size: 60;
 }
 
-.log-part
+.log-area
 {
-	-fx-border-color: #555555;
-	-fx-border-width: 0 0 0 1;
+
 }

@@ -29,17 +29,17 @@ public class ActiveAreaPart
 			ResizeSideBarAction.update(event);
 		});
 
-		Explorer.initialize();
-		Simulation.initialize();
+		ExplorerTab.initialize();
+		SimulationTab.initialize();
 	}
 
-	public static class Explorer
+	public static class ExplorerTab
 	{
 		private static Button btnShowExplorerOption;
 
 		public static void initialize()
 		{
-			btnShowExplorerOption = (Button) getNameSpace().get("btnShowExplorerOption");
+			btnShowExplorerOption = (Button) nameSpace.get("btnShowExplorerOption");
 
 			btnShowExplorerOption.setOnMousePressed(event ->
 			{
@@ -48,7 +48,7 @@ public class ActiveAreaPart
 		}
 	}
 
-	public static class Simulation
+	public static class SimulationTab
 	{
 		private static Button btnOpenDebugRoom;
 		private static Button btnShowAllLogs;

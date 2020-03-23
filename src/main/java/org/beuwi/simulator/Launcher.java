@@ -12,7 +12,6 @@ import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
 import org.beuwi.simulator.platform.application.views.parts.StatusBarPart;
 import org.beuwi.simulator.platform.application.views.parts.ToolBarPart;
 import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
-import org.beuwi.simulator.platform.ui.components.ITabType;
 
 public class Launcher extends Application
 {
@@ -47,6 +46,7 @@ public class Launcher extends Application
 			StatusBarPart.initialize();
 
 			DebugRoomTab.initialize();
+			// ShowAllLogsTab.initialize();
 
 			pane.setTop(ToolBarPart.getRoot());
 			pane.setLeft(ActiveAreaPart.getRoot());
@@ -89,19 +89,22 @@ public class Launcher extends Application
 			AddEditorTabAction.initialize();
 			AddExplorerItemAction.initialize();
 			// CloseEditorTabAction.initialize();
+			HideSideBarAction.initialize();
+			OpenDebugRoomAction.initialize();
+			// ReloadAllBotsAction.initialize();
+			ResizeChatAreaAction.initialize();
+			ResizeSideBarAction.initialize();
 			SendDebugRoomChatAction.initialize();
 			ShowDebugMenuAction.initialize();
 			ShowExplorerOptionAction.initialize();
 			ShowFileMenuAction.initialize();
 			ShowViewMenuAction.initialize();
-			HideSideBarAction.initialize();
-			ResizeSideBarAction.initialize();
 
-			for (int i = 0 ; i < 10 ; i ++)
+			/* for (int i = 0 ; i < 10 ; i ++)
 			{
 				AddEditorTabAction.update(null, "test" + i, null, ITabType.SCRIPT);
 				AddExplorerItemAction.update("test" + i);
-			}
+			} */
 		}
 		catch (Exception e)
 		{

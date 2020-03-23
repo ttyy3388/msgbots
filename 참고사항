@@ -9,38 +9,36 @@
 3.3 대 : 64px
 
 4. 헝가리안 표기법 네이밍
-
-// Control
+anp - AnchorPane
+bop - BorderPane
 btn - Button
 cir - Circle
 chk - CheckBox
 cmb - ComboBox
 ctm - ContextMenu
 fch - FileChooser
+grp - GridPane
+hox - HBox
+imv - ImageView
 lbl - Label
+lsc - ListCell
+lsv - ListView
 mnu - Menu
 mnb - MenuBar
 mni - MenuItem
 sld - Slider
 smb - Split Menu Button
+stp - StackPane
+tap - TabPane
 tgn - ToggleButton
+trc - TreeCell
+trv - TreeView
 txa - TextArea
 txf - TextField
-imv - ImageView
-
-// Layout
-anp  - AnchorPane
-bop - BorderPane
-grp - GridPane
-tap  - TabPane
-stp  - StackPane
 vox - VBox
-hox - HBox
-lsv - ListView
-trv - TreeView
-lsc - ListCell
-trc - TreeCell
 
-// Customize Component
-itap : ITabPane
-icda : ICodeArea
+5. 변수명 네이밍
+5.1. 헝가리언 표기법 + 변수명 (하는 일)
+5.1.1 ex) anpEditorArea, btnShowOption
+5.2 한 클래스 안에 겹치는 타입이 없고 선언된 변수의 수가 없으면 컴포넌트의 이름 그대로 표기한다
+5.2.1 ex) ListView -> listView

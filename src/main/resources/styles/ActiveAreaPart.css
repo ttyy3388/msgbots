@@ -64,22 +64,22 @@
 
 .explorer-tab .button
 {
-	-fx-background-image: url('../images/tab_explorer.png');
+	-fx-background-image: url('../images/explorer.png');
 }
 .explorer-tab:hover .button,
 .explorer-tab:selected .button
 {
-	-fx-background-image: url('../images/tab_explorer_focused.png');
+	-fx-background-image: url('../images/explorer_focused.png');
 }
 
 .debug-tab .button
 {
-	-fx-background-image: url('../images/tab_simulation.png');
+	-fx-background-image: url('../images/simulation.png');
 }
 .debug-tab:hover .button,
 .debug-tab:selected .button
 {
-	-fx-background-image: url('../images/tab_simulation_focused.png');
+	-fx-background-image: url('../images/simulation_focused.png');
 }
 
 /* Explorer Tab */
@@ -94,7 +94,7 @@
 .explorer-part .list-cell .button
 {
 	-fx-background-radius: 15;
-	-fx-background-image: url('../images/reload_gray.png');
+	-fx-background-image: url('../images/reload.png');
 	-fx-background-size: 22;
 }
 .explorer-part .list-cell .button:hover
@@ -131,7 +131,7 @@
 }
 .explorer-part .list-cell:selected .button
 {
-	-fx-background-image: url('../images/reload_white.png');
+	-fx-background-image: url('../images/reload_focused.png');
 }
 .explorer-part .list-cell:selected .check-box .box
 {

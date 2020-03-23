@@ -4,17 +4,18 @@ import javafx.application.Platform;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import org.beuwi.simulator.platform.application.actions.ResizeChatAreaAction;
 import org.beuwi.simulator.platform.application.actions.SendDebugRoomChatAction;
 
 public class DebugRoomTab
 {
 	private static ObservableMap<String, Object> nameSpace;
-	private static AnchorPane anchorPane;
-    private static TextArea textArea;
-	private static Button button;
+	private static AnchorPane anpDebugRoom;
 
 	public static void initialize() throws Exception
 	{
@@ -25,58 +26,87 @@ public class DebugRoomTab
 
 		nameSpace = loader.getNamespace();
 
-		anchorPane = (AnchorPane) nameSpace.get("anpDebugRoom");
-		textArea = (TextArea) nameSpace.get("txaChatInput");
-		button = (Button) nameSpace.get("btnChatSend");
+        anpDebugRoom = (AnchorPane) nameSpace.get("anpDebugRoom");
 
-        textArea.setOnKeyPressed(event ->
-        {
-            if (event.getCode().equals(KeyCode.ENTER))
+		ChatArea.initialize();
+		LogArea.initialize();
+	}
+
+	public static class ChatArea
+	{
+		// private static VBox voxChatArea;
+		private static ListView lsvChatList;
+		private static TextArea txaChatInput;
+		private static Button   btnChatSend;
+
+		public static void initialize()
+		{
+            lsvChatList = (ListView) nameSpace.get("lsvChatList");
+
+            txaChatInput = (TextArea) nameSpace.get("txaChatInput");
+            btnChatSend = (Button) nameSpace.get("btnChatSend");
+
+            txaChatInput.setOnKeyPressed(event ->
             {
-                if (event.isShiftDown())
+                if (event.getCode().equals(KeyCode.ENTER))
                 {
-                    textArea.appendText(System.lineSeparator());
-                    event.consume();
-                    return ;
-                }
-                else if (button.isDisable())
-                {
-                    event.consume();
-                    return ;
-                }
+                    if (event.isShiftDown())
+                    {
+                        txaChatInput.appendText(System.lineSeparator());
+                        event.consume();
+                        return ;
+                    }
+                    else if (btnChatSend.isDisable())
+                    {
+                        event.consume();
+                        return ;
+                    }
 
+                    // 1 : Sender
+                    SendDebugRoomChatAction.update(txaChatInput.getText(), 1);
+                    event.consume();
+                }
+            });
+
+            txaChatInput.textProperty().addListener((observable, oldString, newString) ->
+            {
+                btnChatSend.setDisable(newString.trim().isEmpty());
+            });
+
+            btnChatSend.setOnAction(event ->
+            {
                 // 1 : Sender
-                SendDebugRoomChatAction.update(textArea.getText(), 1);
-                event.consume();
-            }
-        });
+                SendDebugRoomChatAction.update(txaChatInput.getText(), 1);
+                txaChatInput.requestFocus();
+            });
 
-        textArea.textProperty().addListener((observable, oldString, newString) ->
-        {
-            button.setDisable(newString.trim().isEmpty());
-        });
+            Platform.runLater(() ->
+            {
+                txaChatInput.requestFocus();
+            });
+		}
+	}
 
-        button.setOnAction(event ->
-        {
-            // 1 : Sender
-            SendDebugRoomChatAction.update(textArea.getText(), 1);
-            textArea.requestFocus();
-        });
+	public static class LogArea
+	{
+		private static AnchorPane anpLogArea;
+		private static StackPane stpResizeBar;
 
-        Platform.runLater(() ->
-        {
-            textArea.requestFocus();
-        });
+		public static void initialize()
+		{
+			anpLogArea = (AnchorPane) nameSpace.get("anpLogArea");
+			stpResizeBar = (StackPane) nameSpace.get("stpResizeBar");
+
+			stpResizeBar.setOnMouseDragged(event ->
+			{
+				ResizeChatAreaAction.update(event);
+			});
+		}
 	}
 
 	public static AnchorPane getRoot()
 	{
-		return anchorPane;
-	}
-
-	public static Object getComponent()
-	{
-		return null;
+		return anpDebugRoom;
 	}
 
 	public static ObservableMap<String, Object> getNameSpace()

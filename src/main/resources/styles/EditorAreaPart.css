@@ -21,12 +21,12 @@
 }
 .tab-close-button
 {
-    -fx-background-image: url('/images/tab_close.png');
+    -fx-background-image: url('/images/close.png');
     -fx-background-size: 16;
 }
 .tab-close-button:hover
 {
-    -fx-background-image: url('/images/tab_close_focused.png');
+    -fx-background-image: url('/images/close_hover.png');
 }
 .tab-title-label
 {
@@ -50,5 +50,5 @@
 }
 .tab:selected .tab-close-button
 {
-    -fx-background-image: url('/images/tab_close_focused.png');
+    -fx-background-image: url('/images/close_focused.png');
 }
