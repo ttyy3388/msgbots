@@ -15,7 +15,7 @@
    <children>
       <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" styleClass="debug" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane fx:id="anpChatArea" minWidth="300.0" prefWidth="400.0" styleClass="chat-area">
+            <AnchorPane fx:id="anpChatArea" minWidth="300.0" prefWidth="400.0" styleClass="chat-area" HBox.hgrow="NEVER">
                <children>
                   <VBox alignment="CENTER" cacheShape="false" centerShape="false" scaleShape="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>

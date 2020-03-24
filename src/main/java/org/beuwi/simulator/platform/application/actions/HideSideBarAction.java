@@ -1,35 +1,39 @@
 package org.beuwi.simulator.platform.application.actions;
 
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
+import org.beuwi.simulator.platform.application.views.parts.ActivityBarPart;
 import org.beuwi.simulator.platform.application.views.parts.SideBarPart;
 
 public class HideSideBarAction
 {
-	private static AnchorPane pane;
+	private static HBox 	  hoxActiveArea;
+	private static VBox 	  voxActivityBar;
+	private static AnchorPane anpSideBar;
 
 	private static boolean isHided = false;
 
 	public static void initialize()
 	{
-		pane = SideBarPart.getRoot();
+		hoxActiveArea  = (HBox) ActiveAreaPart.getNameSpace().get("hoxActiveArea");
+		voxActivityBar = (VBox) ActivityBarPart.getNameSpace().get("voxActivityBar");
+		anpSideBar     = SideBarPart.getRoot();
 	}
 
 	public static void update(boolean hide)
 	{
-		isHided = hide;
-
 		if (hide)
 		{
-			pane.setDisable(true);
-			pane.setVisible(false);
-			pane.setPrefWidth(0);
+			hoxActiveArea.getChildren().remove(anpSideBar);
 		}
 		else
 		{
-			pane.setPrefWidth(200);
-			pane.setVisible(true);
-			pane.setDisable(false);
+			hoxActiveArea.getChildren().add(anpSideBar);
 		}
+
+		isHided = hide;
 	}
 
 	public static boolean isHided()

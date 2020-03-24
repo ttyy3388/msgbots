@@ -12,6 +12,9 @@ public class ActivityBarPart
 
 	private static AnchorPane anpActivityBar;
 
+	private static ToggleButton tgnExplorerTab;
+	private static ToggleButton tgnDebugTab;
+
 	public static void initialize() throws Exception
 	{
 		FXMLLoader loader = new FXMLLoader();
@@ -22,24 +25,17 @@ public class ActivityBarPart
 		nameSpace = loader.getNamespace();
 
 		anpActivityBar = (AnchorPane) nameSpace.get("anpActivityBar");
+		tgnExplorerTab = (ToggleButton) nameSpace.get("tgnExplorerTab");
+		tgnDebugTab    = (ToggleButton) nameSpace.get("tgnDebugTab");
 
-		ToggleButton tgnExplorer = (ToggleButton) nameSpace.get("tgnExplorer");
-		ToggleButton tgnDebug = (ToggleButton) nameSpace.get("tgnDebug");
-
-		tgnExplorer.setOnMousePressed(event ->
+		tgnExplorerTab.setOnAction(event ->
 		{
-			if (event.isPrimaryButtonDown())
-			{
-				SelectActivityBarAction.update(0);
-			}
+			SelectActivityBarAction.update(0);
 		});
 
-		tgnDebug.setOnMousePressed(event ->
+		tgnDebugTab.setOnAction(event ->
 		{
-			if (event.isPrimaryButtonDown())
-			{
-				SelectActivityBarAction.update(1);
-			}
+			SelectActivityBarAction.update(1);
 		});
 	}
 

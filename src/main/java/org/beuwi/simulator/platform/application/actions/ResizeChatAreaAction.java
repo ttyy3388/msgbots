@@ -2,6 +2,7 @@ package org.beuwi.simulator.platform.application.actions;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
 
 public class ResizeChatAreaAction
@@ -11,8 +12,8 @@ public class ResizeChatAreaAction
 
 	public static void initialize()
 	{
-		// anpActiveArea = ActiveAreaPart.getRoot();
-		anpChatArea   = (AnchorPane) DebugRoomTab.getNameSpace().get("anpChatArea");
+		anpActiveArea = ActiveAreaPart.getRoot();
+		anpChatArea = (AnchorPane) DebugRoomTab.getNameSpace().get("anpChatArea");
 	}
 
 	public static void update(MouseEvent event)

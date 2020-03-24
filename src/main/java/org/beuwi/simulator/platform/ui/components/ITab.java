@@ -1,13 +1,15 @@
 package org.beuwi.simulator.platform.ui.components;
 
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.HBox;
+import org.beuwi.simulator.platform.application.actions.CloseEditorTabAction;
 
 public class ITab extends Tab
 {
-	public ITab(Image icon, String title, Node node, int type)
+	public ITab(Image icon, String id, String title, Node node, int type)
 	{
 		HBox      tabHeader = new HBox();
 		ImageView tabIcon   = new ImageView();
@@ -20,24 +22,31 @@ public class ITab extends Tab
 
 		tabClose.setPrefWidth(8);
 		tabClose.getStyleClass().add("tab-close-button");
+		tabClose.setOnMousePressed(event ->
+		{
+			if (event.isPrimaryButtonDown() || event.isMiddleButtonDown())
+			{
+				CloseEditorTabAction.update(this);
+			}
+		});
 
 		tabTitle.setText(title);
 		tabTitle.getStyleClass().add("tab-title-label");
 
 		tabHeader.setSpacing(5);
+		tabHeader.setMinHeight(35);
+		tabHeader.setAlignment(Pos.CENTER);
 		tabHeader.getStyleClass().add("tab-header");
 		tabHeader.getChildren().addAll(tabIcon, tabTitle, tabClose);
-
-		switch (type)
+		tabHeader.setOnMousePressed(event ->
 		{
-			// @tab::debug
-			case ITabType.DEBUG  :
-				// @tab::log
-			case ITabType.LOG    : this.setId("@tab::" + title);    break;
-			// @tab::name (@tab::test)
-			case ITabType.SCRIPT : this.setId("@script::" + title); break;
-		}
+			if (event.isMiddleButtonDown())
+			{
+				CloseEditorTabAction.update(this);
+			}
+		});
 
+		this.setId(id);
 		this.setContent(node);
 		this.setGraphic(tabHeader);
 	}

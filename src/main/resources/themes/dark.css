@@ -51,3 +51,46 @@
 {
 	-fx-text-fill: #FFFFFF;
 }
+
+/* styled-text-area * */
+.styled-text-area *
+{
+    -fx-background-color: #1E1E1E;
+	-fx-font-family: D2Coding;
+	-fx-font-size: 15;
+}
+.styled-text-area .caret
+{
+	-fx-stroke-width: 2;
+	-fx-stroke: #ADAEAC;
+}
+.styled-text-area .lineno
+{
+	-fx-pref-width: 65;
+	-fx-padding: 2.5 12 2.5 0;
+}
+.styled-text-area .lineno .text
+{
+	-fx-fill: #848484;
+}
+.styled-text-area .paragraph-text
+{
+	-fx-padding: 2.5;
+}
+.styled-text-area .paragraph-text .text
+{
+	-fx-fill: #D4D4D4;
+}
+.styled-text-area .paragraph-box .selection
+{
+	-fx-fill: #264E77;
+}
+.styled-text-area .paragraph-box:has-caret *,
+.styled-text-area .paragraph-box:has-caret .lineno
+{
+	-fx-background-color: #262626;
+}
+.styled-text-area .paragraph-box:has-caret .lineno .text
+{
+	-fx-fill: #A4A3A3;
+}

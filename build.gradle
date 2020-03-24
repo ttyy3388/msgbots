@@ -55,13 +55,21 @@ compileJava {
 } */
 
 jlink {
-	// 없으면 오류남
+	// 없으면 jlink task시 오류남
 	mergedModule {
 		requires "java.xml"
 	}
 	options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
 	launcher {
-		name = 'MesengerBotSimulator'
+		name = 'Mesenger Bot Simulator'
+	}
+
+	/* installerOptions = [
+			'--file-associations', 'src/main/resources/associations.properties',
+			'--app-version', version,
+	] */
+	jpackage {
+		imageOptions += ['--icon', 'src/main/resources/icons/program_dark.ico']
 	}
 }
 

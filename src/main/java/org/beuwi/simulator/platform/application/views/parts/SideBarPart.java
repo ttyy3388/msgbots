@@ -2,16 +2,16 @@ package org.beuwi.simulator.platform.application.views.parts;
 
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
-import org.beuwi.simulator.platform.application.actions.ResizeSideBarAction;
+import org.beuwi.simulator.platform.application.actions.OpenDebugRoomAction;
+import org.beuwi.simulator.platform.application.actions.ShowExplorerOptionAction;
 
 public class SideBarPart
 {
 	private static ObservableMap<String, Object> nameSpace;
 
 	private static AnchorPane anpSideBar;
-	private static StackPane stpResizeBar;
 
 	public static void initialize() throws Exception
 	{
@@ -23,12 +23,53 @@ public class SideBarPart
 		nameSpace = loader.getNamespace();
 
 		anpSideBar = (AnchorPane) nameSpace.get("anpSideBar");
-		stpResizeBar = (StackPane) nameSpace.get("stpResizeBar");
 
-		stpResizeBar.setOnMouseDragged(event ->
+		ExplorerPart.initialize();
+		DebugPart.initialize();
+	}
+
+	private static class ExplorerPart
+	{
+		private static Button btnShowExplorerOption;
+
+		public static void initialize()
 		{
-			ResizeSideBarAction.update(event);
-		});
+			btnShowExplorerOption = (Button) nameSpace.get("btnShowExplorerOption");
+
+			btnShowExplorerOption.setOnMousePressed(event ->
+			{
+				ShowExplorerOptionAction.update(event);
+			});
+		}
+	}
+
+	private static class DebugPart
+	{
+		private static Button btnOpenDebugRoom;
+		private static Button btnShowAllLogs;
+		private static Button btnReloadAllBots;
+
+		public static void initialize()
+		{
+			btnOpenDebugRoom = (Button) nameSpace.get("btnOpenDebugRoom");
+			btnShowAllLogs   = (Button) nameSpace.get("btnShowAllLogs");
+			btnReloadAllBots = (Button) nameSpace.get("btnReloadAllBots");
+
+			btnOpenDebugRoom.setOnAction(event ->
+			{
+				OpenDebugRoomAction.update();
+			});
+
+			btnShowAllLogs.setOnAction(event ->
+			{
+				// ShowAllLogsAction.update();
+			});
+
+			btnReloadAllBots.setOnAction(event ->
+			{
+				// ReloadAllBotsAction.update();
+			});
+		}
 	}
 
 	public static AnchorPane getRoot()

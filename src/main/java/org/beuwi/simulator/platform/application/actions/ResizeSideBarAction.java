@@ -10,6 +10,7 @@ public class ResizeSideBarAction
 
 	public static void initialize()
 	{
+		// pane = ActiveAreaPart.getRoot();
 		pane = SideBarPart.getRoot();
 	}
 
@@ -21,25 +22,20 @@ public class ResizeSideBarAction
 		// 이 부분에서 드래그 시 깜빡이는 문제점 방지
 		if (!(sceneX >= -5 && sceneX <= 5))
 		{
-			/* if (WindowStage.getPrimartStage() - editorArea.getMinWidth())
-			{
-				return ;
-			} */
-
 			if (HideSideBarAction.isHided())
 			{
-				if (125 <= sceneX)
+				if (90 <= sceneX)
 				{
 					HideSideBarAction.update(false);
 				}
 			}
 			else
 			{
-				// 220 안에서는 사이즈 변경 X
-				if (sceneX <= 200)
+				// 180 안에서는 사이즈 변경 X
+				if (sceneX <= 180)
 				{
-					// 150 안으로 드래그 시 숨김
-					if (sceneX <= 125)
+					// 90 안으로 드래그 시 숨김
+					if (sceneX <= 90)
 					{
 						HideSideBarAction.update(true);
 					}

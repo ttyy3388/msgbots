@@ -4,15 +4,12 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.beuwi.simulator.platform.application.actions.*;
-import org.beuwi.simulator.platform.application.actions.OpenDebugRoomAction;
-import org.beuwi.simulator.platform.application.actions.ResizeChatAreaAction;
-import org.beuwi.simulator.platform.application.actions.SendChatMessageAction;
 import org.beuwi.simulator.platform.application.views.parts.*;
 import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
+import org.fxmisc.richtext.CodeArea;
 
 public class Launcher extends Application
 {
@@ -27,10 +24,10 @@ public class Launcher extends Application
 			System.setProperty("prism.subpixeltext", "false");
 
 			/* Load Fonts */
-			Font.loadFont(getClass().getResourceAsStream("/fonts/Consola.ttf"), 0);		// Family :
+			Font.loadFont(getClass().getResourceAsStream("/fonts/Consola.ttf"), 0);		// Family : "Consolas"
 			Font.loadFont(getClass().getResourceAsStream("/fonts/ConsolaBold.ttf"), 0);  // Family :
-			Font.loadFont(getClass().getResourceAsStream("/fonts/D2Coding.ttf"), 0); 	// Family :
-			Font.loadFont(getClass().getResourceAsStream("/fonts/D2codingBold.ttf"), 0); // Family :
+			Font.loadFont(getClass().getResourceAsStream("/fonts/D2Coding.ttf"), 0); 	// Family : "D2Coding"
+			Font.loadFont(getClass().getResourceAsStream("/fonts/D2codingBold.ttf"), 0); // Family : "D2Coding"
 			Font.loadFont(getClass().getResourceAsStream("/fonts/Roboto.ttf"), 0); 		// Family : "Roboto"
 			Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoBold.ttf"), 0);   // Family : "Roboto Bold"
 			Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoMedium.ttf"), 0); // Family : "Roboto Medium"
@@ -41,19 +38,22 @@ public class Launcher extends Application
 
 			BorderPane pane = new BorderPane();
 
-			ActivityBarPart.initialize();
-			EditorAreaPart.initialize();
-			SideBarPart.initialize();
-			StatusBarPart.initialize();
 			ToolBarPart.initialize();
+			EditorAreaPart.initialize();
+			StatusBarPart.initialize();
+			// ActiveArea에서 ActivityBar, SideBar를 합치므로 먼저 초기화
+			ActivityBarPart.initialize();
+			SideBarPart.initialize();
+			ActiveAreaPart.initialize();
 
 			DebugRoomTab.initialize();
 			// ShowAllLogsTab.initialize();
 
 			pane.setTop(ToolBarPart.getRoot());
-			pane.setLeft(new HBox(ActivityBarPart.getRoot(), SideBarPart.getRoot()));
 			pane.setCenter(EditorAreaPart.getRoot());
 			pane.setBottom(StatusBarPart.getRoot());
+			pane.setLeft(ActiveAreaPart.getRoot());
+			pane.setRight(new CodeArea());
 
 			pane.setMinSize(1100, 700);
 			pane.setPrefSize(1300, 900);
@@ -90,7 +90,7 @@ public class Launcher extends Application
 
 			AddEditorTabAction.initialize();
 			AddExplorerItemAction.initialize();
-			// CloseEditorTabAction.initialize();
+			CloseEditorTabAction.initialize();
 			HideSideBarAction.initialize();
 			OpenDebugRoomAction.initialize();
 			// ReloadAllBotsAction.initialize();
@@ -101,13 +101,13 @@ public class Launcher extends Application
 			ShowDebugMenuAction.initialize();
 			ShowExplorerOptionAction.initialize();
 			ShowFileMenuAction.initialize();
+			ChangeSideBarAction.initialize();
 			ShowViewMenuAction.initialize();
 
-			/* for (int i = 0 ; i < 10 ; i ++)
+			for (int i = 0 ; i < 10 ; i ++)
 			{
-				AddEditorTabAction.update(null, "test" + i, null, ITabType.SCRIPT);
 				AddExplorerItemAction.update("test" + i);
-			} */
+			}
 		}
 		catch (Exception e)
 		{

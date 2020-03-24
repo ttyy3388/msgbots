@@ -1,4 +1,10 @@
 
+.root *
+{
+    -fx-font-family: D2Coding;
+	-fx-font-size: 14;
+}
+
 .resize-bar
 {
 	-fx-background-insets: 0 3 0 3;
@@ -14,7 +20,6 @@
 	-fx-text-fill: #FFFFFF;
 	-fx-background-radius: 15;
 	-fx-background-insets: 5;
-	-fx-font-size: 13;
 	-fx-padding: 13;
 }
 .chat-area .list-cell .sender-label
@@ -38,7 +43,6 @@
 {
 	-fx-background-radius: 15;
 	-fx-background-color: transparent, #303030, transparent, #303030;
-	-fx-font-size: 14;
 	-fx-padding: 10;
 }
 /* Send Button */

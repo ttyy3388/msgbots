@@ -12,11 +12,11 @@
 .tab
 {
 	-fx-background-color: #2D2D2D;
-	-fx-padding: 5 10 5 10;
 	-fx-cursor: HAND;
 }
 .tab-header
 {
+	-fx-padding: 0 15 0 15;
 	-fx-spacing: 6;
 }
 .tab-close-button

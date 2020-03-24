@@ -3,8 +3,14 @@ package org.beuwi.simulator.platform.application.actions;
 import com.jfoenix.controls.JFXToggleButton;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
+import org.beuwi.simulator.platform.application.views.parts.SideBarPart;
 
 public class AddExplorerItemAction
 {
@@ -12,7 +18,7 @@ public class AddExplorerItemAction
 
 	public static void initialize()
 	{
-		// listView = (ListView) ActiveAreaPart.getNameSpace().get("lsvExplorerTab");
+		listView = (ListView) SideBarPart.getNameSpace().get("lsvExplorerPart");
 	}
 
 	// Script Name (No Extension)
@@ -33,7 +39,15 @@ public class AddExplorerItemAction
 			getItemVBox(itemCompile, Pos.CENTER, 	  Priority.NEVER,  40),
 			getItemVBox(itemSwitch,  Pos.CENTER_LEFT, Priority.NEVER,  40)
 		);
+
 		itemCell.getStyleClass().add("list-item");
+		itemCell.setOnMousePressed(event ->
+		{
+			if (event.isPrimaryButtonDown() || event.isMiddleButtonDown())
+			{
+				AddEditorTabAction.update(name);
+			}
+		});
 
 		itemCompile.setPrefSize(30, 30);
 

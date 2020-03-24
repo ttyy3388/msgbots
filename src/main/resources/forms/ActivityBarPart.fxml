@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane fx:id="anpActivityBar" minWidth="40.0" prefWidth="40.0" styleClass="activity-bar" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox prefWidth="40.0">
+      <VBox fx:id="voxActivityBar" prefWidth="40.0">
          <children>
-            <ToggleButton fx:id="tgnExplorer" mnemonicParsing="false" prefHeight="50.0" prefWidth="40.0" selected="true" styleClass="explorer-button" />
-            <ToggleButton fx:id="tgnDebug" mnemonicParsing="false" prefHeight="50.0" prefWidth="40.0" styleClass="debug-button" />
+            <ToggleButton fx:id="tgnExplorerTab" mnemonicParsing="false" prefHeight="50.0" prefWidth="40.0" selected="true" styleClass="explorer-tab" />
+            <ToggleButton fx:id="tgnDebugTab" mnemonicParsing="false" prefHeight="50.0" prefWidth="40.0" styleClass="debug-tab" />
          </children>
       </VBox>
-      <StackPane fx:id="stpResizeBar" disable="true" prefWidth="7.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <cursor>
-            <Cursor fx:constant="H_RESIZE" />
-         </cursor>
-      </StackPane>
    </children>
    <stylesheets>
       <URL value="@../themes/default.css" />
