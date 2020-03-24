@@ -5,7 +5,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 
 public class AddExplorerItemAction
 {
@@ -13,7 +12,7 @@ public class AddExplorerItemAction
 
 	public static void initialize()
 	{
-		listView = (ListView) ActiveAreaPart.getNameSpace().get("lsvExplorerTab");
+		// listView = (ListView) ActiveAreaPart.getNameSpace().get("lsvExplorerTab");
 	}
 
 	// Script Name (No Extension)

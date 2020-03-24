@@ -1,0 +1,41 @@
+
+.side-bar
+{
+	-fx-background-color: #252526;
+}
+
+.title-pane
+{
+	-fx-border-color: #323232;
+	-fx-border-width: 0 0 15 0;
+}
+.title-label
+{
+	-fx-text-fill: #CCCCCC;
+}
+
+.option-button
+{
+    -fx-background-radius: 5;
+    -fx-background-image: url('../images/setting.png');
+    -fx-background-size: 20;
+}
+.option-button:hover
+{
+	-fx-background-color: rgba(255, 255, 255, 0.05);
+}
+.option-button:armed
+{
+	-fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* .debug-part .button
+{
+	-fx-background-color: #0E639C;
+	-fx-text-fill: #FFFFFF;
+	-fx-cursor: hand;
+}
+.debug-part .button.button:hover
+{
+	-fx-background-color: #1177BB;
+} */

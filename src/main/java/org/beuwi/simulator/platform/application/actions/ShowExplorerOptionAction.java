@@ -3,7 +3,6 @@ package org.beuwi.simulator.platform.application.actions;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.input.MouseEvent;
-import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 import org.beuwi.simulator.platform.ui.components.IMenuItem;
 
 public class ShowExplorerOptionAction
@@ -17,7 +16,7 @@ public class ShowExplorerOptionAction
 
 	public static void initialize()
 	{
-		button = (Button) ActiveAreaPart.getNameSpace().get("btnExplorerOption");
+		// button = (Button) ActiveAreaPart.getNameSpace().get("btnExplorerOption");
 
         option = new ContextMenu();
 		option.getItems().addAll

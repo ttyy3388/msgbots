@@ -78,7 +78,8 @@ VBox, HBox
 	-fx-font-smoothing-type: gray;
 }
 
-.button
+.button,
+.toggle-button
 {
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;

@@ -4,16 +4,14 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.beuwi.simulator.platform.application.actions.*;
 import org.beuwi.simulator.platform.application.actions.OpenDebugRoomAction;
 import org.beuwi.simulator.platform.application.actions.ResizeChatAreaAction;
 import org.beuwi.simulator.platform.application.actions.SendChatMessageAction;
-import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
-import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
-import org.beuwi.simulator.platform.application.views.parts.StatusBarPart;
-import org.beuwi.simulator.platform.application.views.parts.ToolBarPart;
+import org.beuwi.simulator.platform.application.views.parts.*;
 import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
 
 public class Launcher extends Application
@@ -43,16 +41,17 @@ public class Launcher extends Application
 
 			BorderPane pane = new BorderPane();
 
-			ToolBarPart.initialize();
-			ActiveAreaPart.initialize();
+			ActivityBarPart.initialize();
 			EditorAreaPart.initialize();
+			SideBarPart.initialize();
 			StatusBarPart.initialize();
+			ToolBarPart.initialize();
 
 			DebugRoomTab.initialize();
 			// ShowAllLogsTab.initialize();
 
 			pane.setTop(ToolBarPart.getRoot());
-			pane.setLeft(ActiveAreaPart.getRoot());
+			pane.setLeft(new HBox(ActivityBarPart.getRoot(), SideBarPart.getRoot()));
 			pane.setCenter(EditorAreaPart.getRoot());
 			pane.setBottom(StatusBarPart.getRoot());
 
@@ -97,6 +96,7 @@ public class Launcher extends Application
 			// ReloadAllBotsAction.initialize();
 			ResizeChatAreaAction.initialize();
 			ResizeSideBarAction.initialize();
+			SelectActivityBarAction.initialize();
 			SendChatMessageAction.initialize();
 			ShowDebugMenuAction.initialize();
 			ShowExplorerOptionAction.initialize();

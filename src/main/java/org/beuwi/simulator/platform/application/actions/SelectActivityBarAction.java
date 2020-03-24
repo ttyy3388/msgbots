@@ -1,26 +1,31 @@
 package org.beuwi.simulator.platform.application.actions;
 
-import javafx.scene.layout.AnchorPane;
-import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
+import javafx.scene.control.ToggleButton;
+import org.beuwi.simulator.platform.application.views.parts.ActivityBarPart;
 
 public class SelectActivityBarAction
 {
-	private static AnchorPane pane;
+	private static ToggleButton tgnExplorer;
+	private static ToggleButton tgnDebug;
 
 	public static void initialize()
 	{
-		pane = (AnchorPane) ActiveAreaPart.getNameSpace().get("anpActiveArea");
+		tgnExplorer = (ToggleButton) ActivityBarPart.getNameSpace().get("tgnExplorer");
+		tgnDebug    = (ToggleButton) ActivityBarPart.getNameSpace().get("tgnDebug");
 	}
 
-	public static void update()
+	// Selected Toggle Button Index
+	public static void update(int index)
 	{
-		if (HideSideBarAction.isHided())
+		ToggleButton target = index == 0 ? tgnExplorer :  tgnDebug;
+
+		if (target.isSelected())
 		{
-			HideSideBarAction.update(false);
+			HideSideBarAction.update(true);
 		}
 		else
 		{
-			HideSideBarAction.update(true);
+			HideSideBarAction.update(false);
 		}
 	}
 }
