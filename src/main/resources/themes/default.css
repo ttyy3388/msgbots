@@ -98,13 +98,13 @@ VBox, HBox
 }
 .scroll-bar .thumb
 {
-	-fx-fill: rgba(100, 100, 100, 0.4);
+	-fx-fill: rgba(100, 100, 100, 0.3);
 }
 .scroll-bar .thumb:hover
 {
-	-fx-fill: rgba(100, 100, 100, 0.6);
+	-fx-fill: rgba(100, 100, 100, 0.5);
 }
 .scroll-bar .thumb:pressed
 {
-	-fx-fill: rgba(100, 100, 100, 0.8);
+	-fx-fill: rgba(100, 100, 100, 0.6);
 }

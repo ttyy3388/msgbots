@@ -34,7 +34,7 @@
                   </AnchorPane>
                </content>
                <graphic>
-                  <Button disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="40.0" />
+                  <Button fx:id="btnExplorerTab" disable="true" minHeight="50.0" minWidth="40.0" mnemonicParsing="false" />
                </graphic>
             </Tab>
             <Tab styleClass="debug-tab">
@@ -60,7 +60,7 @@
                   </AnchorPane>
                </content>
                <graphic>
-                  <Button disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="40.0" />
+                  <Button fx:id="btnDebugTab" disable="true" minHeight="50.0" minWidth="40.0" mnemonicParsing="false" />
                </graphic>
             </Tab>
          </tabs>

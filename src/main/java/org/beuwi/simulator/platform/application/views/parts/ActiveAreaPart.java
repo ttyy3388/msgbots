@@ -3,16 +3,21 @@ package org.beuwi.simulator.platform.application.views.parts;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
+import org.beuwi.simulator.platform.application.actions.OpenDebugRoomAction;
 import org.beuwi.simulator.platform.application.actions.ResizeSideBarAction;
 import org.beuwi.simulator.platform.application.actions.ShowExplorerOptionAction;
-import org.beuwi.simulator.platform.application.actions.OpenDebugRoomAction;
 
 public class ActiveAreaPart
 {
 	private static ObservableMap<String, Object> nameSpace;
 
 	private static AnchorPane anpActiveArea;
+	private static TabPane tapActiveArea;
+
+	private static Button btnExplorerTab;
+	private static Button btnDebugTab;
 
 	public static void initialize() throws Exception
 	{
@@ -23,8 +28,12 @@ public class ActiveAreaPart
 
 		nameSpace = loader.getNamespace();
 
-		anpActiveArea = (AnchorPane) nameSpace.get("anpActiveArea");
-		// tapActiveArea = (TabPane) nameSpace.get("tapActiveArea");
+		anpActiveArea  = (AnchorPane) nameSpace.get("anpActiveArea");
+		tapActiveArea  = (TabPane) nameSpace.get("tapActiveArea");
+		btnExplorerTab = (Button) nameSpace.get("btnExplorerTab");
+		btnDebugTab    = (Button) nameSpace.get("btnDebugTab");
+
+
 
 		anpActiveArea.setOnMouseDragged(event ->
 		{
