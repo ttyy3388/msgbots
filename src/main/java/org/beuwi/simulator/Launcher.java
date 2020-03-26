@@ -5,7 +5,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.beuwi.simulator.platform.application.actions.*;
 import org.beuwi.simulator.platform.application.views.MainWindow;
-import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
 import org.beuwi.simulator.platform.application.views.parts.*;
 import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
 
@@ -29,6 +28,9 @@ public class Launcher extends Application
 			Font.loadFont(getClass().getResourceAsStream("/fonts/Roboto.ttf"), 	   0); // Family : "Roboto"
 			Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoBold.ttf"),   0); // Family : "Roboto Bold"
 			Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoMedium.ttf"), 0); // Family : "Roboto Medium"
+
+			Application.setUserAgentStylesheet(null);
+			StyleManager.getInstance().addUserAgentStylesheet(AQUA_CSS_NAME);
 
 			/* Initialize Views */
 			ToolBarPart.initialize();
@@ -63,13 +65,9 @@ public class Launcher extends Application
 			{
 				AddExplorerItemAction.update("test" + i);
 			}
-
-			Integer.parseInt("a");
 		}
 		catch (Exception e)
 		{
-			new ShowErrorDialog(e).display();
-
 			e.printStackTrace();
 		}
 	}

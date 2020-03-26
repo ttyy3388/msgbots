@@ -8,88 +8,11 @@
 
 *
 {
-    /* -bg-base-color: #1E1E1E;
+    /* -bg-base-color: #3C3C3C;
     -tx-base-color: #CCCCCC; */
 }
 
 .root
 {
-    -fx-background-color: #1E1E1E;
-}
-
-.context-menu
-{
-    -fx-padding: 7 0 7 0;
-	-fx-background-color: #252526;
-	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
-}
-.context-menu .separator
-{
-	-fx-background-insets: 4 10 4 10;
-	-fx-background-color: #616162;
-	-fx-padding: 4;
-}
-
-.menu-item
-{
-	-fx-padding: 5 25 5 25;
-/* }
-.menu-item *,
-.menu-item .label *
-{ */
-	-fx-font-family: Roboto;
-}
-.menu-item .label *
-{
-	-fx-font-size: 13;
-}
-.menu-item:focused
-{
-	-fx-background-color: #094771;
-}
-.menu-item:focused .label
-{
-	-fx-text-fill: #FFFFFF;
-}
-
-.styled-text-area *
-{
-    -fx-background-color: #1E1E1E;
-	-fx-font-family: D2Coding;
-	-fx-font-size: 15;
-}
-.styled-text-area .caret
-{
-	-fx-stroke-width: 2;
-	-fx-stroke: #ADAEAC;
-}
-.styled-text-area .lineno
-{
-	-fx-pref-width: 65;
-	-fx-padding: 2.5 12 2.5 0;
-}
-.styled-text-area .lineno .text
-{
-	-fx-fill: #848484;
-}
-.styled-text-area .paragraph-text
-{
-	-fx-padding: 2.5;
-}
-.styled-text-area .paragraph-text .text
-{
-	-fx-fill: #D4D4D4;
-}
-.styled-text-area .paragraph-box .selection
-{
-	-fx-fill: #264E77;
-}
-.styled-text-area .paragraph-box:has-caret *,
-.styled-text-area .paragraph-box:has-caret .lineno
-{
-	-fx-background-color: #262626;
-}
-.styled-text-area .paragraph-box:has-caret .lineno .text
-{
-	-fx-fill: #A4A3A3;
+	-fx-background-color: #1E1E1E;
 }

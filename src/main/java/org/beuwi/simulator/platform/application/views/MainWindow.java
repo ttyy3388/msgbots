@@ -1,12 +1,13 @@
 package org.beuwi.simulator.platform.application.views;
 
-import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
 import org.beuwi.simulator.platform.application.views.parts.StatusBarPart;
 import org.beuwi.simulator.platform.application.views.parts.ToolBarPart;
+import org.beuwi.simulator.platform.ui.window.WindowScene;
 
 public class MainWindow extends BorderPane
 {
@@ -23,16 +24,16 @@ public class MainWindow extends BorderPane
 		setMinSize(1100, 700);
 		setPrefSize(1300, 900);
 
-		getStylesheets().add(getClass().getResource("/themes/default.css").toExternalForm());
-		getStylesheets().add(getClass().getResource("/themes/dark.css").toExternalForm());
-
+		stage.getIcons().add(new Image(getClass().getResource("/images/program_dark.png").toExternalForm()));
 		stage.setMinWidth(600);
 		stage.setMinHeight(400);
 		stage.setWidth(1300);
 		stage.setHeight(900);
 		// stage.setMaxWidth(Double.MAX_VALUE);
 		// stage.setMaxHeight(Double.MAX_VALUE);
-		stage.setScene(new Scene(this));
+		stage.setTitle("Messenger Bot Simulator");
+		stage.setScene(new WindowScene(this));
+		stage.toFront();
 
 		this.stage = stage;
 	}

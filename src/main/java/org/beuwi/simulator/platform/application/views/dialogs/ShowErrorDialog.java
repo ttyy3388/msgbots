@@ -6,8 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
-import org.beuwi.simulator.platform.ui.window.dialog.DialogBoxType;
-import org.beuwi.simulator.platform.ui.window.dialog.DialogBoxView;
+import org.beuwi.simulator.platform.ui.dialog.DialogBoxType;
+import org.beuwi.simulator.platform.ui.dialog.DialogBoxView;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -21,9 +21,10 @@ public class ShowErrorDialog extends DialogBoxView implements Initializable
 
 	final Exception error;
 
-	// Script Name
 	public ShowErrorDialog(Exception error)
 	{
+		super(DialogBoxType.ERROR);
+
 		this.error = error;
 	}
 
@@ -44,10 +45,9 @@ public class ShowErrorDialog extends DialogBoxView implements Initializable
 			e.printStackTrace();
 		}
 
-		setDialogContent(root);
-		setDialogTitle("Error");
-		setDialogType(DialogBoxType.DOCUMENT);
-		createDialog();
+		setContent(root);
+		setTitle("Error");
+		create();
 	}
 
     @Override
