@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane minHeight="80.0" minWidth="500.0" prefHeight="80.0" prefWidth="500.0" styleClass="exists" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="lblHeader" layoutX="14.0" layoutY="29.0" styleClass="header-label" text="Cannot create script 'test'. script already exists." textAlignment="CENTER" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="25.0" />
+      <ImageView fx:id="imvDialog" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
+   </children>
+</AnchorPane>

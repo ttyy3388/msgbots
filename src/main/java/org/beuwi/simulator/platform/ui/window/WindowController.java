@@ -1,8 +1,8 @@
 package org.beuwi.simulator.platform.ui.window;
 
+import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BlurType;
@@ -49,18 +49,24 @@ public class WindowController extends WindowEvent implements Initializable
 		this.WINDOW_TYPE    = WINDOW_TYPE;
 	}
 
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources)
 	{
+		WINDOW_CONTENT_PANE.setCenter(WINDOW_CONTENT);
+
+		System.out.println(WINDOW_CONTENT.getMinWidth());
+
 		WINDOW_STAGE.setMinWidth (WINDOW_CONTENT.getMinWidth()   + 12);
 		WINDOW_STAGE.setMinHeight(WINDOW_CONTENT.getMinHeight()  + 12 + 28);
 		WINDOW_STAGE.setWidth	 (WINDOW_CONTENT.getPrefWidth()  + 12);
 		WINDOW_STAGE.setHeight	 (WINDOW_CONTENT.getPrefHeight() + 12 + 28);
 		// WINDOW_STAGE.setMaxWidth(Double.MAX_VALUE);
 		// WINDOW_STAGE.setMaxHeight(Double.MAX_VALUE);
+		WINDOW_STAGE.focusedProperty().addListener((observable, oldValue, newValue) ->
+		{
+			WINDOW_SHADOW_PANE.pseudoClassStateChanged(PseudoClass.getPseudoClass("focused"), newValue);
+		});
 
-		WINDOW_CONTENT_PANE.setCenter(WINDOW_CONTENT);
 		WINDOW_ROOT_PANE.setEffect
 		(
 			new DropShadow
@@ -77,5 +83,10 @@ public class WindowController extends WindowEvent implements Initializable
 
 		setWindowMovable(WINDOW_TITLE_BAR);
 		setWindowResizable();
+	}
+
+	public void setWindowTitle(String text)
+	{
+		WINDOW_TITLE_LABEL.setText(text);
 	}
 }

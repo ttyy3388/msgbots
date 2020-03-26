@@ -16,6 +16,6 @@
    </children>
    <stylesheets>
       <URL value="@../themes/default.css" />
-      <URL value="@../styles/ActvityBarPart.css" />
+      <URL value="@../styles/ActivityBarPart.css" />
    </stylesheets>
 </AnchorPane>

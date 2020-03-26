@@ -8,8 +8,8 @@
 
 *
 {
-    -bg-base-color: #1E1E1E;
-    -tx-base-color: #CCCCCC;
+    /* -bg-base-color: #1E1E1E;
+    -tx-base-color: #CCCCCC; */
 }
 
 .root
@@ -52,7 +52,6 @@
 	-fx-text-fill: #FFFFFF;
 }
 
-/* styled-text-area * */
 .styled-text-area *
 {
     -fx-background-color: #1E1E1E;

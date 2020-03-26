@@ -31,7 +31,10 @@ public class WindowEvent
 	// Node : Title Bar
 	public void setWindowMovable(Node node)
 	{
-		// new WindowMoveListener()
+		MoveListener listener = new MoveListener(stage, node);
+
+		node.addEventHandler(MouseEvent.MOUSE_PRESSED, listener);
+		node.addEventHandler(MouseEvent.MOUSE_DRAGGED, listener);
 	}
 
 	public void setWindowResizable()
@@ -41,6 +44,49 @@ public class WindowEvent
 		stage.addEventHandler(MouseEvent.MOUSE_MOVED, listener);
 		stage.addEventHandler(MouseEvent.MOUSE_PRESSED, listener);
 		stage.addEventHandler(MouseEvent.MOUSE_DRAGGED, listener);
+	}
+
+	private static class MoveListener implements EventHandler<MouseEvent>
+	{
+		final Stage stage;
+		final Node node;
+
+		double initX = 0;
+		double initY = 0;
+
+		public MoveListener(Stage stage, Node node)
+		{
+			this.stage = stage;
+			this.node = node;
+		}
+
+		@Override
+		public void handle(MouseEvent event)
+		{
+			EventType<? extends MouseEvent> type = event.getEventType();
+
+			if (MouseEvent.MOUSE_PRESSED.equals(type))
+			{
+				if (event.isPrimaryButtonDown())
+				{
+					initX = event.getSceneX();
+					initY = event.getSceneY();
+
+					event.consume();
+				}
+			};
+
+			if (MouseEvent.MOUSE_DRAGGED.equals(type))
+			{
+				if (event.isPrimaryButtonDown())
+				{
+					stage.setX(event.getScreenX() - initX);
+					stage.setY(event.getScreenY() - initY);
+
+					event.consume();
+				}
+			};
+		}
 	}
 
 	private static class ResizeListener implements EventHandler<MouseEvent>

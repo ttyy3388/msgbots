@@ -17,6 +17,6 @@
    </children>
    <stylesheets>
       <URL value="@../themes/default.css" />
-      <URL value="@../styles/ActveAreaPart.css" />
+      <URL value="@../styles/ActiveAreaPart.css" />
    </stylesheets>
 </AnchorPane>

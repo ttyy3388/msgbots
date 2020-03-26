@@ -1,15 +1,13 @@
 package org.beuwi.simulator;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.beuwi.simulator.platform.application.actions.*;
+import org.beuwi.simulator.platform.application.views.MainWindow;
+import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
 import org.beuwi.simulator.platform.application.views.parts.*;
 import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
-import org.fxmisc.richtext.CodeArea;
 
 public class Launcher extends Application
 {
@@ -24,70 +22,27 @@ public class Launcher extends Application
 			System.setProperty("prism.subpixeltext", "false");
 
 			/* Load Fonts */
-			Font.loadFont(getClass().getResourceAsStream("/fonts/Consola.ttf"), 0);		// Family : "Consolas"
-			Font.loadFont(getClass().getResourceAsStream("/fonts/ConsolaBold.ttf"), 0);  // Family :
-			Font.loadFont(getClass().getResourceAsStream("/fonts/D2Coding.ttf"), 0); 	// Family : "D2Coding"
+			Font.loadFont(getClass().getResourceAsStream("/fonts/Consola.ttf"),      0); // Family : "Consolas"
+			Font.loadFont(getClass().getResourceAsStream("/fonts/ConsolaBold.ttf"),  0); // Family :
+			Font.loadFont(getClass().getResourceAsStream("/fonts/D2Coding.ttf"),     0); // Family : "D2Coding"
 			Font.loadFont(getClass().getResourceAsStream("/fonts/D2codingBold.ttf"), 0); // Family : "D2Coding"
-			Font.loadFont(getClass().getResourceAsStream("/fonts/Roboto.ttf"), 0); 		// Family : "Roboto"
-			Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoBold.ttf"), 0);   // Family : "Roboto Bold"
+			Font.loadFont(getClass().getResourceAsStream("/fonts/Roboto.ttf"), 	   0); // Family : "Roboto"
+			Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoBold.ttf"),   0); // Family : "Roboto Bold"
 			Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoMedium.ttf"), 0); // Family : "Roboto Medium"
 
-			// WindowStage.setPrimaryStage(stage);
-
-			AnchorPane root = new AnchorPane();
-
-			BorderPane pane = new BorderPane();
-
+			/* Initialize Views */
 			ToolBarPart.initialize();
 			EditorAreaPart.initialize();
-			StatusBarPart.initialize();
-			// ActiveArea에서 ActivityBar, SideBar를 합치므로 먼저 초기화
 			ActivityBarPart.initialize();
-			SideBarPart.initialize();
+			StatusBarPart.initialize();
+			SideBarPart.initialize(); // ActiveArea에서 ActivityBar, SideBar를 합치므로 먼저 초기화
 			ActiveAreaPart.initialize();
-
 			DebugRoomTab.initialize();
 			// ShowAllLogsTab.initialize();
 
-			pane.setTop(ToolBarPart.getRoot());
-			pane.setCenter(EditorAreaPart.getRoot());
-			pane.setBottom(StatusBarPart.getRoot());
-			pane.setLeft(ActiveAreaPart.getRoot());
-			pane.setRight(new CodeArea());
+			new MainWindow(stage).display();
 
-			pane.setMinSize(1100, 700);
-			pane.setPrefSize(1300, 900);
-
-			// pane.getStyleClass().add("main");
-			// root.getStyleClass().add("window");
-
-			root.getStylesheets().add(getClass().getResource("/themes/default.css").toExternalForm());
-			root.getStylesheets().add(getClass().getResource("/themes/dark.css").toExternalForm());
-
-			root.getChildren().add(pane);
-
-			AnchorPane.setTopAnchor(pane, .0);
-			AnchorPane.setRightAnchor(pane, .0);
-			AnchorPane.setBottomAnchor(pane, .0);
-			AnchorPane.setLeftAnchor(pane, .0);
-
-			// new WindowView(stage, pane, WindowType.WINDOW);
-
-			stage.setMinWidth(600);
-			stage.setMinHeight(400);
-			stage.setWidth(1300);
-			stage.setHeight(900);
-			// stage.setMaxWidth(Double.MAX_VALUE);
-			// stage.setMaxHeight(Double.MAX_VALUE);
-
-			stage.setScene(new Scene(root));
-			stage.show();
-
-			// toFront가 안먹히는 문제점 수정해야됨
-			stage.toFront();
-
-			// lookup은 stage를 show해야 작동하므로 action들을 마지막에 초기화
-
+			/* Initialize Actions */
 			AddEditorTabAction.initialize();
 			AddExplorerItemAction.initialize();
 			CloseEditorTabAction.initialize();
@@ -108,9 +63,13 @@ public class Launcher extends Application
 			{
 				AddExplorerItemAction.update("test" + i);
 			}
+
+			Integer.parseInt("a");
 		}
 		catch (Exception e)
 		{
+			new ShowErrorDialog(e).display();
+
 			e.printStackTrace();
 		}
 	}
@@ -120,7 +79,6 @@ public class Launcher extends Application
 	{
 
 	}
-
 
 	public static void main(String[] args)
 	{

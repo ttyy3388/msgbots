@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane minHeight="200.0" minWidth="500.0" prefHeight="200.0" prefWidth="500.0" styleClass="error" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="header" layoutX="78.0" layoutY="28.0" styleClass="header-label" text="java.lang.reflect.InvocationTargetException" textAlignment="CENTER" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="25.0" />
+      <TextArea fx:id="content" editable="false" layoutX="80.0" layoutY="60.0" prefHeight="130.0" prefWidth="358.0" text="Exception in Application start method&#10;java.lang.reflect.InvocationTargetException&#10;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0" />
+      <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+         <image>
+            <Image url="@../images/dialog_error.png" />
+         </image></ImageView>
+   </children>
+</AnchorPane>
