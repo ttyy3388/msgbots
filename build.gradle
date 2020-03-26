@@ -69,7 +69,7 @@ jlink {
 			'--app-version', version,
 	] */
 	jpackage {
-		imageOptions += ['--icon', 'src/main/resources/icons/program_dark.ico']
+		imageOptions += ['--icon', 'src/main/resources/icons/program.ico']
 	}
 }
 

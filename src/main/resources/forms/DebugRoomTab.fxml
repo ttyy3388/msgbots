@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -13,7 +12,7 @@
 
 <AnchorPane fx:id="anpDebugRoom" prefHeight="800.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" styleClass="debug" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane fx:id="anpChatArea" minWidth="300.0" prefWidth="400.0" styleClass="chat-area" HBox.hgrow="NEVER">
                <children>
@@ -53,9 +52,4 @@
          </children>
       </HBox>
    </children>
-   <stylesheets>
-      <URL value="@../themes/default.css" />
-      <URL value="@../themes/dark.css" />
-      <URL value="@../styles/DebugRoomTab.css" />
-   </stylesheets>
 </AnchorPane>

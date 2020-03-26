@@ -16,8 +16,8 @@ public class ITab extends Tab
 		Label     tabTitle  = new Label();
 		Button    tabClose  = new Button();
 
-		tabIcon.setFitWidth(15);
-		tabIcon.setFitHeight(15);
+		tabIcon.setFitWidth(14);
+		tabIcon.setFitHeight(14);
 		tabIcon.setImage(icon);
 
 		tabClose.setPrefWidth(8);

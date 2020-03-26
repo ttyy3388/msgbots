@@ -29,8 +29,8 @@ public class Launcher extends Application
 			Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoBold.ttf"),   0); // Family : "Roboto Bold"
 			Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoMedium.ttf"), 0); // Family : "Roboto Medium"
 
-			Application.setUserAgentStylesheet(null);
-			StyleManager.getInstance().addUserAgentStylesheet(AQUA_CSS_NAME);
+			// 기본 스타일 지정
+			Application.setUserAgentStylesheet(getClass().getResource("/themes/default.css").toExternalForm());
 
 			/* Initialize Views */
 			ToolBarPart.initialize();

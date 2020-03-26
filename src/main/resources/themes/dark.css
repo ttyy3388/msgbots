@@ -4,15 +4,36 @@
 * bd : border
 * fn : font
 * tx : text
+
+
+추후 테마 공용 스타일 (Padding, Width 같은건 default로 옮겨야함)
+
 */
 
 *
 {
-    /* -bg-base-color: #3C3C3C;
-    -tx-base-color: #CCCCCC; */
+    -fx-text-fill: #CCCCCC;
 }
 
 .root
 {
 	-fx-background-color: #1E1E1E;
+}
+
+.context-menu
+{
+	-fx-background-color: #252526;
+}
+.context-menu .separator
+{
+	-fx-background-color: #616162;
+}
+
+.menu-item:focused
+{
+	-fx-background-color: #094771;
+}
+.menu-item:focused .label
+{
+	-fx-text-fill: #FFFFFF;
 }

@@ -1,110 +1,40 @@
 
-.root,
-.arrow,
-.arrow-button,
-.box,
-.button,
-.check,
-.check-box,
-.content,
-.context-menu,
-.combo-box,
-.combo-box-base,
-.corner,
-.headers-region,
-.label,
-.line,
-.list-cell,
-.list-view,
-.mark,
-.menu,
-.menu-bar,
-.menu-button,
-.menu-down-arrow,
-.menu-item,
-.menu-up-arrow,
-.scroll-arrow,
-.scroll-bar,
-.scroll-pane,
-.separator,
-.slider,
-.split-button,
-.split-menu-button,
-.split-pane,
-.tab,
-.tab-close-button,
-.tab-container,
-.tab-content-area,
-.tab-down-button,
-.tab-header-area,
-.tab-header-background,
-.tab-label,
-.tab-pane,
-.text,
-.text-area,
-.text-field,
-.text-input,
-.thumb,
-.toggle-button,
-.tool-bar,
-.tooltip,
-.track,
-.tree-cell,
-.tree-disclosure-node,
-.tree-view,
-.viewport,
-.virtual-flow,
-VBox, HBox
+*
 {
-	-fx-faint-focus-color: transparent;
-	-fx-background-color: transparent;
-	-fx-focus-color: transparent;
-
 	-fx-font-family: 'Roboto Medium';
-	-fx-text-fill: #CCCCCC;
 	-fx-font-size: 12;
-
-	-fx-background-repeat: no-repeat;
-	-fx-background-radius: 0;
-	-fx-background-insets: 0;
-	-fx-border-width: 0;
-	-fx-padding: 0;
-
-	-fx-shape: "";
 }
 
-.text
+.tab-pane
 {
-	-fx-font-smoothing-type: gray;
+	-fx-open-tab-animation: NONE;
+	-fx-close-tab-animation: NONE;
 }
 
 .button,
 .toggle-button
 {
 	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-alignment: center;
 }
 
-.scroll-bar
+.context-menu
 {
-	-fx-skin: 'org.beuwi.simulator.platform.ui.skins.IScrollBarSkin';
+	-fx-padding: 7 0 7 0;
+	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
 }
-.scroll-bar .track
+.context-menu .separator
 {
-	-fx-opacity: 0;
+	-fx-background-insets: 4 10 4 10;
+	-fx-padding: 4;
 }
-.scroll-bar .track-background
+
+.menu-item
 {
-	-fx-opacity: 0;
+	-fx-padding: 5 25 5 25;
 }
-.scroll-bar .thumb
+.menu-item .label *
 {
-	-fx-fill: rgba(100, 100, 100, 0.3);
-}
-.scroll-bar .thumb:hover
-{
-	-fx-fill: rgba(100, 100, 100, 0.5);
-}
-.scroll-bar .thumb:pressed
-{
-	-fx-fill: rgba(100, 100, 100, 0.6);
+	-fx-font-size: 13;
 }

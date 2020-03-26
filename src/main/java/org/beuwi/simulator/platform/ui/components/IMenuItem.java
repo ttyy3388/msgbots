@@ -31,9 +31,7 @@ public class IMenuItem extends MenuItem
 		HBox cell = new HBox();
 		cell.setPrefWidth(150);
 
-
 		Label name = new Label(text);
-
 		name.setPrefWidth(150);
 
 		if (command != null)

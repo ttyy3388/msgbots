@@ -50,7 +50,6 @@ public class ICodeArea extends AnchorPane
 		+ "|(?<COMMENT>" + COMMENT_PATTERN + ")"
 	);
 
-	final IContextMenu    CODE_AREA_MENU = new IContextMenu(IContextMenuType.EDITOR);
 	final CodeArea 	      CODE_AREA      = new CodeArea();
 	VirtualizedScrollPane SCROLL_PANE 	 = new VirtualizedScrollPane(CODE_AREA);
 
@@ -70,18 +69,6 @@ public class ICodeArea extends AnchorPane
 		CODE_AREA.textProperty().addListener((observable, oldText, newText) ->
 		{
 			CODE_AREA.setStyleSpans(0, computeHighlighting(newText));
-		});
-
-		CODE_AREA.setOnMousePressed(event ->
-		{
-			if (event.isSecondaryButtonDown())
-			{
-				CODE_AREA_MENU.show(CODE_AREA, event.getScreenX(), event.getScreenY());
-			}
-			else
-			{
-				CODE_AREA_MENU.hide();
-			}
 		});
 
 		getChildren().add(SCROLL_PANE);

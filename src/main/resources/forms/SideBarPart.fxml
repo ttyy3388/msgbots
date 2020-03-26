@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="anpSideBar" prefHeight="500.0" prefWidth="220.0" styleClass="side-bar" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anpSideBar" prefWidth="220.0" styleClass="side-bar" stylesheets="@../styles/SideBarPart.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane fx:id="anpExplorerTab" styleClass="explorer-part" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -19,7 +18,7 @@
                         <Button fx:id="btnShowExplorerOption" layoutX="193.0" layoutY="6.0" mnemonicParsing="false" prefWidth="25.0" styleClass="option-button" AnchorPane.bottomAnchor="3.5" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.5" />
                      </children>
                   </AnchorPane>
-                  <ListView fx:id="lsvExplorerPart" VBox.vgrow="ALWAYS" />
+                  <ListView fx:id="lsvExplorerPart" minHeight="0.0" prefHeight="0.0" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
          </children>
@@ -45,8 +44,4 @@
          </children>
       </AnchorPane>
    </children>
-   <stylesheets>
-      <URL value="@../themes/default.css" />
-      <URL value="@../styles/SideBarPart.css" />
-   </stylesheets>
 </AnchorPane>

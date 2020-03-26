@@ -33,7 +33,6 @@ public class ShowDebugMenuAction
 
 		menu.showingProperty().addListener((observable, oldValue, newValue) ->
 		{
-			System.out.println(newValue);
 			button.pseudoClassStateChanged(PseudoClass.getPseudoClass("showing"), newValue);
 		});
 	}

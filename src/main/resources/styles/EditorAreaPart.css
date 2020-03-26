@@ -1,0 +1,69 @@
+
+.editor-area
+{
+
+}
+
+.start-pane .button
+{
+    -fx-background-image: url('../images/program_big.png');
+    -fx-background-size: 350;
+}
+.start-pane .label *
+{
+    -fx-font-family: 'Roboto';
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
+}
+.start-pane .major-label
+{
+    -fx-text-fill: #8A8A8A;
+}
+.start-pane .minor-label
+{
+    -fx-text-fill: #589DF6;
+}
+
+.tab
+{
+	-fx-background-color: #2D2D2D;
+	-fx-cursor: hand;
+}
+.tab-header
+{
+	-fx-padding: 0 15 0 15;
+	-fx-spacing: 6;
+}
+.tab-close-button
+{
+	-fx-background-image: url('../images/close.png');
+	-fx-background-size: 10;
+}
+.tab-close-button:hover
+{
+	-fx-background-image: url('../images/close_hover.png');
+}
+.tab-title-label
+{
+	-fx-font-size: 14;
+}
+.tab-content-area
+{
+	-fx-background-color: #1E1E1E;
+}
+.tab-header-background
+{
+	-fx-background-color: #252526;
+}
+.tab:selected
+{
+	-fx-background-color: #1E1E1E;
+}
+.tab:selected .tab-title-label
+{
+	-fx-text-fill: #FFFFFF;
+}
+.tab:selected .tab-close-button
+{
+	-fx-background-image: url('../images/close_focused.png');
+}

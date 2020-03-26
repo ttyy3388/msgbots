@@ -1,0 +1,21 @@
+
+.tool-bar
+{
+	-fx-background-color: #3C3C3C;
+}
+
+.menu-bar
+{
+
+}
+.menu-bar .button:hover,
+.menu-bar .button:showing
+{
+	-fx-background-color: #474748;
+	-fx-text-fill: #FFFFFF;
+}
+
+.button-bar
+{
+
+}

@@ -22,29 +22,29 @@ public class SelectActivityBarAction
 		// Resize 시 Hide / Show 는 나중에 구현
 
 		/*
-		1. 다른 탭을 선택 시 Change
-		2. 이미 선택돼 있는 탭을 다시 선택 시 Hide
-		3. 숨김 상태에서 탭 선택 시 Show
+		* 1. 다른 탭이 선택 돼 있는 상태에서 탭을 선택 시 Change
+		* 2. 해당 탭이 이미 선택돼 있는 탭을 다시 선택 시 Hide
+		* 3. 숨김 상태에서 탭 선택 시 Show
 		*/
 
 		// 이미 선택 돼 있는 탭을 다시 선택 시 Hide
-		/* if (!target.isSelected())
+		if (!target.isSelected())
 		{
 			HideSideBarAction.update(true);
 		}
 		else
-		{ */
+		{
 			// 다른 탭 선택할 경우 Change
 			if (other.isSelected())
 			{
 				other.setSelected(false);
 				target.setSelected(true);
-			/* }
+			}
 			// 숨김 상태에서 탭 선택 시 Show
 			else
 			{
 				HideSideBarAction.update(false);
-			} */
+			}
 
 			ChangeSideBarAction.update(index);
 		}

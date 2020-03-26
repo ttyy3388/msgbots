@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="anpActivityBar" minWidth="40.0" prefWidth="40.0" styleClass="activity-bar" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anpActivityBar" minWidth="40.0" prefWidth="40.0" styleClass="activity-bar" stylesheets="@../styles/ActivityBarPart.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox fx:id="voxActivityBar" prefWidth="40.0">
          <children>
@@ -14,8 +13,4 @@
          </children>
       </VBox>
    </children>
-   <stylesheets>
-      <URL value="@../themes/default.css" />
-      <URL value="@../styles/ActivityBarPart.css" />
-   </stylesheets>
 </AnchorPane>

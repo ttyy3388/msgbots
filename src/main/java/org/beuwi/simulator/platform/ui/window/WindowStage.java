@@ -14,7 +14,7 @@ public class WindowStage extends Stage
 			case WindowType.DIALOG : initOwner(MainWindow.getStage()); break;
 		}
 
-		getIcons().add(new Image(getClass().getResource("/images/program_dark.png").toExternalForm()));
+		getIcons().add(new Image(getClass().getResource("/images/program.png").toExternalForm()));
 		// initStyle(StageStyle.UNDECORATED);
 		// initStyle(StageStyle.TRANSPARENT);
 

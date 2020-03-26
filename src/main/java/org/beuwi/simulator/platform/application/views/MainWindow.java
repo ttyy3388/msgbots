@@ -21,12 +21,9 @@ public class MainWindow extends BorderPane
 		setBottom(StatusBarPart.getRoot());
 		setLeft(ActiveAreaPart.getRoot());
 
-		setMinSize(1100, 700);
-		setPrefSize(1300, 900);
-
-		stage.getIcons().add(new Image(getClass().getResource("/images/program_dark.png").toExternalForm()));
-		stage.setMinWidth(600);
-		stage.setMinHeight(400);
+		stage.getIcons().add(new Image(getClass().getResource("/images/program.png").toExternalForm()));
+		stage.setMinWidth(625);
+		stage.setMinHeight(435);
 		stage.setWidth(1300);
 		stage.setHeight(900);
 		// stage.setMaxWidth(Double.MAX_VALUE);
@@ -34,6 +31,16 @@ public class MainWindow extends BorderPane
 		stage.setTitle("Messenger Bot Simulator");
 		stage.setScene(new WindowScene(this));
 		stage.toFront();
+
+		stage.widthProperty().addListener((observable, oldValue, newValue) ->
+		{
+			System.out.println(stage.getWidth() + " : " + this.getWidth());
+		});
+
+		stage.heightProperty().addListener((observable, oldValue, newValue) ->
+		{
+			System.out.println(stage.getWidth() + " : " + getWidth());
+		});
 
 		this.stage = stage;
 	}
