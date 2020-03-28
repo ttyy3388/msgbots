@@ -2,7 +2,7 @@ package org.beuwi.simulator.platform.application.actions;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import org.beuwi.simulator.platform.application.views.MainWindow;
+import org.beuwi.simulator.platform.application.views.MainWindowView;
 import org.beuwi.simulator.platform.application.views.parts.SideBarPart;
 
 public class ResizeSideBarAction
@@ -20,7 +20,7 @@ public class ResizeSideBarAction
 		double sceneX = event.getSceneX() - 40;
 
 		// Editor Area
-		if (MainWindow.getStage().getWidth() - 405 <= sceneX)
+		if (MainWindowView.getStage().getWidth() - 405 <= sceneX)
 		{
 			return ;
 		}

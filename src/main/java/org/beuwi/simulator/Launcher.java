@@ -4,7 +4,8 @@ import javafx.application.Application;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.beuwi.simulator.platform.application.actions.*;
-import org.beuwi.simulator.platform.application.views.MainWindow;
+import org.beuwi.simulator.platform.application.views.MainWindowView;
+import org.beuwi.simulator.platform.application.views.dialogs.*;
 import org.beuwi.simulator.platform.application.views.parts.*;
 import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
 
@@ -42,7 +43,7 @@ public class Launcher extends Application
 			DebugRoomTab.initialize();
 			// ShowAllLogsTab.initialize();
 
-			new MainWindow(stage).display();
+			new MainWindowView(stage).display();
 
 			/* Initialize Actions */
 			AddEditorTabAction.initialize();
@@ -61,14 +62,20 @@ public class Launcher extends Application
 			ChangeSideBarAction.initialize();
 			ShowViewMenuAction.initialize();
 
-			for (int i = 0 ; i < 10 ; i ++)
+			for(int i = 0 ; i < 10 ; i ++)
 			{
-				AddExplorerItemAction.update("test" + i);
+				AddExplorerItemAction.update("TEST : " + (i + 1));
 			}
+
+			new CreateBotDialog().display();
+			new DeleteBotDialog("TEST").display();
+			new ExistsBotDialog("TEST").display();
+			new ImportScriptDialog().display();
+			new RenameBotDialog("TEST").display();
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			new ShowErrorDialog(e).display();
 		}
 	}
 

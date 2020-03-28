@@ -3,7 +3,11 @@
 
 2. 배포할 때 jlink가 아닌 'jpackage Image'로 해야함
 
-3. 헝가리안 표기법 네이밍
+3. Decorated 윈도우 기본 사이즈
+Width 16
+Height 39 (23 + 16)
+
+4. 헝가리안 표기법 네이밍
 anp - AnchorPane
 bop - BorderPane
 btn - Button

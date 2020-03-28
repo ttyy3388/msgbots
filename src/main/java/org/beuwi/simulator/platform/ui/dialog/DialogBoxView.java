@@ -1,10 +1,14 @@
 package org.beuwi.simulator.platform.ui.dialog;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -12,22 +16,22 @@ import org.beuwi.simulator.platform.ui.window.WindowScene;
 import org.beuwi.simulator.platform.ui.window.WindowStage;
 import org.beuwi.simulator.platform.ui.window.WindowType;
 
-public class DialogBoxView extends WindowStage
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class DialogBoxView extends WindowStage implements Initializable
 {
 	@FXML private BorderPane DIALOG_PANE;
 	@FXML private ImageView  DIALOG_ICON;
 
 	@FXML private HBox	 	 DIALOG_BUTTON_BOX;
+
 	@FXML private Button 	 DIALOG_BUTTON_OK;
 	@FXML private Button 	 DIALOG_BUTTON_NO;
+	@FXML private Button     DIALOG_BUTTON_ACTION;
 
-	// Default
-	int DIALOG_TYPE;
-
-	/* public DialogBoxView()
-	{
-		this(DialogBoxType.EVENT);
-	} */
+	Region DIALOG_CONTENT;
+	int    DIALOG_TYPE;
 
 	public DialogBoxView(int type)
 	{
@@ -47,15 +51,40 @@ public class DialogBoxView extends WindowStage
 		}
 
 		DIALOG_TYPE = type;
+
+		DIALOG_PANE.getStyleClass().add("dialog");
+	}
+
+	public void setOnKeyPressed(EventHandler<KeyEvent> handler)
+	{
+		addEventHandler(KeyEvent.KEY_PRESSED, handler);
+	}
+
+	public void setUseButton(boolean ok, boolean no, boolean action)
+	{
+		if (!ok)     DIALOG_BUTTON_BOX.getChildren().remove(DIALOG_BUTTON_OK);
+		if (!no)     DIALOG_BUTTON_BOX.getChildren().remove(DIALOG_BUTTON_NO);
+		if (!action) DIALOG_BUTTON_BOX.getChildren().remove(DIALOG_BUTTON_ACTION);
 	}
 
 	public void setContent(Region content)
 	{
-		DIALOG_PANE.setCenter(content);
-		/* DIALOG_PANE.setMinWidth(content.getMinWidth());
-		DIALOG_PANE.setMinHeight(content.getMinHeight() + 45);
-		DIALOG_PANE.setPrefWidth(content.getPrefWidth());
-		DIALOG_PANE.setPrefHeight(content.getPrefHeight() + 45); */
+		DIALOG_CONTENT = content;
+	}
+
+	public Button getOkButton()
+	{
+		return DIALOG_BUTTON_OK;
+	}
+
+	public Button getNoButton()
+	{
+		return DIALOG_BUTTON_NO;
+	}
+
+	public Button getActionButton()
+	{
+		return DIALOG_BUTTON_ACTION;
 	}
 
 	/* public void setType(int type)
@@ -65,7 +94,7 @@ public class DialogBoxView extends WindowStage
 
 	public void create()
 	{
-		Image image = switch (DIALOG_TYPE)
+		Image image= switch (DIALOG_TYPE)
 		{
 			case DialogBoxType.ERROR   -> new Image(getClass().getResource("/images/dialog_error.png").toExternalForm());
 			case DialogBoxType.WARNING -> new Image(getClass().getResource("/images/dialog_warning.png").toExternalForm());
@@ -73,10 +102,43 @@ public class DialogBoxView extends WindowStage
 			default -> null;
 		};
 
-		// Set Icon
-		DIALOG_ICON.setImage(image);
+		switch (DIALOG_TYPE)
+		{
+			case DialogBoxType.NONE  :
+				DIALOG_PANE.getChildren().remove(DIALOG_PANE.getLeft());
+				setMinSize(DIALOG_CONTENT.getMinWidth(), DIALOG_CONTENT.getMinHeight() + 47);
+				setSize(DIALOG_CONTENT.getPrefWidth(), DIALOG_CONTENT.getPrefHeight() + 47);
+				break;
+			default :
+				DIALOG_ICON.setImage(image);
+				setMinSize(DIALOG_CONTENT.getMinWidth() + 75, DIALOG_CONTENT.getMinHeight() + 47);
+				setSize(DIALOG_CONTENT.getPrefWidth() + 75, DIALOG_CONTENT.getPrefHeight() + 47);
+				break;
+		};
+
+		DIALOG_PANE.setCenter(DIALOG_CONTENT);
+
 		// initStyle(StageStyle.UNIFIED);
 		setScene(new WindowScene(DIALOG_PANE));
 		show();
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources)
+	{
+		DIALOG_BUTTON_OK.addEventHandler(ActionEvent.ACTION, event ->
+		{
+			close();
+		});
+
+		DIALOG_BUTTON_NO.addEventHandler(ActionEvent.ACTION, event ->
+		{
+			close();
+		});
+
+		DIALOG_BUTTON_ACTION.setOnAction(event ->
+		{
+
+		});
 	}
 }

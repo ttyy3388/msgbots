@@ -1,0 +1,28 @@
+
+.button
+{
+	-fx-background-color: #3F3F46;
+    -fx-border-color: #555555;
+	-fx-border-width: 1;
+}
+.button:hover
+{
+	-fx-border-color: #0097FB;
+}
+.button:armed
+{
+    -fx-background-color: #007ACC;
+}
+
+.button-ok
+{
+	-fx-border-color: #007ACC;
+}
+.button-no
+{
+
+}
+.button-action
+{
+
+}

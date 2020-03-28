@@ -1,5 +1,6 @@
 open module org.beuwi.simulator {
 
+    requires json.simple;
     requires javafx.controls;
     requires javafx.fxml;
     requires com.jfoenix;

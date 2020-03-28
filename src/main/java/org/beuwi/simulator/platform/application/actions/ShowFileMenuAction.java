@@ -6,17 +6,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.input.MouseEvent;
+import org.beuwi.simulator.platform.application.views.dialogs.CreateBotDialog;
+import org.beuwi.simulator.platform.application.views.dialogs.ImportScriptDialog;
 import org.beuwi.simulator.platform.application.views.parts.ToolBarPart;
 import org.beuwi.simulator.platform.ui.components.IMenuItem;
 
 public class ShowFileMenuAction
 {
-	final static IMenuItem NEW_SCRIPT_ITEM		 = new IMenuItem("New Script", "Ctrl + N");
-	final static IMenuItem RELOAD_DISK_ITEM      = new IMenuItem("Reload All from Disk", "Ctrl + Alt + Y");
-	final static IMenuItem SAVE_ITEM			 = new IMenuItem("Save", "Ctrl + S");
-	final static IMenuItem SAVE_ALL_ITEM         = new IMenuItem("Save All", "Ctrl + Shift + S");
-	final static IMenuItem IMPORT_SCRIPT_ITEM    = new IMenuItem("Import Script", "Ctrl + I");
-	final static IMenuItem SETTINGS_ITEM         = new IMenuItem("Settings", "Ctrl + Alt + S");
+	final static IMenuItem NEW_BOT_ITEM		  = new IMenuItem("New Bot", "Ctrl + N");
+	final static IMenuItem RELOAD_DISK_ITEM   = new IMenuItem("Reload All from Disk", "Ctrl + Alt + Y");
+	final static IMenuItem SAVE_ITEM		  = new IMenuItem("Save", "Ctrl + S");
+	final static IMenuItem SAVE_ALL_ITEM      = new IMenuItem("Save All", "Ctrl + Shift + S");
+	final static IMenuItem IMPORT_SCRIPT_ITEM = new IMenuItem("Import Script", "Ctrl + I");
+	final static IMenuItem SETTINGS_ITEM      = new IMenuItem("Settings", "Ctrl + Alt + S");
 
 	private static ContextMenu menu;
 	private static Button button;
@@ -28,7 +30,7 @@ public class ShowFileMenuAction
 		menu = new ContextMenu();
 		menu.getItems().addAll
 		(
-			NEW_SCRIPT_ITEM,
+			NEW_BOT_ITEM,
 			IMPORT_SCRIPT_ITEM,
 			new SeparatorMenuItem(),
 			RELOAD_DISK_ITEM,
@@ -38,6 +40,16 @@ public class ShowFileMenuAction
 			new SeparatorMenuItem(),
 			SETTINGS_ITEM
 		);
+
+		NEW_BOT_ITEM.setOnAction(event ->
+		{
+			new CreateBotDialog().display();
+		});
+
+		IMPORT_SCRIPT_ITEM.setOnAction(event ->
+		{
+			new ImportScriptDialog().display();
+		});
 	}
 
 	public static void update(MouseEvent event)
