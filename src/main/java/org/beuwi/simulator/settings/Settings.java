@@ -54,20 +54,17 @@ public class Settings
 
 		public void putString(String setType, String setData)
 		{
-			put(setType, setData);
-			apply();
+			put(setType, setData); apply();
 		}
 
 		public void putInt(String setType, int setData)
 		{
-			put(setType, setData);
-			apply();
+			put(setType, setData); apply();
 		}
 
 		public void putBoolean(String setType, boolean setData)
 		{
-			put(setType, setData);
-			apply();
+			put(setType, setData); apply();
 		}
 
 		private void apply()
@@ -111,20 +108,17 @@ public class Settings
 
 		public void putString(String setType, String setData)
 		{
-			put(setType, setData);
-			apply();
+			put(setType, setData); apply();
 		}
 
 		public void putInt(String setType, int setData)
 		{
-			put(setType, setData);
-			apply();
+			put(setType, setData); apply();
 		}
 
 		public void putBoolean(String setType, boolean setData)
 		{
-			put(setType, setData);
-			apply();
+			put(setType, setData); apply();
 		}
 
 		private void apply()

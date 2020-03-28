@@ -21,6 +21,19 @@ public class FileManager
 		return (name.contains(".")) ? name.substring(name.lastIndexOf(".") + 1) : name;
 	}
 
+	public static String[] getBotNames()
+	{
+		File[] files = BOTS_FOLDER.listFiles(File::isDirectory);
+		String[] names = new String[files.length];
+
+		for (int i = 0 ; i < files.length ; i ++)
+		{
+			names[i] = files[i].getName();
+		}
+
+		return names;
+	}
+
 	public static File getBotFolder(String name)
 	{
 		return new File(BOTS_FOLDER + File.separator + getFileBaseName(name));
@@ -41,7 +54,6 @@ public class FileManager
 		return new File(getBotFolder(name).getPath() + File.separator + "log.json");
 	}
 
-
 	public static String save(String path, String content)
     {
         return save(new File(path), content);
@@ -61,7 +73,6 @@ public class FileManager
     {
         return remove(new File(path));
     }
-
 
 	public static String save(File file, String content)
 	{
