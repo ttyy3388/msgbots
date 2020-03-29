@@ -28,7 +28,7 @@ public class Settings
 		{
 			try
 			{
-				file = new File(getClass().getResource("/datas/Settings.json").toExternalForm());
+				file = new File(getClass().getResource("/datas/global_setting.json").toExternalForm());
 				putAll((JSONObject) ((JSONObject) new JSONParser().parse(FileManager.read(file))).get(getType));
 			}
 			catch (Exception e)

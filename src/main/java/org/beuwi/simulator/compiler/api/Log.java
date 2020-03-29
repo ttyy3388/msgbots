@@ -3,7 +3,6 @@ package org.beuwi.simulator.compiler.api;
 import org.mozilla.javascript.ScriptableObject;
 import org.mozilla.javascript.annotations.JSStaticFunction;
 
-@SuppressWarnings("serial")
 public class Log extends ScriptableObject
 {
     @Override

@@ -39,7 +39,7 @@ public class BotManager
 		{
 		    project.mkdir();
 
-		    content = isImport ? content : FileManager.read(BotManager.class.getResource("/datas/" + ("Script" + (isUnified ? "Default" : "Unified") + ".js")).toExternalForm());
+		    content = isImport ? content : FileManager.read(BotManager.class.getResource("/datas/" + ("script_" + (isUnified ? "default" : "unified") + ".js")).toExternalForm());
 
 			FileManager.save(FileManager.getBotScript(name), content);
 

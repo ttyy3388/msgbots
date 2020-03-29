@@ -17,7 +17,7 @@ public class ImageDB
 	{
 		try
 		{
-			byte[] bytes = IOUtils.toByteArray(new URL(ImageDB.class.getResource("/datas/BorProfile.png").toExternalForm()));
+			byte[] bytes = IOUtils.toByteArray(new URL(ImageDB.class.getResource("/datas/profile_bot.png").toExternalForm()));
 
 			return Base64.getEncoder().encodeToString(bytes);
 		}
