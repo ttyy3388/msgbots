@@ -35,13 +35,13 @@ public class DebugRoomTab
 	public static class ChatArea
 	{
 		// private static VBox voxChatArea;
-		private static ListView lsvChatList;
+		private static ListView lsvChatPart;
 		private static TextArea txaChatInput;
 		private static Button   btnChatSend;
 
 		public static void initialize()
 		{
-            lsvChatList  = (ListView) nameSpace.get("lsvChatList");
+            lsvChatPart  = (ListView) nameSpace.get("lsvChatPart");
             txaChatInput = (TextArea) nameSpace.get("txaChatInput");
             btnChatSend  = (Button) nameSpace.get("btnChatSend");
 

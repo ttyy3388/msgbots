@@ -16,7 +16,7 @@ public class SendChatMessageAction
 
 	public static void initialize()
 	{
-		listView = (ListView) DebugRoomTab.getNameSpace().get("lsvChatList");
+		listView = (ListView) DebugRoomTab.getNameSpace().get("lsvChatPart");
 	}
 
 	public static void update(String message, boolean isBot)
