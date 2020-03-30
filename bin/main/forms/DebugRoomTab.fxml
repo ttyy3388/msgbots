@@ -20,7 +20,7 @@
                      <children>
                         <AnchorPane VBox.vgrow="ALWAYS">
                            <children>
-                              <ListView fx:id="lsvChatList" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <ListView fx:id="lsvChatPart" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="ancUtil" maxHeight="60.0" VBox.vgrow="NEVER">
@@ -41,7 +41,7 @@
             </AnchorPane>
             <AnchorPane fx:id="anpLogArea" minWidth="200.0" styleClass="log-area" HBox.hgrow="ALWAYS">
                <children>
-                  <ListView fx:id="lsvLog" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <ListView fx:id="lsvLogPart" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <StackPane fx:id="stpResizeBar" prefWidth="7.0" styleClass="resize-bar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <cursor>
                         <Cursor fx:constant="E_RESIZE" />

@@ -68,56 +68,52 @@
 	-fx-background-image: url('../images/close_focused.png');
 }
 
-.styled-text-area,
-.styled-text-area .lineno
-{
-    -fx-background-color: #1E1E1E;
-}
-.styled-text-area .lineno
-{
-    -fx-pref-width: 60;
-}
-
-
 .styled-text-area *
 {
     -fx-background-color: #1E1E1E;
 	-fx-font-family: Consolas;
 	-fx-font-size: 15;
 }
-.styled-text-area .caret
+.caret
 {
 	-fx-stroke-width: 2;
 	-fx-stroke: #ADAEAC;
 }
-.styled-text-area .lineno
+.lineno
 {
 	-fx-pref-width: 70;
 	-fx-padding: 2.5 12 2.5 0;
     -fx-cursor: default;
 }
-.styled-text-area .lineno .text
+.lineno .text
 {
 	-fx-fill: #848484;
 }
-.styled-text-area .paragraph-text
+.paragraph-text
 {
 	-fx-padding: 2.5;
 }
-.styled-text-area .paragraph-text .text
+.paragraph-text .text
 {
 	-fx-fill: #D4D4D4;
 }
-.styled-text-area .paragraph-box .selection
+.paragraph-box .selection
 {
 	-fx-fill: #264E77;
 }
-.styled-text-area .paragraph-box:has-caret *,
-.styled-text-area .paragraph-box:has-caret .lineno
+.paragraph-box:has-caret *,
+.paragraph-box:has-caret .lineno
 {
 	-fx-background-color: #262626;
 }
-.styled-text-area .paragraph-box:has-caret .lineno .text
+.paragraph-box:has-caret .lineno .text
 {
 	-fx-fill: #A4A3A3;
 }
+.paragraph-text .text.keyword { -fx-fill: #499CD5; }
+.paragraph-text .text.semicolon { }
+.paragraph-text .text.paren { }
+.paragraph-text .text.bracket { }
+.paragraph-text .text.brace { }
+.paragraph-text .text.string { -fx-fill: #CD9069; }
+.paragraph-text .text.comment { -fx-fill: #699856; }
