@@ -7,6 +7,7 @@ import java.io.*;
 public class FileManager
 {
 	final public static File PROGRAM_FOLDER = new File(System.getProperty("user.dir"));
+	final public static File DATA_FOLDER = new File(PROGRAM_FOLDER + File.separator + "data");
 	final public static File BOTS_FOLDER = new File(PROGRAM_FOLDER + File.separator + "bots");
 
 	// ex.js -> ex
@@ -19,6 +20,11 @@ public class FileManager
 	public static String getFileExtension(String name)
 	{
 		return (name.contains(".")) ? name.substring(name.lastIndexOf(".") + 1) : name;
+	}
+
+	public static File getDataFile(String name)
+	{
+		return new File(DATA_FOLDER + File.separator + name);
 	}
 
 	public static String[] getBotNames()
@@ -54,35 +60,18 @@ public class FileManager
 		return new File(getBotFolder(name).getPath() + File.separator + "log.json");
 	}
 
-	public static String save(String path, String content)
-    {
-        return save(new File(path), content);
-    }
-
-    public static String append(String path, String content)
-    {
-        return append(new File(path), content);
-    }
-
-    public static String read(String path)
-    {
-        return read(new File(path));
-    }
-
-    public static boolean remove(String path)
-    {
-        return remove(new File(path));
-    }
-
 	public static String save(File file, String content)
 	{
 		try
 		{
 			file.createNewFile();
 
-			if (content.substring(content.length() -1) != System.lineSeparator())
+			if (content != null)
 			{
-				content += System.getProperty("line.separator");
+				if (content.substring(content.length() -1) != System.lineSeparator())
+				{
+					content += System.getProperty("line.separator");
+				}
 			}
 
 			BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, false), "UTF8"));

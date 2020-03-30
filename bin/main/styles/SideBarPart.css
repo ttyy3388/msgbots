@@ -73,6 +73,10 @@
 {
 	-fx-padding: 0;
 }
+.list-cell .check-box:selected .box
+{
+    -fx-background-color: transparent;
+}
 .list-cell .jfx-toggle-button
 {
 	-jfx-toggle-color: #007ACC;
@@ -94,6 +98,10 @@
 .list-cell:selected .check-box .box
 {
 	-fx-background-color: #FFFFFF;
+}
+.list-cell:selected .check-box:selected .box
+{
+	-fx-background-color: transparent;
 }
 .list-cell:selected .jfx-toggle-button
 {

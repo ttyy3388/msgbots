@@ -2,6 +2,7 @@ package org.beuwi.simulator.platform.application.actions;
 
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
 import org.beuwi.simulator.platform.ui.components.ICodeArea;
 import org.beuwi.simulator.platform.ui.components.ITab;
@@ -18,13 +19,23 @@ public class AddEditorTabAction
 	}
 
 	// Script Tab
-	public static void update(String title)
+	public static void update(String name)
 	{
 		ICodeArea area = new ICodeArea();
 
-		// area.setText(null);
+		area.setText(FileManager.read(FileManager.getBotScript(name)));
+		area.setOnKeyPressed(event ->
+		{
+			if (event.isControlDown())
+			{
+				switch (event.getCode())
+				{
+					case S : FileManager.save(FileManager.getBotScript(name), area.getText()); break;
+				}
+			}
+		});
 
-		update(title, area, ITabType.SCRIPT);
+		update(name, area, ITabType.SCRIPT);
 	}
 
 	// Debug, Log Tab

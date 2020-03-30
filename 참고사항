@@ -1,4 +1,6 @@
 
+// 1. 빌드 순서 : clean -> build -> jpackage
+
 1. 자바 14로 jar 만들면 Scene Builder에서 Component를 인식 못하므로, 자바 8에서 패키지 구조를 똑같이 맞춘 다음 jar로 변환해야함.
 
 2. 배포할 때 jlink가 아닌 'jpackage Image'로 해야함

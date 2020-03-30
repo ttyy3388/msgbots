@@ -2,7 +2,10 @@ package org.beuwi.simulator.compiler.engine;
 
 import javafx.application.Platform;
 import org.beuwi.simulator.compiler.api.*;
+import org.beuwi.simulator.managers.BotManager;
 import org.beuwi.simulator.managers.FileManager;
+import org.beuwi.simulator.platform.application.actions.SaveEditorTabAction;
+import org.beuwi.simulator.platform.application.actions.SendChatMessageAction;
 import org.beuwi.simulator.settings.Settings;
 import org.mozilla.javascript.*;
 import org.mozilla.javascript.annotations.JSStaticFunction;
@@ -47,15 +50,13 @@ public class ScriptManager
 
 	public static boolean setInitialize(String name, boolean isManual, boolean ignoreError)
 	{
-		System.out.println("Set Initialize : " + name);
-
 		compiling.put(name, true);
 
 		File file = FileManager.getBotScript(name);
 
 		if (Settings.getPublicSetting("program").getBoolean("autoSave"))
 		{
-			// EditorArea.saveTab(name);
+			SaveEditorTabAction.update(name);
 		}
 
 		int optimization = Settings.getScriptSetting(name).getInt("optimization");
@@ -146,7 +147,7 @@ public class ScriptManager
 			return false;
 		}
 
-		// ScriptService.setScriptCompiled(name, true);
+		BotManager.setBotCompiled(name, true);
 
 		return true;
 	}
@@ -175,8 +176,6 @@ public class ScriptManager
 
 	public static void callResponder(String name, String room, String message, String sender, Boolean isGroupChat, ImageDB imageDB, String packageName)
 	{
-		System.out.println("Call Responder : " + name);
-
 		ScriptableObject scope = container.get(name).getExecScope();
 		Function responder = container.get(name).getResponder();
 
@@ -207,7 +206,7 @@ public class ScriptManager
 
 			if (Settings.getScriptSetting(name).getBoolean("offOnRuntimeError"))
 			{
-				// ScriptService.setScriptPower(name, false);
+				BotManager.setBotPower(name, false);
 			}
 		}
 	}
@@ -215,15 +214,17 @@ public class ScriptManager
 	public static class Replier
 	{
 		@JSStaticFunction
-		public static void reply(String message)
+		public static Boolean reply(String message)
 		{
-			// addBotMessage(message);
+			SendChatMessageAction.update(message, true);
+
+			return true;
 		}
 
 		@JSStaticFunction
 		public static Boolean reply(String room, String message, Boolean hideToast)
 		{
-			// addBotMessage(message);
+			SendChatMessageAction.update(message, true);
 
 			return true;
 		}

@@ -53,8 +53,8 @@
 }
 .context-menu .separator
 {
-	-fx-background-insets: 4 10 4 10;
-	-fx-padding: 4;
+	-fx-background-insets: 4 5 4 5;
+	-fx-padding: 4.1;
 }
 
 .menu-item

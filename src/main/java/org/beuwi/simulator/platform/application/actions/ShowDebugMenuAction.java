@@ -10,8 +10,8 @@ import org.beuwi.simulator.platform.ui.components.IMenuItem;
 
 public class ShowDebugMenuAction
 {
-	final static IMenuItem OPEN_DEBUG_ROOM = new IMenuItem("Open Debug Room");
-	final static IMenuItem SHOW_ALL_LOGS   = new IMenuItem("Show All Logs");
+	final static IMenuItem OPEN_DEBUG_ROOM_ITEM = new IMenuItem("Open Debug Room");
+	final static IMenuItem SHOW_ALL_LOGS_ITEM   = new IMenuItem("Show All Logs");
 
 	private static ContextMenu menu;
 	private static Button button;
@@ -22,8 +22,8 @@ public class ShowDebugMenuAction
 		menu = new ContextMenu();
 		menu.getItems().addAll
 		(
-			OPEN_DEBUG_ROOM,
-			SHOW_ALL_LOGS
+			OPEN_DEBUG_ROOM_ITEM,
+			SHOW_ALL_LOGS_ITEM
 		);
 	}
 

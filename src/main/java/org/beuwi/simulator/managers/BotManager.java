@@ -1,16 +1,33 @@
 package org.beuwi.simulator.managers;
 
+import com.jfoenix.controls.JFXToggleButton;
+import javafx.scene.control.CheckBox;
+import org.beuwi.simulator.platform.application.actions.AddExplorerItemAction;
+import org.beuwi.simulator.platform.application.actions.ClearExplorerItemsAction;
 import org.beuwi.simulator.platform.application.views.dialogs.ExistsBotDialog;
 
 import java.io.File;
+import java.util.HashMap;
 
 public class BotManager
 {
+	public static HashMap<String, Object> data = new HashMap<>();
+
+	public static void setBotPower(String name, boolean power)
+	{
+		((JFXToggleButton) data.get("@switch::" + name)).setSelected(power);
+	}
+
+	public static void setBotCompiled(String name, boolean compiled)
+	{
+		((CheckBox) data.get("@check::" + name)).setSelected(compiled);
+	}
+
 	public static void refresh()
 	{
-		/*
+		// data.clear();
 
-		// ExplorerPart.clear();
+		ClearExplorerItemsAction.update();
 
 		File[] folders = FileManager.BOTS_FOLDER.listFiles(File::isDirectory);
 
@@ -18,8 +35,6 @@ public class BotManager
 		{
 			AddExplorerItemAction.update(folder.getName());
 		}
-
-		*/
 	}
 
 	public static void Import(File file, boolean isUnified, boolean isOffError)
@@ -37,9 +52,19 @@ public class BotManager
 		}
 		else
 		{
-		    project.mkdir();
+			project.mkdir();
 
-		    content = isImport ? content : FileManager.read(BotManager.class.getResource("/datas/" + ("script_" + (isUnified ? "default" : "unified") + ".js")).toExternalForm());
+			if (!isImport)
+			{
+				if (!isUnified)
+				{
+					content = FileManager.read(FileManager.getDataFile("script_default.js"));
+				}
+				else
+				{
+					content = FileManager.read(FileManager.getDataFile("script_unified.js"));
+				}
+			}
 
 			FileManager.save(FileManager.getBotScript(name), content);
 

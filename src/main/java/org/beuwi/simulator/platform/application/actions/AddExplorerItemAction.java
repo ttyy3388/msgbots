@@ -10,7 +10,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import org.beuwi.simulator.compiler.api.Api;
+import org.beuwi.simulator.compiler.engine.ScriptManager;
+import org.beuwi.simulator.managers.BotManager;
 import org.beuwi.simulator.platform.application.views.parts.SideBarPart;
+import org.beuwi.simulator.settings.Settings;
 
 public class AddExplorerItemAction
 {
@@ -49,7 +53,25 @@ public class AddExplorerItemAction
 			}
 		});
 
+		itemCompile.setOnMousePressed(event ->
+		{
+			if (event.isPrimaryButtonDown())
+			{
+				ScriptManager.setInitialize(name, true, false);
+			}
+		});
+
+		itemCheck.setSelected(Api.isCompiled(name));
+		itemSwitch.setSelected(Api.isOn(name));
+		itemSwitch.selectedProperty().addListener((observable, oldValue, newValue) ->
+		{
+			Settings.getScriptSetting(name).putBoolean("power", newValue);
+		});
+
 		itemCompile.setPrefSize(30, 30);
+
+		BotManager.data.put("@check::" + name, itemCheck);
+		BotManager.data.put("@switch::" + name, itemSwitch);
 
 		listView.getItems().add(itemCell);
 	}

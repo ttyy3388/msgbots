@@ -1,6 +1,18 @@
 package org.beuwi.simulator.compiler.api;
 
+import org.beuwi.simulator.compiler.engine.ScriptManager;
+import org.beuwi.simulator.managers.BotManager;
+import org.beuwi.simulator.managers.FileManager;
+import org.beuwi.simulator.platform.application.actions.SendChatMessageAction;
+import org.beuwi.simulator.settings.Settings;
+import org.mozilla.javascript.Context;
+import org.mozilla.javascript.Function;
+import org.mozilla.javascript.Scriptable;
 import org.mozilla.javascript.ScriptableObject;
+import org.mozilla.javascript.annotations.JSStaticFunction;
+
+import java.io.File;
+import java.util.ArrayList;
 
 public class Api extends ScriptableObject
 {
@@ -24,7 +36,7 @@ public class Api extends ScriptableObject
 		return "Api";
 	}
 
-	/* @JSStaticFunction
+	@JSStaticFunction
 	public static Object getContext()
 	{
 		return null;
@@ -39,14 +51,14 @@ public class Api extends ScriptableObject
 		{
 			for (String script : FileManager.getBotNames())
 			{
-				ScriptService.setScriptPower(script, true);
+				BotManager.setBotPower(script, true);
 			}
 		} 
 		else 
 		{
 			try
 			{
-				ScriptService.setScriptPower(name, true);
+				BotManager.setBotPower(name, true);
 			}
 			catch (Exception e)
 			{
@@ -66,14 +78,14 @@ public class Api extends ScriptableObject
 		{
 			for (String script : FileManager.getBotNames())
 			{
-				ScriptService.setScriptPower(script, false);
+				BotManager.setBotPower(script, false);
 			}
 		}
 		else
 		{
 			try
 			{
-				ScriptService.setScriptPower(name, false);
+				BotManager.setBotPower(name, false);
 			}
 			catch (Exception e)
 			{
@@ -91,7 +103,7 @@ public class Api extends ScriptableObject
 
 		if (!isUndefined(name))
 		{
-			if (!FileManager.getProjectScript(name).exists())
+			if (!FileManager.getBotScript(name).exists())
 			{
 				return false;
 			}
@@ -140,7 +152,7 @@ public class Api extends ScriptableObject
 	@JSStaticFunction
 	public static Boolean isOn(String name)
 	{
-		return SettingService.getScriptSetting(name).getBoolean("power");
+		return Settings.getScriptSetting(name).getBoolean("power");
 	}
 
 	@JSStaticFunction
@@ -178,7 +190,7 @@ public class Api extends ScriptableObject
 	@JSStaticFunction
 	public static Scriptable getScriptNames()
 	{
-		File[] files = FileManager.PROJECT_FOLDER.listFiles(File::isDirectory);
+		File[] files = FileManager.BOTS_FOLDER.listFiles(File::isDirectory);
 
 		ArrayList<String> list = new ArrayList<>();
 
@@ -193,7 +205,7 @@ public class Api extends ScriptableObject
 	@JSStaticFunction
 	public static Boolean replyRoom(String room, String message, Boolean hideToast)
 	{
-		ChatArea.addBotMessage(message);
+		SendChatMessageAction.update(message, false);
 
 		return true;
 	}
@@ -207,7 +219,7 @@ public class Api extends ScriptableObject
 	@JSStaticFunction
 	public static void showToast(String title, String data) 
 	{
-		ChatArea.showToast(title, data);
+		return ;
 	}
 
 	@JSStaticFunction
@@ -232,5 +244,5 @@ public class Api extends ScriptableObject
 	public static void UIThread(Function function, Function onComplete)
 	{
 		return ;
-	} */
+	}
 }

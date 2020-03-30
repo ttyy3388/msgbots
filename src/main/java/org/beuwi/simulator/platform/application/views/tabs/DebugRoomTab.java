@@ -61,8 +61,7 @@ public class DebugRoomTab
                         return ;
                     }
 
-                    // 1 : Sender
-                    SendChatMessageAction.update(txaChatInput.getText(), 1);
+                    SendChatMessageAction.update(txaChatInput.getText(), false);
 					txaChatInput.clear();
                     event.consume();
                 }
@@ -75,8 +74,7 @@ public class DebugRoomTab
 
             btnChatSend.setOnAction(event ->
             {
-                // 1 : Sender
-                SendChatMessageAction.update(txaChatInput.getText(), 1);
+                SendChatMessageAction.update(txaChatInput.getText(), false);
                 txaChatInput.requestFocus();
 				txaChatInput.clear();
             });

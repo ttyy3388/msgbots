@@ -15,6 +15,7 @@ import javafx.scene.layout.Region;
 import org.beuwi.simulator.platform.ui.window.WindowScene;
 import org.beuwi.simulator.platform.ui.window.WindowStage;
 import org.beuwi.simulator.platform.ui.window.WindowType;
+import org.beuwi.simulator.utils.ResourceUtils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -96,9 +97,9 @@ public class DialogBoxView extends WindowStage implements Initializable
 	{
 		Image image= switch (DIALOG_TYPE)
 		{
-			case DialogBoxType.ERROR   -> new Image(getClass().getResource("/images/dialog_error.png").toExternalForm());
-			case DialogBoxType.WARNING -> new Image(getClass().getResource("/images/dialog_warning.png").toExternalForm());
-			case DialogBoxType.EVENT   -> new Image(getClass().getResource("/images/dialog_event.png").toExternalForm());
+			case DialogBoxType.ERROR   -> ResourceUtils.getImage("dialog_error.png");
+			case DialogBoxType.WARNING -> ResourceUtils.getImage("dialog_warning.png");
+			case DialogBoxType.EVENT   -> ResourceUtils.getImage("dialog_event.png");
 			default -> null;
 		};
 

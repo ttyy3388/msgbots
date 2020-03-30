@@ -67,3 +67,53 @@
 {
 	-fx-background-image: url('../images/close_focused.png');
 }
+
+.styled-text-area *
+{
+    -fx-background-color: #1E1E1E;
+	-fx-font-family: Consolas;
+	-fx-font-size: 15;
+}
+.caret
+{
+	-fx-stroke-width: 2;
+	-fx-stroke: #ADAEAC;
+}
+.lineno
+{
+	-fx-pref-width: 70;
+	-fx-padding: 2.5 12 2.5 0;
+    -fx-cursor: default;
+}
+.lineno .text
+{
+	-fx-fill: #848484;
+}
+.paragraph-text
+{
+	-fx-padding: 2.5;
+}
+.paragraph-text .text
+{
+	-fx-fill: #D4D4D4;
+}
+.paragraph-box .selection
+{
+	-fx-fill: #264E77;
+}
+.paragraph-box:has-caret *,
+.paragraph-box:has-caret .lineno
+{
+	-fx-background-color: #262626;
+}
+.paragraph-box:has-caret .lineno .text
+{
+	-fx-fill: #A4A3A3;
+}
+.paragraph-text .text.keyword { -fx-fill: #499CD5; }
+.paragraph-text .text.semicolon { }
+.paragraph-text .text.paren { }
+.paragraph-text .text.bracket { }
+.paragraph-text .text.brace { }
+.paragraph-text .text.string { -fx-fill: #CD9069; }
+.paragraph-text .text.comment { -fx-fill: #699856; }

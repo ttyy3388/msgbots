@@ -3,9 +3,14 @@ package org.beuwi.simulator.platform.application.views.parts;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.AnchorPane;
 import org.beuwi.simulator.platform.application.actions.OpenDebugRoomAction;
 import org.beuwi.simulator.platform.application.actions.ShowExplorerOptionAction;
+import org.beuwi.simulator.platform.application.actions.ShowInExplorerAction;
+import org.beuwi.simulator.platform.ui.components.IMenuItem;
 
 public class SideBarPart
 {
@@ -30,13 +35,42 @@ public class SideBarPart
 
 	private static class ExplorerPart
 	{
-		private static Button btnShowExplorerOption;
+		final static IMenuItem NEW_BOT_ITEM =  new IMenuItem("New Bot");
+		final static IMenuItem SHOW_IN_EXPLORER_ITEM = new IMenuItem("Show in Explorer");
+
+		private static ContextMenu menu;
+
+		private static ListView lsvExplorerPart;
+		private static Button btnShowOption;
 
 		public static void initialize()
 		{
-			btnShowExplorerOption = (Button) nameSpace.get("btnShowExplorerOption");
+			lsvExplorerPart = (ListView) nameSpace.get("lsvExplorerPart");
+			btnShowOption = (Button) nameSpace.get("btnShowExplorerOption");
 
-			btnShowExplorerOption.setOnMousePressed(event ->
+			menu = new ContextMenu();
+
+			menu.getItems().addAll
+			(
+				NEW_BOT_ITEM,
+				new SeparatorMenuItem(),
+				SHOW_IN_EXPLORER_ITEM
+			);
+
+			SHOW_IN_EXPLORER_ITEM.setOnAction(event ->
+			{
+				ShowInExplorerAction.update();
+			});
+
+			lsvExplorerPart.setOnMousePressed(event ->
+			{
+				if (event.isSecondaryButtonDown())
+				{
+					menu.show(lsvExplorerPart, event.getScreenX(), event.getScreenY());
+				}
+			});
+
+			btnShowOption.setOnMousePressed(event ->
 			{
 				ShowExplorerOptionAction.update(event);
 			});

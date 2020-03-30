@@ -1,0 +1,58 @@
+
+.root *
+{
+    -fx-font-family: D2Coding;
+	-fx-font-size: 14;
+}
+
+.resize-bar
+{
+	-fx-background-insets: 0 3 0 3;
+	-fx-background-color: #555555;
+}
+
+.chat-area .list-cell
+{
+	-fx-padding: 3 7 3 7;
+}
+.chat-area .list-cell .label
+{
+	-fx-text-fill: #FFFFFF;
+	-fx-background-radius: 15;
+	-fx-background-insets: 5;
+	-fx-padding: 13;
+}
+.chat-area .list-cell .sender-label
+{
+	-fx-background-color: #0583f9;
+}
+.chat-area .list-cell .bot-label
+{
+	-fx-background-color: #302F35;
+}
+.chat-area .list-cell:selected .sender-label
+{
+	-fx-background-color: #59AEFF;
+}
+.chat-area .list-cell:selected .bot-label
+{
+	-fx-background-color: #46454D;
+}
+/* Input Area */
+.chat-area .text-area
+{
+	-fx-background-radius: 15;
+	-fx-background-color: transparent, #303030, transparent, #303030;
+	-fx-padding: 10;
+}
+/* Send Button */
+.chat-area .button
+{
+	-fx-background-image: url('../images/send.png');
+	-fx-background-size: 60;
+}
+
+.log-area
+{
+
+}
