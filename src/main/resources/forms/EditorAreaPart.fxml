@@ -1,52 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.*?>
 <?import org.beuwi.simulator.platform.ui.components.ITabPane?>
 
-<AnchorPane fx:id="anpEditorArea" minHeight="350.0" minWidth="350.0" prefHeight="850.0" prefWidth="1100.0" styleClass="editor-area" stylesheets="@../styles/EditorAreaPart.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="350.0" minWidth="350.0" prefHeight="850.0" prefWidth="1100.0" styleClass="editor-area" stylesheets="@../styles/EditorAreaPart.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="CENTER" fillHeight="false" styleClass="start-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-		 <children>
-			<VBox alignment="CENTER">
-			   <children>
-				  <Button minHeight="350.0" minWidth="350.0" mnemonicParsing="false" prefHeight="350.0" prefWidth="350.0" VBox.vgrow="ALWAYS" />
-				  <Pane>
-					 <children>
-						<GridPane fx:id="grpStartView" hgap="15.0" prefWidth="350.0">
-						   <columnConstraints>
-							  <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" />
-							  <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
-						   </columnConstraints>
-						   <rowConstraints>
-							  <RowConstraints />
-							  <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
-							  <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" />
-							  <RowConstraints minHeight="45.0" />
-							  <RowConstraints minHeight="45.0" />
-							  <RowConstraints minHeight="45.0" />
-							  <RowConstraints minHeight="45.0" />
-							  <RowConstraints minHeight="45.0" />
-						   </rowConstraints>
-						   <children>
-							  <Label styleClass="major-label" text="New Bot" GridPane.rowIndex="2" />
-							  <Label styleClass="major-label" text="Import Script" GridPane.rowIndex="3" />
-							  <Label styleClass="major-label" text="Reload All Bots" GridPane.rowIndex="4" />
-							  <Label styleClass="major-label" text="Debug Room" GridPane.rowIndex="5" />
-							  <Label styleClass="major-label" text="Show All Logs" GridPane.rowIndex="6" />
-							  <Label styleClass="minor-label" text="Ctrl + N" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-							  <Label styleClass="minor-label" text="Ctrl + I" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-							  <Label styleClass="minor-label" text="F8" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-							  <Label styleClass="minor-label" text="F9" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-							  <Label styleClass="minor-label" text="F10" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-						   </children>
-						</GridPane>
-					 </children>
-				  </Pane>
-			   </children>
-			</VBox>
-		 </children>
-	  </HBox>
-      <ITabPane fx:id="tapEditorArea" tabClosingPolicy="UNAVAILABLE" tabMinHeight="35.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <SplitPane dividerPositions="0.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+            <ITabPane fx:id="tapEditorArea" tabClosingPolicy="UNAVAILABLE"/>
+            <ITabPane fx:id="tapEditorArea2" tabClosingPolicy="UNAVAILABLE"/>
+        </items>
+      </SplitPane>
    </children>
 </AnchorPane>

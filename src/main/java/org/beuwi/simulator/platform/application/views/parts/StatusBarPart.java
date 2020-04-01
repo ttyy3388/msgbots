@@ -8,7 +8,7 @@ public class StatusBarPart
 {
 	private static ObservableMap<String, Object> nameSpace;
 
-	private static AnchorPane anpStatusBar;
+	private static AnchorPane root;
 
 	public static void initialize() throws Exception
 	{
@@ -19,12 +19,12 @@ public class StatusBarPart
 
 		nameSpace = loader.getNamespace();
 
-		anpStatusBar = (AnchorPane) nameSpace.get("anpStatusBar");
+		root = loader.getRoot();
 	}
 
 	public static AnchorPane getRoot()
 	{
-		return anpStatusBar;
+		return root;
 	}
 
 	public static ObservableMap<String, Object> getNameSpace()

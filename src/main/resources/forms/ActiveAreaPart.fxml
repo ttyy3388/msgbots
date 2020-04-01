@@ -1,13 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="anpActiveArea" styleClass="active-area" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="500.0" prefWidth="270.0" styleClass="active-area" stylesheets="@../styles/ActiveAreaPart.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox fx:id="hoxActiveArea" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <TabPane side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="40.0" tabMaxWidth="50.0" tabMinHeight="40.0" tabMinWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab fx:id="tabExplorerPart" styleClass="explorer-tab">
+            <content>
+              <AnchorPane styleClass="explorer-area">
+                     <children>
+                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane prefHeight="50.0" styleClass="title-pane">
+                                 <children>
+                                    <Label text="EXPLORER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0" />
+                                    <Button fx:id="btnShowOption" layoutX="193.0" layoutY="6.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="option-button" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="11.0" />
+                                 </children>
+                              </AnchorPane>
+                              <ListView fx:id="listView" VBox.vgrow="ALWAYS">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ListView>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+               <graphic>
+                  <Label prefHeight="30.0" prefWidth="30.0" />
+               </graphic>
+          </Tab>
+            <Tab fx:id="tabDebugPart" styleClass="debug-tab">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox styleClass="debug-area" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane prefHeight="50.0" styleClass="title-pane">
+                                 <children>
+                                    <Label text="SIMULATION" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="0.0" />
+                                    <HBox layoutX="38.0" layoutY="-25.0" spacing="8.0" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="11.0">
+                                       <children>
+                                          <Button fx:id="btnShowGlobalLog" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="reload-button" />
+                                          <Button fx:id="btnOpenChatRoom" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="chat-button" />
+                                          <Button fx:id="btnReloadAllBots" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="log-button" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="anpDebugPart" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                     </children></AnchorPane>
+              </content>
+               <graphic>
+                  <Label prefHeight="30.0" prefWidth="30.0" />
+               </graphic>
+            </Tab>
+        </tabs>
+      </TabPane>
       <StackPane fx:id="stpResizeBar" prefWidth="7.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <cursor>
             <Cursor fx:constant="E_RESIZE" />

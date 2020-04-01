@@ -3,10 +3,7 @@ package org.beuwi.simulator.platform.application.views;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
-import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
-import org.beuwi.simulator.platform.application.views.parts.StatusBarPart;
-import org.beuwi.simulator.platform.application.views.parts.ToolBarPart;
+import org.beuwi.simulator.platform.application.views.parts.*;
 import org.beuwi.simulator.platform.ui.window.WindowScene;
 
 public class MainWindowView extends BorderPane
@@ -17,9 +14,9 @@ public class MainWindowView extends BorderPane
 	public MainWindowView(Stage stage)
 	{
 		setTop(ToolBarPart.getRoot());
+		setLeft(ActiveAreaPart.getRoot());
 		setCenter(EditorAreaPart.getRoot());
 		setBottom(StatusBarPart.getRoot());
-		setLeft(ActiveAreaPart.getRoot());
 
 		getStyleClass().add("window");
 

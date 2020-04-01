@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane fx:id="anpToolBar" prefHeight="28.0" prefWidth="500.0" styleClass="tool-bar" stylesheets="@../styles/ToolBarPart.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="28.0" prefWidth="500.0" styleClass="tool-bar" stylesheets="@../styles/ToolBarPart.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox layoutX="36.0" layoutY="-50.0" styleClass="menu-bar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

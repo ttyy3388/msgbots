@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="500.0" prefWidth="250.0" styleClass="explorer-bar" stylesheets="@../styles/ExplorerBarPart.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="50.0">
+               <children>
+                  <Label text="Messenger Bot" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
+                  <Button layoutX="193.0" layoutY="6.0" mnemonicParsing="false" prefWidth="25.0" AnchorPane.bottomAnchor="3.5" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.5" />
+               </children>
+            </AnchorPane>
+            <ListView fx:id="lsvExplorerPart" VBox.vgrow="ALWAYS" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

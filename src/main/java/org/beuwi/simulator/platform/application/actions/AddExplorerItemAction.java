@@ -10,11 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import org.beuwi.simulator.compiler.api.Api;
-import org.beuwi.simulator.compiler.engine.ScriptManager;
-import org.beuwi.simulator.managers.BotManager;
-import org.beuwi.simulator.platform.application.views.parts.SideBarPart;
-import org.beuwi.simulator.settings.Settings;
+import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 
 public class AddExplorerItemAction
 {
@@ -22,56 +18,30 @@ public class AddExplorerItemAction
 
 	public static void initialize()
 	{
-		listView = (ListView) SideBarPart.getNameSpace().get("lsvExplorerPart");
+		listView = (ListView) ActiveAreaPart.getNameSpace().get("listView");
 	}
 
-	// Script Name (No Extension)
 	public static void update(String name)
 	{
 		HBox 			itemCell    = new HBox();
-		CheckBox        itemCheck   = new CheckBox();
+		CheckBox		itemCheck   = new CheckBox();
 		Label 			itemName    = new Label(name);
 		Button 		    itemCompile = new Button();
 		JFXToggleButton itemSwitch  = new JFXToggleButton();
 
 		itemCell.setId(name);
-		itemCell.setPrefHeight(35);
+		itemCell.setPrefHeight(40);
 		itemCell.getChildren().addAll
 		(
 			getItemVBox(itemCheck,   Pos.CENTER, 	  Priority.NEVER,  25),
 			getItemVBox(itemName,    Pos.CENTER_LEFT, Priority.ALWAYS, 50),
-			getItemVBox(itemCompile, Pos.CENTER, 	  Priority.NEVER,  40),
+			getItemVBox(itemCompile, Pos.CENTER, 	  Priority.NEVER,  45),
 			getItemVBox(itemSwitch,  Pos.CENTER_LEFT, Priority.NEVER,  40)
 		);
 
 		itemCell.getStyleClass().add("list-item");
-		itemCell.setOnMousePressed(event ->
-		{
-			if (event.isPrimaryButtonDown() || event.isMiddleButtonDown())
-			{
-				AddEditorTabAction.update(name);
-			}
-		});
-
-		itemCompile.setOnMousePressed(event ->
-		{
-			if (event.isPrimaryButtonDown())
-			{
-				ScriptManager.setInitialize(name, true, false);
-			}
-		});
-
-		itemCheck.setSelected(Api.isCompiled(name));
-		itemSwitch.setSelected(Api.isOn(name));
-		itemSwitch.selectedProperty().addListener((observable, oldValue, newValue) ->
-		{
-			Settings.getScriptSetting(name).putBoolean("power", newValue);
-		});
 
 		itemCompile.setPrefSize(30, 30);
-
-		BotManager.data.put("@check::" + name, itemCheck);
-		BotManager.data.put("@switch::" + name, itemSwitch);
 
 		listView.getItems().add(itemCell);
 	}

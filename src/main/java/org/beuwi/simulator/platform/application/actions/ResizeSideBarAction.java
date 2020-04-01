@@ -2,8 +2,7 @@ package org.beuwi.simulator.platform.application.actions;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import org.beuwi.simulator.platform.application.views.MainWindowView;
-import org.beuwi.simulator.platform.application.views.parts.SideBarPart;
+import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 
 public class ResizeSideBarAction
 {
@@ -11,46 +10,35 @@ public class ResizeSideBarAction
 
 	public static void initialize()
 	{
-		pane = SideBarPart.getRoot();
+		pane = ActiveAreaPart.getRoot();
 	}
 
 	public static void update(MouseEvent event)
 	{
-		// 40 : Activity Bar Width
-		double sceneX = event.getSceneX() - 40;
+		double sceneX = event.getSceneX();
 
-		// Editor Area
-		if (MainWindowView.getStage().getWidth() - 405 <= sceneX)
+		if (HideSideBarAction.isHided())
 		{
-			return ;
-		}
-
-		// 이 부분에서 드래그 시 깜빡이는 문제점 방지
-		if (!(sceneX >= -5 && sceneX <= 5))
-		{
-			if (HideSideBarAction.isHided())
+			// 140 밖으로 드래그 시 나타남
+			if (140 <= sceneX)
 			{
-				// 90 밖으로 드래그 시 나타남
-				if (90 <= sceneX)
+				HideSideBarAction.update(false);
+			}
+		}
+		else
+		{
+			// 220 안에서는 사이즈 변경 X
+			if (sceneX <= 220)
+			{
+				// 130 안으로 드래그 시 숨김
+				if (sceneX <= 130)
 				{
-					HideSideBarAction.update(false);
+					HideSideBarAction.update(true);
 				}
 			}
 			else
 			{
-				// 180 안에서는 사이즈 변경 X
-				if (sceneX <= 180)
-				{
-					// 90 안으로 드래그 시 숨김
-					if (sceneX <= 90)
-					{
-						HideSideBarAction.update(true);
-					}
-				}
-				else
-				{
-					pane.setPrefWidth(sceneX);
-				}
+				pane.setPrefWidth(sceneX);
 			}
 		}
 	}

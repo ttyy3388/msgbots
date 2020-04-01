@@ -24,6 +24,17 @@
     -fx-text-fill: #589DF6;
 }
 
+.split-pane .split-pane-divider
+{
+    -fx-background-color: #3C3C3C;
+    -fx-padding: 0 2 0 2;
+}
+
+.tab-pane
+{
+    -fx-tab-min-height: 32;
+}
+
 .tab
 {
 	-fx-background-color: #2D2D2D;
@@ -55,6 +66,30 @@
 {
 	-fx-background-color: #252526;
 }
+
+/* .tab-down-button
+{
+    -fx-pref-width: 20;
+    -fx-pref-height: 20;
+    -fx-background-insets: 1;
+    -fx-background-radius: 10;
+}
+.tab-down-button:hover
+{
+	-fx-background-color: rgba(255, 255, 255, 0.05);
+}
+.tab-down-button:armed
+{
+	-fx-background-color: rgba(255, 255, 255, 0.1);
+}
+.tab-down-button .arrow
+{
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 3 5 3 5;
+    -fx-rotate: 180;
+    -fx-shape: "m9.48046,8.9615l1.26,-1.26l-5.04,-5.04l-5.46,5.04l1.26,1.26l4.2,-3.78l3.78,3.78z";
+} */
+
 .tab:selected
 {
 	-fx-background-color: #1E1E1E;

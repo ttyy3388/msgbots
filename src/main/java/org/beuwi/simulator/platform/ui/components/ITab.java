@@ -5,7 +5,6 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.HBox;
-import org.beuwi.simulator.platform.application.actions.CloseEditorTabAction;
 
 public class ITab extends Tab
 {
@@ -26,7 +25,7 @@ public class ITab extends Tab
 		{
 			if (event.isPrimaryButtonDown() || event.isMiddleButtonDown())
 			{
-				CloseEditorTabAction.update(this);
+
 			}
 		});
 
@@ -42,7 +41,7 @@ public class ITab extends Tab
 		{
 			if (event.isMiddleButtonDown())
 			{
-				CloseEditorTabAction.update(this);
+
 			}
 		});
 

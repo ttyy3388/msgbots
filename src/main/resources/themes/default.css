@@ -92,7 +92,7 @@
 	-fx-fill: rgba(100, 100, 100, 0.7);
 }
 
-.text-area .scroll-bar
+/* .text-area .scroll-bar
 {
 	-fx-skin: '';
 }
@@ -119,4 +119,4 @@
 .text-area .scroll-bar .thumb:pressed
 {
 	-fx-background-color: rgba(100, 100, 100, 0.7);
-}
+} */

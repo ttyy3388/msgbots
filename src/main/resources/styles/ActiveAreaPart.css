@@ -1,0 +1,172 @@
+
+.active-area
+{
+	-fx-background-color: #252526;
+}
+
+.tab
+{
+    -fx-border-color: transparent;
+    -fx-border-width: 4 0 0 0;
+}
+.tab:selected
+{
+   -fx-background-color: #252526;
+   -fx-border-color: #007ACC;
+}
+.tab-header-area
+{
+    -fx-background-color: #3C3C3C;
+}
+
+.tab .label
+{
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 22;
+}
+
+.explorer-tab .label
+{
+	-fx-background-image: url('../images/explorer.png');
+}
+.explorer-tab:hover .label,
+.explorer-tab:selected .label
+{
+	-fx-background-image: url('../images/explorer_focused.png');
+}
+.debug-tab .label
+{
+	-fx-background-image: url('../images/simulation.png');
+}
+.debug-tab:hover .label,
+.debug-tab:selected .label
+{
+	-fx-background-image: url('../images/simulation_focused.png');
+}
+
+.title-pane
+{
+
+}
+.title-pane .label
+{
+	-fx-text-fill: #FFFFFF;
+}
+.title-pane .label *
+{
+    -fx-font-size: 14;
+}
+.title-pane .button
+{
+    -fx-background-radius: 5;
+    -fx-background-size: 18;
+}
+.title-pane .button:hover
+{
+	-fx-background-color: rgba(255, 255, 255, 0.05);
+}
+.title-pane .button:armed
+{
+	-fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+.explorer-area .title-pane .option-button
+{
+    -fx-background-image: url('../images/setting_white.png');
+}
+
+.debug-area .title-pane .chat-button
+{
+    -fx-background-image: url('../images/chat_white.png');
+}
+.debug-area .title-pane .reload-button
+{
+    -fx-background-image: url('../images/reload_white.png');
+}
+.debug-area .title-pane .log-button
+{
+    -fx-background-image: url('../images/log_white.png');
+}
+
+
+.list-item
+{
+    /* -fx-background-radius: 12;
+    -fx-background-insets: 1;
+    -fx-background-color: #383838; */
+	-fx-cursor: hand;
+}
+.list-cell .label *
+{
+	-fx-font-size: 15;
+}
+.list-cell .button
+{
+	-fx-background-radius: 15;
+	-fx-background-image: url('../images/reload.png');
+	-fx-background-size: 17;
+}
+.list-cell .button:hover
+{
+	-fx-background-color: rgba(255, 255, 255, 0.1);
+}
+.list-cell .button:armed
+{
+	-fx-background-color: rgba(255, 255, 255, 0.2);
+}
+.list-cell .check-box .box
+{
+	-fx-background-radius: 10;
+	-fx-background-color: #BBBBBB;
+	-fx-padding: 4;
+}
+.list-cell .check-box .mark
+{
+	-fx-padding: 0;
+}
+.list-cell .check-box:selected .box
+{
+    -fx-background-color: transparent;
+}
+.list-cell .jfx-toggle-button
+{
+	-jfx-toggle-color: #007ACC;
+	-jfx-untoggle-color: #BBBBBB;
+	-jfx-size: 6.5;
+}
+.list-cell:selected .list-item
+{
+	-fx-background-color: #094771;
+}
+.list-cell:selected .label
+{
+	-fx-text-fill: #FFFFFF;
+}
+.list-cell:selected .button
+{
+	-fx-background-image: url('../images/reload_focused.png');
+}
+.list-cell:selected .check-box .box
+{
+	-fx-background-color: #FFFFFF;
+}
+.list-cell:selected .check-box:selected .box
+{
+	-fx-background-color: transparent;
+}
+.list-cell:selected .jfx-toggle-button
+{
+	-jfx-untoggle-color: #FFFFFF;
+}
+
+/* .debug-area .button
+{
+	-fx-background-color: #0E639C;
+	-fx-text-fill: #FFFFFF;
+	-fx-cursor: hand;
+}
+.debug-area .button:hover
+{
+	-fx-background-color: #1177BB;
+} */

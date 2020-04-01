@@ -4,15 +4,12 @@ import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import org.beuwi.simulator.platform.application.actions.ShowDebugMenuAction;
-import org.beuwi.simulator.platform.application.actions.ShowFileMenuAction;
-import org.beuwi.simulator.platform.application.actions.ShowViewMenuAction;
 
 public class ToolBarPart
 {
 	private static ObservableMap<String, Object> nameSpace;
 
-	private static AnchorPane anpToolBar;
+	private static AnchorPane root;
 
 	public static void initialize() throws Exception
 	{
@@ -23,7 +20,7 @@ public class ToolBarPart
 
 		nameSpace = loader.getNamespace();
 
-		anpToolBar = (AnchorPane) nameSpace.get("anpToolBar");
+		root = loader.getRoot();
 
 		Button btnFileMenu  = (Button) nameSpace.get("btnFileMenu");
 		Button btnViewMenu  = (Button) nameSpace.get("btnViewMenu");
@@ -31,23 +28,23 @@ public class ToolBarPart
 
 		btnFileMenu.setOnMousePressed(event ->
 		{
-			ShowFileMenuAction.update(event);
+
 		});
 
 		btnViewMenu.setOnMousePressed(event ->
 		{
-			ShowViewMenuAction.update(event);
+
 		});
 
 		btnDebugMenu.setOnMousePressed(event ->
 		{
-			ShowDebugMenuAction.update(event);
+
 		});
 	}
 
 	public static AnchorPane getRoot()
 	{
-		return anpToolBar;
+		return root;
 	}
 
 	public static ObservableMap<String, Object> getNameSpace()

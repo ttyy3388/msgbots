@@ -3,12 +3,8 @@ package org.beuwi.simulator.platform.application.actions;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import org.beuwi.simulator.compiler.engine.ScriptManager;
-import org.beuwi.simulator.managers.FileManager;
-import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
+import org.beuwi.simulator.platform.application.views.tabs.ChatRoomTab;
 
 public class SendChatMessageAction
 {
@@ -16,7 +12,7 @@ public class SendChatMessageAction
 
 	public static void initialize()
 	{
-		listView = (ListView) DebugRoomTab.getNameSpace().get("lsvChatPart");
+		listView = (ListView) ChatRoomTab.getNameSpace().get("listView");
 	}
 
 	public static void update(String message, boolean isBot)
@@ -37,14 +33,14 @@ public class SendChatMessageAction
 		}
 		else
 		{
-			ImageView profile = new ImageView(new Image(FileManager.getDataFile("profile_bot.png").toURI().toString()));
+			/* ImageView profile = new ImageView(new Image(FileManager.getDataFile("profile_bot.png").toURI().toString()));
 			itemLabel.getStyleClass().add("bot-label");
 			profile.setFitHeight(40);
 			profile.setFitWidth(40);
 
 			itemCell.setSpacing(10);
 			itemCell.setAlignment(Pos.TOP_LEFT);
-			itemCell.getChildren().addAll(profile, itemLabel);
+			itemCell.getChildren().addAll(profile, itemLabel); */
 		}
 
 		listView.getItems().add(itemCell);
@@ -52,7 +48,7 @@ public class SendChatMessageAction
 
 		if (!isBot)
 		{
-			ScriptManager.run(message);
+			// ScriptManager.run(message);
 		}
 	}
 }
