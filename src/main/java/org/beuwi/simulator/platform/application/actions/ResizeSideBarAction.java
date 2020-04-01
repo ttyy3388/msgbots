@@ -10,28 +10,28 @@ public class ResizeSideBarAction
 
 	public static void initialize()
 	{
-		pane = ActiveAreaPart.getRoot();
+		pane = ActiveAreaPart.getSideBar();
 	}
 
 	public static void update(MouseEvent event)
 	{
-		double sceneX = event.getSceneX();
+		double sceneX = event.getSceneX() - 45;
 
 		if (HideSideBarAction.isHided())
 		{
-			// 140 밖으로 드래그 시 나타남
-			if (140 <= sceneX)
+			// 100 밖으로 드래그 시 나타남
+			if (100 <= sceneX)
 			{
 				HideSideBarAction.update(false);
 			}
 		}
 		else
 		{
-			// 220 안에서는 사이즈 변경 X
-			if (sceneX <= 220)
+			// 180 안에서는 사이즈 변경 X
+			if (sceneX <= 180)
 			{
-				// 130 안으로 드래그 시 숨김
-				if (sceneX <= 130)
+				// 90 안으로 드래그 시 숨김
+				if (sceneX <= 90)
 				{
 					HideSideBarAction.update(true);
 				}

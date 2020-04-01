@@ -46,6 +46,8 @@ public class Launcher extends Application
 			// Initialize Actions
 			AddEditorTabAction.initialize();
 			AddExplorerItemAction.initialize();
+			ChangeActivityTabAction.initialize();
+			CloseEditorTabAction.initialize();
 			HideSideBarAction.initialize();
 			OpenChatRoomTabAction.initialize();
 			OpenGlobalLogTabAction.initialize();

@@ -15,7 +15,7 @@ public class AddEditorTabAction
 
 	public static void initialize()
 	{
-		pane = (ITabPane) EditorAreaPart.getNameSpace().get("tapEditorArea");
+		pane = EditorAreaPart.getComponent();
 	}
 
 	// Script Tab
@@ -29,7 +29,7 @@ public class AddEditorTabAction
 	{
 		String id = switch (type)
 		{
-			case ITabType.DEBUG, ITabType.LOG -> "@tab::" + title;
+			case ITabType.CHAT, ITabType.LOG -> "@tab::" + title;
 			case ITabType.SCRIPT -> "@script::" + title;
 			default -> null;
 		};
@@ -43,7 +43,7 @@ public class AddEditorTabAction
 
 		Image image = switch (type)
 		{
-			case ITabType.DEBUG  -> ResourceUtils.getImage("tab_debug.png");
+			case ITabType.CHAT  -> ResourceUtils.getImage("tab_chat.png");
 			case ITabType.LOG    -> ResourceUtils.getImage("tab_log.png");
 			case ITabType.SCRIPT -> ResourceUtils.getImage("tab_js.png");
 			default 			 -> null;

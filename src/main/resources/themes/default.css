@@ -5,15 +5,30 @@
 	-fx-font-size: 12;
 }
 
+.tab,
+.button,
+.toggle-button
+{
+	-fx-cursor: hand;
+}
+
+.button,
+.toggle-button
+{
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-alignment: center;
+}
+
 .button:disabled
 {
     -fx-opacity: 0.5;
+    -fx-cursor: default;
 }
 
 .text-area,
 .text-field
 {
-	-fx-font-size: 15;
 	-fx-padding: 5;
 	-fx-cursor: text;
 }
@@ -36,14 +51,6 @@
 {
 	-fx-open-tab-animation: NONE;
 	-fx-close-tab-animation: NONE;
-}
-
-.button,
-.toggle-button
-{
-	-fx-background-position: center;
-	-fx-background-repeat: no-repeat;
-	-fx-alignment: center;
 }
 
 .context-menu

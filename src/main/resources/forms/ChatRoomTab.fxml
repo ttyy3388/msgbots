@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1050.0" stylesheets="@../styles/ChatRoomTab.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="CENTER" cacheShape="false" centerShape="false" scaleShape="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" cacheShape="false" centerShape="false" scaleShape="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <children>
             <ListView fx:id="listView" VBox.vgrow="ALWAYS" />
             <AnchorPane maxHeight="60.0" VBox.vgrow="NEVER">

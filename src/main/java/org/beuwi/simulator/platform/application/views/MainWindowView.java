@@ -21,8 +21,8 @@ public class MainWindowView extends BorderPane
 		getStyleClass().add("window");
 
 		stage.getIcons().add(new Image(getClass().getResource("/images/program.png").toExternalForm()));
-		stage.setMinWidth(625);
-		stage.setMinHeight(435);
+		// stage.setMinWidth(625);
+		// stage.setMinHeight(435);
 		stage.setWidth(1300);
 		stage.setHeight(900);
 		// stage.setMaxWidth(Double.MAX_VALUE);

@@ -3,10 +3,11 @@ package org.beuwi.simulator.platform.application.views.parts;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import org.beuwi.simulator.platform.application.actions.*;
 
 public class ActiveAreaPart
@@ -40,18 +41,18 @@ public class ActiveAreaPart
 
 	private static class ExplorerTabPart
 	{
-		private static Tab    tab;
+		private static ToggleButton tab;
 
 		private static Button button;
 
 		public static void initialize()
 		{
-			tab = (Tab) nameSpace.get("tabExplorerPart");
+			tab = (ToggleButton) nameSpace.get("tgnExplorerTab");
 			button = (Button) nameSpace.get("btnShowOption");
 
-			tab.selectedProperty().addListener((observable, oldValue, newValue) ->
+			tab.setOnMousePressed(event ->
 			{
-				if (newValue)
+				if (event.isPrimaryButtonDown())
 				{
 					SelectActivityTabAction.update(0);
 				}
@@ -66,7 +67,7 @@ public class ActiveAreaPart
 
 	private static class DebugTabPart
 	{
-		private static Tab    tab;
+		private static ToggleButton tab;
 
 		private static Button btnOpenChatRoom;
 		private static Button btnShowGlobalLog;
@@ -74,15 +75,15 @@ public class ActiveAreaPart
 
 		public static void initialize()
 		{
-			tab = (Tab) nameSpace.get("tabDebugPart");
+			tab = (ToggleButton) nameSpace.get("tgnDebugTab");
 
 			btnOpenChatRoom  = (Button) nameSpace.get("btnOpenChatRoom");
 			btnShowGlobalLog = (Button) nameSpace.get("btnShowGlobalLog");
 			btnReloadAllBots = (Button) nameSpace.get("btnReloadAllBots");
 
-			tab.selectedProperty().addListener((observable, oldValue, newValue) ->
+			tab.setOnMousePressed(event ->
 			{
-				if (newValue)
+				if (event.isPrimaryButtonDown())
 				{
 					SelectActivityTabAction.update(1);
 				}
@@ -111,9 +112,19 @@ public class ActiveAreaPart
 	}
 
 	// Children get(0) : Component
-	public static TabPane getComponent()
+	public static HBox getComponent()
 	{
-		return (TabPane) root.getChildren().get(0);
+		return (HBox) root.getChildren().get(0);
+	}
+
+	public static VBox getActivityBar()
+	{
+		return (VBox) getComponent().getChildren().get(0);
+	}
+
+	public static AnchorPane getSideBar()
+	{
+		return (AnchorPane) getComponent().getChildren().get(1);
 	}
 
 	public static ObservableMap<String, Object> getNameSpace()

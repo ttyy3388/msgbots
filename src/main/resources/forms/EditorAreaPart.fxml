@@ -4,13 +4,8 @@
 <?import javafx.scene.layout.*?>
 <?import org.beuwi.simulator.platform.ui.components.ITabPane?>
 
-<AnchorPane minHeight="350.0" minWidth="350.0" prefHeight="850.0" prefWidth="1100.0" styleClass="editor-area" stylesheets="@../styles/EditorAreaPart.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="850.0" prefWidth="1100.0" styleClass="editor-area" stylesheets="@../styles/EditorAreaPart.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <SplitPane dividerPositions="0.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <items>
-            <ITabPane fx:id="tapEditorArea" tabClosingPolicy="UNAVAILABLE"/>
-            <ITabPane fx:id="tapEditorArea2" tabClosingPolicy="UNAVAILABLE"/>
-        </items>
-      </SplitPane>
+        <ITabPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

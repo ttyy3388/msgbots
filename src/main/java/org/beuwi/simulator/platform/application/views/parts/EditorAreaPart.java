@@ -2,8 +2,8 @@ package org.beuwi.simulator.platform.application.views.parts;
 
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
+import org.beuwi.simulator.platform.ui.components.ITabPane;
 
 public class EditorAreaPart
 {
@@ -29,9 +29,9 @@ public class EditorAreaPart
 	}
 
 	// Children get(0) : Component
-	public static TabPane getComponent()
+	public static ITabPane getComponent()
 	{
-		return (TabPane) root.getChildren().get(0);
+		return (ITabPane) root.getChildren().get(0);
 	}
 
 	/* public static TabPane getCurrentPane()

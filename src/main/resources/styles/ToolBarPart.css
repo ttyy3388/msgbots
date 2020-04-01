@@ -4,6 +4,11 @@
 	-fx-background-color: #3C3C3C;
 }
 
+.button
+{
+    -fx-cursor: default;
+}
+
 .menu-bar
 {
 

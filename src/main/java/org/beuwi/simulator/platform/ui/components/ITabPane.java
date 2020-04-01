@@ -2,29 +2,60 @@ package org.beuwi.simulator.platform.ui.components;
 
 import javafx.collections.ListChangeListener.Change;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.AnchorPane;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-public class ITabPane extends TabPane
+public class ITabPane extends AnchorPane
 {
 	private Tab currentDraggingTab ;
 
 	private static final AtomicLong idGenerator = new AtomicLong();
 
-	private final String draggingID = "DraggingTabPaneSupport-" + idGenerator.incrementAndGet() ;
+	private final String draggingID = "DraggingTabPaneSupport-" + idGenerator.incrementAndGet();
+
+	private final TabPane TAB_PANE = new TabPane();
 
 	public ITabPane()
 	{
 		// super();
 
-		getTabs().forEach(this::addDragHandlers);
-		getTabs().addListener((Change<? extends Tab> change) ->
+		Button button = new Button();
+
+		button.getStyleClass().add("tab-more-button");
+
+		AnchorPane pane = new AnchorPane(button);
+
+		pane.setPrefSize(32, 32);
+
+		pane.getStyleClass().add("tab-more-area");
+
+		AnchorPane.setTopAnchor(button, .0);
+		AnchorPane.setRightAnchor(button, .0);
+		AnchorPane.setBottomAnchor(button, .0);
+		AnchorPane.setLeftAnchor(button, .0);
+
+		AnchorPane.setTopAnchor(pane, .0);
+		AnchorPane.setRightAnchor(pane, .0);
+
+		AnchorPane.setTopAnchor(TAB_PANE, .0);
+		AnchorPane.setRightAnchor(TAB_PANE, .0);
+		AnchorPane.setBottomAnchor(TAB_PANE, .0);
+		AnchorPane.setLeftAnchor(TAB_PANE, .0);
+
+		this.getChildren().addAll(TAB_PANE, pane);
+
+		TAB_PANE.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+
+		TAB_PANE.getTabs().forEach(this::addDragHandlers);
+		TAB_PANE.getTabs().addListener((Change<? extends Tab> change) ->
 		{
 			while (change.next())
 			{
@@ -41,7 +72,7 @@ public class ITabPane extends TabPane
 
 		setOnDragOver(event ->
 		{
-			if (draggingID.equals(event.getDragboard().getString()) && currentDraggingTab != null && currentDraggingTab.getTabPane() != this)
+			if (draggingID.equals(event.getDragboard().getString()) && currentDraggingTab != null && currentDraggingTab.getTabPane() != TAB_PANE)
 			{
 				event.acceptTransferModes(TransferMode.MOVE);
 			}
@@ -49,10 +80,10 @@ public class ITabPane extends TabPane
 
 		setOnDragDropped(event ->
 		{
-			if (draggingID.equals(event.getDragboard().getString()) && currentDraggingTab != null && currentDraggingTab.getTabPane() != this)
+			if (draggingID.equals(event.getDragboard().getString()) && currentDraggingTab != null && currentDraggingTab.getTabPane() != TAB_PANE)
 			{
 				currentDraggingTab.getTabPane().getTabs().remove(currentDraggingTab);
-				this.getTabs().add(currentDraggingTab);
+				TAB_PANE.getTabs().add(currentDraggingTab);
 				currentDraggingTab.getTabPane().getSelectionModel().select(currentDraggingTab);
 			}
 		});
@@ -111,8 +142,13 @@ public class ITabPane extends TabPane
 
 	public void addTab(Tab tab)
 	{
-		getTabs().add(tab);
+		TAB_PANE.getTabs().add(tab);
 		selectTab(tab);
+	}
+
+	public void closeTab(Tab tab)
+	{
+		TAB_PANE.getTabs().remove(tab);
 	}
 
 	public void selectTab(String id)
@@ -122,7 +158,7 @@ public class ITabPane extends TabPane
 
 	public void selectTab(Tab tab)
 	{
-		getSelectionModel().select(tab);
+		TAB_PANE.getSelectionModel().select(tab);
 	}
 
 	public boolean tabExists(String id)
@@ -132,14 +168,14 @@ public class ITabPane extends TabPane
 
 	public Tab getTabItem(String id)
 	{
-		return getTabIndex(id) != -1 ? getTabs().get(getTabIndex(id)) : null;
+		return getTabIndex(id) != -1 ? TAB_PANE.getTabs().get(getTabIndex(id)) : null;
 	}
 
 	public int getTabIndex(String id)
 	{
-		for (int index = 0 ; index < getTabs().size() ; index ++)
+		for (int index = 0 ; index < TAB_PANE.getTabs().size() ; index ++)
 		{
-			if (getTabs().get(index).getId().equals(id))
+			if (TAB_PANE.getTabs().get(index).getId().equals(id))
 			{
 				return index;
 			}

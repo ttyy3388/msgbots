@@ -1,28 +1,31 @@
 package org.beuwi.simulator.platform.application.actions;
 
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 
 public class HideSideBarAction
 {
+	private static HBox hbox;
 	private static AnchorPane pane;
 
-	private static boolean isHided;
+	private static boolean isHided = false;
 
 	public static void initialize()
 	{
-		pane = ActiveAreaPart.getRoot();
+		hbox = ActiveAreaPart.getComponent();
+		pane = ActiveAreaPart.getSideBar();
 	}
 
 	public static void update(boolean hide)
 	{
 		if (hide)
 		{
-			pane.setPrefWidth(44);
+			hbox.getChildren().remove(pane);
 		}
 		else
 		{
-			pane.setPrefWidth(220);
+			hbox.getChildren().add(pane);
 		}
 
 		isHided = hide;

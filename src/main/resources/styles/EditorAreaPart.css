@@ -4,7 +4,7 @@
 
 }
 
-.start-pane .button
+/* .start-pane .button
 {
     -fx-background-image: url('../images/program_big.png');
     -fx-background-size: 350;
@@ -28,7 +28,7 @@
 {
     -fx-background-color: #3C3C3C;
     -fx-padding: 0 2 0 2;
-}
+} */
 
 .tab-pane
 {
@@ -38,12 +38,11 @@
 .tab
 {
 	-fx-background-color: #2D2D2D;
-	-fx-cursor: hand;
 }
 .tab-header
 {
 	-fx-padding: 0 15 0 15;
-	-fx-spacing: 6;
+	-fx-spacing: 8;
 }
 .tab-close-button
 {
@@ -65,6 +64,25 @@
 .tab-header-background
 {
 	-fx-background-color: #252526;
+}
+
+.tab-more-area
+{
+    -fx-background-color: #252526;
+}
+
+.tab-more-button
+{
+    -fx-background-image: url('../images/more_white.png');
+    -fx-background-size: 16;
+}
+.tab-more-button:hover
+{
+	-fx-background-color: rgba(255, 255, 255, 0.05);
+}
+.tab-more-button:armed
+{
+	-fx-background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* .tab-down-button
