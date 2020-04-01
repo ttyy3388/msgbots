@@ -18,6 +18,7 @@
 {
 
 }
+
 .title-pane .label
 {
     -fx-text-fill: #FFFFFF;
@@ -62,6 +63,11 @@
 {
     -fx-cursor: hand;
 }
+.explorer-part .list-item:hover
+{
+    -fx-background-color: #2A2D2E;
+}
+
 .explorer-part .list-cell .label *
 {
     -fx-font-size: 15;
@@ -74,6 +80,7 @@
 }
 .explorer-part .list-cell .button:hover
 {
+    -fx-background-image: url('../images/reload_focused.png');
     -fx-background-color: rgba(255, 255, 255, 0.1);
 }
 .explorer-part .list-cell .button:armed
@@ -99,6 +106,10 @@
     -jfx-toggle-color: #007ACC;
     -jfx-untoggle-color: #BBBBBB;
     -jfx-size: 6.5;
+}
+.explorer-part .list-cell .jfx-toggle-button:hover
+{
+    -jfx-untoggle-color: #FFFFFF;
 }
 .explorer-part .list-cell:selected .list-item
 {
