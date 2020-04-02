@@ -4,7 +4,9 @@
 		"sender":"Sender",
 		"bot":"Bot",
 		"isGroupChat":false,
-		"room":"Bot"
+		"room":"Bot",
+		"visibleBotProfile":true,
+		"visibleSenderProfile":false
 	},
 	"program":{
 		"autoCompile":true,

@@ -29,7 +29,7 @@
 .text-area,
 .text-field
 {
-	-fx-padding: 5;
+	-fx-padding: 4;
 	-fx-cursor: text;
 }
 

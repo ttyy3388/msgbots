@@ -6,6 +6,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.File;
+import java.util.Map;
 
 public class Settings
 {
@@ -66,6 +67,11 @@ public class Settings
 			put(setType, setData); apply();
 		}
 
+		public void putMap(Map map)
+		{
+			putAll(map); apply();
+		}
+
 		private void apply()
 		{
 			FileManager.save(file, JsonEnterConvert.convert(toJSONString()));
@@ -118,6 +124,11 @@ public class Settings
 		public void putBoolean(String setType, boolean setData)
 		{
 			put(setType, setData); apply();
+		}
+
+		public void putMap(Map map)
+		{
+			putAll(map); apply();
 		}
 
 		private void apply()

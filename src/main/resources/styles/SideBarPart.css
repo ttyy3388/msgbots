@@ -5,7 +5,7 @@
 
 .separator
 {
-    -fx-background-insets: 0 5 0 5;
+    -fx-background-insets: 0 10 0 10;
     -fx-background-color: #FFFFFF;
 }
 

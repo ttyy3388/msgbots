@@ -28,7 +28,7 @@ public class ResizeSideBarAction
 		else
 		{
 			// 180 안에서는 사이즈 변경 X
-			if (sceneX <= 180)
+			if (sceneX <= 190)
 			{
 				// 90 안으로 드래그 시 숨김
 				if (sceneX <= 90)
