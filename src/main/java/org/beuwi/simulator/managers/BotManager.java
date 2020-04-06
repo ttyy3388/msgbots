@@ -1,82 +1,31 @@
 package org.beuwi.simulator.managers;
 
+import com.jfoenix.controls.JFXToggleButton;
+import javafx.scene.control.CheckBox;
+
+import java.util.HashMap;
+
 public class BotManager
 {
-	/* public static void refresh()
+	public static HashMap<String, Object> data = new HashMap<>();
+
+	public static void setPower(String name, boolean power)
 	{
-		// data.clear();
-
-		// ClearExplorerItemsAction.update();
-
-		File[] folders = FileManager.BOTS_FOLDER.listFiles(File::isDirectory);
-
-		for (File folder : folders)
-		{
-			AddExplorerItemAction.update(folder.getName());
-		}
+		data.put("@switch" + name, power);
 	}
 
-	public static void Import(File file, boolean isUnified, boolean isOffError)
+	public static void setCompiled(String name, boolean compiled)
 	{
-		create(file.getName(), FileManager.read(file), true, isUnified, isOffError);
+		data.put("@check" + name, compiled);
 	}
 
-	public static void create(String name, String content, boolean isImport, boolean isUnified, boolean isOffError)
+	public static boolean getPower(String name)
 	{
-		File project = FileManager.getBotFolder(name);
-
-		if (project.exists())
-		{
-			new ExistsBotDialog(name).display();
-		}
-		else
-		{
-			project.mkdir();
-
-			if (!isImport)
-			{
-				if (!isUnified)
-				{
-					content = FileManager.read(FileManager.getDataFile("script_default.js"));
-				}
-				else
-				{
-					content = FileManager.read(FileManager.getDataFile("script_unified.js"));
-				}
-			}
-
-			FileManager.save(FileManager.getBotScript(name), content);
-
-            FileManager.save(FileManager.getBotLog(name), "[]");
-
-			FileManager.save
-			(
-			    FileManager.getBotSetting(name),
-			    "{\"optimization\":1," +
-				"\"useUnifiedParams\":" + isUnified + "," +
-				"\"offOnRuntimeError\":" + isOffError + "," +
-				"\"power\":false}"
-			);
-		}
+		return ((JFXToggleButton) data.get("@switch" + name)).isSelected();
 	}
 
-	public static void rename(String name, String newName)
+	public static boolean isCompiled(String name)
 	{
-	    File before = FileManager.getBotFolder(name);
-	    File after  = FileManager.getBotFolder(newName);
-
-	    if (after.exists())
-        {
-            new ExistsBotDialog(newName).display();
-        }
-	    else
-        {
-            before.renameTo(after);
-        }
+		return ((CheckBox) data.get("@check" + name)).isSelected();
 	}
-
-	public static void delete(String name)
-	{
-		FileManager.remove(FileManager.getBotFolder(name));
-	} */
 }

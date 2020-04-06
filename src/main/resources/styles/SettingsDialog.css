@@ -1,0 +1,24 @@
+
+.root
+{
+
+}
+
+.tab .text
+{
+    -fx-rotate: 90;
+}
+.tab:selected .label
+{
+    -fx-text-fill: #FFFFFF;
+}
+
+.tab-header-area
+{
+	-fx-background-color: #2D2D30;
+}
+
+.tab-content-area
+{
+	-fx-background-color: #252526;
+}

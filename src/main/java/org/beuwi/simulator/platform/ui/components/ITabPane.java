@@ -2,18 +2,16 @@ package org.beuwi.simulator.platform.ui.components;
 
 import javafx.collections.ListChangeListener.Change;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.AnchorPane;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-public class ITabPane extends AnchorPane
+public class ITabPane extends TabPane
 {
 	private Tab currentDraggingTab ;
 
@@ -21,13 +19,8 @@ public class ITabPane extends AnchorPane
 
 	private final String draggingID = "DraggingTabPaneSupport-" + idGenerator.incrementAndGet();
 
-	private final TabPane TAB_PANE = new TabPane();
-
-	public ITabPane()
-	{
-		// super();
-
-		Button button = new Button();
+	/*
+	Button button = new Button();
 
 		button.getStyleClass().add("tab-more-button");
 
@@ -49,13 +42,16 @@ public class ITabPane extends AnchorPane
 		AnchorPane.setRightAnchor(TAB_PANE, .0);
 		AnchorPane.setBottomAnchor(TAB_PANE, .0);
 		AnchorPane.setLeftAnchor(TAB_PANE, .0);
+	 */
 
-		this.getChildren().addAll(TAB_PANE, pane);
+	public ITabPane()
+	{
+		// super();
 
-		TAB_PANE.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+		setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
-		TAB_PANE.getTabs().forEach(this::addDragHandlers);
-		TAB_PANE.getTabs().addListener((Change<? extends Tab> change) ->
+		getTabs().forEach(this::addDragHandlers);
+		getTabs().addListener((Change<? extends Tab> change) ->
 		{
 			while (change.next())
 			{
@@ -72,7 +68,7 @@ public class ITabPane extends AnchorPane
 
 		setOnDragOver(event ->
 		{
-			if (draggingID.equals(event.getDragboard().getString()) && currentDraggingTab != null && currentDraggingTab.getTabPane() != TAB_PANE)
+			if (draggingID.equals(event.getDragboard().getString()) && currentDraggingTab != null && currentDraggingTab.getTabPane() != this)
 			{
 				event.acceptTransferModes(TransferMode.MOVE);
 			}
@@ -80,10 +76,10 @@ public class ITabPane extends AnchorPane
 
 		setOnDragDropped(event ->
 		{
-			if (draggingID.equals(event.getDragboard().getString()) && currentDraggingTab != null && currentDraggingTab.getTabPane() != TAB_PANE)
+			if (draggingID.equals(event.getDragboard().getString()) && currentDraggingTab != null && currentDraggingTab.getTabPane() != this)
 			{
 				currentDraggingTab.getTabPane().getTabs().remove(currentDraggingTab);
-				TAB_PANE.getTabs().add(currentDraggingTab);
+				getTabs().add(currentDraggingTab);
 				currentDraggingTab.getTabPane().getSelectionModel().select(currentDraggingTab);
 			}
 		});
@@ -142,13 +138,13 @@ public class ITabPane extends AnchorPane
 
 	public void addTab(Tab tab)
 	{
-		TAB_PANE.getTabs().add(tab);
+		getTabs().add(tab);
 		selectTab(tab);
 	}
 
 	public void closeTab(Tab tab)
 	{
-		TAB_PANE.getTabs().remove(tab);
+		getTabs().remove(tab);
 	}
 
 	public void selectTab(String id)
@@ -158,7 +154,7 @@ public class ITabPane extends AnchorPane
 
 	public void selectTab(Tab tab)
 	{
-		TAB_PANE.getSelectionModel().select(tab);
+		getSelectionModel().select(tab);
 	}
 
 	public boolean tabExists(String id)
@@ -168,14 +164,14 @@ public class ITabPane extends AnchorPane
 
 	public Tab getTabItem(String id)
 	{
-		return getTabIndex(id) != -1 ? TAB_PANE.getTabs().get(getTabIndex(id)) : null;
+		return getTabIndex(id) != -1 ? getTabs().get(getTabIndex(id)) : null;
 	}
 
 	public int getTabIndex(String id)
 	{
-		for (int index = 0 ; index < TAB_PANE.getTabs().size() ; index ++)
+		for (int index = 0 ; index < getTabs().size() ; index ++)
 		{
-			if (TAB_PANE.getTabs().get(index).getId().equals(id))
+			if (getTabs().get(index).getId().equals(id))
 			{
 				return index;
 			}

@@ -4,7 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
-import org.beuwi.simulator.platform.application.views.tabs.ChatRoomTab;
+import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
 
 public class SendChatMessageAction
 {
@@ -12,7 +12,7 @@ public class SendChatMessageAction
 
 	public static void initialize()
 	{
-		listView = (ListView) ChatRoomTab.getNameSpace().get("listView");
+		listView = DebugRoomTab.getChatListView();
 	}
 
 	public static void update(String message, boolean isBot)
@@ -48,6 +48,7 @@ public class SendChatMessageAction
 
 		if (!isBot)
 		{
+			// LogManager.addEvent(message);
 			// ScriptManager.run(message);
 		}
 	}

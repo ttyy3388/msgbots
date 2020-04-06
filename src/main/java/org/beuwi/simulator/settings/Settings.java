@@ -1,6 +1,7 @@
 package org.beuwi.simulator.settings;
 
 import org.beuwi.simulator.managers.FileManager;
+import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
 import org.beuwi.simulator.utils.JsonEnterConvert;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -22,6 +23,7 @@ public class Settings
 
 	public static class Public extends JSONObject
 	{
+		private String type;
 		private File file;
 
 		public Public(String getType)
@@ -30,10 +32,12 @@ public class Settings
 			{
 				file = FileManager.getDataFile("global_setting.json");
 				putAll((JSONObject) ((JSONObject) new JSONParser().parse(FileManager.read(file))).get(getType));
+
+				type = getType;
 			}
 			catch (Exception e)
 			{
-				// new ShowErrorDialog(e).display();
+				ShowErrorDialog.display(e);
 			}
 		}
 
@@ -74,7 +78,18 @@ public class Settings
 
 		private void apply()
 		{
-			FileManager.save(file, JsonEnterConvert.convert(toJSONString()));
+			try
+			{
+				JSONObject data = ((JSONObject) new JSONParser().parse(FileManager.read(file)));
+
+				data.put(type, this);
+
+				FileManager.save(file, JsonEnterConvert.convert(data.toJSONString()));
+			}
+			catch (Exception e)
+			{
+
+			}
 		}
 	}
 
@@ -92,7 +107,7 @@ public class Settings
 			}
 			catch (Exception e)
 			{
-				// new ShowErrorDialog(e).display();
+				ShowErrorDialog.display(e);
 			}
 		}
 

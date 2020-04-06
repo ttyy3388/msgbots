@@ -20,6 +20,8 @@ public class ChangeActivityTabAction
 
 	public static void update(int index)
 	{
+		((ToggleButton) vbox.getChildren().get(index == 0 ? 1 : 0)).setSelected(false);
+
 		switch (index)
 		{
 			// Explorer Tab
@@ -42,7 +44,5 @@ public class ChangeActivityTabAction
 
 				break;
 		}
-
-		((ToggleButton) vbox.getChildren().get(index == 0 ? 1 : 0)).setSelected(false);
 	}
 }

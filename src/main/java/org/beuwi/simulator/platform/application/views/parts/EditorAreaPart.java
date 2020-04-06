@@ -34,16 +34,24 @@ public class EditorAreaPart
 		return (ITabPane) root.getChildren().get(0);
 	}
 
-	/* public static TabPane getCurrentPane()
+	/* public static SplitPane getComponent()
 	{
-		SplitPane pane = (SplitPane) root.getChildren().get(0);
+		return (SplitPane) root.getChildren().get(0);
+	}
+
+	public static ITabPane getCurrentTabPane()
+	{
+		SplitPane pane = getComponent();
 
 		for (Node node : pane.getItems())
 		{
-			System.out.println(node + " : " + node.isFocused());
+			if (node.isFocused())
+			{
+				return (ITabPane) node;
+			}
 		}
 
-		return null;
+		return (ITabPane) pane.getItems().get(0);
 	} */
 
 	public static ObservableMap<String, Object> getNameSpace()

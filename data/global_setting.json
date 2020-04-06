@@ -1,12 +1,12 @@
 {
 	"chat":{
 		"package":"com.kakao.talk",
-		"sender":"Sender",
-		"bot":"Bot",
-		"isGroupChat":false,
-		"room":"Bot",
+		"sender":"DEBUG SENDER",
+		"bot":"DEBUG BOT",
+		"visibleSenderProfile":false,
 		"visibleBotProfile":true,
-		"visibleSenderProfile":false
+		"isGroupChat":false,
+		"room":"DEBUG ROOM"
 	},
 	"program":{
 		"autoCompile":true,

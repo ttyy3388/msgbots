@@ -14,15 +14,11 @@
     -fx-background-color: #007ACC;
 }
 
-.ok-button
+.button-ok
 {
 	-fx-border-color: #007ACC;
 }
-.no-button
-{
-
-}
-.action-button
+.button-no
 {
 
 }

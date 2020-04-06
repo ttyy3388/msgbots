@@ -1,0 +1,12 @@
+
+.check-box .box
+{
+    -fx-background-color: #3F3F46;
+    -fx-border-color: #555555;
+    -fx-border-width: 1;
+}
+
+.check-box:focused .box
+{
+    -fx-border-color: #007ACC;
+}

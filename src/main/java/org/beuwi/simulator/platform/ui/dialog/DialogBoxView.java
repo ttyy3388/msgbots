@@ -29,7 +29,6 @@ public class DialogBoxView extends WindowStage implements Initializable
 
 	@FXML private Button 	 DIALOG_BUTTON_OK;
 	@FXML private Button 	 DIALOG_BUTTON_NO;
-	@FXML private Button     DIALOG_BUTTON_ACTION;
 
 	Region DIALOG_CONTENT;
 	int    DIALOG_TYPE;
@@ -61,11 +60,10 @@ public class DialogBoxView extends WindowStage implements Initializable
 		addEventHandler(KeyEvent.KEY_PRESSED, handler);
 	}
 
-	public void setUseButton(boolean ok, boolean no, boolean action)
+	public void setUseButton(boolean ok, boolean no)
 	{
-		if (!ok)     DIALOG_BUTTON_BOX.getChildren().remove(DIALOG_BUTTON_OK);
-		if (!no)     DIALOG_BUTTON_BOX.getChildren().remove(DIALOG_BUTTON_NO);
-		if (!action) DIALOG_BUTTON_BOX.getChildren().remove(DIALOG_BUTTON_ACTION);
+		if (!ok) DIALOG_BUTTON_BOX.getChildren().remove(DIALOG_BUTTON_OK);
+		if (!no) DIALOG_BUTTON_BOX.getChildren().remove(DIALOG_BUTTON_NO);
 	}
 
 	public void setContent(Region content)
@@ -83,11 +81,6 @@ public class DialogBoxView extends WindowStage implements Initializable
 		return DIALOG_BUTTON_NO;
 	}
 
-	public Button getActionButton()
-	{
-		return DIALOG_BUTTON_ACTION;
-	}
-
 	/* public void setType(int type)
 	{
 		DIALOG_TYPE = type;
@@ -97,9 +90,9 @@ public class DialogBoxView extends WindowStage implements Initializable
 	{
 		Image image= switch (DIALOG_TYPE)
 		{
-			case DialogBoxType.ERROR   -> ResourceUtils.getImage("dialog_error.png");
-			case DialogBoxType.WARNING -> ResourceUtils.getImage("dialog_warning.png");
-			case DialogBoxType.EVENT   -> ResourceUtils.getImage("dialog_event.png");
+			case DialogBoxType.ERROR   -> ResourceUtils.getImage("error_big.png");
+			case DialogBoxType.WARNING -> ResourceUtils.getImage("warning_big.png");
+			case DialogBoxType.EVENT   -> ResourceUtils.getImage("event_big.png");
 			default -> null;
 		};
 
@@ -121,7 +114,6 @@ public class DialogBoxView extends WindowStage implements Initializable
 
 		// initStyle(StageStyle.UNIFIED);
 		setScene(new WindowScene(DIALOG_PANE));
-		show();
 	}
 
 	@Override
@@ -135,11 +127,6 @@ public class DialogBoxView extends WindowStage implements Initializable
 		DIALOG_BUTTON_NO.addEventHandler(ActionEvent.ACTION, event ->
 		{
 			close();
-		});
-
-		DIALOG_BUTTON_ACTION.setOnAction(event ->
-		{
-
 		});
 	}
 }

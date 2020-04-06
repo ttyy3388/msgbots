@@ -20,21 +20,23 @@ public class GlobalLogTab
     public static void initialize() throws Exception
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(ChatRoomTab.class.getResource("/forms/GlobalLogTab.fxml"));
+        loader.setLocation(DebugRoomTab.class.getResource("/forms/GlobalLogTab.fxml"));
         loader.setController(null);
         loader.load();
 
         nameSpace = loader.getNamespace();
 
         root = loader.getRoot();
-
-        listView  = (ListView) nameSpace.get("lsvLogList");
-
     }
 
     public static AnchorPane getRoot()
     {
         return root;
+    }
+
+    public static ListView getComponent()
+    {
+        return (ListView) root.getChildren().get(0);
     }
 
     public static ObservableMap<String, Object> getNameSpace()

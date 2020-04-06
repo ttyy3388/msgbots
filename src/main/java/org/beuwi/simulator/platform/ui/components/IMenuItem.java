@@ -13,12 +13,17 @@ public class IMenuItem extends MenuItem
 {
 	public IMenuItem(String text)
 	{
-		this(text, null);
+		this(text, (String) null);
 	}
 
 	public IMenuItem(String text, String command)
 	{
 		this(text, command, null);
+	}
+
+	public IMenuItem(String text, EventHandler<ActionEvent> handler)
+	{
+		this(null, text, null, handler);
 	}
 
 	public IMenuItem(String text, String command, EventHandler<ActionEvent> handler)

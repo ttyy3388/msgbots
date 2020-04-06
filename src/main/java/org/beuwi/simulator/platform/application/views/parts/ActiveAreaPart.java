@@ -3,14 +3,16 @@ package org.beuwi.simulator.platform.application.views.parts;
 import com.jfoenix.controls.JFXToggleButton;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.platform.application.actions.*;
+import org.beuwi.simulator.platform.application.views.dialogs.CreateBotDialog;
+import org.beuwi.simulator.platform.ui.components.IContextMenu;
+import org.beuwi.simulator.platform.ui.components.IMenuItem;
 import org.beuwi.simulator.settings.Settings;
 
 import java.util.HashMap;
@@ -46,13 +48,9 @@ public class ActiveAreaPart
 
 	private static class ExplorerTabPart
 	{
-		private static ToggleButton tab;
-
-		private static Button button;
-
 		public static void initialize()
 		{
-			tab = (ToggleButton) nameSpace.get("tgnExplorerTab");
+			ToggleButton tab = (ToggleButton) nameSpace.get("tgnExplorerTab");
 			tab.setOnMousePressed(event ->
 			{
 				if (event.isPrimaryButtonDown())
@@ -61,21 +59,63 @@ public class ActiveAreaPart
 				}
 			});
 
-			button = (Button) nameSpace.get("btnShowOption");
+			// Option Button
+			IContextMenu option = new IContextMenu
+			(
+				new IMenuItem("Show Compiled Check"),
+				new IMenuItem("Show Compile Button"),
+				new IMenuItem("Show Power Switch")
+			);
+
+			Button button = (Button) nameSpace.get("btnShowOption");
 			button.setOnMousePressed(event ->
 			{
-				ShowExplorerOptionAction.update(event);
+				if (event.isPrimaryButtonDown())
+				{
+					option.show(button, event);
+				}
+			});
+
+			// List View
+			IContextMenu menu = new IContextMenu
+			(
+				new IMenuItem("New Bot", "Ctrl + N", event -> CreateBotDialog.display()),
+				new SeparatorMenuItem(),
+				new IMenuItem("Show in Explorer", "Shift + Alt + R", event -> ShowInExplorerAction.update(FileManager.BOTS_FOLDER)),
+				new SeparatorMenuItem(),
+				new IMenuItem("Copy Path", "Ctrl + Alt + C", event -> CopyAction.update(FileManager.BOTS_FOLDER.getAbsolutePath())),
+				new IMenuItem("Copy Relative Path", "Ctrl + Shift + C", event -> CopyAction.update(FileManager.BOTS_FOLDER.getPath()))
+			);
+
+			ListView listView = (ListView) nameSpace.get("lsvExplorerArea");
+			listView.setOnMousePressed(event ->
+			{
+				String target = event.getTarget().toString();
+
+				if (event.isSecondaryButtonDown())
+				{
+					if (target.contains("ListViewSkin$"))
+					{
+						menu.show(listView, event);
+					}
+					else
+					{
+						menu.hide();
+					}
+				}
+				else
+				{
+					menu.hide();
+				}
 			});
 		}
 	}
 
 	private static class DebugTabPart
 	{
-		private static ToggleButton tab;
-
 		public static void initialize()
 		{
-			tab = (ToggleButton) nameSpace.get("tgnDebugTab");
+			ToggleButton tab = (ToggleButton) nameSpace.get("tgnDebugTab");
 			tab.setOnMousePressed(event ->
 			{
 				if (event.isPrimaryButtonDown())
@@ -96,7 +136,7 @@ public class ActiveAreaPart
 
 			btnOpenChatRoom.setOnAction(event ->
 			{
-				OpenChatRoomTabAction.update();
+				OpenDebugRoomTabAction.update();
 			});
 
 			btnShowGlobalLog.setOnAction(event ->
@@ -126,8 +166,8 @@ public class ActiveAreaPart
 			Button btnSenderProfile = (Button) nameSpace.get("btnSenderProfile");
 			Button btnBotProfile    = (Button) nameSpace.get("btnBotProfile");
 
-			Button btnApply  = (Button) nameSpace.get("btnBotProfile");
-			Button btnCancel = (Button) nameSpace.get("btnBotProfile");
+			Button btnApply  = (Button) nameSpace.get("btnApply");
+			Button btnCancel = (Button) nameSpace.get("btnCancel");
 
 			Settings.Public data = Settings.getPublicSetting("chat");
 
@@ -138,7 +178,7 @@ public class ActiveAreaPart
 
 			tgnIsGroupChat.setSelected(data.getBoolean("isGroupChat"));
 			tgnSenderProfile.setSelected(data.getBoolean("visibleSenderProfile"));
-			tgnBotProfile.setSelected(data.getBoolean("visibleSenderProfile"));
+			tgnBotProfile.setSelected(data.getBoolean("visibleBotProfile"));
 
 			btnSenderProfile.setOnAction(event -> {});
 			btnBotProfile.setOnAction(event -> {});
@@ -153,7 +193,7 @@ public class ActiveAreaPart
 				map.put("package", txfPackageName.getText());
 				map.put("isGroupChat", tgnIsGroupChat.isSelected());
 				map.put("visibleSenderProfile", tgnSenderProfile.isSelected());
-				map.put("visibleSenderProfile", tgnBotProfile.isSelected());
+				map.put("visibleBotProfile", tgnBotProfile.isSelected());
 
 				data.putMap(map);
 			});

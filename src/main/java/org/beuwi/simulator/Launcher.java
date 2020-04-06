@@ -5,8 +5,9 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.beuwi.simulator.platform.application.actions.*;
 import org.beuwi.simulator.platform.application.views.MainWindowView;
+import org.beuwi.simulator.platform.application.views.dialogs.*;
 import org.beuwi.simulator.platform.application.views.parts.*;
-import org.beuwi.simulator.platform.application.views.tabs.ChatRoomTab;
+import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
 import org.beuwi.simulator.platform.application.views.tabs.GlobalLogTab;
 
 public class Launcher extends Application
@@ -38,33 +39,39 @@ public class Launcher extends Application
 			ActiveAreaPart.initialize();
 			EditorAreaPart.initialize();
 			StatusBarPart.initialize();
-			ChatRoomTab.initialize();
+
+			DebugRoomTab.initialize();
 			GlobalLogTab.initialize();
+
+			CreateBotDialog.initialize();
+			DeleteBotDialog.initialize();
+			ExistsBotDialog.initialize();
+			ImportScriptDialog.initialize();
+			RenameBotDialog.initialize();
+			SettingsDialog.initialize();
+			ShowErrorDialog.initialize();
 
 			new MainWindowView(stage).display();
 
 			// Initialize Actions
+			AddDebugLogAction.initialize();
 			AddEditorTabAction.initialize();
 			AddExplorerItemAction.initialize();
 			ChangeActivityTabAction.initialize();
 			CloseEditorTabAction.initialize();
 			HideSideBarAction.initialize();
-			OpenChatRoomTabAction.initialize();
+			OpenDebugRoomTabAction.initialize();
 			OpenGlobalLogTabAction.initialize();
 			ResizeSideBarAction.initialize();
 			SelectActivityTabAction.initialize();
 			SendChatMessageAction.initialize();
-			ShowExplorerOptionAction.initialize();
 
-			for (int i = 0 ; i < 7 ; i ++)
-			{
-				AddExplorerItemAction.update("TEST : " + (i + 1));
-				AddEditorTabAction.update("TEST : " + (i + 1));
-			}
+			new Integer("").parseInt(null);
+			// AddExplorerItemAction.update("TEST");
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			ShowErrorDialog.display(new Exception());
 		}
 	}
 

@@ -9,7 +9,7 @@ public class HideSideBarAction
 	private static HBox hbox;
 	private static AnchorPane pane;
 
-	private static boolean isHided = false;
+	private static boolean isHided;
 
 	public static void initialize()
 	{
