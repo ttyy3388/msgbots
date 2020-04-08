@@ -1,7 +1,8 @@
-package org.beuwi.simulator.platform.application.actions;
+package org.beuwi.simulator.platform.application.views.actions;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import org.beuwi.simulator.platform.application.views.actions.HideSideBarAction;
 import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 
 public class ResizeSideBarAction

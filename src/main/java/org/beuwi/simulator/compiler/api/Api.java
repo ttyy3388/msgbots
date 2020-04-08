@@ -3,7 +3,7 @@ package org.beuwi.simulator.compiler.api;
 import org.beuwi.simulator.compiler.engine.ScriptEngine;
 import org.beuwi.simulator.managers.BotManager;
 import org.beuwi.simulator.managers.FileManager;
-import org.beuwi.simulator.platform.application.actions.SendChatMessageAction;
+import org.beuwi.simulator.platform.application.views.actions.SendChatMessageAction;
 import org.beuwi.simulator.settings.Settings;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;

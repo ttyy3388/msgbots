@@ -1,7 +1,6 @@
 package org.beuwi.simulator.platform.application.views.dialogs;
 
-import javafx.application.Platform;
-import javafx.collections.ObservableMap;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,26 +11,28 @@ import org.beuwi.simulator.platform.application.actions.RenameBotAction;
 import org.beuwi.simulator.platform.ui.dialog.DialogBoxType;
 import org.beuwi.simulator.platform.ui.dialog.DialogBoxView;
 
-public class RenameBotDialog
+public class RenameBotDialog extends DialogBoxView
 {
-	private static ObservableMap<String, Object> nameSpace;
-	private static DialogBoxView dialog;
+	@FXML private Label label;
+	@FXML private TextField field;
 
-	private static Label label;
-	private static TextField field;
+	private Button btnRename;
+	private Button btnCancel;
 
-	private static Button btnRename;
-	private static Button btnCancel;
+	private String name;
 
-	private static String name;
-
-	public static void initialize()
+	public RenameBotDialog(String name)
 	{
-		dialog = new DialogBoxView(DialogBoxType.EVENT);
+		super(DialogBoxType.EVENT);
 
+		this.name = name;
+	}
+
+	public void display()
+	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(RenameBotDialog.class.getResource("/forms/RenameBotDialog.fxml"));
-		loader.setController(null);
+		loader.setLocation(getClass().getResource("/forms/RenameBotDialog.fxml"));
+		loader.setController(this);
 
 		Region root = null;
 
@@ -41,16 +42,19 @@ public class RenameBotDialog
 		}
 		catch (Exception e)
 		{
-			ShowErrorDialog.display(e);
+			new ShowErrorDialog(e).display();
 		}
 
-		nameSpace = loader.getNamespace();
+		setUseButton(true, true);
+		setContent(root);
+		setTitle("Rename");
+		create();
+	}
 
-		label = (Label) nameSpace.get("label");
-		field = (TextField) nameSpace.get("field");
-
-        btnRename = dialog.getOkButton();
-        btnCancel = dialog.getNoButton();
+	public void initialize()
+	{
+		btnRename = getOkButton();
+        btnCancel = getNoButton();
 
         btnRename.setText("Rename");
         btnCancel.setText("Cancel");
@@ -65,7 +69,7 @@ public class RenameBotDialog
             btnRename.setDisable(newString.isEmpty());
         });
 
-        dialog.setOnKeyPressed(event ->
+        setOnKeyPressed(event ->
         {
             if (event.getCode().equals(KeyCode.ENTER))
             {
@@ -76,28 +80,13 @@ public class RenameBotDialog
             }
         });
 
-        Platform.runLater(() -> field.requestFocus());
-
-		dialog.setUseButton(true, true);
-		dialog.setContent(root);
-		dialog.setTitle("Rename");
-		dialog.create();
+		label.setText("Rename bot '" + name + "'?");
+		field.setText(name);
+      	field.requestFocus();
 	}
 
-	public static void display(String name)
+	private void action()
 	{
-	    RenameBotDialog.name = name;
-
-        label.setText("Rename bot '" + name + "'?");
-        field.setText(name);
-
-	    dialog.show();
-	}
-
-	private static void action()
-	{
-		RenameBotAction.update(name, field.getText());
-
-		dialog.close();
+		RenameBotAction.update(name, field.getText()); close();
 	}
 }

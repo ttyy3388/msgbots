@@ -1,6 +1,7 @@
-package org.beuwi.simulator.platform.application.actions;
+package org.beuwi.simulator.platform.application.views.actions;
 
 import javafx.scene.layout.AnchorPane;
+import org.beuwi.simulator.platform.application.views.actions.AddEditorTabAction;
 import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
 import org.beuwi.simulator.platform.ui.components.ITabType;
 import org.beuwi.simulator.settings.Settings;

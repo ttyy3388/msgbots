@@ -2,7 +2,7 @@
 .debug-tab *
 {
 	-fx-font-family: D2Coding;
-	-fx-font-size: 15;
+	-fx-font-size: 14;
 }
 
 .split-pane-divider
@@ -16,12 +16,19 @@
 {
 	-fx-padding: 3 10 3 10;
 }
-.chat-area .list-cell .label
+
+.chat-area .list-cell .name-label
+{
+
+}
+
+.chat-area .list-cell .bot-label,
+.chat-area .list-cell .sender-label
 {
 	-fx-text-fill: #FFFFFF;
 	-fx-background-radius: 15;
-	-fx-background-insets: 5;
-	-fx-padding: 13;
+	-fx-background-insets: 2 0 2 0;
+	-fx-padding: 10;
 }
 .chat-area .list-cell .sender-label
 {

@@ -15,7 +15,6 @@
                <children>
                   <Button fx:id="DIALOG_BUTTON_OK" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" styleClass="button-ok" text="Ok" />
                   <Button fx:id="DIALOG_BUTTON_NO" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" styleClass="button-no" text="No" />
-                  <Button fx:id="DIALOG_BUTTON_ACTION" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" styleClass="button-action" text="Action" />
                </children>
             </HBox>
          </children>

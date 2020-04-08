@@ -1,7 +1,8 @@
-package org.beuwi.simulator.platform.application.actions;
+package org.beuwi.simulator.platform.application.views.actions;
 
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
 import org.beuwi.simulator.platform.ui.components.ICodeArea;
 import org.beuwi.simulator.platform.ui.components.ITab;
@@ -15,13 +16,27 @@ public class AddEditorTabAction
 
 	public static void initialize()
 	{
-		pane = EditorAreaPart.getComponent();
+		 pane = EditorAreaPart.getComponent();
 	}
 
 	// Script Tab
 	public static void update(String name)
 	{
-		update(name, new ICodeArea(), ITabType.SCRIPT);
+		ICodeArea area = new ICodeArea();
+
+		area.setText(FileManager.read(FileManager.getBotScript(name)));
+		area.setOnKeyPressed(event ->
+		{
+			if (event.isControlDown())
+			{
+				switch (event.getCode())
+				{
+					case S : SaveEditorTabAction.update(name); break;
+				}
+			}
+		});
+
+		update(name, area, ITabType.SCRIPT);
 	}
 
 	// Debug, Log Tab
@@ -43,7 +58,7 @@ public class AddEditorTabAction
 
 		Image image = switch (type)
 		{
-			case ITabType.CHAT  -> ResourceUtils.getImage("tab_chat.png");
+			case ITabType.CHAT   -> ResourceUtils.getImage("tab_chat.png");
 			case ITabType.LOG    -> ResourceUtils.getImage("tab_log.png");
 			case ITabType.SCRIPT -> ResourceUtils.getImage("tab_js.png");
 			default 			 -> null;

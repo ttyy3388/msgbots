@@ -114,6 +114,7 @@ public class DialogBoxView extends WindowStage implements Initializable
 
 		// initStyle(StageStyle.UNIFIED);
 		setScene(new WindowScene(DIALOG_PANE));
+		show();
 	}
 
 	@Override

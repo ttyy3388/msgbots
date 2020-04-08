@@ -1,4 +1,4 @@
-package org.beuwi.simulator.platform.application.actions;
+package org.beuwi.simulator.platform.application.views.actions;
 
 /*
 
@@ -17,6 +17,8 @@ package org.beuwi.simulator.platform.application.actions;
 
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.VBox;
+import org.beuwi.simulator.platform.application.views.actions.ChangeActivityTabAction;
+import org.beuwi.simulator.platform.application.views.actions.HideSideBarAction;
 import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 
 public class SelectActivityTabAction

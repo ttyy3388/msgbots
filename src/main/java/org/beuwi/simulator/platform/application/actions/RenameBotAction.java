@@ -14,7 +14,7 @@ public class RenameBotAction
 
 		if (after.exists())
 		{
-			ExistsBotDialog.display(newName);
+			new ExistsBotDialog(newName).display();
 		}
 		else
 		{

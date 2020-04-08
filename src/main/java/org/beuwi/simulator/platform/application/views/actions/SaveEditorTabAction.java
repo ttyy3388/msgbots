@@ -1,6 +1,8 @@
-package org.beuwi.simulator.platform.application.actions;
+package org.beuwi.simulator.platform.application.views.actions;
 
+import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
+import org.beuwi.simulator.platform.ui.components.ICodeArea;
 import org.beuwi.simulator.platform.ui.components.ITabPane;
 
 public class SaveEditorTabAction
@@ -21,11 +23,11 @@ public class SaveEditorTabAction
 	// 해당 탭 저장
 	public static void update(String name)
 	{
-		/* String id = "@script::" + name;
+		String id = "@script::" + name;
 
 		if (pane.getTabItem(id) != null)
 		{
 			FileManager.save(FileManager.getBotScript(name), ((ICodeArea) pane.getTabItem(id).getContent()).getText());
-		} */
+		}
 	}
 }

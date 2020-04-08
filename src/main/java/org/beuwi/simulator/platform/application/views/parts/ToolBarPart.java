@@ -7,13 +7,12 @@ import javafx.geometry.Side;
 import javafx.scene.control.Button;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.AnchorPane;
-import org.beuwi.simulator.platform.application.actions.OpenDebugRoomTabAction;
-import org.beuwi.simulator.platform.application.actions.OpenGlobalLogTabAction;
-import org.beuwi.simulator.platform.application.actions.SaveAllEditorTabsAction;
-import org.beuwi.simulator.platform.application.actions.SaveEditorTabAction;
+import org.beuwi.simulator.platform.application.views.actions.OpenDebugRoomTabAction;
+import org.beuwi.simulator.platform.application.views.actions.OpenGlobalLogTabAction;
+import org.beuwi.simulator.platform.application.views.actions.SaveAllEditorTabsAction;
+import org.beuwi.simulator.platform.application.views.actions.SaveEditorTabAction;
 import org.beuwi.simulator.platform.application.views.dialogs.CreateBotDialog;
 import org.beuwi.simulator.platform.application.views.dialogs.ImportScriptDialog;
-import org.beuwi.simulator.platform.application.views.dialogs.SettingsDialog;
 import org.beuwi.simulator.platform.ui.components.IContextMenu;
 import org.beuwi.simulator.platform.ui.components.IMenuItem;
 
@@ -51,7 +50,7 @@ public class ToolBarPart
 				new IMenuItem("Save", "Ctrl + S", event -> SaveEditorTabAction.update()),
 				new IMenuItem("Save All", "Ctrl + Shift + S", event -> SaveAllEditorTabsAction.update()),
 				new SeparatorMenuItem(),
-				new IMenuItem("Settings", "Ctrl + Alt + S", event -> new SettingsDialog().display())
+				new IMenuItem("Settings", "Ctrl + Alt + S", true/* new SettingsDialog().display() */)
 			);
 
 			Button button = (Button) nameSpace.get("btnFileMenu");
@@ -99,7 +98,7 @@ public class ToolBarPart
 			IContextMenu menu = new IContextMenu
 			(
 				new IMenuItem("Open Debug Room", event -> OpenDebugRoomTabAction.update()),
-				new IMenuItem("Show Global Log", event -> OpenGlobalLogTabAction.update())
+				new IMenuItem("Show Global Log", event -> OpenGlobalLogTabAction.update(), true)
 			);
 
 			Button button = (Button) nameSpace.get("btnDebugMenu");

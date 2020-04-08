@@ -20,7 +20,10 @@
 	-fx-alignment: center;
 }
 
-.button:disabled
+.label:disabled,
+.button:disabled,
+.menu-item:disabled,
+.toggle-button:disabled
 {
     -fx-opacity: 0.5;
     -fx-cursor: default;

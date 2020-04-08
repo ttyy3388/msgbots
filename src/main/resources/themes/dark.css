@@ -42,3 +42,7 @@
 {
 	-fx-text-fill: #FFFFFF;
 }
+/* .menu-item:disabled
+{
+	-fx-background-color: transparent;
+} */

@@ -32,17 +32,19 @@
 
 .tab-pane
 {
-    -fx-tab-min-height: 32;
+    -fx-tab-min-height: 24;
 }
 
 .tab
 {
 	-fx-background-color: #2D2D2D;
+    -fx-border-color: transparent;
+    -fx-border-width: 3 0 3 0;
 }
 .tab-header
 {
-	-fx-padding: 0 15 0 15;
-	-fx-spacing: 8;
+	-fx-padding: 0 14 0 14;
+	-fx-spacing: 10;
 }
 .tab-close-button
 {
@@ -92,6 +94,7 @@
 .tab:selected
 {
 	-fx-background-color: #1E1E1E;
+    -fx-border-color: #007ACC transparent transparent transparent;
 }
 .tab:selected .tab-title-label
 {

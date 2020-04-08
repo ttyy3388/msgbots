@@ -1,34 +1,35 @@
 package org.beuwi.simulator.platform.application.views.dialogs;
 
-import javafx.application.Platform;
-import javafx.collections.ObservableMap;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Region;
 import org.beuwi.simulator.platform.application.actions.CreateBotAction;
 import org.beuwi.simulator.platform.ui.dialog.DialogBoxType;
 import org.beuwi.simulator.platform.ui.dialog.DialogBoxView;
 
-public class CreateBotDialog
+public class CreateBotDialog extends DialogBoxView
 {
-	private static ObservableMap<String, Object> nameSpace;
-	private static DialogBoxView dialog;
+	@FXML private TextField txfScriptName;
+	@FXML private CheckBox chkUnifiedParams;
+	@FXML private CheckBox chkRuntimeError;
 
-	private static TextField txfScriptName;
-	private static CheckBox chkUnifiedParams;
-	private static CheckBox chkRuntimeError;
+	private Button btnCreate;
+	private Button btnCancel;
 
-	private static Button btnCreate;
-	private static Button btnCancel;
-
-	public static void initialize()
+	public CreateBotDialog()
 	{
-		dialog = new DialogBoxView(DialogBoxType.NONE);
+		super(DialogBoxType.NONE);
+	}
 
+	public void display()
+	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(CreateBotDialog.class.getResource("/forms/CreateBotDialog.fxml"));
-		loader.setController(null);
+		loader.setLocation(getClass().getResource("/forms/CreateBotDialog.fxml"));
+		loader.setController(this);
 
 		Region root = null;
 
@@ -41,14 +42,16 @@ public class CreateBotDialog
 			e.printStackTrace();
 		}
 
-		nameSpace = loader.getNamespace();
+		setUseButton(true, true);
+		setContent(root);
+		setTitle("Create");
+		create();
+	}
 
-		txfScriptName    = (TextField) nameSpace.get("txfScriptName");
-		chkUnifiedParams = (CheckBox) nameSpace.get("chkUnifiedParams");
-		chkRuntimeError  = (CheckBox) nameSpace.get("chkRuntimeError");
-
-		btnCreate = dialog.getOkButton();
-		btnCancel = dialog.getNoButton();
+	public void initialize()
+	{
+		btnCreate = getOkButton();
+		btnCancel = getNoButton();
 
 		btnCreate.setDisable(true);
 		btnCreate.setText("Create");
@@ -64,7 +67,7 @@ public class CreateBotDialog
 			btnCreate.setDisable(newString.isEmpty());
 		});
 
-		dialog.setOnKeyPressed(event ->
+		setOnKeyPressed(event ->
 		{
 			if (event.getCode().equals(KeyCode.ENTER))
 			{
@@ -74,24 +77,9 @@ public class CreateBotDialog
 				}
 			}
 		});
-
-		Platform.runLater(() ->
-		{
-			txfScriptName.requestFocus();
-		});
-
-		dialog.setUseButton(true, true);
-		dialog.setContent(root);
-		dialog.setTitle("Create");
-		dialog.create();
 	}
 
-	public static void display()
-	{
-		dialog.show();
-	}
-
-	private static void action()
+	private void action()
 	{
 		CreateBotAction.update
 		(
@@ -101,6 +89,6 @@ public class CreateBotDialog
 			chkRuntimeError.isSelected()
 		);
 
-		dialog.close();
+		close();
 	}
 }

@@ -1,6 +1,6 @@
 package org.beuwi.simulator.platform.application.views.dialogs;
 
-import javafx.collections.ObservableMap;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,47 +10,27 @@ import org.beuwi.simulator.platform.application.actions.DeleteBotAction;
 import org.beuwi.simulator.platform.ui.dialog.DialogBoxType;
 import org.beuwi.simulator.platform.ui.dialog.DialogBoxView;
 
-public class DeleteBotDialog
+public class DeleteBotDialog extends DialogBoxView
 {
-	private static ObservableMap<String, Object> nameSpace;
-	private static DialogBoxView dialog;
+	@FXML private Label label;
 
-	private static Label label;
+	private Button btnDelete;
+	private Button btnCancel;
 
-	private static Button btnDelete;
-	private static Button btnCancel;
+	private String name;
 
-	private static String name;
-
-	public static void initialize()
+	public DeleteBotDialog(String name)
 	{
-		dialog = new DialogBoxView(DialogBoxType.ERROR);
+		super(DialogBoxType.ERROR);
 
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(CreateBotDialog.class.getResource("/forms/CreateBotDialog.fxml"));
-		loader.setController(null);
-
-		Region root = null;
-
-		try
-		{
-			root = loader.load();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-
-		nameSpace = loader.getNamespace();
+		this.name = name;
 	}
 
-	public static void display()
+	public void display()
 	{
-		dialog = new DialogBoxView(DialogBoxType.ERROR);
-
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(DeleteBotDialog.class.getResource("/forms/DeleteBotDialog.fxml"));
-		loader.setController(null);
+		loader.setLocation(getClass().getResource("/forms/DeleteBotDialog.fxml"));
+		loader.setController(this);
 
 		Region root = null;
 
@@ -60,15 +40,21 @@ public class DeleteBotDialog
 		}
 		catch (Exception e)
 		{
-			ShowErrorDialog.display(e);
+			new ShowErrorDialog(e).display();
 		}
 
-		nameSpace = loader.getNamespace();
+		initialize();
 
-		label = (Label) nameSpace.get("label");
+		setUseButton(true, false);
+		setContent(root);
+		setTitle("Delete");
+		create();
+	}
 
-		btnDelete = dialog.getOkButton();
-		btnCancel = dialog.getNoButton();
+	private void initialize()
+	{
+		btnDelete = getOkButton();
+		btnCancel = getNoButton();
 
 		btnDelete.setText("Delete");
 		btnCancel.setText("Cancel");
@@ -78,7 +64,7 @@ public class DeleteBotDialog
 			action();
 		});
 
-		dialog.setOnKeyPressed(event ->
+		setOnKeyPressed(event ->
 		{
 			if (event.getCode().equals(KeyCode.ENTER))
 			{
@@ -86,25 +72,11 @@ public class DeleteBotDialog
 			}
 		});
 
-		dialog.setUseButton(true, false);
-		dialog.setContent(root);
-		dialog.setTitle("Delete");
-		dialog.create();
-	}
-
-	public static void display(String name)
-	{
-		DeleteBotDialog.name = name;
-
 		label.setText("Delete bot '" + name + "'?");
-
-		dialog.show();
 	}
 
-	private static void action()
+	private void action()
 	{
-		DeleteBotAction.update(name);
-
-		dialog.close();
+		DeleteBotAction.update(name); close();
 	}
 }

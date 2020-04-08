@@ -1,6 +1,5 @@
 package org.beuwi.simulator.platform.application.views.tabs;
 
-import javafx.application.Platform;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -9,7 +8,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
-import org.beuwi.simulator.platform.application.actions.SendChatMessageAction;
+import org.beuwi.simulator.platform.application.views.actions.SendChatMessageAction;
 
 public class DebugRoomTab
 {
@@ -49,8 +48,10 @@ public class DebugRoomTab
 						event.consume();
 						return ;
 					}
-					else if (button.isDisable())
+
+					if (button.isDisable())
 					{
+						textArea.setText("");
 						event.consume();
 						return ;
 					}
@@ -73,10 +74,7 @@ public class DebugRoomTab
 				textArea.clear();
 			});
 
-			Platform.runLater(() ->
-			{
-				textArea.requestFocus();
-			});
+			textArea.requestFocus();
 		}
 	}
 

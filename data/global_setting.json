@@ -5,7 +5,7 @@
 		"bot":"DEBUG BOT",
 		"visibleSenderProfile":false,
 		"visibleBotProfile":true,
-		"isGroupChat":false,
+		"isGroupChat":true,
 		"room":"DEBUG ROOM"
 	},
 	"program":{

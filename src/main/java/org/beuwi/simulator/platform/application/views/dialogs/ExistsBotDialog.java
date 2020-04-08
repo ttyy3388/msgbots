@@ -1,26 +1,30 @@
 package org.beuwi.simulator.platform.application.views.dialogs;
 
-import javafx.collections.ObservableMap;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import org.beuwi.simulator.platform.ui.dialog.DialogBoxType;
 import org.beuwi.simulator.platform.ui.dialog.DialogBoxView;
 
-public class ExistsBotDialog
+public class ExistsBotDialog extends DialogBoxView
 {
-    private static ObservableMap<String, Object> nameSpace;
-    private static DialogBoxView dialog;
+    @FXML private Label label;
 
-    private static Label label;
+    private String name;
 
-    public static void initialize()
+    public ExistsBotDialog(String name)
     {
-        dialog = new DialogBoxView(DialogBoxType.ERROR);
+        super(DialogBoxType.ERROR);
 
+        this.name = name;
+    }
+
+    public void display()
+    {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(ExistsBotDialog.class.getResource("/forms/ExistsBotDialog.fxml"));
-        loader.setController(null);
+        loader.setLocation(getClass().getResource("/forms/ExistsBotDialog.fxml"));
+        loader.setController(this);
 
         Region root = null;
 
@@ -30,23 +34,17 @@ public class ExistsBotDialog
         }
         catch (Exception e)
         {
-            ShowErrorDialog.display(e);
+            new ShowErrorDialog(e).display();
         }
 
-        nameSpace = loader.getNamespace();
-
-        label = (Label) nameSpace.get("label");
-
-        dialog.setUseButton(true, false);
-        dialog.setContent(root);
-        dialog.setTitle("Exists");
-        dialog.create();
+        setUseButton(true, false);
+        setContent(root);
+        setTitle("Exists");
+        create();
     }
 
-    public static void display(String name)
+    public void initialize()
     {
         label.setText("Cannot create bot '" + name + "' bot already exists.");
-
-        dialog.show();
     }
 }

@@ -37,18 +37,18 @@ public class EditorAreaPart
 	/* public static SplitPane getComponent()
 	{
 		return (SplitPane) root.getChildren().get(0);
-	}
+	} */
 
-	public static ITabPane getCurrentTabPane()
+	/* public static ITabPane getCurrentPane()
 	{
 		SplitPane pane = getComponent();
 
-		for (Node node : pane.getItems())
+		/* for (Node node : pane.getItems())
 		{
-			if (node.isFocused())
-			{
-				return (ITabPane) node;
-			}
+			System.out.println(node.isFocused());
+			System.out.println(node.isManaged());
+			System.out.println(node.isPressed());
+			System.out.println(node.isFocusTraversable());
 		}
 
 		return (ITabPane) pane.getItems().get(0);

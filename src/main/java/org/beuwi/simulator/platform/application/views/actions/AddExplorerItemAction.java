@@ -1,4 +1,4 @@
-package org.beuwi.simulator.platform.application.actions;
+package org.beuwi.simulator.platform.application.views.actions;
 
 import com.jfoenix.controls.JFXToggleButton;
 import javafx.geometry.Pos;
@@ -7,12 +7,18 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import org.beuwi.simulator.compiler.api.Api;
+import org.beuwi.simulator.compiler.engine.ScriptEngine;
+import org.beuwi.simulator.managers.BotManager;
 import org.beuwi.simulator.managers.FileManager;
+import org.beuwi.simulator.platform.application.actions.CopyAction;
+import org.beuwi.simulator.platform.application.actions.ShowInExplorerAction;
 import org.beuwi.simulator.platform.application.views.dialogs.DeleteBotDialog;
 import org.beuwi.simulator.platform.application.views.dialogs.RenameBotDialog;
 import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 import org.beuwi.simulator.platform.ui.components.IContextMenu;
 import org.beuwi.simulator.platform.ui.components.IMenuItem;
+import org.beuwi.simulator.settings.Settings;
 
 public class AddExplorerItemAction
 {
@@ -32,8 +38,8 @@ public class AddExplorerItemAction
 			new IMenuItem("Copy Path", "Ctrl + Alt + C", event -> CopyAction.update(FileManager.getBotFolder(name).getAbsolutePath())),
 			new IMenuItem("Copy Relative Path", "Ctrl + Shift + C", event -> CopyAction.update(FileManager.getBotFolder(name).getPath())),
 			new SeparatorMenuItem(),
-			new IMenuItem("Rename", event -> RenameBotDialog.display(name)),
-			new IMenuItem("Delete", event -> DeleteBotDialog.display(name))
+			new IMenuItem("Rename", event -> new RenameBotDialog(name).display()),
+			new IMenuItem("Delete", event -> new DeleteBotDialog(name).display())
 		);
 
 		HBox 			itemCell    = new HBox();
@@ -65,7 +71,7 @@ public class AddExplorerItemAction
 			}
 		});
 
-		/* itemCompile.setOnMousePressed(event ->
+		itemCompile.setOnMousePressed(event ->
 		{
 			if (event.isPrimaryButtonDown())
 			{
@@ -83,7 +89,7 @@ public class AddExplorerItemAction
 		itemCompile.setPrefSize(30, 30);
 
 		BotManager.data.put("@check::" + name, itemCheck);
-		BotManager.data.put("@switch::" + name, itemSwitch); */
+		BotManager.data.put("@switch::" + name, itemSwitch);
 
 		listView.getItems().add(itemCell);
 	}

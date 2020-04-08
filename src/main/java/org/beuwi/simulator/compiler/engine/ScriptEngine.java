@@ -4,7 +4,8 @@ import javafx.application.Platform;
 import org.beuwi.simulator.compiler.api.*;
 import org.beuwi.simulator.managers.BotManager;
 import org.beuwi.simulator.managers.FileManager;
-import org.beuwi.simulator.platform.application.actions.SendChatMessageAction;
+import org.beuwi.simulator.managers.LogManager;
+import org.beuwi.simulator.platform.application.views.actions.SendChatMessageAction;
 import org.beuwi.simulator.settings.Settings;
 import org.mozilla.javascript.*;
 import org.mozilla.javascript.annotations.JSStaticFunction;
@@ -51,7 +52,7 @@ public class ScriptEngine
 
 	public static boolean setInitialize(String name, boolean isManual, boolean ignoreError)
 	{
-		//LogManager.addError("컴파일 시작 : " + name);
+		LogManager.addEvent("컴파일 시작 : " + name);
 
 		compiling.put(name, true);
 
@@ -135,7 +136,7 @@ public class ScriptEngine
 				container.get(name).setOnStartCompile(null);
 			}
 
-			// LogManager.addError(e.toString() + " : " + name);
+			LogManager.addError(e.toString() + " : " + name);
 
 			compiling.put(name, false);
 
@@ -152,7 +153,7 @@ public class ScriptEngine
 
 		BotManager.setCompiled(name, true);
 
-		// LogManager.addError("컴파일 완료 : " + name);
+		LogManager.addEvent("컴파일 완료 : " + name);
 
 		return true;
 	}
@@ -207,7 +208,7 @@ public class ScriptEngine
 		}
 		catch (Throwable e)
 		{
-			// LogManager.addError(e.toString() + " : " + name);
+			LogManager.addError(e.toString() + " : " + name);
 
 			if (Settings.getScriptSetting(name).getBoolean("offOnRuntimeError"))
 			{

@@ -1,7 +1,6 @@
 package org.beuwi.simulator.platform.application.views.dialogs;
 
-import javafx.application.Platform;
-import javafx.collections.ObservableMap;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -17,28 +16,28 @@ import org.beuwi.simulator.platform.ui.dialog.DialogBoxView;
 
 import java.io.File;
 
-public class ImportScriptDialog
+public class ImportScriptDialog extends DialogBoxView
 {
-	private static ObservableMap<String, Object> nameSpace;
-	private static DialogBoxView dialog;
+	@FXML private TextField txfScriptName;
+	@FXML private Button    btnScriptOpen;
+	@FXML private CheckBox  chkUnifiedParams;
+	@FXML private CheckBox  chkRuntimeError;
 
-	private static TextField txfScriptName;
-	private static Button    btnScriptOpen;
-	private static CheckBox  chkUnifiedParams;
-	private static CheckBox  chkRuntimeError;
+	private Button btnImport;
+	private Button btnCancel;
 
-	private static Button btnImport;
-	private static Button btnCancel;
+	private File file;
 
-	private static File file;
-
-	public static void initialize()
+	public ImportScriptDialog()
 	{
-		dialog = new DialogBoxView(DialogBoxType.NONE);
+		super(DialogBoxType.NONE);
+	}
 
+	public void display()
+	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(ImportScriptDialog.class.getResource("/forms/ImportScriptDialog.fxml"));
-		loader.setController(null);
+		loader.setLocation(getClass().getResource("/forms/ImportScriptDialog.fxml"));
+		loader.setController(this);
 
 		Region root = null;
 
@@ -48,18 +47,21 @@ public class ImportScriptDialog
 		}
 		catch (Exception e)
 		{
-			ShowErrorDialog.display(e);
+			new ShowErrorDialog(e).display();
 		}
 
-		nameSpace = loader.getNamespace();
+		initialize();
 
-		txfScriptName    = (TextField) nameSpace.get("txfScriptName");
-		btnScriptOpen    = (Button) nameSpace.get("btnScriptOpen");;
-		chkUnifiedParams = (CheckBox) nameSpace.get("chkUnifiedParams");;
-		chkRuntimeError  = (CheckBox) nameSpace.get("chkRuntimeError");;
+		setUseButton(true, true);
+		setContent(root);
+		setTitle("Import");
+		create();
+	}
 
-		btnImport = dialog.getOkButton();
-		btnCancel = dialog.getNoButton();
+	private void initialize()
+	{
+		btnImport = getOkButton();
+		btnCancel = getNoButton();
 
 		btnImport.setDisable(true);
 		btnImport.setText("Import");
@@ -90,7 +92,7 @@ public class ImportScriptDialog
 			btnImport.setDisable(newString.isEmpty());
 		});
 
-		dialog.setOnKeyPressed(event ->
+		setOnKeyPressed(event ->
 		{
 			if (event.getCode().equals(KeyCode.ENTER))
 			{
@@ -100,24 +102,9 @@ public class ImportScriptDialog
 				}
 			}
 		});
-
-		Platform.runLater(() ->
-		{
-			txfScriptName.requestFocus();
-		});
-
-		dialog.setUseButton(true, true);
-		dialog.setContent(root);
-		dialog.setTitle("Import");
-		dialog.create();
 	}
 
-	public static void display()
-	{
-		dialog.show();
-	}
-
-	private static void action()
+	private void action()
 	{
 		CreateBotAction.update
 		(
@@ -127,6 +114,6 @@ public class ImportScriptDialog
 			chkRuntimeError.isSelected()
 		);
 
-		dialog.close();
+		close();
 	}
 }

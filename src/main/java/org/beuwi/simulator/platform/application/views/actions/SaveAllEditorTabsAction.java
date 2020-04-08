@@ -1,6 +1,5 @@
-package org.beuwi.simulator.platform.application.actions;
+package org.beuwi.simulator.platform.application.views.actions;
 
-import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
 import org.beuwi.simulator.platform.ui.components.ITabPane;
 
 public class SaveAllEditorTabsAction
@@ -9,7 +8,7 @@ public class SaveAllEditorTabsAction
 
     public static void initialize()
     {
-        pane = EditorAreaPart.getComponent();
+        // pane = EditorAreaPart.getComponent();
     }
 
     public static void update()

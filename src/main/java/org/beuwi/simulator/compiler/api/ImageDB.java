@@ -23,7 +23,7 @@ public class ImageDB
 		}
 		catch (Exception e)
 		{
-			ShowErrorDialog.display(e);
+			new ShowErrorDialog(e).display();
 		}
 
 		return null;

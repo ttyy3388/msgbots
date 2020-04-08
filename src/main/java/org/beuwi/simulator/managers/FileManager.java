@@ -82,7 +82,7 @@ public class FileManager
 		}
 		catch (Exception e)
 		{
-			ShowErrorDialog.display(e);
+			new ShowErrorDialog(e).display();
 		}
 
 		return null;
@@ -102,7 +102,7 @@ public class FileManager
 		}
 		catch (Exception e)
 		{
-			ShowErrorDialog.display(e);
+			new ShowErrorDialog(e).display();
 		}
 
 		return null;
@@ -131,7 +131,7 @@ public class FileManager
 		}
 		catch (Exception e)
 		{
-			ShowErrorDialog.display(e);
+			new ShowErrorDialog(e).display();
 		}
 
 		return null;
@@ -161,7 +161,7 @@ public class FileManager
 		}
 		catch (Exception e)
 		{
-			ShowErrorDialog.display(e);
+			new ShowErrorDialog(e).display();
 		}
 
 		return false;

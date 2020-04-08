@@ -26,12 +26,27 @@ public class IMenuItem extends MenuItem
 		this(null, text, null, handler);
 	}
 
+	public IMenuItem(String text, EventHandler<ActionEvent> handler, boolean disable)
+	{
+		this(null, text, null, handler, disable);
+	}
+
 	public IMenuItem(String text, String command, EventHandler<ActionEvent> handler)
 	{
 		this(null, text, command, handler);
 	}
 
+	public IMenuItem(String text, String command, boolean disable)
+	{
+		this(null, text, null, null, disable);
+	}
+
 	public IMenuItem(Image image, String text, String command, EventHandler<ActionEvent> handler)
+	{
+		this(image, text, command, handler, false);
+	}
+
+	public IMenuItem(Image image, String text, String command, EventHandler<ActionEvent> handler, boolean disable)
 	{
 		HBox cell = new HBox();
 		cell.setPrefWidth(150);
@@ -47,6 +62,7 @@ public class IMenuItem extends MenuItem
 		cell.getChildren().addAll(new ImageView(image), name);
 
 		setGraphic(cell);
+		setDisable(disable);
 		setOnAction(handler);
 	}
 }

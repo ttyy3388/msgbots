@@ -4,11 +4,13 @@
 
 }
 
-.tab .text
+.tab-label
 {
+    -fx-background-color: white;
     -fx-rotate: 90;
 }
-.tab:selected .label
+
+.tab:selected .tab-label
 {
     -fx-text-fill: #FFFFFF;
 }

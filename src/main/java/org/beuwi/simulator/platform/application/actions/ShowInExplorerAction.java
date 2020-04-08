@@ -26,7 +26,7 @@ public class ShowInExplorerAction
 		}
 		catch (Exception e)
 		{
-			ShowErrorDialog.display(e);
+			new ShowErrorDialog(e).display();
 		}
 	}
 }

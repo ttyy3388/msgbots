@@ -1,4 +1,4 @@
-package org.beuwi.simulator.platform.application.actions;
+package org.beuwi.simulator.platform.application.views.actions;
 
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;

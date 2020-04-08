@@ -1,6 +1,6 @@
-package org.beuwi.simulator.platform.application.actions;
+package org.beuwi.simulator.platform.application.views.actions;
 
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
 import org.beuwi.simulator.platform.ui.components.ILogItem;
@@ -28,10 +28,30 @@ public class AddDebugLogAction
 				logType == ILogType.WARNING ? "warning" :
 				logType == ILogType.EVENT ? "event" : null);
 
-		// lsvGlobalLog.getItems().add(item);
-		// lsvGlobalLog.scrollTo(item);
-
 		lsvDebugRoom.getItems().add(item);
 		lsvDebugRoom.scrollTo(item);
+
+		lsvDebugRoom.setCellFactory(param -> new ListCell<AnchorPane>()
+		{
+			{
+				prefWidthProperty().bind(lsvDebugRoom.widthProperty().subtract(2));
+				setMaxWidth(Control.USE_PREF_SIZE);
+			}
+
+			@Override
+			protected void updateItem(AnchorPane item, boolean empty)
+			{
+				super.updateItem(item, empty);
+
+				if (item != null && !empty)
+				{
+					setGraphic(item);
+				}
+				else
+				{
+					setGraphic(null);
+				}
+			}
+		});
 	}
 }

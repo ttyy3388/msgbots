@@ -10,9 +10,9 @@
       <TextField fx:id="txfScriptName" layoutY="100.0" prefWidth="300.0" AnchorPane.leftAnchor="30.0" />
       <Label layoutX="30.0" layoutY="20.0" styleClass="header-label" text="Create New Bot" />
       <Label layoutX="60.0" layoutY="170.0" text="통합된 매개변수를 사용합니다." AnchorPane.leftAnchor="60.0" />
-      <CheckBox fx:id="chkUseUnifiedParams" layoutY="167.5" AnchorPane.leftAnchor="30.0" />
+      <CheckBox fx:id="chkUnifiedParams" layoutY="167.5" AnchorPane.leftAnchor="30.0" />
       <Label layoutX="60.0" layoutY="212.0" text="런타임 에러 시 자동으로 봇의 전원을 끕니다. (권장)" />
-      <CheckBox fx:id="chkOffOnRuntimeError" layoutY="210.0" selected="true" AnchorPane.leftAnchor="30.0" />
+      <CheckBox fx:id="chkRuntimeError" layoutY="210.0" selected="true" AnchorPane.leftAnchor="30.0" />
       <Label fx:id="lblScriptDefault" layoutY="80.0" text="봇 이름" AnchorPane.leftAnchor="30.0" />
    </children>
 </AnchorPane>

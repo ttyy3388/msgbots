@@ -13,7 +13,7 @@ public class CreateBotAction
 
 		if (project.exists())
 		{
-			ExistsBotDialog.display(name);
+			new ExistsBotDialog(name).display();
 		}
 		else
 		{

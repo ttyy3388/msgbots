@@ -2,20 +2,33 @@ package org.beuwi.simulator.platform.application.views.parts;
 
 import com.jfoenix.controls.JFXToggleButton;
 import javafx.collections.ObservableMap;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import org.beuwi.simulator.managers.FileManager;
-import org.beuwi.simulator.platform.application.actions.*;
+import org.beuwi.simulator.platform.application.actions.CopyAction;
+import org.beuwi.simulator.platform.application.actions.ShowInExplorerAction;
+import org.beuwi.simulator.platform.application.views.MainWindowView;
+import org.beuwi.simulator.platform.application.views.actions.OpenDebugRoomTabAction;
+import org.beuwi.simulator.platform.application.views.actions.OpenGlobalLogTabAction;
+import org.beuwi.simulator.platform.application.views.actions.ResizeSideBarAction;
+import org.beuwi.simulator.platform.application.views.actions.SelectActivityTabAction;
 import org.beuwi.simulator.platform.application.views.dialogs.CreateBotDialog;
+import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
 import org.beuwi.simulator.platform.ui.components.IContextMenu;
 import org.beuwi.simulator.platform.ui.components.IMenuItem;
 import org.beuwi.simulator.settings.Settings;
 
+import javax.imageio.ImageIO;
+import java.io.File;
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ActiveAreaPart
 {
@@ -79,7 +92,7 @@ public class ActiveAreaPart
 			// List View
 			IContextMenu menu = new IContextMenu
 			(
-				new IMenuItem("New Bot", "Ctrl + N", event -> CreateBotDialog.display()),
+				new IMenuItem("New Bot", "Ctrl + N", event -> new CreateBotDialog().display()),
 				new SeparatorMenuItem(),
 				new IMenuItem("Show in Explorer", "Shift + Alt + R", event -> ShowInExplorerAction.update(FileManager.BOTS_FOLDER)),
 				new SeparatorMenuItem(),
@@ -130,9 +143,14 @@ public class ActiveAreaPart
 
 		private static void initButtonBar()
 		{
+			Button btnReloadAllBots = (Button) nameSpace.get("btnReloadAllBots");
 			Button btnOpenChatRoom  = (Button) nameSpace.get("btnOpenChatRoom");
 			Button btnShowGlobalLog = (Button) nameSpace.get("btnShowGlobalLog");
-			Button btnReloadAllBots = (Button) nameSpace.get("btnReloadAllBots");
+
+			btnReloadAllBots.setOnAction(event ->
+			{
+				// ReloadAllBotsAction.update();
+			});
 
 			btnOpenChatRoom.setOnAction(event ->
 			{
@@ -142,11 +160,6 @@ public class ActiveAreaPart
 			btnShowGlobalLog.setOnAction(event ->
 			{
 				OpenGlobalLogTabAction.update();
-			});
-
-			btnReloadAllBots.setOnAction(event ->
-			{
-				// ReloadAllBotsAction.update();
 			});
 		}
 
@@ -169,6 +182,9 @@ public class ActiveAreaPart
 			Button btnApply  = (Button) nameSpace.get("btnApply");
 			Button btnCancel = (Button) nameSpace.get("btnCancel");
 
+			AtomicReference<Image> imgSenderProfile = new AtomicReference<>();
+			AtomicReference<Image> imgBotProfile    = new AtomicReference<>();
+
 			Settings.Public data = Settings.getPublicSetting("chat");
 
 			txfRoomName.setText(data.getString("room"));
@@ -180,8 +196,33 @@ public class ActiveAreaPart
 			tgnSenderProfile.setSelected(data.getBoolean("visibleSenderProfile"));
 			tgnBotProfile.setSelected(data.getBoolean("visibleBotProfile"));
 
-			btnSenderProfile.setOnAction(event -> {});
-			btnBotProfile.setOnAction(event -> {});
+			btnSenderProfile.setOnAction(event ->
+			{
+				FileChooser fileChooser = new FileChooser();
+				fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image File", "*.jpg", "*.png", "*.gif"));
+				fileChooser.setTitle("Change Profile");
+
+				File file = fileChooser.showOpenDialog(MainWindowView.getStage());
+
+				if (file != null)
+				{
+					imgSenderProfile.set(new Image(file.toURI().toString()));
+				}
+			});
+
+			btnBotProfile.setOnAction(event ->
+			{
+				FileChooser fileChooser = new FileChooser();
+				fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image File", "*.jpg", "*.png", "*.gif"));
+				fileChooser.setTitle("Change Profile");
+
+				File file = fileChooser.showOpenDialog(MainWindowView.getStage());
+
+				if (file != null)
+				{
+					imgBotProfile.set(new Image(file.toURI().toString()));
+				}
+			});
 
 			btnApply.setOnAction(event ->
 			{
@@ -194,6 +235,24 @@ public class ActiveAreaPart
 				map.put("isGroupChat", tgnIsGroupChat.isSelected());
 				map.put("visibleSenderProfile", tgnSenderProfile.isSelected());
 				map.put("visibleBotProfile", tgnBotProfile.isSelected());
+
+				try
+				{
+					if (imgSenderProfile.get() != null)
+					{
+						ImageIO.write(SwingFXUtils.fromFXImage(imgSenderProfile.get(), null), "png", FileManager.getDataFile("profile_sender.png"));
+					}
+
+					if (imgBotProfile.get() != null)
+					{
+						ImageIO.write(SwingFXUtils.fromFXImage(imgBotProfile.get(), null), "png", FileManager.getDataFile("profile_bot.png"));
+					}
+
+				}
+				catch (Exception e)
+				{
+					new ShowErrorDialog(e).display();
+				}
 
 				data.putMap(map);
 			});

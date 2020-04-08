@@ -59,9 +59,9 @@
                                     <Label text="SIMULATION" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="0.0" />
                                     <HBox layoutX="38.0" layoutY="-25.0" spacing="8.0" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="11.0">
                                        <children>
-                                          <Button fx:id="btnShowGlobalLog" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="reload-button" />
+                                          <Button fx:id="btnReloadAllBots" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="reload-button" />
                                           <Button fx:id="btnOpenChatRoom" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="chat-button" />
-                                          <Button fx:id="btnReloadAllBots" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="log-button" />
+                                          <Button fx:id="btnShowGlobalLog" disable="true" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="log-button" />
                                        </children>
                                     </HBox>
                                  </children>

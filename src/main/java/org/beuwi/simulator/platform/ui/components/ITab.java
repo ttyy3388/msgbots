@@ -5,7 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.HBox;
-import org.beuwi.simulator.platform.application.actions.CloseEditorTabAction;
+import org.beuwi.simulator.platform.application.views.actions.CloseEditorTabAction;
 
 public class ITab extends Tab
 {

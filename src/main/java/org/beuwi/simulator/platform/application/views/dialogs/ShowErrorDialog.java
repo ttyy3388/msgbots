@@ -1,6 +1,6 @@
 package org.beuwi.simulator.platform.application.views.dialogs;
 
-import javafx.collections.ObservableMap;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -11,22 +11,25 @@ import org.beuwi.simulator.platform.ui.dialog.DialogBoxView;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-public class ShowErrorDialog
+public class ShowErrorDialog extends DialogBoxView
 {
-	private static ObservableMap<String, Object> nameSpace;
+	@FXML private Label header;
+	@FXML private TextArea content;
 
-	private static DialogBoxView dialog;
+	private Exception exception;
 
-	private static Label header;
-	private static TextArea content;
-
-	public static void initialize()
+	public ShowErrorDialog(Exception exception)
 	{
-		dialog = new DialogBoxView(DialogBoxType.ERROR);
+		super(DialogBoxType.ERROR);
 
+		this.exception = exception;
+	}
+
+	public void display()
+	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(ShowErrorDialog.class.getResource("/forms/ShowErrorDialog.fxml"));
-		loader.setController(null);
+		loader.setLocation(getClass().getResource("/forms/ShowErrorDialog.fxml"));
+		loader.setController(this);
 
 		Region root = null;
 
@@ -39,25 +42,18 @@ public class ShowErrorDialog
 			e.printStackTrace();
 		}
 
-		nameSpace = loader.getNamespace();
-
-		header  = (Label) nameSpace.get("header");
-		content = (TextArea) nameSpace.get("content");
-
-		dialog.setUseButton(true, false);
-		dialog.setContent(root);
-		dialog.setTitle("Error");
-		dialog.create();
+		setUseButton(true, false);
+		setContent(root);
+		setTitle("Error");
+		create();
 	}
 
-	public static void display(Exception error)
+	public void initialize()
 	{
 		StringWriter message = new StringWriter();
-		error.printStackTrace(new PrintWriter(message));
+		exception.printStackTrace(new PrintWriter(message));
 
-		header.setText(error.toString());
+		header.setText(exception.toString());
 		content.setText(message.toString());
-
-		dialog.show();
 	}
 }

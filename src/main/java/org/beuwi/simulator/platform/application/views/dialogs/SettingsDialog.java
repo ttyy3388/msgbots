@@ -1,24 +1,13 @@
 package org.beuwi.simulator.platform.application.views.dialogs;
 
-import javafx.collections.ObservableMap;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
-import org.beuwi.simulator.platform.ui.dialog.DialogBoxType;
-import org.beuwi.simulator.platform.ui.dialog.DialogBoxView;
-
 public class SettingsDialog
 {
-	private static ObservableMap<String, Object> nameSpace;
-	private static DialogBoxView dialog;
+	/* private AnchorPane root;
 
-	private static AnchorPane root;
+	private Button btnOk;
+	private Button btnNo;
 
-	private static Button btnOk;
-	private static Button btnNo;
-
-	public static void initialize()
+	public void initialize()
 	{
 		dialog = new DialogBoxView(DialogBoxType.NONE);
 
@@ -34,7 +23,7 @@ public class SettingsDialog
 		}
 		catch (Exception e)
 		{
-			ShowErrorDialog.display(e);
+			new ShowErrorDialog(e).display();
 		}
 
 		nameSpace = loader.getNamespace();
@@ -54,18 +43,18 @@ public class SettingsDialog
 		dialog.create();
 	}
 
-	public static ObservableMap<String, Object> getNameSpace()
+	public ObservableMap<String, Object> getNameSpace()
 	{
 		return nameSpace;
 	}
 
-	public static AnchorPane getRoot()
+	public AnchorPane getRoot()
 	{
 		return root;
 	}
 
-	public static void display()
+	public void display()
 	{
 		dialog.show();
-	}
+	} */
 }

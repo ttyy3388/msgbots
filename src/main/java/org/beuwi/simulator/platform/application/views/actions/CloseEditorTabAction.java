@@ -1,4 +1,4 @@
-package org.beuwi.simulator.platform.application.actions;
+package org.beuwi.simulator.platform.application.views.actions;
 
 import javafx.scene.control.Tab;
 import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;

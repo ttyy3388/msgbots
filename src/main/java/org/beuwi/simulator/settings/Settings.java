@@ -37,7 +37,7 @@ public class Settings
 			}
 			catch (Exception e)
 			{
-				ShowErrorDialog.display(e);
+				new ShowErrorDialog(e).display();
 			}
 		}
 
@@ -107,7 +107,7 @@ public class Settings
 			}
 			catch (Exception e)
 			{
-				ShowErrorDialog.display(e);
+				new ShowErrorDialog(e).display();
 			}
 		}
 
