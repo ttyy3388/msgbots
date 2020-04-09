@@ -48,7 +48,7 @@ public class SendChatMessageAction
 			AnchorPane.setLeftAnchor(nameLabel, .0);
 
 			AnchorPane.setTopAnchor(itemLabel, 22.0);
-			AnchorPane.setLeftAnchor(itemLabel, .0);
+			AnchorPane.setLeftAnchor(itemLabel, 0.0);
 			AnchorPane.setRightAnchor(itemLabel, .0);
 
 			Circle profile = new Circle(35, 35, 20);

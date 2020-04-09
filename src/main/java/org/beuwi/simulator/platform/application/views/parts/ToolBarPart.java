@@ -7,10 +7,7 @@ import javafx.geometry.Side;
 import javafx.scene.control.Button;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.AnchorPane;
-import org.beuwi.simulator.platform.application.views.actions.OpenDebugRoomTabAction;
-import org.beuwi.simulator.platform.application.views.actions.OpenGlobalLogTabAction;
-import org.beuwi.simulator.platform.application.views.actions.SaveAllEditorTabsAction;
-import org.beuwi.simulator.platform.application.views.actions.SaveEditorTabAction;
+import org.beuwi.simulator.platform.application.views.actions.*;
 import org.beuwi.simulator.platform.application.views.dialogs.CreateBotDialog;
 import org.beuwi.simulator.platform.application.views.dialogs.ImportScriptDialog;
 import org.beuwi.simulator.platform.ui.components.IContextMenu;
@@ -50,7 +47,7 @@ public class ToolBarPart
 				new IMenuItem("Save", "Ctrl + S", event -> SaveEditorTabAction.update()),
 				new IMenuItem("Save All", "Ctrl + Shift + S", event -> SaveAllEditorTabsAction.update()),
 				new SeparatorMenuItem(),
-				new IMenuItem("Settings", "Ctrl + Alt + S", true/* new SettingsDialog().display() */)
+				new IMenuItem("Settings", "Ctrl + Alt + S", event -> OpenSettingsTabAction.update())
 			);
 
 			Button button = (Button) nameSpace.get("btnFileMenu");

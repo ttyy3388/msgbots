@@ -68,7 +68,7 @@
 	-fx-background-color: #252526;
 }
 
-.tab-more-area
+/* .tab-more-area
 {
     -fx-background-color: #252526;
 }
@@ -85,7 +85,7 @@
 .tab-more-button:armed
 {
 	-fx-background-color: rgba(255, 255, 255, 0.1);
-}
+} */
 
 .tab:hover
 {

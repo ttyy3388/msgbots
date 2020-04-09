@@ -34,7 +34,8 @@ public class AddDebugLogAction
 		lsvDebugRoom.setCellFactory(param -> new ListCell<AnchorPane>()
 		{
 			{
-				prefWidthProperty().bind(lsvDebugRoom.widthProperty().subtract(2));
+				//.subtract(2)
+				prefWidthProperty().bind(lsvDebugRoom.widthProperty());
 				setMaxWidth(Control.USE_PREF_SIZE);
 			}
 

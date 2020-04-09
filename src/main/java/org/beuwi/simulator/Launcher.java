@@ -9,12 +9,8 @@ import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.platform.application.views.MainWindowView;
 import org.beuwi.simulator.platform.application.views.actions.*;
 import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
-import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
-import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
-import org.beuwi.simulator.platform.application.views.parts.StatusBarPart;
-import org.beuwi.simulator.platform.application.views.parts.ToolBarPart;
-import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
-import org.beuwi.simulator.platform.application.views.tabs.GlobalLogTab;
+import org.beuwi.simulator.platform.application.views.parts.*;
+import org.beuwi.simulator.platform.application.views.tabs.*;
 
 import java.io.IOException;
 import java.nio.file.*;
@@ -103,6 +99,7 @@ public class Launcher extends Application
 
 			DebugRoomTab.initialize();
 			GlobalLogTab.initialize();
+			SettingsTab.initialize();
 
 			new MainWindowView(stage).display();
 
@@ -115,6 +112,7 @@ public class Launcher extends Application
 			HideSideBarAction.initialize();
 			OpenDebugRoomTabAction.initialize();
 			OpenGlobalLogTabAction.initialize();
+			OpenSettingsTabAction.initialize();
 			RefreshExplorerAction.initialize();
 			ResizeSideBarAction.initialize();
 			SaveAllEditorTabsAction.initialize();

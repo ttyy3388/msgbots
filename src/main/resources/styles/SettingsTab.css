@@ -1,0 +1,43 @@
+
+.root
+{
+
+}
+
+/* .setting-pane
+{
+    -fx-border-color: #3C3C3C;
+    -fx-border-width: 1 0 1 0;
+}
+
+.list-view
+{
+	-fx-border-color: #3C3C3C;
+    -fx-border-width: 0 1 0 0;
+}
+.list-cell
+{
+    -fx-border-color: transparent;
+    -fx-border-width: 0 0 0 2;
+}
+.list-cell .label
+{
+    -fx-padding: 6.5;
+}
+.list-cell .label *
+{
+    -fx-font-size: 13;
+}
+.list-cell:hover .label
+{
+	-fx-text-fill: #FFFFFF;
+}
+.list-cell:selected
+{
+    -fx-border-width: 0 0 0 2;
+    -fx-border-color: #FFFFFF;
+}
+.list-cell:selected .label
+{
+	-fx-text-fill: #FFFFFF;
+} */

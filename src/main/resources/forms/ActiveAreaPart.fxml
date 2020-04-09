@@ -27,7 +27,7 @@
             </VBox>
             <AnchorPane prefWidth="235.0" styleClass="side-bar" stylesheets="@../styles/SideBarPart.css" HBox.hgrow="ALWAYS">
                <children>
-              <AnchorPane fx:id="anpExplorerPart" disable="true" styleClass="explorer-part" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <AnchorPane fx:id="anpExplorerPart" styleClass="explorer-part" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
@@ -50,7 +50,7 @@
                         </VBox>
                      </children>
                   </AnchorPane>
-                <AnchorPane fx:id="anpDebugPart" styleClass="debug-part" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <AnchorPane fx:id="anpDebugPart" disable="true" styleClass="debug-part" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <VBox styleClass="debug-area" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
