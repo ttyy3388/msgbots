@@ -5,7 +5,7 @@ import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
 import org.beuwi.simulator.settings.Settings;
 import org.beuwi.simulator.utils.ResourceUtils;
 
-public class ShowDebugRoomTabAction
+public class OpenDebugRoomTabAction
 {
 	private static Node pane;
 

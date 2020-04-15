@@ -1,7 +1,7 @@
 package org.beuwi.simulator.platform.application.actions;
 
 import org.beuwi.simulator.managers.FileManager;
-import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorIDialog;
+import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
 
 import java.awt.*;
 import java.io.File;
@@ -26,7 +26,7 @@ public class OpenDesktopAction
 		}
 		catch (Exception e)
 		{
-			new ShowErrorIDialog(e).display();
+			new ShowErrorDialog(e).display();
 		}
 	}
 }

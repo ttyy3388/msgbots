@@ -17,12 +17,12 @@ import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.platform.application.actions.CopyAction;
 import org.beuwi.simulator.platform.application.actions.OpenDesktopAction;
 import org.beuwi.simulator.platform.application.views.MainWindowView;
-import org.beuwi.simulator.platform.application.views.actions.ShowDebugRoomTabAction;
-import org.beuwi.simulator.platform.application.views.actions.ShowGlobalLogTabAction;
+import org.beuwi.simulator.platform.application.views.actions.OpenDebugRoomTabAction;
+import org.beuwi.simulator.platform.application.views.actions.OpenGlobalLogTabAction;
 import org.beuwi.simulator.platform.application.views.actions.ResizeSideBarAction;
 import org.beuwi.simulator.platform.application.views.actions.SelectActivityTabAction;
 import org.beuwi.simulator.platform.application.views.dialogs.CreateBotIDialog;
-import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorIDialog;
+import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
 import org.beuwi.simulator.platform.ui.components.IContextMenu;
 import org.beuwi.simulator.platform.ui.components.IMenuItem;
 import org.beuwi.simulator.settings.Settings;
@@ -156,12 +156,12 @@ public class ActiveAreaPart
 
 			btnOpenChatRoom.setOnAction(event ->
 			{
-				ShowDebugRoomTabAction.update();
+				OpenDebugRoomTabAction.update();
 			});
 
 			btnShowGlobalLog.setOnAction(event ->
 			{
-				ShowGlobalLogTabAction.update();
+				OpenGlobalLogTabAction.update();
 			});
 		}
 
@@ -253,7 +253,7 @@ public class ActiveAreaPart
 				}
 				catch (Exception e)
 				{
-					new ShowErrorIDialog(e).display();
+					new ShowErrorDialog(e).display();
 				}
 
 				data.putMap(map);

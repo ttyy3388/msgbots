@@ -60,7 +60,7 @@
                                        <children>
                                           <Button fx:id="btnReloadAllBots" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="reload-button" />
                                           <Button fx:id="btnOpenChatRoom" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="chat-button" />
-                                          <Button fx:id="btnShowGlobalLog" disable="true" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="log-button" />
+                                          <Button fx:id="btnShowGlobalLog" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="log-button" />
                                        </children>
                                     </HBox>
                                  </children>

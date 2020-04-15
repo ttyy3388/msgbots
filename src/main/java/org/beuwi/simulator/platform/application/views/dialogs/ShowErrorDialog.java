@@ -11,14 +11,14 @@ import org.beuwi.simulator.platform.ui.dialog.IDialogBoxView;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-public class ShowErrorIDialog extends IDialogBoxView
+public class ShowErrorDialog extends IDialogBoxView
 {
 	@FXML private Label header;
 	@FXML private TextArea content;
 
 	private Exception exception;
 
-	public ShowErrorIDialog(Exception exception)
+	public ShowErrorDialog(Exception exception)
 	{
 		super(IDialogBoxType.ERROR);
 

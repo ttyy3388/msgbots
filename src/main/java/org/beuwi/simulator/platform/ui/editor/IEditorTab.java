@@ -26,8 +26,8 @@ public class IEditorTab extends Tab
 			new IMenuItem("Close Others", event -> CloseOtherEditorTabsAction.update(this)),
 			new IMenuItem("Close All", event -> CloseAllEditorTabsAction.update()),
 			new SeparatorMenuItem(),
-			new IMenuItem("Move Right Editor", event -> MoveEditorPaneAction.update(this, IPos.RIGHT)),
-			new IMenuItem("Move Left Editor", event -> MoveEditorPaneAction.update(this, IPos.LEFT)),
+			new IMenuItem("Move to Right Editor", event -> MoveEditorPaneAction.update(this, IPos.RIGHT)),
+			new IMenuItem("Move to Left Editor", event -> MoveEditorPaneAction.update(this, IPos.LEFT)),
 			new SeparatorMenuItem(),
 			new IMenuItem("Select Next Tab", "Alt + Right", event -> SelectEditorTabAction.update(this, IPos.RIGHT)),
 			new IMenuItem("Select Previous Tab", "Alt + Left", event -> SelectEditorTabAction.update(this, IPos.LEFT))

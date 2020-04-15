@@ -37,7 +37,7 @@ public class AddExplorerBotAction
 		(
 			new IMenuItem("Compile", event -> ScriptEngine.setInitialize(name, true, false)),
 			new IMenuItem("Power On / Off", event -> BotManager.setPower(name, !BotManager.getPower(name))),
-			new IMenuItem("Show Log"),
+			new IMenuItem("Show Log", event -> OpenBotLogTabAction.update(name)),
 			new SeparatorMenuItem(),
 			new IMenuItem("Show in Explorer", "Shift + Alt + R", event -> OpenDesktopAction.update(FileManager.getBotFolder(name))),
 			new SeparatorMenuItem(),

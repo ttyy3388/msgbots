@@ -9,7 +9,7 @@ import org.beuwi.simulator.compiler.engine.ScriptEngine;
 import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.platform.application.views.MainWindowView;
 import org.beuwi.simulator.platform.application.views.actions.*;
-import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorIDialog;
+import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
 import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
 import org.beuwi.simulator.platform.application.views.parts.StatusBarPart;
@@ -115,14 +115,14 @@ public class Launcher extends Application
 			CloseEditorPaneAction.initialize();
 			HideSideBarAction.initialize();
 			MoveEditorPaneAction.initialize();
+			OpenDebugRoomTabAction.initialize();
+			OpenGlobalLogTabAction.initialize();
+			OpenSettingsTabAction.initialize();
 			RefreshExplorerAction.initialize();
 			ResizeSideBarAction.initialize();
 			SaveAllEditorTabsAction.initialize();
 			SelectActivityTabAction.initialize();
 			SendChatMessageAction.initialize();
-			ShowDebugRoomTabAction.initialize();
-			ShowGlobalLogTabAction.initialize();
-			ShowSettingsTabAction.initialize();
 			SplitEditorPaneAction.initialize();
 
 			RefreshExplorerAction.update();
@@ -142,7 +142,7 @@ public class Launcher extends Application
 		}
 		catch (Exception e)
 		{
-			new ShowErrorIDialog(e).display();
+			new ShowErrorDialog(e).display();
 
 			e.printStackTrace();
 		}

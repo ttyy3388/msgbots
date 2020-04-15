@@ -137,3 +137,22 @@
 {
 	-jfx-untoggle-color: #FFFFFF;
 }
+
+/* Custom Components */
+.log-view .list-item
+{
+    -fx-background-insets: 3 5 5 0;
+    -fx-background-color: #2B2B2B;
+}
+.log-view .list-item .event
+{
+
+}
+.log-view .list-item .error
+{
+    -fx-text-fill: #FF0000;
+}
+.log-view .list-cell:selected .list-item
+{
+	-fx-background-color: #0D293E;
+}

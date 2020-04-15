@@ -3,7 +3,7 @@ package org.beuwi.simulator.platform.application.views.actions;
 import javafx.scene.layout.AnchorPane;
 import org.beuwi.simulator.platform.application.views.tabs.SettingsTab;
 
-public class ShowSettingsTabAction
+public class OpenSettingsTabAction
 {
 	private static AnchorPane pane;
 

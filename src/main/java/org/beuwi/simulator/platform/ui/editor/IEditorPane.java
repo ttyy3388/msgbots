@@ -21,10 +21,10 @@ import java.util.List;
 
 public class IEditorPane extends AnchorPane
 {
-	private IContextMenu imenu = new IContextMenu
+	/* private IContextMenu imenu = new IContextMenu
 	(
 		new IMenuItem("Close Editor", e -> CloseEditorPaneAction.update(this))
-	);
+	); */
 
 	private IContextMenu menu = new IContextMenu();
 
@@ -58,11 +58,11 @@ public class IEditorPane extends AnchorPane
 
 			if (event.isSecondaryButtonDown())
 			{
-				imenu.show(this, event);
+				// imenu.show(this, event);
 			}
 			else
 			{
-				imenu.hide();
+				// imenu.hide();
 			}
 		});
 

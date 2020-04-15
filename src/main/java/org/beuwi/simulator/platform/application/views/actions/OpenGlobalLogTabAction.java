@@ -4,7 +4,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import org.beuwi.simulator.platform.application.views.tabs.GlobalLogTab;
 
-public class ShowGlobalLogTabAction
+public class OpenGlobalLogTabAction
 {
 	private static ListView<AnchorPane> listView;
 

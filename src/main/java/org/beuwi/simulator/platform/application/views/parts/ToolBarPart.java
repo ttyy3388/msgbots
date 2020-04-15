@@ -49,7 +49,7 @@ public class ToolBarPart
 				new SeparatorMenuItem(),
 				new IMenuItem("Reload All From Disk", "Ctrl + Alt + Y", event -> RefreshExplorerAction.update()),
 				new SeparatorMenuItem(),
-				new IMenuItem("Settings", "Ctrl + Alt + S", event -> ShowSettingsTabAction.update())
+				new IMenuItem("Settings", "Ctrl + Alt + S", event -> OpenSettingsTabAction.update())
 			);
 
 			Button button = (Button) nameSpace.get("btnFileMenu");
@@ -96,8 +96,8 @@ public class ToolBarPart
 		{
 			IContextMenu menu = new IContextMenu
 			(
-				new IMenuItem("Open Debug Room", event -> ShowDebugRoomTabAction.update()),
-				new IMenuItem("Show Global Log", event -> ShowGlobalLogTabAction.update(), true)
+				new IMenuItem("Open Debug Room", event -> OpenDebugRoomTabAction.update()),
+				new IMenuItem("Show Global Log", event -> OpenGlobalLogTabAction.update(), true)
 			);
 
 			Button button = (Button) nameSpace.get("btnDebugMenu");

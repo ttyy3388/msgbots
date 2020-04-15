@@ -40,7 +40,7 @@ public class DeleteBotIDialog extends IDialogBoxView
 		}
 		catch (Exception e)
 		{
-			new ShowErrorIDialog(e).display();
+			new ShowErrorDialog(e).display();
 		}
 
 		initialize();

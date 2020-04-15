@@ -1,7 +1,7 @@
 package org.beuwi.simulator.compiler.api;
 
 import org.apache.commons.io.IOUtils;
-import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorIDialog;
+import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
 
 import java.net.URL;
 import java.util.Base64;
@@ -23,7 +23,7 @@ public class ImageDB
 		}
 		catch (Exception e)
 		{
-			new ShowErrorIDialog(e).display();
+			new ShowErrorDialog(e).display();
 		}
 
 		return null;

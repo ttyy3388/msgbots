@@ -1,5 +1,16 @@
 package org.beuwi.simulator.managers;
 
+import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
+import org.beuwi.simulator.platform.ui.components.ILogItem;
+import org.beuwi.simulator.platform.ui.components.ILogType;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 public class LogManager
 {
 	public static void addError(String message)
@@ -19,19 +30,19 @@ public class LogManager
 
 	// 인자 없으면 Global Log 로 인식
 
-	/* // Global Log
-	private static ArrayList<ILogItem> load()
+	// Global Log
+	public static List<ILogItem> load()
 	{
 		return load(FileManager.getDataFile("global_log.json"));
 	}
 
 	// Bot Log
-	private static ArrayList<ILogItem> load(String name)
+	public static List<ILogItem> load(String name)
 	{
 		return load(FileManager.getBotLog(name));
 	}
 
-	private static ArrayList<ILogItem> load(File file)
+	public static List<ILogItem> load(File file)
 	{
 		try
 		{
@@ -40,7 +51,7 @@ public class LogManager
 				return new ArrayList();
 			}
 
-			ArrayList<ILogItem> list = new ArrayList<>();
+			List<ILogItem> list = new ArrayList<>();
 			JSONArray array = (JSONArray) new JSONParser().parse(FileManager.read(file));
 
 			for (Object object : array)
@@ -53,7 +64,13 @@ public class LogManager
 					(
 						(String) data.get("a"),
 						(String) data.get("c"),
-						(int) data.get("b")
+						switch (Integer.valueOf("" + data.get("b")))
+						{
+							case 0  -> ILogType.ERROR;
+							case 1  -> ILogType.EVENT;
+							case 2  -> ILogType.DEBUG;
+							default -> null;
+						}
 					)
 				);
 			}
@@ -68,18 +85,18 @@ public class LogManager
 		return new ArrayList<>();
 	}
 
-	private static void save()
+	public static void save()
 	{
 
 	}
 
-	private static void append()
+	public static void append()
 	{
 
 	}
 
-	private static void clean()
+	public static void clean()
 	{
 
-	} */
+	}
 }

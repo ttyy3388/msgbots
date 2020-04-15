@@ -30,10 +30,10 @@ public class IDialogBoxView extends IWindowStage implements Initializable
 	@FXML private Button 	 DIALOG_BUTTON_OK;
 	@FXML private Button 	 DIALOG_BUTTON_NO;
 
-	Region DIALOG_CONTENT;
-	int    DIALOG_TYPE;
+	IDialogBoxType DIALOG_TYPE;
+	Region 		   DIALOG_CONTENT;
 
-	public IDialogBoxView(int type)
+	public IDialogBoxView(IDialogBoxType type)
 	{
 		super(IWindowType.DIALOG);
 
@@ -90,19 +90,20 @@ public class IDialogBoxView extends IWindowStage implements Initializable
 	{
 		Image image= switch (DIALOG_TYPE)
 		{
-			case IDialogBoxType.ERROR   -> ResourceUtils.getImage("error_big.png");
-			case IDialogBoxType.WARNING -> ResourceUtils.getImage("warning_big.png");
-			case IDialogBoxType.EVENT   -> ResourceUtils.getImage("event_big.png");
+			case ERROR   -> ResourceUtils.getImage("error_big.png");
+			case WARNING -> ResourceUtils.getImage("warning_big.png");
+			case EVENT   -> ResourceUtils.getImage("event_big.png");
 			default -> null;
 		};
 
 		switch (DIALOG_TYPE)
 		{
-			case IDialogBoxType.NONE  :
+			case NONE :
 				DIALOG_PANE.getChildren().remove(DIALOG_PANE.getLeft());
 				setMinSize(DIALOG_CONTENT.getMinWidth(), DIALOG_CONTENT.getMinHeight() + 47);
 				setSize(DIALOG_CONTENT.getPrefWidth(), DIALOG_CONTENT.getPrefHeight() + 47);
 				break;
+
 			default :
 				DIALOG_ICON.setImage(image);
 				setMinSize(DIALOG_CONTENT.getMinWidth() + 75, DIALOG_CONTENT.getMinHeight() + 47);

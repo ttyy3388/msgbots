@@ -47,7 +47,7 @@ public class ImportScriptIDialog extends IDialogBoxView
 		}
 		catch (Exception e)
 		{
-			new ShowErrorIDialog(e).display();
+			new ShowErrorDialog(e).display();
 		}
 
 		initialize();

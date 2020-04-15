@@ -7,14 +7,14 @@ import org.beuwi.simulator.utils.ResourceUtils;
 
 public class ILogItem extends AnchorPane
 {
-	public ILogItem(String logText, String logDate, int logType)
+	public ILogItem(String logText, String logDate, ILogType logType)
 	{
 		String itemType = switch (logType)
 		{
-			case ILogType.ERROR -> "error";
-			case ILogType.WARNING -> "warning";
-			case ILogType.EVENT -> "event";
-			default -> null;
+			case ERROR -> "error";
+			case EVENT -> "event";
+			case DEBUG -> "debug";
+			default    -> null;
 		};
 
 		ImageView  itemIcon = new ImageView(ResourceUtils.getImage(itemType + ".png"));
