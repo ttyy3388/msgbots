@@ -27,10 +27,4 @@
          </children>
       </AnchorPane>
    </left>
-   <stylesheets>
-      <URL value="@../skins/ButtonSkin.css" />
-      <URL value="@../skins/CheckBoxSkin.css" />
-      <URL value="@../skins/TextFieldSkin.css" />
-      <URL value="@../styles/DialogBoxView.css" />
-   </stylesheets>
 </BorderPane>

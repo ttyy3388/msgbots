@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXToggleButton;
 import javafx.collections.ObservableMap;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -11,16 +12,17 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import org.beuwi.simulator.compiler.engine.ScriptEngine;
 import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.platform.application.actions.CopyAction;
-import org.beuwi.simulator.platform.application.actions.ShowInExplorerAction;
+import org.beuwi.simulator.platform.application.actions.OpenDesktopAction;
 import org.beuwi.simulator.platform.application.views.MainWindowView;
-import org.beuwi.simulator.platform.application.views.actions.OpenDebugRoomTabAction;
-import org.beuwi.simulator.platform.application.views.actions.OpenGlobalLogTabAction;
+import org.beuwi.simulator.platform.application.views.actions.ShowDebugRoomTabAction;
+import org.beuwi.simulator.platform.application.views.actions.ShowGlobalLogTabAction;
 import org.beuwi.simulator.platform.application.views.actions.ResizeSideBarAction;
 import org.beuwi.simulator.platform.application.views.actions.SelectActivityTabAction;
-import org.beuwi.simulator.platform.application.views.dialogs.CreateBotDialog;
-import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
+import org.beuwi.simulator.platform.application.views.dialogs.CreateBotIDialog;
+import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorIDialog;
 import org.beuwi.simulator.platform.ui.components.IContextMenu;
 import org.beuwi.simulator.platform.ui.components.IMenuItem;
 import org.beuwi.simulator.settings.Settings;
@@ -92,9 +94,9 @@ public class ActiveAreaPart
 			// List View
 			IContextMenu menu = new IContextMenu
 			(
-				new IMenuItem("New Bot", "Ctrl + N", event -> new CreateBotDialog().display()),
+				new IMenuItem("New Bot", "Ctrl + N", event -> new CreateBotIDialog().display()),
 				new SeparatorMenuItem(),
-				new IMenuItem("Show in Explorer", "Shift + Alt + R", event -> ShowInExplorerAction.update(FileManager.BOTS_FOLDER)),
+				new IMenuItem("Show in Explorer", "Shift + Alt + R", event -> OpenDesktopAction.update(FileManager.BOTS_FOLDER)),
 				new SeparatorMenuItem(),
 				new IMenuItem("Copy Path", "Ctrl + Alt + C", event -> CopyAction.update(FileManager.BOTS_FOLDER.getAbsolutePath())),
 				new IMenuItem("Copy Relative Path", "Ctrl + Shift + C", event -> CopyAction.update(FileManager.BOTS_FOLDER.getPath()))
@@ -149,17 +151,17 @@ public class ActiveAreaPart
 
 			btnReloadAllBots.setOnAction(event ->
 			{
-				// ReloadAllBotsAction.update();
+				ScriptEngine.allInitialize(true);
 			});
 
 			btnOpenChatRoom.setOnAction(event ->
 			{
-				OpenDebugRoomTabAction.update();
+				ShowDebugRoomTabAction.update();
 			});
 
 			btnShowGlobalLog.setOnAction(event ->
 			{
-				OpenGlobalLogTabAction.update();
+				ShowGlobalLogTabAction.update();
 			});
 		}
 
@@ -251,7 +253,7 @@ public class ActiveAreaPart
 				}
 				catch (Exception e)
 				{
-					new ShowErrorDialog(e).display();
+					new ShowErrorIDialog(e).display();
 				}
 
 				data.putMap(map);
@@ -264,7 +266,7 @@ public class ActiveAreaPart
 		}
 	}
 
-	public static AnchorPane getRoot()
+	public static Node getRoot()
 	{
 		return root;
 	}

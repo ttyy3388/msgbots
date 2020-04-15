@@ -19,7 +19,7 @@ public class SendChatMessageAction
 
 	public static void initialize()
 	{
-		listView = DebugRoomTab.getChatListView();
+		listView = DebugRoomTab.getComponent();
 	}
 
 	public static void update(String message, boolean isBot)
@@ -30,6 +30,16 @@ public class SendChatMessageAction
 		itemCell.setId(message);
 		itemLabel.setMaxWidth(180);
 		itemLabel.setWrapText(true);
+
+		/* if (message.length() >= 200)
+		{
+			// 전체보기
+		}
+
+		if (message.length() >= 20000)
+		{
+			return ;
+		} */
 
 		if (!isBot)
 		{

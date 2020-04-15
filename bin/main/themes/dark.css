@@ -8,31 +8,50 @@
 
 *
 {
-    -fx-text-fill: #CCCCCC;
+	-fx-text-fill: #CCCCCC;
 }
 
-.window
+.root
 {
 	-fx-background-color: #1E1E1E;
 }
 
 .dialog
 {
-    -fx-background-color: #252526;
+	-fx-background-color: #252526;
 }
+
+/* .tab,
+.tab-label,
+.text,
+.label,
+.button,
+.text-area,
+.text-field
+{
+	-fx-text-fill: #CCCCCC;
+} */
 
 .context-menu
 {
 	-fx-background-color: #252526;
+	-fx-padding: 7 0 7 0;
+	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
 }
 .context-menu .separator
 {
+	-fx-background-insets: 4 10 5 10;
 	-fx-background-color: #616162;
+	-fx-padding: 5;
 }
 
+.menu-item
+{
+	-fx-padding: 5 20 5 20;
+}
 .menu-item .label *
 {
-    -fx-text-fill: #CCCCCC;
+	-fx-font-size: 13;
 }
 .menu-item:focused
 {
@@ -41,4 +60,80 @@
 .menu-item:focused .label
 {
 	-fx-text-fill: #FFFFFF;
+}
+
+.button
+{
+	-fx-background-color: #3F3F46;
+	-fx-border-color: #555555;
+	-fx-border-width: 1;
+}
+.button:hover
+{
+	-fx-border-color: #0097FB;
+}
+.button:armed
+{
+	-fx-background-color: #007ACC;
+}
+
+.button-ok
+{
+	-fx-border-color: #007ACC;
+}
+.button-no
+{
+	-fx-border-color: #555555;
+}
+
+.check-box
+{
+    -fx-label-padding: 0 0 0 8;
+}
+.check-box .box
+{
+	-fx-background-color: #3F3F46;
+	-fx-border-color: #555555;
+	-fx-border-width: 1;
+	-fx-padding: 2;
+}
+.check-box .mark
+{
+	-fx-padding: 6;
+}
+.check-box:focused .box
+{
+	-fx-border-color: #007ACC;
+}
+.check-box:selected .mark
+{
+	-fx-background-color: #FFFFFF;
+}
+
+.text-area
+{
+	-fx-padding: 4;
+}
+
+.text-field
+{
+	-fx-background-color: #3F3F46;
+	-fx-border-color: #555555;
+	-fx-border-width: 1;
+	-fx-padding: 4;
+}
+.text-field:focused
+{
+	-fx-border-color: #007ACC;
+}
+
+.jfx-toggle-button
+{
+	-jfx-toggle-color: #007ACC;
+	-jfx-untoggle-color: #BBBBBB;
+	-jfx-size: 8;
+}
+.jfx-toggle-button:hover
+{
+	-jfx-untoggle-color: #FFFFFF;
 }

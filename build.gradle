@@ -19,7 +19,7 @@ repositories {
 }
 
 group 'org.beuwi.simulator'
-version '0.4.0'
+version '0.5.0'
 
 javafx {
 	version = "14"
@@ -46,23 +46,23 @@ compileJava {
 	moduleOptions {
 		addExports = [
 			// 안하면 package is not visible import 오류남
-			'javafx.graphics/com.sun.javafx.util' : 'org.beuwi.simulator'
+			// 'javafx.graphics/com.sun.javafx.css' : 'org.beuwi.simulator',
+			'javafx.graphics/com.sun.javafx.util' : 'org.beuwi.simulator',
+			// 'javafx.graphics/com.sun.javafx.scene.input' : 'org.beuwi.simulator'
 		]
 	}
-}
 
-/* compileJava {
-	options.encoding = "UTF-8"
+	/* options.encoding = "UTF-8"
 	options.incremental = true
 
 	options.compilerArgs.addAll([
-			"--add-exports",
-			"javafx.graphics/com.sun.javafx.util=ALL-UNNAMED"
-	])
-} */
+			'--add-exports', 'javafx.graphics/com.sun.javafx.util=ALL-UNNAMED',
+			'--add-exports', 'javafx.graphics/com.sun.javafx.scene.input=ALL-UNNAMED'
+	]) */
+}
 
 run {
-	// jvmArgs '--add-exports', 'javafx.graphics/javafx.scene.layout=org.beuwi.simulator'
+	jvmArgs '--add-exports', 'javafx.graphics/javafx.scene.layout=org.beuwi.simulator'
 }
 
 jlink {

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="MessengerBotSimulator.main" options="--add-exports javafx.graphics/com.sun.javafx.util=org.beuwi.simulator" />
+      <module name="MessengerBotSimulator.main" options="--add-exports javafx.graphics/com.sun.javafx.util=org.beuwi.simulator --add-exports javafx.graphics/com.sun.javafx.scene.input=org.beuwi.simulator --add-exports javafx.graphics/com.sun.javafx.css=org.beuwi.simulator" />
     </option>
   </component>
 </project>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXToggleButton?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -15,7 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="700.0" styleClass="active-area" stylesheets="@../styles/ActiveAreaPart.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -74,8 +73,8 @@
                                     <Label layoutY="105.0" text="Bot" AnchorPane.leftAnchor="0.0" />
                                     <Label layoutY="150.0" text="Package" AnchorPane.leftAnchor="0.0" />
                                     <Label layoutY="195.0" text="isGroupChat" AnchorPane.leftAnchor="0.0" />
-                                    <Label layoutY="250.0" text="Sender Profile Visible" AnchorPane.leftAnchor="0.0" />
-                                    <Label layoutY="290.0" text="Bot Profile Visible" AnchorPane.leftAnchor="0.0" />
+                                    <Label disable="true" layoutY="250.0" text="Sender Profile Visible" AnchorPane.leftAnchor="0.0" />
+                                    <Label disable="true" layoutY="290.0" text="Bot Profile Visible" AnchorPane.leftAnchor="0.0" />
                                     <Label layoutY="345.0" text="Sender Profile Image" AnchorPane.leftAnchor="0.0" />
                                     <Label layoutY="385.0" text="Bot Profile Image" AnchorPane.leftAnchor="0.0" />
                                     <TextField fx:id="txfRoomName" layoutY="10.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" />
@@ -86,30 +85,25 @@
                                        <children>
                                           <AnchorPane HBox.hgrow="ALWAYS">
                                              <children>
-                                                <Button fx:id="btnApply" mnemonicParsing="false" prefHeight="30.0" styleClass="ok-button" text="Apply" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                <Button fx:id="btnApply" mnemonicParsing="false" prefHeight="30.0" styleClass="button-ok" text="Apply" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                              </children>
                                           </AnchorPane>
                                           <AnchorPane HBox.hgrow="ALWAYS">
                                              <children>
-                                                <Button fx:id="btnCancel" mnemonicParsing="false" prefHeight="30.0" styleClass="no-button" text="Cancel" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                <Button fx:id="btnCancel" mnemonicParsing="false" prefHeight="30.0" styleClass="button-no" text="Cancel" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                              </children>
                                           </AnchorPane>
                                        </children>
                                     </HBox>
                                     <JFXToggleButton fx:id="tgnIsGroupChat" layoutY="195.0" AnchorPane.rightAnchor="0.0" />
-                                    <JFXToggleButton fx:id="tgnSenderProfile" layoutY="250.0" AnchorPane.rightAnchor="0.0" />
-                                    <JFXToggleButton fx:id="tgnBotProfile" layoutY="290.0" AnchorPane.rightAnchor="0.0" />
+                                    <JFXToggleButton fx:id="tgnSenderProfile" disable="true" layoutY="250.0" AnchorPane.rightAnchor="0.0" />
+                                    <JFXToggleButton fx:id="tgnBotProfile" disable="true" layoutY="290.0" AnchorPane.rightAnchor="0.0" />
                                     <Button fx:id="btnSenderProfile" layoutY="340.0" mnemonicParsing="false" prefHeight="25.0" styleClass="action-button" text="..." AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="0.0" />
                                     <Button fx:id="btnBotProfile" layoutY="380.0" mnemonicParsing="false" prefHeight="25.0" styleClass="action-button" text="..." AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="0.0" />
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
                                  </VBox.margin>
-                                 <stylesheets>
-                                    <URL value="@../skins/TextFieldSkin.css" />
-                                    <URL value="@../skins/ButtonSkin.css" />
-                                    <URL value="@../skins/ToggleButtonSkin.css" />
-                                 </stylesheets>
                               </AnchorPane>
                            </children>
                         </VBox>

@@ -7,9 +7,17 @@ import org.beuwi.simulator.utils.ResourceUtils;
 
 public class ILogItem extends AnchorPane
 {
-	public ILogItem(String logText, String logDate, String logType)
+	public ILogItem(String logText, String logDate, int logType)
 	{
-		ImageView  itemIcon = new ImageView(ResourceUtils.getImage(logType + ".png"));
+		String itemType = switch (logType)
+		{
+			case ILogType.ERROR -> "error";
+			case ILogType.WARNING -> "warning";
+			case ILogType.EVENT -> "event";
+			default -> null;
+		};
+
+		ImageView  itemIcon = new ImageView(ResourceUtils.getImage(itemType + ".png"));
 		Label 	   itemMsg  = new Label(logText);
 		Label      itemDate = new Label(logDate);
 
@@ -28,8 +36,8 @@ public class ILogItem extends AnchorPane
 		AnchorPane.setBottomAnchor(itemDate, 12.0);
 
 		itemMsg.setWrapText(true);
-		itemMsg.getStyleClass().add(logType);
-		itemDate.getStyleClass().add(logType);
+		itemMsg.getStyleClass().add(itemType);
+		itemDate.getStyleClass().add(itemType);
 
 		this.setMinWidth(90);
 		this.getStyleClass().add("list-item");

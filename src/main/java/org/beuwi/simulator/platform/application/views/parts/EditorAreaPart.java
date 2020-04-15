@@ -2,12 +2,18 @@ package org.beuwi.simulator.platform.application.views.parts;
 
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
-import org.beuwi.simulator.platform.ui.components.ITabPane;
+import org.beuwi.simulator.platform.ui.editor.IEditorPane;
+
+import java.util.List;
 
 public class EditorAreaPart
 {
 	private static ObservableMap<String, Object> nameSpace;
+
+	private static IEditorPane pane;
 
 	private static AnchorPane root;
 
@@ -23,36 +29,32 @@ public class EditorAreaPart
 		root = loader.getRoot();
 	}
 
-	public static AnchorPane getRoot()
+	public static Node getRoot()
 	{
 		return root;
 	}
 
-	// Children get(0) : Component
-	public static ITabPane getComponent()
-	{
-		return (ITabPane) root.getChildren().get(0);
-	}
-
-	/* public static SplitPane getComponent()
+	public static SplitPane getComponent()
 	{
 		return (SplitPane) root.getChildren().get(0);
-	} */
+	}
 
-	/* public static ITabPane getCurrentPane()
+	public static IEditorPane getSelectedPane()
 	{
-		SplitPane pane = getComponent();
+		List<Node> list = getComponent().getItems();
 
-		/* for (Node node : pane.getItems())
+		if (list.size() == 0)
 		{
-			System.out.println(node.isFocused());
-			System.out.println(node.isManaged());
-			System.out.println(node.isPressed());
-			System.out.println(node.isFocusTraversable());
+			list.add(new IEditorPane());
 		}
 
-		return (ITabPane) pane.getItems().get(0);
-	} */
+		return pane;
+	}
+
+	public static void setSelectedPane(IEditorPane editor)
+	{
+		pane = editor;
+	}
 
 	public static ObservableMap<String, Object> getNameSpace()
 	{

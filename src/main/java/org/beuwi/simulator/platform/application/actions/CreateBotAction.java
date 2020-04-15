@@ -1,7 +1,7 @@
 package org.beuwi.simulator.platform.application.actions;
 
 import org.beuwi.simulator.managers.FileManager;
-import org.beuwi.simulator.platform.application.views.dialogs.ExistsBotDialog;
+import org.beuwi.simulator.platform.application.views.dialogs.ExistsBotIDialog;
 
 import java.io.File;
 
@@ -13,7 +13,7 @@ public class CreateBotAction
 
 		if (project.exists())
 		{
-			new ExistsBotDialog(name).display();
+			new ExistsBotIDialog(name).display();
 		}
 		else
 		{
@@ -39,7 +39,7 @@ public class CreateBotAction
 			(
 				FileManager.getBotSetting(name),
 				"{\"optimization\":1," +
-			    "\"useUnifiedParams\":" + isUnified + "," +
+				"\"useUnifiedParams\":" + isUnified + "," +
 				"\"offOnRuntimeError\":" + isOffError + "," +
 				"\"power\":false}"
 			);

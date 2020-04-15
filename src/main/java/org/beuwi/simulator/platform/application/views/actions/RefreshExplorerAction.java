@@ -7,7 +7,8 @@ import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 import java.io.File;
 
 public class RefreshExplorerAction
-{	private static ListView listView;
+{
+    private static ListView listView;
 
     public static void initialize()
     {
@@ -22,7 +23,7 @@ public class RefreshExplorerAction
 
         for (File folder : folders)
         {
-            AddExplorerItemAction.update(folder.getName());
+            AddExplorerBotAction.update(folder.getName());
         }
     }
 }

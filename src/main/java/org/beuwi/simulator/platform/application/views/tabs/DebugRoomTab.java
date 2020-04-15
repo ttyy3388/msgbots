@@ -2,19 +2,19 @@ package org.beuwi.simulator.platform.application.views.tabs;
 
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import org.beuwi.simulator.platform.application.views.actions.SendChatMessageAction;
 
 public class DebugRoomTab
 {
 	private static ObservableMap<String, Object> nameSpace;
 
-	private static AnchorPane root;
+	private static VBox root;
 
 	public static void initialize() throws Exception
 	{
@@ -27,83 +27,57 @@ public class DebugRoomTab
 
         root = loader.getRoot();
 
-        ChatArea.initialize();
-        LogArea.initialize();
-	}
+		TextArea textArea = (TextArea) nameSpace.get("textArea");
+		Button   button   = (Button) nameSpace.get("button");
 
-	private static class ChatArea
-	{
-		public static void initialize()
+		textArea.setOnKeyPressed(event ->
 		{
-			TextArea textArea = (TextArea) nameSpace.get("txaChatInput");
-			Button   button   = (Button) nameSpace.get("btnChatSend");
-
-			textArea.setOnKeyPressed(event ->
+			if (event.getCode().equals(KeyCode.ENTER))
 			{
-				if (event.getCode().equals(KeyCode.ENTER))
+				if (event.isShiftDown())
 				{
-					if (event.isShiftDown())
-					{
-						textArea.appendText(System.lineSeparator());
-						event.consume();
-						return ;
-					}
-
-					if (button.isDisable())
-					{
-						textArea.setText("");
-						event.consume();
-						return ;
-					}
-
-					SendChatMessageAction.update(textArea.getText(), false);
-					textArea.clear();
+					textArea.appendText(System.lineSeparator());
 					event.consume();
+					return ;
 				}
-			});
 
-			textArea.textProperty().addListener((observable, oldString, newString) ->
-			{
-				button.setDisable(newString.trim().isEmpty());
-			});
+				if (button.isDisable())
+				{
+					textArea.setText("");
+					event.consume();
+					return ;
+				}
 
-			button.setOnAction(event ->
-			{
 				SendChatMessageAction.update(textArea.getText(), false);
-				textArea.requestFocus();
 				textArea.clear();
-			});
+				event.consume();
+			}
+		});
 
-			textArea.requestFocus();
-		}
-	}
-
-	private static class LogArea
-	{
-		public static void initialize()
+		textArea.textProperty().addListener((observable, oldString, newString) ->
 		{
+			button.setDisable(newString.trim().isEmpty());
+		});
 
-		}
+		button.setOnAction(event ->
+		{
+			SendChatMessageAction.update(textArea.getText(), false);
+			textArea.requestFocus();
+			textArea.clear();
+		});
+
+		textArea.requestFocus();
 	}
 
-	public static AnchorPane getRoot()
+
+	public static Node getRoot()
 	{
 		return root;
 	}
 
-	public static SplitPane getComponent()
+	public static ListView getComponent()
 	{
-		return (SplitPane) root.getChildren().get(0);
-	}
-
-	public static ListView getChatListView()
-	{
-		return (ListView) nameSpace.get("lsvChatArea");
-	}
-
-	public static ListView getLogListView()
-	{
-		return (ListView) nameSpace.get("lsvLogArea");
+		return (ListView) root.getChildren().get(0);
 	}
 
 	public static ObservableMap<String, Object> getNameSpace()

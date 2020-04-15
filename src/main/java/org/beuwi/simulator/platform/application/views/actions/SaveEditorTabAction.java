@@ -1,33 +1,28 @@
 package org.beuwi.simulator.platform.application.views.actions;
 
-import org.beuwi.simulator.managers.FileManager;
-import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
-import org.beuwi.simulator.platform.ui.components.ICodeArea;
-import org.beuwi.simulator.platform.ui.components.ITabPane;
+import javafx.scene.control.Tab;
 
 public class SaveEditorTabAction
 {
-	private static ITabPane pane;
-
-	public static void initialize()
-	{
-		pane = EditorAreaPart.getComponent();
-	}
-
-	// 현재 열린 탭 저장
+	// 현재 탭 저장
 	public static void update()
 	{
-
+		// update(pane.getSelectedTab());
 	}
 
 	// 해당 탭 저장
 	public static void update(String name)
 	{
-		String id = "@script::" + name;
+		// update(pane.getTabItem("@script::" + name));
+	}
 
-		if (pane.getTabItem(id) != null)
+	public static void update(Tab tab)
+	{
+		// ID 부분 추후 수정
+
+		/* if (tab != null)
 		{
-			FileManager.save(FileManager.getBotScript(name), ((ICodeArea) pane.getTabItem(id).getContent()).getText());
-		}
+			// FileManager.save(FileManager.getBotScript(ProgramUtils.getName(tab.getId())), ((ICodeArea) tab.getContent()).getText());
+		} */
 	}
 }

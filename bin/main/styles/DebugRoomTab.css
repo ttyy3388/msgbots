@@ -1,8 +1,15 @@
 
-.debug-tab *
+.debug-tab
 {
 	-fx-font-family: D2Coding;
-	-fx-font-size: 15;
+	-fx-font-size: 14;
+}
+
+.button,
+.button:armed
+{
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
 }
 
 .split-pane-divider
@@ -16,12 +23,19 @@
 {
 	-fx-padding: 3 10 3 10;
 }
-.chat-area .list-cell .label
+
+.chat-area .list-cell .name-label
 {
-	-fx-text-fill: #FFFFFF;
+
+}
+
+.chat-area .list-cell .bot-label,
+.chat-area .list-cell .sender-label
+{
 	-fx-background-radius: 15;
-	-fx-background-insets: 5;
-	-fx-padding: 13;
+	-fx-background-insets: 2 0 2 0;
+	-fx-text-fill: #FFFFFF;
+	-fx-padding: 10;
 }
 .chat-area .list-cell .sender-label
 {

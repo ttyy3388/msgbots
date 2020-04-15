@@ -3,6 +3,7 @@ package org.beuwi.simulator.platform.ui.components;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import org.beuwi.simulator.platform.application.views.actions.SaveEditorTabAction;
 import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
@@ -69,13 +70,30 @@ public class ICodeArea extends AnchorPane
 
 	public ICodeArea()
 	{
+		this(null);
+	}
+
+	public ICodeArea(String text)
+	{
 		IntFunction<String> format = (digits -> " %" + digits + "d ");
 
+		CODE_AREA.replaceText(0, 0, text);
 		CODE_AREA.setParagraphGraphicFactory(LineNumberFactory.get(CODE_AREA, format));
 
 		CODE_AREA.textProperty().addListener((observable, oldText, newText) ->
 		{
 			CODE_AREA.setStyleSpans(0, computeHighlighting(newText));
+		});
+
+		CODE_AREA.setOnKeyPressed(event ->
+		{
+			if (event.isControlDown())
+			{
+				switch (event.getCode())
+				{
+					case S : SaveEditorTabAction.update(); break;
+				}
+			}
 		});
 
 		getChildren().add(SCROLL_PANE);

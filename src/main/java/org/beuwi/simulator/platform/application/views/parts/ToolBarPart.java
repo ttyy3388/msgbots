@@ -4,12 +4,12 @@ import javafx.collections.ObservableMap;
 import javafx.css.PseudoClass;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Side;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.SeparatorMenuItem;
-import javafx.scene.layout.AnchorPane;
 import org.beuwi.simulator.platform.application.views.actions.*;
-import org.beuwi.simulator.platform.application.views.dialogs.CreateBotDialog;
-import org.beuwi.simulator.platform.application.views.dialogs.ImportScriptDialog;
+import org.beuwi.simulator.platform.application.views.dialogs.CreateBotIDialog;
+import org.beuwi.simulator.platform.application.views.dialogs.ImportScriptIDialog;
 import org.beuwi.simulator.platform.ui.components.IContextMenu;
 import org.beuwi.simulator.platform.ui.components.IMenuItem;
 
@@ -17,7 +17,7 @@ public class ToolBarPart
 {
 	private static ObservableMap<String, Object> nameSpace;
 
-	private static AnchorPane root;
+	private static Node root;
 
 	public static void initialize() throws Exception
 	{
@@ -41,13 +41,15 @@ public class ToolBarPart
 		{
 			IContextMenu menu = new IContextMenu
 			(
-				new IMenuItem("New Bot", "Ctrl + N", event -> new CreateBotDialog().display()),
-				new IMenuItem("Import Script", "Ctrl + I", event -> new ImportScriptDialog().display()),
+				new IMenuItem("New Bot", "Ctrl + N", event -> new CreateBotIDialog().display()),
+				new IMenuItem("Import Script", "Ctrl + I", event -> new ImportScriptIDialog().display()),
 				new SeparatorMenuItem(),
 				new IMenuItem("Save", "Ctrl + S", event -> SaveEditorTabAction.update()),
 				new IMenuItem("Save All", "Ctrl + Shift + S", event -> SaveAllEditorTabsAction.update()),
 				new SeparatorMenuItem(),
-				new IMenuItem("Settings", "Ctrl + Alt + S", event -> OpenSettingsTabAction.update())
+				new IMenuItem("Reload All From Disk", "Ctrl + Alt + Y", event -> RefreshExplorerAction.update()),
+				new SeparatorMenuItem(),
+				new IMenuItem("Settings", "Ctrl + Alt + S", event -> ShowSettingsTabAction.update())
 			);
 
 			Button button = (Button) nameSpace.get("btnFileMenu");
@@ -94,8 +96,8 @@ public class ToolBarPart
 		{
 			IContextMenu menu = new IContextMenu
 			(
-				new IMenuItem("Open Debug Room", event -> OpenDebugRoomTabAction.update()),
-				new IMenuItem("Show Global Log", event -> OpenGlobalLogTabAction.update(), true)
+				new IMenuItem("Open Debug Room", event -> ShowDebugRoomTabAction.update()),
+				new IMenuItem("Show Global Log", event -> ShowGlobalLogTabAction.update(), true)
 			);
 
 			Button button = (Button) nameSpace.get("btnDebugMenu");
@@ -114,7 +116,7 @@ public class ToolBarPart
 		}
 	}
 
-	public static AnchorPane getRoot()
+	public static Node getRoot()
 	{
 		return root;
 	}

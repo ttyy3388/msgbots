@@ -6,8 +6,15 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 
+import java.util.List;
+
 public class IContextMenu extends ContextMenu
 {
+	public IContextMenu(List<MenuItem> list)
+	{
+		getItems().addAll(list);
+	}
+
 	public IContextMenu(MenuItem... items)
 	{
 		getItems().addAll(items);

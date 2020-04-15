@@ -1,6 +1,6 @@
 .side-bar
 {
-
+	-fx-background-color: #252526;
 }
 
 .separator
@@ -9,28 +9,17 @@
     -fx-background-color: #FFFFFF;
 }
 
-.content-area
-{
-
-}
-
-.title-pane
-{
-
-}
-
 .title-pane .label
 {
     -fx-text-fill: #FFFFFF;
-}
-.title-pane .label *
-{
     -fx-font-size: 14;
 }
 .title-pane .button
 {
+    -fx-background-color: transparent;
     -fx-background-radius: 5;
     -fx-background-size: 17;
+    -fx-border-width: 0;
 }
 .title-pane .button:hover
 {
@@ -67,8 +56,7 @@
 {
     -fx-background-color: #2A2D2E;
 }
-
-.explorer-part .list-cell .label *
+.explorer-part .list-cell .label
 {
     -fx-font-size: 15;
 }
@@ -76,7 +64,9 @@
 {
     -fx-background-radius: 15;
     -fx-background-image: url('../images/reload.png');
+    -fx-background-color: transparent;
     -fx-background-size: 17;
+    -fx-border-width: 0;
 }
 .explorer-part .list-cell .button:hover
 {
@@ -85,12 +75,13 @@
 }
 .explorer-part .list-cell .button:armed
 {
-    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-color: rgba(255, 255, 255, 0.15);
 }
 .explorer-part .list-cell .check-box .box
 {
     -fx-background-radius: 10;
     -fx-background-color: #BBBBBB;
+    -fx-border-width: 0;
     -fx-padding: 4;
 }
 .explorer-part .list-cell .check-box .mark
@@ -103,17 +94,7 @@
 }
 .explorer-part .list-cell .jfx-toggle-button
 {
-    -jfx-toggle-color: #007ACC;
-    -jfx-untoggle-color: #BBBBBB;
     -jfx-size: 6.5;
-}
-.explorer-part .list-cell .jfx-toggle-button:hover
-{
-    -jfx-untoggle-color: #FFFFFF;
-}
-.explorer-part .list-cell:selected .list-item
-{
-    -fx-background-color: #094771;
 }
 .explorer-part .list-cell:selected .label
 {
@@ -135,8 +116,12 @@
 {
     -jfx-untoggle-color: #FFFFFF;
 }
+.explorer-part .list-cell:selected .list-item
+{
+    -fx-background-color: #094771;
+}
 
-.debug-part .content-area .label *
+.debug-part .content-area .label
 {
     -fx-text-fill: #CCCCCC;
     -fx-font-size: 13;

@@ -1,46 +1,42 @@
 package org.beuwi.simulator.platform.application.views.tabs;
 
-import javafx.collections.ObservableMap;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.AnchorPane;
 
 public class GlobalLogTab
 {
-    private static ObservableMap<String, Object> nameSpace;
+	private static ListView component;
 
-    private static AnchorPane root;
+	public static void initialize()
+	{
+		/* ListView<AnchorPane> listView = getLogListView();
 
-    private static ListView listView;
-    private static TextArea textArea;
-    private static Button button;
+		listView.setCellFactory(param -> new ListCell<AnchorPane>()
+		{
+			{
+				//.subtract(2)
+				prefWidthProperty().bind(listView.widthProperty());
+				setMaxWidth(Control.USE_PREF_SIZE);
+			}
 
-    public static void initialize() throws Exception
-    {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(DebugRoomTab.class.getResource("/forms/GlobalLogTab.fxml"));
-        loader.setController(null);
-        loader.load();
+			@Override
+			protected void updateItem(AnchorPane item, boolean empty)
+			{
+				super.updateItem(item, empty);
 
-        nameSpace = loader.getNamespace();
+				if (item != null && !empty)
+				{
+					setGraphic(item);
+				}
+				else
+				{
+					setGraphic(null);
+				}
+			}
+		}); */
+	}
 
-        root = loader.getRoot();
-    }
-
-    public static AnchorPane getRoot()
-    {
-        return root;
-    }
-
-    public static ListView getComponent()
-    {
-        return (ListView) root.getChildren().get(0);
-    }
-
-    public static ObservableMap<String, Object> getNameSpace()
-    {
-        return nameSpace;
-    }
+	public static ListView getComponent()
+	{
+		return component;
+	}
 }

@@ -11,44 +11,49 @@ public class Log extends ScriptableObject
         return "Log";
     }
 
+    public Log(String name)
+    {
+
+    }
+
     @JSStaticFunction
-    public static void d(String data, Boolean showToast)
+    public void d(String data, Boolean showToast)
     {
         debug(data, showToast);
     }
     
     @JSStaticFunction
-    public static void e(String data, Boolean showToast)
+    public void e(String data, Boolean showToast)
     {
         error(data, showToast);
     }
     
     @JSStaticFunction
-    public static void i(String data, Boolean showToast)
+    public void i(String data, Boolean showToast)
     {
         info(data, showToast);
     }
     
     @JSStaticFunction
-	public static void debug(String data, Boolean showToast)
+	public void debug(String data, Boolean showToast)
     {
         return ;
 	}
     
     @JSStaticFunction
-	public static void error(String data, Boolean showToast)
+	public void error(String data, Boolean showToast)
     {
         return ;
 	}
     
     @JSStaticFunction
-	public static void info(String data, Boolean showToast)
+	public void info(String data, Boolean showToast)
     {
         return ;
 	}
     
     @JSStaticFunction
-	public static void clear()
+	public void clear()
     {
         return ;
 	}

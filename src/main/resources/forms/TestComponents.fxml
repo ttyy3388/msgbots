@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <stylesheets>
+      <URL value="@../themes/base.css" />
+      <URL value="@../themes/dark.css" />
+   </stylesheets>
+   <children>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Button" />
+      <CheckBox layoutX="14.0" layoutY="53.0" mnemonicParsing="false" />
+      <Label layoutX="84.0" layoutY="19.0" text="Label" />
+      <Label layoutX="41.0" layoutY="55.0" text="Label" />
+   </children>
+</AnchorPane>

@@ -2,15 +2,22 @@ package org.beuwi.simulator;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.beuwi.simulator.compiler.engine.ScriptEngine;
 import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.platform.application.views.MainWindowView;
 import org.beuwi.simulator.platform.application.views.actions.*;
-import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
-import org.beuwi.simulator.platform.application.views.parts.*;
-import org.beuwi.simulator.platform.application.views.tabs.*;
+import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorIDialog;
+import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
+import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
+import org.beuwi.simulator.platform.application.views.parts.StatusBarPart;
+import org.beuwi.simulator.platform.application.views.parts.ToolBarPart;
+import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
+import org.beuwi.simulator.platform.application.views.tabs.GlobalLogTab;
+import org.beuwi.simulator.platform.application.views.tabs.SettingsTab;
+import org.beuwi.simulator.platform.ui.window.IWindowScene;
 
 import java.io.IOException;
 import java.nio.file.*;
@@ -89,7 +96,7 @@ public class Launcher extends Application
 			Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoMedium.ttf"), 0); // Family : "Roboto Medium"
 
 			// 기본 스타일 지정
-			Application.setUserAgentStylesheet(getClass().getResource("/themes/default.css").toExternalForm());
+			Application.setUserAgentStylesheet(getClass().getResource("/themes/base.css").toExternalForm());
 
 			// Initialize Views
 			ToolBarPart.initialize();
@@ -101,32 +108,41 @@ public class Launcher extends Application
 			GlobalLogTab.initialize();
 			SettingsTab.initialize();
 
-			new MainWindowView(stage).display();
-
 			// Initialize View Actions
 			AddDebugLogAction.initialize();
-			AddEditorTabAction.initialize();
-			AddExplorerItemAction.initialize();
+			AddExplorerBotAction.initialize();
 			ChangeActivityTabAction.initialize();
-			CloseEditorTabAction.initialize();
+			CloseEditorPaneAction.initialize();
 			HideSideBarAction.initialize();
-			OpenDebugRoomTabAction.initialize();
-			OpenGlobalLogTabAction.initialize();
-			OpenSettingsTabAction.initialize();
+			MoveEditorPaneAction.initialize();
 			RefreshExplorerAction.initialize();
 			ResizeSideBarAction.initialize();
 			SaveAllEditorTabsAction.initialize();
-			SaveEditorTabAction.initialize();
 			SelectActivityTabAction.initialize();
 			SendChatMessageAction.initialize();
+			ShowDebugRoomTabAction.initialize();
+			ShowGlobalLogTabAction.initialize();
+			ShowSettingsTabAction.initialize();
+			SplitEditorPaneAction.initialize();
 
 			RefreshExplorerAction.update();
-
 			ScriptEngine.preInitialize();
+
+			stage.getIcons().add(new Image(getClass().getResource("/images/program.png").toExternalForm()));
+			// stage.setMinWidth(625);
+			// stage.setMinHeight(435);
+			stage.setWidth(1400);
+			stage.setHeight(900);
+			// stage.setMaxWidth(Double.MAX_VALUE);
+			// stage.setMaxHeight(Double.MAX_VALUE);
+			stage.setTitle("Messenger Bot Simulator");
+			stage.setScene(new IWindowScene(new MainWindowView(stage)));
+			stage.toFront();
+			stage.show();
 		}
 		catch (Exception e)
 		{
-			new ShowErrorDialog(e).display();
+			new ShowErrorIDialog(e).display();
 
 			e.printStackTrace();
 		}

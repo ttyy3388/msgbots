@@ -3,6 +3,8 @@ package org.beuwi.simulator.compiler.api;
 import org.beuwi.simulator.compiler.engine.ScriptEngine;
 import org.beuwi.simulator.managers.BotManager;
 import org.beuwi.simulator.managers.FileManager;
+import org.beuwi.simulator.platform.application.actions.ShowNotificationAction;
+import org.beuwi.simulator.platform.application.actions.ShowToastMessageAction;
 import org.beuwi.simulator.platform.application.views.actions.SendChatMessageAction;
 import org.beuwi.simulator.settings.Settings;
 import org.mozilla.javascript.Context;
@@ -217,9 +219,9 @@ public class Api extends ScriptableObject
 	}
 
 	@JSStaticFunction
-	public static void showToast(String title, String data) 
+	public static void showToast(String content, int length)
 	{
-		return ;
+		ShowToastMessageAction.update(content);
 	}
 
 	@JSStaticFunction
@@ -229,8 +231,10 @@ public class Api extends ScriptableObject
 	}
 
 	@JSStaticFunction
-	public static Boolean makeNoti(String title, String data, int id)
+	public static Boolean makeNoti(String title, String content, int id)
 	{
+		ShowNotificationAction.update(title, content);
+
 		return true;
 	}
 

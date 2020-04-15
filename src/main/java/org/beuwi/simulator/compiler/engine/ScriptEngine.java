@@ -5,6 +5,7 @@ import org.beuwi.simulator.compiler.api.*;
 import org.beuwi.simulator.managers.BotManager;
 import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.managers.LogManager;
+import org.beuwi.simulator.platform.application.views.actions.SaveEditorTabAction;
 import org.beuwi.simulator.platform.application.views.actions.SendChatMessageAction;
 import org.beuwi.simulator.settings.Settings;
 import org.mozilla.javascript.*;
@@ -60,7 +61,7 @@ public class ScriptEngine
 
 		if (Settings.getPublicSetting("program").getBoolean("autoSave"))
 		{
-			// SaveEditorTabAction.update(name);
+			SaveEditorTabAction.update(name);
 		}
 
 		int optimization = Settings.getScriptSetting(name).getInt("optimization");
@@ -102,13 +103,16 @@ public class ScriptEngine
 			scope = (ScriptableObject) parseContext.initStandardObjects(new ImporterTopLevel(parseContext));
 			script = parseContext.compileString(FileManager.read(file), file.getName(), 0, null);
 
+			int flags = ScriptableObject.EMPTY;
+
+			ScriptableObject.defineProperty(scope, "Log", new Log(name), flags);
+
 			ScriptableObject.defineClass(scope, Api.class);
 			ScriptableObject.defineClass(scope, AppData.class);
 			ScriptableObject.defineClass(scope, Bridge.class);
 			ScriptableObject.defineClass(scope, DataBase.class);
 			ScriptableObject.defineClass(scope, Device.class);
 			ScriptableObject.defineClass(scope, FileStream.class);
-			ScriptableObject.defineClass(scope, Log.class);
 			ScriptableObject.defineClass(scope, Utils.class);
 
 			execScope = scope;
