@@ -73,23 +73,25 @@
     -fx-background-color: transparent;
     -fx-border-width: 0;
 }
+.tab-button-bar .button:hover
+{
+	-fx-background-color: rgba(255, 255, 255, 0.05);
+}
+.tab-button-bar .button:armed,
+.tab-button-bar .button:showing
+{
+	-fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
 .tab-button-bar .tab-split-button
 {
     -fx-background-image: url('../images/split_white.png');
-    -fx-background-size: 15;
+    -fx-background-size: 14;
 }
 .tab-button-bar .tab-more-button
 {
     -fx-background-image: url('../images/more_white.png');
-    -fx-background-size: 15;
-}
-.tab-button-bar .tab-more-button:hover
-{
-	-fx-background-color: rgba(255, 255, 255, 0.05);
-}
-.tab-button-bar .tab-more-button:armed
-{
-	-fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-size: 14;
 }
 
 .tab:hover
@@ -122,22 +124,20 @@
 }
 .caret
 {
-	-fx-stroke-width: 2;
+	/* -fx-stroke-width: 2; */
+	-fx-stroke-width: 3;
 	-fx-stroke: #ADAEAC;
 }
 .lineno
 {
 	-fx-pref-width: 70;
-	-fx-padding: 2.5 12 2.5 0;
+	-fx-pref-height: 50;
+	-fx-padding: 0 12 0 0;
     -fx-cursor: default;
 }
 .lineno .text
 {
 	-fx-fill: #848484;
-}
-.paragraph-text
-{
-	-fx-padding: 2.5;
 }
 .paragraph-text .text
 {

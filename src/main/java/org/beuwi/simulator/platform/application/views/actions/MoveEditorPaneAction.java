@@ -31,7 +31,7 @@ public class MoveEditorPaneAction
 		{
             case RIGHT :
 
-				if (index < panes.size())
+				if (index + 1 < panes.size())
 				{
 					editor.removeTab(tab);
                     ((IEditorPane) panes.get(index + 1)).addTab(tab);

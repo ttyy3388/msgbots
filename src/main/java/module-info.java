@@ -19,4 +19,5 @@ open module org.beuwi.simulator
     requires com.jfoenix;
     requires org.fxmisc.richtext;
     requires flowless;
+    requires org.apache.commons.io;
 }

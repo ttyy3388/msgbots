@@ -1,7 +1,7 @@
 package org.beuwi.simulator.settings;
 
 import org.beuwi.simulator.managers.FileManager;
-import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
+import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialogBox;
 import org.beuwi.simulator.utils.JsonEnterConvert;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -37,7 +37,7 @@ public class Settings
 			}
 			catch (Exception e)
 			{
-				new ShowErrorDialog(e).display();
+				new ShowErrorDialogBox(e).display();
 			}
 		}
 
@@ -107,7 +107,7 @@ public class Settings
 			}
 			catch (Exception e)
 			{
-				new ShowErrorDialog(e).display();
+				new ShowErrorDialogBox(e).display();
 			}
 		}
 

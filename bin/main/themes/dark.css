@@ -36,7 +36,7 @@
 {
 	-fx-background-color: #252526;
 	-fx-padding: 7 0 7 0;
-	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
+	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 5);
 }
 .context-menu .separator
 {
@@ -110,11 +110,7 @@
 	-fx-background-color: #FFFFFF;
 }
 
-.text-area
-{
-	-fx-padding: 4;
-}
-
+.text-area,
 .text-field
 {
 	-fx-background-color: #3F3F46;
@@ -136,4 +132,23 @@
 .jfx-toggle-button:hover
 {
 	-jfx-untoggle-color: #FFFFFF;
+}
+
+/* Custom Components */
+.log-view .list-item
+{
+    -fx-background-insets: 3 5 5 0;
+    -fx-background-color: #2B2B2B;
+}
+.log-view .list-item .event
+{
+
+}
+.log-view .list-item .error
+{
+    -fx-text-fill: #FF0000;
+}
+.log-view .list-cell:selected .list-item
+{
+	-fx-background-color: #0D293E;
 }

@@ -41,7 +41,7 @@ public class IScrollBarSkin implements Skin<ScrollBar>
 
 				scroll.orientationProperty().addListener(observable -> setup());
 
-				thumb.setOnMousePressed(event ->
+				thumb.setOnMouseClicked(event ->
 				{
 					if (event.isSynthesized())
 					{

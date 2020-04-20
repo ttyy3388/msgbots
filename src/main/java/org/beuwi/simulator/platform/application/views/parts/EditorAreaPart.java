@@ -1,5 +1,8 @@
 package org.beuwi.simulator.platform.application.views.parts;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,7 +16,9 @@ public class EditorAreaPart
 {
 	private static ObservableMap<String, Object> nameSpace;
 
-	private static IEditorPane pane;
+	private static ObjectProperty<IEditorPane> property = new SimpleObjectProperty<>();
+
+	private static SplitPane component;
 
 	private static AnchorPane root;
 
@@ -27,11 +32,29 @@ public class EditorAreaPart
 		nameSpace = loader.getNamespace();
 
 		root = loader.getRoot();
+
+		component = getComponent();
+
+		component.getItems().addListener((ListChangeListener.Change <? extends Node> change) ->
+		{
+			int size = component.getItems().size();
+
+			for (int i = 0 ; i < size - 1 ; i ++)
+			{
+				component.setDividerPosition(i, (1 / (double) size) * (i + 1));
+			}
+		});
 	}
 
 	public static Node getRoot()
 	{
 		return root;
+	}
+
+	// Selected Editor Pane Property
+	public static ObjectProperty getProperty()
+	{
+		return property;
 	}
 
 	public static SplitPane getComponent()
@@ -48,12 +71,12 @@ public class EditorAreaPart
 			list.add(new IEditorPane());
 		}
 
-		return pane;
+		return property.get();
 	}
 
 	public static void setSelectedPane(IEditorPane editor)
 	{
-		pane = editor;
+		property.set(editor);
 	}
 
 	public static ObservableMap<String, Object> getNameSpace()

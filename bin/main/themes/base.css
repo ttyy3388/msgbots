@@ -35,8 +35,8 @@
 .menu-item:disabled,
 .toggle-button:disabled
 {
-    -fx-opacity: 0.5;
-    -fx-cursor: default;
+	-fx-opacity: 0.5;
+	-fx-cursor: default;
 }
 
 /* SHAPE */

@@ -14,21 +14,15 @@
 
 .list-cell
 {
-	-fx-padding: 3 10 3 10;
-}
-
-.list-cell .name-label
-{
-
+	-fx-padding: 15 10 15 10;
 }
 
 .list-cell .bot-label,
 .list-cell .sender-label
 {
-	-fx-background-radius: 15;
-	-fx-background-insets: 2 0 2 0;
+	-fx-background-radius: 8;
 	-fx-text-fill: #FFFFFF;
-	-fx-padding: 10;
+	-fx-padding: 8;
 }
 .list-cell .sender-label
 {
@@ -46,12 +40,15 @@
 {
 	-fx-background-color: #46454D;
 }
+
 .text-area
 {
 	-fx-background-radius: 15;
 	-fx-background-color: transparent, #303030, transparent, #303030;
+	-fx-border-width: 0;
 	-fx-padding: 10;
 }
+
 .button
 {
 	-fx-background-image: url('../images/send.png');

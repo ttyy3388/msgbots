@@ -1,6 +1,6 @@
 package org.beuwi.simulator.platform.application.views.actions;
 
-import org.beuwi.simulator.platform.ui.components.ILogView;
+import org.beuwi.simulator.platform.ui.log.ILogView;
 
 public class OpenBotLogTabAction
 {

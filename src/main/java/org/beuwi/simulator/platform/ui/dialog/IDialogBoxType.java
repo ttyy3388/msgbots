@@ -8,5 +8,12 @@ public enum IDialogBoxType
 	// Exists, Rename, Error ... (1 ~ 2개의 간단한 컴포넌트)
 	// final public static int DOCUMENT = 1;
 
-    NONE, ERROR, WARNING, EVENT
+	APPLICATION, DOCUMENT;
+
+    public enum DOCUMENT
+	{
+		ERROR, WARNING, EVENT
+	}
+
+	// NONE, ERROR, WARNING, EVENT
 }

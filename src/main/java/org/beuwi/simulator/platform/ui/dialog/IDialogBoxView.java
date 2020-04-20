@@ -6,12 +6,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import org.beuwi.simulator.platform.ui.dialog.IDialogBoxType.DOCUMENT;
 import org.beuwi.simulator.platform.ui.window.IWindowScene;
 import org.beuwi.simulator.platform.ui.window.IWindowStage;
 import org.beuwi.simulator.platform.ui.window.IWindowType;
@@ -31,7 +31,16 @@ public class IDialogBoxView extends IWindowStage implements Initializable
 	@FXML private Button 	 DIALOG_BUTTON_NO;
 
 	IDialogBoxType DIALOG_TYPE;
-	Region 		   DIALOG_CONTENT;
+	Region 		DIALOG_CONTENT;
+
+	DOCUMENT 	DOCUMENT_TYPE;
+
+	// DOCUMENT
+	public IDialogBoxView(DOCUMENT type)
+	{
+		this(IDialogBoxType.DOCUMENT);
+		DOCUMENT_TYPE = type;
+	}
 
 	public IDialogBoxView(IDialogBoxType type)
 	{
@@ -51,7 +60,6 @@ public class IDialogBoxView extends IWindowStage implements Initializable
 		}
 
 		DIALOG_TYPE = type;
-
 		DIALOG_PANE.getStyleClass().add("dialog");
 	}
 
@@ -88,26 +96,31 @@ public class IDialogBoxView extends IWindowStage implements Initializable
 
 	public void create()
 	{
-		Image image= switch (DIALOG_TYPE)
-		{
-			case ERROR   -> ResourceUtils.getImage("error_big.png");
-			case WARNING -> ResourceUtils.getImage("warning_big.png");
-			case EVENT   -> ResourceUtils.getImage("event_big.png");
-			default -> null;
-		};
-
 		switch (DIALOG_TYPE)
 		{
-			case NONE :
+			case APPLICATION :
+
 				DIALOG_PANE.getChildren().remove(DIALOG_PANE.getLeft());
 				setMinSize(DIALOG_CONTENT.getMinWidth(), DIALOG_CONTENT.getMinHeight() + 47);
 				setSize(DIALOG_CONTENT.getPrefWidth(), DIALOG_CONTENT.getPrefHeight() + 47);
 				break;
 
-			default :
-				DIALOG_ICON.setImage(image);
-				setMinSize(DIALOG_CONTENT.getMinWidth() + 75, DIALOG_CONTENT.getMinHeight() + 47);
-				setSize(DIALOG_CONTENT.getPrefWidth() + 75, DIALOG_CONTENT.getPrefHeight() + 47);
+			// DOCUMENT
+			case DOCUMENT :
+
+				DIALOG_ICON.setImage
+				(
+					switch (DOCUMENT_TYPE)
+					{
+						case ERROR   -> ResourceUtils.getImage("error_big.png");
+						case WARNING -> ResourceUtils.getImage("warning_big.png");
+						case EVENT   -> ResourceUtils.getImage("event_big.png");
+						default -> null;
+					}
+				);
+
+				setMinSize(DIALOG_CONTENT.getMinWidth() + 70, DIALOG_CONTENT.getMinHeight() + 47);
+				setSize(DIALOG_CONTENT.getPrefWidth() + 70, DIALOG_CONTENT.getPrefHeight() + 47);
 				break;
 		};
 

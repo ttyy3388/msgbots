@@ -5,10 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
-import org.beuwi.simulator.platform.application.views.actions.SendChatMessageAction;
+import org.beuwi.simulator.platform.application.actions.CopyAction;
+import org.beuwi.simulator.platform.application.views.actions.AddChatMessageAction;
+import org.beuwi.simulator.platform.ui.components.IContextMenu;
+import org.beuwi.simulator.platform.ui.components.IMenuItem;
+import org.beuwi.simulator.platform.ui.components.ITextArea;
 
 public class DebugRoomTab
 {
@@ -27,8 +31,9 @@ public class DebugRoomTab
 
         root = loader.getRoot();
 
-		TextArea textArea = (TextArea) nameSpace.get("textArea");
-		Button   button   = (Button) nameSpace.get("button");
+        ListView  listView = getComponent();
+		ITextArea textArea = (ITextArea) nameSpace.get("textArea");
+		Button    button   = (Button) nameSpace.get("button");
 
 		textArea.setOnKeyPressed(event ->
 		{
@@ -48,7 +53,7 @@ public class DebugRoomTab
 					return ;
 				}
 
-				SendChatMessageAction.update(textArea.getText(), false);
+				AddChatMessageAction.update(textArea.getText(), false);
 				textArea.clear();
 				event.consume();
 			}
@@ -61,12 +66,31 @@ public class DebugRoomTab
 
 		button.setOnAction(event ->
 		{
-			SendChatMessageAction.update(textArea.getText(), false);
+			AddChatMessageAction.update(textArea.getText(), false);
 			textArea.requestFocus();
 			textArea.clear();
 		});
 
 		textArea.requestFocus();
+
+		listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		listView.setOnKeyPressed(event ->
+		{
+			if (event.isControlDown())
+			{
+				switch (event.getCode())
+				{
+					case C : CopyAction.update(listView.getSelectionModel().getSelectedItems()); break;
+				}
+			}
+		});
+
+		IContextMenu menu = new IContextMenu
+		(
+			new IMenuItem("Select All", event -> listView.getSelectionModel().selectAll())
+		);
+
+		menu.setNode(listView);
 	}
 
 

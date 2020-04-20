@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -21,8 +22,8 @@ import org.beuwi.simulator.platform.application.views.actions.OpenDebugRoomTabAc
 import org.beuwi.simulator.platform.application.views.actions.OpenGlobalLogTabAction;
 import org.beuwi.simulator.platform.application.views.actions.ResizeSideBarAction;
 import org.beuwi.simulator.platform.application.views.actions.SelectActivityTabAction;
-import org.beuwi.simulator.platform.application.views.dialogs.CreateBotIDialog;
-import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
+import org.beuwi.simulator.platform.application.views.dialogs.CreateBotDialogBox;
+import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialogBox;
 import org.beuwi.simulator.platform.ui.components.IContextMenu;
 import org.beuwi.simulator.platform.ui.components.IMenuItem;
 import org.beuwi.simulator.settings.Settings;
@@ -63,38 +64,34 @@ public class ActiveAreaPart
 
 	private static class ExplorerTabPart
 	{
+		private static IContextMenu menu = null;
+
 		public static void initialize()
 		{
-			ToggleButton tab = (ToggleButton) nameSpace.get("tgnExplorerTab");
-			tab.setOnMousePressed(event ->
+			ToggleButton toggle = (ToggleButton) nameSpace.get("tgnExplorerTab");
+
+			toggle.setOnMouseClicked(event ->
 			{
-				if (event.isPrimaryButtonDown())
+				if (MouseButton.PRIMARY.equals(event.getButton()))
 				{
 					SelectActivityTabAction.update(0);
 				}
 			});
 
 			// Option Button
-			IContextMenu option = new IContextMenu
+			menu = new IContextMenu
 			(
 				new IMenuItem("Show Compiled Check"),
 				new IMenuItem("Show Compile Button"),
 				new IMenuItem("Show Power Switch")
 			);
 
-			Button button = (Button) nameSpace.get("btnShowOption");
-			button.setOnMousePressed(event ->
-			{
-				if (event.isPrimaryButtonDown())
-				{
-					option.show(button, event);
-				}
-			});
+			menu.setNode((Button) nameSpace.get("btnShowOption"));
 
 			// List View
-			IContextMenu menu = new IContextMenu
+			menu = new IContextMenu
 			(
-				new IMenuItem("New Bot", "Ctrl + N", event -> new CreateBotIDialog().display()),
+				new IMenuItem("New Bot", "Ctrl + N", event -> new CreateBotDialogBox().display()),
 				new SeparatorMenuItem(),
 				new IMenuItem("Show in Explorer", "Shift + Alt + R", event -> OpenDesktopAction.update(FileManager.BOTS_FOLDER)),
 				new SeparatorMenuItem(),
@@ -102,27 +99,7 @@ public class ActiveAreaPart
 				new IMenuItem("Copy Relative Path", "Ctrl + Shift + C", event -> CopyAction.update(FileManager.BOTS_FOLDER.getPath()))
 			);
 
-			ListView listView = (ListView) nameSpace.get("lsvExplorerArea");
-			listView.setOnMousePressed(event ->
-			{
-				String target = event.getTarget().toString();
-
-				if (event.isSecondaryButtonDown())
-				{
-					if (target.contains("ListViewSkin$"))
-					{
-						menu.show(listView, event);
-					}
-					else
-					{
-						menu.hide();
-					}
-				}
-				else
-				{
-					menu.hide();
-				}
-			});
+			menu.setNode((ListView) nameSpace.get("lsvExplorerArea"));
 		}
 	}
 
@@ -131,9 +108,9 @@ public class ActiveAreaPart
 		public static void initialize()
 		{
 			ToggleButton tab = (ToggleButton) nameSpace.get("tgnDebugTab");
-			tab.setOnMousePressed(event ->
+			tab.setOnMouseClicked(event ->
 			{
-				if (event.isPrimaryButtonDown())
+				if (MouseButton.PRIMARY.equals(event.getButton()))
 				{
 					SelectActivityTabAction.update(1);
 				}
@@ -253,7 +230,7 @@ public class ActiveAreaPart
 				}
 				catch (Exception e)
 				{
-					new ShowErrorDialog(e).display();
+					new ShowErrorDialogBox(e).display();
 				}
 
 				data.putMap(map);

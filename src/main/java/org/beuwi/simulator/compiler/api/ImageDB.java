@@ -1,10 +1,6 @@
 package org.beuwi.simulator.compiler.api;
 
-import org.apache.commons.io.IOUtils;
-import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
-
-import java.net.URL;
-import java.util.Base64;
+import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialogBox;
 
 public class ImageDB 
 {
@@ -17,13 +13,13 @@ public class ImageDB
 	{
 		try
 		{
-			byte[] bytes = IOUtils.toByteArray(new URL(ImageDB.class.getResource("/datas/profile_bot.png").toExternalForm()));
+			// byte[] bytes = IOUtils.toByteArray(FileManager.getDataFile("profile_bot.png"));
 
-			return Base64.getEncoder().encodeToString(bytes);
+			// return Base64.getEncoder().encodeToString(bytes);
 		}
 		catch (Exception e)
 		{
-			new ShowErrorDialog(e).display();
+			new ShowErrorDialogBox(e).display();
 		}
 
 		return null;

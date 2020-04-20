@@ -5,7 +5,7 @@ import org.beuwi.simulator.managers.BotManager;
 import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.platform.application.actions.ShowNotificationAction;
 import org.beuwi.simulator.platform.application.actions.ShowToastMessageAction;
-import org.beuwi.simulator.platform.application.views.actions.SendChatMessageAction;
+import org.beuwi.simulator.platform.application.views.actions.AddChatMessageAction;
 import org.beuwi.simulator.settings.Settings;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
@@ -207,7 +207,7 @@ public class Api extends ScriptableObject
 	@JSStaticFunction
 	public static Boolean replyRoom(String room, String message, Boolean hideToast)
 	{
-		SendChatMessageAction.update(message, false);
+		AddChatMessageAction.update(message, false);
 
 		return true;
 	}

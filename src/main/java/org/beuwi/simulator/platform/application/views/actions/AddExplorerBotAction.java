@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXToggleButton;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -13,14 +14,12 @@ import org.beuwi.simulator.managers.BotManager;
 import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.platform.application.actions.CopyAction;
 import org.beuwi.simulator.platform.application.actions.OpenDesktopAction;
-import org.beuwi.simulator.platform.application.views.dialogs.DeleteBotIDialog;
-import org.beuwi.simulator.platform.application.views.dialogs.RenameBotIDialog;
+import org.beuwi.simulator.platform.application.views.dialogs.DeleteBotDialogBox;
+import org.beuwi.simulator.platform.application.views.dialogs.RenameBotDialogBox;
 import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
-import org.beuwi.simulator.platform.ui.components.ICodeArea;
 import org.beuwi.simulator.platform.ui.components.IContextMenu;
 import org.beuwi.simulator.platform.ui.components.IMenuItem;
 import org.beuwi.simulator.settings.Settings;
-import org.beuwi.simulator.utils.ResourceUtils;
 
 public class AddExplorerBotAction
 {
@@ -33,7 +32,7 @@ public class AddExplorerBotAction
 
 	public static void update(String name)
 	{
-		IContextMenu itemMenu = new IContextMenu
+		IContextMenu menu = new IContextMenu
 		(
 			new IMenuItem("Compile", event -> ScriptEngine.setInitialize(name, true, false)),
 			new IMenuItem("Power On / Off", event -> BotManager.setPower(name, !BotManager.getPower(name))),
@@ -44,65 +43,58 @@ public class AddExplorerBotAction
 			new IMenuItem("Copy Path", "Ctrl + Alt + C", event -> CopyAction.update(FileManager.getBotFolder(name).getAbsolutePath())),
 			new IMenuItem("Copy Relative Path", "Ctrl + Shift + C", event -> CopyAction.update(FileManager.getBotFolder(name).getPath())),
 			new SeparatorMenuItem(),
-			new IMenuItem("Rename", event -> new RenameBotIDialog(name).display()),
-			new IMenuItem("Delete", event -> new DeleteBotIDialog(name).display())
+			new IMenuItem("Rename", event -> new RenameBotDialogBox(name).display()),
+			new IMenuItem("Delete", event -> new DeleteBotDialogBox(name).display())
 		);
 
-		HBox 			itemCell    = new HBox();
-		CheckBox		itemCheck   = new CheckBox();
-		Label 			itemName    = new Label(name);
-		Button 		    itemCompile = new Button();
-		JFXToggleButton itemSwitch  = new JFXToggleButton();
+		HBox 			item   = new HBox();			// Bot Item Cell
+		CheckBox		check  = new CheckBox();  		// Bot Compiled Check Box
+		Label 			label  = new Label(name); 		// Bot Name Label
+		Button 		    button = new Button();    		// Bot Compile Button
+		JFXToggleButton power  = new JFXToggleButton(); // Bot Power Switch
 
-		itemCell.setId(name);
-		itemCell.setPrefHeight(40);
-		itemCell.getChildren().addAll
+		menu.setNode(item);
+
+		item.setId(name);
+		item.setPrefHeight(32);
+		item.getChildren().addAll
 		(
-			getItemVBox(itemCheck,   Pos.CENTER, 	  Priority.NEVER,  25),
-			getItemVBox(itemName,    Pos.CENTER_LEFT, Priority.ALWAYS, 50),
-			getItemVBox(itemCompile, Pos.CENTER, 	  Priority.NEVER,  45),
-			getItemVBox(itemSwitch,  Pos.CENTER_LEFT, Priority.NEVER,  40)
+			getItemVBox(check,  Pos.CENTER, 	 Priority.NEVER,  25),
+			getItemVBox(label,  Pos.CENTER_LEFT, Priority.ALWAYS, 50),
+			getItemVBox(button, Pos.CENTER, 	 Priority.NEVER,  40),
+			getItemVBox(power,  Pos.CENTER_LEFT, Priority.NEVER,  45)
 		);
 
-		itemCell.getStyleClass().add("list-item");
-		itemCell.setOnMousePressed(event ->
+		item.getStyleClass().add("list-item");
+		item.setOnMouseClicked(event ->
 		{
-			if (event.isPrimaryButtonDown() || event.isMiddleButtonDown())
+			if (MouseButton.PRIMARY.equals(event.getButton()) || MouseButton.MIDDLE.equals(event.getButton()))
 			{
-				AddEditorTabAction.update
-				(
-					ResourceUtils.getImage("tab_script.png"),
-					"@script::" + name, name,
-					new ICodeArea(FileManager.read(FileManager.getBotScript(name)))
-				);
-			}
-			if (event.isSecondaryButtonDown())
-			{
-				itemMenu.show(itemCell, event);
+				OpenScriptTabAction.update(name);
 			}
 		});
 
-		itemCompile.setOnMousePressed(event ->
+		button.setOnMouseClicked(event ->
 		{
-			if (event.isPrimaryButtonDown())
+			if (MouseButton.PRIMARY.equals(event.getButton()))
 			{
 				ScriptEngine.setInitialize(name, true, false);
 			}
 		});
 
-		itemCheck.setSelected(Api.isCompiled(name));
-		itemSwitch.setSelected(Api.isOn(name));
-		itemSwitch.selectedProperty().addListener((observable, oldValue, newValue) ->
+		check.setSelected(Api.isCompiled(name));
+		power.setSelected(Api.isOn(name));
+		power.selectedProperty().addListener((observable, oldValue, newValue) ->
 		{
 			Settings.getScriptSetting(name).putBoolean("power", newValue);
 		});
 
-		itemCompile.setPrefSize(30, 30);
+		button.setPrefSize(30, 30);
 
-		BotManager.data.put("@check::" + name, itemCheck);
-		BotManager.data.put("@switch::" + name, itemSwitch);
+		BotManager.data.put("@check::" + name, check);
+		BotManager.data.put("@switch::" + name, power);
 
-		listView.getItems().add(itemCell);
+		listView.getItems().add(item);
 	}
 
 	private static VBox getItemVBox(Node node, Pos pos, Priority priority, double prefWidth)

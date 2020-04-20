@@ -3,7 +3,7 @@ package org.beuwi.simulator.platform.application.views.actions;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import org.beuwi.simulator.platform.application.views.tabs.GlobalLogTab;
-import org.beuwi.simulator.platform.ui.components.ILogItem;
+import org.beuwi.simulator.platform.ui.log.ILogItem;
 
 public class AddDebugLogAction
 {

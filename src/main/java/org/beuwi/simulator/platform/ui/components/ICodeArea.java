@@ -1,10 +1,6 @@
 package org.beuwi.simulator.platform.ui.components;
 
-import javafx.scene.control.ContextMenu;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import org.beuwi.simulator.platform.application.views.actions.SaveEditorTabAction;
-import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.model.StyleSpans;
@@ -16,7 +12,7 @@ import java.util.function.IntFunction;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ICodeArea extends AnchorPane
+public class ICodeArea extends CodeArea
 {
 	private static final String[] KEYWORDS = new String[]
 	{
@@ -57,17 +53,6 @@ public class ICodeArea extends AnchorPane
 		+ "|(?<COMMENT>" + COMMENT_PATTERN + ")"
 	);
 
-	CodeArea 	          CODE_AREA    = new CodeArea();
-	VirtualizedScrollPane SCROLL_PANE  = new VirtualizedScrollPane(CODE_AREA);
-	ContextMenu 		  CONTEXT_MENU = new ContextMenu();
-
-	{
-		AnchorPane.setTopAnchor   (SCROLL_PANE, .0);
-		AnchorPane.setRightAnchor (SCROLL_PANE, .0);
-		AnchorPane.setBottomAnchor(SCROLL_PANE, .0);
-		AnchorPane.setLeftAnchor  (SCROLL_PANE, .0);
-	}
-
 	public ICodeArea()
 	{
 		this(null);
@@ -77,15 +62,42 @@ public class ICodeArea extends AnchorPane
 	{
 		IntFunction<String> format = (digits -> " %" + digits + "d ");
 
-		CODE_AREA.replaceText(0, 0, text);
-		CODE_AREA.setParagraphGraphicFactory(LineNumberFactory.get(CODE_AREA, format));
+		this.replaceText(0, 0, text);
+		this.setParagraphGraphicFactory(LineNumberFactory.get(this, format));
 
-		CODE_AREA.textProperty().addListener((observable, oldText, newText) ->
+		this.textProperty().addListener((observable, oldText, newText) ->
 		{
-			CODE_AREA.setStyleSpans(0, computeHighlighting(newText));
+			this.setStyleSpans(0, computeHighlighting(newText));
+
+			/* String data = this.getText();
+
+			if (data.isEmpty())
+			{
+				popup.hide();
+			}
+			else
+			{
+				List<String> list = entries.stream()
+						.filter(e -> e.toLowerCase().contains(data.toLowerCase()))
+						.collect(Collectors.toList());
+
+				if (!list.isEmpty())
+				{
+					//
+
+					if (!popup.isShowing())
+					{
+						popup.show(this, Side.BOTTOM, 0, 0);
+					}
+				}
+				else
+				{
+					popup.hide();
+				}
+			} */
 		});
 
-		CODE_AREA.setOnKeyPressed(event ->
+		this.setOnKeyPressed(event ->
 		{
 			if (event.isControlDown())
 			{
@@ -95,9 +107,6 @@ public class ICodeArea extends AnchorPane
 				}
 			}
 		});
-
-		getChildren().add(SCROLL_PANE);
-		getChildren().add(getSeparatorLine());
 	}
 
 	private static StyleSpans<Collection<String>> computeHighlighting(String text)
@@ -129,27 +138,18 @@ public class ICodeArea extends AnchorPane
 		return spansBuilder.create();
 	}
 
-	private StackPane getSeparatorLine()
-	{
-		StackPane separator = new StackPane();
-		separator.getStyleClass().add("separator");
-		separator.setPrefWidth(1);
-		separator.setLayoutX(60);
-		separator.setStyle("-fx-background-color: #707070;");
-
-		AnchorPane.setTopAnchor(separator, .0);
-		AnchorPane.setBottomAnchor(separator, .0);
-
-		return separator;
-	}
-
 	public void setText(String text)
 	{
-		CODE_AREA.replaceText(0, 0, text);
+		this.replaceText(0, 0, text);
 	}
 
 	public String getText()
 	{
-		return CODE_AREA.getText();
+		return this.getText();
+	}
+
+	public int getCaretPosition()
+	{
+		return this.getCaretPosition();
 	}
 }

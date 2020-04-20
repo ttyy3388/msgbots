@@ -39,7 +39,6 @@
 .tab-header
 {
 	-fx-padding: 0 14 0 14;
-	-fx-spacing: 7;
 }
 .tab-close-button
 {
@@ -74,23 +73,25 @@
     -fx-background-color: transparent;
     -fx-border-width: 0;
 }
+.tab-button-bar .button:hover
+{
+	-fx-background-color: rgba(255, 255, 255, 0.05);
+}
+.tab-button-bar .button:armed,
+.tab-button-bar .button:showing
+{
+	-fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
 .tab-button-bar .tab-split-button
 {
     -fx-background-image: url('../images/split_white.png');
-    -fx-background-size: 15;
+    -fx-background-size: 14;
 }
 .tab-button-bar .tab-more-button
 {
     -fx-background-image: url('../images/more_white.png');
-    -fx-background-size: 15;
-}
-.tab-button-bar .tab-more-button:hover
-{
-	-fx-background-color: rgba(255, 255, 255, 0.05);
-}
-.tab-button-bar .tab-more-button:armed
-{
-	-fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-size: 14;
 }
 
 .tab:hover
@@ -102,7 +103,7 @@
 	-fx-background-color: #1E1E1E;
     -fx-border-color: #007ACC transparent transparent transparent;
 }
-.tab:selected .tab-title-label
+.tab:selected .tab-header-label
 {
 	-fx-text-fill: #FFFFFF;
 }

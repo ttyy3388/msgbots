@@ -3,22 +3,25 @@
 	-fx-background-color: #252526;
 }
 
-.separator
+/* .separator
 {
-    -fx-background-insets: 0 10 0 10;
+    -fx-background-insets: 0 5 0 5;
     -fx-background-color: #FFFFFF;
-}
+} */
 
+.title-pane
+{
+    -fx-background-color: #3C3C3C;
+}
 .title-pane .label
 {
+    -fx-font-weight: bold;
     -fx-text-fill: #FFFFFF;
-    -fx-font-size: 14;
 }
 .title-pane .button
 {
     -fx-background-color: transparent;
-    -fx-background-radius: 5;
-    -fx-background-size: 17;
+    -fx-background-size: 14;
     -fx-border-width: 0;
 }
 .title-pane .button:hover
@@ -33,7 +36,7 @@
 .explorer-part .title-pane .option-button
 {
     -fx-background-image: url('../images/setting_white.png');
-    -fx-background-size: 20;
+    -fx-background-size: 16;
 }
 .debug-part .title-pane .chat-button
 {
@@ -58,14 +61,14 @@
 }
 .explorer-part .list-cell .label
 {
-    -fx-font-size: 15;
+    -fx-font-size: 14;
 }
 .explorer-part .list-cell .button
 {
-    -fx-background-radius: 15;
+    -fx-background-radius: 16;
     -fx-background-image: url('../images/reload.png');
     -fx-background-color: transparent;
-    -fx-background-size: 17;
+    -fx-background-size: 14;
     -fx-border-width: 0;
 }
 .explorer-part .list-cell .button:hover
@@ -82,7 +85,7 @@
     -fx-background-radius: 10;
     -fx-background-color: #BBBBBB;
     -fx-border-width: 0;
-    -fx-padding: 4;
+    -fx-padding: 3;
 }
 .explorer-part .list-cell .check-box .mark
 {
@@ -94,7 +97,7 @@
 }
 .explorer-part .list-cell .jfx-toggle-button
 {
-    -jfx-size: 6.5;
+    -jfx-size: 6;
 }
 .explorer-part .list-cell:selected .label
 {

@@ -6,7 +6,7 @@ import org.beuwi.simulator.managers.BotManager;
 import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.managers.LogManager;
 import org.beuwi.simulator.platform.application.views.actions.SaveEditorTabAction;
-import org.beuwi.simulator.platform.application.views.actions.SendChatMessageAction;
+import org.beuwi.simulator.platform.application.views.actions.AddChatMessageAction;
 import org.beuwi.simulator.settings.Settings;
 import org.mozilla.javascript.*;
 import org.mozilla.javascript.annotations.JSStaticFunction;
@@ -226,7 +226,7 @@ public class ScriptEngine
 		@JSStaticFunction
 		public static Boolean reply(String message)
 		{
-			SendChatMessageAction.update(message, true);
+			AddChatMessageAction.update(message, true);
 
 			return true;
 		}
@@ -234,7 +234,7 @@ public class ScriptEngine
 		@JSStaticFunction
 		public static Boolean reply(String room, String message, Boolean hideToast)
 		{
-			SendChatMessageAction.update(message, true);
+			AddChatMessageAction.update(message, true);
 
 			return true;
 		}

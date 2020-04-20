@@ -9,7 +9,7 @@ import org.beuwi.simulator.compiler.engine.ScriptEngine;
 import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.platform.application.views.MainWindowView;
 import org.beuwi.simulator.platform.application.views.actions.*;
-import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
+import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialogBox;
 import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
 import org.beuwi.simulator.platform.application.views.parts.StatusBarPart;
@@ -17,6 +17,7 @@ import org.beuwi.simulator.platform.application.views.parts.ToolBarPart;
 import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
 import org.beuwi.simulator.platform.application.views.tabs.GlobalLogTab;
 import org.beuwi.simulator.platform.application.views.tabs.SettingsTab;
+import org.beuwi.simulator.platform.ui.components.IButton;
 import org.beuwi.simulator.platform.ui.window.IWindowScene;
 
 import java.io.IOException;
@@ -110,6 +111,7 @@ public class Launcher extends Application
 
 			// Initialize View Actions
 			AddDebugLogAction.initialize();
+			AddEditorTabAction.initialize();
 			AddExplorerBotAction.initialize();
 			ChangeActivityTabAction.initialize();
 			CloseEditorPaneAction.initialize();
@@ -122,7 +124,7 @@ public class Launcher extends Application
 			ResizeSideBarAction.initialize();
 			SaveAllEditorTabsAction.initialize();
 			SelectActivityTabAction.initialize();
-			SendChatMessageAction.initialize();
+			AddChatMessageAction.initialize();
 			SplitEditorPaneAction.initialize();
 
 			RefreshExplorerAction.update();
@@ -139,10 +141,12 @@ public class Launcher extends Application
 			stage.setScene(new IWindowScene(new MainWindowView(stage)));
 			stage.toFront();
 			stage.show();
+
+			new IButton();
 		}
 		catch (Exception e)
 		{
-			new ShowErrorDialog(e).display();
+			new ShowErrorDialogBox(e).display();
 
 			e.printStackTrace();
 		}

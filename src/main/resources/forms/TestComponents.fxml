@@ -5,7 +5,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.layout.HBox?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <stylesheets>
@@ -16,6 +16,11 @@
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Button" />
       <CheckBox layoutX="14.0" layoutY="53.0" mnemonicParsing="false" />
       <Label layoutX="84.0" layoutY="19.0" text="Label" />
-      <Label layoutX="41.0" layoutY="55.0" text="Label" />
+      <HBox layoutX="250.0" layoutY="441.0" minWidth="150.0">
+         <children>
+            <Label minWidth="150.0" text="Label" HBox.hgrow="ALWAYS" />
+            <Label alignment="TOP_RIGHT" prefWidth="50.0" style="-fx-text-alignment: left;" text="Alt + A" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

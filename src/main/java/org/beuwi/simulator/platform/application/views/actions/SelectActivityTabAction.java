@@ -17,8 +17,6 @@ package org.beuwi.simulator.platform.application.views.actions;
 
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.VBox;
-import org.beuwi.simulator.platform.application.views.actions.ChangeActivityTabAction;
-import org.beuwi.simulator.platform.application.views.actions.HideSideBarAction;
 import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 
 public class SelectActivityTabAction
@@ -39,7 +37,7 @@ public class SelectActivityTabAction
 		if (!HideSideBarAction.isHided())
 		{
 			// 이미 선택된 탭을 다시 선택할 경우
-			if (target.isSelected())
+			if (!target.isSelected())
 			{
 				HideSideBarAction.update(true);
 			}

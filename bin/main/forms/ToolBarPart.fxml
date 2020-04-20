@@ -9,6 +9,7 @@
       <HBox layoutX="36.0" layoutY="-50.0" styleClass="menu-bar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button fx:id="btnFileMenu" mnemonicParsing="false" prefHeight="28.0" prefWidth="45.0" text="File" />
+            <Button fx:id="btnEditMenu" mnemonicParsing="false" prefHeight="28.0" prefWidth="45.0" text="Edit" />
             <Button fx:id="btnViewMenu" mnemonicParsing="false" prefHeight="28.0" prefWidth="45.0" text="View" />
           <Button fx:id="btnDebugMenu" mnemonicParsing="false" prefHeight="28.0" prefWidth="60.0" text="Debug" />
          </children>

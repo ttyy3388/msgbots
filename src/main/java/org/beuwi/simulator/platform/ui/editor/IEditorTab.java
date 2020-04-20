@@ -8,6 +8,7 @@ import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import org.beuwi.simulator.platform.application.views.actions.*;
 import org.beuwi.simulator.platform.ui.components.IContextMenu;
@@ -20,66 +21,67 @@ public class IEditorTab extends Tab
 
 	public IEditorTab(Image icon, String id, String title, Node node)
 	{
-		IContextMenu tabMenu = new IContextMenu
+		IContextMenu menu = new IContextMenu
 		(
 			new IMenuItem("Close", "Ctrl + F4", event -> CloseEditorTabAction.update(this)),
 			new IMenuItem("Close Others", event -> CloseOtherEditorTabsAction.update(this)),
 			new IMenuItem("Close All", event -> CloseAllEditorTabsAction.update()),
 			new SeparatorMenuItem(),
-			new IMenuItem("Move to Right Editor", event -> MoveEditorPaneAction.update(this, IPos.RIGHT)),
-			new IMenuItem("Move to Left Editor", event -> MoveEditorPaneAction.update(this, IPos.LEFT)),
+			new IMenuItem("Move To Right Editor", event -> MoveEditorPaneAction.update(this, IPos.RIGHT)),
+			new IMenuItem("Move To Left Editor", event -> MoveEditorPaneAction.update(this, IPos.LEFT)),
 			new SeparatorMenuItem(),
 			new IMenuItem("Select Next Tab", "Alt + Right", event -> SelectEditorTabAction.update(this, IPos.RIGHT)),
-			new IMenuItem("Select Previous Tab", "Alt + Left", event -> SelectEditorTabAction.update(this, IPos.LEFT))
+			new IMenuItem("Select Previous Tab", "Alt + Left", event -> SelectEditorTabAction.update(this, IPos.LEFT)),
+			new SeparatorMenuItem(),
+			new IMenuItem("Split Right", event -> SplitEditorPaneAction.update(this, IPos.RIGHT)),
+			new IMenuItem("Split Left", event -> SplitEditorPaneAction.update(this, IPos.LEFT))
 		);
 
-		HBox tabHeader    = new HBox();
-		ImageView tabIcon = new ImageView();
-		Label tabTitle    = new Label();
-		Button tabClose   = new Button();
+		HBox 	  header = new HBox();
+		ImageView image  = new ImageView();
+		Label     label  = new Label();
+		Button    button = new Button();
 
-		tabIcon.setFitWidth(14);
-		tabIcon.setFitHeight(14);
-		tabIcon.setImage(icon);
+		image.setFitWidth(14);
+		image.setFitHeight(14);
+		image.setImage(icon);
 
-		tabClose.setPrefWidth(14);
-		tabClose.setPrefHeight(14);
-		tabClose.getStyleClass().add("tab-close-button");
-		tabClose.setOnMousePressed(event ->
+		button.setPrefWidth(14);
+		button.setPrefHeight(14);
+		button.getStyleClass().add("tab-close-button");
+		button.setOnMouseClicked(event ->
 		{
-			if (event.isPrimaryButtonDown() || event.isMiddleButtonDown())
+			if (MouseButton.PRIMARY.equals(event.getButton()) || MouseButton.MIDDLE.equals(event.getButton()))
 			{
 				CloseEditorTabAction.update(this);
 			}
 		});
 
-		tabTitle.setText(title);
-		tabTitle.getStyleClass().add("tab-header-label");
+		label.setText(title);
+		label.getStyleClass().add("tab-header-label");
 
-		tabHeader.setSpacing(7);
-		tabHeader.setAlignment(Pos.CENTER);
-		tabHeader.getStyleClass().add("tab-header");
-		tabHeader.getChildren().addAll(tabIcon, tabTitle, tabClose);
-		tabHeader.setOnMousePressed(event ->
+		header.setSpacing(7);
+		header.setAlignment(Pos.CENTER);
+		header.getStyleClass().add("tab-header");
+		header.getChildren().addAll(image, label, button);
+		header.setOnMouseClicked(event ->
 		{
-			if (event.isMiddleButtonDown())
+			if (MouseButton.MIDDLE.equals(event.getButton()))
 			{
 				CloseEditorTabAction.update(this);
 			}
-			if (event.isSecondaryButtonDown())
-			{
-				tabMenu.show(tabHeader, event);
-			}
 		});
 
-		tabHeader.onDragOverProperty().addListener((observable, oldValue, newValue) ->
+		menu.setNode(header);
+
+		header.onDragOverProperty().addListener((observable, oldValue, newValue) ->
 		{
 			// this.pseudoClassStateChanged(PseudoClass.getPseudoClass("over"), newValue);
 		});
 
 		this.setId(id);
 		this.setContent(node);
-		this.setGraphic(tabHeader);
+		this.setGraphic(header);
 	}
 
 	public void setEditorPane(IEditorPane editor)

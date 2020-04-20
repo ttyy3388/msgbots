@@ -4,8 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.HBox;
 
@@ -23,46 +21,25 @@ public class IMenuItem extends MenuItem
 
 	public IMenuItem(String text, EventHandler<ActionEvent> handler)
 	{
-		this(null, text, null, handler);
-	}
-
-	public IMenuItem(String text, EventHandler<ActionEvent> handler, boolean disable)
-	{
-		this(null, text, null, handler, disable);
+		this(text, null, handler);
 	}
 
 	public IMenuItem(String text, String command, EventHandler<ActionEvent> handler)
 	{
-		this(null, text, command, handler);
-	}
-
-	public IMenuItem(String text, String command, boolean disable)
-	{
-		this(null, text, null, null, disable);
-	}
-
-	public IMenuItem(Image image, String text, String command, EventHandler<ActionEvent> handler)
-	{
-		this(image, text, command, handler, false);
-	}
-
-	public IMenuItem(Image image, String text, String command, EventHandler<ActionEvent> handler, boolean disable)
-	{
-		HBox cell = new HBox();
-		cell.setPrefWidth(150);
-
 		Label name = new Label(text);
-		name.setPrefWidth(150);
+		name.setMinWidth(150);
+
+		// Label cmd = new Label(command);
+		// cmd.setAlignment(Pos.CENTER_RIGHT);
+
+		// HBox.setHgrow(name, Priority.ALWAYS);
 
 		if (command != null)
 		{
 			setAccelerator(KeyCombination.keyCombination(command));
 		}
 
-		cell.getChildren().addAll(new ImageView(image), name);
-
-		setGraphic(cell);
-		setDisable(disable);
+		setGraphic(new HBox(name));
 		setOnAction(handler);
 	}
 }

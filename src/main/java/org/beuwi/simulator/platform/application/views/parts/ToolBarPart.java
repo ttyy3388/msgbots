@@ -1,15 +1,13 @@
 package org.beuwi.simulator.platform.application.views.parts;
 
 import javafx.collections.ObservableMap;
-import javafx.css.PseudoClass;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.SeparatorMenuItem;
 import org.beuwi.simulator.platform.application.views.actions.*;
-import org.beuwi.simulator.platform.application.views.dialogs.CreateBotIDialog;
-import org.beuwi.simulator.platform.application.views.dialogs.ImportScriptIDialog;
+import org.beuwi.simulator.platform.application.views.dialogs.CreateBotDialogBox;
+import org.beuwi.simulator.platform.application.views.dialogs.ImportScriptDialogBox;
 import org.beuwi.simulator.platform.ui.components.IContextMenu;
 import org.beuwi.simulator.platform.ui.components.IMenuItem;
 
@@ -31,6 +29,7 @@ public class ToolBarPart
 		root = loader.getRoot();
 
 		FileMenu.initialize();
+		EditMenu.initialize();
 		ViewMenu.initialize();
 		DebugMenu.initialize();
 	}
@@ -41,8 +40,8 @@ public class ToolBarPart
 		{
 			IContextMenu menu = new IContextMenu
 			(
-				new IMenuItem("New Bot", "Ctrl + N", event -> new CreateBotIDialog().display()),
-				new IMenuItem("Import Script", "Ctrl + I", event -> new ImportScriptIDialog().display()),
+				new IMenuItem("New Bot", "Ctrl + N", event -> new CreateBotDialogBox().display()),
+				new IMenuItem("Import Script", "Ctrl + I", event -> new ImportScriptDialogBox().display()),
 				new SeparatorMenuItem(),
 				new IMenuItem("Save", "Ctrl + S", event -> SaveEditorTabAction.update()),
 				new IMenuItem("Save All", "Ctrl + Shift + S", event -> SaveAllEditorTabsAction.update()),
@@ -52,19 +51,25 @@ public class ToolBarPart
 				new IMenuItem("Settings", "Ctrl + Alt + S", event -> OpenSettingsTabAction.update())
 			);
 
-			Button button = (Button) nameSpace.get("btnFileMenu");
-			button.setOnMousePressed(event ->
-			{
-				if (event.isPrimaryButtonDown())
-				{
-					menu.show(button, Side.BOTTOM);
-				}
-			});
+			menu.setNode((Button) nameSpace.get("btnFileMenu"));
+		}
+	}
 
-			menu.showingProperty().addListener((observable, oldValue, newValue) ->
-			{
-				button.pseudoClassStateChanged(PseudoClass.getPseudoClass("showing"), newValue);
-			});
+	private static class EditMenu
+	{
+		public static void initialize()
+		{
+			IContextMenu menu = new IContextMenu
+			(
+				new IMenuItem("Undo", "Ctrl + Z"),
+				new IMenuItem("Redo", "Ctrl + Y"),
+				new SeparatorMenuItem(),
+				new IMenuItem("Cut", "Ctrl + X"),
+				new IMenuItem("Copy", "Ctrl + C"),
+				new IMenuItem("Paste", "Ctrl + V")
+			);
+
+			menu.setNode((Button) nameSpace.get("btnEditMenu"));
 		}
 	}
 
@@ -74,19 +79,7 @@ public class ToolBarPart
 		{
 			IContextMenu menu = new IContextMenu();
 
-			Button button = (Button) nameSpace.get("btnViewMenu");
-			button.setOnMousePressed(event ->
-			{
-				if (event.isPrimaryButtonDown())
-				{
-					menu.show(button, Side.BOTTOM);
-				}
-			});
-
-			menu.showingProperty().addListener((observable, oldValue, newValue) ->
-			{
-				button.pseudoClassStateChanged(PseudoClass.getPseudoClass("showing"), newValue);
-			});
+			menu.setNode((Button) nameSpace.get("btnViewMenu"));
 		}
 	}
 
@@ -97,22 +90,10 @@ public class ToolBarPart
 			IContextMenu menu = new IContextMenu
 			(
 				new IMenuItem("Open Debug Room", event -> OpenDebugRoomTabAction.update()),
-				new IMenuItem("Show Global Log", event -> OpenGlobalLogTabAction.update(), true)
+				new IMenuItem("Show Global Log", event -> OpenGlobalLogTabAction.update())
 			);
 
-			Button button = (Button) nameSpace.get("btnDebugMenu");
-			button.setOnMousePressed(event ->
-			{
-				if (event.isPrimaryButtonDown())
-				{
-					menu.show(button, Side.BOTTOM);
-				}
-			});
-
-			menu.showingProperty().addListener((observable, oldValue, newValue) ->
-			{
-				button.pseudoClassStateChanged(PseudoClass.getPseudoClass("showing"), newValue);
-			});
+			menu.setNode((Button) nameSpace.get("btnDebugMenu"));
 		}
 	}
 

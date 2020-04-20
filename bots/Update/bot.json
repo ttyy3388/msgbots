@@ -1,6 +1,6 @@
 {
 	"useUnifiedParams":false,
-	"power":false,
+	"power":true,
 	"optimization":1,
 	"offOnRuntimeError":true
 }
