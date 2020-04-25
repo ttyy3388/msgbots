@@ -10,9 +10,10 @@ import javafx.scene.layout.Region;
 import javafx.stage.FileChooser;
 import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.platform.application.actions.CreateBotAction;
-import org.beuwi.simulator.platform.application.views.MainWindowView;
 import org.beuwi.simulator.platform.ui.dialog.IDialogBoxType;
 import org.beuwi.simulator.platform.ui.dialog.IDialogBoxView;
+import org.beuwi.simulator.platform.ui.window.IWindowStage;
+import org.beuwi.simulator.utils.ResourceUtils;
 
 import java.io.File;
 
@@ -36,7 +37,7 @@ public class ImportScriptDialogBox extends IDialogBoxView
 	public void display()
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/forms/ImportScriptDialog.fxml"));
+		loader.setLocation(ResourceUtils.getForm("ImportScriptDialog"));
 		loader.setController(this);
 
 		Region root = null;
@@ -60,8 +61,8 @@ public class ImportScriptDialogBox extends IDialogBoxView
 
 	private void initialize()
 	{
-		btnImport = getOkButton();
-		btnCancel = getNoButton();
+		btnImport = getOKButton();
+		btnCancel = getNOButton();
 
 		btnImport.setDisable(true);
 		btnImport.setText("Import");
@@ -73,7 +74,7 @@ public class ImportScriptDialogBox extends IDialogBoxView
 			fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JavaScript File", "*.js"));
 			fileChooser.setTitle("Import Script");
 
-			file = fileChooser.showOpenDialog(MainWindowView.getStage());
+			file = fileChooser.showOpenDialog(IWindowStage.getPrimaryStage());
 
 			if (file != null)
 			{

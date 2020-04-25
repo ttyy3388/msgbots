@@ -11,7 +11,7 @@ public class OpenScriptTabAction
 	{
 		AddEditorTabAction.update
 		(
-			ResourceUtils.getImage("tab_script.png"),
+			ResourceUtils.getImage("tab_script"),
 			"@script::" + name, name,
 			new ICodePane(new ICodeArea(FileManager.read(FileManager.getBotScript(name))))
 		);

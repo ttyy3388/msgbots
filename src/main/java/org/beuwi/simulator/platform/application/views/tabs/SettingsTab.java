@@ -4,6 +4,7 @@ import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
+import org.beuwi.simulator.utils.ResourceUtils;
 
 public class SettingsTab
 {
@@ -14,7 +15,7 @@ public class SettingsTab
 	public static void initialize() throws Exception
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(SettingsTab.class.getResource("/forms/SettingsTab.fxml"));
+		loader.setLocation(ResourceUtils.getForm("SettingsTab"));
 		loader.setController(null);
 		loader.load();
 

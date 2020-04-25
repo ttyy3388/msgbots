@@ -10,7 +10,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-import org.beuwi.simulator.platform.application.views.MainWindowView;
+import org.beuwi.simulator.platform.ui.window.IWindowStage;
 
 public class ShowToastMessageAction
 {
@@ -26,7 +26,7 @@ public class ShowToastMessageAction
 		scene.setFill(Color.TRANSPARENT);
 
 		stage.initStyle(StageStyle.TRANSPARENT);
-		stage.initOwner(MainWindowView.getStage());
+		stage.initOwner(IWindowStage.getPrimaryStage());
 		stage.setResizable(false);
 		stage.setScene(scene);
 		stage.show();

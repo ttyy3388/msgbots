@@ -1,6 +1,5 @@
 package org.beuwi.simulator.platform.application.views.actions;
 
-import com.jfoenix.controls.JFXToggleButton;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -18,16 +17,18 @@ import org.beuwi.simulator.platform.application.views.dialogs.DeleteBotDialogBox
 import org.beuwi.simulator.platform.application.views.dialogs.RenameBotDialogBox;
 import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 import org.beuwi.simulator.platform.ui.components.IContextMenu;
+import org.beuwi.simulator.platform.ui.components.IListView;
 import org.beuwi.simulator.platform.ui.components.IMenuItem;
+import org.beuwi.simulator.platform.ui.components.IToggleButton;
 import org.beuwi.simulator.settings.Settings;
 
 public class AddExplorerBotAction
 {
-	private static ListView<HBox> listView;
+	private static IListView<HBox> listView;
 
 	public static void initialize()
 	{
-		listView = (ListView) ActiveAreaPart.getNameSpace().get("lsvExplorerArea");
+		listView = ActiveAreaPart.ExplorerTabPart.getComponent();
 	}
 
 	public static void update(String name)
@@ -36,6 +37,7 @@ public class AddExplorerBotAction
 		(
 			new IMenuItem("Compile", event -> ScriptEngine.setInitialize(name, true, false)),
 			new IMenuItem("Power On / Off", event -> BotManager.setPower(name, !BotManager.getPower(name))),
+			new SeparatorMenuItem(),
 			new IMenuItem("Show Log", event -> OpenBotLogTabAction.update(name)),
 			new SeparatorMenuItem(),
 			new IMenuItem("Show in Explorer", "Shift + Alt + R", event -> OpenDesktopAction.update(FileManager.getBotFolder(name))),
@@ -50,18 +52,18 @@ public class AddExplorerBotAction
 		HBox 			item   = new HBox();			// Bot Item Cell
 		CheckBox		check  = new CheckBox();  		// Bot Compiled Check Box
 		Label 			label  = new Label(name); 		// Bot Name Label
-		Button 		    button = new Button();    		// Bot Compile Button
-		JFXToggleButton power  = new JFXToggleButton(); // Bot Power Switch
+		Button 		    button = new Button();    	  	// Bot Compile Button
+		IToggleButton   power  = new IToggleButton(); 	// Bot Power Switch
 
 		menu.setNode(item);
 
 		item.setId(name);
-		item.setPrefHeight(32);
+		item.setPrefHeight(35);
 		item.getChildren().addAll
 		(
 			getItemVBox(check,  Pos.CENTER, 	 Priority.NEVER,  25),
 			getItemVBox(label,  Pos.CENTER_LEFT, Priority.ALWAYS, 50),
-			getItemVBox(button, Pos.CENTER, 	 Priority.NEVER,  40),
+			getItemVBox(button, Pos.CENTER, 	 Priority.NEVER,  45),
 			getItemVBox(power,  Pos.CENTER_LEFT, Priority.NEVER,  45)
 		);
 

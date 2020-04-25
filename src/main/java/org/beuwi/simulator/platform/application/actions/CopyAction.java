@@ -2,7 +2,6 @@ package org.beuwi.simulator.platform.application.actions;
 
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
-import javafx.scene.layout.HBox;
 
 import java.util.List;
 
@@ -18,9 +17,9 @@ public class CopyAction
 		CLIPBOARD.setContent(content);
 	}
 
-	public static void update(List<HBox> list)
+	public static void update(List list)
 	{
-		// String.join("\n", (CharSequence) list);
+		update(String.join("\n", list));
 	}
 
 	// File

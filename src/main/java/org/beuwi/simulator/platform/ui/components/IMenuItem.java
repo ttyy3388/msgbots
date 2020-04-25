@@ -1,5 +1,6 @@
 package org.beuwi.simulator.platform.ui.components;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
@@ -26,6 +27,11 @@ public class IMenuItem extends MenuItem
 
 	public IMenuItem(String text, String command, EventHandler<ActionEvent> handler)
 	{
+		this(text, command, null, handler);
+	}
+
+	public IMenuItem(String text, String command, BooleanProperty property, EventHandler<ActionEvent> handler)
+	{
 		Label name = new Label(text);
 		name.setMinWidth(150);
 
@@ -37,6 +43,14 @@ public class IMenuItem extends MenuItem
 		if (command != null)
 		{
 			setAccelerator(KeyCombination.keyCombination(command));
+		}
+
+		if (property != null)
+		{
+			property.addListener((observable, oldValue, newValue) ->
+			{
+				this.setDisable(newValue);
+			});
 		}
 
 		setGraphic(new HBox(name));

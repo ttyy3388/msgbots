@@ -1,5 +1,7 @@
 package org.beuwi.simulator.platform.ui.components;
 
+import javafx.application.Platform;
+import javafx.scene.control.SeparatorMenuItem;
 import org.beuwi.simulator.platform.application.views.actions.SaveEditorTabAction;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
@@ -53,32 +55,58 @@ public class ICodeArea extends CodeArea
 		+ "|(?<COMMENT>" + COMMENT_PATTERN + ")"
 	);
 
-	public ICodeArea()
-	{
-		this(null);
-	}
+	/* private SortedSet<String> entries;
+	private IContextMenu popup = new IContextMenu
+	(
+		new IMenuItem("TEST")
+	); */
 
-	public ICodeArea(String text)
+	public ICodeArea(String content)
 	{
+		super(content);
+
 		IntFunction<String> format = (digits -> " %" + digits + "d ");
 
-		this.replaceText(0, 0, text);
+		this.setStyleSpans(0, computeHighlighting(content));
+
+		// this.replaceText(0, 0, text);
 		this.setParagraphGraphicFactory(LineNumberFactory.get(this, format));
+
+		this.setContextMenu(new IContextMenu
+		(
+			new IMenuItem("Undo", "Ctrl + Z", event -> this.undo()),
+			new IMenuItem("Redo", "Ctrl + Y", event -> this.redo()),
+			new SeparatorMenuItem(),
+			new IMenuItem("Cut", "Ctrl + X", event -> this.cut()),
+			new IMenuItem("Copy", "Ctrl + C", event -> this.copy()),
+			new IMenuItem("Paste", "Ctrl + V", event -> this.paste()),
+			new SeparatorMenuItem(),
+			new IMenuItem("Select All", "Ctrl + A", event -> this.selectAll())
+		));
 
 		this.textProperty().addListener((observable, oldText, newText) ->
 		{
 			this.setStyleSpans(0, computeHighlighting(newText));
 
-			/* String data = this.getText();
+			/* this.addEventFilter(KeyEvent.KEY_PRESSED, event ->
+			{
+				if (KeyCode.TAB.equals(event.getCode()))
+				{
+					this.insertText(this.getCaretPosition(), );
+					event.consume();
+				}
+			});
 
-			if (data.isEmpty())
+			/* String text = this.getText();
+
+			if (text.isEmpty())
 			{
 				popup.hide();
 			}
 			else
 			{
 				List<String> list = entries.stream()
-						.filter(e -> e.toLowerCase().contains(data.toLowerCase()))
+						.filter(entry -> entry.toLowerCase().contains(text.toLowerCase()))
 						.collect(Collectors.toList());
 
 				if (!list.isEmpty())
@@ -106,6 +134,11 @@ public class ICodeArea extends CodeArea
 					case S : SaveEditorTabAction.update(); break;
 				}
 			}
+		});
+
+		Platform.runLater(() ->
+		{
+			this.requestFocus();
 		});
 	}
 
@@ -141,15 +174,5 @@ public class ICodeArea extends CodeArea
 	public void setText(String text)
 	{
 		this.replaceText(0, 0, text);
-	}
-
-	public String getText()
-	{
-		return this.getText();
-	}
-
-	public int getCaretPosition()
-	{
-		return this.getCaretPosition();
 	}
 }

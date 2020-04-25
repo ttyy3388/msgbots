@@ -10,6 +10,7 @@ import javafx.scene.layout.Region;
 import org.beuwi.simulator.platform.application.actions.CreateBotAction;
 import org.beuwi.simulator.platform.ui.dialog.IDialogBoxType;
 import org.beuwi.simulator.platform.ui.dialog.IDialogBoxView;
+import org.beuwi.simulator.utils.ResourceUtils;
 
 public class CreateBotDialogBox extends IDialogBoxView
 {
@@ -28,7 +29,7 @@ public class CreateBotDialogBox extends IDialogBoxView
 	public void display()
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/forms/CreateBotDialog.fxml"));
+		loader.setLocation(ResourceUtils.getForm("CreateBotDialog"));
 		loader.setController(this);
 
 		Region root = null;
@@ -39,21 +40,20 @@ public class CreateBotDialogBox extends IDialogBoxView
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			new ShowErrorDialogBox(e).display();
 		}
 
-		initialize();
-
-		setUseButton(true, true);
-		setContent(root);
-		setTitle("Create");
-		create();
+		this.initialize();
+		this.setUseButton(true, true);
+		this.setContent(root);
+		this.setTitle("Create");
+		this.create();
 	}
 
 	private void initialize()
 	{
-		btnCreate = getOkButton();
-		btnCancel = getNoButton();
+		btnCreate = getOKButton();
+		btnCancel = getNOButton();
 
 		btnCreate.setDisable(true);
 		btnCreate.setText("Create");
@@ -91,6 +91,6 @@ public class CreateBotDialogBox extends IDialogBoxView
 			chkRuntimeError.isSelected()
 		);
 
-		close();
+		this.close();
 	}
 }

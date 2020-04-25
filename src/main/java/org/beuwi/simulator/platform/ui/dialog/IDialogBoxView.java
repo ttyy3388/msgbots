@@ -1,53 +1,53 @@
 package org.beuwi.simulator.platform.ui.dialog;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import org.beuwi.simulator.platform.ui.components.IButton;
 import org.beuwi.simulator.platform.ui.dialog.IDialogBoxType.DOCUMENT;
 import org.beuwi.simulator.platform.ui.window.IWindowScene;
 import org.beuwi.simulator.platform.ui.window.IWindowStage;
 import org.beuwi.simulator.platform.ui.window.IWindowType;
+import org.beuwi.simulator.platform.ui.window.IWindowView;
 import org.beuwi.simulator.utils.ResourceUtils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class IDialogBoxView extends IWindowStage implements Initializable
+public class IDialogBoxView extends StackPane implements Initializable
 {
-	@FXML private BorderPane DIALOG_PANE;
-	@FXML private ImageView  DIALOG_ICON;
+	@FXML private BorderPane bopRootPane;
+	@FXML private ImageView  imvDialogIcon;
+	@FXML private HBox	 	 hoxButtonBox;
 
-	@FXML private HBox	 	 DIALOG_BUTTON_BOX;
+	@FXML private IButton btnOK;
+	@FXML private IButton btnNO;
 
-	@FXML private Button 	 DIALOG_BUTTON_OK;
-	@FXML private Button 	 DIALOG_BUTTON_NO;
+	final IWindowView  main;
+	final IWindowStage stage;
 
-	IDialogBoxType DIALOG_TYPE;
-	Region 		DIALOG_CONTENT;
+	IDialogBoxType type; // Dialog Type
+	DOCUMENT document;   // Document Type
+	Region content;
+	String title;
 
-	DOCUMENT 	DOCUMENT_TYPE;
-
-	// DOCUMENT
-	public IDialogBoxView(DOCUMENT type)
+	public IDialogBoxView(DOCUMENT document)
 	{
 		this(IDialogBoxType.DOCUMENT);
-		DOCUMENT_TYPE = type;
+
+		this.document = document;
 	}
 
 	public IDialogBoxView(IDialogBoxType type)
 	{
-		super(IWindowType.DIALOG);
-
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/forms/DialogBoxView.fxml"));
+		loader.setLocation(ResourceUtils.getForm("DialogBoxView"));
 		loader.setController(this);
 
 		try
@@ -59,89 +59,106 @@ public class IDialogBoxView extends IWindowStage implements Initializable
 			e.printStackTrace();
 		}
 
-		DIALOG_TYPE = type;
-		DIALOG_PANE.getStyleClass().add("dialog");
+		this.type  = type;
+		this.main  = new IWindowView();
+		this.stage = new IWindowStage();
 	}
 
-	public void setOnKeyPressed(EventHandler<KeyEvent> handler)
+	/* public void setOnKeyPressed(EventHandler<KeyEvent> handler)
 	{
 		addEventHandler(KeyEvent.KEY_PRESSED, handler);
-	}
+	} */
 
 	public void setUseButton(boolean ok, boolean no)
 	{
-		if (!ok) DIALOG_BUTTON_BOX.getChildren().remove(DIALOG_BUTTON_OK);
-		if (!no) DIALOG_BUTTON_BOX.getChildren().remove(DIALOG_BUTTON_NO);
+		if (!ok) hoxButtonBox.getChildren().remove(btnOK);
+		if (!no) hoxButtonBox.getChildren().remove(btnNO);
 	}
 
 	public void setContent(Region content)
 	{
-		DIALOG_CONTENT = content;
+		this.content = content;
 	}
 
-	public Button getOkButton()
+	public void setTitle(String title)
 	{
-		return DIALOG_BUTTON_OK;
+		this.title = title;
 	}
 
-	public Button getNoButton()
+	public IButton getOKButton()
 	{
-		return DIALOG_BUTTON_NO;
+		return btnOK;
 	}
 
-	/* public void setType(int type)
+	public IButton getNOButton()
 	{
-		DIALOG_TYPE = type;
-	} */
+		return btnNO;
+	}
 
 	public void create()
 	{
-		switch (DIALOG_TYPE)
+		switch (type)
 		{
 			case APPLICATION :
 
-				DIALOG_PANE.getChildren().remove(DIALOG_PANE.getLeft());
-				setMinSize(DIALOG_CONTENT.getMinWidth(), DIALOG_CONTENT.getMinHeight() + 47);
-				setSize(DIALOG_CONTENT.getPrefWidth(), DIALOG_CONTENT.getPrefHeight() + 47);
+				bopRootPane.getChildren().remove(bopRootPane.getLeft());
+				stage.setMinSize(content.getMinWidth(), content.getMinHeight() + 47);
+				stage.setSize(content.getPrefWidth(), content.getPrefHeight() + 47);
 				break;
 
-			// DOCUMENT
 			case DOCUMENT :
 
-				DIALOG_ICON.setImage
+				imvDialogIcon.setImage
 				(
-					switch (DOCUMENT_TYPE)
+					switch (document)
 					{
-						case ERROR   -> ResourceUtils.getImage("error_big.png");
-						case WARNING -> ResourceUtils.getImage("warning_big.png");
-						case EVENT   -> ResourceUtils.getImage("event_big.png");
+						case ERROR   -> ResourceUtils.getImage("error_big");
+						case WARNING -> ResourceUtils.getImage("warning_big");
+						case EVENT   -> ResourceUtils.getImage("event_big");
 						default -> null;
 					}
 				);
 
-				setMinSize(DIALOG_CONTENT.getMinWidth() + 70, DIALOG_CONTENT.getMinHeight() + 47);
-				setSize(DIALOG_CONTENT.getPrefWidth() + 70, DIALOG_CONTENT.getPrefHeight() + 47);
+				stage.setMinSize(content.getMinWidth() + 70, content.getMinHeight() + 47);
+				stage.setSize(content.getPrefWidth() + 70, content.getPrefHeight() + 47);
 				break;
 		};
 
-		DIALOG_PANE.setCenter(DIALOG_CONTENT);
+		bopRootPane.setCenter(content);
 
-		// initStyle(StageStyle.UNIFIED);
-		setScene(new IWindowScene(DIALOG_PANE));
-		show();
+		btnOK.setButtonType(IButton.ACTION);
+
+		this.getChildren().add(bopRootPane);
+		this.getStyleClass().add("dialog-box");
+		this.getStyleClass().add(ResourceUtils.getStyle("DialogBoxView"));
+
+		main.setContent(this);
+		main.setType(IWindowType.DIALOG);
+		main.setTitle(title);
+		main.setStage(stage);
+		main.create();
+
+		stage.setType(IWindowType.DIALOG);
+		stage.setScene(new IWindowScene(main));
+		stage.show();
+	}
+
+	public void close()
+	{
+		stage.close();
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources)
 	{
-		DIALOG_BUTTON_OK.addEventHandler(ActionEvent.ACTION, event ->
+		btnOK.addEventHandler(ActionEvent.ACTION, event ->
 		{
-			close();
+			stage.close();
 		});
 
-		DIALOG_BUTTON_NO.addEventHandler(ActionEvent.ACTION, event ->
+		btnNO.addEventHandler(ActionEvent.ACTION, event ->
 		{
-			close();
+			stage.close();
 		});
 	}
 }

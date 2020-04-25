@@ -27,14 +27,15 @@ public class MoveEditorPaneAction
 
 		int index = panes.indexOf(editor);
 
+		IEditorPane target = null;
+
 		switch (pos)
 		{
             case RIGHT :
 
 				if (index + 1 < panes.size())
 				{
-					editor.removeTab(tab);
-                    ((IEditorPane) panes.get(index + 1)).addTab(tab);
+                    target = (IEditorPane) panes.get(index + 1);
 				}
 
 				break;
@@ -43,11 +44,13 @@ public class MoveEditorPaneAction
 
 			    if (index != 0)
                 {
-                    editor.removeTab(tab);
-                    ((IEditorPane) panes.get(index - 1)).addTab(tab);
+					target = (IEditorPane) panes.get(index - 1);
                 }
 
 				break;
 		}
+
+		editor.removeTab(tab);
+		target.addTab(tab);
 	}
 }

@@ -10,6 +10,7 @@ import javafx.scene.layout.Region;
 import org.beuwi.simulator.platform.application.actions.RenameBotAction;
 import org.beuwi.simulator.platform.ui.dialog.IDialogBoxType.DOCUMENT;
 import org.beuwi.simulator.platform.ui.dialog.IDialogBoxView;
+import org.beuwi.simulator.utils.ResourceUtils;
 
 public class RenameBotDialogBox extends IDialogBoxView
 {
@@ -30,7 +31,7 @@ public class RenameBotDialogBox extends IDialogBoxView
 	public void display()
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/forms/RenameBotDialog.fxml"));
+		loader.setLocation(ResourceUtils.getForm("RenameBotDialog"));
 		loader.setController(this);
 
 		Region root = null;
@@ -54,8 +55,8 @@ public class RenameBotDialogBox extends IDialogBoxView
 
 	private void initialize()
 	{
-		btnRename = getOkButton();
-        btnCancel = getNoButton();
+		btnRename = getOKButton();
+        btnCancel = getNOButton();
 
         btnRename.setText("Rename");
         btnCancel.setText("Cancel");

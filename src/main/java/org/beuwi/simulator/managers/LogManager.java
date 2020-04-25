@@ -1,8 +1,8 @@
 package org.beuwi.simulator.managers;
 
 import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialogBox;
-import org.beuwi.simulator.platform.ui.log.ILogItem;
-import org.beuwi.simulator.platform.ui.log.ILogType;
+import org.beuwi.simulator.platform.ui.components.ILogItem;
+import org.beuwi.simulator.platform.ui.components.ILogType;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;

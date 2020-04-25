@@ -1,0 +1,117 @@
+
+.shadow-pane
+{
+
+}
+
+.root-pane
+{
+	-fx-background-color: #323233;
+	-fx-border-color: #434346;
+	-fx-border-width: 1;
+	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0.4, 0, 0);
+}
+.title-bar
+{
+	-fx-background-color: #323233;
+}
+.title-label
+{
+	-fx-text-fill: #737373;
+}
+.tool-bar
+{
+	-fx-background-color: #3C3C3C;
+}
+
+.status-bar
+{
+	-fx-background-color: #007ACC;
+}
+
+.button
+{
+	-fx-cursor: default;
+}
+
+.menu-bar
+{
+
+}
+.menu-bar .button:hover,
+.menu-bar .button:showing
+{
+	-fx-background-color: #474748;
+	-fx-text-fill: #FFFFFF;
+}
+
+.button-bar
+{
+
+}
+
+.button-bar .button
+{
+	-fx-background-size: 11;
+}
+
+.minimize-button
+{
+	-fx-background-image: url('../images/minimize_inactive.png');
+}
+.maximize-button
+{
+	-fx-background-image: url('../images/maximize_inactive.png');
+}
+.close-button
+{
+	-fx-background-image: url('../images/close_inactive.png');
+}
+
+.minimize-button:hover
+{
+	-fx-background-image: url('../images/minimize_active.png');
+	-fx-background-color: #505050;
+}
+.maximize-button:hover
+{
+	-fx-background-image: url('../images/maximize_active.png');
+	-fx-background-color: #505050;
+}
+.close-button:hover
+{
+	-fx-background-image: url('../images/close_focused.png');
+	-fx-background-color: #D61425;
+}
+
+.window:focused .root-pane
+{
+	-fx-border-color: #007ACC;
+	-fx-effect: dropshadow(three-pass-box, rgba(0, 122, 204, 0.5), 10, 0.4, 0, 0);
+}
+.window:focused .title-label
+{
+	-fx-text-fill: #BBBBBB;
+}
+.window:focused .minimize-button
+{
+	-fx-background-image: url('../images/minimize_active.png');
+}
+.window:focused .maximize-button
+{
+	-fx-background-image: url('../images/maximize_active.png');
+}
+.window:focused .close-button
+{
+	-fx-background-image: url('../images/close_active.png');
+}
+.window:focused .close-button:hover
+{
+	-fx-background-image: url('../images/close_focused.png');
+	-fx-background-color: #D61425;
+}
+
+.window:maximized .root-pane
+{
+	-fx-border-width: 0;
+}

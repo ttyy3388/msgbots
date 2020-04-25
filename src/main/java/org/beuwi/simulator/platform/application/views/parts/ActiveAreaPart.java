@@ -1,11 +1,12 @@
 package org.beuwi.simulator.platform.application.views.parts;
 
-import com.jfoenix.controls.JFXToggleButton;
 import javafx.collections.ObservableMap;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
@@ -17,16 +18,16 @@ import org.beuwi.simulator.compiler.engine.ScriptEngine;
 import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.platform.application.actions.CopyAction;
 import org.beuwi.simulator.platform.application.actions.OpenDesktopAction;
-import org.beuwi.simulator.platform.application.views.MainWindowView;
 import org.beuwi.simulator.platform.application.views.actions.OpenDebugRoomTabAction;
 import org.beuwi.simulator.platform.application.views.actions.OpenGlobalLogTabAction;
 import org.beuwi.simulator.platform.application.views.actions.ResizeSideBarAction;
 import org.beuwi.simulator.platform.application.views.actions.SelectActivityTabAction;
 import org.beuwi.simulator.platform.application.views.dialogs.CreateBotDialogBox;
 import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialogBox;
-import org.beuwi.simulator.platform.ui.components.IContextMenu;
-import org.beuwi.simulator.platform.ui.components.IMenuItem;
+import org.beuwi.simulator.platform.ui.components.*;
+import org.beuwi.simulator.platform.ui.window.IWindowStage;
 import org.beuwi.simulator.settings.Settings;
+import org.beuwi.simulator.utils.ResourceUtils;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -43,7 +44,7 @@ public class ActiveAreaPart
 	public static void initialize() throws Exception
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(ActiveAreaPart.class.getResource("/forms/ActiveAreaPart.fxml"));
+		loader.setLocation(ResourceUtils.getForm("ActiveAreaPart"));
 		loader.setController(null);
 		loader.load();
 
@@ -62,14 +63,15 @@ public class ActiveAreaPart
 		DebugTabPart.initialize();
 	}
 
-	private static class ExplorerTabPart
+	public static class ExplorerTabPart
 	{
+		private static IListView component = null;
+
 		private static IContextMenu menu = null;
 
 		public static void initialize()
 		{
 			ToggleButton toggle = (ToggleButton) nameSpace.get("tgnExplorerTab");
-
 			toggle.setOnMouseClicked(event ->
 			{
 				if (MouseButton.PRIMARY.equals(event.getButton()))
@@ -77,6 +79,8 @@ public class ActiveAreaPart
 					SelectActivityTabAction.update(0);
 				}
 			});
+
+			component = (IListView) nameSpace.get("lsvExplorerArea");
 
 			// Option Button
 			menu = new IContextMenu
@@ -89,7 +93,7 @@ public class ActiveAreaPart
 			menu.setNode((Button) nameSpace.get("btnShowOption"));
 
 			// List View
-			menu = new IContextMenu
+			component.setContextMenu(new IContextMenu
 			(
 				new IMenuItem("New Bot", "Ctrl + N", event -> new CreateBotDialogBox().display()),
 				new SeparatorMenuItem(),
@@ -97,18 +101,21 @@ public class ActiveAreaPart
 				new SeparatorMenuItem(),
 				new IMenuItem("Copy Path", "Ctrl + Alt + C", event -> CopyAction.update(FileManager.BOTS_FOLDER.getAbsolutePath())),
 				new IMenuItem("Copy Relative Path", "Ctrl + Shift + C", event -> CopyAction.update(FileManager.BOTS_FOLDER.getPath()))
-			);
+			));
+		}
 
-			menu.setNode((ListView) nameSpace.get("lsvExplorerArea"));
+		public static IListView getComponent()
+		{
+			return component;
 		}
 	}
 
-	private static class DebugTabPart
+	public static class DebugTabPart
 	{
 		public static void initialize()
 		{
-			ToggleButton tab = (ToggleButton) nameSpace.get("tgnDebugTab");
-			tab.setOnMouseClicked(event ->
+			ToggleButton toggle = (ToggleButton) nameSpace.get("tgnDebugTab");
+			toggle.setOnMouseClicked(event ->
 			{
 				if (MouseButton.PRIMARY.equals(event.getButton()))
 				{
@@ -144,36 +151,42 @@ public class ActiveAreaPart
 
 		private static void initOptionPane()
 		{
-			// 추후 Chat Room이 켜져있어야지만 활성화 되도록 변경
+			ITextField txfRoomName    = (ITextField) nameSpace.get("txfRoomName");
+			ITextField txfSenderName  = (ITextField) nameSpace.get("txfSenderName");
+			ITextField txfBotName     = (ITextField) nameSpace.get("txfBotName");
+			ITextField txfPackageName = (ITextField) nameSpace.get("txfPackageName");
 
-			TextField txfRoomName    = (TextField) nameSpace.get("txfRoomName");
-			TextField txfSenderName  = (TextField) nameSpace.get("txfSenderName");
-			TextField txfBotName     = (TextField) nameSpace.get("txfBotName");
-			TextField txfPackageName = (TextField) nameSpace.get("txfPackageName");
+			ICheckBox chkIsGroupChat   = (ICheckBox) nameSpace.get("chkIsGroupChat");
+			ICheckBox chkSenderProfile = (ICheckBox) nameSpace.get("chkSenderProfile");
+			ICheckBox chkBotProfile    = (ICheckBox) nameSpace.get("chkBotProfile");
 
-			JFXToggleButton tgnIsGroupChat   = (JFXToggleButton) nameSpace.get("tgnIsGroupChat");
-			JFXToggleButton tgnSenderProfile = (JFXToggleButton) nameSpace.get("tgnSenderProfile");
-			JFXToggleButton tgnBotProfile 	 = (JFXToggleButton) nameSpace.get("tgnBotProfile");
+			IButton btnSenderProfile = (IButton) nameSpace.get("btnSenderProfile");
+			IButton btnBotProfile    = (IButton) nameSpace.get("btnBotProfile");
 
-			Button btnSenderProfile = (Button) nameSpace.get("btnSenderProfile");
-			Button btnBotProfile    = (Button) nameSpace.get("btnBotProfile");
-
-			Button btnApply  = (Button) nameSpace.get("btnApply");
-			Button btnCancel = (Button) nameSpace.get("btnCancel");
+			IButton btnApply   = (IButton) nameSpace.get("btnApply");
+			IButton btnRefresh = (IButton) nameSpace.get("btnRefresh");
 
 			AtomicReference<Image> imgSenderProfile = new AtomicReference<>();
 			AtomicReference<Image> imgBotProfile    = new AtomicReference<>();
 
 			Settings.Public data = Settings.getPublicSetting("chat");
 
-			txfRoomName.setText(data.getString("room"));
-			txfSenderName.setText(data.getString("sender"));
-			txfBotName.setText(data.getString("bot"));
-			txfPackageName.setText(data.getString("package"));
+			// Initialize Components
+			{
+				btnApply.setButtonType(IButton.ACTION);
+			}
 
-			tgnIsGroupChat.setSelected(data.getBoolean("isGroupChat"));
-			tgnSenderProfile.setSelected(data.getBoolean("visibleSenderProfile"));
-			tgnBotProfile.setSelected(data.getBoolean("visibleBotProfile"));
+			// Refresh
+			{
+				txfRoomName.setText(data.getString("room"));
+				txfSenderName.setText(data.getString("sender"));
+				txfBotName.setText(data.getString("bot"));
+				txfPackageName.setText(data.getString("package"));
+
+				chkIsGroupChat.setSelected(data.getBoolean("isGroupChat"));
+				chkSenderProfile.setSelected(data.getBoolean("visibleSenderProfile"));
+				chkBotProfile.setSelected(data.getBoolean("visibleBotProfile"));
+			}
 
 			btnSenderProfile.setOnAction(event ->
 			{
@@ -181,7 +194,7 @@ public class ActiveAreaPart
 				fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image File", "*.jpg", "*.png", "*.gif"));
 				fileChooser.setTitle("Change Profile");
 
-				File file = fileChooser.showOpenDialog(MainWindowView.getStage());
+				File file = fileChooser.showOpenDialog(IWindowStage.getPrimaryStage());
 
 				if (file != null)
 				{
@@ -195,7 +208,7 @@ public class ActiveAreaPart
 				fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image File", "*.jpg", "*.png", "*.gif"));
 				fileChooser.setTitle("Change Profile");
 
-				File file = fileChooser.showOpenDialog(MainWindowView.getStage());
+				File file = fileChooser.showOpenDialog(IWindowStage.getPrimaryStage());
 
 				if (file != null)
 				{
@@ -211,20 +224,20 @@ public class ActiveAreaPart
 				map.put("sender", txfSenderName.getText());
 				map.put("bot", txfBotName.getText());
 				map.put("package", txfPackageName.getText());
-				map.put("isGroupChat", tgnIsGroupChat.isSelected());
-				map.put("visibleSenderProfile", tgnSenderProfile.isSelected());
-				map.put("visibleBotProfile", tgnBotProfile.isSelected());
+				map.put("isGroupChat", chkIsGroupChat.isSelected());
+				map.put("visibleSenderProfile", chkSenderProfile.isSelected());
+				map.put("visibleBotProfile", chkBotProfile.isSelected());
 
 				try
 				{
 					if (imgSenderProfile.get() != null)
 					{
-						ImageIO.write(SwingFXUtils.fromFXImage(imgSenderProfile.get(), null), "png", FileManager.getDataFile("profile_sender.png"));
+						ImageIO.write(SwingFXUtils.fromFXImage(imgSenderProfile.get(), null), "png", FileManager.getDataFile("profile_sender"));
 					}
 
 					if (imgBotProfile.get() != null)
 					{
-						ImageIO.write(SwingFXUtils.fromFXImage(imgBotProfile.get(), null), "png", FileManager.getDataFile("profile_bot.png"));
+						ImageIO.write(SwingFXUtils.fromFXImage(imgBotProfile.get(), null), "png", FileManager.getDataFile("profile_bot"));
 					}
 
 				}
@@ -236,9 +249,19 @@ public class ActiveAreaPart
 				data.putMap(map);
 			});
 
-			btnCancel.setOnAction(event ->
+			btnRefresh.setOnAction(event ->
 			{
+				txfRoomName.setText(data.getString("room"));
+				txfSenderName.setText(data.getString("sender"));
+				txfBotName.setText(data.getString("bot"));
+				txfPackageName.setText(data.getString("package"));
 
+				chkIsGroupChat.setSelected(data.getBoolean("isGroupChat"));
+				chkSenderProfile.setSelected(data.getBoolean("visibleSenderProfile"));
+				chkBotProfile.setSelected(data.getBoolean("visibleBotProfile"));
+
+				imgSenderProfile.set(null);
+				imgBotProfile.set(null);
 			});
 		}
 	}

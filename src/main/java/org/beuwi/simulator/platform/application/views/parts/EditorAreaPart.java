@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import org.beuwi.simulator.platform.ui.editor.IEditorPane;
+import org.beuwi.simulator.utils.ResourceUtils;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class EditorAreaPart
 	public static void initialize() throws Exception
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(EditorAreaPart.class.getResource("/forms/EditorAreaPart.fxml"));
+		loader.setLocation(ResourceUtils.getForm("EditorAreaPart"));
 		loader.setController(null);
 		loader.load();
 

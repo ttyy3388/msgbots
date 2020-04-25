@@ -4,8 +4,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import org.beuwi.simulator.platform.ui.dialog.IDialogBoxView;
 import org.beuwi.simulator.platform.ui.dialog.IDialogBoxType.DOCUMENT;
+import org.beuwi.simulator.platform.ui.dialog.IDialogBoxView;
+import org.beuwi.simulator.utils.ResourceUtils;
 
 public class ExistsBotDialogBox extends IDialogBoxView
 {
@@ -22,7 +23,7 @@ public class ExistsBotDialogBox extends IDialogBoxView
     public void display()
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/forms/ExistsBotDialog.fxml"));
+        loader.setLocation(ResourceUtils.getForm("ExistsBotDialog"));
         loader.setController(this);
 
         Region root = null;

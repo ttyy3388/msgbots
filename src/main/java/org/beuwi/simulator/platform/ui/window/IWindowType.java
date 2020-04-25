@@ -1,7 +1,6 @@
 package org.beuwi.simulator.platform.ui.window;
 
-public class IWindowType
+public enum IWindowType
 {
-    final public static int WINDOW = 0;
-    final public static int DIALOG = 1;
+   WINDOW, DIALOG
 }

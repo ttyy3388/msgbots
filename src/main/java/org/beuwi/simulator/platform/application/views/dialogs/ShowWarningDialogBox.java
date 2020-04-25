@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import org.beuwi.simulator.platform.ui.dialog.IDialogBoxType.DOCUMENT;
 import org.beuwi.simulator.platform.ui.dialog.IDialogBoxView;
+import org.beuwi.simulator.utils.ResourceUtils;
 
 public class ShowWarningDialogBox extends IDialogBoxView
 {
@@ -22,7 +23,7 @@ public class ShowWarningDialogBox extends IDialogBoxView
 	public void display()
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/forms/ShowWarningDialog.fxml"));
+		loader.setLocation(ResourceUtils.getForm("ShowWarningDialog"));
 		loader.setController(this);
 
 		Region root = null;

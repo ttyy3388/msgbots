@@ -2,7 +2,6 @@ package org.beuwi.simulator.platform.application.views.actions;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import org.beuwi.simulator.platform.application.views.actions.HideSideBarAction;
 import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 
 public class ResizeSideBarAction
@@ -16,12 +15,13 @@ public class ResizeSideBarAction
 
 	public static void update(MouseEvent event)
 	{
-		double sceneX = event.getSceneX() - 45;
+		// 38 : Activity Bar Width
+		double size = event.getSceneX() - 38;
 
 		if (HideSideBarAction.isHided())
 		{
 			// 100 밖으로 드래그 시 나타남
-			if (100 <= sceneX)
+			if (100 <= size)
 			{
 				HideSideBarAction.update(false);
 			}
@@ -29,17 +29,17 @@ public class ResizeSideBarAction
 		else
 		{
 			// 180 안에서는 사이즈 변경 X
-			if (sceneX <= 190)
+			if (size <= 180)
 			{
 				// 90 안으로 드래그 시 숨김
-				if (sceneX <= 90)
+				if (size <= 90)
 				{
 					HideSideBarAction.update(true);
 				}
 			}
 			else
 			{
-				pane.setPrefWidth(sceneX);
+				pane.setPrefWidth(size);
 			}
 		}
 	}

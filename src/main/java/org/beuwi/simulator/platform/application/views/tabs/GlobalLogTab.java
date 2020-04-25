@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
+import org.beuwi.simulator.utils.ResourceUtils;
 
 public class GlobalLogTab
 {
@@ -15,7 +16,7 @@ public class GlobalLogTab
 	public static void initialize() throws Exception
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(GlobalLogTab.class.getResource("/forms/GlobalLogTab.fxml"));
+		loader.setLocation(ResourceUtils.getForm("GlobalLogTab"));
 		loader.setController(null);
 		loader.load();
 

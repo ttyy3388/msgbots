@@ -4,15 +4,18 @@ import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.beuwi.simulator.platform.application.actions.CopyAction;
 import org.beuwi.simulator.platform.application.views.actions.AddChatMessageAction;
-import org.beuwi.simulator.platform.ui.components.IContextMenu;
-import org.beuwi.simulator.platform.ui.components.IMenuItem;
+import org.beuwi.simulator.platform.ui.components.IListView;
 import org.beuwi.simulator.platform.ui.components.ITextArea;
+import org.beuwi.simulator.utils.ResourceUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DebugRoomTab
 {
@@ -23,7 +26,7 @@ public class DebugRoomTab
 	public static void initialize() throws Exception
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(DebugRoomTab.class.getResource("/forms/DebugRoomTab.fxml"));
+		loader.setLocation(ResourceUtils.getForm("DebugRoomTab"));
 		loader.setController(null);
 		loader.load();
 
@@ -31,7 +34,7 @@ public class DebugRoomTab
 
         root = loader.getRoot();
 
-        ListView  listView = getComponent();
+        IListView listView = (IListView) nameSpace.get("listView");
 		ITextArea textArea = (ITextArea) nameSpace.get("textArea");
 		Button    button   = (Button) nameSpace.get("button");
 
@@ -80,28 +83,29 @@ public class DebugRoomTab
 			{
 				switch (event.getCode())
 				{
-					case C : CopyAction.update(listView.getSelectionModel().getSelectedItems()); break;
+					case C :
+
+						List<String> list = new ArrayList<>();
+
+						for (Object item : listView.getSelectedItems())
+						{
+							list.add(((HBox) item).getId());
+						}
+
+						CopyAction.update(list); break;
 				}
 			}
 		});
-
-		IContextMenu menu = new IContextMenu
-		(
-			new IMenuItem("Select All", event -> listView.getSelectionModel().selectAll())
-		);
-
-		menu.setNode(listView);
 	}
-
 
 	public static Node getRoot()
 	{
 		return root;
 	}
 
-	public static ListView getComponent()
+	public static IListView getComponent()
 	{
-		return (ListView) root.getChildren().get(0);
+		return (IListView) root.getChildren().get(0);
 	}
 
 	public static ObservableMap<String, Object> getNameSpace()

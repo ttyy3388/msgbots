@@ -2,7 +2,6 @@ package org.beuwi.simulator.platform.application.views.actions;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -13,12 +12,13 @@ import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.platform.application.actions.CopyAction;
 import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
 import org.beuwi.simulator.platform.ui.components.IContextMenu;
+import org.beuwi.simulator.platform.ui.components.IListView;
 import org.beuwi.simulator.platform.ui.components.IMenuItem;
 import org.beuwi.simulator.settings.Settings;
 
 public class AddChatMessageAction
 {
-	private static ListView listView;
+	private static IListView<HBox> listView;
 
 	public static void initialize()
 	{
@@ -27,6 +27,9 @@ public class AddChatMessageAction
 
 	public static void update(String message, boolean isBot)
 	{
+		AnchorPane pane = new AnchorPane();
+
+		HBox cell = new HBox(pane);
 		HBox item = new HBox();
 
 		Label chat = new Label(message);
@@ -41,14 +44,11 @@ public class AddChatMessageAction
 		if (!isBot)
 		{
 			chat.getStyleClass().add("sender-label");
-
-			item.setAlignment(Pos.TOP_RIGHT);
 			item.getChildren().add(chat);
+			cell.setAlignment(Pos.TOP_RIGHT);
 		}
 		else
 		{
-			AnchorPane pane = new AnchorPane();
-
 			// Name Label
 			Label label = new Label(name);
 
@@ -59,27 +59,29 @@ public class AddChatMessageAction
 			AnchorPane.setLeftAnchor(chat, 0.0);
 
 			Circle profile = new Circle(35, 35, 20);
-			profile.setFill(new ImagePattern(new Image(FileManager.getDataFile("profile_bot.png").toURI().toString())));
-
-			pane.getChildren().addAll(label, chat);
+			profile.setFill(new ImagePattern(new Image(FileManager.getDataFile("profile_bot").toURI().toString())));
 
 			chat.getStyleClass().add("bot-label");
 
 			item.setSpacing(12);
-			item.setAlignment(Pos.TOP_LEFT);
-			item.getChildren().addAll(profile, pane);
+			item.getChildren().addAll(profile, new AnchorPane(label, chat));
+
+			cell.setAlignment(Pos.TOP_LEFT);
 		}
 
-		chat.setContextMenu(new IContextMenu
+		IContextMenu menu = new IContextMenu
 		(
 			new IMenuItem("Copy", event -> CopyAction.update(message)),
-			new IMenuItem("Delete", event -> listView.getItems().remove(item))
-		));
+			new IMenuItem("Delete", event ->  listView.getItems().remove(cell))
+		);
 
-		item.setId(message);
+		menu.setNode(pane);
+		pane.getChildren().add(item);
+		item.setMouseTransparent(true);
+		cell.setId(message);
 
-		listView.getItems().add(item);
-		listView.scrollTo(item);
+		listView.addItem(cell);
+		listView.scrollTo(cell);
 
 		if (!isBot)
 		{

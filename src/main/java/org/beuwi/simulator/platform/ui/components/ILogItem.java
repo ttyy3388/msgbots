@@ -1,4 +1,4 @@
-package org.beuwi.simulator.platform.ui.log;
+package org.beuwi.simulator.platform.ui.components;
 
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
@@ -18,7 +18,7 @@ public class ILogItem extends AnchorPane
 			default    -> null;
 		};
 
-		ImageView  image = new ImageView(ResourceUtils.getImage(itemType + ".png"));
+		ImageView  image = new ImageView(ResourceUtils.getImage(itemType));
 		Label 	   label = new Label(text);
 		Label      idate = new Label(date);
 

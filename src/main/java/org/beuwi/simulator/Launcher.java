@@ -2,7 +2,6 @@ package org.beuwi.simulator;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.beuwi.simulator.compiler.engine.ScriptEngine;
@@ -12,13 +11,14 @@ import org.beuwi.simulator.platform.application.views.actions.*;
 import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialogBox;
 import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
-import org.beuwi.simulator.platform.application.views.parts.StatusBarPart;
-import org.beuwi.simulator.platform.application.views.parts.ToolBarPart;
 import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
 import org.beuwi.simulator.platform.application.views.tabs.GlobalLogTab;
 import org.beuwi.simulator.platform.application.views.tabs.SettingsTab;
-import org.beuwi.simulator.platform.ui.components.IButton;
 import org.beuwi.simulator.platform.ui.window.IWindowScene;
+import org.beuwi.simulator.platform.ui.window.IWindowStage;
+import org.beuwi.simulator.platform.ui.window.IWindowType;
+import org.beuwi.simulator.platform.ui.window.IWindowView;
+import org.beuwi.simulator.utils.ResourceUtils;
 
 import java.io.IOException;
 import java.nio.file.*;
@@ -88,22 +88,20 @@ public class Launcher extends Application
 			}).start();
 
 			// Load Fonts
-			Font.loadFont(getClass().getResourceAsStream("/fonts/Consola.ttf"),      0); // Family : "Consolas"
-			Font.loadFont(getClass().getResourceAsStream("/fonts/ConsolaBold.ttf"),  0); // Family :
-			Font.loadFont(getClass().getResourceAsStream("/fonts/D2Coding.ttf"),     0); // Family : "D2Coding"
-			Font.loadFont(getClass().getResourceAsStream("/fonts/D2codingBold.ttf"), 0); // Family : "D2Coding"
-			Font.loadFont(getClass().getResourceAsStream("/fonts/Roboto.ttf"), 	   0); // Family : "Roboto"
-			Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoBold.ttf"),   0); // Family : "Roboto Bold"
-			Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoMedium.ttf"), 0); // Family : "Roboto Medium"
+			Font.loadFont(ResourceUtils.getFont("Consola"),      0); // Family : "Consolas"
+			Font.loadFont(ResourceUtils.getFont("ConsolaBold"),  0); // Family :
+			Font.loadFont(ResourceUtils.getFont("D2Coding"),     0); // Family : "D2Coding"
+			Font.loadFont(ResourceUtils.getFont("D2codingBold"), 0); // Family : "D2Coding"
+			Font.loadFont(ResourceUtils.getFont("Roboto"), 	   0); // Family : "Roboto"
+			Font.loadFont(ResourceUtils.getFont("RobotoBold"),   0); // Family : "Roboto Bold"
+			Font.loadFont(ResourceUtils.getFont("RobotoMedium"), 0); // Family : "Roboto Medium"
 
 			// 기본 스타일 지정
-			Application.setUserAgentStylesheet(getClass().getResource("/themes/base.css").toExternalForm());
+			Application.setUserAgentStylesheet(ResourceUtils.getTheme("base"));
 
 			// Initialize Views
-			ToolBarPart.initialize();
 			ActiveAreaPart.initialize();
 			EditorAreaPart.initialize();
-			StatusBarPart.initialize();
 
 			DebugRoomTab.initialize();
 			GlobalLogTab.initialize();
@@ -130,19 +128,27 @@ public class Launcher extends Application
 			RefreshExplorerAction.update();
 			ScriptEngine.preInitialize();
 
-			stage.getIcons().add(new Image(getClass().getResource("/images/program.png").toExternalForm()));
-			// stage.setMinWidth(625);
-			// stage.setMinHeight(435);
+			// Set Window Primary Stage
+			IWindowStage.setPrimaryStage(stage);
+			IWindowStage.initializeStage(stage);
+
+			IWindowView main = new IWindowView();
+
+			main.setContent(new MainWindowView());
+			main.setType(IWindowType.WINDOW);
+			main.setStage(stage);
+			main.create();
+
+			IWindowScene scene = new IWindowScene(main);
+
+			stage.setMinWidth(800);
+			stage.setMinHeight(600);
 			stage.setWidth(1400);
 			stage.setHeight(900);
-			// stage.setMaxWidth(Double.MAX_VALUE);
-			// stage.setMaxHeight(Double.MAX_VALUE);
-			stage.setTitle("Messenger Bot Simulator");
-			stage.setScene(new IWindowScene(new MainWindowView(stage)));
-			stage.toFront();
+			stage.setMaxWidth(Double.MAX_VALUE);
+			stage.setMaxHeight(Double.MAX_VALUE);
+			stage.setScene(scene);
 			stage.show();
-
-			new IButton();
 		}
 		catch (Exception e)
 		{

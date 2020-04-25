@@ -50,37 +50,47 @@ public class IContextMenu extends ContextMenu
 				node.pseudoClassStateChanged(PseudoClass.getPseudoClass("showing"), newValue);
 			});
 		}
-		else if (node instanceof ListView)
+		else
 		{
-			node.addEventHandler(MouseEvent.MOUSE_CLICKED, event ->
+			if (node instanceof ListView)
 			{
-				String target = event.getTarget().toString();
+				node.addEventHandler(MouseEvent.MOUSE_CLICKED, event ->
+				{
+					String target = event.getTarget().toString();
 
-				if (target.contains("ListViewSkin$"))
+					if
+					(
+						target.contains("ListView") ||
+						target.contains("IListView") ||
+						target.contains("ILogView")  ||
+						target.contains("HBox") || // Chat Item
+						target.contains("Group")
+					)
+					{
+						this.show(node, event);
+					}
+					else
+					{
+						this.hide();
+					}
+				});
+			}
+			else
+			{
+				node.addEventHandler(MouseEvent.MOUSE_CLICKED, event ->
 				{
 					this.show(node, event);
-				}
-				else
+				});
+			}
+
+			node.addEventHandler(MouseEvent.MOUSE_PRESSED, event ->
+			{
+				if (this.isShowing())
 				{
 					this.hide();
 				}
 			});
 		}
-		else
-		{
-			node.addEventHandler(MouseEvent.MOUSE_CLICKED, event ->
-			{
-				this.show(node, event);
-			});
-		}
-
-		node.addEventHandler(MouseEvent.MOUSE_PRESSED, event ->
-		{
-			if (this.isShowing())
-			{
-				this.hide();
-			}
-		});
 	}
 
 	public void show(Node node, MouseEvent event)

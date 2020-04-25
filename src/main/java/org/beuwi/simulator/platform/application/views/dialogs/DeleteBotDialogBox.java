@@ -9,6 +9,7 @@ import javafx.scene.layout.Region;
 import org.beuwi.simulator.platform.application.actions.DeleteBotAction;
 import org.beuwi.simulator.platform.ui.dialog.IDialogBoxType.DOCUMENT;
 import org.beuwi.simulator.platform.ui.dialog.IDialogBoxView;
+import org.beuwi.simulator.utils.ResourceUtils;
 
 public class DeleteBotDialogBox extends IDialogBoxView
 {
@@ -28,7 +29,7 @@ public class DeleteBotDialogBox extends IDialogBoxView
 	public void display()
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/forms/DeleteBotDialog.fxml"));
+		loader.setLocation(ResourceUtils.getForm("DeleteBotDialog"));
 		loader.setController(this);
 
 		Region root = null;
@@ -52,8 +53,8 @@ public class DeleteBotDialogBox extends IDialogBoxView
 
 	private void initialize()
 	{
-		btnDelete = getOkButton();
-		btnCancel = getNoButton();
+		btnDelete = getOKButton();
+		btnCancel = getNOButton();
 
 		btnDelete.setText("Delete");
 		btnCancel.setText("Cancel");

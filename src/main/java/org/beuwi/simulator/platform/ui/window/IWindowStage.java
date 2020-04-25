@@ -1,45 +1,70 @@
 package org.beuwi.simulator.platform.ui.window;
 
-import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.beuwi.simulator.platform.application.views.MainWindowView;
+import javafx.stage.StageStyle;
+import org.beuwi.simulator.utils.ResourceUtils;
 
 public class IWindowStage extends Stage
 {
 	private int DEFAULT_WIDTH  = 16;
 	private int DEFAULT_HEIGHT = 39;
 
-	public IWindowStage(int type)
+	// Primary Stage
+	private static Stage primaryStage;
+
+	public IWindowStage()
 	{
-		switch (type)
-		{
-			case IWindowType.WINDOW : break;
-			case IWindowType.DIALOG :
-				initModality(Modality.WINDOW_MODAL);
-				initOwner(MainWindowView.getStage());
-				break;
-		}
+		initializeStage(this);
+	}
 
-		getIcons().add(new Image(getClass().getResource("/images/program.png").toExternalForm()));
-		// initStyle(StageStyle.UNDECORATED);
-		// initStyle(StageStyle.TRANSPARENT);
+	public static Stage getPrimaryStage()
+	{
+		return primaryStage;
+	}
 
-        // Default Title
-        setTitle("Messenger Bot Simulator");
-        toFront();
+	public static void setPrimaryStage(Stage stage)
+	{
+		primaryStage = stage;
+	}
+
+	public static void initializeStage(Stage stage)
+	{
+		stage.getIcons().add(ResourceUtils.getImage("program"));
+		stage.initStyle(StageStyle.UNDECORATED);
+		stage.initStyle(StageStyle.TRANSPARENT);
+		stage.setTitle("Messenger Bot Simulator"); // Default Title
+		stage.toFront();
 	}
 
 	public void setMinSize(double width, double height)
 	{
-		setMinWidth(width + DEFAULT_WIDTH);
-		setMinHeight(height + DEFAULT_HEIGHT);
+		this.setMinWidth(width);
+		this.setMinHeight(height);
+	}
+
+	public void setMaxSize(double width, double height)
+	{
+		this.setMaxWidth(width);
+		this.setMaxHeight(height);
 	}
 
 	public void setSize(double width, double height)
 	{
-		setWidth(width + DEFAULT_WIDTH);
-		setHeight(height + DEFAULT_HEIGHT);
+		this.setWidth(width);
+		this.setHeight(height);
 	}
 
+	public void setType(IWindowType type)
+	{
+		switch (type)
+		{
+			case WINDOW : break;
+
+			case DIALOG :
+				this.initModality(Modality.WINDOW_MODAL);
+				this.initOwner(primaryStage);
+				break;
+		}
+	}
 }

@@ -21,7 +21,7 @@ public class AddEditorTabAction
 
 	public static void update(String id, String title, Node content)
 	{
-		update(ResourceUtils.getImage("tab_default.png"), id, title, content);
+		update(ResourceUtils.getImage("tab_default"), id, title, content);
 	}
 
 	public static void update(Image image, String id, String title, Node content)

@@ -1,4 +1,4 @@
-package org.beuwi.simulator.platform.ui.log;
+package org.beuwi.simulator.platform.ui.components;
 
 import javafx.scene.control.Control;
 import javafx.scene.control.ListCell;
@@ -7,12 +7,8 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.AnchorPane;
 import org.beuwi.simulator.managers.LogManager;
 import org.beuwi.simulator.platform.application.actions.CopyAction;
-import org.beuwi.simulator.platform.ui.components.IContextMenu;
-import org.beuwi.simulator.platform.ui.components.IMenuItem;
 
-import java.util.List;
-
-public class ILogView extends ListView
+public class ILogView extends IListView
 {
 	// 인자 없으면 Global Log
 	public ILogView()
@@ -65,20 +61,7 @@ public class ILogView extends ListView
 			}
 		});
 
-		this.setContextMenu
-		(
-			new IContextMenu
-			(
-				new IMenuItem("Select All", event -> this.getSelectionModel().selectAll())
-			)
-		);
-
 		this.getStyleClass().add("log-view");
 		this.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-	}
-
-	public void setItems(List list)
-	{
-		getItems().addAll(list);
 	}
 }

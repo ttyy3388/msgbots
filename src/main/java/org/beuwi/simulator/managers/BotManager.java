@@ -1,7 +1,7 @@
 package org.beuwi.simulator.managers;
 
-import com.jfoenix.controls.JFXToggleButton;
 import javafx.scene.control.CheckBox;
+import org.beuwi.simulator.platform.ui.components.IToggleButton;
 
 import java.util.HashMap;
 
@@ -11,7 +11,7 @@ public class BotManager
 
 	public static void setPower(String name, boolean power)
 	{
-		((JFXToggleButton) data.get("@switch::" + name)).setSelected(power);
+		((IToggleButton) data.get("@switch::" + name)).setSelected(power);
 	}
 
 	public static void setCompiled(String name, boolean compiled)
@@ -21,7 +21,7 @@ public class BotManager
 
 	public static boolean getPower(String name)
 	{
-		return ((JFXToggleButton) data.get("@switch::" + name)).isSelected();
+		return ((IToggleButton) data.get("@switch::" + name)).isSelected();
 	}
 
 	public static boolean isCompiled(String name)

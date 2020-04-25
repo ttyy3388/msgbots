@@ -3,16 +3,32 @@ package org.beuwi.simulator.utils;
 import javafx.scene.image.Image;
 
 import java.io.InputStream;
+import java.net.URL;
 
 public class ResourceUtils
 {
-	public static InputStream getFont(String name) throws Exception
+	public static InputStream getFont(String name)
 	{
-		return ResourceUtils.class.getResourceAsStream("/images/" + name);
+		return ResourceUtils.class.getResourceAsStream("/fonts/" + name + ".ttf");
 	}
 
 	public static Image getImage(String name)
 	{
-		return new Image(ResourceUtils.class.getResource("/images/" + name).toExternalForm());
+		return new Image(ResourceUtils.class.getResource("/images/" + name + ".png").toExternalForm());
+	}
+
+	public static URL getForm(String name)
+	{
+		return ResourceUtils.class.getResource("/forms/" + name + ".fxml");
+	}
+
+	public static String getStyle(String name)
+	{
+		return ResourceUtils.class.getResource("/styles/" + name + ".css").toExternalForm();
+	}
+
+	public static String getTheme(String name)
+	{
+		return ResourceUtils.class.getResource("/themes/" + name + ".css").toExternalForm();
 	}
 }
