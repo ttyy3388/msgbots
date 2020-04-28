@@ -13,7 +13,7 @@
 
 .root
 {
-	-fx-background-color: #1E1E1E;
+
 }
 
 .dialog
@@ -51,6 +51,7 @@
 }
 .menu-item .label *
 {
+    -fx-font-family: 'Roboto Medium';
 	-fx-font-size: 13;
 }
 .menu-item:focused
@@ -62,30 +63,6 @@
 	-fx-text-fill: #FFFFFF;
 }
 
-.button
-{
-	-fx-background-color: #3F3F46;
-	-fx-border-color: #555555;
-	-fx-border-width: 1;
-}
-.button:hover
-{
-	-fx-border-color: #0097FB;
-}
-.button:armed
-{
-	-fx-background-color: #007ACC;
-}
-
-.button-ok
-{
-	-fx-border-color: #007ACC;
-}
-.button-no
-{
-	-fx-border-color: #555555;
-}
-
 .check-box
 {
     -fx-label-padding: 0 0 0 8;
@@ -93,32 +70,60 @@
 .check-box .box
 {
 	-fx-background-color: #3F3F46;
-	-fx-border-color: #555555;
-	-fx-border-width: 1;
 	-fx-padding: 2;
 }
 .check-box .mark
 {
 	-fx-padding: 6;
 }
-.check-box:focused .box
-{
-	-fx-border-color: #007ACC;
-}
 .check-box:selected .mark
 {
 	-fx-background-color: #FFFFFF;
 }
 
-.text-area,
-.text-field
+.ifx-check-box .box
+{
+	-fx-border-color: #555555;
+	-fx-border-width: 1;
+}
+.ifx-check-box:focused .box
+{
+	-fx-border-color: #007ACC;
+}
+
+.ifx-text-area,
+.ifx-text-field
 {
 	-fx-background-color: #3F3F46;
 	-fx-border-color: #555555;
 	-fx-border-width: 1;
 	-fx-padding: 4;
 }
-.text-field:focused
+.ifx-text-field:focused
+{
+	-fx-border-color: #007ACC;
+}
+
+.ifx-button
+{
+	-fx-background-color: #3F3F46;
+	-fx-border-color: #555555;
+	-fx-border-width: 1;
+}
+.ifx-button:hover
+{
+	-fx-border-color: #0097FB;
+}
+.ifx-button:armed
+{
+	-fx-background-color: #007ACC;
+}
+
+.ifx-button-default
+{
+	-fx-border-color: #555555;
+}
+.ifx-button-action
 {
 	-fx-border-color: #007ACC;
 }

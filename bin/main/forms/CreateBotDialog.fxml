@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="250.0" minWidth="550.0" prefHeight="250.0" prefWidth="600.0" styleClass="dialog" stylesheets="@../styles/CreateBotDialog.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="250.0" minWidth="550.0" prefHeight="250.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextField fx:id="txfScriptName" layoutY="100.0" prefWidth="300.0" AnchorPane.leftAnchor="30.0" />
       <Label layoutX="30.0" layoutY="20.0" styleClass="header-label" text="Create New Bot" />

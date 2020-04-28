@@ -1,6 +1,5 @@
 package org.beuwi.simulator;
 
-import de.codecentric.centerdevice.javafxsvg.SvgImageLoaderFactory;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.text.Font;
@@ -87,9 +86,6 @@ public class Launcher extends Application
 					}
 				}
 			}).start();
-
-			// SVG Image File Loader Install
-			SvgImageLoaderFactory.install();
 
 			// Load Fonts
 			Font.loadFont(ResourceUtils.getFont("Consola"),      0); // Family : "Consolas"

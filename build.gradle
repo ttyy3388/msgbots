@@ -38,12 +38,10 @@ dependencies {
 
 	implementation group: 'org.fxmisc.richtext', name: 'richtextfx', version: '0.10.4'
 
-	// error: module org.beuwi.simulator reads package org.w3c.dom.events from both java.xml and batik.ext
 	implementation (group: 'de.codecentric.centerdevice', name: 'javafxsvg', version: '1.3.0') {
-		exclude group: 'xalan'
-		exclude group: 'xml-apis'
-		exclude group: 'org.apache.xmlgraphics', module: 'batik-script'
 		exclude group: 'org.apache.xmlgraphics', module: 'batik-ext'
+		exclude group: 'xml-apis', module: 'xml-apis'
+		// exclude group: 'xml-apis', module: 'xml-apis-ext'
 	}
 
 	// error: module org.beuwi.simulator reads package org.hamcrest from both hamcrest.core and junit open
@@ -63,25 +61,13 @@ compileJava {
 	moduleOptions {
 		addExports = [
 				// 안하면 package is not visible import 오류남
-				'javafx.graphics/com.sun.javafx.util' : 'org.beuwi.simulator',
-				'javafx.graphics/com.sun.javafx.iio' : 'javafxsvg'
+				'javafx.graphics/com.sun.javafx.util' : 'org.beuwi.simulator'
 		]
 	}
 }
 
 run {
-	applicationDefaultJvmArgs = ['--add-exports=javafx.graphics/com.sun.javafx.iio=javafxsvg',
-								 '--add-exports=javafx.graphics/com.sun.javafx.iio.common=javafxsvg',
-								 '--add-exports=javafx.graphics/com.sun.javafx.scene=javafxsvg',
-								 '--add-exports=javafx.graphics/com.sun.glass.ui=javafxsvg',
-	]
-
-	jvmArgs = ['--add-exports=javafx.graphics/javafx.scene.layout=org.beuwi.simulator',
-			   '--add-exports=javafx.graphics/com.sun.javafx.iio=javafxsvg',
-			   '--add-exports=javafx.graphics/com.sun.javafx.iio.common=javafxsvg',
-			   '--add-exports=javafx.graphics/com.sun.javafx.scene=javafxsvg',
-			   '--add-exports=javafx.graphics/com.sun.glass.ui=javafxsvg',
-	]
+	jvmArgs '--add-exports=javafx.graphics/javafx.scene.layout=org.beuwi.simulator'
 }
 
 jlink {
