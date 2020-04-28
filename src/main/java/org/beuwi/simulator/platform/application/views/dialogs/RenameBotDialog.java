@@ -12,7 +12,7 @@ import org.beuwi.simulator.platform.ui.dialog.IDialogBoxType.DOCUMENT;
 import org.beuwi.simulator.platform.ui.dialog.IDialogBoxView;
 import org.beuwi.simulator.utils.ResourceUtils;
 
-public class RenameBotDialogBox extends IDialogBoxView
+public class RenameBotDialog extends IDialogBoxView
 {
 	@FXML private Label label;
 	@FXML private TextField field;
@@ -22,7 +22,7 @@ public class RenameBotDialogBox extends IDialogBoxView
 
 	private String name;
 
-	public RenameBotDialogBox(String name)
+	public RenameBotDialog(String name)
 	{
 		super(DOCUMENT.EVENT);
 		this.name = name;
@@ -42,7 +42,7 @@ public class RenameBotDialogBox extends IDialogBoxView
 		}
 		catch (Exception e)
 		{
-			new ShowErrorDialogBox(e).display();
+			new ShowErrorDialog(e).display();
 		}
 
 		initialize();

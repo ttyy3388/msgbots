@@ -1,7 +1,7 @@
 package org.beuwi.simulator.platform.application.actions;
 
 import org.beuwi.simulator.managers.FileManager;
-import org.beuwi.simulator.platform.application.views.dialogs.ExistsBotDialogBox;
+import org.beuwi.simulator.platform.application.views.dialogs.ExistsBotDialog;
 
 import java.io.File;
 
@@ -13,7 +13,7 @@ public class CreateBotAction
 
 		if (project.exists())
 		{
-			new ExistsBotDialogBox(name).display();
+			new ExistsBotDialog(name).display();
 		}
 		else
 		{

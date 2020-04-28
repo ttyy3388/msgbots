@@ -13,8 +13,8 @@ import org.beuwi.simulator.managers.BotManager;
 import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.platform.application.actions.CopyAction;
 import org.beuwi.simulator.platform.application.actions.OpenDesktopAction;
-import org.beuwi.simulator.platform.application.views.dialogs.DeleteBotDialogBox;
-import org.beuwi.simulator.platform.application.views.dialogs.RenameBotDialogBox;
+import org.beuwi.simulator.platform.application.views.dialogs.DeleteBotDialog;
+import org.beuwi.simulator.platform.application.views.dialogs.RenameBotDialog;
 import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 import org.beuwi.simulator.platform.ui.components.IContextMenu;
 import org.beuwi.simulator.platform.ui.components.IListView;
@@ -45,8 +45,8 @@ public class AddExplorerBotAction
 			new IMenuItem("Copy Path", "Ctrl + Alt + C", event -> CopyAction.update(FileManager.getBotFolder(name).getAbsolutePath())),
 			new IMenuItem("Copy Relative Path", "Ctrl + Shift + C", event -> CopyAction.update(FileManager.getBotFolder(name).getPath())),
 			new SeparatorMenuItem(),
-			new IMenuItem("Rename", event -> new RenameBotDialogBox(name).display()),
-			new IMenuItem("Delete", event -> new DeleteBotDialogBox(name).display())
+			new IMenuItem("Rename", event -> new RenameBotDialog(name).display()),
+			new IMenuItem("Delete", event -> new DeleteBotDialog(name).display())
 		);
 
 		HBox 			item   = new HBox();			// Bot Item Cell

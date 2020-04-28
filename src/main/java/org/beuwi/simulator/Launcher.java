@@ -1,5 +1,6 @@
 package org.beuwi.simulator;
 
+import de.codecentric.centerdevice.javafxsvg.SvgImageLoaderFactory;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.text.Font;
@@ -8,7 +9,7 @@ import org.beuwi.simulator.compiler.engine.ScriptEngine;
 import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.platform.application.views.MainWindowView;
 import org.beuwi.simulator.platform.application.views.actions.*;
-import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialogBox;
+import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
 import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
 import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
@@ -87,6 +88,9 @@ public class Launcher extends Application
 				}
 			}).start();
 
+			// SVG Image File Loader Install
+			SvgImageLoaderFactory.install();
+
 			// Load Fonts
 			Font.loadFont(ResourceUtils.getFont("Consola"),      0); // Family : "Consolas"
 			Font.loadFont(ResourceUtils.getFont("ConsolaBold"),  0); // Family :
@@ -152,7 +156,7 @@ public class Launcher extends Application
 		}
 		catch (Exception e)
 		{
-			new ShowErrorDialogBox(e).display();
+			new ShowErrorDialog(e).display();
 
 			e.printStackTrace();
 		}

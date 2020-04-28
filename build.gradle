@@ -9,12 +9,12 @@ java {
 	// jdk 14
 	sourceCompatibility = JavaVersion.VERSION_14;
 	targetCompatibility = JavaVersion.VERSION_14;
-	compileJava.options.encoding = 'UTF-8'
 }
 
 mainClassName = "$moduleName/org.beuwi.simulator.Launcher"
 
 repositories {
+	// jcenter()
 	mavenCentral()
 }
 
@@ -22,54 +22,73 @@ group 'org.beuwi.simulator'
 version '0.5.0'
 
 javafx {
-	version = "14"
-	modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.web', 'javafx.swing' ]
-	// modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.graphics','javafx.base' ]
+	version = '14'
+	modules = ['javafx.controls', 'javafx.fxml', 'javafx.web', 'javafx.swing', 'javafx.graphics']
 }
 
 dependencies {
-	// 일반적인 상황에서는 implementation 사용
+
 	implementation group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
+
 	implementation group: 'org.mozilla', name: 'rhino', version: '1.7.12'
+
 	implementation group: 'commons-io', name: 'commons-io', version: '2.6'
+
 	implementation group: 'com.jfoenix', name: 'jfoenix', version: '9.0.8'
-	// implementation group: 'org.fxmisc.flowless', name: 'flowless', version: '0.6.1'
+
 	implementation group: 'org.fxmisc.richtext', name: 'richtextfx', version: '0.10.4'
+
+	// error: module org.beuwi.simulator reads package org.w3c.dom.events from both java.xml and batik.ext
+	implementation (group: 'de.codecentric.centerdevice', name: 'javafxsvg', version: '1.3.0') {
+		exclude group: 'xalan'
+		exclude group: 'xml-apis'
+		exclude group: 'org.apache.xmlgraphics', module: 'batik-script'
+		exclude group: 'org.apache.xmlgraphics', module: 'batik-ext'
+	}
+
+	// error: module org.beuwi.simulator reads package org.hamcrest from both hamcrest.core and junit open
 	implementation (group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1') {
 		exclude group: 'org.hamcrest', module: 'hamcrest-core'
 	}
 }
 
+configurations {
+}
+
 compileJava {
-	// options.compilerArgs << "-Xlint:none"
+	options.encoding = "UTF-8"
+	options.incremental = true
+	options.compilerArgs << "-Xlint:none"
 
 	moduleOptions {
 		addExports = [
-			// 안하면 package is not visible import 오류남
-			// 'javafx.graphics/com.sun.javafx.css' : 'org.beuwi.simulator',
-			'javafx.graphics/com.sun.javafx.util' : 'org.beuwi.simulator',
-			// 'javafx.graphics/com.sun.javafx.scene.input' : 'org.beuwi.simulator'
+				// 안하면 package is not visible import 오류남
+				'javafx.graphics/com.sun.javafx.util' : 'org.beuwi.simulator',
+				'javafx.graphics/com.sun.javafx.iio' : 'javafxsvg'
 		]
 	}
-
-	/* options.encoding = "UTF-8"
-	options.incremental = true
-
-	options.compilerArgs.addAll([
-			'--add-exports', 'javafx.graphics/com.sun.javafx.util=ALL-UNNAMED',
-			'--add-exports', 'javafx.graphics/com.sun.javafx.scene.input=ALL-UNNAMED'
-	]) */
 }
 
 run {
-	jvmArgs '--add-exports', 'javafx.graphics/javafx.scene.layout=org.beuwi.simulator'
+	applicationDefaultJvmArgs = ['--add-exports=javafx.graphics/com.sun.javafx.iio=javafxsvg',
+								 '--add-exports=javafx.graphics/com.sun.javafx.iio.common=javafxsvg',
+								 '--add-exports=javafx.graphics/com.sun.javafx.scene=javafxsvg',
+								 '--add-exports=javafx.graphics/com.sun.glass.ui=javafxsvg',
+	]
+
+	jvmArgs = ['--add-exports=javafx.graphics/javafx.scene.layout=org.beuwi.simulator',
+			   '--add-exports=javafx.graphics/com.sun.javafx.iio=javafxsvg',
+			   '--add-exports=javafx.graphics/com.sun.javafx.iio.common=javafxsvg',
+			   '--add-exports=javafx.graphics/com.sun.javafx.scene=javafxsvg',
+			   '--add-exports=javafx.graphics/com.sun.glass.ui=javafxsvg',
+	]
 }
 
 jlink {
 	options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
 
 	launcher {
-		name = 'Mesenger Bot Simulator'
+		name = 'Messenger Bot Simulator'
 	}
 
 	// Instructs the plugin to include all dependencies matching the given prefixes into the merged module. This method is useful when the plugin should handle one or more modular jars as non-modular
@@ -81,13 +100,13 @@ jlink {
 		requires 'java.desktop'
 	}
 
-	/* installerOptions = [
-			'--file-associations', 'src/main/resources/associations.properties',
-			'--app-version', version,
-	] */
-
 	jpackage {
 		imageOptions += ['--icon', 'src/main/resources/icons/program.ico']
+
+		installerOptions = [
+				'--vendor', 'beuwi',
+				'--app-version', '0.5.0',
+		]
 	}
 }
 
@@ -95,6 +114,7 @@ jar {
 	manifest {
 		attributes 'Main-Class': 'org.beuwi.simulator.Launcher'
 	}
+
 	from {
 		configurations.compile.collect {
 			it.isDirectory() ? it : zipTree(it)

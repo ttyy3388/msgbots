@@ -1,0 +1,17 @@
+package org.beuwi.simulator.api;
+
+/**
+*
+* 기본 사이즈 : 16 X 16
+*
+*/
+
+public class Icons
+{
+	final public static String MINIMIZE = "M3,3 L13,3 L13,13 L3,13 L3,3 Z M4,4 L4,12 L12,12 L12,4 L4,4 Z";
+	final public static String MAXIMIZE = "M3,3 L13,3 L13,13 L3,13 L3,3 Z M4,4 L4,12 L12,12 L12,4 L4,4 Z";
+	final public static String CLOSE    = "M8.5336867,7.52758387 L13.0020452,7.49670295 L12.9671457,8.49609378 L8.52678123,8.52678123 L8.49609378,12.9671457 L7.49670295,13.0020452 L7.52758387,8.5336867 L3.0592254,8.56456762 L3.0941249,7.56517679 L7.53448934,7.53448934 L7.56517679,3.0941249 L8.56456762,3.0592254 L8.5336867,7.52758387 Z";
+
+	final public static String RELOAD   = "";
+	final public static String REFRESH  = "";
+}

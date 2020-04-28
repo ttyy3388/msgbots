@@ -22,8 +22,8 @@ import org.beuwi.simulator.platform.application.views.actions.OpenDebugRoomTabAc
 import org.beuwi.simulator.platform.application.views.actions.OpenGlobalLogTabAction;
 import org.beuwi.simulator.platform.application.views.actions.ResizeSideBarAction;
 import org.beuwi.simulator.platform.application.views.actions.SelectActivityTabAction;
-import org.beuwi.simulator.platform.application.views.dialogs.CreateBotDialogBox;
-import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialogBox;
+import org.beuwi.simulator.platform.application.views.dialogs.CreateBotDialog;
+import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
 import org.beuwi.simulator.platform.ui.components.*;
 import org.beuwi.simulator.platform.ui.window.IWindowStage;
 import org.beuwi.simulator.settings.Settings;
@@ -82,6 +82,9 @@ public class ActiveAreaPart
 
 			component = (IListView) nameSpace.get("lsvExplorerArea");
 
+			// 추후 구현하면 재추가
+			Button button = (Button) nameSpace.get("btnShowOption");
+
 			// Option Button
 			menu = new IContextMenu
 			(
@@ -90,12 +93,14 @@ public class ActiveAreaPart
 				new IMenuItem("Show Power Switch")
 			);
 
-			menu.setNode((Button) nameSpace.get("btnShowOption"));
+			menu.setNode(button);
+
+			button.setVisible(false);
 
 			// List View
 			component.setContextMenu(new IContextMenu
 			(
-				new IMenuItem("New Bot", "Ctrl + N", event -> new CreateBotDialogBox().display()),
+				new IMenuItem("New Bot", "Ctrl + N", event -> new CreateBotDialog().display()),
 				new SeparatorMenuItem(),
 				new IMenuItem("Show in Explorer", "Shift + Alt + R", event -> OpenDesktopAction.update(FileManager.BOTS_FOLDER)),
 				new SeparatorMenuItem(),
@@ -243,7 +248,7 @@ public class ActiveAreaPart
 				}
 				catch (Exception e)
 				{
-					new ShowErrorDialogBox(e).display();
+					new ShowErrorDialog(e).display();
 				}
 
 				data.putMap(map);

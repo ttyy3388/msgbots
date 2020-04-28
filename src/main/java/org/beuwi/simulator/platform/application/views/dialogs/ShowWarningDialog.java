@@ -8,13 +8,13 @@ import org.beuwi.simulator.platform.ui.dialog.IDialogBoxType.DOCUMENT;
 import org.beuwi.simulator.platform.ui.dialog.IDialogBoxView;
 import org.beuwi.simulator.utils.ResourceUtils;
 
-public class ShowWarningDialogBox extends IDialogBoxView
+public class ShowWarningDialog extends IDialogBoxView
 {
 	@FXML private Label label;
 
 	private String text;
 
-	public ShowWarningDialogBox(String text)
+	public ShowWarningDialog(String text)
 	{
 		super(DOCUMENT.WARNING);
 		this.text = text;

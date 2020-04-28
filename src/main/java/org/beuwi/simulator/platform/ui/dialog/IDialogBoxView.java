@@ -32,11 +32,12 @@ public class IDialogBoxView extends StackPane implements Initializable
 	final IWindowView  main;
 	final IWindowStage stage;
 
-	IDialogBoxType type; // Dialog Type
-	DOCUMENT document;   // Document Type
+	IDialogBoxType type;
+	DOCUMENT document;
 	Region content;
 	String title;
 
+	// Document Type
 	public IDialogBoxView(DOCUMENT document)
 	{
 		this(IDialogBoxType.DOCUMENT);
@@ -63,11 +64,6 @@ public class IDialogBoxView extends StackPane implements Initializable
 		this.main  = new IWindowView();
 		this.stage = new IWindowStage();
 	}
-
-	/* public void setOnKeyPressed(EventHandler<KeyEvent> handler)
-	{
-		addEventHandler(KeyEvent.KEY_PRESSED, handler);
-	} */
 
 	public void setUseButton(boolean ok, boolean no)
 	{
@@ -115,7 +111,7 @@ public class IDialogBoxView extends StackPane implements Initializable
 						case ERROR   -> ResourceUtils.getImage("error_big");
 						case WARNING -> ResourceUtils.getImage("warning_big");
 						case EVENT   -> ResourceUtils.getImage("event_big");
-						default -> null;
+						default 	 -> null;
 					}
 				);
 
@@ -134,7 +130,6 @@ public class IDialogBoxView extends StackPane implements Initializable
 
 		main.setContent(this);
 		main.setType(IWindowType.DIALOG);
-		main.setTitle(title);
 		main.setStage(stage);
 		main.create();
 

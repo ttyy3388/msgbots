@@ -17,7 +17,7 @@ import org.beuwi.simulator.utils.ResourceUtils;
 
 import java.io.File;
 
-public class ImportScriptDialogBox extends IDialogBoxView
+public class ImportScriptDialog extends IDialogBoxView
 {
 	@FXML private TextField txfScriptName;
 	@FXML private Button    btnScriptOpen;
@@ -29,7 +29,7 @@ public class ImportScriptDialogBox extends IDialogBoxView
 
 	private File file;
 
-	public ImportScriptDialogBox()
+	public ImportScriptDialog()
 	{
 		super(IDialogBoxType.APPLICATION);
 	}
@@ -48,7 +48,7 @@ public class ImportScriptDialogBox extends IDialogBoxView
 		}
 		catch (Exception e)
 		{
-			new ShowErrorDialogBox(e).display();
+			new ShowErrorDialog(e).display();
 		}
 
 		initialize();

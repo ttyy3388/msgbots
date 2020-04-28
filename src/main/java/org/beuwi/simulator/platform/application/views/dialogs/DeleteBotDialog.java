@@ -11,7 +11,7 @@ import org.beuwi.simulator.platform.ui.dialog.IDialogBoxType.DOCUMENT;
 import org.beuwi.simulator.platform.ui.dialog.IDialogBoxView;
 import org.beuwi.simulator.utils.ResourceUtils;
 
-public class DeleteBotDialogBox extends IDialogBoxView
+public class DeleteBotDialog extends IDialogBoxView
 {
 	@FXML private Label label;
 
@@ -20,7 +20,7 @@ public class DeleteBotDialogBox extends IDialogBoxView
 
 	private String name;
 
-	public DeleteBotDialogBox(String name)
+	public DeleteBotDialog(String name)
 	{
 		super(DOCUMENT.EVENT);
 		this.name = name;
@@ -40,7 +40,7 @@ public class DeleteBotDialogBox extends IDialogBoxView
 		}
 		catch (Exception e)
 		{
-			new ShowErrorDialogBox(e).display();
+			new ShowErrorDialog(e).display();
 		}
 
 		initialize();

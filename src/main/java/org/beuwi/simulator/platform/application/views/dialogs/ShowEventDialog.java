@@ -8,13 +8,13 @@ import org.beuwi.simulator.platform.ui.dialog.IDialogBoxType.DOCUMENT;
 import org.beuwi.simulator.platform.ui.dialog.IDialogBoxView;
 import org.beuwi.simulator.utils.ResourceUtils;
 
-public class ShowEventDialogBox extends IDialogBoxView
+public class ShowEventDialog extends IDialogBoxView
 {
 	@FXML private Label label;
 
 	private String text;
 
-	public ShowEventDialogBox(String text)
+	public ShowEventDialog(String text)
 	{
 		super(DOCUMENT.ERROR);
 		this.text = text;

@@ -1,6 +1,6 @@
 package org.beuwi.simulator.managers;
 
-import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialogBox;
+import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
 
 import java.io.*;
 
@@ -82,7 +82,7 @@ public class FileManager
 		}
 		catch (Exception e)
 		{
-			new ShowErrorDialogBox(e).display();
+			new ShowErrorDialog(e).display();
 		}
 
 		return null;
@@ -102,7 +102,7 @@ public class FileManager
 		}
 		catch (Exception e)
 		{
-			new ShowErrorDialogBox(e).display();
+			new ShowErrorDialog(e).display();
 		}
 
 		return null;
@@ -131,7 +131,7 @@ public class FileManager
 		}
 		catch (Exception e)
 		{
-			new ShowErrorDialogBox(e).display();
+			new ShowErrorDialog(e).display();
 		}
 
 		return null;
@@ -161,7 +161,7 @@ public class FileManager
 		}
 		catch (Exception e)
 		{
-			new ShowErrorDialogBox(e).display();
+			new ShowErrorDialog(e).display();
 		}
 
 		return false;

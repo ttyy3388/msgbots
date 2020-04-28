@@ -1,7 +1,7 @@
 package org.beuwi.simulator.platform.application.actions;
 
 import org.beuwi.simulator.managers.FileManager;
-import org.beuwi.simulator.platform.application.views.dialogs.ExistsBotDialogBox;
+import org.beuwi.simulator.platform.application.views.dialogs.ExistsBotDialog;
 
 import java.io.File;
 
@@ -14,7 +14,7 @@ public class RenameBotAction
 
         if (after.exists())
         {
-            new ExistsBotDialogBox(newName).display();
+            new ExistsBotDialog(newName).display();
         }
         else
         {

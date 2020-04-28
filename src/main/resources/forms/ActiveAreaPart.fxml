@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.*?>
 <?import org.beuwi.simulator.platform.ui.components.*?>
-
 <AnchorPane prefHeight="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -36,7 +35,6 @@
                                     </Button>
                                  </children>
                               </HBox>
-                              <Separator prefHeight="5.0" />
                               <AnchorPane styleClass="content-area" VBox.vgrow="ALWAYS">
                                  <children>
                                     <IListView fx:id="lsvExplorerArea" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
@@ -72,7 +70,6 @@
                                     </HBox>
                                  </children>
                               </HBox>
-                              <Separator prefHeight="5.0" />
                               <AnchorPane styleClass="content-area" VBox.vgrow="ALWAYS">
                                  <children>
                                     <Label layoutY="15.0" text="Room" AnchorPane.leftAnchor="0.0" />

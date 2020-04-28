@@ -2,7 +2,7 @@ package org.beuwi.simulator.platform.application.views.actions;
 
 import javafx.scene.Node;
 import javafx.scene.control.SplitPane;
-import org.beuwi.simulator.platform.application.views.dialogs.ShowWarningDialogBox;
+import org.beuwi.simulator.platform.application.views.dialogs.ShowWarningDialog;
 import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
 import org.beuwi.simulator.platform.ui.components.IPos;
 import org.beuwi.simulator.platform.ui.editor.IEditorPane;
@@ -33,7 +33,7 @@ public class SplitEditorPaneAction
 		}
 		else
 		{
-			new ShowWarningDialogBox("The editor can no longer be split").display();
+			new ShowWarningDialog("The editor can no longer be split").display();
  		}
 	}
 

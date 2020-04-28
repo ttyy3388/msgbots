@@ -21,6 +21,6 @@ public class CloseEditorTabAction
 
 	public static void update(Collection tabs)
 	{
-		// EditorAreaPart.getSelectedPane().getTabs().removeAll(tabs);
+		EditorAreaPart.getSelectedPane().getTabs().removeAll(tabs);
 	}
 }

@@ -12,14 +12,14 @@ import org.beuwi.simulator.utils.ResourceUtils;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-public class ShowErrorDialogBox extends IDialogBoxView
+public class ShowErrorDialog extends IDialogBoxView
 {
 	@FXML private Label header;
 	@FXML private TextArea content;
 
 	private Exception error;
 
-	public ShowErrorDialogBox(Exception error)
+	public ShowErrorDialog(Exception error)
 	{
 		super(DOCUMENT.ERROR);
 

@@ -8,13 +8,13 @@ import org.beuwi.simulator.platform.ui.dialog.IDialogBoxType.DOCUMENT;
 import org.beuwi.simulator.platform.ui.dialog.IDialogBoxView;
 import org.beuwi.simulator.utils.ResourceUtils;
 
-public class ExistsBotDialogBox extends IDialogBoxView
+public class ExistsBotDialog extends IDialogBoxView
 {
     @FXML private Label label;
 
     private String name;
 
-    public ExistsBotDialogBox(String name)
+    public ExistsBotDialog(String name)
     {
         super(DOCUMENT.ERROR);
         this.name = name;
@@ -34,7 +34,7 @@ public class ExistsBotDialogBox extends IDialogBoxView
         }
         catch (Exception e)
         {
-            new ShowErrorDialogBox(e).display();
+            new ShowErrorDialog(e).display();
         }
 
         initialize();

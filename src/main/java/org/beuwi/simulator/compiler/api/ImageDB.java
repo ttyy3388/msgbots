@@ -1,6 +1,6 @@
 package org.beuwi.simulator.compiler.api;
 
-import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialogBox;
+import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
 
 public class ImageDB 
 {
@@ -19,7 +19,7 @@ public class ImageDB
 		}
 		catch (Exception e)
 		{
-			new ShowErrorDialogBox(e).display();
+			new ShowErrorDialog(e).display();
 		}
 
 		return null;

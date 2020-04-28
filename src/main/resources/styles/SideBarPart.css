@@ -3,15 +3,6 @@
 	-fx-background-color: #252526;
 }
 
-.separator
-{
-    -fx-background-color: #3C3C3C;
-}
-
-.title-pane
-{
-	/* -fx-background-color: #3C3C3C; */
-}
 .title-pane .label
 {
 	-fx-text-fill: #FFFFFF;
@@ -47,73 +38,73 @@
 	-fx-background-image: url('../images/log_white.png');
 }
 
-.explorer-part .list-item
+.list-item
 {
 	-fx-cursor: hand;
 }
-.explorer-part .list-item:hover
+.list-item:hover
 {
 	-fx-background-color: #2A2D2E;
 }
-.explorer-part .list-cell .label
+.list-cell .label
 {
 	-fx-font-size: 14;
 }
-.explorer-part .list-cell .button
+.list-cell .button
 {
 	-fx-background-radius: 16;
 	-fx-background-image: url('../images/reload.png');
 	-fx-background-size: 15;
 }
-.explorer-part .list-cell .button:hover
+.list-cell .button:hover
 {
 	-fx-background-image: url('../images/reload_focused.png');
 	-fx-background-color: rgba(255, 255, 255, 0.1);
 }
-.explorer-part .list-cell .button:armed
+.list-cell .button:armed
 {
 	-fx-background-color: rgba(255, 255, 255, 0.15);
 }
-.explorer-part .list-cell .check-box .box
+.list-cell .check-box .box
 {
 	-fx-background-radius: 10;
 	-fx-background-color: #BBBBBB;
 	-fx-border-width: 0;
 	-fx-padding: 3;
 }
-.explorer-part .list-cell .check-box .mark
+.list-cell .check-box .mark
 {
 	-fx-padding: 0;
 }
-.explorer-part .list-cell .check-box:selected .box
+.list-cell .check-box:selected .box
 {
 	-fx-background-color: transparent;
 }
-.explorer-part .list-cell .jfx-toggle-button
+.list-cell .jfx-toggle-button
 {
 	-jfx-size: 6;
 }
-.explorer-part .list-cell:selected .label
+.list-cell:selected .label
 {
 	-fx-text-fill: #FFFFFF;
 }
-.explorer-part .list-cell:selected .button
+.list-cell:selected .button
 {
 	-fx-background-image: url('../images/reload_focused.png');
 }
-.explorer-part .list-cell:selected .check-box .box
+.list-cell:selected .check-box .box
 {
 	-fx-background-color: #FFFFFF;
 }
-.explorer-part .list-cell:selected .check-box:selected .box
+.list-cell:selected .check-box:selected .box
 {
 	-fx-background-color: transparent;
 }
-.explorer-part .list-cell:selected .jfx-toggle-button
+.list-cell:selected .jfx-toggle-button
 {
 	-jfx-untoggle-color: #FFFFFF;
 }
-.explorer-part .list-cell:selected .list-item
+.list-cell:selected .list-item
 {
 	-fx-background-color: #094771;
 }

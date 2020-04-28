@@ -11,25 +11,12 @@
 	-fx-border-width: 1;
 	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0.4, 0, 0);
 }
+
 .title-bar
 {
 	-fx-background-color: #323233;
 }
-.title-label
-{
-	-fx-text-fill: #737373;
-}
-.tool-bar
-{
-	-fx-background-color: #3C3C3C;
-}
-
-.status-bar
-{
-	-fx-background-color: #007ACC;
-}
-
-.button
+.title-bar .button
 {
 	-fx-cursor: default;
 }
@@ -45,9 +32,9 @@
 	-fx-text-fill: #FFFFFF;
 }
 
-.button-bar
+.status-bar
 {
-
+	-fx-background-color: #007ACC;
 }
 
 .button-bar .button
@@ -57,7 +44,7 @@
 
 .minimize-button
 {
-	-fx-background-image: url('../images/minimize_inactive.png');
+	-fx-background-image: url('../svgs/minimize.svg');
 }
 .maximize-button
 {
@@ -80,7 +67,7 @@
 }
 .close-button:hover
 {
-	-fx-background-image: url('../images/close_focused.png');
+	-fx-background-image: url('../images/close_active.png');
 	-fx-background-color: #D61425;
 }
 
@@ -88,10 +75,6 @@
 {
 	-fx-border-color: #007ACC;
 	-fx-effect: dropshadow(three-pass-box, rgba(0, 122, 204, 0.5), 10, 0.4, 0, 0);
-}
-.window:focused .title-label
-{
-	-fx-text-fill: #BBBBBB;
 }
 .window:focused .minimize-button
 {
@@ -104,11 +87,6 @@
 .window:focused .close-button
 {
 	-fx-background-image: url('../images/close_active.png');
-}
-.window:focused .close-button:hover
-{
-	-fx-background-image: url('../images/close_focused.png');
-	-fx-background-color: #D61425;
 }
 
 .window:maximized .root-pane

@@ -12,7 +12,7 @@ import org.beuwi.simulator.platform.ui.dialog.IDialogBoxType;
 import org.beuwi.simulator.platform.ui.dialog.IDialogBoxView;
 import org.beuwi.simulator.utils.ResourceUtils;
 
-public class CreateBotDialogBox extends IDialogBoxView
+public class CreateBotDialog extends IDialogBoxView
 {
 	@FXML private TextField txfScriptName;
 	@FXML private CheckBox chkUnifiedParams;
@@ -21,7 +21,7 @@ public class CreateBotDialogBox extends IDialogBoxView
 	private Button btnCreate;
 	private Button btnCancel;
 
-	public CreateBotDialogBox()
+	public CreateBotDialog()
 	{
 		super(IDialogBoxType.APPLICATION);
 	}
@@ -40,7 +40,7 @@ public class CreateBotDialogBox extends IDialogBoxView
 		}
 		catch (Exception e)
 		{
-			new ShowErrorDialogBox(e).display();
+			new ShowErrorDialog(e).display();
 		}
 
 		this.initialize();

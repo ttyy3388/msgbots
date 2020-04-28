@@ -1,6 +1,6 @@
 package org.beuwi.simulator.managers;
 
-import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialogBox;
+import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
 import org.beuwi.simulator.platform.ui.components.ILogItem;
 import org.beuwi.simulator.platform.ui.components.ILogType;
 import org.json.simple.JSONArray;
@@ -79,7 +79,7 @@ public class LogManager
 		}
 		catch (Exception e)
 		{
-			new ShowErrorDialogBox(e).display();
+			new ShowErrorDialog(e).display();
 		}
 
 		return new ArrayList<>();
