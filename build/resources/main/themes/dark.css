@@ -1,0 +1,159 @@
+
+/*
+* bg : background
+* bd : border
+* fn : font
+* tx : text
+*/
+
+*
+{
+	-fx-text-fill: #CCCCCC;
+}
+
+.root
+{
+
+}
+
+.dialog
+{
+	-fx-background-color: #252526;
+}
+
+/* .tab,
+.tab-label,
+.text,
+.label,
+.button,
+.text-area,
+.text-field
+{
+	-fx-text-fill: #CCCCCC;
+} */
+
+.context-menu
+{
+	-fx-background-color: #252526;
+	-fx-padding: 7 0 7 0;
+	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 5);
+}
+.context-menu .separator
+{
+	-fx-background-insets: 4 10 5 10;
+	-fx-background-color: #616162;
+	-fx-padding: 5;
+}
+
+.menu-item
+{
+	-fx-padding: 5 20 5 20;
+}
+.menu-item .label *
+{
+    -fx-font-family: 'Roboto Medium';
+	-fx-font-size: 13;
+}
+.menu-item:focused
+{
+	-fx-background-color: #094771;
+}
+.menu-item:focused .label
+{
+	-fx-text-fill: #FFFFFF;
+}
+
+.check-box
+{
+    -fx-label-padding: 0 0 0 8;
+}
+.check-box .box
+{
+	-fx-background-color: #3F3F46;
+	-fx-padding: 2;
+}
+.check-box .mark
+{
+	-fx-padding: 6;
+}
+.check-box:selected .mark
+{
+	-fx-background-color: #FFFFFF;
+}
+
+.ifx-check-box .box
+{
+	-fx-border-color: #555555;
+	-fx-border-width: 1;
+}
+.ifx-check-box:focused .box
+{
+	-fx-border-color: #007ACC;
+}
+
+.ifx-text-area,
+.ifx-text-field
+{
+	-fx-background-color: #3F3F46;
+	-fx-border-color: #555555;
+	-fx-border-width: 1;
+	-fx-padding: 4;
+}
+.ifx-text-field:focused
+{
+	-fx-border-color: #007ACC;
+}
+
+.ifx-button
+{
+	-fx-background-color: #3F3F46;
+	-fx-border-color: #555555;
+	-fx-border-width: 1;
+}
+.ifx-button:hover
+{
+	-fx-border-color: #0097FB;
+}
+.ifx-button:armed
+{
+	-fx-background-color: #007ACC;
+}
+
+.ifx-button-default
+{
+	-fx-border-color: #555555;
+}
+.ifx-button-action
+{
+	-fx-border-color: #007ACC;
+}
+
+.jfx-toggle-button
+{
+	-jfx-toggle-color: #007ACC;
+	-jfx-untoggle-color: #BBBBBB;
+	-jfx-size: 8;
+}
+.jfx-toggle-button:hover
+{
+	-jfx-untoggle-color: #FFFFFF;
+}
+
+/* Custom Components */
+.log-view .list-item
+{
+    -fx-background-insets: 3 5 5 0;
+    -fx-background-color: #2B2B2B;
+}
+.log-view .list-item .event
+{
+
+}
+.log-view .list-item .error
+{
+    -fx-text-fill: #FF0000;
+}
+.log-view .list-cell:selected .list-item
+{
+	-fx-background-color: #0D293E;
+}

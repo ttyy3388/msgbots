@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import org.beuwi.simulator.platform.ui.components.ISVGPath;
 import org.beuwi.simulator.utils.ResourceUtils;
 
 public class IWindowView extends AnchorPane
@@ -117,15 +118,9 @@ public class IWindowView extends AnchorPane
 			this.pseudoClassStateChanged(PseudoClass.getPseudoClass("maximized"), newValue);
 		});
 
-		// btnMinimize.setShape();
-
-		try {
-
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
+		btnMinimize.setGraphic(ISVGPath.MINIMIZE);
+		btnMaximize.setGraphic(ISVGPath.MAXIMIZE);
+		btnClose.setGraphic(ISVGPath.CLOSE);
 
 		btnMinimize.setOnAction(event ->
 		{

@@ -1,0 +1,116 @@
+.side-bar
+{
+	-fx-background-color: #252526;
+}
+
+.title-pane .label
+{
+	-fx-text-fill: #FFFFFF;
+}
+.title-pane .button
+{
+	-fx-background-size: 14;
+}
+.title-pane .button:hover
+{
+	-fx-background-color: rgba(255, 255, 255, 0.05);
+}
+.title-pane .button:armed
+{
+	-fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+.title-pane .option-button
+{
+	-fx-background-image: url('../images/setting_white.png');
+	-fx-background-size: 16;
+}
+.title-pane .chat-button
+{
+	-fx-background-image: url('../images/chat_white.png');
+}
+.title-pane .reload-button
+{
+	-fx-background-image: url('../images/reload_white.png');
+}
+.title-pane .log-button
+{
+	-fx-background-image: url('../images/log_white.png');
+}
+
+.list-item
+{
+	-fx-cursor: hand;
+}
+.list-item:hover
+{
+	-fx-background-color: #2A2D2E;
+}
+.list-cell .label
+{
+	-fx-font-size: 14;
+}
+.list-cell .button
+{
+	-fx-background-radius: 16;
+	-fx-background-image: url('../images/reload.png');
+	-fx-background-size: 15;
+}
+.list-cell .button:hover
+{
+	-fx-background-image: url('../images/reload_focused.png');
+	-fx-background-color: rgba(255, 255, 255, 0.1);
+}
+.list-cell .button:armed
+{
+	-fx-background-color: rgba(255, 255, 255, 0.15);
+}
+.list-cell .check-box .box
+{
+	-fx-background-radius: 10;
+	-fx-background-color: #BBBBBB;
+	-fx-border-width: 0;
+	-fx-padding: 3;
+}
+.list-cell .check-box .mark
+{
+	-fx-padding: 0;
+}
+.list-cell .check-box:selected .box
+{
+	-fx-background-color: transparent;
+}
+.list-cell .jfx-toggle-button
+{
+	-jfx-size: 6;
+}
+.list-cell:selected .label
+{
+	-fx-text-fill: #FFFFFF;
+}
+.list-cell:selected .button
+{
+	-fx-background-image: url('../images/reload_focused.png');
+}
+.list-cell:selected .check-box .box
+{
+	-fx-background-color: #FFFFFF;
+}
+.list-cell:selected .check-box:selected .box
+{
+	-fx-background-color: transparent;
+}
+.list-cell:selected .jfx-toggle-button
+{
+	-jfx-untoggle-color: #FFFFFF;
+}
+.list-cell:selected .list-item
+{
+	-fx-background-color: #094771;
+}
+
+.debug-part .content-area .label
+{
+	-fx-text-fill: #CCCCCC;
+	-fx-font-size: 13;
+}

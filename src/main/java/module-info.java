@@ -13,7 +13,6 @@ open module org.beuwi.simulator
 
 	requires com.jfoenix;
 	requires flowless;
-	requires javafxsvg;
 	requires json.simple;
 	requires org.apache.commons.io;
 	requires org.fxmisc.richtext;

@@ -19,9 +19,9 @@ import java.util.List;
 
 public class IWindowEvent
 {
-	private BooleanProperty minimizedProperty = new SimpleBooleanProperty(false);
-	private BooleanProperty maximizedProperty = new SimpleBooleanProperty(false);
-	private BooleanProperty closedProperty    = new SimpleBooleanProperty(false);
+	private BooleanProperty minimized = new SimpleBooleanProperty(false);
+	private BooleanProperty maximized = new SimpleBooleanProperty(false);
+	private BooleanProperty closed    = new SimpleBooleanProperty(false);
 
 	// Saved Bounds Box
 	private BoundingBox original;
@@ -43,22 +43,22 @@ public class IWindowEvent
 
 	public BooleanProperty minimizedProperty()
 	{
-		return minimizedProperty;
+		return this.minimized;
 	}
 
 	public BooleanProperty maximizedProperty()
 	{
-		return maximizedProperty;
+		return this.maximized;
 	}
 
 	public boolean isMinimized()
 	{
-		return minimizedProperty.get();
+		return this.minimized.get();
 	}
 
 	public boolean isMaximized()
 	{
-		return maximizedProperty.get();
+		return this.maximized.get();
 	}
 
 	private void minimize()
@@ -116,7 +116,7 @@ public class IWindowEvent
 			this.close();
 		});
 
-		closedProperty.set(true);
+		this.closed.set(true);
 	}
 
 	public void setMinimized()
@@ -126,7 +126,7 @@ public class IWindowEvent
 			this.minimize();
 		});
 
-		minimizedProperty.set(true);
+		this.minimized.set(true);
 	}
 
 	public void setMaximized()
@@ -148,7 +148,7 @@ public class IWindowEvent
 			}
 		});
 
-		maximizedProperty.set(maximized);
+		this.maximized.set(maximized);
 	}
 
 	// Node : Title Bar
@@ -235,7 +235,7 @@ public class IWindowEvent
 						stage.setX(bounds.getMaxX() - original.getWidth());
 					}
 
-					maximizedProperty.set(false);
+					maximized.set(false);
 				}
 
 				double newX = event.getScreenX();

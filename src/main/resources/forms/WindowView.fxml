@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.svg.SVGGlyph?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-
+<?import javafx.scene.layout.*?>
+<?import org.beuwi.simulator.platform.ui.components.ISVGGlyph?>
 <BorderPane fx:id="bopRootPane" styleClass="root-pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <AnchorPane fx:id="anpTitleBar" prefHeight="28.0" prefWidth="500.0" styleClass="title-bar" BorderPane.alignment="CENTER">
@@ -19,7 +17,7 @@
             </ImageView>
             <HBox fx:id="hoxMenuBar" styleClass="menu-bar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="btnFileMenu" mnemonicParsing="false" prefHeight="28.0" prefWidth="40.0" text="File" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="btnFileMenu" mnemonicParsing="false" prefHeight="28.0" prefWidth="40.0" text="File" />
                   <Button fx:id="btnEditMenu" mnemonicParsing="false" prefHeight="28.0" prefWidth="42.0" text="Edit" />
                   <Button fx:id="btnViewMenu" mnemonicParsing="false" prefHeight="28.0" prefWidth="42.0" text="View" />
                   <Button fx:id="btnDebugMenu" mnemonicParsing="false" prefHeight="28.0" prefWidth="52.0" text="Debug" />
@@ -27,18 +25,18 @@
             </HBox>
             <HBox fx:id="hoxButtonBar" styleClass="button-bar" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="btnMinimize" mnemonicParsing="false" prefHeight="28.0" prefWidth="45.0" styleClass="minimize-button" />
-                  <Button fx:id="btnMaximize" mnemonicParsing="false" prefHeight="28.0" prefWidth="45.0" styleClass="maximize-button" />
-                  <Button fx:id="btnClose" mnemonicParsing="false" prefHeight="28.0" prefWidth="45.0" styleClass="close-button" />
+                  <Button fx:id="btnMinimize" mnemonicParsing="false" prefHeight="28.0" prefWidth="46.0" styleClass="minimize-button" />
+                  <Button fx:id="btnMaximize" mnemonicParsing="false" prefHeight="28.0" prefWidth="46.0" styleClass="maximize-button" />
+                  <Button fx:id="btnClose" mnemonicParsing="false" prefHeight="28.0" prefWidth="46.0" styleClass="close-button" />
                </children>
             </HBox>
          </children>
       </AnchorPane>
    </top>
    <bottom>
-      <AnchorPane fx:id="anpStatusBar" prefHeight="20.0" prefWidth="1000.0" styleClass="status-bar" BorderPane.alignment="CENTER" />
+      <AnchorPane fx:id="anpStatusBar" prefHeight="20.0" styleClass="status-bar" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-      <StackPane fx:id="stpContentArea" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <StackPane fx:id="stpContentArea" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

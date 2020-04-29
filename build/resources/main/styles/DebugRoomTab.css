@@ -1,0 +1,56 @@
+
+.root
+{
+	-fx-font-family: D2Coding;
+	-fx-font-size: 14;
+}
+
+.button,
+.button:armed
+{
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+.list-cell
+{
+	-fx-padding: 15 10 15 10;
+}
+
+.list-cell .bot-label,
+.list-cell .sender-label
+{
+	-fx-background-radius: 8;
+	-fx-text-fill: #FFFFFF;
+	-fx-padding: 8;
+}
+.list-cell .sender-label
+{
+	-fx-background-color: #0583f9;
+}
+.list-cell .bot-label
+{
+	-fx-background-color: #302F35;
+}
+.list-cell:selected .sender-label
+{
+	-fx-background-color: #59AEFF;
+}
+.list-cell:selected .bot-label
+{
+	-fx-background-color: #46454D;
+}
+
+.text-area
+{
+	-fx-background-radius: 15;
+	-fx-background-color: transparent, #303030, transparent, #303030;
+	-fx-border-width: 0;
+	-fx-padding: 10;
+}
+
+.button
+{
+	-fx-background-image: url('../images/send.png');
+	-fx-background-size: 60;
+}

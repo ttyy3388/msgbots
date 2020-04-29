@@ -9,7 +9,6 @@
 	-fx-background-color: #323233;
 	-fx-border-color: #434346;
 	-fx-border-width: 1;
-	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0.4, 0, 0);
 }
 
 .title-bar
@@ -29,7 +28,6 @@
 .menu-bar .button:showing
 {
 	-fx-background-color: #474748;
-	-fx-text-fill: #FFFFFF;
 }
 
 .status-bar
@@ -37,56 +35,32 @@
 	-fx-background-color: #007ACC;
 }
 
-.button-bar .button
+.button-bar .button { }
+.button-bar .button:hover .glyph
 {
-	-fx-background-size: 12;
-}
-
-.minimize-button
-{
-	-fx-background-image: url('../svgs/minimize.svg');
-}
-.maximize-button
-{
-	-fx-background-image: url('../images/maximize_inactive.png');
-}
-.close-button
-{
-	-fx-background-image: url('../images/close_inactive.png');
+    -fx-background-color: #FFFFFF;
 }
 
 .minimize-button:hover
 {
-	-fx-background-image: url('../images/minimize_active.png');
 	-fx-background-color: #505050;
 }
 .maximize-button:hover
 {
-	-fx-background-image: url('../images/maximize_active.png');
 	-fx-background-color: #505050;
 }
 .close-button:hover
 {
-	-fx-background-image: url('../images/close_active.png');
 	-fx-background-color: #D61425;
 }
 
 .window:focused .root-pane
 {
 	-fx-border-color: #007ACC;
-	-fx-effect: dropshadow(three-pass-box, rgba(0, 122, 204, 0.5), 10, 0.4, 0, 0);
 }
-.window:focused .minimize-button
+.window:focused .button-bar .button .glyph
 {
-	-fx-background-image: url('../images/minimize_active.png');
-}
-.window:focused .maximize-button
-{
-	-fx-background-image: url('../images/maximize_active.png');
-}
-.window:focused .close-button
-{
-	-fx-background-image: url('../images/close_active.png');
+    -fx-background-color: #FFFFFF;
 }
 
 .window:maximized .root-pane
