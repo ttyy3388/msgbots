@@ -6,7 +6,7 @@
 .toggle-button
 {
 	-fx-background-size: 16;
-	-fx-border-insets: 3 0 3 2;
+	-fx-border-insets: 0 0 0 2;
 	-fx-border-color: transparent;
 	-fx-border-width: 0 0 0 4;
 }

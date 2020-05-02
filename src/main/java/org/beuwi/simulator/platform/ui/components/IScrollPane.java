@@ -5,17 +5,17 @@ import org.fxmisc.flowless.VirtualizedScrollPane;
 
 public class IScrollPane extends VirtualizedScrollPane
 {
-    {
-        this.getStyleClass().add("i-scroll-pane");
-    }
+	{
+		this.getStyleClass().add("ifx-scroll-pane");
+	}
 
-    public IScrollPane()
-    {
-        super(null);
-    }
+	public IScrollPane()
+	{
+		this(null);
+	}
 
-    public IScrollPane(Node node)
-    {
-        super(node);
-    }
+	public IScrollPane(Node node)
+	{
+		super(node);
+	}
 }

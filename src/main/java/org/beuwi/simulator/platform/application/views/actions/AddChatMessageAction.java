@@ -59,7 +59,7 @@ public class AddChatMessageAction
 			AnchorPane.setLeftAnchor(chat, 0.0);
 
 			Circle profile = new Circle(35, 35, 20);
-			profile.setFill(new ImagePattern(new Image(FileManager.getDataFile("profile_bot").toURI().toString())));
+			profile.setFill(new ImagePattern(new Image(FileManager.getDataFile("profile_bot.png").toURI().toString())));
 
 			chat.getStyleClass().add("bot-label");
 

@@ -1,20 +1,31 @@
 package org.beuwi.simulator.platform.ui.components;
 
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
-public class ICodePane extends AnchorPane
+public class ICodePane extends StackPane
 {
-	final private IScrollPane pane;
-
-	public ICodePane(ICodeArea area)
 	{
+		this.getStyleClass().add("ifx-code-pane");
+	}
+
+	final private IScrollPane pane;
+	final private ICodeArea area;
+
+	public ICodePane(String text)
+	{
+		area = new ICodeArea(text);
 		pane = new IScrollPane(area);
 
-		AnchorPane.setTopAnchor	  (pane, .0);
-		AnchorPane.setRightAnchor (pane, .0);
-		AnchorPane.setBottomAnchor(pane, .0);
-		AnchorPane.setLeftAnchor  (pane, .0);
+		this.getChildren().add(pane);
+	}
 
-		getChildren().add(pane);
+	public ICodeArea getCodeArea()
+	{
+		return area;
+	}
+
+	public IScrollPane getScrollPane()
+	{
+		return pane;
 	}
 }

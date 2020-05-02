@@ -1,18 +1,11 @@
 package org.beuwi.simulator.platform.ui.editor;
 
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
-import javafx.scene.control.*;
-import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import org.beuwi.simulator.platform.application.views.actions.*;
-import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
+import org.beuwi.simulator.platform.application.views.actions.CloseEditorPaneAction;
 import org.beuwi.simulator.platform.ui.components.IContextMenu;
+import org.beuwi.simulator.platform.ui.components.IMenuButton;
 import org.beuwi.simulator.platform.ui.components.IMenuItem;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class IEditorPane extends AnchorPane
 {
@@ -23,11 +16,11 @@ public class IEditorPane extends AnchorPane
 
 	private IContextMenu menu = new IContextMenu();
 
-	private TabPane pane = new TabPane();
+	private IEditorTabPane pane = new IEditorTabPane();
 	private HBox bar = new HBox();
 
-	private Button split = new Button();
-	private Button more = new Button();
+	private IMenuButton split = new IMenuButton();
+	private IMenuButton more = new IMenuButton();
 	
 	// Drag Target Tab
 	// private Tab target = null;
@@ -42,19 +35,13 @@ public class IEditorPane extends AnchorPane
 		AnchorPane.setTopAnchor(bar, .0);
 		AnchorPane.setRightAnchor(bar, .0);
 
-		EditorAreaPart.setSelectedPane(this);
-
-		pane.setOnKeyPressed(event ->
+		/* this.setFocusTraversable(true);
+		this.focusedProperty().addListener((observable, oldValue, newValue) ->
 		{
-			if (event.isControlDown())
-			{
-				switch (event.getCode())
-				{
-					// case TAB : ChangeEditorTabAction.update(); break;
-					case W : CloseEditorTabAction.update(); break;
-				}
-			}
-		});
+			System.out.println(newValue);
+		}); */
+
+		/* EditorAreaPart.setSelectedPane(this);
 
 		EditorAreaPart.getProperty().addListener((observable, oldValue, newValue) ->
 		{
@@ -64,15 +51,6 @@ public class IEditorPane extends AnchorPane
 		pane.setOnMouseClicked(event ->
 		{
 			EditorAreaPart.setSelectedPane(this);
-
-			if (pane.getTabs().isEmpty())
-			{
-				imenu.show(this, event);
-			}
-			else
-			{
-				imenu.hide();
-			}
 		});
 
 		pane.setOnMousePressed(event ->
@@ -82,10 +60,6 @@ public class IEditorPane extends AnchorPane
 				imenu.hide();
 			}
 		});
-
-		pane.setTabMinHeight(24);
-		pane.setTabMaxHeight(30);
-		pane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
 		pane.getTabs().addListener((ListChangeListener.Change<? extends Tab> change) ->
 		{
@@ -103,8 +77,8 @@ public class IEditorPane extends AnchorPane
 				}
 
 				items.add(new SeparatorMenuItem());
-				items.add(new IMenuItem("Close", "Ctrl + F4", event -> CloseEditorTabAction.update()));
-				items.add(new IMenuItem("Close All", event -> CloseAllEditorTabsAction.update()));
+				items.add(new IMenuItem("Close", "Ctrl + F4", event -> CloseTabAction.update()));
+				items.add(new IMenuItem("Close All", event -> CloseAllTabsAction.update()));
 
 				menu.getItems().setAll(items);
 			}
@@ -116,9 +90,14 @@ public class IEditorPane extends AnchorPane
 		split.getStyleClass().add("tab-split-button");
 		more.getStyleClass().add("tab-more-button");
 
+		split.setGraphic(ISVGGlyph.getGlyph("Editor.Split"));
+		more.setGraphic(ISVGGlyph.getGlyph("Editor.More"));
+
 		bar.setPrefHeight(30);
 		split.setPrefSize(35, 30);
 		more.setPrefSize(35, 30);
+
+		more.setMenu(menu);
 
 		// more.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
 
@@ -128,93 +107,8 @@ public class IEditorPane extends AnchorPane
 			{
 				SplitEditorPaneAction.update();
 			}
-		});
-
-		menu.setNode(more);
+		}); */
 
 		this.getChildren().addAll(pane, bar);
-	}
-
-	/* public StackPane getHeaderArea()
-	{
-		for (Node node : pane.getChildrenUnmodifiable())
-		{
-			if (node.getStyleClass().contains("tab-header-area"))
-			{
-				return (StackPane) node;
-			}
-		}
-
-		return null;
-	} */
-
-	public void addTab(IEditorTab tab)
-	{
-		pane.getTabs().add(tab);
-		tab.setEditorPane(this);
-		selectTab(tab);
-	}
-
-	public ObservableList<Tab> getTabs()
-	{
-		return pane.getTabs();
-	}
-
-	public void closeTab(Tab tab)
-	{
-		removeTab(tab);
-	}
-
-	public void removeTab(Tab tab)
-	{
-		pane.getTabs().remove(tab);
-
-		/* if (pane.getTabs().size() == 0)
-		{
-			CloseEditorPaneAction.update(this);
-		} */
-	}
-
-	public void selectTab(String id)
-	{
-		selectTab(getTabItem(id));
-	}
-
-	public void selectTab(Tab tab)
-	{
-		pane.getSelectionModel().select(tab);
-	}
-
-	public boolean tabExists(String id)
-	{
-		return getTabIndex(id) != -1;
-	}
-
-	public IEditorTab getSelectedTab()
-	{
-		return (IEditorTab) pane.getSelectionModel().getSelectedItem();
-	}
-
-	public int getSelectedIndex()
-	{
-		return pane.getSelectionModel().getSelectedIndex();
-	}
-
-	public Tab getTabItem(String id)
-	{
-		return getTabIndex(id) != -1 ? pane.getTabs().get(getTabIndex(id)) : null;
-	}
-
-	public int getTabIndex(String id)
-	{
-		for (int index = 0 ; index < pane.getTabs().size() ; index ++)
-		{
-			if (pane.getTabs().get(index).getId().equals(id))
-			{
-				return index;
-			}
-		}
-
-		return -1;
 	}
 }

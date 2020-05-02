@@ -98,8 +98,8 @@ public class IDialogBoxView extends StackPane implements Initializable
 			case APPLICATION :
 
 				bopRootPane.getChildren().remove(bopRootPane.getLeft());
-				stage.setMinSize(content.getMinWidth(), content.getMinHeight() + 47);
-				stage.setSize(content.getPrefWidth(), content.getPrefHeight() + 47);
+				this.setMinSize(content.getMinWidth(), content.getMinHeight() + 47);
+				this.setPrefSize(content.getPrefWidth(), content.getPrefHeight() + 47);
 				break;
 
 			case DOCUMENT :
@@ -115,8 +115,8 @@ public class IDialogBoxView extends StackPane implements Initializable
 					}
 				);
 
-				stage.setMinSize(content.getMinWidth() + 70, content.getMinHeight() + 47);
-				stage.setSize(content.getPrefWidth() + 70, content.getPrefHeight() + 47);
+				this.setMinSize(content.getMinWidth() + 70, content.getMinHeight() + 47);
+				this.setPrefSize(content.getPrefWidth() + 70, content.getPrefHeight() + 47);
 				break;
 		};
 
@@ -125,12 +125,13 @@ public class IDialogBoxView extends StackPane implements Initializable
 		btnOK.setButtonType(IButton.ACTION);
 
 		this.getChildren().add(bopRootPane);
-		this.getStyleClass().add("dialog-box");
+		this.getStyleClass().add("dialog");
 		this.getStyleClass().add(ResourceUtils.getStyle("DialogBoxView"));
 
 		main.setContent(this);
 		main.setType(IWindowType.DIALOG);
 		main.setStage(stage);
+		main.setTitle(title);
 		main.create();
 
 		stage.setType(IWindowType.DIALOG);

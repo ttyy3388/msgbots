@@ -4,24 +4,16 @@ import javafx.collections.ObservableMap;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.SeparatorMenuItem;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import org.beuwi.simulator.compiler.engine.ScriptEngine;
 import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.platform.application.actions.CopyAction;
 import org.beuwi.simulator.platform.application.actions.OpenDesktopAction;
-import org.beuwi.simulator.platform.application.views.actions.OpenDebugRoomTabAction;
-import org.beuwi.simulator.platform.application.views.actions.OpenGlobalLogTabAction;
-import org.beuwi.simulator.platform.application.views.actions.ResizeSideBarAction;
-import org.beuwi.simulator.platform.application.views.actions.SelectActivityTabAction;
+import org.beuwi.simulator.platform.application.views.actions.*;
 import org.beuwi.simulator.platform.application.views.dialogs.CreateBotDialog;
 import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
 import org.beuwi.simulator.platform.ui.components.*;
@@ -66,12 +58,12 @@ public class ActiveAreaPart
 	public static class ExplorerTabPart
 	{
 		private static IListView component = null;
-
 		private static IContextMenu menu = null;
 
 		public static void initialize()
 		{
 			ToggleButton toggle = (ToggleButton) nameSpace.get("tgnExplorerTab");
+
 			toggle.setOnMouseClicked(event ->
 			{
 				if (MouseButton.PRIMARY.equals(event.getButton()))
@@ -120,6 +112,7 @@ public class ActiveAreaPart
 		public static void initialize()
 		{
 			ToggleButton toggle = (ToggleButton) nameSpace.get("tgnDebugTab");
+
 			toggle.setOnMouseClicked(event ->
 			{
 				if (MouseButton.PRIMARY.equals(event.getButton()))
@@ -189,8 +182,8 @@ public class ActiveAreaPart
 				txfPackageName.setText(data.getString("package"));
 
 				chkIsGroupChat.setSelected(data.getBoolean("isGroupChat"));
-				chkSenderProfile.setSelected(data.getBoolean("visibleSenderProfile"));
-				chkBotProfile.setSelected(data.getBoolean("visibleBotProfile"));
+				// chkSenderProfile.setSelected(data.getBoolean("visibleSenderProfile"));
+				// chkBotProfile.setSelected(data.getBoolean("visibleBotProfile"));
 			}
 
 			btnSenderProfile.setOnAction(event ->
@@ -230,8 +223,8 @@ public class ActiveAreaPart
 				map.put("bot", txfBotName.getText());
 				map.put("package", txfPackageName.getText());
 				map.put("isGroupChat", chkIsGroupChat.isSelected());
-				map.put("visibleSenderProfile", chkSenderProfile.isSelected());
-				map.put("visibleBotProfile", chkBotProfile.isSelected());
+				// map.put("visibleSenderProfile", chkSenderProfile.isSelected());
+				// map.put("visibleBotProfile", chkBotProfile.isSelected());
 
 				try
 				{
@@ -262,8 +255,8 @@ public class ActiveAreaPart
 				txfPackageName.setText(data.getString("package"));
 
 				chkIsGroupChat.setSelected(data.getBoolean("isGroupChat"));
-				chkSenderProfile.setSelected(data.getBoolean("visibleSenderProfile"));
-				chkBotProfile.setSelected(data.getBoolean("visibleBotProfile"));
+				// chkSenderProfile.setSelected(data.getBoolean("visibleSenderProfile"));
+				// chkBotProfile.setSelected(data.getBoolean("visibleBotProfile"));
 
 				imgSenderProfile.set(null);
 				imgBotProfile.set(null);

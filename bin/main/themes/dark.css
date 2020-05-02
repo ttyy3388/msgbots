@@ -16,11 +16,6 @@
 
 }
 
-.dialog
-{
-	-fx-background-color: #252526;
-}
-
 /* .tab,
 .tab-label,
 .text,
@@ -51,7 +46,7 @@
 }
 .menu-item .label *
 {
-    -fx-font-family: 'Roboto Medium';
+	-fx-font-family: 'Roboto Medium';
 	-fx-font-size: 13;
 }
 .menu-item:focused
@@ -65,7 +60,7 @@
 
 .check-box
 {
-    -fx-label-padding: 0 0 0 8;
+	-fx-label-padding: 0 0 0 8;
 }
 .check-box .box
 {
@@ -79,6 +74,17 @@
 .check-box:selected .mark
 {
 	-fx-background-color: #FFFFFF;
+}
+
+.jfx-toggle-button
+{
+	-jfx-toggle-color: #007ACC;
+	-jfx-untoggle-color: #BBBBBB;
+	-jfx-size: 8;
+}
+.jfx-toggle-button:hover
+{
+	-jfx-untoggle-color: #FFFFFF;
 }
 
 .ifx-check-box .box
@@ -128,32 +134,30 @@
 	-fx-border-color: #007ACC;
 }
 
-.jfx-toggle-button
-{
-	-jfx-toggle-color: #007ACC;
-	-jfx-untoggle-color: #BBBBBB;
-	-jfx-size: 8;
-}
-.jfx-toggle-button:hover
-{
-	-jfx-untoggle-color: #FFFFFF;
-}
-
-/* Custom Components */
-.log-view .list-item
-{
-    -fx-background-insets: 3 5 5 0;
-    -fx-background-color: #2B2B2B;
-}
-.log-view .list-item .event
+.ifx-menu-button
 {
 
 }
-.log-view .list-item .error
+.ifx-menu-button:hover,
+.ifx-menu-button:showing
 {
-    -fx-text-fill: #FF0000;
+	-fx-background-color: #474748;
 }
-.log-view .list-cell:selected .list-item
+
+.ifx-log-view .list-item
+{
+	-fx-background-insets: 3 5 5 0;
+	-fx-background-color: #2B2B2B;
+}
+.ifx-log-view .list-item .event
+{
+
+}
+.ifx-log-view .list-item .error
+{
+	-fx-text-fill: #FF0000;
+}
+.ifx-log-view .list-cell:selected .list-item
 {
 	-fx-background-color: #0D293E;
 }

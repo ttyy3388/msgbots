@@ -4,11 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
-import org.beuwi.simulator.platform.ui.editor.IEditorPane;
-import org.beuwi.simulator.platform.ui.editor.IEditorTab;
 import org.beuwi.simulator.utils.ResourceUtils;
-
-import java.util.List;
 
 public class AddEditorTabAction
 {
@@ -26,7 +22,7 @@ public class AddEditorTabAction
 
 	public static void update(Image image, String id, String title, Node content)
 	{
-		List<Node> items = component.getItems();
+		/* List<Node> items = component.getItems();
 
 		for (Node node : items)
 		{
@@ -40,6 +36,6 @@ public class AddEditorTabAction
 			}
 		}
 
-		EditorAreaPart.getSelectedPane().addTab(new IEditorTab(image, id, title, content));
+		EditorAreaPart.getSelectedPane().addTab(new IEditorTab(image, id, title, content)); */
 	}
 }

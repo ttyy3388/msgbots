@@ -2,38 +2,37 @@ package org.beuwi.simulator.settings;
 
 import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
-import org.beuwi.simulator.utils.JsonEnterConvert;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import org.beuwi.simulator.platform.openapi.IJSONObject;
+import org.beuwi.simulator.platform.openapi.IJSONParser;
 
 import java.io.File;
 import java.util.Map;
 
 public class Settings
 {
-	public static Public getPublicSetting(String getType)
+	public static Public getPublicSetting(String type)
 	{
-		return new Public(getType);
+		return new Public(type);
 	}
 
-	public static Script getScriptSetting(String getName)
+	public static Script getScriptSetting(String name)
 	{
-		return new Script(getName);
+		return new Script(name);
 	}
 
-	public static class Public extends JSONObject
+	public static class Public extends IJSONObject
 	{
 		private String type;
 		private File file;
 
-		public Public(String getType)
+		public Public(String type)
 		{
 			try
 			{
-				file = FileManager.getDataFile("global_setting.json");
-				putAll((JSONObject) ((JSONObject) new JSONParser().parse(FileManager.read(file))).get(getType));
+				this.file = FileManager.getDataFile("global_setting.json");
+				this.type = type;
 
-				type = getType;
+				this.putAll(new IJSONObject(file).getJSONObject(type));
 			}
 			catch (Exception e)
 			{
@@ -41,59 +40,39 @@ public class Settings
 			}
 		}
 
-		public String getString(String getType)
+		public void putString(String type, String data)
 		{
-			return String.valueOf("" + get(getType));
+			super.put(type, data); apply();
 		}
 
-		public int getInt(String getType)
+		public void putInt(String type, int data)
 		{
-			return Integer.valueOf("" + get(getType));
+			this.put(type, data); apply();
 		}
 
-		public boolean getBoolean(String getType)
+		public void putBoolean(String type, boolean data)
 		{
-			return Boolean.valueOf("" + get(getType));
-		}
-
-		public void putString(String setType, String setData)
-		{
-			put(setType, setData); apply();
-		}
-
-		public void putInt(String setType, int setData)
-		{
-			put(setType, setData); apply();
-		}
-
-		public void putBoolean(String setType, boolean setData)
-		{
-			put(setType, setData); apply();
-		}
-
-		public void putMap(Map map)
-		{
-			putAll(map); apply();
+			this.put(type, data); apply();
 		}
 
 		private void apply()
 		{
 			try
 			{
-				JSONObject data = ((JSONObject) new JSONParser().parse(FileManager.read(file)));
+				IJSONObject data = new IJSONObject(file);
 
 				data.put(type, this);
 
-				FileManager.save(file, JsonEnterConvert.convert(data.toJSONString()));
+				FileManager.save(file, data.toBeautifyString());
 			}
 			catch (Exception e)
 			{
-
+				new ShowErrorDialog(e).display();
 			}
 		}
 	}
 
-	public static class Script extends JSONObject
+	public static class Script extends IJSONObject
 	{
 		private File file;
 
@@ -101,9 +80,9 @@ public class Settings
 		{
 			try
 			{
-				file = FileManager.getBotSetting(name);
+				this.file = FileManager.getBotSetting(name);
 
-				putAll((JSONObject) new JSONParser().parse(FileManager.read(file)));
+				this.putAll(new IJSONParser().parse(file));
 			}
 			catch (Exception e)
 			{
@@ -111,44 +90,29 @@ public class Settings
 			}
 		}
 
-		public String getString(String getType)
+		public void putString(String type, String data)
 		{
-			return String.valueOf("" + get(getType));
+			this.put(type, data); apply();
 		}
 
-		public int getInt(String getType)
+		public void putInt(String type, int data)
 		{
-			return Integer.valueOf("" + get(getType));
+			this.put(type, data); apply();
 		}
 
-		public boolean getBoolean(String getType)
+		public void putBoolean(String type, boolean data)
 		{
-			return Boolean.valueOf("" + get(getType));
-		}
-
-		public void putString(String setType, String setData)
-		{
-			put(setType, setData); apply();
-		}
-
-		public void putInt(String setType, int setData)
-		{
-			put(setType, setData); apply();
-		}
-
-		public void putBoolean(String setType, boolean setData)
-		{
-			put(setType, setData); apply();
+			this.put(type, data); apply();
 		}
 
 		public void putMap(Map map)
 		{
-			putAll(map); apply();
+			this.putAll(map); apply();
 		}
 
 		private void apply()
 		{
-			FileManager.save(file, JsonEnterConvert.convert(toJSONString()));
+			FileManager.save(file, this.toBeautifyString());
 		}
 	}
 }

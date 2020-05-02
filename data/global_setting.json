@@ -3,10 +3,8 @@
 		"package":"com.kakao.talk",
 		"sender":"DEBUG SENDER",
 		"bot":"DEBUG BOT",
-		"visibleSenderProfile":false,
-		"visibleBotProfile":true,
-		"isGroupChat":true,
-		"room":"DEBUG ROOM"
+		"room":"DEBUG ROOM",
+		"isGroupChat":true
 	},
 	"program":{
 		"autoCompile":true,

@@ -6,7 +6,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.beuwi.simulator.compiler.engine.ScriptEngine;
 import org.beuwi.simulator.managers.FileManager;
-import org.beuwi.simulator.platform.application.views.MainWindowView;
+import org.beuwi.simulator.platform.application.views.MainView;
 import org.beuwi.simulator.platform.application.views.actions.*;
 import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
 import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
@@ -134,19 +134,19 @@ public class Launcher extends Application
 
 			IWindowView main = new IWindowView();
 
-			main.setContent(new MainWindowView());
+			main.setContent(new MainView());
 			main.setType(IWindowType.WINDOW);
 			main.setStage(stage);
 			main.create();
 
 			IWindowScene scene = new IWindowScene(main);
 
-			stage.setMinWidth(800);
-			stage.setMinHeight(600);
-			stage.setWidth(1400);
-			stage.setHeight(900);
-			stage.setMaxWidth(Double.MAX_VALUE);
-			stage.setMaxHeight(Double.MAX_VALUE);
+			// stage.setMinWidth(800);
+			// stage.setMinHeight(600);
+			// stage.setWidth(1400);
+			// stage.setHeight(900);
+			// stage.setMaxWidth(Double.MAX_VALUE);
+			// stage.setMaxHeight(Double.MAX_VALUE);
 			stage.setScene(scene);
 			stage.show();
 		}

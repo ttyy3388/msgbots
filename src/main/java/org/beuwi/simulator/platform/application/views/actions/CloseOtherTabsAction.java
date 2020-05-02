@@ -1,18 +1,20 @@
 package org.beuwi.simulator.platform.application.views.actions;
 
 import javafx.scene.control.Tab;
-import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
+import javafx.scene.control.TabPane;
 
 import java.util.ArrayList;
 
-public class CloseOtherEditorTabsAction
+public class CloseOtherTabsAction
 {
 	// 현재 탭 닫기
 	public static void update(Tab target)
 	{
 		ArrayList<Tab> list = new ArrayList<>();
 
-		for (Tab tab : EditorAreaPart.getSelectedPane().getTabs())
+		TabPane pane = target.getTabPane();
+
+		for (Tab tab : pane.getTabs())
 		{
 			if (tab != target)
 			{
@@ -20,6 +22,6 @@ public class CloseOtherEditorTabsAction
 			}
 		}
 
-		CloseEditorTabAction.update(list);
+		CloseTabAction.update(list);
 	}
 }

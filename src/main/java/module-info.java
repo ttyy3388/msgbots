@@ -16,5 +16,7 @@ open module org.beuwi.simulator
 	requires json.simple;
 	requires org.apache.commons.io;
 	requires org.fxmisc.richtext;
+	// requires org.json;
+	requires org.jsoup;
 	requires rhino;
 }

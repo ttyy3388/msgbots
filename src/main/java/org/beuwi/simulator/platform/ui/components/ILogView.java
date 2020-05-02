@@ -10,6 +10,10 @@ import org.beuwi.simulator.platform.application.actions.CopyAction;
 
 public class ILogView extends IListView
 {
+	{
+		this.getStyleClass().add("ifx-log-view");
+	}
+
 	// 인자 없으면 Global Log
 	public ILogView()
 	{
@@ -61,7 +65,6 @@ public class ILogView extends IListView
 			}
 		});
 
-		this.getStyleClass().add("log-view");
 		this.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 	}
 }

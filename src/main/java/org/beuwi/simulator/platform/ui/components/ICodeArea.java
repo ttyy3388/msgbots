@@ -136,6 +136,8 @@ public class ICodeArea extends CodeArea
 			}
 		});
 
+		this.getStyleClass().add("ifx-code-area");
+
 		Platform.runLater(() ->
 		{
 			this.requestFocus();
