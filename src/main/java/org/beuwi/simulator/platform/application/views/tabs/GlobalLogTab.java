@@ -3,8 +3,8 @@ package org.beuwi.simulator.platform.application.views.tabs;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
+import org.beuwi.simulator.platform.ui.components.ILogView;
 import org.beuwi.simulator.utils.ResourceUtils;
 
 public class GlobalLogTab
@@ -30,8 +30,8 @@ public class GlobalLogTab
 		return root;
 	}
 
-	public static ListView getComponent()
+	public static ILogView getComponent()
 	{
-		return (ListView) root.getChildren().get(0);
+		return (ILogView) root.getChildren().get(0);
 	}
 }

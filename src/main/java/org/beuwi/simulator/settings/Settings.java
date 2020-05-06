@@ -3,7 +3,6 @@ package org.beuwi.simulator.settings;
 import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
 import org.beuwi.simulator.platform.openapi.IJSONObject;
-import org.beuwi.simulator.platform.openapi.IJSONParser;
 
 import java.io.File;
 import java.util.Map;
@@ -82,7 +81,7 @@ public class Settings
 			{
 				this.file = FileManager.getBotSetting(name);
 
-				this.putAll(new IJSONParser().parse(file));
+				this.putAll(new IJSONObject(file));
 			}
 			catch (Exception e)
 			{

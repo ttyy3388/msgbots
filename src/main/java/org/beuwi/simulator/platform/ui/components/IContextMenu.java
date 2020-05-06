@@ -33,7 +33,7 @@ public class IContextMenu extends ContextMenu
 	{
 		if (node instanceof Button)
 		{
-			node.addEventHandler(MouseEvent.MOUSE_CLICKED, event ->
+			node.addEventFilter(MouseEvent.MOUSE_CLICKED, event ->
 			{
 				if (!isShowing())
 				{
@@ -54,7 +54,7 @@ public class IContextMenu extends ContextMenu
 		{
 			if (node instanceof ListView)
 			{
-				node.addEventHandler(MouseEvent.MOUSE_CLICKED, event ->
+				node.addEventFilter(MouseEvent.MOUSE_CLICKED, event ->
 				{
 					String target = event.getTarget().toString();
 
@@ -77,13 +77,13 @@ public class IContextMenu extends ContextMenu
 			}
 			else
 			{
-				node.addEventHandler(MouseEvent.MOUSE_CLICKED, event ->
+				node.addEventFilter(MouseEvent.MOUSE_CLICKED, event ->
 				{
 					this.show(node, event);
 				});
 			}
 
-			node.addEventHandler(MouseEvent.MOUSE_PRESSED, event ->
+			node.addEventFilter(MouseEvent.MOUSE_PRESSED, event ->
 			{
 				if (this.isShowing())
 				{

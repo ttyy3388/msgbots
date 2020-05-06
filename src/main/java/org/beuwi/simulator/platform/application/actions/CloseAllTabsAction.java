@@ -1,4 +1,4 @@
-package org.beuwi.simulator.platform.application.views.actions;
+package org.beuwi.simulator.platform.application.actions;
 
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;

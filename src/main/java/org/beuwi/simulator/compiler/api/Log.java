@@ -1,60 +1,64 @@
 package org.beuwi.simulator.compiler.api;
 
+import org.beuwi.simulator.managers.LogManager;
+import org.beuwi.simulator.platform.ui.components.ILogType;
 import org.mozilla.javascript.ScriptableObject;
 import org.mozilla.javascript.annotations.JSStaticFunction;
 
 public class Log extends ScriptableObject
 {
-    @Override
-    public String getClassName() 
-    {
-        return "Log";
-    }
+	@Override
+	public String getClassName()
+	{
+		return "Log";
+	}
 
-    public Log(String name)
-    {
+	final String name;
 
-    }
+	public Log(String name)
+	{
+		this.name = name;
+	}
 
-    @JSStaticFunction
-    public void d(String data, Boolean showToast)
-    {
-        debug(data, showToast);
-    }
-    
-    @JSStaticFunction
-    public void e(String data, Boolean showToast)
-    {
-        error(data, showToast);
-    }
-    
-    @JSStaticFunction
-    public void i(String data, Boolean showToast)
-    {
-        info(data, showToast);
-    }
-    
-    @JSStaticFunction
+	@JSStaticFunction
+	public void d(String data, Boolean showToast)
+	{
+		debug(data, showToast);
+	}
+
+	@JSStaticFunction
+	public void e(String data, Boolean showToast)
+	{
+		error(data, showToast);
+	}
+
+	@JSStaticFunction
+	public void i(String data, Boolean showToast)
+	{
+		info(data, showToast);
+	}
+
+	@JSStaticFunction
 	public void debug(String data, Boolean showToast)
-    {
-        return ;
+	{
+		LogManager.append(name, data, ILogType.DEBUG);
 	}
-    
-    @JSStaticFunction
+
+	@JSStaticFunction
 	public void error(String data, Boolean showToast)
-    {
-        return ;
+	{
+		LogManager.append(name, data, ILogType.ERROR);
 	}
-    
-    @JSStaticFunction
+
+	@JSStaticFunction
 	public void info(String data, Boolean showToast)
-    {
-        return ;
+	{
+		LogManager.append(name, data, ILogType.EVENT);
 	}
-    
-    @JSStaticFunction
+
+	@JSStaticFunction
 	public void clear()
-    {
-        return ;
+	{
+		// LogManager.clear(name);
 	}
 }

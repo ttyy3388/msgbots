@@ -1,9 +1,13 @@
 package org.beuwi.simulator.platform.application.views.actions;
 
+import javafx.scene.Node;
 import javafx.scene.control.SplitPane;
 import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
 import org.beuwi.simulator.platform.ui.components.IPos;
+import org.beuwi.simulator.platform.ui.editor.IEditorPane;
 import org.beuwi.simulator.platform.ui.editor.IEditorTab;
+
+import java.util.List;
 
 public class MoveEditorPaneAction
 {
@@ -16,7 +20,7 @@ public class MoveEditorPaneAction
 
 	public static void update(IEditorTab tab, IPos pos)
 	{
-		/* // IEditor Pane
+		// IEditor Pane
 		List<Node> panes = pane.getItems();
 
 		IEditorPane editor = tab.getEditorPane();
@@ -27,26 +31,30 @@ public class MoveEditorPaneAction
 
 		switch (pos)
 		{
-            case RIGHT :
+			case RIGHT :
 
 				if (index + 1 < panes.size())
 				{
-                    target = (IEditorPane) panes.get(index + 1);
+					target = (IEditorPane) panes.get(index + 1);
 				}
 
 				break;
 
-            case LEFT :
+			case LEFT :
 
-			    if (index != 0)
-                {
+
+				if (index != 0)
+				{
 					target = (IEditorPane) panes.get(index - 1);
-                }
+				}
 
 				break;
 		}
 
-		editor.removeTab(tab);
-		target.addTab(tab); */
+		if (target != null)
+		{
+			editor.getTabPane().removeTab(tab);
+			target.getTabPane().addTab(tab);
+		}
 	}
 }

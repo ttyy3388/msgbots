@@ -26,15 +26,15 @@ public class FileStream extends ScriptableObject
 				return null;
 			}
 
-			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
-			String line = "", text = bufferedReader.readLine();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
+			String line = "", text = reader.readLine();
 
-			while ((line = bufferedReader.readLine()) != null)
+			while ((line = reader.readLine()) != null)
 			{
 				text += "\n" + line;
 			}
 
-			bufferedReader.close();
+			reader.close();
 
 			return text;
 		}
@@ -57,9 +57,9 @@ public class FileStream extends ScriptableObject
 			file.getParentFile().mkdirs();
 			file.createNewFile();
 
-			BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, false), "UTF8"));
-			bufferedWriter.write(data);
-			bufferedWriter.close();
+			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, false), "UTF8"));
+			writer.write(data);
+			writer.close();
 
 			return data;
 		}
@@ -81,9 +81,9 @@ public class FileStream extends ScriptableObject
 			file.getParentFile().mkdirs();
 			file.createNewFile();
 
-			BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true), "UTF8"));
-			bufferedWriter.write(data);
-			bufferedWriter.close();
+			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true), "UTF8"));
+			writer.write(data);
+			writer.close();
 
 			return data;
 		}

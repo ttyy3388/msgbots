@@ -44,10 +44,10 @@ public class ISVGGlyph extends SVGGlyph
 		this.setFill(fill);
 		this.setSize(width, height);
 
-		this.parentProperty().addListener((observable, oldValue, newValue) ->
+		/* this.parentProperty().addListener((observable, oldValue, newValue) ->
 		{
 			this.applyStyles(newValue);
-		});
+		}); */
 	}
 
 	// Parent

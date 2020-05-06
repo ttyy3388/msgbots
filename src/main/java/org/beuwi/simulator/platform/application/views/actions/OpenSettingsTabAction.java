@@ -14,6 +14,6 @@ public class OpenSettingsTabAction
 
 	public static void update()
 	{
-		AddEditorTabAction.update("@tab::settings", "Settings", pane);
+		AddEditorTabAction.update("@global::settings", "Settings", pane);
 	}
 }

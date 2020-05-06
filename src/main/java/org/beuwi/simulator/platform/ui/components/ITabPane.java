@@ -2,54 +2,17 @@ package org.beuwi.simulator.platform.ui.components;
 
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.input.MouseButton;
-import org.beuwi.simulator.platform.application.views.actions.CloseTabAction;
-
-import java.util.List;
 
 // Draggable Tab Pane
 public class ITabPane extends TabPane
 {
-	public ITabPane()
 	{
-		this.setTabClosable(false);
-		this.setTabMinHeight(24);
-		this.setTabMaxHeight(30);
-		this.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+		this.getStyleClass().add("ifx-tab-pane");
 	}
 
-	public void setTabClosable(boolean closable)
+	public ITabPane()
 	{
-		if (closable)
-		{
-			List<Tab> list = this.getTabs();
-
-			for (Tab tab : list)
-			{
-				ITab itab = (ITab) tab;
-
-                itab.getHeader().setOnMouseClicked(event ->
-                {
-                    if (MouseButton.MIDDLE.equals(event.getButton()))
-                    {
-                        CloseTabAction.update(itab);
-                    }
-                });
-
-				itab.getCloseButton().setOnAction(event ->
-				{
-					CloseTabAction.update(itab);
-				});
-
-				itab.getCloseButton().setOnMouseClicked(event ->
-                {
-                    if (MouseButton.PRIMARY.equals(event.getButton()) || MouseButton.MIDDLE.equals(event.getButton()))
-                    {
-                        CloseTabAction.update(itab);
-                    }
-                });
-			}
-		}
+		this.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 	}
 
 	public void addTab(ITab tab)
@@ -68,6 +31,11 @@ public class ITabPane extends TabPane
 		this.getTabs().remove(tab);
 	}
 
+	public void selectTab(int index)
+	{
+		this.getSelectionModel().select(index);
+	}
+
 	public void selectTab(String id)
 	{
 		this.selectTab(getTabItem(id));
@@ -81,6 +49,11 @@ public class ITabPane extends TabPane
 	public boolean tabExists(String id)
 	{
 		return this.getTabIndex(id) != -1;
+	}
+
+	public ITab getTab(int index)
+	{
+		return (ITab) this.getTabs().get(index);
 	}
 
 	public ITab getSelectedTab()

@@ -227,3 +227,13 @@
 .ifx-code-area .paragraph-text .text.brace { }
 .ifx-code-area .paragraph-text .text.string { -fx-fill: #CD9069; }
 .ifx-code-area .paragraph-text .text.comment { -fx-fill: #699856; }
+
+.ifx-tab .tab-close-button:hover .glyph,
+.ifx-tab:selected .tab-close-button .glyph
+{
+	-fx-background-color: #FFFFFF;
+}
+.ifx-tab:selected .tab-header-label
+{
+	-fx-text-fill: #FFFFFF;
+}

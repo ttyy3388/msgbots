@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.layout.*?>
-<?import org.beuwi.simulator.platform.ui.components.*?>
-<AnchorPane prefHeight="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import org.beuwi.simulator.platform.ui.components.IButton?>
+<?import org.beuwi.simulator.platform.ui.components.ICheckBox?>
+<?import org.beuwi.simulator.platform.ui.components.IListView?>
+<?import org.beuwi.simulator.platform.ui.components.ITextField?>
+
+<AnchorPane styleClass="active-area" stylesheets="@../styles/ActiveAreaPart.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox prefWidth="38.0" styleClass="activity-bar" stylesheets="@../styles/ActivityBarPart.css">
+            <VBox prefWidth="34.0" styleClass="activity-bar">
                <children>
-                  <ToggleButton fx:id="tgnExplorerTab" mnemonicParsing="false" prefHeight="35.0" prefWidth="38.0" selected="true" styleClass="explorer-tab" />
-                  <ToggleButton fx:id="tgnDebugTab" mnemonicParsing="false" prefHeight="35.0" prefWidth="38.0" styleClass="debug-tab" />
+                  <ToggleButton fx:id="tgnExplorerTab" mnemonicParsing="false" prefHeight="38.0" prefWidth="34.0" selected="true" styleClass="explorer-tab" />
+                  <ToggleButton fx:id="tgnDebugTab" mnemonicParsing="false" prefHeight="38.0" prefWidth="34.0" styleClass="debug-tab" />
                </children>
             </VBox>
-            <AnchorPane prefWidth="220.0" styleClass="side-bar" stylesheets="@../styles/SideBarPart.css" HBox.hgrow="ALWAYS">
+            <AnchorPane prefWidth="220.0" styleClass="side-bar" HBox.hgrow="ALWAYS">
                <children>
-                  <AnchorPane fx:id="anpExplorerPart" disable="true" styleClass="explorer-part" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="anpExplorerPart" styleClass="explorer-part" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
@@ -37,7 +46,7 @@
                               </HBox>
                               <AnchorPane styleClass="content-area" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <IListView fx:id="lsvExplorerArea" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <IListView fx:id="listView" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                                  <VBox.margin>
                                     <Insets />
@@ -47,7 +56,7 @@
                         </VBox>
                      </children>
                   </AnchorPane>
-                <AnchorPane fx:id="anpDebugPart" styleClass="debug-part" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <AnchorPane fx:id="anpDebugPart" disable="true" styleClass="debug-part" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <VBox styleClass="debug-area" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>

@@ -20,6 +20,21 @@ public class IListView<T> extends ListView<T>
 		this.getContextMenu()
 	} */
 
+	public void clear()
+	{
+		getItems().clear();
+	}
+
+	public void scrollToLast()
+	{
+		scrollTo(getItems().size());
+	}
+
+	public void scrollToFirst()
+	{
+		scrollTo(0);
+	}
+
 	public void setContextMenu(IContextMenu menu)
 	{
 		menu.setNode(this);
@@ -27,12 +42,12 @@ public class IListView<T> extends ListView<T>
 
 	public void addItem(T item)
 	{
-		this.getItems().add(item);
+		getItems().add(item);
 	}
 
 	public void addItems(List list)
     {
-		this.getItems().addAll(list);
+		getItems().addAll(list);
     }
 
     /* public void setItem(Node item)
@@ -42,11 +57,11 @@ public class IListView<T> extends ListView<T>
 
     public void setItems(List list)
     {
-		this.getItems().setAll(list);
+		getItems().setAll(list);
     }
 
     public ObservableList<T> getSelectedItems()
 	{
-		return this.getSelectionModel().getSelectedItems();
+		return getSelectionModel().getSelectedItems();
 	}
 }

@@ -13,6 +13,11 @@
 	-fx-cursor: hand;
 }
 
+.context-menu
+{
+	-fx-cursor: default;
+}
+
 .text-area,
 .text-field
 {

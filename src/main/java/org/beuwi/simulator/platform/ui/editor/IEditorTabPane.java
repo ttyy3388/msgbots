@@ -6,6 +6,7 @@ public class IEditorTabPane extends ITabPane
 {
     public IEditorTabPane()
     {
-        this.setTabClosable(true);
+        this.setTabMinHeight(24);
+        this.setTabMaxHeight(30);
     }
 }

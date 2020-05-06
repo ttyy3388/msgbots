@@ -1,36 +1,29 @@
 package org.beuwi.simulator.managers;
 
 import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
+import org.beuwi.simulator.platform.openapi.IJSONArray;
 import org.beuwi.simulator.platform.ui.components.ILogItem;
-import org.beuwi.simulator.platform.ui.components.ILogType;
+import org.beuwi.simulator.platform.ui.components.ILogView;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public class LogManager
 {
-	public static void addError(String message)
-	{
-		// AddDebugLogAction.update(message, ILogType.ERROR);
-	}
+	public static HashMap<String, ILogView> data = new HashMap<>();
 
-	public static void addWarning(String message)
+	public static ILogView getView(String name)
 	{
-		// AddDebugLogAction.update(message, ILogType.WARNING);
-	}
-
-	public static void addEvent(String message)
-	{
-		// AddDebugLogAction.update(message, ILogType.EVENT);
+		return data.get(name);
 	}
 
 	// 인자 없으면 Global Log 로 인식
-
-	// Global Log
 	public static List<ILogItem> load()
 	{
 		return load(FileManager.getDataFile("global_log.json"));
@@ -52,7 +45,8 @@ public class LogManager
 			}
 
 			List<ILogItem> list = new ArrayList<>();
-			JSONArray array = (JSONArray) new JSONParser().parse(FileManager.read(file));
+
+			JSONArray array = new IJSONArray(file);
 
 			for (Object object : array)
 			{
@@ -62,15 +56,9 @@ public class LogManager
 				(
 					new ILogItem
 					(
-						(String) data.get("a"),
-						(String) data.get("c"),
-						switch (Integer.valueOf("" + data.get("b")))
-						{
-							case 0  -> ILogType.ERROR;
-							case 1  -> ILogType.EVENT;
-							case 2  -> ILogType.DEBUG;
-							default -> null;
-						}
+						String.valueOf(data.get("a")),
+						String.valueOf(data.get("c")),
+						Integer.valueOf("" + data.get("b"))
 					)
 				);
 			}
@@ -85,18 +73,26 @@ public class LogManager
 		return new ArrayList<>();
 	}
 
-	public static void save()
+	public static void append(String name, String data, int type)
 	{
+		File file = FileManager.getBotLog(name);
+		String time = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss ").format(new Date());
 
+		JSONObject object = new JSONObject();
+
+		object.put("a", name);
+		object.put("b", type);
+		object.put("c", time);
+
+		JSONArray array = new IJSONArray(file);
+
+		array.add(object);
+
+		System.out.println(array.toJSONString());
 	}
 
-	public static void append()
+	public static void clear(String name)
 	{
-
-	}
-
-	public static void clean()
-	{
-
+		FileManager.save(FileManager.getBotLog(name), "[]");
 	}
 }

@@ -9,9 +9,11 @@ import javafx.scene.Node;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import org.beuwi.simulator.platform.ui.editor.IEditorPane;
+import org.beuwi.simulator.platform.ui.editor.IEditorTabPane;
 import org.beuwi.simulator.utils.ResourceUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EditorAreaPart
 {
@@ -38,7 +40,21 @@ public class EditorAreaPart
 
 		component.getItems().addListener((ListChangeListener.Change <? extends Node> change) ->
 		{
-			int size = component.getItems().size();
+			List<Node> list = component.getItems();
+
+			int size = list.size();
+
+			// 삭제 시 자동으로 1번 에디터가 선택되도록
+			while (change.next())
+			{
+				if (change.wasRemoved())
+				{
+					if (size > 0)
+					{
+						property.set((IEditorPane) list.get(0));
+					}
+				}
+			}
 
 			for (int i = 0 ; i < size - 1 ; i ++)
 			{
@@ -63,6 +79,11 @@ public class EditorAreaPart
 		return (SplitPane) root.getChildren().get(0);
 	}
 
+	public static List<IEditorPane> getEditors()
+	{
+		return component.getItems().stream().map(node -> (IEditorPane) node).collect(Collectors.toList());
+	}
+
 	public static IEditorPane getSelectedPane()
 	{
 		List<Node> list = getComponent().getItems();
@@ -73,6 +94,11 @@ public class EditorAreaPart
 		}
 
 		return property.get();
+	}
+
+	public static IEditorTabPane getSelectedTabPane()
+	{
+		return getSelectedPane().getTabPane();
 	}
 
 	public static void setSelectedPane(IEditorPane editor)

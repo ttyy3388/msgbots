@@ -24,7 +24,10 @@
 	-fx-background-color: #007ACC;
 }
 
-.button-bar .button { }
+.button-bar .button:hover .glyph
+{
+    -fx-background-color: #FFFFFF;
+}
 
 .minimize-button:hover
 {

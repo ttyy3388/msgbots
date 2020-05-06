@@ -72,9 +72,9 @@ public class ActiveAreaPart
 				}
 			});
 
-			component = (IListView) nameSpace.get("lsvExplorerArea");
+			component = (IListView) nameSpace.get("listView");
 
-			// 추후 구현하면 재추가
+			// 추후 구현하면 재추가 및 IMenuButton으로 바꾸기
 			Button button = (Button) nameSpace.get("btnShowOption");
 
 			// Option Button
@@ -284,6 +284,21 @@ public class ActiveAreaPart
 	{
 		return (AnchorPane) getComponent().getChildren().get(1);
 	}
+
+	/* public static ToggleButton getSelectedTab()
+	{
+		for (Node node : getActivityBar().getChildren())
+		{
+			ToggleButton toggle = (ToggleButton) node;
+
+			if (toggle.isSelected())
+			{
+				return toggle;
+			}
+		}
+
+		return null;
+	} */
 
 	public static ObservableMap<String, Object> getNameSpace()
 	{

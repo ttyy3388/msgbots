@@ -4,7 +4,7 @@ import javafx.scene.control.SplitPane;
 import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
 import org.beuwi.simulator.platform.ui.editor.IEditorPane;
 
-public class CloseEditorPaneAction
+public class DeleteEditorPaneAction
 {
     private static SplitPane pane;
 

@@ -1,14 +1,25 @@
 package org.beuwi.simulator.compiler.engine;
 
 import javafx.application.Platform;
-import org.beuwi.simulator.compiler.api.*;
+import org.beuwi.simulator.compiler.api.Api;
+import org.beuwi.simulator.compiler.api.AppData;
+import org.beuwi.simulator.compiler.api.Bridge;
+import org.beuwi.simulator.compiler.api.DataBase;
+import org.beuwi.simulator.compiler.api.Device;
+import org.beuwi.simulator.compiler.api.FileStream;
+import org.beuwi.simulator.compiler.api.ImageDB;
+import org.beuwi.simulator.compiler.api.Log;
+import org.beuwi.simulator.compiler.api.Utils;
 import org.beuwi.simulator.managers.BotManager;
 import org.beuwi.simulator.managers.FileManager;
-import org.beuwi.simulator.managers.LogManager;
-import org.beuwi.simulator.platform.application.views.actions.SaveEditorTabAction;
 import org.beuwi.simulator.platform.application.views.actions.AddChatMessageAction;
+import org.beuwi.simulator.platform.application.views.actions.SaveEditorTabAction;
 import org.beuwi.simulator.settings.Settings;
-import org.mozilla.javascript.*;
+import org.mozilla.javascript.Context;
+import org.mozilla.javascript.Function;
+import org.mozilla.javascript.ImporterTopLevel;
+import org.mozilla.javascript.Script;
+import org.mozilla.javascript.ScriptableObject;
 import org.mozilla.javascript.annotations.JSStaticFunction;
 
 import java.io.File;
@@ -53,7 +64,7 @@ public class ScriptEngine
 
 	public static boolean setInitialize(String name, boolean isManual, boolean ignoreError)
 	{
-		LogManager.addEvent("컴파일 시작 : " + name);
+		// LogManager.addEvent("컴파일 시작 : " + name);
 
 		compiling.put(name, true);
 
@@ -140,7 +151,7 @@ public class ScriptEngine
 				container.get(name).setOnStartCompile(null);
 			}
 
-			LogManager.addError(e.toString() + " : " + name);
+			// LogManager.addError(e.toString() + " : " + name);
 
 			compiling.put(name, false);
 
@@ -157,7 +168,7 @@ public class ScriptEngine
 
 		BotManager.setCompiled(name, true);
 
-		LogManager.addEvent("컴파일 완료 : " + name);
+		// LogManager.addEvent("컴파일 완료 : " + name);
 
 		return true;
 	}
@@ -212,7 +223,7 @@ public class ScriptEngine
 		}
 		catch (Throwable e)
 		{
-			LogManager.addError(e.toString() + " : " + name);
+			// LogManager.addError(e.toString() + " : " + name);
 
 			if (Settings.getScriptSetting(name).getBoolean("offOnRuntimeError"))
 			{

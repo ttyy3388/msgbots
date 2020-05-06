@@ -15,6 +15,6 @@ public class OpenGlobalLogTabAction
 
 	public static void update()
 	{
-		AddEditorTabAction.update("@tab::log", "Global Log", listView);
+		AddEditorTabAction.update("@global::log", "Global Log", listView);
 	}
 }

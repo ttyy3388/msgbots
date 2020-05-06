@@ -5,10 +5,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import org.beuwi.simulator.utils.ResourceUtils;
+import static org.beuwi.simulator.platform.ui.components.ILogType.*;
 
 public class ILogItem extends AnchorPane
 {
-	public ILogItem(String text, String date, ILogType type)
+	public ILogItem(String text, String date, int type)
 	{
 		String itemType = switch (type)
 		{

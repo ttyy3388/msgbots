@@ -1,6 +1,9 @@
 package org.beuwi.simulator.platform.openapi;
 
+import org.beuwi.simulator.managers.FileManager;
+import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import java.io.File;
 import java.util.Map;
@@ -12,9 +15,16 @@ public class IJSONObject extends JSONObject
 		super();
 	}
 
-	public IJSONObject(File file) throws Exception
+	public IJSONObject(File file)
 	{
-		super(new IJSONParser().parse(file));
+		try
+		{
+			this.putAll((JSONObject) new JSONParser().parse(FileManager.read(file)));
+		}
+		catch (Exception e)
+		{
+			new ShowErrorDialog(e).display();
+		}
 	}
 
 	public JSONObject getJSONObject(String type)

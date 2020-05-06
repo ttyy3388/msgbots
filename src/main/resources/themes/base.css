@@ -15,7 +15,7 @@
 
 .context-menu
 {
-    -fx-cursor: default;
+	-fx-cursor: default;
 }
 
 .text-area,

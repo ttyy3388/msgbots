@@ -22,16 +22,16 @@ import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 public class SelectActivityTabAction
 {
 	// Activity Bar
-	private static VBox vbox;
+	private static VBox box;
 
 	public static void initialize()
 	{
-		vbox = ActiveAreaPart.getActivityBar();
+		box = ActiveAreaPart.getActivityBar();
 	}
 
 	public static void update(int index)
 	{
-		ToggleButton target = (ToggleButton) vbox.getChildren().get(index);
+		ToggleButton target = (ToggleButton) box.getChildren().get(index);
 
 		// Show
 		if (!HideSideBarAction.isHided())

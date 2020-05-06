@@ -135,7 +135,7 @@ public class IWindowView extends AnchorPane
 					new IMenuItem("Save", "Ctrl + S", event -> SaveEditorTabAction.update()),
 					new IMenuItem("Save All", "Ctrl + Shift + S", event -> SaveAllEditorTabsAction.update()),
 					new SeparatorMenuItem(),
-					new IMenuItem("Reload All Bots", "Ctrl + Alt + Y", event -> RefreshExplorerAction.update()),
+					new IMenuItem("Reload All Bots", "Ctrl + Alt + Y", event -> RefreshBotsAction.update()),
 					new SeparatorMenuItem(),
 					new IMenuItem("Settings", "Ctrl + Alt + S", event -> OpenSettingsTabAction.update())
 				));

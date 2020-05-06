@@ -1,16 +1,16 @@
-package org.beuwi.simulator.platform.application.views.actions;
+package org.beuwi.simulator.platform.application.actions;
 
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CloseOtherTabsAction
 {
-	// 현재 탭 닫기
 	public static void update(Tab target)
 	{
-		ArrayList<Tab> list = new ArrayList<>();
+		List<Tab> list = new ArrayList<>();
 
 		TabPane pane = target.getTabPane();
 

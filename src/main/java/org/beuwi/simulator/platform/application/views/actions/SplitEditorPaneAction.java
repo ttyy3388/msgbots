@@ -49,17 +49,8 @@ public class SplitEditorPaneAction
 
 		switch (pos)
 		{
-			case RIGHT :
-
-				update(index + 1);
-
-				break;
-
-			case LEFT  :
-
-				update(index);
-
-				break;
+			case RIGHT : update(index + 1); break;
+			case LEFT  : update(index); break;
 		}
 	}
 }

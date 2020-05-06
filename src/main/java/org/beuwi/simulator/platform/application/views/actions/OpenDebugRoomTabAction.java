@@ -16,6 +16,12 @@ public class OpenDebugRoomTabAction
 
 	public static void update()
 	{
-		AddEditorTabAction.update(ResourceUtils.getImage("tab_debug"), "@tab::debug", Settings.getPublicSetting("chat").getString("room"), pane);
+		AddEditorTabAction.update
+		(
+			ResourceUtils.getImage("tab_debug"),
+			"@global::debug",
+			Settings.getPublicSetting("chat").getString("room"),
+			pane
+		);
 	}
 }
