@@ -9,7 +9,6 @@ import javafx.scene.Node;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import org.beuwi.simulator.platform.ui.editor.IEditorPane;
-import org.beuwi.simulator.platform.ui.editor.IEditorTabPane;
 import org.beuwi.simulator.utils.ResourceUtils;
 
 import java.util.List;
@@ -94,11 +93,6 @@ public class EditorAreaPart
 		}
 
 		return property.get();
-	}
-
-	public static IEditorTabPane getSelectedTabPane()
-	{
-		return getSelectedPane().getTabPane();
 	}
 
 	public static void setSelectedPane(IEditorPane editor)

@@ -10,7 +10,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -28,37 +28,42 @@ public class IWindowEvent
 	private Rectangle2D bounds;
 
 	final IWindowView main;
-	final Stage		  stage;
-
-	final BorderPane  root;
-	final AnchorPane  title;
+	final Stage stage;
 
 	public IWindowEvent(IWindowView main)
 	{
 		this.main  = main;
 		this.stage = main.getStage();
-		this.root  = main.getRootPane();
-		this.title = main.getTitleBar();
 	}
 
 	public BooleanProperty minimizedProperty()
 	{
-		return this.minimized;
+		return minimized;
 	}
 
 	public BooleanProperty maximizedProperty()
 	{
-		return this.maximized;
+		return maximized;
+	}
+
+	public BooleanProperty closedProperty()
+	{
+		return closed;
 	}
 
 	public boolean isMinimized()
 	{
-		return this.minimized.get();
+		return minimized.get();
 	}
 
 	public boolean isMaximized()
 	{
-		return this.maximized.get();
+		return maximized.get();
+	}
+
+	public boolean isClosed()
+	{
+		return closed.get();
 	}
 
 	private void minimize()
@@ -113,25 +118,25 @@ public class IWindowEvent
 	{
 		Platform.runLater(() ->
 		{
-			this.close();
+			close();
 		});
 
-		this.closed.set(true);
+		closed.set(true);
 	}
 
 	public void setMinimized()
 	{
 		Platform.runLater(() ->
 		{
-			this.minimize();
+			minimize();
 		});
 
-		this.minimized.set(true);
+		minimized.set(true);
 	}
 
 	public void setMaximized()
 	{
-		this.setMaximized(!isMaximized());
+		setMaximized(!isMaximized());
 	}
 
 	private void setMaximized(boolean maximized)
@@ -140,19 +145,19 @@ public class IWindowEvent
 		{
 			if (maximized)
 			{
-				this.maximize();
+				maximize();
 			}
 			else
 			{
-				this.restore();
+				restore();
 			}
 		});
 
 		this.maximized.set(maximized);
 	}
 
-	// Node : Title Bar
-	public void setMovable()
+	// Title Bar
+	public void setMovable(AnchorPane title)
 	{
         MoveListener listener = new MoveListener();
 
@@ -164,7 +169,8 @@ public class IWindowEvent
 		// title.addEventHandler(MouseEvent.MOUSE_EXITED, listener);
 	}
 
-	public void setResizable()
+	// Root Pane
+	public void setResizable(StackPane root)
 	{
 		ResizeListener listener = new ResizeListener();
 
@@ -291,8 +297,6 @@ public class IWindowEvent
 		@Override
 		public void handle(MouseEvent event)
 		{
-			// event.isConsumed()
-
 			if (isMaximized())
 			{
 				return ;
@@ -314,11 +318,6 @@ public class IWindowEvent
 
 			double eventX = event.getX();
 			double eventY = event.getY();
-
-			if (stage.isMaximized())
-			{
-				return ;
-			}
 
 			if (MouseEvent.MOUSE_PRESSED.equals(type))
 			{

@@ -16,6 +16,15 @@ public class Utils extends ScriptableObject
         return "Utils";
     }
 
+    final String name;
+
+    public Utils(ScriptableObject object, String name)
+	{
+		super(object, object.getPrototype());
+
+		this.name = name;
+	}
+
 	@JSStaticFunction
 	public static String getWebText(String url)
 	{

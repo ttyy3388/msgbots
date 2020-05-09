@@ -12,6 +12,15 @@ public class DataBase  extends ScriptableObject
         return "DataBase";
     }
 
+    final String name;
+
+    public DataBase(ScriptableObject object, String name)
+	{
+		super(object, object.getPrototype());
+
+		this.name = name;
+	}
+
     @JSStaticFunction
 	public static String setDataBase(String fileName, String data) 
 	{

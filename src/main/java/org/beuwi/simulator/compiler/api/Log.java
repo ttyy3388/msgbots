@@ -13,10 +13,18 @@ public class Log extends ScriptableObject
 		return "Log";
 	}
 
+	@Override
+	public String toString()
+	{
+		return getClassName();
+	}
+
 	final String name;
 
-	public Log(String name)
+	public Log(ScriptableObject object, String name)
 	{
+		super(object, object.getPrototype());
+
 		this.name = name;
 	}
 
@@ -59,6 +67,6 @@ public class Log extends ScriptableObject
 	@JSStaticFunction
 	public void clear()
 	{
-		// LogManager.clear(name);
+		LogManager.clear(name);
 	}
 }

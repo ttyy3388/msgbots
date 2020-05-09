@@ -126,6 +126,10 @@
 {
 	-fx-border-color: #0097FB;
 }
+.ifx-button:focused
+{
+	-fx-border-color: #007ACC;
+}
 .ifx-button:armed
 {
 	-fx-background-color: #007ACC;
@@ -218,6 +222,7 @@
 }
 .ifx-code-area .paragraph-text .text
 {
+    /* -fx-fill: #9CDCF2; */
 	-fx-fill: #D4D4D4;
 }
 .ifx-code-area .paragraph-text .text.keyword { -fx-fill: #499CD5; }
@@ -225,8 +230,9 @@
 .ifx-code-area .paragraph-text .text.paren { }
 .ifx-code-area .paragraph-text .text.bracket { }
 .ifx-code-area .paragraph-text .text.brace { }
-.ifx-code-area .paragraph-text .text.string { -fx-fill: #CD9069; }
-.ifx-code-area .paragraph-text .text.comment { -fx-fill: #699856; }
+.ifx-code-area .paragraph-text .text.string { -fx-fill: #CE9178; }
+.ifx-code-area .paragraph-text .text.comment { -fx-fill: #6A9955; }
+/* .ifx-code-area .paragraph-text .text.parameter { -fx-fill: #729DB3; } */
 
 .ifx-tab .tab-close-button:hover .glyph,
 .ifx-tab:selected .tab-close-button .glyph

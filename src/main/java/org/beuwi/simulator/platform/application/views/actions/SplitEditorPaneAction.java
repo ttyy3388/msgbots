@@ -1,10 +1,10 @@
 package org.beuwi.simulator.platform.application.views.actions;
 
+import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.control.SplitPane;
 import org.beuwi.simulator.platform.application.views.dialogs.ShowWarningDialog;
 import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
-import org.beuwi.simulator.platform.ui.components.IPos;
 import org.beuwi.simulator.platform.ui.editor.IEditorPane;
 import org.beuwi.simulator.platform.ui.editor.IEditorTab;
 
@@ -38,7 +38,7 @@ public class SplitEditorPaneAction
 	}
 
 	// 현재 가로만 지원
-	public static void update(IEditorTab tab, IPos pos)
+	public static void update(IEditorTab tab, Side pos)
 	{
 		// IEditor Pane
 		List<Node> panes = pane.getItems();

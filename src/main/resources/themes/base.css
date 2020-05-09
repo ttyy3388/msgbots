@@ -1,4 +1,15 @@
 
+/* *
+{
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-background-color: transparent;
+    -fx-border-radius: 0;
+    -fx-border-insets: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+} */
+
 .root
 {
 	-fx-font-family: 'Roboto Medium';
@@ -28,9 +39,15 @@
 .button,
 .toggle-button
 {
+	-fx-alignment: center;
+}
+
+.label,
+.button,
+.toggle-button
+{
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
-	-fx-alignment: center;
 }
 
 /* DISABLED */

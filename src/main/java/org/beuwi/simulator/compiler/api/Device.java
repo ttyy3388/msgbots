@@ -11,6 +11,11 @@ public class Device extends ScriptableObject
 	{
         return "Device";
     }
+
+	public Device(ScriptableObject object)
+	{
+		super(object, object.getPrototype());
+	}
     
     @JSStaticFunction
 	public static Object getBuild()

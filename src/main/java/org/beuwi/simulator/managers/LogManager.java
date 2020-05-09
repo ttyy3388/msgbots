@@ -1,5 +1,6 @@
 package org.beuwi.simulator.managers;
 
+import org.beuwi.simulator.platform.application.views.actions.AddBotLogItemAction;
 import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
 import org.beuwi.simulator.platform.openapi.IJSONArray;
 import org.beuwi.simulator.platform.ui.components.ILogItem;
@@ -76,23 +77,25 @@ public class LogManager
 	public static void append(String name, String data, int type)
 	{
 		File file = FileManager.getBotLog(name);
-		String time = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss ").format(new Date());
+		String date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss ").format(new Date());
 
 		JSONObject object = new JSONObject();
 
 		object.put("a", name);
 		object.put("b", type);
-		object.put("c", time);
+		object.put("c", date);
 
 		JSONArray array = new IJSONArray(file);
 
 		array.add(object);
+
+		AddBotLogItemAction.update(name, new ILogItem(data, date, type));
 
 		System.out.println(array.toJSONString());
 	}
 
 	public static void clear(String name)
 	{
-		FileManager.save(FileManager.getBotLog(name), "[]");
+		// FileManager.save(FileManager.getBotLog(name), "[]");
 	}
 }

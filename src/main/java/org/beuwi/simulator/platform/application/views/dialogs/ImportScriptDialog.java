@@ -1,5 +1,6 @@
 package org.beuwi.simulator.platform.application.views.dialogs;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -103,6 +104,8 @@ public class ImportScriptDialog extends IDialogBoxView
 				}
 			}
 		});
+
+		Platform.runLater(() -> btnScriptOpen.requestFocus());
 	}
 
 	private void action()

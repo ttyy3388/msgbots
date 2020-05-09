@@ -167,7 +167,7 @@ public class ActiveAreaPart
 			AtomicReference<Image> imgSenderProfile = new AtomicReference<>();
 			AtomicReference<Image> imgBotProfile    = new AtomicReference<>();
 
-			Settings.Public data = Settings.getPublicSetting("chat");
+			Settings.Public data = Settings.getPublicSetting("debug");
 
 			// Initialize Components
 			{

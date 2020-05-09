@@ -14,14 +14,14 @@
 <?import org.beuwi.simulator.platform.ui.components.IListView?>
 <?import org.beuwi.simulator.platform.ui.components.ITextField?>
 
-<AnchorPane styleClass="active-area" stylesheets="@../styles/ActiveAreaPart.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane styleClass="active-area" stylesheets="@../styles/ActiveAreaPart.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <children>
       <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox prefWidth="34.0" styleClass="activity-bar">
+            <VBox prefWidth="30.0" styleClass="activity-bar">
                <children>
-                  <ToggleButton fx:id="tgnExplorerTab" mnemonicParsing="false" prefHeight="38.0" prefWidth="34.0" selected="true" styleClass="explorer-tab" />
-                  <ToggleButton fx:id="tgnDebugTab" mnemonicParsing="false" prefHeight="38.0" prefWidth="34.0" styleClass="debug-tab" />
+                  <ToggleButton fx:id="tgnExplorerTab" mnemonicParsing="false" prefHeight="35.0" prefWidth="30.0" selected="true" styleClass="explorer-tab" />
+                  <ToggleButton fx:id="tgnDebugTab" mnemonicParsing="false" prefHeight="35.0" prefWidth="30.0" styleClass="debug-tab" />
                </children>
             </VBox>
             <AnchorPane prefWidth="220.0" styleClass="side-bar" HBox.hgrow="ALWAYS">
@@ -94,18 +94,18 @@
                                     <ITextField fx:id="txfSenderName" layoutY="55.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" />
                                     <ITextField fx:id="txfBotName" layoutY="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" />
                                     <ITextField fx:id="txfPackageName" layoutY="145.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" />
-                                    <HBox alignment="CENTER" layoutY="450.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                    <HBox alignment="CENTER" layoutY="450.0" prefHeight="30.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                        <children>
-                                          <AnchorPane HBox.hgrow="ALWAYS">
+                                          <StackPane HBox.hgrow="ALWAYS">
                                              <children>
-                                                <IButton fx:id="btnApply" prefHeight="30.0" text="Apply" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                <IButton fx:id="btnApply" text="Apply" />
                                              </children>
-                                          </AnchorPane>
-                                          <AnchorPane HBox.hgrow="ALWAYS">
+                                          </StackPane>
+                                          <StackPane HBox.hgrow="ALWAYS">
                                              <children>
-                                                <IButton fx:id="btnRefresh" prefHeight="30.0" text="Refresh" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                <IButton fx:id="btnRefresh" text="Refresh" />
                                              </children>
-                                          </AnchorPane>
+                                          </StackPane>
                                        </children>
                                     </HBox>
                                     <IButton fx:id="btnSenderProfile" layoutY="340.0" mnemonicParsing="false" prefHeight="25.0" styleClass="action-button" text="..." AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="0.0" />

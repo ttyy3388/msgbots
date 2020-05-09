@@ -1,5 +1,6 @@
 package org.beuwi.simulator.platform.application.views.dialogs;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -79,6 +80,8 @@ public class CreateBotDialog extends IDialogBoxView
 				}
 			}
 		});
+
+		Platform.runLater(() -> txfScriptName.requestFocus());
 	}
 
 	private void action()

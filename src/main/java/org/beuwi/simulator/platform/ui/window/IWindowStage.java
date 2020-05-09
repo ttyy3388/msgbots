@@ -37,33 +37,15 @@ public class IWindowStage extends Stage
 		stage.toFront();
 	}
 
-	public void setMinSize(double width, double height)
-	{
-		this.setMinWidth(width);
-		this.setMinHeight(height);
-	}
-
-	public void setMaxSize(double width, double height)
-	{
-		this.setMaxWidth(width);
-		this.setMaxHeight(height);
-	}
-
-	public void setSize(double width, double height)
-	{
-		this.setWidth(width);
-		this.setHeight(height);
-	}
-
 	public void setType(IWindowType type)
 	{
 		switch (type)
 		{
-			case WINDOW : break;
+			case MAIN : break;
 
 			case DIALOG :
-				this.initModality(Modality.WINDOW_MODAL);
-				this.initOwner(primaryStage);
+				initModality(Modality.WINDOW_MODAL);
+				initOwner(primaryStage);
 				break;
 		}
 	}

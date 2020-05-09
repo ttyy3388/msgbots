@@ -11,6 +11,7 @@ import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.Scriptable;
 import org.mozilla.javascript.ScriptableObject;
+import org.mozilla.javascript.Undefined;
 import org.mozilla.javascript.annotations.JSStaticFunction;
 
 import java.io.File;
@@ -18,24 +19,24 @@ import java.util.ArrayList;
 
 public class Api extends ScriptableObject
 {
-	/* ----------------------------------------- */
-
-	public static boolean isUndefined(String name)
-	{
-		return name.equals("undefined");
-	}
-
-	public static String getScriptName(String name)
-	{
-		return (name.endsWith(".js")) ? name.substring(0, name.lastIndexOf(".")) : name;
-	}
-
-	/* ----------------------------------------- */
-
 	@Override
 	public String getClassName()
 	{
 		return "Api";
+	}
+
+	private static String getScriptName(String name)
+	{
+		return name.endsWith(".js") ? name.substring(0, name.lastIndexOf(".")) : name;
+	}
+
+	final String name;
+
+	public Api(ScriptableObject object, String name)
+	{
+		super(object, object.getPrototype());
+
+		this.name = name;
 	}
 
 	@JSStaticFunction
@@ -49,7 +50,7 @@ public class Api extends ScriptableObject
 	{
 		name = getScriptName(name);
 
-		if (isUndefined(name))
+		if (Undefined.isUndefined(name))
 		{
 			for (String script : FileManager.getBotNames())
 			{
@@ -76,7 +77,7 @@ public class Api extends ScriptableObject
 	{
 		name = getScriptName(name);
 
-		if (isUndefined(name))
+		if (Undefined.isUndefined(name))
 		{
 			for (String script : FileManager.getBotNames())
 			{
@@ -103,7 +104,7 @@ public class Api extends ScriptableObject
 	{
 		name = getScriptName(name);
 
-		if (!isUndefined(name))
+		if (!Undefined.isUndefined(name))
 		{
 			if (!FileManager.getBotScript(name).exists())
 			{
@@ -137,7 +138,7 @@ public class Api extends ScriptableObject
 	{
 		name = getScriptName(name);
 
-		if (isUndefined(name))
+		if (Undefined.isUndefined(name))
 		{
 			return false;
 		}
@@ -168,7 +169,7 @@ public class Api extends ScriptableObject
 	{
 		name = getScriptName(name);
 
-		if (isUndefined(name))
+		if (Undefined.isUndefined(name))
 		{
 			for (String script : FileManager.getBotNames())
 			{

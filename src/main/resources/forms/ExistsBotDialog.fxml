@@ -3,7 +3,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="80.0" minWidth="400.0" prefHeight="80.0" prefWidth="400.0" styleClass="exists" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="80.0" minWidth="400.0" prefHeight="80.0" prefWidth="400.0" styleClass="exists" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <children>
       <Label fx:id="label" layoutX="14.0" layoutY="29.0" styleClass="header-label" text="Cannot create bot 'test'. bot already exists." textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="25.0" />
    </children>

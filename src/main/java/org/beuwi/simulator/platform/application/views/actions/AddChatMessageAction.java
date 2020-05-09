@@ -37,7 +37,7 @@ public class AddChatMessageAction
 		chat.setMaxWidth(220);
 		chat.setWrapText(true);
 
-		Settings.Public data = Settings.getPublicSetting("chat");
+		Settings.Public data = Settings.getPublicSetting("debug");
 
 		String name = data.getString(!isBot ? "sender" : "bot");
 

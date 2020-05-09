@@ -15,8 +15,8 @@ public class ResizeSideBarAction
 
 	public static void update(MouseEvent event)
 	{
-		// 38 : Activity Bar Width
-		double size = event.getSceneX() - 38;
+		// 30 : Activity Bar Width
+		double size = event.getSceneX() - 30;
 
 		if (HideSideBarAction.isHided())
 		{

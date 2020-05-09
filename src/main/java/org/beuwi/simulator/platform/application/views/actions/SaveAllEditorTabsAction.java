@@ -13,7 +13,7 @@ public class SaveAllEditorTabsAction
 
 		for (IEditorPane pane : panes)
 		{
-			SaveEditorTabAction.update(pane.getTabPane().getTabs());
+			SaveEditorTabAction.update(pane.getTabs());
 		}
 	}
 }

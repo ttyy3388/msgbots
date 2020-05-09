@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import org.beuwi.simulator.platform.ui.components.IButton?>
 
-<BorderPane fx:id="bopRootPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="bopRootPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <bottom>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <HBox fx:id="hoxButtonBox" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <HBox fx:id="hoxButtonBox" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <IButton fx:id="btnOK" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" text="Ok" />
-                  <IButton fx:id="btnNO" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" text="No" />
+                  <IButton fx:id="btnOK" mnemonicParsing="false" prefHeight="28.0" prefWidth="70.0" text="Ok" />
+                  <IButton fx:id="btnNO" mnemonicParsing="false" prefHeight="28.0" prefWidth="70.0" text="No" />
                </children>
             </HBox>
          </children>

@@ -3,3 +3,21 @@
 {
     -fx-font-size: 15;
 }
+
+.create-dialog .header-label,
+.import-dialog .header-label
+{
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 25;
+}
+
+.create-dialog .text-field,
+.import-dialog .text-field
+{
+    -fx-font-size: 15;
+}
+
+.error-dialog .text-area
+{
+    -fx-text-fill: #FF0000;
+}

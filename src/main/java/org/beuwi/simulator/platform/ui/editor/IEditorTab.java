@@ -1,6 +1,7 @@
 package org.beuwi.simulator.platform.ui.editor;
 
 import javafx.geometry.Pos;
+import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,7 +17,6 @@ import org.beuwi.simulator.platform.application.views.actions.SelectEditorTabAct
 import org.beuwi.simulator.platform.application.views.actions.SplitEditorPaneAction;
 import org.beuwi.simulator.platform.ui.components.IContextMenu;
 import org.beuwi.simulator.platform.ui.components.IMenuItem;
-import org.beuwi.simulator.platform.ui.components.IPos;
 import org.beuwi.simulator.platform.ui.components.ISVGGlyph;
 import org.beuwi.simulator.platform.ui.components.ITab;
 
@@ -57,24 +57,19 @@ public class IEditorTab extends ITab
 			new IMenuItem("Close Others", event -> CloseOtherEditorTabsAction.update(this)),
 			new IMenuItem("Close All", event -> CloseAllTabsAction.update(this)),
 			new SeparatorMenuItem(),
-			new IMenuItem("Move To Right Editor", event -> MoveEditorPaneAction.update(this, IPos.RIGHT)),
-			new IMenuItem("Move To Left Editor", event -> MoveEditorPaneAction.update(this, IPos.LEFT)),
+			new IMenuItem("Move To Right Editor", event -> MoveEditorPaneAction.update(this, Side.RIGHT)),
+			new IMenuItem("Move To Left Editor", event -> MoveEditorPaneAction.update(this, Side.LEFT)),
 			new SeparatorMenuItem(),
-			new IMenuItem("Select Next Tab", "Alt + Right", event -> SelectEditorTabAction.update(this, IPos.RIGHT)),
-			new IMenuItem("Select Previous Tab", "Alt + Left", event -> SelectEditorTabAction.update(this, IPos.LEFT)),
+			new IMenuItem("Select Next Tab", "Alt + Right", event -> SelectEditorTabAction.update(this, Side.RIGHT)),
+			new IMenuItem("Select Previous Tab", "Alt + Left", event -> SelectEditorTabAction.update(this, Side.LEFT)),
 			new SeparatorMenuItem(),
-			new IMenuItem("Split Right", event -> SplitEditorPaneAction.update(this, IPos.RIGHT)),
-			new IMenuItem("Split Left", event -> SplitEditorPaneAction.update(this, IPos.LEFT))
+			new IMenuItem("Split Right", event -> SplitEditorPaneAction.update(this, Side.RIGHT)),
+			new IMenuItem("Split Left", event -> SplitEditorPaneAction.update(this, Side.LEFT))
 		));
 	}
 
 	public IEditorPane getEditorPane()
 	{
-		return (IEditorPane) this.getEditorTabPane().getParent();
-	}
-
-	public IEditorTabPane getEditorTabPane()
-	{
-		return (IEditorTabPane) this.getTabPane();
+		return (IEditorPane) this.getTabPane();
 	}
 }

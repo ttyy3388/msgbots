@@ -11,9 +11,9 @@ public class IWindowScene extends Scene
 	{
 		super(root);
 
-		this.getStylesheets().add(ResourceUtils.getTheme("base"));
-		this.getStylesheets().add(ResourceUtils.getTheme("dark"));
+		setFill(Color.TRANSPARENT);
 
-		this.setFill(Color.TRANSPARENT);
+		getStylesheets().add(ResourceUtils.getTheme("base"));
+		getStylesheets().add(ResourceUtils.getTheme("dark"));
 	}
 }

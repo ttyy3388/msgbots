@@ -20,7 +20,7 @@ public class OpenDebugRoomTabAction
 		(
 			ResourceUtils.getImage("tab_debug"),
 			"@global::debug",
-			Settings.getPublicSetting("chat").getString("room"),
+			Settings.getPublicSetting("debug").getString("room"),
 			pane
 		);
 	}

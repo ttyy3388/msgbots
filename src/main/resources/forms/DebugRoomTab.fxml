@@ -6,7 +6,7 @@
 <?import org.beuwi.simulator.platform.ui.components.ITextArea?>
 
 <?import org.beuwi.simulator.platform.ui.components.IListView?>
-<VBox alignment="CENTER" cacheShape="false" centerShape="false" minWidth="350.0" prefHeight="800.0" prefWidth="1000.0" scaleShape="false" stylesheets="@../styles/DebugRoomTab.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" cacheShape="false" centerShape="false" minWidth="350.0" prefHeight="800.0" prefWidth="1000.0" scaleShape="false" stylesheets="@../styles/DebugRoomTab.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <children>
       <IListView fx:id="listView" VBox.vgrow="ALWAYS">
          <VBox.margin>

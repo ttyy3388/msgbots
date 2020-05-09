@@ -10,7 +10,6 @@ import org.beuwi.simulator.managers.FileManager;
 import org.beuwi.simulator.platform.application.views.MainView;
 import org.beuwi.simulator.platform.application.views.actions.AddBotLogItemAction;
 import org.beuwi.simulator.platform.application.views.actions.AddChatMessageAction;
-import org.beuwi.simulator.platform.application.views.actions.AddEditorTabAction;
 import org.beuwi.simulator.platform.application.views.actions.AddExplorerBotAction;
 import org.beuwi.simulator.platform.application.views.actions.ChangeActivityTabAction;
 import org.beuwi.simulator.platform.application.views.actions.DeleteEditorPaneAction;
@@ -28,6 +27,7 @@ import org.beuwi.simulator.platform.application.views.dialogs.ImportScriptDialog
 import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
 import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
+import org.beuwi.simulator.platform.application.views.parts.StatusBarPart;
 import org.beuwi.simulator.platform.application.views.tabs.DebugRoomTab;
 import org.beuwi.simulator.platform.application.views.tabs.GlobalLogTab;
 import org.beuwi.simulator.platform.application.views.tabs.SettingsTab;
@@ -124,6 +124,7 @@ public class Launcher extends Application
 			// Initialize Views
 			ActiveAreaPart.initialize();
 			EditorAreaPart.initialize();
+			StatusBarPart.initialize();
 
 			DebugRoomTab.initialize();
 			GlobalLogTab.initialize();
@@ -131,7 +132,6 @@ public class Launcher extends Application
 
 			// Initialize View Actions
 			AddBotLogItemAction.initialize();
-			AddEditorTabAction.initialize();
 			AddExplorerBotAction.initialize();
 			ChangeActivityTabAction.initialize();
 			DeleteEditorPaneAction.initialize();
@@ -156,7 +156,7 @@ public class Launcher extends Application
 			IWindowView main = new IWindowView();
 
 			main.setContent(new MainView());
-			main.setType(IWindowType.WINDOW);
+			main.setType(IWindowType.MAIN);
 			main.setStage(stage);
 			main.create();
 
@@ -203,8 +203,6 @@ public class Launcher extends Application
 		catch (Exception e)
 		{
 			new ShowErrorDialog(e).display();
-
-			e.printStackTrace();
 		}
 	}
 

@@ -7,6 +7,7 @@ import org.beuwi.simulator.compiler.api.Bridge;
 import org.beuwi.simulator.compiler.api.DataBase;
 import org.beuwi.simulator.compiler.api.Device;
 import org.beuwi.simulator.compiler.api.FileStream;
+import org.beuwi.simulator.compiler.api.GlobalLog;
 import org.beuwi.simulator.compiler.api.ImageDB;
 import org.beuwi.simulator.compiler.api.Log;
 import org.beuwi.simulator.compiler.api.Utils;
@@ -33,7 +34,7 @@ public class ScriptEngine
 
 	public static void run(String message)
 	{
-		Settings.Public data = Settings.getPublicSetting("chat");
+		Settings.Public data = Settings.getPublicSetting("debug");
 
 		String  room 		= data.getString("room");
 		String  sender 		= data.getString("sender");
@@ -116,15 +117,16 @@ public class ScriptEngine
 
 			int flags = ScriptableObject.EMPTY;
 
-			ScriptableObject.defineProperty(scope, "Log", new Log(name), flags);
+			ScriptableObject.defineProperty(scope, "Api", new Api(scope, name), flags);
+			ScriptableObject.defineProperty(scope, "Device", new Device(scope), flags);
+			ScriptableObject.defineProperty(scope, "GlobalLog", new GlobalLog(scope), flags);
+			ScriptableObject.defineProperty(scope, "Log", new Log(scope, name), flags);
+			ScriptableObject.defineProperty(scope, "DataBase", new DataBase(scope, name), flags);
+			ScriptableObject.defineProperty(scope, "Utils", new Utils(scope, name), flags);
 
-			ScriptableObject.defineClass(scope, Api.class);
 			ScriptableObject.defineClass(scope, AppData.class);
 			ScriptableObject.defineClass(scope, Bridge.class);
-			ScriptableObject.defineClass(scope, DataBase.class);
-			ScriptableObject.defineClass(scope, Device.class);
 			ScriptableObject.defineClass(scope, FileStream.class);
-			ScriptableObject.defineClass(scope, Utils.class);
 
 			execScope = scope;
 
@@ -162,6 +164,8 @@ public class ScriptEngine
 					Context.reportError(e.toString());
 				}
 			}
+
+			e.printStackTrace();
 
 			return false;
 		}

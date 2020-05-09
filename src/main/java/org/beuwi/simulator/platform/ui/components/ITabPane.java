@@ -3,84 +3,92 @@ package org.beuwi.simulator.platform.ui.components;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 
-// Draggable Tab Pane
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class ITabPane extends TabPane
 {
 	{
-		this.getStyleClass().add("ifx-tab-pane");
+		getStyleClass().add("ifx-tab-pane");
 	}
 
 	public ITabPane()
 	{
-		this.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+		setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 	}
 
 	public void addTab(ITab tab)
 	{
-		this.getTabs().add(tab);
-		this.selectTab(tab);
+		getTabs().add(tab);
 	}
 
 	public void closeTab(Tab tab)
 	{
-		this.removeTab(tab);
+		removeTab(tab);
 	}
 
 	public void removeTab(Tab tab)
 	{
-		this.getTabs().remove(tab);
-	}
-
-	public void selectTab(int index)
-	{
-		this.getSelectionModel().select(index);
+		getTabs().remove(tab);
 	}
 
 	public void selectTab(String id)
 	{
-		this.selectTab(getTabItem(id));
+		selectTab(getTabItem(id));
+	}
+
+	public void selectTab(int index)
+	{
+		getSelectionModel().select(index);
 	}
 
 	public void selectTab(Tab tab)
 	{
-		this.getSelectionModel().select(tab);
+		getSelectionModel().select(tab);
 	}
 
-	public boolean tabExists(String id)
+	public List<ITab> getITabs()
 	{
-		return this.getTabIndex(id) != -1;
+		return getTabs().stream().map(tab -> (ITab) tab).collect(Collectors.toList());
 	}
 
-	public ITab getTab(int index)
+	public ITab getTabItem(int index)
 	{
-		return (ITab) this.getTabs().get(index);
+		return getITabs().get(index);
 	}
 
-	public ITab getSelectedTab()
+	public ITab getTabItem(String id)
 	{
-		return (ITab) this.getSelectionModel().getSelectedItem();
-	}
+		int index = getTabIndex(id);
 
-	public int getSelectedIndex()
-	{
-		return this.getSelectionModel().getSelectedIndex();
-	}
-
-	public Tab getTabItem(String id)
-	{
-		return this.getTabIndex(id) != -1 ? this.getTabs().get(getTabIndex(id)) : null;
+		return index != -1 ? getTabItem(index) : null;
 	}
 
 	public int getTabIndex(String id)
 	{
-		for (int index = 0 ; index < this.getTabs().size() ; index ++)
+		for (int index = 0 ; index < getTabs().size() ; index ++)
 		{
-			if (this.getTabs().get(index).getId().equals(id))
+			if (getTabs().get(index).getId().equals(id))
 			{
 				return index;
 			}
 		}
 
 		return -1;
+	}
+
+	public ITab getSelectedTab()
+	{
+		return (ITab) getSelectionModel().getSelectedItem();
+	}
+
+	public int getSelectedIndex()
+	{
+		return getSelectionModel().getSelectedIndex();
+	}
+
+	public boolean isTabExists(String id)
+	{
+		return getTabIndex(id) != -1;
 	}
 }

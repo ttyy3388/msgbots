@@ -97,10 +97,9 @@ public class IDialogBoxView extends StackPane implements Initializable
 		switch (type)
 		{
 			case APPLICATION :
-
 				bopRootPane.getChildren().remove(bopRootPane.getLeft());
-				this.setMinSize(content.getMinWidth(), content.getMinHeight() + 47);
-				this.setPrefSize(content.getPrefWidth(), content.getPrefHeight() + 47);
+				setMinSize(content.getMinWidth(), content.getMinHeight() + 68);
+				setPrefSize(content.getPrefWidth(), content.getPrefHeight() + 68);
 				break;
 
 			case DOCUMENT :
@@ -116,8 +115,8 @@ public class IDialogBoxView extends StackPane implements Initializable
 					}
 				);
 
-				this.setMinSize(content.getMinWidth() + 70, content.getMinHeight() + 47);
-				this.setPrefSize(content.getPrefWidth() + 70, content.getPrefHeight() + 47);
+				setMinSize(content.getMinWidth() + 70, content.getMinHeight() + 68);
+				setPrefSize(content.getPrefWidth() + 70, content.getPrefHeight() + 68);
 				break;
 		};
 
@@ -125,9 +124,9 @@ public class IDialogBoxView extends StackPane implements Initializable
 
 		btnOK.setButtonType(IButton.ACTION);
 
-		this.getChildren().add(bopRootPane);
-		this.getStyleClass().add("dialog");
-		this.getStyleClass().add(ResourceUtils.getStyle("DialogBoxView"));
+		getChildren().add(bopRootPane);
+		getStyleClass().add("dialog");
+		getStylesheets().add(ResourceUtils.getStyle("DialogBoxView"));
 
 		main.setContent(this);
 		main.setType(IWindowType.DIALOG);

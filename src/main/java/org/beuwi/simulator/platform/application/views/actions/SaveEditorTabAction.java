@@ -12,7 +12,7 @@ public class SaveEditorTabAction
 {
 	public static void update()
 	{
-		update(EditorAreaPart.getSelectedTabPane().getSelectedTab());
+		update(EditorAreaPart.getSelectedPane().getSelectedTab());
 	}
 
 	public static void update(String name)

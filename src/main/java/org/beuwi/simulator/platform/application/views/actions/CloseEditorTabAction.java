@@ -1,7 +1,7 @@
 package org.beuwi.simulator.platform.application.views.actions;
 
 import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
-import org.beuwi.simulator.platform.ui.editor.IEditorTabPane;
+import org.beuwi.simulator.platform.ui.editor.IEditorPane;
 
 import java.util.Collection;
 
@@ -9,16 +9,16 @@ public class CloseEditorTabAction
 {
 	public static void update()
 	{
-		update(EditorAreaPart.getSelectedTabPane());
+		update(EditorAreaPart.getSelectedPane());
 	}
 
-	public static void update(IEditorTabPane pane)
+	public static void update(IEditorPane pane)
 	{
 		pane.closeTab(pane.getSelectedTab());
 	}
 
 	public static void update(Collection tabs)
 	{
-		EditorAreaPart.getSelectedTabPane().getTabs().removeAll(tabs);
+		EditorAreaPart.getSelectedPane().getTabs().removeAll(tabs);
 	}
 }
