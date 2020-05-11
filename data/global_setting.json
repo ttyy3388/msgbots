@@ -1,17 +1,15 @@
 {
-	"chat":{
+	"debug":{
 		"package":"com.kakao.talk",
 		"sender":"DEBUG SENDER",
 		"bot":"DEBUG BOT",
 		"room":"DEBUG ROOM",
-		"isGroupChat":true
+		"isGroupChat":true,
+		"htmlTimeOut":10000
 	},
 	"program":{
 		"autoCompile":true,
 		"theme":"Dark",
 		"autoSave":true
-	},
-	"script":{
-		"htmlTimeOut":10000
 	}
 }

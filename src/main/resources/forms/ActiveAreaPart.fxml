@@ -20,13 +20,13 @@
          <children>
             <VBox prefWidth="30.0" styleClass="activity-bar">
                <children>
-                  <ToggleButton fx:id="tgnExplorerTab" mnemonicParsing="false" prefHeight="35.0" prefWidth="30.0" selected="true" styleClass="explorer-tab" />
+                  <ToggleButton fx:id="tgnExplorerTab" mnemonicParsing="false" prefHeight="35.0" prefWidth="30.0" selected="true" styleClass="bots-tab" />
                   <ToggleButton fx:id="tgnDebugTab" mnemonicParsing="false" prefHeight="35.0" prefWidth="30.0" styleClass="debug-tab" />
                </children>
             </VBox>
             <AnchorPane prefWidth="220.0" styleClass="side-bar" HBox.hgrow="ALWAYS">
                <children>
-                  <AnchorPane fx:id="anpExplorerPart" styleClass="explorer-part" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane styleClass="bots-part" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
@@ -56,7 +56,7 @@
                         </VBox>
                      </children>
                   </AnchorPane>
-                <AnchorPane fx:id="anpDebugPart" disable="true" styleClass="debug-part" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <AnchorPane disable="true" styleClass="debug-part" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <VBox styleClass="debug-area" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>

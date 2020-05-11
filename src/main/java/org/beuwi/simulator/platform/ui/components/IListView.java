@@ -7,18 +7,17 @@ import java.util.List;
 
 public class IListView<T> extends ListView<T>
 {
+	{
+		getStyleClass().add("ifx-list-view");
+	}
+
 	public IListView()
 	{
-		this.setContextMenu(new IContextMenu
+		setContextMenu(new IContextMenu
 		(
 			new IMenuItem("Select All", event -> this.getSelectionModel().selectAll())
 		));
 	}
-
-	/* public void addMenuItem(IMenuItem)
-	{
-		this.getContextMenu()
-	} */
 
 	public void clear()
 	{
@@ -49,11 +48,6 @@ public class IListView<T> extends ListView<T>
     {
 		getItems().addAll(list);
     }
-
-    /* public void setItem(Node item)
-    {
-        getItems().set(item);
-    } */
 
     public void setItems(List list)
     {

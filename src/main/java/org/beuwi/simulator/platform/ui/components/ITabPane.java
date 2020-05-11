@@ -2,6 +2,8 @@ package org.beuwi.simulator.platform.ui.components;
 
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.layout.HBox;
+import org.beuwi.simulator.platform.ui.skins.ITabPaneSkin;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,9 +14,22 @@ public class ITabPane extends TabPane
 		getStyleClass().add("ifx-tab-pane");
 	}
 
+	private final ITabPaneSkin skin = new ITabPaneSkin(this);
+
 	public ITabPane()
 	{
+		this(null);
+	}
+
+	public ITabPane(ITab... tabs)
+	{
+		setSkin(skin);
 		setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+
+		if (tabs != null)
+		{
+			getTabs().addAll(tabs);
+		}
 	}
 
 	public void addTab(ITab tab)
@@ -47,14 +62,39 @@ public class ITabPane extends TabPane
 		getSelectionModel().select(tab);
 	}
 
-	public List<ITab> getITabs()
+	public void setTabWidth(double width)
+	{
+		setTabMinWidth(width);
+		setTabMaxWidth(width);
+	}
+
+	public void setTabHeight(double height)
+	{
+		setTabMinHeight(height);
+		setTabMaxHeight(height);
+	}
+
+	public void setTabSize(double width, double height)
+	{
+		setTabMinWidth(width);
+		setTabMinHeight(height);
+		setTabMaxWidth(width);
+		setTabMaxHeight(height);
+	}
+
+	public void setButtonBar(HBox hbox)
+	{
+		skin.setButtonBar(hbox);
+	}
+
+	public List<ITab> getTabList()
 	{
 		return getTabs().stream().map(tab -> (ITab) tab).collect(Collectors.toList());
 	}
 
 	public ITab getTabItem(int index)
 	{
-		return getITabs().get(index);
+		return getTabList().get(index);
 	}
 
 	public ITab getTabItem(String id)

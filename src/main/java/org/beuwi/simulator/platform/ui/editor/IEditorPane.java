@@ -1,36 +1,51 @@
 package org.beuwi.simulator.platform.ui.editor;
 
 import javafx.collections.ListChangeListener;
-import javafx.geometry.Side;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.Tab;
-import javafx.scene.input.MouseEvent;
-import org.beuwi.simulator.platform.application.views.actions.CloseEditorTabAction;
-import org.beuwi.simulator.platform.application.views.actions.SelectEditorTabAction;
-import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
+import javafx.scene.layout.HBox;
+import org.beuwi.simulator.platform.ui.components.IContextMenu;
+import org.beuwi.simulator.platform.ui.components.IMenuButton;
+import org.beuwi.simulator.platform.ui.components.IMenuItem;
+import org.beuwi.simulator.platform.ui.components.ISVGGlyph;
 import org.beuwi.simulator.platform.ui.components.ITabPane;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class IEditorPane extends ITabPane
 {
+	// More Button Menu
+	private final IContextMenu menu = new IContextMenu();
+
+	// Split Button
+	private final IMenuButton split = new IMenuButton();
+
+	// More Button
+	private final IMenuButton more = new IMenuButton();
+
+	// Button Bar
+	private final HBox hbox = new HBox(split, more);
+
 	public IEditorPane()
 	{
-		this.setTabMinHeight(24);
-		this.setTabMaxHeight(30);
+		this(null);
+	}
 
-		EditorAreaPart.setSelectedPane(this);
+	public IEditorPane(IEditorTab... tabs)
+	{
+		setTabMinHeight(30);
+		setTabMaxHeight(30);
 
-		this.addEventFilter(MouseEvent.MOUSE_CLICKED, event ->
-		{
-			EditorAreaPart.setSelectedPane(this);
-		});
-
-		this.setOnKeyPressed(event ->
+		setOnKeyPressed(event ->
 		{
 			if (event.isControlDown())
 			{
 				switch (event.getCode())
 				{
 					case W  :
-					case F4 : CloseEditorTabAction.update(this); break;
+					case F4 : break;
 				}
 			}
 
@@ -38,22 +53,49 @@ public class IEditorPane extends ITabPane
 			{
 				switch (event.getCode())
 				{
-					case LEFT : SelectEditorTabAction.update(this, Side.LEFT); break;
-					case RIGHT : SelectEditorTabAction.update(this, Side.RIGHT); break;
+					case LEFT :
+					case RIGHT : break;
 				}
 			}
 		});
+
+		if (tabs != null)
+		{
+			getTabs().addAll(tabs);
+		}
 
 		getTabs().addListener((ListChangeListener.Change<? extends Tab> change) ->
 		{
 			while (change.next())
 			{
-				// 탭이 모두 닫히면 에디터 닫음
-				if (this.getTabs().isEmpty())
+				List<Tab> list = new ArrayList<>(getTabs());
+
+				List<MenuItem> items = new ArrayList<>();
+
+				for (Tab tab : list)
 				{
-					EditorAreaPart.getComponent().getItems().remove(this);
+					items.add(new IMenuItem(tab.getId(), event -> selectTab(tab)));
 				}
+
+				items.add(new SeparatorMenuItem());
+				items.add(new IMenuItem("Close", "Ctrl + F4"));
+				items.add(new IMenuItem("Close All"));
+
+				menu.getItems().setAll(items);
 			}
 		});
+
+		hbox.setPrefWidth(70);
+
+		split.getStyleClass().add("tab-split-button");
+		split.setGraphic(ISVGGlyph.getGlyph("Editor.Split"));
+		split.setMinSize(35, 30);
+
+		more.getStyleClass().add("tab-more-button");
+		more.setGraphic(ISVGGlyph.getGlyph("Editor.More"));
+		more.setMinSize(35, 30);
+		more.setMenu(menu);
+
+		setButtonBar(hbox);
 	}
 }

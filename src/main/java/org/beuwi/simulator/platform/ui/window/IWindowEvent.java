@@ -10,7 +10,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -170,7 +170,7 @@ public class IWindowEvent
 	}
 
 	// Root Pane
-	public void setResizable(StackPane root)
+	public void setResizable(BorderPane root)
 	{
 		ResizeListener listener = new ResizeListener();
 

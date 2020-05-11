@@ -5,7 +5,7 @@ import javafx.scene.control.CheckBox;
 public class ICheckBox extends CheckBox
 {
     {
-        this.getStyleClass().add("ifx-check-box");
+        getStyleClass().add("ifx-check-box");
     }
 
     public ICheckBox()

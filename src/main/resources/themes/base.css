@@ -17,9 +17,7 @@
 }
 
 /* CURSOR */
-.tab,
-.button,
-.toggle-button
+.tab, .button, .toggle-button
 {
 	-fx-cursor: hand;
 }
@@ -36,18 +34,11 @@
 }
 
 /* IMAGE */
-.button,
-.toggle-button
-{
-	-fx-alignment: center;
-}
-
-.label,
-.button,
-.toggle-button
+.button, .toggle-button
 {
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
+	-fx-alignment: center;
 }
 
 /* DISABLED */

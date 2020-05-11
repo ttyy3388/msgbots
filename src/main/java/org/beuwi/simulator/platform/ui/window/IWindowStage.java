@@ -18,6 +18,19 @@ public class IWindowStage extends Stage
 		initializeStage(this);
 	}
 
+	public IWindowStage(IWindowType type)
+	{
+		switch (type)
+		{
+			case WINDOW : break;
+
+			case DIALOG :
+				initModality(Modality.WINDOW_MODAL);
+				initOwner(primaryStage);
+				break;
+		}
+	}
+
 	public static Stage getPrimaryStage()
 	{
 		return primaryStage;
@@ -35,18 +48,5 @@ public class IWindowStage extends Stage
 		stage.initStyle(StageStyle.TRANSPARENT);
 		stage.setTitle("Messenger Bot Simulator"); // Default Title
 		stage.toFront();
-	}
-
-	public void setType(IWindowType type)
-	{
-		switch (type)
-		{
-			case MAIN : break;
-
-			case DIALOG :
-				initModality(Modality.WINDOW_MODAL);
-				initOwner(primaryStage);
-				break;
-		}
 	}
 }

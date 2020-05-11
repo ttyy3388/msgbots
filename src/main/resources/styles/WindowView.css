@@ -1,14 +1,4 @@
 
-.shadow-pane
-{
-
-}
-
-.root-pane
-{
-    -fx-border-width: 1;
-}
-
 .title-bar .button
 {
 	-fx-cursor: default;
@@ -37,45 +27,7 @@
     -fx-background-color: #FFFFFF;
 }
 
-.window
-{
-    -fx-padding: 5.0;
-}
-
-.window:maximized
-{
-    -fx-padding: 0.0;
-}
-
 .window:maximized .root-pane
 {
 	-fx-border-width: 0;
-}
-
-/* Main */
-
-.main .root-pane
-{
-    -fx-background-color: #323233;
-    -fx-border-color: #434346;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0.4, 0, 0);
-}
-
-.window:focused .main .root-pane
-{
-    -fx-border-color: #007ACC;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 122, 204, 0.5), 10, 0.4, 0, 0);
-}
-
-/* Dialog */
-
-.dialog .root-pane
-{
-    -fx-border-color: #252526;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0.5, 0, 0);
-}
-
-.window:focused .dialog .root-pane
-{
-    -fx-border-color: #898989;
 }

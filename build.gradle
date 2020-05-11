@@ -2,7 +2,7 @@ plugins {
 	id 'java'
 	id 'application'
 	id 'org.openjfx.javafxplugin' version '0.0.8'
-	id 'org.beryx.jlink' version '2.17.9'
+	id 'org.beryx.jlink' version '2.19.0'
 }
 
 java {
@@ -11,14 +11,15 @@ java {
 	targetCompatibility = JavaVersion.VERSION_14;
 }
 
-mainClassName = "$moduleName/org.beuwi.simulator.Launcher"
+application {
+	mainClassName = "$moduleName/org.beuwi.simulator.Launcher"
+}
 
 repositories {
-	// jcenter()
 	mavenCentral()
 }
 
-group 'org.beuwi.simulator'
+group "org.beuwi.simulator"
 version '0.5.0'
 
 javafx {
@@ -46,26 +47,25 @@ dependencies {
 	}
 }
 
-configurations {
-}
-
 compileJava {
 	options.encoding = "UTF-8"
-	options.incremental = true
 	options.compilerArgs << "-Xlint:none"
 
-	moduleOptions {
+	/* moduleOptions {
 		addExports = [
 				// 안하면 package is not visible import 오류남
-				'javafx.graphics/com.sun.javafx.util' : 'org.beuwi.simulator'
+				// 'javafx.graphics/com.sun.javafx.util' : 'org.beuwi.simulator',
+				// 'javafx.controls/com.sun.javafx.scene.control' : 'org.beuwi.simulator',
 		]
-	}
+	} */
 }
 
-//"--add-exports javafx.graphics/com.sun.javafx.util=org.beuwi.simulator --add-exports javafx.graphics/com.sun.javafx.scene.input=org.beuwi.simulator --add-exports javafx.graphics/com.sun.javafx.css=org.beuwi.simulator --add-exports javafx.graphics/com.sun.javafx.iio=org.beuwi.simulator"
-
 run {
-	jvmArgs '--add-exports=javafx.graphics/javafx.scene.layout=org.beuwi.simulator'
+	/* jvmArgs '--add-exports=javafx.graphics/javafx.scene.layout=org.beuwi.simulator'
+			'--add-exports=javafx.graphics/com.sun.javafx.util=org.beuwi.simulator',
+			'--add-exports=javafx.graphics/com.sun.javafx.scene.input=org.beuwi.simulator',
+			'--add-exports=javafx.graphics/com.sun.javafx.css=org.beuwi.simulator',
+			'--add-exports=javafx.graphics/com.sun.javafx.iio=org.beuwi.simulator' */
 }
 
 jlink {
@@ -76,8 +76,7 @@ jlink {
 	}
 
 	// Instructs the plugin to include all dependencies matching the given prefixes into the merged module. This method is useful when the plugin should handle one or more modular jars as non-modular
-
-	forceMerge 'javafx'
+	// forceMerge 'javafx'
 
 	mergedModule {
 		requires 'java.xml'
@@ -87,14 +86,14 @@ jlink {
 	jpackage {
 		imageOptions += ['--icon', 'src/main/resources/icons/program.ico']
 
-		/* installerOptions = [
-				'--vendor', 'beuwi',
+		installerOptions = [
+				'--vendor', 'Beuwi',
 				'--app-version', '0.5.0',
-		] */
+		]
 	}
 }
 
-jar {
+/* jar {
 	manifest {
 		attributes 'Main-Class': 'org.beuwi.simulator.Launcher'
 	}
@@ -104,4 +103,4 @@ jar {
 			it.isDirectory() ? it : zipTree(it)
 		}
 	}
-}
+} */

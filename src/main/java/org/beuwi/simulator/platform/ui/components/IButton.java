@@ -10,14 +10,14 @@ public class IButton extends Button
 		getStyleClass().add("ifx-button");
 	}
 
-	final public static int DEFAULT = 0;
-	final public static int ACTION  = 1;
+	public static final int DEFAULT = 0;
+	public static final int ACTION  = 1;
 
-	public IntegerProperty property = new SimpleIntegerProperty(1);
+	public final IntegerProperty property = new SimpleIntegerProperty(1);
 
 	public IButton()
 	{
-		this(0);
+		this(DEFAULT);
 	}
 
 	public IButton(int type)
@@ -48,12 +48,17 @@ public class IButton extends Button
 		});
 	}
 
-	public void setButtonType(int type)
+	public void setMenu(IContextMenu menu)
+	{
+		menu.setNode(this);
+	}
+
+	public void setType(int type)
 	{
 		property.set(type);
 	}
 
-	public int getButtonType()
+	public int getType()
 	{
 		return property.get();
 	}

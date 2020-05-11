@@ -14,20 +14,19 @@ import java.util.List;
 
 public class IContextMenu extends ContextMenu
 {
+	{
+		getStyleClass().add("ifx-context-menu");
+	}
+
 	public IContextMenu(List<MenuItem> list)
 	{
-		this.getItems().setAll(list);
+		getItems().setAll(list);
 	}
 
 	public IContextMenu(MenuItem... items)
 	{
-		this.getItems().setAll(items);
+		getItems().setAll(items);
 	}
-
-	/* public void setNode(Node node)
-	{
-		setNode(node, MouseButton.SECONDARY);
-	} */
 
 	public void setNode(Node node)
 	{
@@ -37,11 +36,11 @@ public class IContextMenu extends ContextMenu
 			{
 				if (!isShowing())
 				{
-					this.show(node, Side.BOTTOM, event);
+					show(node, Side.BOTTOM, event);
 				}
 				else
 				{
-					this.hide();
+					hide();
 				}
 			});
 
@@ -67,11 +66,11 @@ public class IContextMenu extends ContextMenu
 						target.contains("Group")
 					)
 					{
-						this.show(node, event);
+						show(node, event);
 					}
 					else
 					{
-						this.hide();
+						hide();
 					}
 				});
 			}
@@ -79,15 +78,15 @@ public class IContextMenu extends ContextMenu
 			{
 				node.addEventFilter(MouseEvent.MOUSE_CLICKED, event ->
 				{
-					this.show(node, event);
+					show(node, event);
 				});
 			}
 
 			node.addEventFilter(MouseEvent.MOUSE_PRESSED, event ->
 			{
-				if (this.isShowing())
+				if (isShowing())
 				{
-					this.hide();
+					hide();
 				}
 			});
 		}
@@ -97,11 +96,11 @@ public class IContextMenu extends ContextMenu
 	{
 		if (MouseButton.SECONDARY.equals(event.getButton()))
 		{
-			this.show(node, event.getScreenX(), event.getScreenY());
+			show(node, event.getScreenX(), event.getScreenY());
 		}
 		else
 		{
-			this.hide();
+			hide();
 		}
 	}
 
@@ -109,11 +108,11 @@ public class IContextMenu extends ContextMenu
 	{
 		if (MouseButton.PRIMARY.equals(event.getButton()))
 		{
-			this.show(node, side, 0, 0);
+			show(node, side, 0, 0);
 		}
 		else
 		{
-			this.hide();
+			hide();
 		}
 	}
 }

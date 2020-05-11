@@ -1,8 +1,12 @@
 package org.beuwi.simulator.managers;
 
-import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 public class FileManager
 {
@@ -74,15 +78,15 @@ public class FileManager
 				}
 			}
 
-			BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, false), "UTF8"));
-			bufferedWriter.write(content);
-			bufferedWriter.close();
+			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, false), "UTF8"));
+			writer.write(content);
+			writer.close();
 
 			return content;
 		}
 		catch (Exception e)
 		{
-			new ShowErrorDialog(e).display();
+			e.printStackTrace();
 		}
 
 		return null;
@@ -94,15 +98,15 @@ public class FileManager
 		{
 			file.createNewFile();
 
-			BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true), "UTF8"));
-			bufferedWriter.write(content);
-			bufferedWriter.close();
+			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true), "UTF8"));
+			writer.write(content);
+			writer.close();
 
 			return content;
 		}
 		catch (Exception e)
 		{
-			new ShowErrorDialog(e).display();
+			e.printStackTrace();
 		}
 
 		return null;
@@ -117,21 +121,21 @@ public class FileManager
 				return null;
 			}
 
-			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
-			String line = "", text = bufferedReader.readLine();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
+			String line = "", text = reader.readLine();
 
-			while ((line = bufferedReader.readLine()) != null)
+			while ((line = reader.readLine()) != null)
 			{
 				text += "\n" + line;
 			}
 
-			bufferedReader.close();
+			reader.close();
 
 			return text;
 		}
 		catch (Exception e)
 		{
-			new ShowErrorDialog(e).display();
+			e.printStackTrace();
 		}
 
 		return null;
@@ -152,6 +156,15 @@ public class FileManager
 				for (File data : file.listFiles())
 				{
 					data.delete();
+
+					if (data.isFile())
+					{
+						data.delete();
+					}
+					else
+					{
+						remove(data);
+					}
 				}
 
 				return file.delete();
@@ -161,7 +174,7 @@ public class FileManager
 		}
 		catch (Exception e)
 		{
-			new ShowErrorDialog(e).display();
+			e.printStackTrace();
 		}
 
 		return false;

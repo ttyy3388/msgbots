@@ -1,6 +1,7 @@
 package org.beuwi.simulator.platform.application.views;
 
 import javafx.scene.layout.BorderPane;
+import org.beuwi.simulator.platform.application.views.parts.ActiveAreaPart;
 import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
 import org.beuwi.simulator.platform.application.views.parts.StatusBarPart;
 
@@ -9,7 +10,7 @@ public class MainView extends BorderPane
 	// Application Stage
 	public MainView()
 	{
-		// setLeft(ActiveAreaPart.getRoot());
+		setLeft(ActiveAreaPart.getRoot());
 		setCenter(EditorAreaPart.getRoot());
 		setBottom(StatusBarPart.getRoot());
 
@@ -17,5 +18,7 @@ public class MainView extends BorderPane
 		setMinHeight(600);
 		setPrefWidth(1400);
 		setPrefHeight(900);
+		// setMaxWidth(1920);
+		// setMaxHeight(1080);
 	}
 }

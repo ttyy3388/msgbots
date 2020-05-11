@@ -12,7 +12,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import org.beuwi.simulator.platform.ui.components.IButton;
 import org.beuwi.simulator.platform.ui.dialog.IDialogBoxType.DOCUMENT;
-import org.beuwi.simulator.platform.ui.window.IWindowScene;
 import org.beuwi.simulator.platform.ui.window.IWindowStage;
 import org.beuwi.simulator.platform.ui.window.IWindowType;
 import org.beuwi.simulator.platform.ui.window.IWindowView;
@@ -23,14 +22,14 @@ import java.util.ResourceBundle;
 
 public class IDialogBoxView extends StackPane implements Initializable
 {
-	@FXML private BorderPane bopRootPane;
+	@FXML private BorderPane brpRootPane;
 	@FXML private ImageView  imvDialogIcon;
 	@FXML private HBox	 	 hoxButtonBox;
 
 	@FXML private IButton btnOK;
 	@FXML private IButton btnNO;
 
-	final IWindowView  main;
+	final IWindowView main;
 	final IWindowStage stage;
 
 	IDialogBoxType type;
@@ -62,8 +61,8 @@ public class IDialogBoxView extends StackPane implements Initializable
 		}
 
 		this.type  = type;
-		this.main  = new IWindowView();
-		this.stage = new IWindowStage();
+		this.stage = new IWindowStage(IWindowType.DIALOG);
+		this.main  = new IWindowView(stage);
 	}
 
 	public void setUseButton(boolean ok, boolean no)
@@ -97,7 +96,7 @@ public class IDialogBoxView extends StackPane implements Initializable
 		switch (type)
 		{
 			case APPLICATION :
-				bopRootPane.getChildren().remove(bopRootPane.getLeft());
+				brpRootPane.getChildren().remove(brpRootPane.getLeft());
 				setMinSize(content.getMinWidth(), content.getMinHeight() + 68);
 				setPrefSize(content.getPrefWidth(), content.getPrefHeight() + 68);
 				break;
@@ -120,19 +119,13 @@ public class IDialogBoxView extends StackPane implements Initializable
 				break;
 		};
 
-		bopRootPane.setCenter(content);
+		brpRootPane.setCenter(content);
 
-		btnOK.setButtonType(IButton.ACTION);
+		btnOK.setType(IButton.ACTION);
 
-		getChildren().add(bopRootPane);
+		getChildren().add(brpRootPane);
 		getStyleClass().add("dialog");
 		getStylesheets().add(ResourceUtils.getStyle("DialogBoxView"));
-
-		main.setContent(this);
-		main.setType(IWindowType.DIALOG);
-		main.setStage(stage);
-		main.setTitle(title);
-		main.create();
 
 		stage.addEventFilter(KeyEvent.KEY_PRESSED, event ->
 		{
@@ -142,9 +135,11 @@ public class IDialogBoxView extends StackPane implements Initializable
 			}
 		});
 
-		stage.setType(IWindowType.DIALOG);
-		stage.setScene(new IWindowScene(main));
-		stage.show();
+		main.setContent(this);
+		main.setType(IWindowType.DIALOG);
+		main.setTitle(title);
+		main.create();
+		main.show();
 	}
 
 	public void close()

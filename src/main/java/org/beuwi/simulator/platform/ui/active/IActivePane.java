@@ -1,46 +1,77 @@
 package org.beuwi.simulator.platform.ui.active;
 
-import javafx.scene.control.ToggleButton;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.scene.Cursor;
+import javafx.scene.control.Tab;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import org.beuwi.simulator.platform.ui.components.ITabPane;
 
 public class IActivePane extends AnchorPane
 {
-	HBox area = new HBox();
-
-	// Activity Bar
-	VBox activity = new VBox();
-
-	// Explorer Tab
-	ToggleButton bots = new ToggleButton();
-	// Simulation Tab
-	ToggleButton debug = new ToggleButton();
+	final ITabPane pane = new ITabPane();
 
 	// Resize Bar
-	StackPane resize = new StackPane();
+	final StackPane resize = new StackPane();
+
+	final BooleanProperty hided = new SimpleBooleanProperty(false);
 
 	public IActivePane()
 	{
-	    AnchorPane.setTopAnchor(area, .0);
-        AnchorPane.setRightAnchor(area, .0);
-        AnchorPane.setBottomAnchor(area, .0);
-        AnchorPane.setLeftAnchor(area, .0);
+		AnchorPane.setTopAnchor(pane, 0.0);
+		AnchorPane.setRightAnchor(pane, 0.0);
+		AnchorPane.setBottomAnchor(pane, 0.0);
+		AnchorPane.setLeftAnchor(pane, 0.0);
 
-		AnchorPane.setTopAnchor(resize, .0);
-		AnchorPane.setRightAnchor(resize, .0);
-		AnchorPane.setBottomAnchor(resize, .0);
+		AnchorPane.setTopAnchor(resize, 0.0);
+		AnchorPane.setRightAnchor(resize, 0.0);
+		AnchorPane.setBottomAnchor(resize, 0.0);
 
-		// bots.getStyleClass().add("")
-		bots.setPrefSize(30, 35);
-		debug.setPrefSize(30, 35);
+		pane.setTabSize(30, 35);
 
-		activity.setPrefWidth(30);
-		activity.getChildren().addAll(bots, debug);
+		resize.setPrefWidth(7);
+		resize.setCursor(Cursor.E_RESIZE);
+		resize.setOnMouseDragged(event -> resize(event));
 
-        resize.setPrefWidth(7);
+		tab.setOnMouseClicked(event ->
+		{
+			IAct
+		});
 
-        getChildren().addAll(area, resize);
+		getChildren().addAll(pane, resize);
+	}
+
+	public boolean isHided()
+	{
+		return hided.get();
+	}
+
+	public void hide()
+	{
+
+	}
+
+	public void select(Tab tab)
+	{
+
+	}
+
+	public void resize(MouseEvent event)
+	{
+		double size = event.getSceneX();
+
+		if (isHided())
+		{
+			if (100 <= size)
+			{
+				hided.set(false);
+			}
+		}
+		else
+		{
+			hided.set(true);
+		}
 	}
 }

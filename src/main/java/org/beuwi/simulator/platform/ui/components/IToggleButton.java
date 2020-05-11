@@ -4,8 +4,12 @@ import com.jfoenix.controls.JFXToggleButton;
 
 public class IToggleButton extends JFXToggleButton
 {
+    {
+        getStyleClass().add("ifx-toggle-button");
+    }
+
     public IToggleButton()
     {
-        this.getStyleClass().add("ifx-toggle-button");
+
     }
 }

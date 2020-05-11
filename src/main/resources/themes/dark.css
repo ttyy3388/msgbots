@@ -30,19 +30,21 @@
 .context-menu
 {
 	-fx-background-color: #252526;
-	-fx-padding: 7 0 7 0;
+	-fx-border-color: #434344;
+	-fx-border-width: 1;
+	-fx-padding: 2;
 	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 5);
 }
 .context-menu .separator
 {
-	-fx-background-insets: 4 10 5 10;
-	-fx-background-color: #616162;
-	-fx-padding: 5;
+    -fx-background-insets: 2 0 3 0;
+	-fx-background-color: #434344;
+	-fx-padding: 3;
 }
 
 .menu-item
 {
-	-fx-padding: 5 20 5 20;
+	-fx-padding: 4 15 4 15;
 }
 .menu-item .label *
 {

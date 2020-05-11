@@ -4,7 +4,6 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
 public class ITab extends Tab
@@ -38,7 +37,7 @@ public class ITab extends Tab
 		getHeader().addEventHandler(type, handler);
 	}
 
-	public void addEventFilter(EventType<MouseEvent> type, EventHandler<MouseEvent> handler)
+	public void addEventFilter(EventType type, EventHandler handler)
 	{
 		getHeader().addEventFilter(type, handler);
 	}
