@@ -5,7 +5,8 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="MessengerBotSimulator.main" options=""/>
+      <module name="MessengerBotSimulator.main" options="" />
+      <module name="msgbots.main" options="--add-exports javafx.graphics/com.sun.javafx.util=org.beuwi.simulator" />
     </option>
   </component>
 </project>

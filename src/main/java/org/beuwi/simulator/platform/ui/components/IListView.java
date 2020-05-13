@@ -2,7 +2,11 @@ package org.beuwi.simulator.platform.ui.components;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import org.beuwi.simulator.platform.application.actions.CopyAction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class IListView<T> extends ListView<T>
@@ -13,10 +17,48 @@ public class IListView<T> extends ListView<T>
 
 	public IListView()
 	{
-		setContextMenu(new IContextMenu
+		IContextMenu menu = new IContextMenu
 		(
-			new IMenuItem("Select All", event -> this.getSelectionModel().selectAll())
-		));
+			new IMenuItem("Select All", "Ctrl + A", event -> selectAll())
+		);
+
+		menu.setNode(this);
+	}
+
+	public void cut()
+	{
+		copy();
+		delete();
+	}
+
+	public void copy()
+	{
+		ArrayList<String> list = new ArrayList<>();
+
+		for (Object item : getSelectedItems())
+		{
+			if (item instanceof HBox)
+			{
+				list.add(((HBox) item).getId());
+			}
+
+			if (item instanceof AnchorPane)
+			{
+				list.add(((AnchorPane) item).getId());
+			}
+		}
+
+		CopyAction.update(list);
+	}
+
+	public void delete()
+	{
+		getItems().removeAll(getSelectedItems());
+	}
+
+	public void selectAll()
+	{
+		getSelectionModel().selectAll();
 	}
 
 	public void clear()

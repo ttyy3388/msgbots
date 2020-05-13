@@ -1,27 +1,7 @@
 
-.shadow-pane
-{
-
-}
-
-.root-pane
-{
-	-fx-background-color: #323233;
-	-fx-border-width: 1;
-}
-
-.title-bar
-{
-	-fx-background-color: #323233;
-}
 .title-bar .button
 {
 	-fx-cursor: default;
-}
-
-.status-bar
-{
-	-fx-background-color: #007ACC;
 }
 
 .button-bar .button:hover .glyph
@@ -42,10 +22,6 @@
 	-fx-background-color: #D61425;
 }
 
-/* .window:focused .root-pane
-{
-	-fx-border-color: #007ACC;
-} */
 .window:focused .button-bar .glyph
 {
     -fx-background-color: #FFFFFF;

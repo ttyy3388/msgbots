@@ -1,5 +1,7 @@
 package org.beuwi.simulator.managers;
 
+import org.beuwi.simulator.platform.application.views.dialogs.ShowErrorDialog;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -86,7 +88,7 @@ public class FileManager
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			new ShowErrorDialog(e).display();
 		}
 
 		return null;
@@ -106,7 +108,7 @@ public class FileManager
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			new ShowErrorDialog(e).display();
 		}
 
 		return null;
@@ -135,7 +137,7 @@ public class FileManager
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			new ShowErrorDialog(e).display();
 		}
 
 		return null;
@@ -174,7 +176,7 @@ public class FileManager
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			new ShowErrorDialog(e).display();
 		}
 
 		return false;

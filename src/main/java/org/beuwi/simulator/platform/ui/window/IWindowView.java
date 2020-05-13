@@ -7,6 +7,8 @@ import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
@@ -22,7 +24,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import org.beuwi.simulator.platform.application.views.MainView;
+import org.beuwi.simulator.platform.application.views.actions.OpenDebugRoomTabAction;
+import org.beuwi.simulator.platform.application.views.actions.OpenGlobalLogTabAction;
+import org.beuwi.simulator.platform.application.views.actions.OpenSettingsTabAction;
+import org.beuwi.simulator.platform.application.views.actions.RefreshBotsAction;
+import org.beuwi.simulator.platform.application.views.actions.SaveAllEditorTabsAction;
+import org.beuwi.simulator.platform.application.views.actions.SaveEditorTabAction;
+import org.beuwi.simulator.platform.application.views.dialogs.CreateBotDialog;
+import org.beuwi.simulator.platform.application.views.dialogs.ImportScriptDialog;
+import org.beuwi.simulator.platform.ui.components.IContextMenu;
 import org.beuwi.simulator.platform.ui.components.IMenuButton;
 import org.beuwi.simulator.platform.ui.components.IMenuItem;
 import org.beuwi.simulator.platform.ui.components.ISVGGlyph;
@@ -49,16 +63,17 @@ public class IWindowView extends StackPane
 
 	@FXML private BorderPane brpRootPane;
 	@FXML private AnchorPane anpTitleBar;
+	@FXML private Label 	 lblWinTitle;
 
 	// Menu Bar
-	@FXML private HBox hoxMenuBar;
+	@FXML private HBox hbxMenuBar;
 	@FXML private IMenuButton btnFileMenu;
 	@FXML private IMenuButton btnEditMenu;
 	@FXML private IMenuButton btnViewMenu;
 	@FXML private IMenuButton btnDebugMenu;
 
 	// Button Bar
-	@FXML private HBox   hoxButtonBar;
+	@FXML private HBox   hbxButtonBar;
 	@FXML private Button btnMinimize;
 	@FXML private Button btnMaximize;
 	@FXML private Button btnClose;
@@ -66,6 +81,7 @@ public class IWindowView extends StackPane
 	private final IWindowEvent ievent;
 	private final Stage stage;
 
+	private IContextMenu menu;
 	private IWindowType type;
 	private Region content;
 	private String title;
@@ -128,33 +144,33 @@ public class IWindowView extends StackPane
 	{
 		btnFileMenu.setMenus
 		(
-			IMenuItem.getItem("New.Bot"),
-			IMenuItem.getItem("Import.Script"),
-			IMenuItem.getItem("Separator"),
-			IMenuItem.getItem("Save"),
-			IMenuItem.getItem("Save.All"),
-			IMenuItem.getItem("Separator"),
-			IMenuItem.getItem("Reload.All.Bots"),
-			IMenuItem.getItem("Separator"),
-			IMenuItem.getItem("Settings")
+			new IMenuItem("New Bot", "Ctrl + N", event -> new CreateBotDialog().display()),
+			new IMenuItem("Import Script", "Ctrl + I", event -> new ImportScriptDialog().display()),
+			new SeparatorMenuItem(),
+			new IMenuItem("Save", "Ctrl + S", event -> SaveEditorTabAction.update()),
+			new IMenuItem("Save All", event -> SaveAllEditorTabsAction.update()),
+			new SeparatorMenuItem(),
+			new IMenuItem("Refresh All Bots", "Ctrl + Alt + Y", event -> RefreshBotsAction.update()),
+			new SeparatorMenuItem(),
+			new IMenuItem("Settings", "Ctrl + Alt + S", event -> OpenSettingsTabAction.update())
 		);
 
 		btnEditMenu.setMenus
 		(
-			IMenuItem.getItem("Undo"),
-			IMenuItem.getItem("Redo"),
-			IMenuItem.getItem("Separator"),
-			IMenuItem.getItem("Cut"),
-			IMenuItem.getItem("Copy"),
-			IMenuItem.getItem("Paste")
+			new IMenuItem("Undo", "Ctrl + Z"),
+			new IMenuItem("Redo", "Ctrl + Y"),
+			new SeparatorMenuItem(),
+			new IMenuItem("Cut", "Ctrl + X"),
+			new IMenuItem("Copy", "Ctrl + C"),
+			new IMenuItem("Paste", "Ctrl + V")
 		);
 
-		// btnViewMenu.setMenu(new IContextMenu());
+		btnViewMenu.setMenu(new IContextMenu());
 
 		btnDebugMenu.setMenus
 		(
-			IMenuItem.getItem("Open.Debug.Room"),
-			IMenuItem.getItem("Show.Global.Log")
+			new IMenuItem("Show Global Log", "F8", event -> OpenGlobalLogTabAction.update()),
+			new IMenuItem("Open Debug Room", "F9", event -> OpenDebugRoomTabAction.update())
 		);
 	}
 
@@ -191,6 +207,8 @@ public class IWindowView extends StackPane
 					brpRootPane.setEffect(newValue ? WINDOW_FOCUSED_SHADOW : WINDOW_DEFAULT_SHADOW);
 				});
 
+				lblWinTitle.setVisible(false);
+
 				initMenuBar();
 
 				break;
@@ -199,17 +217,34 @@ public class IWindowView extends StackPane
 
 				brpRootPane.setBackground(DIALOG_BACK_GROUND);
 
+				hbxMenuBar.setVisible(false);
+
+				btnMinimize.setVisible(false);
+				btnMaximize.setVisible(false);
+
+				lblWinTitle.setText(title);
+
 				stage.focusedProperty().addListener((observable, oldValue, newValue) ->
 				{
 					brpRootPane.setBorder(newValue ? DIALOG_FOCUSED_BORDER : DIALOG_DEFAULT_BORDER);
 					brpRootPane.setEffect(newValue ? DIALOG_FOCUSED_SHADOW : DIALOG_DEFAULT_SHADOW);
 				});
 
-				btnMinimize.setVisible(false);
-				btnMaximize.setVisible(false);
+				stage.initModality(Modality.WINDOW_MODAL);
+				stage.initOwner(MainView.getStage());
 
 				break;
 		}
+
+		menu = new IContextMenu
+		(
+			new IMenuItem("Minimize", event -> ievent.setMinimized()),
+			new IMenuItem("Maximize", event -> ievent.setMaximized()),
+			new SeparatorMenuItem(),
+			new IMenuItem("Close", "Ctrl + F4", event -> ievent.setClosed())
+		);
+
+		menu.setNode(anpTitleBar);
 
 		// When the stage appears
 		stage.showingProperty().addListener((observable, oldValue, newValue) ->
@@ -263,7 +298,12 @@ public class IWindowView extends StackPane
 		getStylesheets().add(ResourceUtils.getStyle("WindowView"));
 		computeStageSize();
 
+		stage.getIcons().add(ResourceUtils.getImage("program"));
+		stage.initStyle(StageStyle.UNDECORATED);
+		stage.initStyle(StageStyle.TRANSPARENT);
+		stage.setTitle("Messenger Bot Simulator"); // Default Title
 		stage.setScene(new IWindowScene(this));
+		stage.toFront();
 	}
 
 	public void show()

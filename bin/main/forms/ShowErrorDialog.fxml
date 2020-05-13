@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="200.0" minWidth="400.0" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="200.0" minWidth="400.0" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <children>
       <Label fx:id="header" text="java.lang.reflect.InvocationTargetException" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="20.0" />
       <TextArea fx:id="content" editable="false" layoutX="80.0" layoutY="60.0" text="Exception in Application start method&#10;java.lang.reflect.InvocationTargetException&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="65.0" />

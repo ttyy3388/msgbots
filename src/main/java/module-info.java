@@ -12,11 +12,13 @@ open module org.beuwi.simulator
 	requires javafx.web;
 
 	requires com.jfoenix;
-	requires flowless;
 	requires json.simple;
 	requires org.apache.commons.io;
 	requires org.fxmisc.richtext;
+	requires flowless;
 	// requires org.json;
 	requires org.jsoup;
 	requires rhino;
+
+	// exports org.beuwi.simulator;
 }

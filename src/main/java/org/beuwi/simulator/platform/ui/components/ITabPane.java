@@ -1,5 +1,6 @@
 package org.beuwi.simulator.platform.ui.components;
 
+import javafx.geometry.Side;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.HBox;
@@ -35,6 +36,7 @@ public class ITabPane extends TabPane
 	public void addTab(ITab tab)
 	{
 		getTabs().add(tab);
+		selectTab(tab);
 	}
 
 	public void closeTab(Tab tab)
@@ -45,6 +47,44 @@ public class ITabPane extends TabPane
 	public void removeTab(Tab tab)
 	{
 		getTabs().remove(tab);
+	}
+
+	public void selectTab(Tab tab, Side side)
+	{
+		List<Tab> tabs = getTabs();
+
+		int index = tabs.indexOf(tab);
+
+		switch (side)
+		{
+			// Next
+			case RIGHT:
+
+				if (index < tabs.size() - 1)
+				{
+					selectTab(index + 1);
+				}
+				else
+				{
+					selectTab(0);
+				}
+
+				break;
+
+			// Previous
+			case LEFT:
+
+				if (index != 0)
+				{
+					selectTab(index - 1);
+				}
+				else
+				{
+					selectTab(tabs.size() - 1);
+				}
+
+				break;
+		}
 	}
 
 	public void selectTab(String id)
@@ -78,7 +118,6 @@ public class ITabPane extends TabPane
 	{
 		setTabMinWidth(width);
 		setTabMinHeight(height);
-		setTabMaxWidth(width);
 		setTabMaxHeight(height);
 	}
 

@@ -24,17 +24,7 @@
 	-fx-text-fill: #589DF6;
 } */
 
-
-.tab-content-area
-{
-	-fx-background-color: #1E1E1E;
-}
-.tab-header-background
-{
-	-fx-background-color: #252526;
-}
-
-.tab .tab-header-box
+.tab-header-box
 {
 	-fx-border-color: transparent;
 	-fx-border-width: 3 0 3 0;
@@ -49,6 +39,16 @@
 	-fx-background-color: #1E1E1E;
 	-fx-border-color: #007ACC transparent transparent transparent;
 }
+
+.tab-content-area
+{
+	-fx-background-color: #1E1E1E;
+}
+.tab-header-background
+{
+	-fx-background-color: #252526;
+}
+
 /* .tab:drag:hover
 {
 	-fx-background-color: #3C3F42;

@@ -1,10 +1,19 @@
 package org.beuwi.simulator.platform.ui.editor;
 
 import javafx.collections.ListChangeListener;
+import javafx.geometry.Side;
+import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.Tab;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import org.beuwi.simulator.platform.application.views.actions.CloseTabAction;
+import org.beuwi.simulator.platform.application.views.actions.DeleteEditorPaneAction;
+import org.beuwi.simulator.platform.application.views.actions.SelectEditorTabAction;
+import org.beuwi.simulator.platform.application.views.actions.SplitEditorPaneAction;
+import org.beuwi.simulator.platform.application.views.parts.EditorAreaPart;
 import org.beuwi.simulator.platform.ui.components.IContextMenu;
 import org.beuwi.simulator.platform.ui.components.IMenuButton;
 import org.beuwi.simulator.platform.ui.components.IMenuItem;
@@ -16,8 +25,11 @@ import java.util.List;
 
 public class IEditorPane extends ITabPane
 {
-	// More Button Menu
-	private final IContextMenu menu = new IContextMenu();
+	// Editor Menu
+	private final IContextMenu menu = new IContextMenu
+	(
+		new IMenuItem("Close Editor", event -> DeleteEditorPaneAction.update(this))
+	);
 
 	// Split Button
 	private final IMenuButton split = new IMenuButton();
@@ -38,6 +50,27 @@ public class IEditorPane extends ITabPane
 		setTabMinHeight(30);
 		setTabMaxHeight(30);
 
+		addEventFilter(MouseEvent.MOUSE_CLICKED, event ->
+		{
+			EditorAreaPart.setSelectedPane(this);
+
+			if (MouseButton.SECONDARY.equals(event.getButton()))
+			{
+				if (getTabs().isEmpty())
+				{
+					menu.show(this, event);
+				}
+			}
+		});
+
+		addEventFilter(MouseEvent.MOUSE_PRESSED, event ->
+		{
+			if (menu.isShowing())
+			{
+				menu.hide();
+			}
+		});
+
 		setOnKeyPressed(event ->
 		{
 			if (event.isControlDown())
@@ -45,7 +78,7 @@ public class IEditorPane extends ITabPane
 				switch (event.getCode())
 				{
 					case W  :
-					case F4 : break;
+					case F4 : CloseTabAction.update(this); break;
 				}
 			}
 
@@ -53,8 +86,8 @@ public class IEditorPane extends ITabPane
 			{
 				switch (event.getCode())
 				{
-					case LEFT :
-					case RIGHT : break;
+					case LEFT :	SelectEditorTabAction.update(this, Side.LEFT); break;
+					case RIGHT : SelectEditorTabAction.update(this, Side.RIGHT); break;
 				}
 			}
 		});
@@ -81,7 +114,14 @@ public class IEditorPane extends ITabPane
 				items.add(new IMenuItem("Close", "Ctrl + F4"));
 				items.add(new IMenuItem("Close All"));
 
-				menu.getItems().setAll(items);
+				more.setMenus(items);
+
+				List<Node> panes = EditorAreaPart.getComponent().getItems();
+
+				/* if (list.isEmpty())
+				{
+					DeleteEditorPaneAction.update(this);
+				} */
 			}
 		});
 
@@ -90,12 +130,17 @@ public class IEditorPane extends ITabPane
 		split.getStyleClass().add("tab-split-button");
 		split.setGraphic(ISVGGlyph.getGlyph("Editor.Split"));
 		split.setMinSize(35, 30);
+		split.setOnAction(event ->
+		{
+			SplitEditorPaneAction.update();
+		});
 
 		more.getStyleClass().add("tab-more-button");
 		more.setGraphic(ISVGGlyph.getGlyph("Editor.More"));
 		more.setMinSize(35, 30);
-		more.setMenu(menu);
 
 		setButtonBar(hbox);
+
+		EditorAreaPart.setSelectedPane(this);
 	}
 }

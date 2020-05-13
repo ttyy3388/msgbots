@@ -84,6 +84,23 @@
 	-fx-padding: 0 1 0 1;
 }
 
+.slider .axis
+{
+	-fx-tick-label-font-size: 10;
+}
+.slider .track
+{
+	-fx-background-color: #6B6B6B;
+}
+.slider .thumb
+{
+	-fx-background-color: #4B6EAF;
+}
+.slider:focused .thumb
+{
+	-fx-background-color: #557BC2;
+}
+
 .jfx-toggle-button
 {
 	-jfx-toggle-color: #007ACC;
@@ -156,22 +173,28 @@
 	-fx-background-color: #474748;
 }
 
-.ifx-log-view .list-item
+.ifx-log-view { }
+.ifx-log-view .list-cell:selected .ifx-log-item
 {
-	-fx-background-insets: 3 5 5 0;
+	-fx-background-color: #0D293E;
+}
+
+.ifx-log-item
+{
+	-fx-background-insets: 5 10 5 10;
 	-fx-background-color: #2B2B2B;
 }
-.ifx-log-view .list-item .event
+.ifx-log-item .event
 {
 
 }
-.ifx-log-view .list-item .error
+.ifx-log-item .error
 {
 	-fx-text-fill: #FF0000;
 }
-.ifx-log-view .list-cell:selected .list-item
+.ifx-log-item .debug
 {
-	-fx-background-color: #0D293E;
+
 }
 
 .ifx-code-area,
@@ -194,7 +217,7 @@
 	-fx-border-color: transparent;
 	-fx-border-width: 0 0 0 3;
 	-fx-pref-width: 70;
-	-fx-padding: 3 12 3 0;
+	-fx-padding: 4 12 4 0;
 	-fx-cursor: default;
 }
 .ifx-code-area .lineno .text
@@ -203,7 +226,7 @@
 }
 .ifx-code-area .paragraph-text
 {
-	-fx-padding: 3 0 3 0;
+	-fx-padding: 4 0 4 0;
 }
 .ifx-code-area .paragraph-box .selection
 {

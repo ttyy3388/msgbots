@@ -44,6 +44,7 @@ public class ITabPaneSkin extends TabPaneSkin
 
 		bar.setPrefWidth(hbox.getPrefWidth());
 		bar.setPrefHeight(pane.getTabMinHeight());
+
 		hbox.setPrefHeight(pane.getTabMinHeight());
 
 		bar.visibleProperty().addListener((observable, oldValue, newValue) ->

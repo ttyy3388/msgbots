@@ -1,11 +1,22 @@
 package org.beuwi.simulator.platform.ui.skins;
 
-public class IScrollBarSkin // implements Skin<ScrollBar>
+import com.sun.javafx.util.Utils;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.NumberBinding;
+import javafx.geometry.Orientation;
+import javafx.geometry.Point2D;
+import javafx.scene.Node;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.Skin;
+import javafx.scene.layout.Region;
+import javafx.scene.shape.Rectangle;
+
+public class IScrollBarSkin implements Skin<ScrollBar>
 {
-	/* private ScrollBar scroll;
+	private ScrollBar scroll;
 	private Rectangle track = new Rectangle();
 	private Rectangle thumb = new Rectangle();
-    private Region group;
+	private Region group;
 
 	public IScrollBarSkin(final ScrollBar scroll)
 	{
@@ -181,5 +192,5 @@ public class IScrollBarSkin // implements Skin<ScrollBar>
 	public javafx.scene.control.ScrollBar getSkinnable()
 	{
 		return scroll;
-	} */
+	}
 }

@@ -66,7 +66,10 @@ public class IContextMenu extends ContextMenu
 						target.contains("Group")
 					)
 					{
-						show(node, event);
+						if (!((ListView) node).getItems().isEmpty())
+						{
+							show(node, event);
+						}
 					}
 					else
 					{

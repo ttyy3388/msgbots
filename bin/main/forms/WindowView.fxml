@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import org.beuwi.simulator.platform.ui.components.IMenuButton?>
 
-<BorderPane fx:id="bopRootPane" prefHeight="400.0" prefWidth="600.0" styleClass="root-pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="bopRootPane" prefHeight="400.0" prefWidth="600.0" styleClass="root-pane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <top>
       <AnchorPane fx:id="anpTitleBar" prefHeight="28.0" styleClass="title-bar">
          <children>

@@ -13,6 +13,9 @@ public class IButton extends Button
 	public static final int DEFAULT = 0;
 	public static final int ACTION  = 1;
 
+	private final double DEFAULT_WIDTH = 70;
+	private final double DEFAULT_HEIGHT = 30;
+
 	public final IntegerProperty property = new SimpleIntegerProperty(1);
 
 	public IButton()
@@ -22,6 +25,9 @@ public class IButton extends Button
 
 	public IButton(int type)
 	{
+		setPrefWidth(DEFAULT_WIDTH);
+		setPrefHeight(DEFAULT_HEIGHT);
+
 		property.set(type);
 
 		property.addListener((observable, oldValue, newValue) ->

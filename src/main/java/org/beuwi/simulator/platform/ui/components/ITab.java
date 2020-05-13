@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
 public class ITab extends Tab
@@ -27,6 +28,16 @@ public class ITab extends Tab
 		menu.setNode(getHeader());
 	}
 
+	public String getType()
+	{
+		return getId() != null ? getId().split("@")[1].split("::")[0] : null;
+	}
+
+	public String getName()
+	{
+		return getId() != null ? getId().split("@")[1].split("::")[1] : null;
+	}
+
 	public ITabPane getITabPane()
 	{
 		return (ITabPane) getTabPane();
@@ -40,5 +51,10 @@ public class ITab extends Tab
 	public void addEventFilter(EventType type, EventHandler handler)
 	{
 		getHeader().addEventFilter(type, handler);
+	}
+
+	public void setOnMouseClicked(EventHandler<MouseEvent> handler)
+	{
+		addEventHandler(MouseEvent.MOUSE_CLICKED, handler);
 	}
 }

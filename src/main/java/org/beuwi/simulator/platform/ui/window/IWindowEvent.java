@@ -265,6 +265,11 @@ public class IWindowEvent
 				{
 					setMaximized();
 				}
+
+				if (stage.getY() < 0)
+				{
+					stage.setY(0);
+				}
 			}
 
 			if (MouseEvent.MOUSE_RELEASED.equals(type))

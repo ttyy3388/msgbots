@@ -63,3 +63,49 @@
 	-fx-open-tab-animation: NONE;
 	-fx-close-tab-animation: NONE;
 }
+
+/* Scroll Bar */
+.scroll-bar
+{
+	-fx-skin: 'org.beuwi.simulator.platform.ui.skins.IScrollBarSkin';
+}
+.scroll-bar .track
+{
+	-fx-opacity: 0;
+}
+.scroll-bar .track-background
+{
+	-fx-opacity: 0;
+}
+.scroll-bar .thumb
+{
+	-fx-fill: rgba(100, 100, 100, 0.4);
+}
+.scroll-bar .thumb:hover
+{
+	-fx-fill: rgba(100, 100, 100, 0.5);
+}
+.scroll-bar .thumb:pressed
+{
+	-fx-fill: rgba(100, 100, 100, 0.6);
+}
+
+/* .scroll-bar
+{
+    -fx-pref-width: 10;
+    -fx-pref-height: 10;
+}
+.scroll-bar .thumb
+{
+    -fx-background-color: rgba(100, 100, 100, 0.4);
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+.scroll-bar .thumb:hover
+{
+    -fx-background-color: rgba(100, 100, 100, 0.6);
+}
+.scroll-bar .thumb:pressed
+{
+    -fx-background-color: rgba(100, 100, 100, 0.8);
+} */

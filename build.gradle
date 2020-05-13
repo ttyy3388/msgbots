@@ -51,21 +51,14 @@ compileJava {
 	options.encoding = "UTF-8"
 	options.compilerArgs << "-Xlint:none"
 
-	/* moduleOptions {
+	moduleOptions {
 		addExports = [
 				// 안하면 package is not visible import 오류남
-				// 'javafx.graphics/com.sun.javafx.util' : 'org.beuwi.simulator',
-				// 'javafx.controls/com.sun.javafx.scene.control' : 'org.beuwi.simulator',
+				'javafx.graphics/com.sun.javafx.util' : 'org.beuwi.simulator'
 		]
-	} */
+	}
 }
-
 run {
-	/* jvmArgs '--add-exports=javafx.graphics/javafx.scene.layout=org.beuwi.simulator'
-			'--add-exports=javafx.graphics/com.sun.javafx.util=org.beuwi.simulator',
-			'--add-exports=javafx.graphics/com.sun.javafx.scene.input=org.beuwi.simulator',
-			'--add-exports=javafx.graphics/com.sun.javafx.css=org.beuwi.simulator',
-			'--add-exports=javafx.graphics/com.sun.javafx.iio=org.beuwi.simulator' */
 }
 
 jlink {
@@ -81,6 +74,8 @@ jlink {
 	mergedModule {
 		requires 'java.xml'
 		requires 'java.desktop'
+		requires 'javafx.graphics'
+		requires 'javafx.controls'
 	}
 
 	jpackage {

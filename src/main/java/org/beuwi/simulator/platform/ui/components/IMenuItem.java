@@ -4,11 +4,8 @@ import javafx.beans.property.BooleanProperty;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.HBox;
-
-import java.util.HashMap;
 
 public class IMenuItem extends MenuItem
 {
@@ -54,12 +51,7 @@ public class IMenuItem extends MenuItem
 		setOnAction(handler);
 	}
 
-	public static MenuItem getItem(String key)
-	{
-		return new IMenuItems().get(key);
-	}
-
-	private static class IMenuItems extends HashMap<String, MenuItem>
+	/* private static class IMenuItems extends HashMap<String, MenuItem>
 	{
 		{
 			put("Separator", 		new SeparatorMenuItem());
@@ -81,5 +73,5 @@ public class IMenuItem extends MenuItem
 			put("Open.Debug.Room", 	new IMenuItem("Open Debug Room", "F8"));
 			put("Show.Global.Log", 	new IMenuItem("Show Global Log", "F9"));
 		}
-	}
+	} */
 }

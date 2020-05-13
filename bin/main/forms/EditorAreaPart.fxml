@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.control.SplitPane?>
 
-<AnchorPane prefHeight="1100.0" prefWidth="850.0" styleClass="editor-area" stylesheets="@../styles/EditorAreaPart.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="1100.0" prefWidth="850.0" styleClass="editor-area" stylesheets="@../styles/EditorAreaPart.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <children>
         <SplitPane AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
     </children>

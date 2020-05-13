@@ -10,9 +10,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import org.beuwi.simulator.platform.ui.components.IButton;
 import org.beuwi.simulator.platform.ui.dialog.IDialogBoxType.DOCUMENT;
-import org.beuwi.simulator.platform.ui.window.IWindowStage;
 import org.beuwi.simulator.platform.ui.window.IWindowType;
 import org.beuwi.simulator.platform.ui.window.IWindowView;
 import org.beuwi.simulator.utils.ResourceUtils;
@@ -24,13 +24,14 @@ public class IDialogBoxView extends StackPane implements Initializable
 {
 	@FXML private BorderPane brpRootPane;
 	@FXML private ImageView  imvDialogIcon;
-	@FXML private HBox	 	 hoxButtonBox;
+	@FXML private HBox	 	 hbxButtonBox;
 
 	@FXML private IButton btnOK;
 	@FXML private IButton btnNO;
 
-	final IWindowView main;
-	final IWindowStage stage;
+	final IWindowView window;
+
+	final Stage stage;
 
 	IDialogBoxType type;
 	DOCUMENT document;
@@ -61,14 +62,14 @@ public class IDialogBoxView extends StackPane implements Initializable
 		}
 
 		this.type  = type;
-		this.stage = new IWindowStage(IWindowType.DIALOG);
-		this.main  = new IWindowView(stage);
+		this.stage = new Stage();
+		this.window = new IWindowView(stage);
 	}
 
 	public void setUseButton(boolean ok, boolean no)
 	{
-		if (!ok) hoxButtonBox.getChildren().remove(btnOK);
-		if (!no) hoxButtonBox.getChildren().remove(btnNO);
+		if (!ok) hbxButtonBox.getChildren().remove(btnOK);
+		if (!no) hbxButtonBox.getChildren().remove(btnNO);
 	}
 
 	public void setContent(Region content)
@@ -135,11 +136,11 @@ public class IDialogBoxView extends StackPane implements Initializable
 			}
 		});
 
-		main.setContent(this);
-		main.setType(IWindowType.DIALOG);
-		main.setTitle(title);
-		main.create();
-		main.show();
+		window.setContent(this);
+		window.setType(IWindowType.DIALOG);
+		window.setTitle(title);
+		window.create();
+		window.show();
 	}
 
 	public void close()

@@ -7,6 +7,7 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import org.beuwi.simulator.platform.ui.components.IButton?>
@@ -18,118 +19,105 @@
    <children>
       <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox prefWidth="34.0" styleClass="activity-bar">
+            <VBox prefWidth="30.0" styleClass="activity-bar">
                <children>
-                  <ToggleButton fx:id="tgnExplorerTab" mnemonicParsing="false" prefHeight="38.0" prefWidth="34.0" selected="true" styleClass="explorer-tab" />
-                  <ToggleButton fx:id="tgnDebugTab" mnemonicParsing="false" prefHeight="38.0" prefWidth="34.0" styleClass="debug-tab" />
+                  <ToggleButton fx:id="tgnBotsTab" mnemonicParsing="false" prefHeight="35.0" prefWidth="30.0" selected="true" styleClass="bots-tab" />
+                  <ToggleButton fx:id="tgnDebugTab" mnemonicParsing="false" prefHeight="35.0" prefWidth="30.0" styleClass="debug-tab" />
                </children>
             </VBox>
-            <AnchorPane prefWidth="220.0" styleClass="side-bar" HBox.hgrow="ALWAYS">
+            <StackPane prefWidth="220.0" styleClass="side-bar" HBox.hgrow="ALWAYS">
                <children>
-                  <AnchorPane fx:id="anpExplorerPart" styleClass="explorer-part" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox>
                      <children>
-                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <HBox prefHeight="30.0" styleClass="title-pane">
                            <children>
-                              <HBox prefHeight="30.0" styleClass="title-pane">
+                              <AnchorPane HBox.hgrow="ALWAYS">
                                  <children>
-                                    <AnchorPane HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <Label layoutX="156.0" layoutY="31.0" text="EXPLORER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                       </children>
-                                    </AnchorPane>
-                                    <Button fx:id="btnShowOption" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="option-button">
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                    </Button>
+                                    <Label layoutX="156.0" layoutY="31.0" text="EXPLORER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
-                              </HBox>
-                              <AnchorPane styleClass="content-area" VBox.vgrow="ALWAYS">
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                        <AnchorPane styleClass="content-area" VBox.vgrow="ALWAYS">
+                           <children>
+                              <IListView fx:id="listView" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+                  <VBox visible="false">
+                     <children>
+                        <HBox prefHeight="30.0" styleClass="title-pane">
+                           <children>
+                              <AnchorPane HBox.hgrow="ALWAYS">
                                  <children>
-                                    <IListView fx:id="listView" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <Label layoutX="156.0" layoutY="31.0" text="SIMULATION" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
-                                 <VBox.margin>
+                              </AnchorPane>
+                              <HBox>
+                                 <children>
+                                    <Button fx:id="btnReloadAllBots" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="reload-button" />
+                                    <Button fx:id="btnOpenChatRoom" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="chat-button" />
+                                    <Button fx:id="btnShowGlobalLog" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="log-button" />
+                                 </children>
+                                 <HBox.margin>
                                     <Insets />
-                                 </VBox.margin>
-                              </AnchorPane>
+                                 </HBox.margin>
+                              </HBox>
                            </children>
-                        </VBox>
-                     </children>
-                  </AnchorPane>
-                <AnchorPane fx:id="anpDebugPart" disable="true" styleClass="debug-part" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <VBox styleClass="debug-area" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        </HBox>
+                        <AnchorPane styleClass="content-area" VBox.vgrow="ALWAYS">
                            <children>
-                              <HBox prefHeight="30.0" styleClass="title-pane">
+                              <Label layoutY="15.0" text="Room" AnchorPane.leftAnchor="0.0" />
+                              <Label layoutY="60.0" text="Sender" AnchorPane.leftAnchor="0.0" />
+                              <Label layoutY="105.0" text="Bot" AnchorPane.leftAnchor="0.0" />
+                              <Label layoutY="150.0" text="Package" AnchorPane.leftAnchor="0.0" />
+                              <Label layoutY="195.0" text="isGroupChat" AnchorPane.leftAnchor="0.0" />
+                              <Label disable="true" layoutY="250.0" text="Sender Profile Visible" AnchorPane.leftAnchor="0.0" />
+                              <Label disable="true" layoutY="290.0" text="Bot Profile Visible" AnchorPane.leftAnchor="0.0" />
+                              <Label layoutY="345.0" text="Sender Profile Image" AnchorPane.leftAnchor="0.0" />
+                              <Label layoutY="385.0" text="Bot Profile Image" AnchorPane.leftAnchor="0.0" />
+                              <ITextField fx:id="txfRoomName" layoutY="10.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" />
+                              <ITextField fx:id="txfSenderName" layoutY="55.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" />
+                              <ITextField fx:id="txfBotName" layoutY="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" />
+                              <ITextField fx:id="txfPackageName" layoutY="145.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" />
+                              <HBox alignment="CENTER" layoutY="450.0" prefHeight="30.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                  <children>
                                     <AnchorPane HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Label layoutX="156.0" layoutY="31.0" text="SIMULATION" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <IButton fx:id="btnApply" text="Apply" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
-                                    <HBox>
+                                    <AnchorPane HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Button fx:id="btnReloadAllBots" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="reload-button" />
-                                          <Button fx:id="btnOpenChatRoom" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="chat-button" />
-                                          <Button fx:id="btnShowGlobalLog" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="log-button" />
+                                          <IButton fx:id="btnRefresh" text="Refresh" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                    </HBox>
+                                    </AnchorPane>
                                  </children>
                               </HBox>
-                              <AnchorPane styleClass="content-area" VBox.vgrow="ALWAYS">
-                                 <children>
-                                    <Label layoutY="15.0" text="Room" AnchorPane.leftAnchor="0.0" />
-                                    <Label layoutY="60.0" text="Sender" AnchorPane.leftAnchor="0.0" />
-                                    <Label layoutY="105.0" text="Bot" AnchorPane.leftAnchor="0.0" />
-                                    <Label layoutY="150.0" text="Package" AnchorPane.leftAnchor="0.0" />
-                                    <Label layoutY="195.0" text="isGroupChat" AnchorPane.leftAnchor="0.0" />
-                                    <Label disable="true" layoutY="250.0" text="Sender Profile Visible" AnchorPane.leftAnchor="0.0" />
-                                    <Label disable="true" layoutY="290.0" text="Bot Profile Visible" AnchorPane.leftAnchor="0.0" />
-                                    <Label layoutY="345.0" text="Sender Profile Image" AnchorPane.leftAnchor="0.0" />
-                                    <Label layoutY="385.0" text="Bot Profile Image" AnchorPane.leftAnchor="0.0" />
-                                    <ITextField fx:id="txfRoomName" layoutY="10.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" />
-                                    <ITextField fx:id="txfSenderName" layoutY="55.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" />
-                                    <ITextField fx:id="txfBotName" layoutY="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" />
-                                    <ITextField fx:id="txfPackageName" layoutY="145.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" />
-                                    <HBox alignment="CENTER" layoutY="450.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                       <children>
-                                          <AnchorPane HBox.hgrow="ALWAYS">
-                                             <children>
-                                                <IButton fx:id="btnApply" prefHeight="30.0" text="Apply" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane HBox.hgrow="ALWAYS">
-                                             <children>
-                                                <IButton fx:id="btnRefresh" prefHeight="30.0" text="Refresh" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                       </children>
-                                    </HBox>
-                                    <IButton fx:id="btnSenderProfile" layoutY="340.0" mnemonicParsing="false" prefHeight="25.0" styleClass="action-button" text="..." AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="0.0" />
-                                    <IButton fx:id="btnBotProfile" layoutY="380.0" mnemonicParsing="false" prefHeight="25.0" styleClass="action-button" text="..." AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="0.0" />
-                                    <ICheckBox fx:id="chkIsGroupChat" layoutX="186.0" layoutY="195.0" mnemonicParsing="false" AnchorPane.rightAnchor="0.0" />
-                                    <ICheckBox fx:id="chkSenderProfile" disable="true" layoutX="184.0" layoutY="250.0" mnemonicParsing="false" AnchorPane.rightAnchor="0.0" />
-                                    <ICheckBox fx:id="chkBotProfile" disable="true" layoutX="134.0" layoutY="290.0" mnemonicParsing="false" AnchorPane.rightAnchor="0.0" />
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </VBox.margin>
-                              </AnchorPane>
+                              <IButton fx:id="btnSenderProfile" layoutY="340.0" mnemonicParsing="false" prefHeight="25.0" styleClass="action-button" text="..." AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="0.0" />
+                              <IButton fx:id="btnBotProfile" layoutY="380.0" mnemonicParsing="false" prefHeight="25.0" styleClass="action-button" text="..." AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="0.0" />
+                              <ICheckBox fx:id="chkIsGroupChat" layoutX="186.0" layoutY="195.0" mnemonicParsing="false" AnchorPane.rightAnchor="0.0" />
+                              <ICheckBox fx:id="chkSenderProfile" disable="true" layoutX="184.0" layoutY="250.0" mnemonicParsing="false" AnchorPane.rightAnchor="0.0" />
+                              <ICheckBox fx:id="chkBotProfile" disable="true" layoutX="134.0" layoutY="290.0" mnemonicParsing="false" AnchorPane.rightAnchor="0.0" />
                            </children>
-                        </VBox>
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </VBox.margin>
+                        </AnchorPane>
                      </children>
-                </AnchorPane>
+                  </VBox>
                </children>
-            </AnchorPane>
+            </StackPane>
          </children>
       </HBox>
-      <StackPane fx:id="stpResizeBar" prefWidth="7.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane prefWidth="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <cursor>
             <Cursor fx:constant="E_RESIZE" />
          </cursor>
-      </StackPane>
+      </Pane>
    </children>
 </AnchorPane>
