@@ -1,4 +1,10 @@
 
+
+.root-pane
+{
+    -fx-border-color: #434346;
+}
+
 .title-bar .button
 {
 	-fx-cursor: default;
@@ -7,6 +13,11 @@
 .button-bar .button:hover .glyph
 {
     -fx-background-color: #FFFFFF;
+}
+
+.status-bar
+{
+	-fx-background-color: #007ACC;
 }
 
 .minimize-button:hover
@@ -27,6 +38,10 @@
     -fx-background-color: #FFFFFF;
 }
 
+.window:focused .root-pane
+{
+    -fx-border-color: #007ACC;
+}
 .window:maximized .root-pane
 {
 	-fx-border-width: 0;

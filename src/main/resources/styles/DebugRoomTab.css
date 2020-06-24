@@ -5,16 +5,9 @@
 	-fx-font-size: 14;
 }
 
-.button,
-.button:armed
-{
-    -fx-background-color: transparent;
-    -fx-border-width: 0;
-}
-
 .list-cell
 {
-	-fx-padding: 15 10 15 10;
+	-fx-padding: 5 15 5 15;
 }
 
 .list-cell .bot-label,
@@ -51,6 +44,7 @@
 
 .button
 {
-	-fx-background-image: url('../images/send.png');
+	/* -fx-background-image: url('../images/send.png'); */
+	-fx-background-color: aqua;
 	-fx-background-size: 60;
 }

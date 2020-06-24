@@ -1,18 +1,6 @@
-
-/* *
-{
-    -fx-background-radius: 0;
-    -fx-background-insets: 0;
-    -fx-background-color: transparent;
-    -fx-border-radius: 0;
-    -fx-border-insets: 0;
-    -fx-border-color: transparent;
-    -fx-border-width: 0;
-} */
-
 .root
 {
-	-fx-font-family: 'Roboto Medium';
+	-fx-font-family: 'Microsoft Sans Serif';
 	-fx-font-size: 12;
 }
 
@@ -20,6 +8,11 @@
 .tab, .button, .toggle-button
 {
 	-fx-cursor: hand;
+}
+
+.text
+{
+    -fx-font-smoothing-type: lcd;
 }
 
 .context-menu
@@ -67,7 +60,7 @@
 /* Scroll Bar */
 .scroll-bar
 {
-	-fx-skin: 'org.beuwi.simulator.platform.ui.skins.IScrollBarSkin';
+	-fx-skin: 'org.beuwi.msgbots.platform.ui.skins.ScrollBarSkin';
 }
 .scroll-bar .track
 {
@@ -92,20 +85,20 @@
 
 /* .scroll-bar
 {
-    -fx-pref-width: 10;
-    -fx-pref-height: 10;
+	-fx-pref-width: 10;
+	-fx-pref-height: 10;
 }
 .scroll-bar .thumb
 {
-    -fx-background-color: rgba(100, 100, 100, 0.4);
-    -fx-background-insets: 0;
-    -fx-background-radius: 0;
+	-fx-background-color: rgba(100, 100, 100, 0.4);
+	-fx-background-insets: 0;
+	-fx-background-radius: 0;
 }
 .scroll-bar .thumb:hover
 {
-    -fx-background-color: rgba(100, 100, 100, 0.6);
+	-fx-background-color: rgba(100, 100, 100, 0.6);
 }
 .scroll-bar .thumb:pressed
 {
-    -fx-background-color: rgba(100, 100, 100, 0.8);
+	-fx-background-color: rgba(100, 100, 100, 0.8);
 } */

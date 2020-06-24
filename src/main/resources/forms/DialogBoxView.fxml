@@ -4,7 +4,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import org.beuwi.simulator.platform.ui.components.IButton?>
+
+<?import org.beuwi.msgbots.platform.ui.control.Button?>
 
 <BorderPane fx:id="brpRootPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
@@ -12,8 +13,8 @@
          <children>
             <HBox fx:id="hbxButtonBox" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <IButton fx:id="btnOK" mnemonicParsing="false" prefHeight="28.0" prefWidth="70.0" text="Ok" />
-                  <IButton fx:id="btnNO" mnemonicParsing="false" prefHeight="28.0" prefWidth="70.0" text="No" />
+                  <Button fx:id="btnOK" mnemonicParsing="false" prefHeight="28.0" prefWidth="70.0" text="OK" />
+                  <Button fx:id="btnNO" mnemonicParsing="false" prefHeight="28.0" prefWidth="70.0" text="NO" />
                </children>
             </HBox>
          </children>
