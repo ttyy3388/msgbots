@@ -4,9 +4,10 @@ import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.StackPane;
+
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
-public class PreferencesTab
+public class GlobalSettingTab
 {
     private static ObservableMap<String, Object> nameSpace;
 
@@ -15,17 +16,13 @@ public class PreferencesTab
 	public static void initialize() throws Exception
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(ResourceUtils.getForm("SettingsTab"));
+		loader.setLocation(ResourceUtils.getForm("GlobalSettingTab"));
 		loader.setController(null);
 		loader.load();
 
 		nameSpace = loader.getNamespace();
 
 		root = loader.getRoot();
-
-		Program.initialize();
-		Debug.initialize();
-		Bots.initialize();
 	}
 
 	public static class Program
