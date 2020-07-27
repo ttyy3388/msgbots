@@ -1,0 +1,55 @@
+
+.editor-area
+{
+    -fx-background-color: #1E1E1E;
+}
+
+/* .start-pane .button
+{
+	-fx-background-image: url('../images/program_big.png');
+	-fx-background-size: 350;
+}
+.start-pane .label *
+{
+	-fx-font-family: 'Roboto';
+	-fx-font-weight: bold;
+	-fx-font-size: 15;
+}
+.start-pane .major-label
+{
+	-fx-text-fill: #8A8A8A;
+}
+.start-pane .minor-label
+{
+	-fx-text-fill: #589DF6;
+} */
+
+.tab-header-box
+{
+	-fx-border-color: transparent;
+	-fx-border-width: 3 0 3 0;
+	-fx-padding: 0 14 0 14;
+}
+.tab:hover .tab-header-box
+{
+	-fx-background-color: #3C3C3C;
+}
+.tab:selected .tab-header-box
+{
+	-fx-background-color: #1E1E1E;
+	-fx-border-color: #007ACC transparent transparent transparent;
+}
+
+.tab-content-area
+{
+	-fx-background-color: #1E1E1E;
+}
+.tab-header-background
+{
+	-fx-background-color: #252526;
+}
+
+/* .tab:drag:hover
+{
+	-fx-background-color: #3C3F42;
+} */

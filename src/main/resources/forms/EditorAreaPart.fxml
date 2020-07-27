@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.StackPane?>
+
+<?import org.beuwi.msgbots.platform.ui.control.TabPane?>
+
+<StackPane styleClass="editor-area" stylesheets="@../styles/EditorAreaPart.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane />
+   </children>
+</StackPane>

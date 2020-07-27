@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+    id 'org.beryx.jlink' version '2.19.0'
+}
+
+group 'org.beuwi.msgbots'
+
+javafx {
+    version = '14.0.1'
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+application {
+    mainClassName = "org.beuwi.msgbots.Launcher"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
+    implementation group: 'org.mozilla', name: 'rhino', version: '1.7.12'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.6'
+    implementation group: 'com.jfoenix', name: 'jfoenix', version: '9.0.8'
+    implementation group: 'org.fxmisc.richtext', name: 'richtextfx', version: '0.10.4'
+    implementation (group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1') {
+        exclude group: 'org.hamcrest', module: 'hamcrest-core'
+    }
+}
+
+compileJava {
+    options.encoding = "UTF-8"
+    options.compilerArgs << "-Xlint:none"
+}
+
+run {
+    jvmArgs '--add-exports', 'javafx.base/com.sun.javafx.event=ALL-UNNAMED',
+            '--add-exports', 'javafx.graphics/com.sun.javafx.iio=ALL-UNNAMED',
+            '--add-exports', 'javafx.graphics/com.sun.javafx.iio.common=ALL-UNNAMED',
+            '--add-exports', 'javafx.controls/com.sun.javafx.scene.control=ALL-UNNAMED'
+}

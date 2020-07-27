@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<?import org.beuwi.msgbots.platform.ui.control.Button?>
+
+<BorderPane fx:id="brpRootPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <bottom>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <HBox fx:id="hbxButtonBox" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <Button fx:id="btnOK" mnemonicParsing="false" prefHeight="28.0" prefWidth="70.0" text="OK" />
+                  <Button fx:id="btnNO" mnemonicParsing="false" prefHeight="28.0" prefWidth="70.0" text="NO" />
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </bottom>
+   <left>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="imvDialogIcon" fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>
