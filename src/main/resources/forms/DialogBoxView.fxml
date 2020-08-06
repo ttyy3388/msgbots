@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<?import org.beuwi.msgbots.platform.ui.control.Button?>
+<?import org.beuwi.msgbots.platform.gui.control.Button?>
 
 <BorderPane fx:id="brpRootPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>

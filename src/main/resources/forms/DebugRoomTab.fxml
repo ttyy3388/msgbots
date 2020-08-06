@@ -5,8 +5,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import org.beuwi.msgbots.platform.ui.control.ListView?>
-<?import org.beuwi.msgbots.platform.ui.control.TextArea?>
+<?import org.beuwi.msgbots.platform.gui.control.ListView?>
+<?import org.beuwi.msgbots.platform.gui.control.TextArea?>
 
 <VBox alignment="CENTER" cacheShape="false" centerShape="false" minWidth="350.0" prefHeight="800.0" prefWidth="1000.0" scaleShape="false" stylesheets="@../styles/DebugRoomTab.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>

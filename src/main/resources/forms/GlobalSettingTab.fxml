@@ -16,9 +16,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import org.beuwi.msgbots.platform.ui.control.Button?>
-<?import org.beuwi.msgbots.platform.ui.control.CheckBox?>
-<?import org.beuwi.msgbots.platform.ui.control.TextField?>
+<?import org.beuwi.msgbots.platform.gui.control.Button?>
+<?import org.beuwi.msgbots.platform.gui.control.CheckBox?>
+<?import org.beuwi.msgbots.platform.gui.control.TextField?>
 
 <?import org.fxmisc.richtext.CodeArea?>
 
