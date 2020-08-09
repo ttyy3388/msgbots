@@ -63,7 +63,7 @@
 }
 
 /* Scroll Bar */
-.scroll-bar
+/* .scroll-bar
 {
 	-fx-skin: 'org.beuwi.msgbots.platform.ui.skins.ScrollBarSkin';
 }
@@ -86,7 +86,7 @@
 .scroll-bar .thumb:pressed
 {
 	-fx-fill: rgba(100, 100, 100, 0.6);
-}
+} */
 
 /* .scroll-bar
 {

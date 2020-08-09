@@ -1,14 +1,17 @@
 package org.beuwi.msgbots.platform.app.view.parts;
 
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.SplitPane;
-
+import javafx.scene.control.TabPane;
+import javafx.scene.layout.Pane;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
-public class EditorAreaPart extends View
+public class EditorAreaPart implements View
 {
-	private static SplitPane component;
+	private static ObservableMap<String, Object> nameSpace;
+
+	private static Pane root;
 
 	@Override
 	public void init() throws Exception
@@ -23,8 +26,18 @@ public class EditorAreaPart extends View
 		root = loader.getRoot();
 	}
 
-	public static SplitPane getComponent()
+	public static Pane getRoot()
 	{
-		return (SplitPane) root.getChildren().get(0);
+		return root;
+	}
+
+	public static TabPane getComponent()
+	{
+		return (TabPane) root.getChildren().get(0);
+	}
+
+	public static ObservableMap<String, Object> getNameSpace()
+	{
+		return nameSpace;
 	}
 }

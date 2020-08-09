@@ -3,8 +3,11 @@ package org.beuwi.msgbots.platform.app.view;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import org.beuwi.msgbots.platform.app.view.parts.ActiveAreaPart;
+import org.beuwi.msgbots.platform.app.view.parts.EditorAreaPart;
+import org.beuwi.msgbots.platform.app.view.parts.MenuBarPart;
+import org.beuwi.msgbots.platform.app.view.parts.StatusBarPart;
+import org.beuwi.msgbots.platform.win.WindowFrame;
 import org.beuwi.msgbots.platform.win.WindowType;
-import org.beuwi.msgbots.platform.win.WindowView;
 
 public class MainView extends BorderPane
 {
@@ -15,9 +18,10 @@ public class MainView extends BorderPane
 	{
 		this.stage = stage;
 
+		setTop(MenuBarPart.getRoot());
 		setLeft(ActiveAreaPart.getRoot());
-		// setCenter(EditorAreaPart.getRoot());
-		// setBottom(StatusBarPart.getRoot());
+		setCenter(EditorAreaPart.getRoot());
+		setBottom(StatusBarPart.getRoot());
 
 		setMinWidth(800);
 		setMinHeight(600);
@@ -32,7 +36,7 @@ public class MainView extends BorderPane
 		new MainWindow(stage).show();
 	}
 
-	private class MainWindow extends WindowView
+	private class MainWindow extends WindowFrame
 	{
 		public MainWindow(Stage stage)
 		{

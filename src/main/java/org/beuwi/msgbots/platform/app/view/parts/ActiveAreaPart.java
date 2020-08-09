@@ -1,16 +1,17 @@
 package org.beuwi.msgbots.platform.app.view.parts;
 
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
-public class ActiveAreaPart extends View
+public class ActiveAreaPart implements View
 {
-	private static Pane resize;
+	private static ObservableMap<String, Object> nameSpace;
+
+	private static Pane root;
 
 	@Override
 	public void init() throws Exception
@@ -25,23 +26,18 @@ public class ActiveAreaPart extends View
         root = loader.getRoot();
 	}
 
+	public static Pane getRoot()
+	{
+		return root;
+	}
+
 	public static HBox getComponent()
 	{
 		return (HBox) root.getChildren().get(0);
 	}
 
-	public static VBox getActivityBar()
+	public static ObservableMap<String, Object> getNameSpace()
 	{
-		return (VBox) getComponent().getChildren().get(0);
-	}
-
-	public static StackPane getSideBar()
-	{
-		return (StackPane) getComponent().getChildren().get(1);
-	}
-
-	public static Pane getResizeBar()
-	{
-		return (Pane) getRoot().getChildren().get(1);
+		return nameSpace;
 	}
 }

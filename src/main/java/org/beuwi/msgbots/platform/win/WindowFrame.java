@@ -1,61 +1,70 @@
 package org.beuwi.msgbots.platform.win;
 
-import com.sun.jna.Native;
-import com.sun.jna.Pointer;
-import com.sun.jna.platform.win32.WinDef;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
-import java.awt.Component;
-import java.lang.reflect.Method;
+import org.beuwi.msgbots.platform.util.ResourceUtils;
 
 public class WindowFrame extends StackPane
 {
-	final WindowProcedure procedure;
+	private final Stage stage;
 
-	public WindowFrame()
-    {
-        procedure = new WindowProcedure();
-	}
+	private WindowType type;
+	private Region content;
+	private String title;
 
-	private WinDef.HWND getHwnd()
-    {
-		WinDef.HWND hwnd = new WinDef.HWND();
-		hwnd.setPointer(getWindowPointer(null));
-		return hwnd;
-	}
-
-	private Pointer getWindowPointer(Stage stage)
+	public WindowFrame(Stage stage)
 	{
-		try
-		{
-			Method getPeer = stage.getClass().getMethod("impl_getPeer");
-			final Object tkStage = getPeer.invoke(stage);
-			Method getPlatformWindow = tkStage.getClass().getDeclaredMethod("getPlatformWindow");
-			getPlatformWindow.setAccessible(true);
-			final Object platformWindow = getPlatformWindow.invoke(tkStage);
-			Method getNativeHandle = platformWindow.getClass().getMethod("getNativeHandle");
-
-			return new Pointer((Long) getNativeHandle.invoke(platformWindow));
-		}
-		catch (Throwable t)
-		{
-			return null;
-		}
+		this.stage = stage;
 	}
 
-	private void initializeFrame()
-    {
-		WindowParams.setControlBoxWidth(controlBox.getWidth() + 10);
+	public Stage getStage()
+	{
+		return stage;
 	}
 
-	public void addUserControlsToTitleBar(Component component)
-    {
-        WindowParams.setExtraLeftReservedWidth(titleBarCustomContent.getWidth() + 10);
+	public WindowType getType()
+	{
+		return type;
 	}
 
-	public void setIcon(Image image)
-    {
-		WindowParams.setExtraLeftReservedWidth(titleBarCustomContent.getWidth() + 10);
+	public Region getContent()
+	{
+		return content;
+	}
+
+	public String getTitle()
+	{
+		return title;
+	}
+
+	public void setType(WindowType type)
+	{
+		this.type = type;
+	}
+
+	public void setTitle(String title)
+	{
+		this.title = title;
+	}
+
+	public void setContent(Region content)
+	{
+		this.content = content;
+	}
+
+	public void create()
+	{
+		getChildren().add(content);
+
+		stage.getIcons().add(ResourceUtils.getImage("program"));
+		stage.setTitle("Messenger Bot Simulator"); // Default Title
+		stage.setScene(new WindowScene(this));
+		stage.toFront();
+	}
+
+	public void show()
+	{
+		stage.show();
 	}
 }

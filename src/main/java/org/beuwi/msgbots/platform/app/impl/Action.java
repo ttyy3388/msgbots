@@ -2,9 +2,11 @@ package org.beuwi.msgbots.platform.app.impl;
 
 public interface Action
 {
-	// void init();
+	void init();
 
-	void execute();
+	/* public static void execute() {
+
+	}; */
 
 	String getName(); // getActionName();
 }

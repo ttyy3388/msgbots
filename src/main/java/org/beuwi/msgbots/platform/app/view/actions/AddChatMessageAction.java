@@ -1,35 +1,35 @@
 package org.beuwi.msgbots.platform.app.view.actions;
 
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import org.beuwi.msgbots.platform.app.impl.Action;
+import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
 
 public class AddChatMessageAction implements Action
 {
-	private final String message;
-	private final boolean isbot;
-
-	public AddChatMessageAction(String message, boolean isbot)
-	{
-		this.message = message;
-		this.isbot = isbot;
-	}
+	private static ListView listView;
 
 	@Override
-	public void execute()
+	public void init()
 	{
-		/* if (message.length() >= 200)
-		{
-			// 전체보기
-		}
+		listView = DebugRoomTab.getComponent();
+	}
 
-		if (message.length() >= 20000)
-		{
-			return ;
-		} */
+	public static void execute(String message)
+	{
+		Label chat = new Label();
+		chat.setText(message);
+		chat.setMaxWidth(220);
+		chat.setWrapText(true);
+
+		chat.getStyleClass().add("chat");
+
+		listView.getItems().add(chat);
 	}
 
 	@Override
 	public String getName()
 	{
-		return "Add Chat Message Action";
+		return "add.chat.message.action";
 	}
 }

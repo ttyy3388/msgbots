@@ -11,6 +11,11 @@
 	-fx-text-fill: #FFFFFF;
 }
 
+.root
+{
+	-fx-background-color: #323233;
+}
+
 .button:styled
 {
 	-fx-background-color: #3F3F46;
@@ -69,6 +74,16 @@
 	-fx-padding: 5 0 5 0;
 }
 
+.menu-bar
+{
+	-fx-background-color: #FFFFFF;
+}
+.menu-bar .button
+{
+	-fx-text-fill: #000000;
+	-fx-cursor: default;
+}
+
 .menu-button
 {
 
@@ -76,7 +91,8 @@
 .menu-button:hover,
 .menu-button:showing
 {
-	-fx-background-color: #474748;
+	/* -fx-background-color: #474748; */
+	-fx-background-color: #DEDEDE;
 }
 
 .menu-item
@@ -157,18 +173,3 @@
 {
 	-fx-border-color: #007ACC;
 }
-
-/* .toast-view
-{
-	-fx-padding: 5;
-}
-.toast-message
-{
-	-fx-background-color: #252526;
-	-fx-background-insets: 5;
-	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
-}
-.toast-message .label
-{
-	-fx-font-size: 15;
-} */

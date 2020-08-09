@@ -1,11 +1,17 @@
 package org.beuwi.msgbots.platform.app.view.parts;
 
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.Pane;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
-public class StatusBarPart extends View
+public class StatusBarPart implements View
 {
+	private static ObservableMap<String, Object> nameSpace;
+
+	private static Pane root;
+
 	@Override
 	public void init() throws Exception
 	{
@@ -17,5 +23,15 @@ public class StatusBarPart extends View
 		nameSpace = loader.getNamespace();
 
 		root = loader.getRoot();
+	}
+
+	public static Pane getRoot()
+	{
+		return root;
+	}
+
+	public static ObservableMap<String, Object> getNameSpace()
+	{
+		return nameSpace;
 	}
 }
