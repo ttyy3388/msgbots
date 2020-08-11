@@ -16,7 +16,7 @@ public class StatusBarPart implements View
 	public void init() throws Exception
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(ResourceUtils.getForm("StatusBarPart"));
+		loader.setLocation(ResourceUtils.getForm("status-bar-part"));
 		loader.setController(null);
 		loader.load();
 

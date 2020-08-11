@@ -14,7 +14,7 @@ public class ContextMenu extends javafx.scene.control.ContextMenu
 		this(null);
 	}
 
-	public ContextMenu(MenuItem[] items)
+	public ContextMenu(javafx.scene.control.MenuItem[] items)
 	{
 		getItems().addAll(items);
 		getStyleClass().add("context-menu");

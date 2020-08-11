@@ -2,16 +2,23 @@ package org.beuwi.msgbots.platform.win;
 
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
-public class WindowFrame extends StackPane
+public abstract class WindowFrame extends StackPane
 {
 	private final Stage stage;
 
 	private WindowType type;
 	private Region content;
 	private String title;
+
+	/* public WindowFrame()
+	{
+		this(new Stage());
+	} */
 
 	public WindowFrame(Stage stage)
 	{
@@ -38,14 +45,14 @@ public class WindowFrame extends StackPane
 		return title;
 	}
 
-	public void setType(WindowType type)
-	{
-		this.type = type;
-	}
-
 	public void setTitle(String title)
 	{
 		this.title = title;
+	}
+
+	public void setType(WindowType type)
+	{
+		this.type = type;
 	}
 
 	public void setContent(Region content)
@@ -55,15 +62,22 @@ public class WindowFrame extends StackPane
 
 	public void create()
 	{
-		getChildren().add(content);
+		switch (type)
+		{
+			case WINDOW : break;
+			case DIALOG :
+				stage.initModality(Modality.WINDOW_MODAL);
+				stage.initOwner(MainView.getStage());
+				break;
+		}
 
 		stage.getIcons().add(ResourceUtils.getImage("program"));
-		stage.setTitle("Messenger Bot Simulator"); // Default Title
-		stage.setScene(new WindowScene(this));
+		stage.setScene(new WindowScene(content));
+		stage.setTitle(title);
 		stage.toFront();
 	}
 
-	public void show()
+	public void display()
 	{
 		stage.show();
 	}

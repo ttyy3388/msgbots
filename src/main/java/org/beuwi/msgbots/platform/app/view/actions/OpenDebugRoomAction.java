@@ -3,6 +3,7 @@ package org.beuwi.msgbots.platform.app.view.actions;
 import javafx.scene.layout.VBox;
 import org.beuwi.msgbots.platform.app.impl.Action;
 import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
+import org.beuwi.msgbots.platform.gui.control.Tab;
 
 public class OpenDebugRoomAction implements Action
 {
@@ -16,7 +17,7 @@ public class OpenDebugRoomAction implements Action
 
 	public static void execute()
 	{
-		AddEditorTabAction.execute("DEBUG ROOM", pane);
+		AddEditorTabAction.execute(new Tab("DEBUG ROOM", pane));
 	}
 
 	@Override

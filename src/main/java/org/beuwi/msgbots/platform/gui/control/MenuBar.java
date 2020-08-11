@@ -22,7 +22,7 @@ public class MenuBar extends HBox
             {
                 if (change.wasAdded())
                 {
-					getItems().get(index++).setPrefHeight(getPrefHeight());
+					getItems().get(index++).setPrefHeight(DEFAULT_HEIGHT);
                 }
             }
 		});

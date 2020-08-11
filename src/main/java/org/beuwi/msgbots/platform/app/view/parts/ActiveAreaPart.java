@@ -17,7 +17,7 @@ public class ActiveAreaPart implements View
 	public void init() throws Exception
 	{
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(ResourceUtils.getForm("ActiveAreaPart"));
+        loader.setLocation(ResourceUtils.getForm("active-area-part"));
         loader.setController(null);
         loader.load();
 

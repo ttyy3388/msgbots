@@ -1,10 +1,9 @@
 package org.beuwi.msgbots.platform.app.view.actions;
 
-import javafx.scene.Node;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import org.beuwi.msgbots.platform.app.impl.Action;
 import org.beuwi.msgbots.platform.app.view.parts.EditorAreaPart;
+import org.beuwi.msgbots.platform.gui.control.Tab;
+import org.beuwi.msgbots.platform.gui.control.TabPane;
 
 public class AddEditorTabAction implements Action
 {
@@ -16,9 +15,9 @@ public class AddEditorTabAction implements Action
 		pane = EditorAreaPart.getComponent();
 	}
 
-	public static void execute(String title, Node content)
+	public static void execute(Tab tab)
 	{
-		pane.getTabs().add(new Tab(title, content));
+		pane.addTab(tab);
 	}
 
 	@Override

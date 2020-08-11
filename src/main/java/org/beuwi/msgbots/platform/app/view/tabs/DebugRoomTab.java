@@ -21,7 +21,7 @@ public class DebugRoomTab implements View
 	public void init() throws Exception
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(ResourceUtils.getForm("DebugRoomTab"));
+		loader.setLocation(ResourceUtils.getForm("debug-room-tab"));
 		loader.setController(null);
 		loader.load();
 

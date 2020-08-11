@@ -61,17 +61,17 @@
 
 .context-menu
 {
-	-fx-background-color: #252526;
-	-fx-border-color: #434344;
+	-fx-background-color: #FFFFFF;
+	-fx-border-color: #BABABA;
 	-fx-border-width: 1;
 	-fx-padding: 5 0 5 0;
 	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 5);
 }
 .context-menu .separator .line
 {
-	-fx-background-insets: 4 0 4 0;
-	-fx-background-color: #434344;
-	-fx-padding: 5 0 5 0;
+	-fx-background-insets: 5 0 5 0;
+	-fx-background-color: #BABABA;
+	-fx-padding: 5.5 0 5.5 0;
 }
 
 .menu-bar
@@ -97,20 +97,18 @@
 
 .menu-item
 {
-	-fx-padding: 5 15 5 15;
+	-fx-text-fill: #000000;
+	-fx-padding: 5 20 5 20;
 }
-/* .menu-item .label *
+.menu-item .label
 {
-	-fx-font-family: '';
-	-fx-font-size: 13;
-} */
+	-fx-text-fill: #000000;
+	/* -fx-font-family: '';
+	-fx-font-size: 13; */
+}
 .menu-item:focused
 {
-	-fx-background-color: #094771;
-}
-.menu-item:focused .label
-{
-	-fx-text-fill: #FFFFFF;
+	-fx-background-color: #E8EAED;
 }
 
 .split-pane-divider
@@ -138,9 +136,7 @@
 
 .tab
 {
-	/* -fx-border-color: transparent;
-	-fx-border-width: 3 0 3 0; */
-	-fx-padding: 0 14 0 14;
+
 }
 .tab:hover
 {
@@ -149,16 +145,15 @@
 .tab:selected
 {
 	-fx-background-color: #1E1E1E;
-	/* -fx-border-color: #007ACC transparent transparent transparent; */
 }
 
+.tab-header-area
+{
+	-fx-background-color: #252526;
+}
 .tab-content-area
 {
 	-fx-background-color: #1E1E1E;
-}
-.tab-header-background
-{
-	-fx-background-color: #252526;
 }
 
 .text-area,

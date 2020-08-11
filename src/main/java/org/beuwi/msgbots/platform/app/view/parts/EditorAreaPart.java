@@ -2,9 +2,9 @@ package org.beuwi.msgbots.platform.app.view.parts;
 
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.TabPane;
 import javafx.scene.layout.Pane;
 import org.beuwi.msgbots.platform.app.impl.View;
+import org.beuwi.msgbots.platform.gui.control.TabPane;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
 public class EditorAreaPart implements View
@@ -17,7 +17,7 @@ public class EditorAreaPart implements View
 	public void init() throws Exception
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(ResourceUtils.getForm("EditorAreaPart"));
+		loader.setLocation(ResourceUtils.getForm("editor-area-part"));
 		loader.setController(null);
 		loader.load();
 

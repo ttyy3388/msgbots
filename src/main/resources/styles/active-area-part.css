@@ -1,0 +1,18 @@
+.active-area
+{
+}
+
+.activity-bar
+{
+	-fx-background-color: #323232;
+}
+
+.side-bar
+{
+    -fx-background-color: #252526;
+}
+
+/* .activity-bar .toggle-button:selected
+{
+    -fx-background-color: #252526;
+} */

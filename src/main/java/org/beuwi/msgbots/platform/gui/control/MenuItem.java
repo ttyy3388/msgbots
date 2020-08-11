@@ -3,6 +3,7 @@ package org.beuwi.msgbots.platform.gui.control;
 import javafx.beans.property.BooleanProperty;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
+import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.HBox;
 
@@ -48,5 +49,10 @@ public class MenuItem extends javafx.scene.control.MenuItem
 
         setGraphic(new HBox(name));
         setOnAction(handler);
+    }
+
+    public static SeparatorMenuItem getSeparator()
+    {
+        return new SeparatorMenuItem();
     }
 }

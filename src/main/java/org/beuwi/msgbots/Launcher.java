@@ -13,6 +13,7 @@ import org.beuwi.msgbots.platform.app.view.parts.EditorAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MenuBarPart;
 import org.beuwi.msgbots.platform.app.view.parts.StatusBarPart;
 import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
+import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
 public class Launcher extends Application
@@ -28,11 +29,11 @@ public class Launcher extends Application
 			System.setProperty("prism.subpixeltext", "false"); */
 
 			// Load Fonts
-			Font.loadFont(ResourceUtils.getFont("consola"),      0);  // Family : "Consolas"
+			Font.loadFont(ResourceUtils.getFont("consola"),       0); // Family : "Consolas"
 			Font.loadFont(ResourceUtils.getFont("consola-bold"),  0); // Family : "Consolas Bold"
-			Font.loadFont(ResourceUtils.getFont("d2Coding"),     0);  // Family : "D2Coding"
+			Font.loadFont(ResourceUtils.getFont("d2coding"),      0); // Family : "D2Coding"
 			Font.loadFont(ResourceUtils.getFont("d2coding-bold"), 0); // Family : "D2Coding"
-			Font.loadFont(ResourceUtils.getFont("roboto"), 	   0);  // Family : "Roboto"
+			Font.loadFont(ResourceUtils.getFont("roboto"), 	    0); // Family : "Roboto"
 			Font.loadFont(ResourceUtils.getFont("roboto-bold"),   0); // Family : "Roboto Bold"
 			Font.loadFont(ResourceUtils.getFont("roboto-medium"), 0); // Family : "Roboto Medium"
 
@@ -52,6 +53,11 @@ public class Launcher extends Application
 			new ShowNotificationAction().init();
 
 			new MainView(stage).display();
+
+			for (int i = 0 ; i < 15 ; i ++ )
+			{
+				AddEditorTabAction.execute(new Tab("TEST : " + (i + 1)));
+			}
 
 			OpenDebugRoomAction.execute();
 			// ShowToastMessageAction.execute("Test Toast Message");

@@ -1,0 +1,29 @@
+
+.editor-area
+{
+    -fx-background-color: #1E1E1E;
+}
+
+.tab
+{
+	-fx-border-color: transparent;
+	-fx-border-width: 0 3 0 3;
+}
+.tab:selected
+{
+	-fx-border-color: transparent transparent transparent #007ACC;
+}
+
+.tab-header-area
+{
+	-fx-background-color: #252526;
+}
+.tab-content-area
+{
+	-fx-background-color: #1E1E1E;
+}
+
+/* .tab:drag:hover
+{
+	-fx-background-color: #3C3F42;
+} */

@@ -6,8 +6,8 @@ import org.beuwi.msgbots.platform.app.view.parts.ActiveAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.EditorAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MenuBarPart;
 import org.beuwi.msgbots.platform.app.view.parts.StatusBarPart;
-import org.beuwi.msgbots.platform.win.WindowFrame;
 import org.beuwi.msgbots.platform.win.WindowType;
+import org.beuwi.msgbots.platform.win.WindowWrap;
 
 public class MainView extends BorderPane
 {
@@ -33,16 +33,17 @@ public class MainView extends BorderPane
 
 	public void display()
 	{
-		new MainWindow(stage).show();
+		new MainWindow(stage).display();
 	}
 
-	private class MainWindow extends WindowFrame
+	private class MainWindow extends WindowWrap
 	{
 		public MainWindow(Stage stage)
 		{
 			super(stage);
 
 			setContent(new MainView(stage));
+			setTitle("Messenger Bot Simulator");
 			setType(WindowType.WINDOW);
 			create();
 		}
