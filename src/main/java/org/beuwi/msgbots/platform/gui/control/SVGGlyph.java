@@ -39,6 +39,14 @@ public class SVGGlyph extends com.jfoenix.svg.SVGGlyph
         setFill(fill);
         setSize(width, height);
         getStyleClass().add("glyph");
+
+        this.parentProperty().addListener((observable, oldValue, newValue) ->
+        {
+            if (newValue != null)
+            {
+                applyStyles(newValue);
+            }
+        });
     }
 
     // Parent

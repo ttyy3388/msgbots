@@ -3,8 +3,9 @@ package org.beuwi.msgbots.platform.app.view.parts;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.SeparatorMenuItem;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import org.beuwi.msgbots.platform.app.impl.View;
+import org.beuwi.msgbots.platform.app.view.actions.ToggleMenuBarAction;
 import org.beuwi.msgbots.platform.gui.control.MenuBar;
 import org.beuwi.msgbots.platform.gui.control.MenuItem;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
@@ -13,7 +14,7 @@ public class MenuBarPart implements View
 {
 	private static ObservableMap<String, Object> nameSpace;
 
-	private static Pane root;
+	private static StackPane root;
 
 	private static MenuBar component;
 
@@ -57,7 +58,13 @@ public class MenuBarPart implements View
 		);
 
 		// View Menu Button
-		// component.getItem(2).setMenu(new ContextMenu());
+		component.getItem(2).setMenus
+		(
+			new MenuItem("Toggle Menu Bar", /* "Alt",*/ event -> ToggleMenuBarAction.execute())
+			/* new SeparatorMenuItem(),
+			new MenuItem("Toggle Bots Tab"),
+			new MenuItem("Toggle Debug Tab") */
+		);
 
 		// Debug Menu Button
 		component.getItem(3).setMenus
@@ -65,9 +72,20 @@ public class MenuBarPart implements View
 			new MenuItem("Show Global Log", "F8"),
 			new MenuItem("Open Debug Room", "F9")
 		);
+
+		// Help Menu Button
+		component.getItem(4).setMenus
+		(
+			new MenuItem("View Update List"),
+			new MenuItem("View License"),
+			new SeparatorMenuItem(),
+			new MenuItem("About Program"),
+			new SeparatorMenuItem(),
+			new MenuItem("Welcome Guide")
+		);
 	}
 
-	public static Pane getRoot()
+	public static StackPane getRoot()
 	{
 		return root;
 	}

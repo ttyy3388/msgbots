@@ -1,33 +1,34 @@
 package org.beuwi.msgbots.platform.gui.control;
 
+import javafx.beans.DefaultProperty;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import org.beuwi.msgbots.platform.util.AllSVGIcons;
 
-import java.util.HashMap;
-import java.util.Map;
-
+@DefaultProperty("content")
 public class Tab extends HBox
 {
-	private static final Pos DEFAULT_TAB_ALIGNMENT = Pos.CENTER;
-	private static final int DEFAULT_TAB_SPACING = 7;
-	private static final int DEFAULT_TAB_WIDTH = 50;
-	// private static final int DEFAULT_TAB_HEIGHT = 50;
+	private static final String DEFAULT_STYLE_CLASS = "tab";
 
-	private static final int DEFAULT_ICON_SIZE = 12;
+	private static final Pos DEFAULT_TAB_ALIGNMENT = Pos.CENTER;
+	private static final int DEFAULT_TAB_SPACING = 10;
+	private static final int DEFAULT_TAB_WIDTH = 50;
+	private static final int DEFAULT_TAB_HEIGHT = 50;
+
+	private static final int DEFAULT_ICON_SIZE = 10;
 	private static final int DEFAULT_BUTTON_SIZE = 10;
 
-	// HBox : Header, Node : Content
-	private final Map<HBox, Node> tab = new HashMap<>();
+	// Tab Closable Property
+	private final BooleanProperty closable = new SimpleBooleanProperty(true);
 
-	private final ImageView image = new ImageView();
+	private final BooleanProperty pinned = new SimpleBooleanProperty(false);
 
 	// Title Label
 	private final Label label = new Label();
@@ -36,13 +37,19 @@ public class Tab extends HBox
 	private final Button button = new Button();
 
 	// private final HBox header = new HBox();
+	private final ContextMenu menu;
 	private final Node content;
 
-	private final TabType type;
-	private final String title;
-	private final Image icon;
+	// private final TabType type;
 
 	private TabPane pane;
+
+	public enum Type
+	{
+		BUTTON, // Default
+
+		TOGGLE // Option
+	}
 
 	public Tab()
 	{
@@ -54,39 +61,33 @@ public class Tab extends HBox
 		this(title, new Pane());
 	}
 
+	// 추후 사이드 옵션도 구현해야됨
 	public Tab(String title, Node content)
 	{
-		this(title, content, TabType.BUTTON);
-	}
-
-	public Tab(String title, Node content, TabType type)
-	{
-		this(null , title, content, type);
-	}
-
-	// 추후 사이드 옵션도 구현해야됨
-	public Tab(Image icon, String title, Node content, TabType type)
-	{
-		this.type = type;
-		this.icon = icon;
-		this.title = title;
 		this.content = content;
 
-		if (icon != null)
-		{
-			image.setImage(icon);
-			image.setFitWidth(DEFAULT_ICON_SIZE);
-			image.setFitHeight(DEFAULT_ICON_SIZE);
-		}
+		this.menu = new ContextMenu
+		(
+			new MenuItem("Close Tab", "Ctrl + W", closable, event -> pane.close(this)),
+			new MenuItem("Close Other Tabs"),
+			new MenuItem("Close Tabs to the Right"),
+			new MenuItem("Close Tabs to the Left"),
+			new MenuItem("Close All Tabs"),
+			new SeparatorMenuItem(),
+			new MenuItem("Pin Tab", event -> pinned.set(!pinned.get())),
+			new SeparatorMenuItem(),
+			new MenuItem("Select Next Tab", event -> pane.selectNextTab(this)),
+			new MenuItem("Select Previous Tab", event -> pane.selectPreviousTab(this))
+		);
+
+		menu.setNode(this);
 
 		if (title != null)
 		{
 			label.setText(title);
 		}
 
-		tab.put(this, content);
-
-		content.setId("@content::" + title);
+		// content.setId("@content::" + title);
 
 		button.setGraphic(AllSVGIcons.get("Tab.Close"));
 		button.setPrefWidth(DEFAULT_BUTTON_SIZE);
@@ -101,46 +102,79 @@ public class Tab extends HBox
 			pane.close(this);
 		});
 
-		switch (type)
+		this.setOnMousePressed(event ->
 		{
-			case BUTTON :
+			pane.select(this);
+		});
 
-				this.setOnMousePressed(event ->
+
+		pinned.addListener((observable, oldValue, newValue) ->
+		{
+			closable.setValue(!newValue);
+
+			/* List<Tab> tabs = pane.getTabs();
+
+			tabs.remove(this);
+
+			// find pinned tab
+			for (int i = 0 ; i < tabs.size() ; i ++)
+			{
+				if (tabs.get(i).isPinned())
 				{
-					pane.select(this);
-				});
+					if (tabs.size() == i + 1)
+					{
+						tabs.add(i + 1, this);
+						break;
+					}
+					else
+					{
+						continue ;
+					}
+				}
+				else
+				{
+					tabs.add(i, this);
+					break;
+				}
+			} */
+		});
 
-                break;
+		closable.addListener((observable, oldValue, newValue) ->
+		{
+			button.setVisible(newValue);
+			// button.setDisable(!newValue);
+		});
 
-			case TOGGLE :
-
-                break;
-		}
-
-		setId("@tab::" + title);
-		setPadding(new Insets(0, 10, 0 ,10));
+		// setId("@tab::" + title);
+		setPadding(new Insets(0, 10, 0 ,30));
 		setSpacing(DEFAULT_TAB_SPACING);
 		setMinWidth(DEFAULT_TAB_WIDTH);
 		// setPrefHeight(DEFAULT_TAB_HEIGHT);
 		setAlignment(DEFAULT_TAB_ALIGNMENT);
-		getChildren().addAll(image, label, button);
-		getStyleClass().setAll("tab");
+		getChildren().addAll(label, button);
+		getStyleClass().setAll(DEFAULT_STYLE_CLASS);
 	}
 
-	public TabType getType()
+	public void close()
 	{
-		return type;
+		pane.close(this);
 	}
 
 	public String getTitle()
 	{
-		return title;
+		return label.getText();
 	}
 
 	// Close Button
 	public Button getButton()
 	{
 		return button;
+	}
+
+	// Get Title Label
+	public Label getLabel()
+	{
+		return label;
 	}
 
 	public HBox getHeader()
@@ -157,6 +191,36 @@ public class Tab extends HBox
     {
         return pane;
     }
+
+    public boolean isClosable()
+	{
+		return closable.get();
+	}
+
+	public boolean isPinned()
+	{
+		return pinned.get();
+	}
+
+	public void setTitle(String title)
+	{
+		label.setText(title);
+	}
+
+	public void setPinned()
+	{
+		setPinned(!pinned.get());
+	}
+
+	public void setPinned(boolean pinned)
+	{
+		this.pinned.set(pinned);
+	}
+
+	public void setClosable(boolean closable)
+	{
+		this.closable.set(closable);
+	}
 
     public void setTabPane(TabPane pane)
     {

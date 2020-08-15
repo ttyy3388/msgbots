@@ -5,7 +5,7 @@
 }
 
 /* CURSOR */
-.tab, .button, .toggle-button
+.button, .toggle-button
 {
 	-fx-cursor: hand;
 }
@@ -51,15 +51,15 @@
 	-fx-shape: "M14.4315 3.32315L5.96154 13.3232L5.17083 13.2874L1.82083 8.51736L2.63918 7.94263L5.617 12.1827L13.6685 2.67683L14.4315 3.32315Z";
 }
 
-.tab
+.tab-button
 {
-    -fx-font-size: 14;
+    -fx-cursor: default;
 }
 
 .tab-pane
 {
-	-fx-open-tab-animation: NONE;
-	-fx-close-tab-animation: NONE;
+	/* -fx-open-tab-animation: NONE;
+	-fx-close-tab-animation: NONE; */
 }
 
 /* Scroll Bar */
@@ -88,16 +88,14 @@
 	-fx-fill: rgba(100, 100, 100, 0.6);
 } */
 
-/* .scroll-bar
+.scroll-bar
 {
-	-fx-pref-width: 10;
-	-fx-pref-height: 10;
+	/* -fx-pref-width: 10;
+	-fx-pref-height: 10; */
 }
 .scroll-bar .thumb
 {
 	-fx-background-color: rgba(100, 100, 100, 0.4);
-	-fx-background-insets: 0;
-	-fx-background-radius: 0;
 }
 .scroll-bar .thumb:hover
 {
@@ -106,4 +104,4 @@
 .scroll-bar .thumb:pressed
 {
 	-fx-background-color: rgba(100, 100, 100, 0.8);
-} */
+}

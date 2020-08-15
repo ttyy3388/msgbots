@@ -2,12 +2,23 @@
 {
 }
 
-.activity-bar
+.tab:hover
+{
+	-fx-background-color: #3C3C3C;
+}
+.tab:selected
+{
+    -fx-background-color: #252526;
+}
+
+/* Activity Bar */
+.tab-header-area
 {
 	-fx-background-color: #323232;
 }
 
-.side-bar
+/* Side Bar */
+.tab-content-area
 {
     -fx-background-color: #252526;
 }

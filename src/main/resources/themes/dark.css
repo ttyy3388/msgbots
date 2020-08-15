@@ -111,6 +111,35 @@
 	-fx-background-color: #E8EAED;
 }
 
+.list-cell
+{
+    -fx-padding: 5 0 5 0;
+}
+
+.log-view
+{
+	-fx-padding: 10;
+}
+
+.log-item *
+{
+	-fx-background-radius: 0 10 10 0;
+	-fx-background-color: #2B2B2B;
+	-fx-border-width: 0 0 0 3;
+}
+.log-item .event
+{
+	-fx-border-color: #187BCD;
+}
+.log-item .error
+{
+	-fx-border-color: #EA3C53;
+}
+.log-item .debug
+{
+	-fx-border-color: #E05A00;
+}
+
 .split-pane-divider
 {
 	-fx-background-color: #3C3C3C;
@@ -134,9 +163,11 @@
 	-fx-background-color: #557BC2;
 }
 
+
 .tab
 {
-
+	-fx-border-color: transparent;
+	-fx-border-width: 0 3 0 3;
 }
 .tab:hover
 {
@@ -145,15 +176,7 @@
 .tab:selected
 {
 	-fx-background-color: #1E1E1E;
-}
-
-.tab-header-area
-{
-	-fx-background-color: #252526;
-}
-.tab-content-area
-{
-	-fx-background-color: #1E1E1E;
+	-fx-border-color: transparent transparent transparent #007ACC;
 }
 
 .text-area,

@@ -13,6 +13,7 @@
                 <MenuButton text="Edit" />
                 <MenuButton text="View" />
                 <MenuButton text="Debug" />
+                <MenuButton text="Help" />
             </children>
         </MenuBar>
     </children>

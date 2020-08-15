@@ -1,18 +1,22 @@
 package org.beuwi.msgbots;
 
 import javafx.application.Application;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.actions.AddChatMessageAction;
 import org.beuwi.msgbots.platform.app.view.actions.AddEditorTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDebugRoomAction;
+import org.beuwi.msgbots.platform.app.view.actions.OpenGlobalLogAction;
 import org.beuwi.msgbots.platform.app.view.actions.ShowNotificationAction;
+import org.beuwi.msgbots.platform.app.view.actions.ToggleMenuBarAction;
 import org.beuwi.msgbots.platform.app.view.parts.ActiveAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.EditorAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MenuBarPart;
 import org.beuwi.msgbots.platform.app.view.parts.StatusBarPart;
 import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
+import org.beuwi.msgbots.platform.app.view.tabs.GlobalLogTab;
 import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
@@ -46,20 +50,33 @@ public class Launcher extends Application
 			new StatusBarPart().init();
 
 			new DebugRoomTab().init();
+			new GlobalLogTab().init();
 
 			new AddChatMessageAction().init();
 			new AddEditorTabAction().init();
 			new OpenDebugRoomAction().init();
+			new OpenGlobalLogAction().init();
 			new ShowNotificationAction().init();
+			new ToggleMenuBarAction().init();
 
 			new MainView(stage).display();
 
-			for (int i = 0 ; i < 15 ; i ++ )
+			stage.addEventHandler(KeyEvent.KEY_PRESSED, event ->
+			{
+				/* if (event.getCode().equals(KeyCode.ALT))
+				{
+					ToggleMenuBarAction.execute();
+				} */
+			});
+
+			for (int i = 0 ; i < 10 ; i ++ )
 			{
 				AddEditorTabAction.execute(new Tab("TEST : " + (i + 1)));
 			}
 
-			OpenDebugRoomAction.execute();
+			OpenGlobalLogAction.execute();
+
+			//OpenDebugRoomAction.execute();
 			// ShowToastMessageAction.execute("Test Toast Message");
 			// ShowNotificationAction.execute("Test", "Hello World!");
 		}

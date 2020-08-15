@@ -1,35 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import org.beuwi.msgbots.platform.gui.area.ActiveArea?>
 
-<AnchorPane minHeight="500.0" minWidth="220.0" styleClass="active-area" stylesheets="@../styles/active-area-part.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <HBox layoutX="10.0" layoutY="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <VBox prefWidth="30.0" styleClass="activity-bar">
-               <children>
-                  <ToggleButton mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="bots-tab" />
-                  <ToggleButton mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="debug-tab" />
-               </children>
-            </VBox>
-            <StackPane styleClass="side-bar" HBox.hgrow="ALWAYS">
-               <children>
-                  <AnchorPane styleClass="bots-area" />
-                  <AnchorPane styleClass="debug-area" />
-               </children>
-            </StackPane>
-         </children>
-      </HBox>
-      <Pane prefWidth="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <cursor>
-            <Cursor fx:constant="E_RESIZE" />
-         </cursor>
-      </Pane>
-   </children>
-</AnchorPane>
+<ActiveArea xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" />
+

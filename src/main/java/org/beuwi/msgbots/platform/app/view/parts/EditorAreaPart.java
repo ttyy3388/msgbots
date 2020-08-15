@@ -11,6 +11,8 @@ public class EditorAreaPart implements View
 {
 	private static ObservableMap<String, Object> nameSpace;
 
+	private static TabPane component;
+
 	private static Pane root;
 
 	@Override
@@ -24,6 +26,8 @@ public class EditorAreaPart implements View
 		nameSpace = loader.getNamespace();
 
 		root = loader.getRoot();
+
+		component = getComponent();
 	}
 
 	public static Pane getRoot()

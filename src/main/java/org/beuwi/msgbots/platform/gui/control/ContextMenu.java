@@ -14,7 +14,7 @@ public class ContextMenu extends javafx.scene.control.ContextMenu
 		this(null);
 	}
 
-	public ContextMenu(javafx.scene.control.MenuItem[] items)
+	public ContextMenu(javafx.scene.control.MenuItem... items)
 	{
 		getItems().addAll(items);
 		getStyleClass().add("context-menu");
@@ -43,7 +43,18 @@ public class ContextMenu extends javafx.scene.control.ContextMenu
 		}
 		else
 		{
+			node.addEventFilter(MouseEvent.MOUSE_CLICKED, event ->
+			{
+				show(node, event);
+			});
 
+			node.addEventFilter(MouseEvent.MOUSE_PRESSED, event ->
+			{
+				if (isShowing())
+				{
+					hide();
+				}
+			});
 		}
 	}
 

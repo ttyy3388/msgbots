@@ -1,17 +1,7 @@
 
 .editor-area
 {
-    -fx-background-color: #1E1E1E;
-}
-
-.tab
-{
-	-fx-border-color: transparent;
-	-fx-border-width: 0 3 0 3;
-}
-.tab:selected
-{
-	-fx-border-color: transparent transparent transparent #007ACC;
+    /* -fx-background-color: #1E1E1E; */
 }
 
 .tab-header-area

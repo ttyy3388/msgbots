@@ -9,8 +9,9 @@ import org.beuwi.msgbots.platform.app.view.parts.StatusBarPart;
 import org.beuwi.msgbots.platform.win.WindowType;
 import org.beuwi.msgbots.platform.win.WindowWrap;
 
-public class MainView extends BorderPane
+public class MainView
 {
+	private static final BorderPane pane = new BorderPane();
 	private static Stage stage;
 
 	// Application Stage
@@ -18,22 +19,27 @@ public class MainView extends BorderPane
 	{
 		this.stage = stage;
 
-		setTop(MenuBarPart.getRoot());
-		setLeft(ActiveAreaPart.getRoot());
-		setCenter(EditorAreaPart.getRoot());
-		setBottom(StatusBarPart.getRoot());
+		pane.setTop(MenuBarPart.getRoot());
+		pane.setLeft(ActiveAreaPart.getRoot());
+		pane.setCenter(EditorAreaPart.getRoot());
+		pane.setBottom(StatusBarPart.getRoot());
 
-		setMinWidth(800);
-		setMinHeight(600);
-		setPrefWidth(1400);
-		setPrefHeight(900);
-		// setMaxWidth(1920);
-		// setMaxHeight(1080);
+		pane.setMinWidth(800);
+		pane.setMinHeight(600);
+		pane.setPrefWidth(1400);
+		pane.setPrefHeight(900);
+		// pane.setMaxWidth(1920);
+		// pane.setMaxHeight(1080);
 	}
 
 	public void display()
 	{
 		new MainWindow(stage).display();
+	}
+
+	public static BorderPane getRoot()
+	{
+		return pane;
 	}
 
 	private class MainWindow extends WindowWrap
@@ -42,7 +48,7 @@ public class MainView extends BorderPane
 		{
 			super(stage);
 
-			setContent(new MainView(stage));
+			setContent(new MainView(stage).getRoot());
 			setTitle("Messenger Bot Simulator");
 			setType(WindowType.WINDOW);
 			create();
