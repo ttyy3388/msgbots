@@ -10,7 +10,7 @@ import org.beuwi.msgbots.platform.gui.control.TabPane;
 import org.beuwi.msgbots.platform.gui.control.TabPane.Type;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
-public class ActiveArea extends AnchorPane
+public class SidePane extends AnchorPane
 {
 	private static final double DEFAULT_WIDTH = 250;
 
@@ -42,7 +42,7 @@ public class ActiveArea extends AnchorPane
 		AnchorPane.setBottomAnchor(resize, 0.0);
 	}
 
-	public ActiveArea()
+	public SidePane()
 	{
 		pane.addTab(bots, debug);
 		pane.setType(Type.SYSTEM);

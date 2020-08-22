@@ -7,12 +7,10 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
-import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -21,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @DefaultProperty("tabs")
-public class TabPane extends StackPane
+public class TabPane extends VBox
 {
 	// public static final EventType<Event> SELECTION_CHANGED_EVENT = new EventType<Event> (Event.ANY, "SELECTION_CHANGED_EVENT");
 
@@ -44,11 +42,8 @@ public class TabPane extends StackPane
 	// Tab Type Property
 	private final ObjectProperty<Type> type = new SimpleObjectProperty<>(Type.NORMAL);
 
-	// Tab Side Property
-	private final ObjectProperty<Side> side = new SimpleObjectProperty<>(Side.TOP);
-
 	// Selected Tab Property
-	private final ObjectProperty<Tab> property = new SimpleObjectProperty();
+	private final ObjectProperty<Tab> selected = new SimpleObjectProperty();
 
 	// Tab List
 	private final ObservableList<Tab> tabs = new TabObservableList<>(new ArrayList<>());
@@ -56,13 +51,11 @@ public class TabPane extends StackPane
 	// Tab Content Pane
 	private final StackPane content = new StackPane();
 
-	// Tab Header Scroll Pane
-	private ScrollPane scroll = new ScrollPane();
-
 	// Tab Header Area (Default : HBox)
-	private Pane header = new HBox();
+	private final HBox header = new HBox();
 
-	private Pane root = new VBox();
+	// Tab Header Scroll Pane
+	private final ScrollPane scroll = new ScrollPane();
 
 	public enum Type
 	{
@@ -89,6 +82,18 @@ public class TabPane extends StackPane
 			getTabs().addAll(tabs);
 		}
 
+		scroll.setHvalue(1.0d);
+		scroll.setContent(header);
+		scroll.setMinHeight(DEFAULT_TAB_HEIGHT);
+		scroll.setHbarPolicy(ScrollBarPolicy.NEVER);
+		scroll.setVbarPolicy(ScrollBarPolicy.NEVER);
+		scroll.setFitToHeight(true);
+
+		scroll.setOnScroll(event ->
+		{
+			scroll.setHvalue(scroll.getHvalue() - (event.getDeltaY()  * DEFAULT_SCROLL_SPEED));
+		});
+
 		this.tabs.addListener((ListChangeListener<Tab>) change ->
 		{
 			while (change.next())
@@ -98,17 +103,24 @@ public class TabPane extends StackPane
 					tab.setTabPane(null);
 
 					header.getChildren().remove(tab);
+
+					if (change.getList().isEmpty())
+					{
+						getChildren().remove(scroll);
+					}
 				}
 
 				for (Tab tab : change.getAddedSubList())
 				{
-					if (tab != null)
+					tab.setTabPane(this);
+
+					header.getChildren().add(tab);
+
+					selected.set(tab);
+
+					if (!getChildren().contains(scroll))
 					{
-						tab.setTabPane(this);
-
-						header.getChildren().add(tab);
-
-						property.set(tab);
+						getChildren().add(0, scroll);
 					}
 				}
 			}
@@ -124,11 +136,6 @@ public class TabPane extends StackPane
 				case NORMAL : break;
 				case SYSTEM :
 
-					if (getSide().isVertical())
-					{
-						return ;
-					}
-
 					List<Tab> list = this.tabs;
 
 					widthProperty().addListener(change ->
@@ -143,7 +150,7 @@ public class TabPane extends StackPane
 			}
 		});
 
-		property.addListener((observable, oldTab, newTab) ->
+		selected.addListener((observable, oldTab, newTab) ->
 		{
 			if (oldTab != null)
 			{
@@ -155,9 +162,9 @@ public class TabPane extends StackPane
 			}
 		});
 
-		setSide(Side.TOP);
 		setMinWidth(DEFAULT_MIN_WIDTH);
 		setMinHeight(DEFAULT_MIN_HEIGHT);
+		getChildren().addAll(scroll, content);
 		getStyleClass().setAll(DEFAULT_STYLE_CLASS);
 	}
 
@@ -236,7 +243,7 @@ public class TabPane extends StackPane
 
 	public void setSelectedTab(Tab tab)
 	{
-		property.set(tab);
+		selected.set(tab);
 	}
 
 	public void moveSelectTab(int start, int delta)
@@ -285,68 +292,7 @@ public class TabPane extends StackPane
 		this.type.set(type);
 	}
 
-	public Side getSide()
-	{
-		return side.get();
-	}
-
-	public void setSide(Side side)
-	{
-		scroll = new ScrollPane();
-
-		switch (side)
-		{
-			case TOP    -> root = new VBox(scroll, content);
-			case RIGHT  -> root = new HBox(content, scroll);
-			case BOTTOM -> root = new VBox(content, scroll);
-			case LEFT   -> root = new HBox(scroll, content);
-		}
-
-		// LEFT, RIGHT
-		if (side.isVertical())
-		{
-			header = new VBox();
-
-			scroll.setVvalue(1.0d);
-			scroll.setMinWidth(DEFAULT_TAB_WIDTH);
-			scroll.setFitToWidth(true);
-
-			scroll.setOnScroll(event ->
-			{
-				scroll.setVvalue(scroll.getVvalue() - (event.getDeltaX()  * DEFAULT_SCROLL_SPEED));
-			});
-		}
-		else
-		{
-			header = new HBox();
-
-			scroll.setHvalue(1.0d);
-			scroll.setMinHeight(DEFAULT_TAB_HEIGHT);
-			scroll.setFitToHeight(true);
-
-			scroll.setOnScroll(event ->
-			{
-				scroll.setHvalue(scroll.getHvalue() - (event.getDeltaY()  * DEFAULT_SCROLL_SPEED));
-			});
-		}
-
-		header.getChildren().addAll(tabs);
-
-		scroll.setContent(header);
-		scroll.setHbarPolicy(ScrollBarPolicy.NEVER);
-		scroll.setVbarPolicy(ScrollBarPolicy.NEVER);
-
-		getChildren().setAll(root);
-
-		this.side.set(side);
-	}
-
-	public Node getRoot()
-	{
-		return root;
-	}
-
-	public Node getHeaderArea()
+	public HBox getHeaderArea()
 	{
 		return header;
 	}
@@ -358,6 +304,6 @@ public class TabPane extends StackPane
 
 	public Tab getSelectedTab()
 	{
-		return property.get();
+		return selected.get();
 	}
 }

@@ -4,6 +4,21 @@
     /* -fx-background-color: #1E1E1E; */
 }
 
+.tab
+{
+	-fx-border-color: transparent;
+	-fx-border-width: 0 3 0 3;
+}
+.tab:hover
+{
+	-fx-background-color: #34373C;
+}
+.tab:selected
+{
+	-fx-background-color: #1E1E1E;
+	-fx-border-color: transparent transparent transparent #007ACC;
+}
+
 .tab-header-area
 {
 	-fx-background-color: #252526;

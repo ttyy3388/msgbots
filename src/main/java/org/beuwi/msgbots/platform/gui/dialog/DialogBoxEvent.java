@@ -1,10 +1,13 @@
 package org.beuwi.msgbots.platform.gui.dialog;
 
+import javafx.event.EventHandler;
+import javafx.event.EventType;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
 public class DialogBoxEvent
 {
-	/* private BooleanProperty minimized = new SimpleBooleanProperty(false);
-	private BooleanProperty closed    = new SimpleBooleanProperty(false);
-
 	final Stage stage;
 
 	public DialogBoxEvent(Stage stage)
@@ -12,53 +15,82 @@ public class DialogBoxEvent
 		this.stage = stage;
 	}
 
-	public BooleanProperty minimizedProperty()
-	{
-		return minimized;
-	}
+    // Title Bar
+    public void setMovable(AnchorPane title)
+    {
+        MoveListener listener = new MoveListener();
 
-	public BooleanProperty closedProperty()
-	{
-		return closed;
-	}
+        // title.addEventHandler(MouseEvent.MOUSE_ENTERED, listener);
+        title.addEventHandler(MouseEvent.MOUSE_PRESSED, listener);
+        title.addEventHandler(MouseEvent.MOUSE_DRAGGED, listener);
+        title.addEventHandler(MouseEvent.MOUSE_CLICKED, listener);
+        title.addEventHandler(MouseEvent.MOUSE_RELEASED, listener);
+        // title.addEventHandler(MouseEvent.MOUSE_EXITED, listener);
+    }
 
-	public boolean isMinimized()
-	{
-		return minimized.get();
-	}
+    private class MoveListener implements EventHandler<MouseEvent>
+    {
+        double initX;
+        double initY;
 
-	public boolean isClosed()
-	{
-		return closed.get();
-	}
+        public MoveListener()
+        {
 
-	private void minimize()
-	{
-		stage.setIconified(true);
-	}
+        }
 
-	private void close()
-	{
-		stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
-	}
+        @Override
+        public void handle(MouseEvent event)
+        {
+            EventType<? extends MouseEvent> type = event.getEventType();
 
-	public void setClosed()
-	{
-		Platform.runLater(() ->
-		{
-			close();
-		});
+            if (MouseEvent.MOUSE_PRESSED.equals(type))
+            {
+                if (event.isPrimaryButtonDown())
+                {
+                    initX = event.getScreenX();
+                    initY = event.getScreenY();
 
-		closed.set(true);
-	}
+                    event.consume();
+                }
+                else
+                {
+                    initX = -1;
+                    initY = -1;
+                }
+            };
 
-	public void setMinimized()
-	{
-		Platform.runLater(() ->
-		{
-			minimize();
-		});
+            if (MouseEvent.MOUSE_DRAGGED.equals(type))
+            {
+                if (!event.isPrimaryButtonDown())
+                {
+                    return ;
+                }
 
-		minimized.set(true);
-	} */
+                if (event.isStillSincePress())
+                {
+                    return ;
+                }
+
+                double newX = event.getScreenX();
+                double newY = event.getScreenY();
+
+                double deltaX = newX - initX;
+                double deltaY = newY - initY;
+
+                initX = newX;
+                initY = newY;
+
+                stage.setX(stage.getX() + deltaX);
+                stage.setY(stage.getY() + deltaY);
+
+                event.consume();
+            };
+
+            if (MouseEvent.MOUSE_RELEASED.equals(type))
+            {
+                initX = -1;
+                initY = -1;
+            }
+        }
+    }
 }

@@ -2,7 +2,9 @@ package org.beuwi.msgbots.platform.gui.control;
 
 import javafx.beans.DefaultProperty;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -10,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
+import org.beuwi.msgbots.platform.app.view.actions.SplitEditorPaneAction;
 import org.beuwi.msgbots.platform.util.AllSVGIcons;
 
 @DefaultProperty("content")
@@ -18,12 +22,14 @@ public class Tab extends HBox
 	private static final String DEFAULT_STYLE_CLASS = "tab";
 
 	private static final Pos DEFAULT_TAB_ALIGNMENT = Pos.CENTER;
-	private static final int DEFAULT_TAB_SPACING = 10;
-	private static final int DEFAULT_TAB_WIDTH = 50;
+	// private static final int DEFAULT_TAB_SPACING = 10;
+	private static final int DEFAULT_TAB_WIDTH = 100;
 	private static final int DEFAULT_TAB_HEIGHT = 50;
 
-	private static final int DEFAULT_ICON_SIZE = 10;
+	private static final int DEFAULT_LABEL_SIZE = 60;
 	private static final int DEFAULT_BUTTON_SIZE = 10;
+
+	private final ObjectProperty<Pos> align = new SimpleObjectProperty<>(Pos.CENTER);
 
 	// Tab Closable Property
 	private final BooleanProperty closable = new SimpleBooleanProperty(true);
@@ -43,6 +49,10 @@ public class Tab extends HBox
 	// private final TabType type;
 
 	private TabPane pane;
+
+	{
+		HBox.setHgrow(label, Priority.ALWAYS);
+	}
 
 	public enum Type
 	{
@@ -74,6 +84,11 @@ public class Tab extends HBox
 			new MenuItem("Close Tabs to the Left"),
 			new MenuItem("Close All Tabs"),
 			new SeparatorMenuItem(),
+			new MenuItem("Split Up", event -> SplitEditorPaneAction.execute(SplitPos.UP)),
+			new MenuItem("Split Down", event -> SplitEditorPaneAction.execute(SplitPos.DOWN)),
+			new MenuItem("Split Left", event -> SplitEditorPaneAction.execute(SplitPos.LEFT)),
+			new MenuItem("Split Right", event -> SplitEditorPaneAction.execute(SplitPos.RIGHT)),
+			new SeparatorMenuItem(),
 			new MenuItem("Pin Tab", event -> pinned.set(!pinned.get())),
 			new SeparatorMenuItem(),
 			new MenuItem("Select Next Tab", event -> pane.selectNextTab(this)),
@@ -92,6 +107,9 @@ public class Tab extends HBox
 		button.setGraphic(AllSVGIcons.get("Tab.Close"));
 		button.setPrefWidth(DEFAULT_BUTTON_SIZE);
 
+		label.setMinWidth(DEFAULT_LABEL_SIZE);
+		label.setAlignment(DEFAULT_TAB_ALIGNMENT);
+
 		// Set Styles
 		label.getStyleClass().add("tab-label");
 		button.getStyleClass().add("tab-button");
@@ -107,10 +125,14 @@ public class Tab extends HBox
 			pane.select(this);
 		});
 
-
-		pinned.addListener((observable, oldValue, newValue) ->
+		align.addListener(change ->
 		{
-			closable.setValue(!newValue);
+			label.setAlignment(align.get());
+		});
+
+		pinned.addListener(change->
+		{
+			closable.setValue(!pinned.get());
 
 			/* List<Tab> tabs = pane.getTabs();
 
@@ -146,8 +168,8 @@ public class Tab extends HBox
 		});
 
 		// setId("@tab::" + title);
-		setPadding(new Insets(0, 10, 0 ,30));
-		setSpacing(DEFAULT_TAB_SPACING);
+		setPadding(new Insets(0, 0, 0, 10));
+		// setSpacing(DEFAULT_TAB_SPACING);
 		setMinWidth(DEFAULT_TAB_WIDTH);
 		// setPrefHeight(DEFAULT_TAB_HEIGHT);
 		setAlignment(DEFAULT_TAB_ALIGNMENT);
@@ -202,6 +224,11 @@ public class Tab extends HBox
 		return pinned.get();
 	}
 
+	public Pos getAlign()
+	{
+		return align.get();
+	}
+
 	public void setTitle(String title)
 	{
 		label.setText(title);
@@ -220,6 +247,11 @@ public class Tab extends HBox
 	public void setClosable(boolean closable)
 	{
 		this.closable.set(closable);
+	}
+
+	public void setAlign(Pos pos)
+	{
+		this.align.set(pos);
 	}
 
     public void setTabPane(TabPane pane)

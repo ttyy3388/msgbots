@@ -1,13 +1,12 @@
 package org.beuwi.msgbots.platform.win;
 
+import javafx.css.PseudoClass;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
-public abstract class WindowFrame extends StackPane
+public class WindowFrame extends StackPane
 {
 	private final Stage stage;
 
@@ -17,7 +16,7 @@ public abstract class WindowFrame extends StackPane
 
 	/* public WindowFrame()
 	{
-		this(new Stage());
+		this(null);
 	} */
 
 	public WindowFrame(Stage stage)
@@ -66,15 +65,27 @@ public abstract class WindowFrame extends StackPane
 		{
 			case WINDOW : break;
 			case DIALOG :
-				stage.initModality(Modality.WINDOW_MODAL);
-				stage.initOwner(MainView.getStage());
+				/* stage.initModality(Modality.WINDOW_MODAL);
+				stage.initStyle(StageStyle.UNDECORATED);
+				stage.initStyle(StageStyle.TRANSPARENT);
+				stage.initOwner(MainView.getStage()); */
 				break;
 		}
+
+		stage.focusedProperty().addListener((observable, oldValue, newValue) ->
+		{
+			pseudoClassStateChanged(PseudoClass.getPseudoClass("focused"), newValue);
+		});
 
 		stage.getIcons().add(ResourceUtils.getImage("program"));
 		stage.setScene(new WindowScene(content));
 		stage.setTitle(title);
 		stage.toFront();
+	}
+
+	public void close()
+	{
+		stage.close();
 	}
 
 	public void display()

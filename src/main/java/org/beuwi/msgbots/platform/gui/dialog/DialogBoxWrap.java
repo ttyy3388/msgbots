@@ -19,6 +19,6 @@ public abstract class DialogBoxWrap extends DialogBoxFrame
 		this.init();
 	}
 
-	public abstract void display();
+	public abstract void open();
 	public abstract void init();
 }

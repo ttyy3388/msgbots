@@ -6,10 +6,13 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.actions.AddChatMessageAction;
-import org.beuwi.msgbots.platform.app.view.actions.AddEditorTabAction;
-import org.beuwi.msgbots.platform.app.view.actions.OpenDebugRoomAction;
-import org.beuwi.msgbots.platform.app.view.actions.OpenGlobalLogAction;
+import org.beuwi.msgbots.platform.app.view.actions.AddEditorPaneTabAction;
+import org.beuwi.msgbots.platform.app.view.actions.OpenCreateBotDialogAction;
+import org.beuwi.msgbots.platform.app.view.actions.OpenDebugRoomTabAction;
+import org.beuwi.msgbots.platform.app.view.actions.OpenGlobalLogTabAction;
+import org.beuwi.msgbots.platform.app.view.actions.OpenGlobalSettingTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.ShowNotificationAction;
+import org.beuwi.msgbots.platform.app.view.actions.SplitEditorPaneAction;
 import org.beuwi.msgbots.platform.app.view.actions.ToggleMenuBarAction;
 import org.beuwi.msgbots.platform.app.view.parts.ActiveAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.EditorAreaPart;
@@ -17,6 +20,7 @@ import org.beuwi.msgbots.platform.app.view.parts.MenuBarPart;
 import org.beuwi.msgbots.platform.app.view.parts.StatusBarPart;
 import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalLogTab;
+import org.beuwi.msgbots.platform.app.view.tabs.GlobalSettingTab;
 import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
@@ -51,12 +55,16 @@ public class Launcher extends Application
 
 			new DebugRoomTab().init();
 			new GlobalLogTab().init();
+			new GlobalSettingTab().init();
 
 			new AddChatMessageAction().init();
-			new AddEditorTabAction().init();
-			new OpenDebugRoomAction().init();
-			new OpenGlobalLogAction().init();
+			new AddEditorPaneTabAction().init();
+			new OpenCreateBotDialogAction().init();
+			new OpenDebugRoomTabAction().init();
+			new OpenGlobalLogTabAction().init();
+			new OpenGlobalSettingTabAction().init();
 			new ShowNotificationAction().init();
+			new SplitEditorPaneAction().init();
 			new ToggleMenuBarAction().init();
 
 			new MainView(stage).display();
@@ -71,10 +79,12 @@ public class Launcher extends Application
 
 			for (int i = 0 ; i < 10 ; i ++ )
 			{
-				AddEditorTabAction.execute(new Tab("TEST : " + (i + 1)));
+				AddEditorPaneTabAction.execute(new Tab("TEST : " + (i + 1)));
 			}
 
-			OpenGlobalLogAction.execute();
+			// OpenCreateBotDialogAction.execute();
+			// OpenGlobalLogTabAction.execute();
+			// OpenGlobalSettingTabAction.execute();
 
 			//OpenDebugRoomAction.execute();
 			// ShowToastMessageAction.execute("Test Toast Message");

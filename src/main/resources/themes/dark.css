@@ -11,10 +11,12 @@
 	-fx-text-fill: #FFFFFF;
 }
 
-.root
+.main
 {
 	-fx-background-color: #323233;
 }
+
+/* .dialog { } */
 
 .button:styled
 {
@@ -163,20 +165,20 @@
 	-fx-background-color: #557BC2;
 }
 
-
 .tab
 {
-	-fx-border-color: transparent;
-	-fx-border-width: 0 3 0 3;
 }
 .tab:hover
 {
-	-fx-background-color: #3C3C3C;
+	-fx-background-color: #A9A9A9;
 }
 .tab:selected
 {
 	-fx-background-color: #1E1E1E;
-	-fx-border-color: transparent transparent transparent #007ACC;
+}
+.tab:pinned
+{
+    -fx-border-color: transparent;
 }
 
 .text-area,

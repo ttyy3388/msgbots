@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
+
 public class WindowScene extends Scene
 {
 	public WindowScene(Region root)

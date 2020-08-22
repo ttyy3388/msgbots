@@ -5,7 +5,6 @@ import javafx.stage.Stage;
 import org.beuwi.msgbots.platform.app.view.parts.ActiveAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.EditorAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MenuBarPart;
-import org.beuwi.msgbots.platform.app.view.parts.StatusBarPart;
 import org.beuwi.msgbots.platform.win.WindowType;
 import org.beuwi.msgbots.platform.win.WindowWrap;
 
@@ -22,7 +21,7 @@ public class MainView
 		pane.setTop(MenuBarPart.getRoot());
 		pane.setLeft(ActiveAreaPart.getRoot());
 		pane.setCenter(EditorAreaPart.getRoot());
-		pane.setBottom(StatusBarPart.getRoot());
+		// pane.setBottom(StatusBarPart.getRoot());
 
 		pane.setMinWidth(800);
 		pane.setMinHeight(600);
@@ -30,6 +29,8 @@ public class MainView
 		pane.setPrefHeight(900);
 		// pane.setMaxWidth(1920);
 		// pane.setMaxHeight(1080);
+
+		pane.getStyleClass().add("main");
 	}
 
 	public void display()

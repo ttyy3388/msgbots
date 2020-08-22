@@ -2,18 +2,15 @@ package org.beuwi.msgbots.platform.app.view.parts;
 
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.Pane;
 import org.beuwi.msgbots.platform.app.impl.View;
-import org.beuwi.msgbots.platform.gui.control.TabPane;
+import org.beuwi.msgbots.platform.gui.area.EditorPane;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
 public class EditorAreaPart implements View
 {
 	private static ObservableMap<String, Object> nameSpace;
 
-	private static TabPane component;
-
-	private static Pane root;
+	private static EditorPane root;
 
 	@Override
 	public void init() throws Exception
@@ -26,18 +23,11 @@ public class EditorAreaPart implements View
 		nameSpace = loader.getNamespace();
 
 		root = loader.getRoot();
-
-		component = getComponent();
 	}
 
-	public static Pane getRoot()
+	public static EditorPane getRoot()
 	{
 		return root;
-	}
-
-	public static TabPane getComponent()
-	{
-		return (TabPane) root.getChildren().get(0);
 	}
 
 	public static ObservableMap<String, Object> getNameSpace()

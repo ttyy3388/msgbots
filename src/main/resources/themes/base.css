@@ -10,6 +10,12 @@
 	-fx-cursor: hand;
 }
 
+/* Alignment */
+/* .button, .label
+{
+    -fx-alignment: center;
+} */
+
 .text
 {
     -fx-font-smoothing-type: lcd;

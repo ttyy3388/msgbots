@@ -5,7 +5,7 @@ import org.beuwi.msgbots.platform.app.impl.Action;
 import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
 import org.beuwi.msgbots.platform.gui.control.Tab;
 
-public class OpenDebugRoomAction implements Action
+public class OpenDebugRoomTabAction implements Action
 {
 	private static VBox pane;
 
@@ -17,12 +17,12 @@ public class OpenDebugRoomAction implements Action
 
 	public static void execute()
 	{
-		AddEditorTabAction.execute(new Tab("DEBUG ROOM", pane));
+		AddEditorPaneTabAction.execute(new Tab("DEBUG ROOM", pane));
 	}
 
 	@Override
 	public String getName()
 	{
-		return "open.debug.room.action";
+		return "open.debug.room.tab.action";
 	}
 }
