@@ -15,6 +15,7 @@ import org.beuwi.msgbots.platform.app.view.parts.MenuBarPart;
 import org.beuwi.msgbots.platform.app.view.parts.PanelAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.SideAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.StatusBarPart;
+import org.beuwi.msgbots.platform.gui.control.Bot;
 import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
@@ -74,6 +75,8 @@ public class Launcher extends Application
 			{
 				AddMainAreaTabAction.execute(new Tab("TEST : " + (i + 1)));
 			}
+
+			SideAreaPart.BotListTab.getComponent().addItem(new Bot("TEST"));
 		}
 		catch (Exception e)
 		{

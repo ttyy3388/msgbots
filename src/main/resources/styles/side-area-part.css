@@ -4,3 +4,8 @@
     -fx-border-color: #414141;
     -fx-border-width: 0 1 0 0;
 }
+
+.bots-tab .list-view
+{
+    -fx-background-color: white;
+}

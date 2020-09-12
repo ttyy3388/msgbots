@@ -8,7 +8,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
-public class LogItem extends StackPane
+public class Log extends StackPane
 {
 	private static final String DEFAULT_STYLE_CLASS = "log-item";
 	private static final double DEFAULT_MIN_HEIGHT = 70;
@@ -38,7 +38,7 @@ public class LogItem extends StackPane
 		AnchorPane.setLeftAnchor(dlabel, 0.0);
 	}
 
-	public LogItem(String text, String date, String type)
+	public Log(String text, String date, String type)
 	{
 		this.type = type;
 

@@ -1,13 +1,13 @@
 
 .side-area
 {
-    -fx-border-color: #414141;
-    -fx-border-width: 0 0 0 1;
+	-fx-border-color: #414141;
+	-fx-border-width: 0 0 0 1;
 }
 
 .tab
 {
-    -fx-border-width: 0;
+	-fx-border-width: 0;
 }
 
 .tab
@@ -31,13 +31,6 @@
 {
 	-fx-font-family: D2Coding;
 	-fx-font-size: 14;
-}
-
-.debug-tab .button,
-.debug-tab .button:armed
-{
-    -fx-background-color: transparent;
-    -fx-border-width: 0;
 }
 
 .debug-tab .list-cell
@@ -71,14 +64,8 @@
 
 .debug-tab .text-area
 {
-	-fx-background-radius: 15;
-	-fx-background-color: transparent, #303030, transparent, #303030;
+	/* -fx-background-radius: 15; */
+	-fx-background-color: #303030;
 	-fx-border-width: 0;
 	-fx-padding: 10;
-}
-
-.debug-tab .button
-{
-	-fx-background-image: url('../images/send.png');
-	-fx-background-size: 60;
 }

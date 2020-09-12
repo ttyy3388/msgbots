@@ -12,7 +12,7 @@ public class AddChatMessageAction implements Action
 	@Override
 	public void init()
 	{
-		listView = (ListView) DebugAreaPart.getNameSpace().get("listView");
+		listView = DebugAreaPart.DebugRoomTab.getComponent();
 	}
 
 	public static void execute(String message)

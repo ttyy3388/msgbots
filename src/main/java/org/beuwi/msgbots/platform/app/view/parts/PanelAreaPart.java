@@ -28,7 +28,7 @@ public class PanelAreaPart implements View
 
 		component = (TabPane) loader.getComponent();
 
-		TextArea textArea = (TextArea) nameSpace.get("txa-input-area");
+		TextArea textArea = (TextArea) nameSpace.get("txaInputArea");
 
 		textArea.setOnKeyPressed(event ->
 		{

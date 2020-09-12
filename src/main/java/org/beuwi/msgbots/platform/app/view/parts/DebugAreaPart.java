@@ -10,6 +10,7 @@ import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.actions.AddChatMessageAction;
 import org.beuwi.msgbots.platform.gui.control.ListView;
+import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.gui.control.TabPane;
 
 public class DebugAreaPart implements View
@@ -37,7 +38,7 @@ public class DebugAreaPart implements View
 		component = (TabPane) loader.getComponent();
 
 		// Resize Bar
-		resize = (Pane) nameSpace.get("resize");
+		resize = (Pane) nameSpace.get("stpResizeBar");
 
 		resize.setOnMouseDragged(event ->
 		{
@@ -49,36 +50,62 @@ public class DebugAreaPart implements View
 			}
 		});
 
-		ListView listView = (ListView) nameSpace.get("lsv-chat-list");
-		TextArea textArea = (TextArea) nameSpace.get("txa-chat-input");
+		new DebugRoomTab().init();
+	}
 
-		textArea.setOnKeyPressed(event ->
+	public static class DebugRoomTab implements View
+	{
+		private static Tab root;
+
+		private static ListView listView;
+		private static TextArea textArea;
+
+		@Override
+		public void init() throws Exception
 		{
-			if (event.getCode().equals(KeyCode.ENTER))
+			root = (Tab) nameSpace.get("tabDebugRoom");
+
+			listView = (ListView) nameSpace.get("lsvChatView");
+			textArea = (TextArea) nameSpace.get("txaChatInput");
+
+			textArea.setOnKeyPressed(event ->
 			{
-				if (event.isShiftDown())
+				if (event.getCode().equals(KeyCode.ENTER))
 				{
-					textArea.appendText(System.lineSeparator());
+					if (event.isShiftDown())
+					{
+						textArea.appendText(System.lineSeparator());
+						event.consume();
+						return ;
+					}
+
+					String text = textArea.getText();
+
+					if (text.trim().isEmpty())
+					{
+						return ;
+					}
+
+					// Action
+					AddChatMessageAction.execute(text);
+
+					textArea.clear();
 					event.consume();
-					return ;
 				}
+			});
 
-				String text = textArea.getText();
+			textArea.requestFocus();
+		}
 
-				if (text.trim().isEmpty())
-				{
-					return ;
-				}
+		public static Tab getRoot()
+		{
+			return root;
+		}
 
-				// Action
-				AddChatMessageAction.execute(text);
-
-				textArea.clear();
-				event.consume();
-			}
-		});
-
-		textArea.requestFocus();
+		public static ListView getComponent()
+		{
+			return listView;
+		}
 	}
 
 	public static AnchorPane getRoot()

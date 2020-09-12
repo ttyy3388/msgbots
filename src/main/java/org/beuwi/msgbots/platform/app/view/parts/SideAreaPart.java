@@ -34,7 +34,7 @@ public class SideAreaPart implements View
 		component = (TabPane) loader.getComponent();
 
 		// Resize Bar
-		resize = (Pane) nameSpace.get("resize");
+		resize = (Pane) nameSpace.get("stpResizeBar");
 
 		resize.setOnMouseDragged(event ->
 		{
@@ -58,8 +58,8 @@ public class SideAreaPart implements View
 		@Override
 		public void init() throws Exception
 		{
-			root = (Tab) nameSpace.get("tab-bot-list");
-			component = (ListView) nameSpace.get("lsv-bot-list");
+			root = (Tab) nameSpace.get("tabBotList");
+			component = (ListView) nameSpace.get("lsvBotView");
 		}
 
 		public static Tab getRoot()
