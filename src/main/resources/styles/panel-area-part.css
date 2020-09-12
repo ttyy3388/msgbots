@@ -1,0 +1,32 @@
+
+.input-area
+{
+    -fx-border-color: #414141;
+    -fx-border-width: 1 0 0 0;
+}
+
+.tab
+{
+    -fx-border-width: 0 0 1 0;
+}
+.tab:selected
+{
+    -fx-border-color: #FFFFFF;
+}
+
+.tab-label
+{
+    -fx-text-fill: #888888;
+}
+.tab:hover .tab-label,
+.tab:selected .tab-label
+{
+	-fx-text-fill: #FFFFFF;
+}
+
+.text-area
+{
+    -fx-font-size: 15;
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}

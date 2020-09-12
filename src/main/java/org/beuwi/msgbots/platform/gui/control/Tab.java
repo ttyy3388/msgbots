@@ -13,7 +13,6 @@ import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import org.beuwi.msgbots.platform.app.view.actions.SplitEditorPaneAction;
 import org.beuwi.msgbots.platform.util.AllSVGIcons;
 
 @DefaultProperty("content")
@@ -22,8 +21,8 @@ public class Tab extends HBox
 	private static final String DEFAULT_STYLE_CLASS = "tab";
 
 	private static final Pos DEFAULT_TAB_ALIGNMENT = Pos.CENTER;
-	// private static final int DEFAULT_TAB_SPACING = 10;
-	private static final int DEFAULT_TAB_WIDTH = 100;
+	private static final int DEFAULT_TAB_SPACING = 10;
+	private static final int DEFAULT_TAB_WIDTH = 80;
 	private static final int DEFAULT_TAB_HEIGHT = 50;
 
 	private static final int DEFAULT_LABEL_SIZE = 60;
@@ -36,6 +35,8 @@ public class Tab extends HBox
 
 	private final BooleanProperty pinned = new SimpleBooleanProperty(false);
 
+	private final ObjectProperty<Node> content = new SimpleObjectProperty<>();
+
 	// Title Label
 	private final Label label = new Label();
 
@@ -44,7 +45,6 @@ public class Tab extends HBox
 
 	// private final HBox header = new HBox();
 	private final ContextMenu menu;
-	private final Node content;
 
 	// private final TabType type;
 
@@ -74,8 +74,6 @@ public class Tab extends HBox
 	// 추후 사이드 옵션도 구현해야됨
 	public Tab(String title, Node content)
 	{
-		this.content = content;
-
 		this.menu = new ContextMenu
 		(
 			new MenuItem("Close Tab", "Ctrl + W", closable, event -> pane.close(this)),
@@ -83,11 +81,6 @@ public class Tab extends HBox
 			new MenuItem("Close Tabs to the Right"),
 			new MenuItem("Close Tabs to the Left"),
 			new MenuItem("Close All Tabs"),
-			new SeparatorMenuItem(),
-			new MenuItem("Split Up", event -> SplitEditorPaneAction.execute(SplitPos.UP)),
-			new MenuItem("Split Down", event -> SplitEditorPaneAction.execute(SplitPos.DOWN)),
-			new MenuItem("Split Left", event -> SplitEditorPaneAction.execute(SplitPos.LEFT)),
-			new MenuItem("Split Right", event -> SplitEditorPaneAction.execute(SplitPos.RIGHT)),
 			new SeparatorMenuItem(),
 			new MenuItem("Pin Tab", event -> pinned.set(!pinned.get())),
 			new SeparatorMenuItem(),
@@ -100,6 +93,11 @@ public class Tab extends HBox
 		if (title != null)
 		{
 			label.setText(title);
+		}
+
+		if (content != null)
+		{
+			this.content.set(content);
 		}
 
 		// content.setId("@content::" + title);
@@ -168,8 +166,8 @@ public class Tab extends HBox
 		});
 
 		// setId("@tab::" + title);
-		setPadding(new Insets(0, 0, 0, 10));
-		// setSpacing(DEFAULT_TAB_SPACING);
+		setPadding(new Insets(0, 10, 0, 30));
+		setSpacing(DEFAULT_TAB_SPACING);
 		setMinWidth(DEFAULT_TAB_WIDTH);
 		// setPrefHeight(DEFAULT_TAB_HEIGHT);
 		setAlignment(DEFAULT_TAB_ALIGNMENT);
@@ -206,7 +204,7 @@ public class Tab extends HBox
 
 	public Node getContent()
 	{
-		return content;
+		return content.get();
 	}
 
     public TabPane getTabPane()
@@ -252,6 +250,11 @@ public class Tab extends HBox
 	public void setAlign(Pos pos)
 	{
 		this.align.set(pos);
+	}
+
+	public void setContent(Node content)
+	{
+		this.content.set(content);
 	}
 
     public void setTabPane(TabPane pane)

@@ -3,7 +3,7 @@ package org.beuwi.msgbots.platform.app.view.actions;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import org.beuwi.msgbots.platform.app.impl.Action;
-import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
+import org.beuwi.msgbots.platform.app.view.parts.DebugAreaPart;
 
 public class AddChatMessageAction implements Action
 {
@@ -12,7 +12,7 @@ public class AddChatMessageAction implements Action
 	@Override
 	public void init()
 	{
-		listView = DebugRoomTab.getComponent();
+		listView = (ListView) DebugAreaPart.getNameSpace().get("listView");
 	}
 
 	public static void execute(String message)

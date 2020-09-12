@@ -2,9 +2,11 @@ package org.beuwi.msgbots.platform.app.view;
 
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import org.beuwi.msgbots.platform.app.view.parts.ActiveAreaPart;
-import org.beuwi.msgbots.platform.app.view.parts.EditorAreaPart;
+import org.beuwi.msgbots.platform.app.view.parts.MainAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MenuBarPart;
+import org.beuwi.msgbots.platform.app.view.parts.PanelAreaPart;
+import org.beuwi.msgbots.platform.app.view.parts.DebugAreaPart;
+import org.beuwi.msgbots.platform.app.view.parts.SideAreaPart;
 import org.beuwi.msgbots.platform.win.WindowType;
 import org.beuwi.msgbots.platform.win.WindowWrap;
 
@@ -19,8 +21,10 @@ public class MainView
 		this.stage = stage;
 
 		pane.setTop(MenuBarPart.getRoot());
-		pane.setLeft(ActiveAreaPart.getRoot());
-		pane.setCenter(EditorAreaPart.getRoot());
+		pane.setLeft(SideAreaPart.getRoot());
+		pane.setRight(DebugAreaPart.getRoot());
+		pane.setCenter(MainAreaPart.getRoot());
+		pane.setBottom(PanelAreaPart.getRoot());
 		// pane.setBottom(StatusBarPart.getRoot());
 
 		pane.setMinWidth(800);
@@ -30,7 +34,7 @@ public class MainView
 		// pane.setMaxWidth(1920);
 		// pane.setMaxHeight(1080);
 
-		pane.getStyleClass().add("main");
+		// pane.getStyleClass().add("main");
 	}
 
 	public void display()

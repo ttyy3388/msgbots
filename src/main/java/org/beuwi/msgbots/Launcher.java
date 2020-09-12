@@ -6,21 +6,15 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.actions.AddChatMessageAction;
-import org.beuwi.msgbots.platform.app.view.actions.AddEditorPaneTabAction;
-import org.beuwi.msgbots.platform.app.view.actions.OpenCreateBotDialogAction;
-import org.beuwi.msgbots.platform.app.view.actions.OpenDebugRoomTabAction;
-import org.beuwi.msgbots.platform.app.view.actions.OpenGlobalLogTabAction;
-import org.beuwi.msgbots.platform.app.view.actions.OpenGlobalSettingTabAction;
+import org.beuwi.msgbots.platform.app.view.actions.AddMainAreaTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.ShowNotificationAction;
-import org.beuwi.msgbots.platform.app.view.actions.SplitEditorPaneAction;
 import org.beuwi.msgbots.platform.app.view.actions.ToggleMenuBarAction;
-import org.beuwi.msgbots.platform.app.view.parts.ActiveAreaPart;
-import org.beuwi.msgbots.platform.app.view.parts.EditorAreaPart;
+import org.beuwi.msgbots.platform.app.view.parts.DebugAreaPart;
+import org.beuwi.msgbots.platform.app.view.parts.MainAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MenuBarPart;
+import org.beuwi.msgbots.platform.app.view.parts.PanelAreaPart;
+import org.beuwi.msgbots.platform.app.view.parts.SideAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.StatusBarPart;
-import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
-import org.beuwi.msgbots.platform.app.view.tabs.GlobalLogTab;
-import org.beuwi.msgbots.platform.app.view.tabs.GlobalSettingTab;
 import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
@@ -49,22 +43,21 @@ public class Launcher extends Application
 			Application.setUserAgentStylesheet(ResourceUtils.getTheme("base"));
 
 			new MenuBarPart().init();
-			new ActiveAreaPart().init();
-			new EditorAreaPart().init();
+			new DebugAreaPart().init();
+			new PanelAreaPart().init();
+			new SideAreaPart().init();
+			new MainAreaPart().init();
 			new StatusBarPart().init();
 
-			new DebugRoomTab().init();
-			new GlobalLogTab().init();
-			new GlobalSettingTab().init();
+			// new DebugRoomTab().init();
+			// new GlobalLogTab().init();
+			// new GlobalSettingTab().init();
 
 			new AddChatMessageAction().init();
-			new AddEditorPaneTabAction().init();
-			new OpenCreateBotDialogAction().init();
-			new OpenDebugRoomTabAction().init();
-			new OpenGlobalLogTabAction().init();
-			new OpenGlobalSettingTabAction().init();
+			new AddMainAreaTabAction().init();
+			// new OpenGlobalLogAction().init();
+			// new OpenGlobalSettingAction().init();
 			new ShowNotificationAction().init();
-			new SplitEditorPaneAction().init();
 			new ToggleMenuBarAction().init();
 
 			new MainView(stage).display();
@@ -79,16 +72,8 @@ public class Launcher extends Application
 
 			for (int i = 0 ; i < 10 ; i ++ )
 			{
-				AddEditorPaneTabAction.execute(new Tab("TEST : " + (i + 1)));
+				AddMainAreaTabAction.execute(new Tab("TEST : " + (i + 1)));
 			}
-
-			// OpenCreateBotDialogAction.execute();
-			// OpenGlobalLogTabAction.execute();
-			// OpenGlobalSettingTabAction.execute();
-
-			//OpenDebugRoomAction.execute();
-			// ShowToastMessageAction.execute("Test Toast Message");
-			// ShowNotificationAction.execute("Test", "Hello World!");
 		}
 		catch (Exception e)
 		{

@@ -1,18 +1,19 @@
 package org.beuwi.msgbots.platform.app.view.parts;
 
 import javafx.collections.ObservableMap;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.StackPane;
+import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.actions.ToggleMenuBarAction;
 import org.beuwi.msgbots.platform.gui.control.MenuBar;
 import org.beuwi.msgbots.platform.gui.control.MenuItem;
-import org.beuwi.msgbots.platform.util.ResourceUtils;
 
 public class MenuBarPart implements View
 {
 	private static ObservableMap<String, Object> nameSpace;
+
+	private static FormLoader loader;
 
 	private static StackPane root;
 
@@ -21,16 +22,13 @@ public class MenuBarPart implements View
 	@Override
 	public void init() throws Exception
 	{
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(ResourceUtils.getForm("menu-bar-part"));
-		loader.setController(null);
-		loader.load();
+		loader = new FormLoader("menu-bar-part");
 
 		nameSpace = loader.getNamespace();
 
 		root = loader.getRoot();
 
-		component = getComponent();
+		component = (MenuBar) loader.getComponent();
 
 		// File Menu Button
 		component.getItem(0).setMenus
@@ -92,7 +90,7 @@ public class MenuBarPart implements View
 
 	public static MenuBar getComponent()
 	{
-		return (MenuBar) root.getChildren().get(0);
+		return component;
 	}
 
 	public static ObservableMap<String, Object> getNameSpace()

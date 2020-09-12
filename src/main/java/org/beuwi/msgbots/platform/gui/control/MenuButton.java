@@ -6,6 +6,8 @@ import javafx.scene.control.MenuItem;
 
 public class MenuButton extends Button
 {
+	private static final String STYLE_CLASS = "menu-button";
+
     private static final Insets DEFAULT_PADDING = new Insets(0, 5, 0, 5);
 
 	private static final int DEFAULT_WIDTH = 40;
@@ -13,13 +15,23 @@ public class MenuButton extends Button
 
 	public MenuButton()
 	{
+		this(null);
+	}
+
+	public MenuButton(String name)
+	{
 		setPadding(DEFAULT_PADDING);
 
 		setMinWidth(DEFAULT_WIDTH);
 		// setPrefWidth(DEFAULT_WIDTH);
 		setPrefHeight(DEFAULT_HEIGHT);
 
-		getStyleClass().add("menu-button");
+		getStyleClass().add(STYLE_CLASS);
+
+		if (name != null)
+		{
+			setText(name);
+		}
 	}
 
 	public void setMenu(ContextMenu menu)

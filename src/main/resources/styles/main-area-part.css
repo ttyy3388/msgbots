@@ -1,7 +1,7 @@
 
-.editor-area
+.main-area
 {
-    /* -fx-background-color: #1E1E1E; */
+    -fx-background-color: #1E1E1E;
 }
 
 .tab
@@ -27,8 +27,3 @@
 {
 	-fx-background-color: #1E1E1E;
 }
-
-/* .tab:drag:hover
-{
-	-fx-background-color: #3C3F42;
-} */

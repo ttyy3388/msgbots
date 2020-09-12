@@ -7,10 +7,11 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
-import javafx.scene.Node;
+import javafx.geometry.Side;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -42,6 +43,9 @@ public class TabPane extends VBox
 	// Tab Type Property
 	private final ObjectProperty<Type> type = new SimpleObjectProperty<>(Type.NORMAL);
 
+	// Tab Side Property
+	private final ObjectProperty<Side> side = new SimpleObjectProperty<>(Side.TOP);
+
 	// Selected Tab Property
 	private final ObjectProperty<Tab> selected = new SimpleObjectProperty();
 
@@ -51,11 +55,13 @@ public class TabPane extends VBox
 	// Tab Content Pane
 	private final StackPane content = new StackPane();
 
-	// Tab Header Area (Default : HBox)
-	private final HBox header = new HBox();
-
 	// Tab Header Scroll Pane
-	private final ScrollPane scroll = new ScrollPane();
+	private ScrollPane scroll = new ScrollPane();
+
+	// Tab Header Area (Default : HBox)
+	private HBox header = new HBox();
+
+	private VBox root = new VBox();
 
 	public enum Type
 	{
@@ -85,6 +91,7 @@ public class TabPane extends VBox
 		scroll.setHvalue(1.0d);
 		scroll.setContent(header);
 		scroll.setMinHeight(DEFAULT_TAB_HEIGHT);
+		scroll.setMaxHeight(DEFAULT_TAB_HEIGHT);
 		scroll.setHbarPolicy(ScrollBarPolicy.NEVER);
 		scroll.setVbarPolicy(ScrollBarPolicy.NEVER);
 		scroll.setFitToHeight(true);
@@ -126,7 +133,7 @@ public class TabPane extends VBox
 			}
 		});
 
-		header.getStyleClass().add("tab-header-area");
+		scroll.getStyleClass().add("tab-header-area");
 		content.getStyleClass().add("tab-content-area");
 
 		type.addListener((observable, oldType, newType) ->
@@ -135,6 +142,11 @@ public class TabPane extends VBox
 			{
 				case NORMAL : break;
 				case SYSTEM :
+
+					/* if (getSide().isVertical())
+					{
+						return ;
+					} */
 
 					List<Tab> list = this.tabs;
 
@@ -160,10 +172,23 @@ public class TabPane extends VBox
 				oldTab.pseudoClassStateChanged(DEFAULT_TAB_PSEUDO_CLASS, false);
 				newTab.pseudoClassStateChanged(DEFAULT_TAB_PSEUDO_CLASS, true);
 			}
+			else
+			{
+				/* if (getTabs().size() > 1)
+				{
+
+				}
+				else
+				{
+					getSelectedTab().pseudoClassStateChanged(DEFAULT_TAB_PSEUDO_CLASS, true);
+				} */
+
+				getSelectedTab().pseudoClassStateChanged(DEFAULT_TAB_PSEUDO_CLASS, true);
+			}
 		});
 
-		setMinWidth(DEFAULT_MIN_WIDTH);
-		setMinHeight(DEFAULT_MIN_HEIGHT);
+		// setMinWidth(DEFAULT_MIN_WIDTH);
+		// setMinHeight(DEFAULT_MIN_HEIGHT);
 		getChildren().addAll(scroll, content);
 		getStyleClass().setAll(DEFAULT_STYLE_CLASS);
 	}
@@ -241,6 +266,11 @@ public class TabPane extends VBox
 		return tabs;
 	}
 
+	public Side getSide()
+	{
+		return side.get();
+	}
+
 	public void setSelectedTab(Tab tab)
 	{
 		selected.set(tab);
@@ -287,6 +317,37 @@ public class TabPane extends VBox
 		return type.get();
 	}
 
+	public void setSide(Side side)
+	{
+		this.side.set(side);
+	}
+
+	/* public void setSide(Side side)
+	{
+		// scroll = new ScrollPane();
+
+		switch (side)
+		{
+			case TOP -> root = new VBox(scroll, content);
+			case RIGHT ->
+			{
+				scroll.setRotate(90);
+				root = new HBox(content, scroll);
+			}
+			case BOTTOM -> root = new VBox(content, scroll);
+			case LEFT   ->
+			{
+				scroll.setRotate(270);
+				root = new HBox(scroll, content);
+			}
+		}
+
+		getChildren().clear();
+		getChildren().add(root);
+
+		this.side.set(side);
+	} */
+
 	public void setType(Type type)
 	{
 		this.type.set(type);
@@ -297,7 +358,7 @@ public class TabPane extends VBox
 		return header;
 	}
 
-	public Node getContentArea()
+	public Pane getContentArea()
 	{
 		return content;
 	}

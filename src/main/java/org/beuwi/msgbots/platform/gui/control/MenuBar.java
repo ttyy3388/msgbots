@@ -22,12 +22,27 @@ public class MenuBar extends HBox
             {
                 if (change.wasAdded())
                 {
-					getItems().get(index++).setPrefHeight(DEFAULT_HEIGHT);
+					getItems().get(index ++).setPrefHeight(DEFAULT_HEIGHT);
                 }
             }
 		});
 
 		getStyleClass().add("menu-bar");
+	}
+
+	public void addItem(String name)
+	{
+		addItem(new MenuButton(name));
+	}
+
+	public void addItem(MenuButton button)
+	{
+		getItems().add(button);
+	}
+
+	public void addItems(MenuButton... buttons)
+	{
+		getChildren().addAll(buttons);
 	}
 
 	public List<MenuButton> getItems()

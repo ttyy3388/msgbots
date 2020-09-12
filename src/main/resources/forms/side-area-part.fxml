@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import org.beuwi.msgbots.platform.gui.control.Tab?>
+<?import org.beuwi.msgbots.platform.gui.control.TabPane?>
+
+<?import org.beuwi.msgbots.platform.gui.control.ListView?>
+<AnchorPane prefWidth="250.0" styleClass="side-area" stylesheets="@../styles/side-area-part.css" xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<TabPane type="SYSTEM" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+			<Tab fx:id="tab-bot-list" title="BOT LIST" closable="false">
+				<content>
+					<ListView fx:id="lsv-bot-list"> </ListView>
+				</content>
+			</Tab>
+		</TabPane>
+		<Pane fx:id="stp-resize-bar" prefWidth="5.0" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0">
+			<cursor>
+				<Cursor fx:constant="E_RESIZE" />
+			</cursor>
+		</Pane>
+	</children>
+</AnchorPane>

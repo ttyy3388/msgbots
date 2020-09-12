@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.StackPane?>
+<?import org.beuwi.msgbots.platform.gui.control.Tab?>
+<?import org.beuwi.msgbots.platform.gui.control.TabPane?>
+<?import org.beuwi.msgbots.platform.gui.control.TextArea?>
+
+<StackPane prefHeight="200.0" styleClass="input-area" stylesheets="@../styles/panel-area-part.css" xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<TabPane>
+			<Tab title="INPUT" closable="false">
+				<content>
+					<TextArea fx:id="txaInputArea" />
+				</content>
+			</Tab>
+			<Tab title="LOG" closable="false">
+				<content>
+					<TextArea />
+				</content>
+			</Tab>
+		</TabPane>
+	</children>
+</StackPane>
