@@ -3,18 +3,18 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import org.beuwi.msgbots.platform.gui.control.BotView?>
 <?import org.beuwi.msgbots.platform.gui.control.Tab?>
 <?import org.beuwi.msgbots.platform.gui.control.TabPane?>
-<?import org.beuwi.msgbots.platform.gui.control.ListView?>
 
-<?import javafx.scene.layout.StackPane?>
-<AnchorPane prefWidth="250.0" styleClass="side-area" stylesheets="@../styles/side-area-part.css" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefWidth="220.0" styleClass="side-area" stylesheets="@../styles/side-area-part.css" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
 		<TabPane type="SYSTEM" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
 			<Tab fx:id="tabBotList" title="BOT LIST" closable="false">
 				<content>
 					<StackPane styleClass="bots-tab">
-						<ListView fx:id="lsvBotView"> </ListView>
+						<BotView fx:id="lsvBotView"> </BotView>
 					</StackPane>
 				</content>
 			</Tab>

@@ -7,7 +7,7 @@ import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.actions.ToggleMenuBarAction;
 import org.beuwi.msgbots.platform.gui.control.MenuBar;
-import org.beuwi.msgbots.platform.gui.control.Menu;
+import org.beuwi.msgbots.platform.gui.control.MenuItem;
 
 public class MenuBarPart implements View
 {
@@ -33,32 +33,32 @@ public class MenuBarPart implements View
 		// File Menu Button
 		component.getItem(0).setMenus
 		(
-			new Menu("New Bot", "Ctrl + N"),
-			new Menu("Import Script", "Ctrl + I"),
+			new MenuItem("New Bot", "Ctrl + N"),
+			new MenuItem("Import Script", "Ctrl + I"),
 			new SeparatorMenuItem(),
-			new Menu("Save", "Ctrl + S"),
-			new Menu("Save All"),
+			new MenuItem("Save", "Ctrl + S"),
+			new MenuItem("Save All"),
 			new SeparatorMenuItem(),
-			new Menu("Refresh All Bots", "Ctrl + Alt + Y"),
+			new MenuItem("Refresh All Bots", "Ctrl + Alt + Y"),
 			new SeparatorMenuItem(),
-			new Menu("Settings", "Ctrl + Alt + S")
+			new MenuItem("Settings", "Ctrl + Alt + S")
 		);
 
 		// Edit Menu Button
 		component.getItem(1).setMenus
 		(
-			new Menu("Undo", "Ctrl + Z"),
-			new Menu("Redo", "Ctrl + Y"),
+			new MenuItem("Undo", "Ctrl + Z"),
+			new MenuItem("Redo", "Ctrl + Y"),
 			new SeparatorMenuItem(),
-			new Menu("Cut", "Ctrl + X"),
-			new Menu("Copy", "Ctrl + C"),
-			new Menu("Paste", "Ctrl + V")
+			new MenuItem("Cut", "Ctrl + X"),
+			new MenuItem("Copy", "Ctrl + C"),
+			new MenuItem("Paste", "Ctrl + V")
 		);
 
 		// View Menu Button
 		component.getItem(2).setMenus
 		(
-			new Menu("Toggle Menu Bar", /* "Alt",*/ event -> ToggleMenuBarAction.execute())
+			new MenuItem("Toggle Menu Bar", /* "Alt",*/ event -> ToggleMenuBarAction.execute())
 			/* new SeparatorMenuItem(),
 			new MenuItem("Toggle Bots Tab"),
 			new MenuItem("Toggle Debug Tab") */
@@ -67,19 +67,19 @@ public class MenuBarPart implements View
 		// Debug Menu Button
 		component.getItem(3).setMenus
 		(
-			new Menu("Show Global Log", "F8"),
-			new Menu("Open Debug Room", "F9")
+			new MenuItem("Show Global Log", "F8"),
+			new MenuItem("Open Debug Room", "F9")
 		);
 
 		// Help Menu Button
 		component.getItem(4).setMenus
 		(
-			new Menu("View Update List"),
-			new Menu("View License"),
+			new MenuItem("View Update List"),
+			new MenuItem("View License"),
 			new SeparatorMenuItem(),
-			new Menu("About Program"),
+			new MenuItem("About Program"),
 			new SeparatorMenuItem(),
-			new Menu("Welcome Guide")
+			new MenuItem("Welcome Guide")
 		);
 	}
 

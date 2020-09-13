@@ -12,7 +12,7 @@ import org.beuwi.msgbots.platform.gui.control.TabPane;
 public class SideAreaPart implements View
 {
 	private static final int MAX_WIDTH = 000;
-	private static final int MIN_WIDTH = 250;
+	private static final int MIN_WIDTH = 220;
 
 	private static ObservableMap<String, Object> nameSpace;
 

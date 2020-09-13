@@ -162,12 +162,17 @@ public class TabPane extends VBox
 			}
 		});
 
+		selected.addListener(change ->
+		{
+
+		});
+
 		selected.addListener((observable, oldTab, newTab) ->
 		{
 			if (oldTab != null)
 			{
-				content.getChildren().remove(oldTab.getContent());
-				content.getChildren().add(newTab.getContent());
+				// content.getChildren().remove(oldTab.getContent());
+				// content.getChildren().add(newTab.getContent());
 
 				oldTab.pseudoClassStateChanged(DEFAULT_TAB_PSEUDO_CLASS, false);
 				newTab.pseudoClassStateChanged(DEFAULT_TAB_PSEUDO_CLASS, true);
@@ -185,6 +190,8 @@ public class TabPane extends VBox
 
 				getSelectedTab().pseudoClassStateChanged(DEFAULT_TAB_PSEUDO_CLASS, true);
 			}
+
+			content.getChildren().setAll(getSelectedTab().getContent());
 		});
 
 		// setMinWidth(DEFAULT_MIN_WIDTH);

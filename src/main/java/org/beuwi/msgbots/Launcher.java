@@ -76,7 +76,11 @@ public class Launcher extends Application
 				AddMainAreaTabAction.execute(new Tab("TEST : " + (i + 1)));
 			}
 
-			SideAreaPart.BotListTab.getComponent().addItem(new Bot("TEST"));
+
+            for (int i = 0 ; i < 10 ; i ++ )
+            {
+                SideAreaPart.BotListTab.getComponent().addItem(new Bot("TEST : " + (i + 1)));
+            }
 		}
 		catch (Exception e)
 		{

@@ -76,16 +76,16 @@ public class Tab extends HBox
 	{
 		this.menu = new ContextMenu
 		(
-			new Menu("Close Tab", "Ctrl + W", closable, event -> pane.close(this)),
-			new Menu("Close Other Tabs"),
-			new Menu("Close Tabs to the Right"),
-			new Menu("Close Tabs to the Left"),
-			new Menu("Close All Tabs"),
+			new MenuItem("Close Tab", "Ctrl + W", closable, event -> pane.close(this)),
+			new MenuItem("Close Other Tabs"),
+			new MenuItem("Close Tabs to the Right"),
+			new MenuItem("Close Tabs to the Left"),
+			new MenuItem("Close All Tabs"),
 			new SeparatorMenuItem(),
-			new Menu("Pin Tab", event -> pinned.set(!pinned.get())),
+			new MenuItem("Pin Tab", event -> pinned.set(!pinned.get())),
 			new SeparatorMenuItem(),
-			new Menu("Select Next Tab", event -> pane.selectNextTab(this)),
-			new Menu("Select Previous Tab", event -> pane.selectPreviousTab(this))
+			new MenuItem("Select Next Tab", event -> pane.selectNextTab(this)),
+			new MenuItem("Select Previous Tab", event -> pane.selectPreviousTab(this))
 		);
 
 		menu.setNode(this);

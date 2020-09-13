@@ -111,3 +111,8 @@
 {
 	-fx-background-color: rgba(100, 100, 100, 0.8);
 }
+
+.toggle-button
+{
+    -jfx-size: 6;
+}

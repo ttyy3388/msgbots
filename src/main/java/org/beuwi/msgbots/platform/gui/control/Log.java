@@ -8,6 +8,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
+// Log Item
 public class Log extends StackPane
 {
 	private static final String DEFAULT_STYLE_CLASS = "log-item";

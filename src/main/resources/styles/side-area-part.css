@@ -1,11 +1,88 @@
 
 .side-area
 {
-    -fx-border-color: #414141;
-    -fx-border-width: 0 1 0 0;
+	-fx-border-color: #414141;
+	-fx-border-width: 0 1 0 0;
 }
 
-.bots-tab .list-view
+/* .list-cell
 {
-    -fx-background-color: white;
+	-fx-cursor: hand;
+} */
+.bot-item
+{
+    -fx-border-color: transparent;
+    -fx-border-width: 0 3 0 3;
+}
+.bot-item:hover
+{
+	-fx-background-color: #2A2D2E;
+}
+
+.list-cell .label
+{
+	-fx-text-fill: #888888;
+	-fx-font-size: 14;
+}
+.list-cell .button
+{
+	-fx-background-radius: 15;
+	-fx-background-image: url('../images/reload.png');
+	-fx-background-size: 15;
+}
+.list-cell .button:hover
+{
+	-fx-background-image: url('../images/reload_focused.png');
+	-fx-background-color: rgba(255, 255, 255, 0.1);
+}
+.list-cell .button:armed
+{
+	-fx-background-color: rgba(255, 255, 255, 0.15);
+}
+.list-cell .check-box:disabled
+{
+	-fx-opacity: 1.0;
+}
+.list-cell .check-box .box
+{
+	-fx-background-radius: 10;
+	-fx-background-color: #BBBBBB;
+	-fx-border-width: 0;
+	-fx-padding: 3;
+}
+.list-cell .check-box .mark
+{
+	-fx-padding: 0;
+}
+.list-cell .check-box:selected .box
+{
+	-fx-background-color: transparent;
+}
+
+.list-cell:selected .label
+{
+	-fx-text-fill: #FFFFFF;
+}
+.list-cell:selected .button
+{
+	-fx-background-image: url('../images/reload_focused.png');
+}
+.list-cell:selected .check-box .box
+{
+	-fx-background-color: #FFFFFF;
+}
+.list-cell:selected .check-box:selected .box
+{
+	-fx-background-color: transparent;
+}
+
+.list-cell:selected .bot-item
+{
+	-fx-border-color: transparent transparent transparent #007ACC;
+}
+
+.list-cell .menu-item .label
+{
+	-fx-text-fill: #000000;
+	-fx-font-size: 12;
 }
