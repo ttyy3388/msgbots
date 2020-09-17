@@ -16,12 +16,17 @@
 }
 .bot-item:hover
 {
-	-fx-background-color: #2A2D2E;
+    /* -fx-background-color: #242526; */
+	/* -fx-background-color: #2A2D2E; */
+	-fx-background-color: rgba(255, 255, 255, 0.1);
 }
 
+.list-cell
+{
+    -fx-opacity: 0.5;
+}
 .list-cell .label
 {
-	-fx-text-fill: #888888;
 	-fx-font-size: 14;
 }
 .list-cell .button
@@ -30,15 +35,6 @@
 	-fx-background-image: url('../images/reload.png');
 	-fx-background-size: 15;
 }
-.list-cell .button:hover
-{
-	-fx-background-image: url('../images/reload_focused.png');
-	-fx-background-color: rgba(255, 255, 255, 0.1);
-}
-.list-cell .button:armed
-{
-	-fx-background-color: rgba(255, 255, 255, 0.15);
-}
 .list-cell .check-box:disabled
 {
 	-fx-opacity: 1.0;
@@ -46,7 +42,7 @@
 .list-cell .check-box .box
 {
 	-fx-background-radius: 10;
-	-fx-background-color: #BBBBBB;
+	-fx-background-color: #FFFFFF;
 	-fx-border-width: 0;
 	-fx-padding: 3;
 }
@@ -59,25 +55,13 @@
 	-fx-background-color: transparent;
 }
 
-.list-cell:selected .label
+.list-cell:selected
 {
-	-fx-text-fill: #FFFFFF;
+    -fx-opacity: 1.0;
 }
-.list-cell:selected .button
-{
-	-fx-background-image: url('../images/reload_focused.png');
-}
-.list-cell:selected .check-box .box
-{
-	-fx-background-color: #FFFFFF;
-}
-.list-cell:selected .check-box:selected .box
-{
-	-fx-background-color: transparent;
-}
-
 .list-cell:selected .bot-item
 {
+	-fx-background-color: rgba(255, 255, 255, 0.1);
 	-fx-border-color: transparent transparent transparent #007ACC;
 }
 

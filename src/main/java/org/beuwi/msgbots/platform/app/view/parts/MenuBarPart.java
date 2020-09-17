@@ -23,15 +23,12 @@ public class MenuBarPart implements View
 	public void init() throws Exception
 	{
 		loader = new FormLoader("menu-bar-part");
-
 		nameSpace = loader.getNamespace();
-
 		root = loader.getRoot();
-
-		component = (MenuBar) loader.getComponent();
+		component = loader.getComponent();
 
 		// File Menu Button
-		component.getItem(0).setMenus
+		component.getMenu(0).setMenus
 		(
 			new MenuItem("New Bot", "Ctrl + N"),
 			new MenuItem("Import Script", "Ctrl + I"),
@@ -45,7 +42,7 @@ public class MenuBarPart implements View
 		);
 
 		// Edit Menu Button
-		component.getItem(1).setMenus
+		component.getMenu(1).setMenus
 		(
 			new MenuItem("Undo", "Ctrl + Z"),
 			new MenuItem("Redo", "Ctrl + Y"),
@@ -56,7 +53,7 @@ public class MenuBarPart implements View
 		);
 
 		// View Menu Button
-		component.getItem(2).setMenus
+		component.getMenu(2).setMenus
 		(
 			new MenuItem("Toggle Menu Bar", /* "Alt",*/ event -> ToggleMenuBarAction.execute())
 			/* new SeparatorMenuItem(),
@@ -65,14 +62,17 @@ public class MenuBarPart implements View
 		);
 
 		// Debug Menu Button
-		component.getItem(3).setMenus
+		component.getMenu(3).setMenus
 		(
+			new MenuItem("Compile"),
+			new MenuItem("Power On / Off"),
+			new SeparatorMenuItem(),
 			new MenuItem("Show Global Log", "F8"),
 			new MenuItem("Open Debug Room", "F9")
 		);
 
 		// Help Menu Button
-		component.getItem(4).setMenus
+		component.getMenu(4).setMenus
 		(
 			new MenuItem("View Update List"),
 			new MenuItem("View License"),

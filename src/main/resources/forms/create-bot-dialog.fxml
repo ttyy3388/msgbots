@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import org.beuwi.msgbots.platform.gui.control.TextField?>
+
+<AnchorPane prefHeight="200.0" prefWidth="600.0" styleClass="create-dialog" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="txfScriptName" layoutX="30.0" layoutY="30.0" prefHeight="30.0" prefWidth="300.0" />
+      <CheckBox fx:id="chkUnifiedParams" layoutX="30.0" layoutY="100.0" text="통합된 매개변수를 사용합니다." />
+      <CheckBox fx:id="chkRuntimeError" layoutX="30.0" layoutY="150.0" selected="true" text="런타임 에러 시 자동으로 봇의 전원을 끕니다. (권장)" />
+   </children>
+</AnchorPane>

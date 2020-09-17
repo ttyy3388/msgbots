@@ -1,18 +1,21 @@
 package org.beuwi.msgbots.platform.app.view;
 
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import org.beuwi.msgbots.platform.app.view.parts.DebugAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MainAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MenuBarPart;
 import org.beuwi.msgbots.platform.app.view.parts.PanelAreaPart;
-import org.beuwi.msgbots.platform.app.view.parts.DebugAreaPart;
+import org.beuwi.msgbots.platform.app.view.parts.PopupAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.SideAreaPart;
-import org.beuwi.msgbots.platform.win.WindowType;
+import org.beuwi.msgbots.platform.app.view.parts.ToastAreaPart;
 import org.beuwi.msgbots.platform.win.WindowWrap;
 
-public class MainView
+public class MainView extends StackPane
 {
-	private static final BorderPane pane = new BorderPane();
+	private static BorderPane pane = new BorderPane();
+
 	private static Stage stage;
 
 	// Application Stage
@@ -27,24 +30,42 @@ public class MainView
 		pane.setBottom(PanelAreaPart.getRoot());
 		// pane.setBottom(StatusBarPart.getRoot());
 
-		pane.setMinWidth(800);
-		pane.setMinHeight(600);
-		pane.setPrefWidth(1400);
-		pane.setPrefHeight(900);
-		// pane.setMaxWidth(1920);
-		// pane.setMaxHeight(1080);
+		this.setMinWidth(800);
+		this.setMinHeight(600);
+		this.setPrefWidth(1400);
+		this.setPrefHeight(900);
+		// this.setMaxWidth(1920);
+		// this.setMaxHeight(1080);
 
-		// pane.getStyleClass().add("main");
+		getChildren().addAll
+		(
+			MainView.getRoot(),
+			PopupAreaPart.getRoot(),
+			ToastAreaPart.getRoot()
+		);
 	}
+
+	// Apply Final Style (High Priority)
+	/* public void apply(Pane pane)
+	{
+		for (Node node : pane.getChildren())
+		{
+			try
+			{
+				if (((Pane) node).getChildren() != null)
+				{
+					apply((Pane) node);
+				}
+
+				((Pane) node).getStylesheets().add(ResourceUtils.getTheme("final"));
+			}
+			catch (Exception e) { }
+		}
+	} */
 
 	public void display()
 	{
 		new MainWindow(stage).display();
-	}
-
-	public static BorderPane getRoot()
-	{
-		return pane;
 	}
 
 	private class MainWindow extends WindowWrap
@@ -53,12 +74,21 @@ public class MainView
 		{
 			super(stage);
 
-			setContent(new MainView(stage).getRoot());
+			setContent(new MainView(stage));
 			setTitle("Messenger Bot Simulator");
-			setType(WindowType.WINDOW);
 			create();
 		}
 	}
+
+	public static BorderPane getRoot()
+	{
+		return pane;
+	}
+
+	/* public static BorderPane getContent()
+	{
+		return pane;
+	} */
 
 	public static Stage getStage()
 	{

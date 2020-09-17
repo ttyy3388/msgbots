@@ -1,7 +1,6 @@
 package org.beuwi.msgbots.openapi;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
@@ -14,8 +13,8 @@ public class FormLoader extends FXMLLoader
         load();
 	}
 
-	public Node getComponent()
+	public <T> T getComponent()
 	{
-		return((Pane) getRoot()).getChildren().get(0);
+		return (T) ((Pane) getRoot()).getChildren().get(0);
 	}
 }

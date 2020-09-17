@@ -9,7 +9,7 @@ import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.actions.AddChatMessageAction;
-import org.beuwi.msgbots.platform.gui.control.ListView;
+import org.beuwi.msgbots.platform.gui.control.ChatView;
 import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.gui.control.TabPane;
 
@@ -34,8 +34,7 @@ public class DebugAreaPart implements View
 		loader = new FormLoader("debug-area-part");
 		nameSpace = loader.getNamespace();
 		root = loader.getRoot();
-
-		component = (TabPane) loader.getComponent();
+		component = loader.getComponent();
 
 		// Resize Bar
 		resize = (Pane) nameSpace.get("stpResizeBar");
@@ -57,7 +56,7 @@ public class DebugAreaPart implements View
 	{
 		private static Tab root;
 
-		private static ListView listView;
+		private static ChatView listView;
 		private static TextArea textArea;
 
 		@Override
@@ -65,7 +64,7 @@ public class DebugAreaPart implements View
 		{
 			root = (Tab) nameSpace.get("tabDebugRoom");
 
-			listView = (ListView) nameSpace.get("lsvChatView");
+			listView = (ChatView) nameSpace.get("lsvChatView");
 			textArea = (TextArea) nameSpace.get("txaChatInput");
 
 			textArea.setOnKeyPressed(event ->
@@ -102,7 +101,7 @@ public class DebugAreaPart implements View
 			return root;
 		}
 
-		public static ListView getComponent()
+		public static ChatView getComponent()
 		{
 			return listView;
 		}

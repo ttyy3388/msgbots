@@ -71,6 +71,7 @@
 .code-area .paragraph-text
 {
 	-fx-font-family: Consolas;
+	/* -fx-font-family: D2Coding; */
 	-fx-font-size: 15;
 }
 .code-area .caret
@@ -156,7 +157,6 @@
 .menu-button:hover,
 .menu-button:showing
 {
-	/* -fx-background-color: #474748; */
 	-fx-background-color: #DEDEDE;
 }
 
@@ -164,9 +164,15 @@
 {
 	-fx-padding: 5 20 5 20;
 }
-.menu-item .label
+/* .menu-item .label
 {
 	-fx-text-fill: #000000;
+} */
+* .menu-item .label
+{
+	-fx-font-family: 'Microsoft Sans Serif';
+	-fx-text-fill: #000000;
+	-fx-font-size: 12;
 }
 .menu-item:focused
 {

@@ -8,13 +8,17 @@ import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.actions.AddChatMessageAction;
 import org.beuwi.msgbots.platform.app.view.actions.AddMainAreaTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.ShowNotificationAction;
+import org.beuwi.msgbots.platform.app.view.actions.ShowPopupBoxAction;
+import org.beuwi.msgbots.platform.app.view.actions.ShowToastMessageAction;
 import org.beuwi.msgbots.platform.app.view.actions.ToggleMenuBarAction;
 import org.beuwi.msgbots.platform.app.view.parts.DebugAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MainAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MenuBarPart;
 import org.beuwi.msgbots.platform.app.view.parts.PanelAreaPart;
+import org.beuwi.msgbots.platform.app.view.parts.PopupAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.SideAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.StatusBarPart;
+import org.beuwi.msgbots.platform.app.view.parts.ToastAreaPart;
 import org.beuwi.msgbots.platform.gui.control.Bot;
 import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
@@ -46,9 +50,11 @@ public class Launcher extends Application
 			new MenuBarPart().init();
 			new DebugAreaPart().init();
 			new PanelAreaPart().init();
+			new PopupAreaPart().init();
 			new SideAreaPart().init();
 			new MainAreaPart().init();
 			new StatusBarPart().init();
+			new ToastAreaPart().init();
 
 			// new DebugRoomTab().init();
 			// new GlobalLogTab().init();
@@ -56,9 +62,9 @@ public class Launcher extends Application
 
 			new AddChatMessageAction().init();
 			new AddMainAreaTabAction().init();
-			// new OpenGlobalLogAction().init();
-			// new OpenGlobalSettingAction().init();
 			new ShowNotificationAction().init();
+			new ShowPopupBoxAction().init();
+			new ShowToastMessageAction().init();
 			new ToggleMenuBarAction().init();
 
 			new MainView(stage).display();
@@ -71,16 +77,19 @@ public class Launcher extends Application
 				} */
 			});
 
+			// ShowToastMessageAction.execute("TEST");
+
 			for (int i = 0 ; i < 10 ; i ++ )
 			{
 				AddMainAreaTabAction.execute(new Tab("TEST : " + (i + 1)));
 			}
 
+			for (int i = 0 ; i < 10 ; i ++ )
+			{
+				SideAreaPart.BotListTab.getComponent().addItem(new Bot("TEST : " + (i + 1)));
+			}
 
-            for (int i = 0 ; i < 10 ; i ++ )
-            {
-                SideAreaPart.BotListTab.getComponent().addItem(new Bot("TEST : " + (i + 1)));
-            }
+			// new CreateBotDialog().open();
 		}
 		catch (Exception e)
 		{

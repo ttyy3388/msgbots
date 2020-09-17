@@ -6,7 +6,7 @@ import javafx.scene.control.MenuItem;
 
 public class MenuButton extends Button
 {
-	private static final String STYLE_CLASS = "menu-button";
+	private static final String DEFAULT_STYLE_CLASS = "menu-button";
 
     private static final Insets DEFAULT_PADDING = new Insets(0, 5, 0, 5);
 
@@ -26,7 +26,7 @@ public class MenuButton extends Button
 		// setPrefWidth(DEFAULT_WIDTH);
 		setPrefHeight(DEFAULT_HEIGHT);
 
-		getStyleClass().add(STYLE_CLASS);
+		getStyleClass().add(DEFAULT_STYLE_CLASS);
 
 		if (name != null)
 		{

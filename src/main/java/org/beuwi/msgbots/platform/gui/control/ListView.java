@@ -46,6 +46,11 @@ public class ListView<T> extends javafx.scene.control.ListView<T>
 		getItems().remove(item);
 	}
 
+	public void select()
+	{
+		getSelectionModel().selectAll();
+	}
+
 	public void select(T item)
 	{
 		getSelectionModel().select(item);

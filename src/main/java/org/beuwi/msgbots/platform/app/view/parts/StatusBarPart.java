@@ -17,7 +17,6 @@ public class StatusBarPart implements View
 	public void init() throws Exception
 	{
 		loader = new FormLoader("status-bar-part");
-
 		nameSpace = loader.getNamespace();
 		root = loader.getRoot();
 	}

@@ -1,6 +1,6 @@
 package org.beuwi.msgbots.platform.win;
 
-public enum WindowType
+public class WindowStage
 {
-   WINDOW, DIALOG
+
 }

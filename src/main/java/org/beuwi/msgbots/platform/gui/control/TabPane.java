@@ -38,7 +38,7 @@ public class TabPane extends VBox
 	// private static final double DEFAULT_TAB_HEIGHT = Double.MAX_VALUE;
 	// private static final double DEFAULT_TAB_HEIGHT = Double.MAX_VALUE;
 
-	private static final PseudoClass DEFAULT_TAB_PSEUDO_CLASS = PseudoClass.getPseudoClass("selected");
+	private static final PseudoClass SELECTED_PSEUDO_CLASS = PseudoClass.getPseudoClass("selected");
 
 	// Tab Type Property
 	private final ObjectProperty<Type> type = new SimpleObjectProperty<>(Type.NORMAL);
@@ -119,6 +119,7 @@ public class TabPane extends VBox
 
 				for (Tab tab : change.getAddedSubList())
 				{
+					// tab.setId(tab.getTitle());
 					tab.setTabPane(this);
 
 					header.getChildren().add(tab);
@@ -174,8 +175,8 @@ public class TabPane extends VBox
 				// content.getChildren().remove(oldTab.getContent());
 				// content.getChildren().add(newTab.getContent());
 
-				oldTab.pseudoClassStateChanged(DEFAULT_TAB_PSEUDO_CLASS, false);
-				newTab.pseudoClassStateChanged(DEFAULT_TAB_PSEUDO_CLASS, true);
+				oldTab.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, false);
+				newTab.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, true);
 			}
 			else
 			{
@@ -185,10 +186,10 @@ public class TabPane extends VBox
 				}
 				else
 				{
-					getSelectedTab().pseudoClassStateChanged(DEFAULT_TAB_PSEUDO_CLASS, true);
+					getSelectedTab().pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, true);
 				} */
 
-				getSelectedTab().pseudoClassStateChanged(DEFAULT_TAB_PSEUDO_CLASS, true);
+				getSelectedTab().pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, true);
 			}
 
 			content.getChildren().setAll(getSelectedTab().getContent());
@@ -210,20 +211,29 @@ public class TabPane extends VBox
 		setSelectedTab(tab);
 	}
 
+	/* public void addTab(Tab tab)
+	{
+
+	} */
+
 	public void addTab(Tab... tabs)
 	{
 		for (Tab tab : tabs)
 		{
-			if (!isContains(tab))
+			if (contains(tab))
+			{
+				select(findTab(tab));
+			}
+			else
 			{
 				this.tabs.add(tab);
 			}
 		}
 	}
 
-	public boolean isContains(Tab tab)
+	public boolean contains(Tab tab)
 	{
-		return tabs.indexOf(tab) != -1;
+		return findTab(tab) != -1;
 	}
 
 	public int getIndex(Tab tab)
@@ -233,7 +243,20 @@ public class TabPane extends VBox
 
 	public int findTab(Tab tab)
 	{
-		return tabs.indexOf(tab);
+		return findTab(tab.getTitle());
+	}
+
+	public int findTab(String id)
+	{
+		for (int index = 0 ; index < tabs.size() ; index ++)
+		{
+			if (tabs.get(index).getId().equals(id))
+			{
+				return index;
+			}
+		}
+
+		return -1;
 	}
 
 	public void close(Tab tab)
@@ -243,8 +266,7 @@ public class TabPane extends VBox
 			return ;
 		}
 
-		int index = findTab(tab),
-			size = tabs.size();
+		int index = findTab(tab), size = tabs.size();
 
 		if (size > 1 && index != -1)
 		{

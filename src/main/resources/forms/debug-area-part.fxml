@@ -10,6 +10,7 @@
 <?import org.beuwi.msgbots.platform.gui.control.Tab?>
 <?import org.beuwi.msgbots.platform.gui.control.TabPane?>
 <?import org.beuwi.msgbots.platform.gui.control.TextArea?>
+<?import org.beuwi.msgbots.platform.gui.control.ChatView?>
 
 <AnchorPane prefWidth="350.0" styleClass="side-area" stylesheets="@../styles/debug-area-part.css" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
@@ -19,7 +20,7 @@
 					<StackPane styleClass="debug-tab">
 						<VBox alignment="CENTER">
 							<children>
-								<ListView fx:id="lsvChatView" VBox.vgrow="ALWAYS" />
+								<ChatView fx:id="lsvChatView" VBox.vgrow="ALWAYS" />
 								<StackPane prefHeight="60.0">
 									<TextArea fx:id="txaChatInput" />
 									<VBox.margin>

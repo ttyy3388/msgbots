@@ -22,11 +22,9 @@ public class PanelAreaPart implements View
 	public void init() throws Exception
 	{
 		loader = new FormLoader("panel-area-part");
-
 		nameSpace = loader.getNamespace();
 		root = loader.getRoot();
-
-		component = (TabPane) loader.getComponent();
+		component = loader.getComponent();
 
 		TextArea textArea = (TextArea) nameSpace.get("txaInputArea");
 

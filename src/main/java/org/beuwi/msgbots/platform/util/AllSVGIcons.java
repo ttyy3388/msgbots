@@ -25,4 +25,34 @@ public class AllSVGIcons
             put("Editor.More", new SVGGlyph("M2,0C0.9,0,0,0.9,0,2s0.9,2,2,2s2-0.9,2-2S3.1,0,2,0z M14,0c-1.1,0-2,0.9-2,2s0.9,2,2,2s2-0.9,2-2S15.1,0,14,0z M8,0 C6.9,0,6,0.9,6,2s0.9,2,2,2s2-0.9,2-2S9.1,0,8,0z", 13, 2));
         }
     }
+
+    /*
+    .minimize-button.button .icon {
+  -fx-shape: "M 0 0 L 1 0 L 1 1 L 0 1 Z";
+  -fx-max-height: 1;
+}
+
+.maximize-button.button .icon {
+  -fx-shape: "M 0 0 L 60 0 L 60 60 L 0 60 L 5 55 L 55 55 L 55 5 L 5 5 L 5 55 L 0 60 Z";
+}
+
+.restore-button.button .icon {
+  -fx-shape: "M 0 60 L 0 12 L 12 12 L 12 0 L 60 0 L 60 48 L 48 48 L 48 42 L 54 42 L 54 6 L 18 6 L 18 12 L 48 12 L 48 60 L 0 60 L 6 54 L 42 54 L 42 18 L 6 18 L 6 54 Z";
+}
+
+.close-button.button {
+  -fx-min-width: 45px;
+  -fx-max-width: 45px;
+}
+
+.close-button.button:hover {
+  -fx-background-color: #E81123;
+  -icon-paint: white;
+}
+
+.close-button.button .icon {
+  -fx-background-color: -icon-paint;
+  -fx-shape: "M 0 3 L 3 0 L 30 27 L 57 0 L 60 3 L 33 30 L 60 57 L 57 60 L 30 33 L 3 60 L 0 57 L 27 30 Z";
+}
+     */
 }

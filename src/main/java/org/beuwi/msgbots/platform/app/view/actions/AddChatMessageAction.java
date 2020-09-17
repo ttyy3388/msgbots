@@ -1,13 +1,13 @@
 package org.beuwi.msgbots.platform.app.view.actions;
 
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import org.beuwi.msgbots.platform.app.impl.Action;
 import org.beuwi.msgbots.platform.app.view.parts.DebugAreaPart;
+import org.beuwi.msgbots.platform.gui.control.Chat;
+import org.beuwi.msgbots.platform.gui.control.ChatView;
 
 public class AddChatMessageAction implements Action
 {
-	private static ListView listView;
+	private static ChatView listView;
 
 	@Override
 	public void init()
@@ -17,14 +17,12 @@ public class AddChatMessageAction implements Action
 
 	public static void execute(String message)
 	{
-		Label chat = new Label();
-		chat.setText(message);
-		chat.setMaxWidth(220);
-		chat.setWrapText(true);
+		listView.addChat(new Chat(message));
+	}
 
-		chat.getStyleClass().add("chat");
-
-		listView.getItems().add(chat);
+	public static void execute(String message, boolean isbot)
+	{
+		listView.addChat(new Chat(message, isbot));
 	}
 
 	@Override

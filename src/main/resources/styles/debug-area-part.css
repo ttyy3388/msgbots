@@ -32,34 +32,16 @@
 	-fx-font-family: D2Coding;
 	-fx-font-size: 14;
 }
-
 .debug-tab .list-cell
 {
-	-fx-padding: 15 10 15 10;
+	-fx-padding: 12 10 12 10;
 }
-
-.debug-tab .list-cell .bot-label,
-.debug-tab .list-cell .sender-label
+.debug-tab .list-cell .label
 {
-	-fx-background-radius: 8;
+	-fx-background-color: #0583F9;
+	-fx-background-radius: 5;
 	-fx-text-fill: #FFFFFF;
 	-fx-padding: 8;
-}
-.debug-tab .list-cell .sender-label
-{
-	-fx-background-color: #0583f9;
-}
-.debug-tab .list-cell .bot-label
-{
-	-fx-background-color: #302F35;
-}
-.debug-tab .list-cell:selected .sender-label
-{
-	-fx-background-color: #59AEFF;
-}
-.debug-tab .list-cell:selected .bot-label
-{
-	-fx-background-color: #46454D;
 }
 
 .debug-tab .text-area

@@ -8,16 +8,25 @@ import org.beuwi.msgbots.platform.util.ResourceUtils;
 
 public class WindowFrame extends StackPane
 {
+	// private static final PseudoClass FOCUSED_PSEUDO_CLASS = PseudoClass.getPseudoClass("focused");
+	// private static final PseudoClass MINIMIZED_PSEUDO_CLASS = PseudoClass.getPseudoClass("minimized");
+	// private static final PseudoClass MAXIMIZED_PSEUDO_CLASS = PseudoClass.getPseudoClass("maximized");
+	// private static final PseudoClass CLOSED_PSEUDO_CLASS = PseudoClass.getPseudoClass("closed");
+
+	public static final String DEFAULT_RESOURCE_NAME = "window-box-frame";
+	public static final String DEFAULT_STYLE_CLASS = "window";
+
+	private final int BORDER_WIDTH = 5;
+
 	private final Stage stage;
 
-	private WindowType type;
 	private Region content;
 	private String title;
 
-	/* public WindowFrame()
+	public WindowFrame()
 	{
-		this(null);
-	} */
+		this(new Stage());
+	}
 
 	public WindowFrame(Stage stage)
 	{
@@ -27,11 +36,6 @@ public class WindowFrame extends StackPane
 	public Stage getStage()
 	{
 		return stage;
-	}
-
-	public WindowType getType()
-	{
-		return type;
 	}
 
 	public Region getContent()
@@ -49,11 +53,6 @@ public class WindowFrame extends StackPane
 		this.title = title;
 	}
 
-	public void setType(WindowType type)
-	{
-		this.type = type;
-	}
-
 	public void setContent(Region content)
 	{
 		this.content = content;
@@ -61,24 +60,15 @@ public class WindowFrame extends StackPane
 
 	public void create()
 	{
-		switch (type)
-		{
-			case WINDOW : break;
-			case DIALOG :
-				/* stage.initModality(Modality.WINDOW_MODAL);
-				stage.initStyle(StageStyle.UNDECORATED);
-				stage.initStyle(StageStyle.TRANSPARENT);
-				stage.initOwner(MainView.getStage()); */
-				break;
-		}
+		this.getChildren().add(content);
 
 		stage.focusedProperty().addListener((observable, oldValue, newValue) ->
 		{
-			pseudoClassStateChanged(PseudoClass.getPseudoClass("focused"), newValue);
+			this.pseudoClassStateChanged(PseudoClass.getPseudoClass("focused"), newValue);
 		});
 
 		stage.getIcons().add(ResourceUtils.getImage("program"));
-		stage.setScene(new WindowScene(content));
+		stage.setScene(new WindowScene(this));
 		stage.setTitle(title);
 		stage.toFront();
 	}
@@ -89,6 +79,11 @@ public class WindowFrame extends StackPane
 	}
 
 	public void display()
+	{
+		stage.show();
+	}
+
+	public void show()
 	{
 		stage.show();
 	}

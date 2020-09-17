@@ -23,7 +23,7 @@ public class MainAreaPart implements View
 		loader = new FormLoader("main-area-part");
 		nameSpace = loader.getNamespace();
 		root = loader.getRoot();
-		component = (TabPane) loader.getComponent();
+		component = loader.getComponent();
 	}
 
 	public static StackPane getRoot()

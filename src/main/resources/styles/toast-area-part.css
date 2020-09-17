@@ -1,0 +1,22 @@
+.toast-area
+{
+    -fx-background-color: transparent;
+}
+
+.toast-view
+{
+    /* -fx-background-color: #FFFFFF; */
+	/* -fx-padding: 5; */
+}
+
+.toast-message
+{
+	-fx-background-color: #252526;
+	/* -fx-background-insets: 5; */
+	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+}
+
+.toast-message .label
+{
+    -fx-font-size: 20;
+}

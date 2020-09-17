@@ -35,7 +35,9 @@ public class Tab extends HBox
 
 	private final BooleanProperty pinned = new SimpleBooleanProperty(false);
 
-	private final ObjectProperty<Node> content = new SimpleObjectProperty<>();
+	private final ObjectProperty<Node> content = new SimpleObjectProperty<>(null);
+
+	// private final StringProperty title = new SimpleStringProperty(null);
 
 	// Title Label
 	private final Label label = new Label();
@@ -92,12 +94,13 @@ public class Tab extends HBox
 
 		if (title != null)
 		{
-			label.setText(title);
+			setId(title);
+			setTitle(title);
 		}
 
 		if (content != null)
 		{
-			this.content.set(content);
+			setContent(content);
 		}
 
 		// content.setId("@content::" + title);
@@ -165,7 +168,13 @@ public class Tab extends HBox
 			// button.setDisable(!newValue);
 		});
 
-		// setId("@tab::" + title);
+		/* this.title.addListener(change ->
+		{
+			setId(getTitle());
+			setTitle(getTitle());
+		}); */
+
+		// setId(/* "@tab::" + */ title);
 		setPadding(new Insets(0, 10, 0, 30));
 		setSpacing(DEFAULT_TAB_SPACING);
 		setMinWidth(DEFAULT_TAB_WIDTH);

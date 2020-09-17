@@ -1,57 +1,47 @@
 package org.beuwi.msgbots.platform.gui.control;
 
-import javafx.collections.ListChangeListener;
-import javafx.scene.layout.HBox;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class MenuBar extends HBox
 {
-	final int DEFAULT_HEIGHT = 20;
+	public static final String DEFAULT_STYlE_CLASS = "menu-bar";
+
+	public static final int DEFAULT_MIN_HEIGHT = 20;
+	public static final int DEFAULT_PREF_HEIGHT = 20;
 
 	private int index = 0;
 
 	public MenuBar()
 	{
-		setPrefHeight(DEFAULT_HEIGHT);
+		setMinHeight(DEFAULT_MIN_HEIGHT);
+		setPrefHeight(DEFAULT_PREF_HEIGHT);
 
-		getChildren().addListener((ListChangeListener) change ->
-		{
-			while (change.next())
-            {
-                if (change.wasAdded())
-                {
-					getItems().get(index ++).setPrefHeight(DEFAULT_HEIGHT);
-                }
-            }
-		});
-
-		getStyleClass().add("menu-bar");
+		getStyleClass().add(DEFAULT_STYlE_CLASS);
 	}
 
-	public void addItem(String name)
+	public void addMenu(String name)
 	{
 		addItem(new MenuButton(name));
 	}
 
-	public void addItem(MenuButton button)
+	public void addMenu(MenuButton button)
 	{
 		getItems().add(button);
 	}
 
-	public void addItems(MenuButton... buttons)
+	public void addMenus(MenuButton... buttons)
 	{
 		getChildren().addAll(buttons);
 	}
 
-	public List<MenuButton> getItems()
+	public MenuButton getMenu(int index)
 	{
-		return getChildren().stream().map(tab -> (MenuButton) tab).collect(Collectors.toList());
+		return getMenus().get(index);
 	}
 
-	public MenuButton getItem(int index)
+	public List<MenuButton> getMenus()
 	{
-		return getItems().get(index);
+		return getChildren().stream().map(tab -> (MenuButton) tab).collect(Collectors.toList());
 	}
 }

@@ -30,8 +30,7 @@ public class SideAreaPart implements View
 		loader = new FormLoader("side-area-part");
 		nameSpace = loader.getNamespace();
 		root = loader.getRoot();
-
-		component = (TabPane) loader.getComponent();
+		component = loader.getComponent();
 
 		// Resize Bar
 		resize = (Pane) nameSpace.get("stpResizeBar");
