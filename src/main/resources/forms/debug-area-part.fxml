@@ -15,23 +15,25 @@
 <AnchorPane prefWidth="350.0" styleClass="side-area" stylesheets="@../styles/debug-area-part.css" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
 		<TabPane type="SYSTEM" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
-			<Tab fx:id="tabDebugRoom" title="DEBUG ROOM" closable="false">
-				<content>
-					<StackPane styleClass="debug-tab">
-						<VBox alignment="CENTER">
-							<children>
-								<ChatView fx:id="lsvChatView" VBox.vgrow="ALWAYS" />
-								<StackPane prefHeight="60.0">
-									<TextArea fx:id="txaChatInput" />
-									<VBox.margin>
-										<Insets top="8.0" right="8.0" bottom="8.0" left="8.0" />
-									</VBox.margin>
-								</StackPane>
-							</children>
-						</VBox>
-					</StackPane>
-				</content>
-			</Tab>
+			<tabs>
+				<Tab fx:id="tabDebugRoom" title="DEBUG ROOM" closable="false">
+					<content>
+						<StackPane styleClass="debug-tab">
+							<VBox alignment="CENTER">
+								<children>
+									<ChatView fx:id="lsvChatView" VBox.vgrow="ALWAYS" />
+									<StackPane prefHeight="60.0">
+										<TextArea fx:id="txaChatInput" />
+										<VBox.margin>
+											<Insets top="8.0" right="8.0" bottom="8.0" left="8.0" />
+										</VBox.margin>
+									</StackPane>
+								</children>
+							</VBox>
+						</StackPane>
+					</content>
+				</Tab>
+			</tabs>
 			<Tab title="GLOBAL LOG" closable="false" />
 		</TabPane>
 		<Pane fx:id="stpResizeBar" prefWidth="5.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0">

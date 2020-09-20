@@ -26,7 +26,7 @@ dependencies {
     implementation group: 'commons-io', name: 'commons-io', version: '2.6'
     implementation group: 'com.jfoenix', name: 'jfoenix', version: '9.0.8'
     implementation group: 'org.fxmisc.richtext', name: 'richtextfx', version: '0.10.4'
-    // implementation group: 'net.java.dev.jna', name: 'jna-platform', version: '5.6.0'
+    implementation group: 'net.java.dev.jna', name: 'jna-platform', version: '5.6.0'
     implementation (group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1') {
         exclude group: 'org.hamcrest', module: 'hamcrest-core'
     }

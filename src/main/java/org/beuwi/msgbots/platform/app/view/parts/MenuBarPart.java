@@ -5,7 +5,12 @@ import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.StackPane;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
+import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
+import org.beuwi.msgbots.platform.app.view.actions.ToggleDebugAreaAction;
 import org.beuwi.msgbots.platform.app.view.actions.ToggleMenuBarAction;
+import org.beuwi.msgbots.platform.app.view.actions.ToggleSideAreaAction;
+import org.beuwi.msgbots.platform.app.view.dialog.CreateBotDialog;
+import org.beuwi.msgbots.platform.app.view.dialog.ImportScriptDialog;
 import org.beuwi.msgbots.platform.gui.control.MenuBar;
 import org.beuwi.msgbots.platform.gui.control.MenuItem;
 
@@ -20,7 +25,7 @@ public class MenuBarPart implements View
 	private static MenuBar component;
 
 	@Override
-	public void init() throws Exception
+	public void init()
 	{
 		loader = new FormLoader("menu-bar-part");
 		nameSpace = loader.getNamespace();
@@ -30,8 +35,8 @@ public class MenuBarPart implements View
 		// File Menu Button
 		component.getMenu(0).setMenus
 		(
-			new MenuItem("New Bot", "Ctrl + N"),
-			new MenuItem("Import Script", "Ctrl + I"),
+			new MenuItem("New Bot", "Ctrl + N", event -> OpenDialogBoxAction.execute(new CreateBotDialog())),
+			new MenuItem("Import Script", "Ctrl + I", event -> OpenDialogBoxAction.execute(new ImportScriptDialog())),
 			new SeparatorMenuItem(),
 			new MenuItem("Save", "Ctrl + S"),
 			new MenuItem("Save All"),
@@ -55,10 +60,9 @@ public class MenuBarPart implements View
 		// View Menu Button
 		component.getMenu(2).setMenus
 		(
-			new MenuItem("Toggle Menu Bar", /* "Alt",*/ event -> ToggleMenuBarAction.execute())
-			/* new SeparatorMenuItem(),
-			new MenuItem("Toggle Bots Tab"),
-			new MenuItem("Toggle Debug Tab") */
+			new MenuItem("Toggle Menu Bar", /* "Alt",*/ event -> ToggleMenuBarAction.execute()),
+			new MenuItem("Toggle Side Bar", /* "Alt",*/ event -> ToggleSideAreaAction.execute()),
+			new MenuItem("Toggle Debug Area", /* "Alt",*/ event -> ToggleDebugAreaAction.execute())
 		);
 
 		// Debug Menu Button

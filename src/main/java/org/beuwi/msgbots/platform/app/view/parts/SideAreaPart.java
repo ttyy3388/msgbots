@@ -5,14 +5,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
-import org.beuwi.msgbots.platform.gui.control.ListView;
+import org.beuwi.msgbots.platform.gui.control.BotView;
 import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.gui.control.TabPane;
 
 public class SideAreaPart implements View
 {
 	private static final int MAX_WIDTH = 000;
-	private static final int MIN_WIDTH = 220;
+	private static final int MIN_WIDTH = 180;
 
 	private static ObservableMap<String, Object> nameSpace;
 
@@ -25,7 +25,7 @@ public class SideAreaPart implements View
 	private static Pane resize;
 
 	@Override
-	public void init() throws Exception
+	public void init()
 	{
 		loader = new FormLoader("side-area-part");
 		nameSpace = loader.getNamespace();
@@ -52,13 +52,13 @@ public class SideAreaPart implements View
 	{
 		private static Tab root;
 
-		private static ListView component;
+		private static BotView component;
 
 		@Override
-		public void init() throws Exception
+		public void init()
 		{
 			root = (Tab) nameSpace.get("tabBotList");
-			component = (ListView) nameSpace.get("lsvBotView");
+			component = (BotView) nameSpace.get("lsvBotView");
 		}
 
 		public static Tab getRoot()
@@ -66,7 +66,7 @@ public class SideAreaPart implements View
 			return root;
 		}
 
-		public static ListView getComponent()
+		public static BotView getComponent()
 		{
 			return component;
 		}

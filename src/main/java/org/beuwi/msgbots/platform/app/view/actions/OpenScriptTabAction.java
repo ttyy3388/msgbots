@@ -1,6 +1,8 @@
 package org.beuwi.msgbots.platform.app.view.actions;
 
+import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.impl.Action;
+import org.beuwi.msgbots.platform.app.utils.FileUtils;
 import org.beuwi.msgbots.platform.gui.control.CodeArea;
 import org.beuwi.msgbots.platform.gui.control.Tab;
 
@@ -16,7 +18,7 @@ public class OpenScriptTabAction implements Action
 	{
 		AddMainAreaTabAction.execute
 		(
-			new Tab(name, new CodeArea(/* FileManager.read(FileManager.getBotScript(name) */))
+			new Tab(name, new CodeArea(FileUtils.read(FileManager.getBotScript(name))))
 		);
 	}
 

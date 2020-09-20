@@ -82,7 +82,7 @@ public class Tab extends HBox
 			new MenuItem("Close Other Tabs"),
 			new MenuItem("Close Tabs to the Right"),
 			new MenuItem("Close Tabs to the Left"),
-			new MenuItem("Close All Tabs"),
+			new MenuItem("Close All Tabs", event -> pane.getTabs().clear()),
 			new SeparatorMenuItem(),
 			new MenuItem("Pin Tab", event -> pinned.set(!pinned.get())),
 			new SeparatorMenuItem(),

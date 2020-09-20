@@ -16,8 +16,8 @@ public class ToggleMenuBarAction implements Action
     @Override
     public void init()
     {
-        bpane = MainView.getRoot();
         spane = MenuBarPart.getRoot();
+        bpane = MainView.getRoot();
     }
 
     public static void execute()

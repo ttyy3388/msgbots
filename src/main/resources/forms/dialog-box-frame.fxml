@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import org.beuwi.msgbots.platform.gui.control.Button?>
+<?import org.beuwi.msgbots.platform.gui.control.HBox?>
+
+<?import javafx.scene.layout.StackPane?>
+
+<BorderPane fx:id="brpRootPane" stylesheets="@../styles/dialog-box-frame.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+	<bottom>
+		<HBox fx:id="hbxButtonBar" alignment="CENTER_RIGHT" prefHeight="25.0" spacing="10.0">
+			<children>
+				<Button fx:id="btnOk" type="ACTION" styled="true" prefWidth="80.0" text="OK" />
+				<Button fx:id="btnNo" type="CANCEL" styled="true" prefWidth="80.0" text="NO" />
+			</children>
+			<BorderPane.margin>
+				<Insets top="28" />
+			</BorderPane.margin>
+		</HBox>
+	</bottom>
+   <top>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="lblWinTitle" styleClass="title-label" text="Dialog" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="28.0" />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+	<StackPane.margin>
+		<Insets bottom="28.0" left="28.0" right="28.0" />
+	</StackPane.margin>
+</BorderPane>

@@ -4,7 +4,7 @@
 <?import org.beuwi.msgbots.platform.gui.control.ToastView?>
 
 <BorderPane styleClass="toast-area" stylesheets="@../styles/toast-area-part.css">
-   <right>
-      <ToastView />
-   </right>
+	<right>
+		<ToastView />
+	</right>
 </BorderPane>

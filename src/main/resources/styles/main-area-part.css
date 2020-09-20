@@ -18,12 +18,3 @@
 	-fx-background-color: #1E1E1E;
 	-fx-border-color: transparent transparent transparent #007ACC;
 }
-
-.tab-header-area
-{
-	-fx-background-color: #252526;
-}
-.tab-content-area
-{
-	-fx-background-color: #1E1E1E;
-}

@@ -1,8 +1,9 @@
 
-.side-area
+.side-area { }
+
+.tab, .tab-pane
 {
-	-fx-border-color: #414141;
-	-fx-border-width: 0 1 0 0;
+    -fx-background-color: #252526;
 }
 
 /* .list-cell

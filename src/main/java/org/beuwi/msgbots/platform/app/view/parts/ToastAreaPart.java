@@ -17,12 +17,14 @@ public class ToastAreaPart implements View
     private static ToastView component;
 
     @Override
-    public void init() throws Exception
+    public void init()
     {
         loader = new FormLoader("toast-area-part");
         nameSpace = loader.getNamespace();
         root = loader.getRoot();
         component = loader.getComponent();
+
+        root.setMouseTransparent(true);
     }
 
     public static BorderPane getRoot()

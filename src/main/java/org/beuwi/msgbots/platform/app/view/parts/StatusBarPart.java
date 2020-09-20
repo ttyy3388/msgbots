@@ -14,7 +14,7 @@ public class StatusBarPart implements View
 	private static Pane root;
 
 	@Override
-	public void init() throws Exception
+	public void init()
 	{
 		loader = new FormLoader("status-bar-part");
 		nameSpace = loader.getNamespace();

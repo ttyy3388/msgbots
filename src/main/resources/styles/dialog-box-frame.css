@@ -1,0 +1,12 @@
+
+.root-pane
+{
+	-fx-background-color: #252526;
+	-fx-border-color: #323233;
+	-fx-border-width: 1;
+}
+
+.title-label
+{
+    -fx-font-size: 25;
+}

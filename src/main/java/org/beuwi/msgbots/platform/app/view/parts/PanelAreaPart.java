@@ -19,7 +19,7 @@ public class PanelAreaPart implements View
 	private static TabPane component;
 
 	@Override
-	public void init() throws Exception
+	public void init()
 	{
 		loader = new FormLoader("panel-area-part");
 		nameSpace = loader.getNamespace();

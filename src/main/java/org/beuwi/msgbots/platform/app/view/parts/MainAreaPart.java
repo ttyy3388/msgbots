@@ -18,7 +18,7 @@ public class MainAreaPart implements View
 	private static TabPane component;
 
 	@Override
-	public void init() throws Exception
+	public void init()
 	{
 		loader = new FormLoader("main-area-part");
 		nameSpace = loader.getNamespace();

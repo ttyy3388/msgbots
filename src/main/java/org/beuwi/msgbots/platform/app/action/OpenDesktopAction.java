@@ -1,11 +1,11 @@
-package org.beuwi.msgbots.platform.app.view.actions;
+package org.beuwi.msgbots.platform.app.action;
 
 import org.beuwi.msgbots.platform.app.impl.Action;
 
 import java.awt.Desktop;
 import java.io.File;
 
-public class ShowInExplorerAction implements Action
+public class OpenDesktopAction implements Action
 {
 	@Override
 	public void init()
@@ -38,6 +38,6 @@ public class ShowInExplorerAction implements Action
 	@Override
 	public String getName()
 	{
-		return "show.in.explorer.action";
+		return "open.desktop.action";
 	}
 }

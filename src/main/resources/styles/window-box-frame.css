@@ -1,0 +1,27 @@
+
+.root-pane
+{
+	-fx-background-color: #252526;
+	-fx-border-color: #252526;
+	-fx-border-width: 1;
+}
+
+.title-bar .button
+{
+    -fx-cursor: default;
+}
+
+.title-bar .button:hover
+{
+	-fx-background-color: #D61425;
+}
+
+.window:focused .root-pane
+{
+    -fx-border-color: #007ACC;
+}
+
+.window:focused .title-bar .button .icon
+{
+    -fx-background-color: #FFFFFF;
+}

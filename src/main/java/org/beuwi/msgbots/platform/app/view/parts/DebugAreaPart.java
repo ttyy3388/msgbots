@@ -29,7 +29,7 @@ public class DebugAreaPart implements View
 	private static Pane resize;
 
 	@Override
-	public void init() throws Exception
+	public void init()
 	{
 		loader = new FormLoader("debug-area-part");
 		nameSpace = loader.getNamespace();
@@ -60,7 +60,7 @@ public class DebugAreaPart implements View
 		private static TextArea textArea;
 
 		@Override
-		public void init() throws Exception
+		public void init()
 		{
 			root = (Tab) nameSpace.get("tabDebugRoom");
 

@@ -1,7 +1,10 @@
 package org.beuwi.msgbots.platform.gui.control;
 
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.control.SelectionMode;
+
+import java.util.List;
 
 public class ListView<T> extends javafx.scene.control.ListView<T>
 {
@@ -65,6 +68,24 @@ public class ListView<T> extends javafx.scene.control.ListView<T>
 	public T getItem(int index)
 	{
 		return getItems().get(index);
+	}
+
+	public Node getItem(String id)
+	{
+		List<T> list = getItems();
+
+		for (T item : list)
+		{
+			if (item instanceof Node)
+			{
+				if (((Node) item).getId().equals(id))
+				{
+					return (Node) item;
+				}
+			}
+		}
+
+		return null;
 	}
 
 	public ObservableList<T> getSelectedItems()

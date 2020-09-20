@@ -195,6 +195,25 @@ public class TabPane extends VBox
 			content.getChildren().setAll(getSelectedTab().getContent());
 		});
 
+		/* parentProperty().addListener(change ->
+		{
+			((Pane) getParent()).backgroundProperty().addListener(observable ->
+			{
+				if (!((Pane) getParent()).getBackground().isEmpty())
+				{
+					backgroundProperty().addListener(c ->
+					{
+						System.out.println(getBackground());
+					});
+				}
+			});
+
+			getParent().styleProperty().addListener((observable, oldValue, newValue) ->
+			{
+				System.out.println(newValue);
+			});
+		}); */
+
 		// setMinWidth(DEFAULT_MIN_WIDTH);
 		// setMinHeight(DEFAULT_MIN_HEIGHT);
 		getChildren().addAll(scroll, content);

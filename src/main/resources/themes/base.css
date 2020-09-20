@@ -30,6 +30,7 @@
 .text-field
 {
 	-fx-cursor: text;
+	-fx-padding: 4;
 }
 
 /* IMAGE */
