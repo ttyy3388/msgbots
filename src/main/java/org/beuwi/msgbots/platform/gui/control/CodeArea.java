@@ -4,6 +4,8 @@ import javafx.application.Platform;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import org.beuwi.msgbots.platform.app.view.actions.SaveScriptTabAction;
+import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.model.StyleSpans;
 import org.fxmisc.richtext.model.StyleSpansBuilder;
@@ -14,7 +16,7 @@ import java.util.function.IntFunction;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CodeArea extends ScrollPane
+public class CodeArea extends VirtualizedScrollPane<org.fxmisc.richtext.CodeArea>
 {
 	final private static String[] KEYWORDS = new String[]
 	{
@@ -57,9 +59,9 @@ public class CodeArea extends ScrollPane
 	);
 
 	/* private SortedSet<String> entries;
-	private IContextMenu popup = new IContextMenu
+	private ContextMenu popup = new ContextMenu
 	(
-		new IMenuItem("TEST")
+		new MenuItem("TEST")
 	); */
 
 	final org.fxmisc.richtext.CodeArea area;
@@ -96,6 +98,7 @@ public class CodeArea extends ScrollPane
 			new MenuItem("Select All", "Ctrl + A", event -> area.selectAll())
 		));
 
+		area.setStyleSpans(0, computeHighlighting(area.getText()));
 		area.textProperty().addListener((observable, oldText, newText) ->
 		{
 			area.setStyleSpans(0, computeHighlighting(newText));
@@ -105,7 +108,18 @@ public class CodeArea extends ScrollPane
 
 		area.addEventHandler(KeyEvent.KEY_PRESSED, event ->
 		{
-			if (event.getCode() == KeyCode.ENTER )
+			if (event.isControlDown())
+			{
+				switch (event.getCode())
+				{
+					case S : SaveScriptTabAction.execute(); break;
+				}
+			}
+		});
+
+		area.addEventHandler(KeyEvent.KEY_PRESSED, event ->
+		{
+			if (KeyCode.ENTER.equals(event.getCode()))
 			{
 				int position = area.getCaretPosition();
 				int paragraph = area.getCurrentParagraph();

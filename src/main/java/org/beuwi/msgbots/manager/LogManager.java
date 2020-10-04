@@ -2,37 +2,36 @@ package org.beuwi.msgbots.manager;
 
 import org.beuwi.msgbots.openapi.JSONArray;
 import org.beuwi.msgbots.openapi.JSONObject;
+import org.beuwi.msgbots.platform.app.utils.FileUtils;
+import org.beuwi.msgbots.platform.app.view.actions.AddBotLogItemAction;
 import org.beuwi.msgbots.platform.gui.control.Log;
+import org.beuwi.msgbots.platform.gui.control.Log.Type;
 import org.beuwi.msgbots.platform.gui.control.LogView;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 public class LogManager
 {
-	public static HashMap<String, LogView> data = new HashMap<>();
-
 	public static LogView getView(String name)
 	{
-		return data.get(name);
+		return null; // GlobalLogTab.data.get(name);
 	}
 
-	// 인자 없으면 Global Log 로 인식
 	public static List<Log> load()
 	{
 		return load(FileManager.getDataFile("global_log.json"));
 	}
 
-	// Bot Log
 	public static List<Log> load(String name)
 	{
 		return load(FileManager.getBotLog(name));
 	}
 
+	// file : log file
 	public static List<Log> load(File file)
 	{
 		try
@@ -50,49 +49,86 @@ public class LogManager
 			{
 				JSONObject data = (JSONObject) object;
 
-				/* list.add
+				list.add
 				(
 					new Log
 					(
 						String.valueOf(data.get("a")),
 						String.valueOf(data.get("c")),
-						Integer.valueOf("" + data.get("b"))
+						switch (String.valueOf(data.get("b")))
+						{
+							case "1" -> Type.EVENT;
+							case "2" -> Type.DEBUG;
+							case "3" -> Type.ERROR;
+							default  -> Type.EVENT;
+						}
 					)
-				); */
+				);
 			}
 
 			return list;
 		}
 		catch (Exception e)
 		{
-			// new ShowErrorDialog(e).display();
+			// AddToastMessageAction.execute(e);
 		}
 
 		return new ArrayList<>();
 	}
 
-	public static void append(String name, String data, int type)
+	public static void append(String data, Type type)
 	{
-		File file = FileManager.getBotLog(name);
+		append(FileManager.getDataFile("global_log.json"), data, type, true);
+	}
+
+	public static void append(String name, String data, Type type)
+	{
+		append(FileManager.getBotLog(name), data, type, false);
+	}
+
+	public static void append(File file, String data, Type type, boolean isGlobal)
+	{
 		String date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss ").format(new Date());
 
 		JSONObject object = new JSONObject();
 
-		object.put("a", name);
-		object.put("b", type);
+		object.put("a", data);
+		object.put("b", switch (type) {
+			case EVENT -> 1;
+			case DEBUG -> 2;
+			case ERROR -> 3;
+		});
 		object.put("c", date);
 
 		JSONArray array = new JSONArray(file);
 
 		array.add(object);
 
-		// AddBotLogItemAction.update(name, new ILogItem(data, date, type));
+		if (isGlobal)
+		{
+			AddBotLogItemAction.execute(new Log(data, date, type));
+		}
+		else
+		{
+			AddBotLogItemAction.execute(FileManager.getBaseName(file.getName()), new Log(data, date, type));
+		}
 
-		System.out.println(array.toJSONString());
+		// FileUtils.save(file, array.toJSONString());
+	}
+
+	public static void clear()
+	{
+		clear(FileManager.getDataFile("global_log.json"));
 	}
 
 	public static void clear(String name)
 	{
-		// FileManager.save(FileManager.getBotLog(name), "[]");
+		clear(FileManager.getBotLog(name));
+	}
+
+	// file : log file
+	public static void clear(File file)
+	{
+		FileUtils.save(file, "[]");
 	}
 }

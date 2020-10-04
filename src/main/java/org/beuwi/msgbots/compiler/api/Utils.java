@@ -6,7 +6,7 @@ import org.jsoup.nodes.Document;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.ScriptableObject;
 import org.mozilla.javascript.Undefined;
-import org.mozilla.javascript.annotations.JSStaticFunction;
+import org.mozilla.javascript.annotations.JSFunction;
 
 public class Utils extends ScriptableObject
 {
@@ -25,8 +25,8 @@ public class Utils extends ScriptableObject
 		this.name = name;
 	}
 
-	@JSStaticFunction
-	public static String getWebText(String url)
+	@JSFunction
+	public String getWebText(String url)
 	{
 		try
 		{
@@ -45,8 +45,8 @@ public class Utils extends ScriptableObject
 		return null;
 	}
 
-	@JSStaticFunction
-	public static Document parse(String url)
+	@JSFunction
+	public Document parse(String url)
 	{
 		try
 		{
@@ -65,32 +65,32 @@ public class Utils extends ScriptableObject
 		return null;
 	}
 
-	@JSStaticFunction
-	public static Boolean isUndefined(Object value)
+	@JSFunction
+	public Boolean isUndefined(Object value)
 	{
 		return Undefined.isUndefined(value);
 	}
 
-	@JSStaticFunction
-	public static int getAndroidVersionCode()
+	@JSFunction
+	public int getAndroidVersionCode()
 	{
 		return 28;
 	}
 
-	@JSStaticFunction
-	public static String getAndroidVersionName()
+	@JSFunction
+	public String getAndroidVersionName()
 	{
 		return "9";
 	}
 
-	@JSStaticFunction
-	public static String getPhoneBrand()
+	@JSFunction
+	public String getPhoneBrand()
 	{
 		return "samsung";
 	}
 
-	@JSStaticFunction
-	public static String getPhoneModel()
+	@JSFunction
+	public String getPhoneModel()
 	{
 		return "greatlteks";
 	}

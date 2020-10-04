@@ -29,7 +29,7 @@ public class CreateBotDialog extends DialogBoxWrap
 	// Off On Runtime Error
 	@FXML private CheckBox chkIsOffError;
 
-	@FXML private Button btnCreate;
+	private final Button button;
 
 	public CreateBotDialog()
 	{
@@ -48,18 +48,18 @@ public class CreateBotDialog extends DialogBoxWrap
 		nameSpace = loader.getNamespace();
 		root = loader.getRoot();
 
-		btnCreate = getOkButton();
+		button = getOkButton();
 
-		btnCreate.setText("Create");
-		btnCreate.setDisable(true);
-		btnCreate.setOnAction(event ->
+		button.setText("Create");
+		button.setDisable(true);
+		button.setOnAction(event ->
 		{
 			this.action();
 		});
 
 		txfScriptName.textProperty().addListener(change ->
 		{
-			btnCreate.setDisable(txfScriptName.getText().isEmpty());
+			button.setDisable(txfScriptName.getText().isEmpty());
 		});
 
 		setUseButton(true, false);
@@ -67,7 +67,7 @@ public class CreateBotDialog extends DialogBoxWrap
 		{
 			if (event.getCode().equals(KeyCode.ENTER))
 			{
-				if (!btnCreate.isDisable())
+				if (!button.isDisable())
 				{
 					this.action();
 				}

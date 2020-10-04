@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane fx:id="brpRootPane" prefHeight="300.0" prefWidth="400.0" styleClass="root-pane" stylesheets="@../styles/window-box-frame.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="brpRootPane" styleClass="root-pane" stylesheets="@../styles/window-box-frame.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <AnchorPane fx:id="anpTitleBar" prefHeight="28.0" styleClass="title-bar" BorderPane.alignment="CENTER">
             <children>

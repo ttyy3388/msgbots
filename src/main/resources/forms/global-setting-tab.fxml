@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import org.beuwi.msgbots.platform.gui.control.Button?>
+<?import org.beuwi.msgbots.platform.gui.control.CodeArea?>
+<?import org.beuwi.msgbots.platform.gui.control.HBox?>
+<?import org.beuwi.msgbots.platform.gui.control.Option?>
+<?import org.beuwi.msgbots.platform.gui.control.OptionView?>
+<?import org.beuwi.msgbots.platform.gui.control.ScrollPane?>
+<?import org.beuwi.msgbots.platform.gui.control.Tab?>
+<?import org.beuwi.msgbots.platform.gui.control.TabPane?>
+<?import org.beuwi.msgbots.platform.gui.control.TextField?>
+<?import org.beuwi.msgbots.platform.gui.control.VBox?>
+
+<?import javafx.scene.control.Separator?>
+<Tab title="GLOBAL SETTINGS" xmlns:fx="http://javafx.com/fxml/1">
+	<content>
+		<StackPane>
+			<children>
+				<VBox spacing="15.0" styleClass="settings-tab" stylesheets="@../styles/global-setting-tab.css">
+					<children>
+						<TextField />
+						<TabPane VBox.vgrow="ALWAYS">
+							<tabs>
+								<Tab text="GLOBAL" closable="false">
+									<content>
+										<OptionView>
+											<options>
+												<Option title="Program">
+													<content>
+														<VBox spacing="30.0">
+															<children>
+																<VBox spacing="15.0">
+																	<children>
+																		<Label styleClass="title-label" text="시작 시 자동 컴파일" />
+																		<CheckBox text="앱이 시작되었을 때 전원을 켜둔 스크립트를 자동으로 컴파일 합니다." />
+																	</children>
+																</VBox>
+																<VBox spacing="15.0">
+																	<children>
+																		<Label styleClass="title-label" text="리로드 시 자동 저장" />
+																		<CheckBox text="리로드할 때 자동으로 세이브를 한 후 리로드를 합니다." />
+																	</children>
+																</VBox>
+																<VBox spacing="15.0" VBox.vgrow="ALWAYS">
+																	<children>
+																		<Label styleClass="title-label" text="스크립트 생성 시 자동으로 저장되는 내용 수정" />
+																		<HBox spacing="10.0" VBox.vgrow="ALWAYS">
+																			<children>
+																				<VBox spacing="10.0" HBox.hgrow="ALWAYS">
+																					<children>
+																						<Label text="통합 매개변수 OFF (기본)" />
+																						<CodeArea VBox.vgrow="ALWAYS" />
+																					</children>
+																				</VBox>
+																				<VBox spacing="10.0" HBox.hgrow="ALWAYS">
+																					<children>
+																						<Label text="통합 매개변수 ON" />
+																						<CodeArea VBox.vgrow="ALWAYS" />
+																					</children>
+																				</VBox>
+																			</children>
+																		</HBox>
+																	</children>
+																</VBox>
+															</children>
+														</VBox>
+														<StackPane.margin>
+															<Insets left="15.0" />
+														</StackPane.margin>
+													</content>
+												</Option>
+												<Option title="Debug">
+													<content>
+														<ScrollPane fitToWidth="true">
+															<content>
+																<VBox spacing="30.0">
+																	<children>
+																		<VBox spacing="15.0">
+																			<children>
+																				<Label styleClass="title-label" text="HTML 로드 시간 제한 (ms)" />
+																				<TextField maxWidth="100" />
+																			</children>
+																		</VBox>
+																		<VBox spacing="15.0">
+																			<children>
+																				<Label styleClass="title-label" text="컴파일 에러 보기" />
+																				<CheckBox text="컴파일 중 발생한 에러를 보여줍니다." />
+																			</children>
+																		</VBox>
+																		<VBox spacing="15.0">
+																			<children>
+																				<Label styleClass="title-label" text="런타임 에러 보기" />
+																				<CheckBox text="실행 중 발생한 에러를 보여줍니다." />
+																			</children>
+																		</VBox>
+																		<VBox spacing="15.0">
+																			<children>
+																				<Label styleClass="title-label" text="실행 시간 보기" />
+																				<CheckBox text="실행 시간을 보여줍니다." />
+																			</children>
+																		</VBox>
+																		<Separator />
+																		<VBox spacing="15.0">
+																			<children>
+																				<Label styleClass="title-label" text="방 이름" />
+																				<TextField maxWidth="250" />
+																			</children>
+																		</VBox>
+																		<VBox spacing="15.0">
+																			<children>
+																				<Label styleClass="title-label" text="전송자 이름" />
+																				<TextField maxWidth="250" />
+																			</children>
+																		</VBox>
+																		<VBox spacing="15.0">
+																			<children>
+																				<Label styleClass="title-label" text="봇 이름" />
+																				<TextField maxWidth="250" />
+																			</children>
+																		</VBox>
+																		<VBox spacing="15.0">
+																			<children>
+																				<Label styleClass="title-label" text="패키지 이름" />
+																				<TextField maxWidth="250" />
+																			</children>
+																		</VBox>
+																		<VBox spacing="15.0">
+																			<children>
+																				<Label styleClass="title-label" text="그룹챗 여부" />
+																				<CheckBox text="그룹챗 여부를 설정합니다." />
+																			</children>
+																		</VBox>
+																		<Separator />
+																		<VBox spacing="15.0">
+																			<children>
+																				<Label styleClass="title-label" text="전송자 프로필" />
+																				<Button text="Change" />
+																			</children>
+																		</VBox>
+																		<VBox spacing="15.0">
+																			<children>
+																				<Label styleClass="title-label" text="봇 프로필" />
+																				<Button text="Change" />
+																			</children>
+																		</VBox>
+																	</children>
+																</VBox>
+															</content>
+														</ScrollPane>
+														<StackPane.margin>
+															<Insets left="15.0" />
+														</StackPane.margin>
+													</content>
+												</Option>
+											</options>
+										</OptionView>
+										<StackPane.margin>
+											<Insets top="15.0" />
+										</StackPane.margin>
+									</content>
+								</Tab>
+								<Tab fx:id="tabDebugOption" text="BOT" closable="false">
+									<content>
+										<OptionView>
+											<options>
+												<Option title="Program" />
+												<Option title="Debug" />
+											</options>
+										</OptionView>
+										<StackPane.margin>
+											<Insets top="15.0" />
+										</StackPane.margin>
+									</content>
+								</Tab>
+							</tabs>
+						</TabPane>
+					</children>
+					<StackPane.margin>
+						<Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+					</StackPane.margin>
+				</VBox>
+			</children>
+		</StackPane>
+	</content>
+</Tab>

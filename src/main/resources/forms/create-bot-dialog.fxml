@@ -5,7 +5,7 @@
 
 <?import org.beuwi.msgbots.platform.gui.control.TextField?>
 
-<AnchorPane prefHeight="120.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="120.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
 		<TextField fx:id="txfScriptName" prefHeight="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
 		<CheckBox fx:id="chkIsUnified" text="통합된 매개변수를 사용합니다." AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" />

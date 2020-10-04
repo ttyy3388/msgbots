@@ -1,54 +1,70 @@
 package org.beuwi.msgbots.platform.gui.control;
 
+import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.css.PseudoClass;
+import javafx.event.EventTarget;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
 public class ContextMenu extends javafx.scene.control.ContextMenu
 {
+	public static final String DEFAULT_STYLE_CLASS = "context-menu";
+
 	public ContextMenu()
 	{
 		this(null);
 	}
 
-	public ContextMenu(javafx.scene.control.MenuItem... items)
+	public ContextMenu(MenuItem... items)
 	{
-		getItems().addAll(items);
-		getStyleClass().add("context-menu");
+		addItem(items);
 	}
 
-	public void setNode(Node node)
+	public void setNode(Node item)
 	{
-		if (node instanceof Button)
+		if (item instanceof Button)
 		{
-			node.addEventFilter(MouseEvent.MOUSE_CLICKED, event ->
+			item.addEventFilter(MouseEvent.MOUSE_CLICKED, event ->
 			{
 				if (!isShowing())
 				{
-					show(node, Side.BOTTOM, event);
+					show(item, Side.BOTTOM, event);
 				}
 				else
 				{
 					hide();
 				}
 			});
-
-			this.showingProperty().addListener((observable, oldValue, newValue) ->
+			System.out.println();
+			this.getShowingProperty().addListener((observable, oldValue, newValue) ->
 			{
-				node.pseudoClassStateChanged(PseudoClass.getPseudoClass("showing"), newValue);
+				item.pseudoClassStateChanged(PseudoClass.getPseudoClass("showing"), newValue);
 			});
 		}
 		else
 		{
-			node.addEventFilter(MouseEvent.MOUSE_CLICKED, event ->
+			item.addEventFilter(MouseEvent.MOUSE_CLICKED, event ->
 			{
-				show(node, event);
+				if (item instanceof ListView)
+				{
+					EventTarget target = event.getTarget();
+
+					if (target.toString().contains("Group") || target.toString().contains("ListViewSkin"))
+					{
+						show(item, event);
+					}
+				}
+				else
+				{
+					show(item, event);
+				}
 			});
 
-			node.addEventFilter(MouseEvent.MOUSE_PRESSED, event ->
+			item.addEventFilter(MouseEvent.MOUSE_PRESSED, event ->
 			{
 				if (isShowing())
 				{
@@ -80,5 +96,15 @@ public class ContextMenu extends javafx.scene.control.ContextMenu
 		{
 			hide();
 		}
+	}
+
+	public void addItem(MenuItem... items)
+	{
+		getItems().addAll(items);
+	}
+
+	public ReadOnlyBooleanProperty getShowingProperty()
+	{
+		return showingProperty();
 	}
 }

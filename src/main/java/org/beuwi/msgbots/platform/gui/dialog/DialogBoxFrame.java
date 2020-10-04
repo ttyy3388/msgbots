@@ -117,24 +117,10 @@ public class DialogBoxFrame extends StackPane
 
 	private void initWinSize()
 	{
-		double border = DEFAULT_MARGIN_INSETS * 2;
-
-		// double minW = content.getMinWidth();
-		// double minH = content.getMinHeight();
-		double preW = content.getPrefWidth();
-		double preH = content.getPrefHeight();
-		// double maxW = content.getMaxWidth();
-		// double maxH = content.getMaxHeight();
-
 		content.setMinWidth(content.getPrefWidth());
 		content.setMinHeight(content.getPrefHeight());
-
-		// stage.setMinWidth (minW > 0 ? minW + border : 400);
-		// stage.setMinHeight(minH > 0 ? minH + border + 28 : 200);
-		// stage.setWidth(preW > 0 ? preW + border : 600);
-		// stage.setHeight(preH > 0 ? preH + border + 28 + 25 + 25 : 400);
-		// stage.setMaxWidth (maxW > 0 ? maxW : Double.MAX_VALUE);
-		// stage.setMaxHeight(maxH > 0 ? maxH : Double.MAX_VALUE);
+		// content.setMaxWidth(content.getPrefHeight());
+		// content.setMaxHeight(content.getPrefHeight());
 	}
 
 	public void create()

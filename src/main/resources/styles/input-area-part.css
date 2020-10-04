@@ -7,6 +7,7 @@
 
 .tab
 {
+    -fx-background-color: transparent;
     -fx-border-width: 0 0 1 0;
 }
 .tab:selected
@@ -14,14 +15,9 @@
     -fx-border-color: #FFFFFF;
 }
 
-.tab-label
+.tab-header-area
 {
-    -fx-text-fill: #888888;
-}
-.tab:hover .tab-label,
-.tab:selected .tab-label
-{
-	-fx-text-fill: #FFFFFF;
+    -fx-background-color: transparent;
 }
 
 .text-area

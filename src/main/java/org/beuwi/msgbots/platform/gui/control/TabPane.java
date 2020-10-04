@@ -1,75 +1,40 @@
 package org.beuwi.msgbots.platform.gui.control;
 
-import com.sun.javafx.scene.control.TabObservableList;
 import javafx.beans.DefaultProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
-import javafx.geometry.Side;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @DefaultProperty("tabs")
-public class TabPane extends VBox
+public class TabPane extends VBox<Pane>
 {
-	// public static final EventType<Event> SELECTION_CHANGED_EVENT = new EventType<Event> (Event.ANY, "SELECTION_CHANGED_EVENT");
+	private static final PseudoClass SELECTED_PSEUDO_CLASS = PseudoClass.getPseudoClass("selected");
 
 	private static final String DEFAULT_STYLE_CLASS = "tab-pane";
 
-	private static final double DEFAULT_MIN_WIDTH = 200;
-	private static final double DEFAULT_MIN_HEIGHT = 500;
-
-	private static final double DEFAULT_TAB_WIDTH = 100;
-	private static final double DEFAULT_TAB_HEIGHT = 30;
-
-	private static final double DEFAULT_SCROLL_SPEED = 0.005;
-
-	// private static final double DEFAULT_TAB_WIDTH = Double.MAX_VALUE;
-	// private static final double DEFAULT_TAB_HEIGHT = Double.MAX_VALUE;
-	// private static final double DEFAULT_TAB_HEIGHT = Double.MAX_VALUE;
-
-	private static final PseudoClass SELECTED_PSEUDO_CLASS = PseudoClass.getPseudoClass("selected");
-
-	// Tab Type Property
-	private final ObjectProperty<Type> type = new SimpleObjectProperty<>(Type.NORMAL);
-
-	// Tab Side Property
-	private final ObjectProperty<Side> side = new SimpleObjectProperty<>(Side.TOP);
+	private static final int DEFAULT_HEADER_WIDTH = 100;
+	private static final int DEFAULT_HEADER_HEIGHT = 30;
 
 	// Selected Tab Property
-	private final ObjectProperty<Tab> selected = new SimpleObjectProperty();
+	private final ObjectProperty<Tab> selected = new SimpleObjectProperty<>(null);
+    private final ObjectProperty<Type> type = new SimpleObjectProperty<>(null);
+	private final ObservableList<Tab> tabs = FXCollections.observableArrayList();
 
-	// Tab List
-	private final ObservableList<Tab> tabs = new TabObservableList<>(new ArrayList<>());
-
-	// Tab Content Pane
 	private final StackPane content = new StackPane();
+	private final ScrollPane scroll = new ScrollPane();
+	private final HBox header = new HBox();
 
-	// Tab Header Scroll Pane
-	private ScrollPane scroll = new ScrollPane();
-
-	// Tab Header Area (Default : HBox)
-	private HBox header = new HBox();
-
-	private VBox root = new VBox();
-
-	public enum Type
-	{
-		NORMAL, SYSTEM
-	};
-
-	// Scroll Bar Pos
-	private int pos = 0;
+    public enum Type
+    {
+        NORMAL, SYSTEM
+    }
 
 	{
 		VBox.setVgrow(content, Priority.ALWAYS);
@@ -83,157 +48,108 @@ public class TabPane extends VBox
 
 	public TabPane(Tab... tabs)
 	{
-		if (tabs != null)
-		{
-			getTabs().addAll(tabs);
-		}
-
-		scroll.setHvalue(1.0d);
 		scroll.setContent(header);
-		scroll.setMinHeight(DEFAULT_TAB_HEIGHT);
-		scroll.setMaxHeight(DEFAULT_TAB_HEIGHT);
+		scroll.setFitToWidth(false);
+		scroll.setMinHeight(DEFAULT_HEADER_HEIGHT);
+		scroll.setMaxHeight(DEFAULT_HEADER_HEIGHT);
 		scroll.setHbarPolicy(ScrollBarPolicy.NEVER);
 		scroll.setVbarPolicy(ScrollBarPolicy.NEVER);
-		scroll.setFitToHeight(true);
 
-		scroll.setOnScroll(event ->
+		if (tabs != null)
 		{
-			scroll.setHvalue(scroll.getHvalue() - (event.getDeltaY()  * DEFAULT_SCROLL_SPEED));
-		});
+			addTab(tabs);
+		}
 
-		this.tabs.addListener((ListChangeListener<Tab>) change ->
+		getTabs().addListener((ListChangeListener<Tab>) change ->
 		{
 			while (change.next())
 			{
 				for (Tab tab : change.getRemoved())
 				{
 					tab.setTabPane(null);
-
-					header.getChildren().remove(tab);
-
-					if (change.getList().isEmpty())
-					{
-						getChildren().remove(scroll);
-					}
+					header.remove(tab);
 				}
 
 				for (Tab tab : change.getAddedSubList())
 				{
-					// tab.setId(tab.getTitle());
 					tab.setTabPane(this);
-
-					header.getChildren().add(tab);
-
-					selected.set(tab);
-
-					if (!getChildren().contains(scroll))
-					{
-						getChildren().add(0, scroll);
-					}
+					header.addItem(tab);
+					selected.setValue(tab);
 				}
 			}
+
+			this.setVisible(!getTabs().isEmpty());
+		});
+
+		getTypeProperty().addListener(change ->
+        {
+            switch (getType())
+            {
+                case NORMAL :
+
+                    scroll.setFitToWidth(false);
+
+                    for (Tab tab : getTabs())
+                    {
+                        HBox.setHgrow(tab, Priority.NEVER);
+                    }
+
+                    break;
+
+                case SYSTEM :
+
+                    scroll.setFitToWidth(true);
+
+                    for (Tab tab : getTabs())
+                    {
+                        HBox.setHgrow(tab, Priority.ALWAYS);
+                    }
+
+                    break;
+            }
+        });
+
+        getSelectedProperty().addListener(change ->
+        {
+            content.getChildren().clear();
+            content.getChildren().add(getSelectedTab().getContent());
+        });
+
+		getSelectedProperty().addListener((observable, oldTab, newTab) ->
+		{
+			/* if (newTab.getBoundsInParent().getMaxX() > getWidth())
+			{
+				scroll.setHvalue(newTab.getBoundsInParent().getMaxX() / header.getBoundsInLocal().getWidth());
+			} */
+
+			if (oldTab != null)
+			{
+				oldTab.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, false);
+			}
+
+			newTab.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, true);
 		});
 
 		scroll.getStyleClass().add("tab-header-area");
 		content.getStyleClass().add("tab-content-area");
 
-		type.addListener((observable, oldType, newType) ->
-		{
-			switch (newType)
-			{
-				case NORMAL : break;
-				case SYSTEM :
-
-					/* if (getSide().isVertical())
-					{
-						return ;
-					} */
-
-					List<Tab> list = this.tabs;
-
-					widthProperty().addListener(change ->
-					{
-						for (Tab tab : list)
-						{
-							tab.setMinWidth(getWidth() / list.size());
-						}
-					});
-
-					break;
-			}
-		});
-
-		selected.addListener(change ->
-		{
-
-		});
-
-		selected.addListener((observable, oldTab, newTab) ->
-		{
-			if (oldTab != null)
-			{
-				// content.getChildren().remove(oldTab.getContent());
-				// content.getChildren().add(newTab.getContent());
-
-				oldTab.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, false);
-				newTab.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, true);
-			}
-			else
-			{
-				/* if (getTabs().size() > 1)
-				{
-
-				}
-				else
-				{
-					getSelectedTab().pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, true);
-				} */
-
-				getSelectedTab().pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, true);
-			}
-
-			content.getChildren().setAll(getSelectedTab().getContent());
-		});
-
-		/* parentProperty().addListener(change ->
-		{
-			((Pane) getParent()).backgroundProperty().addListener(observable ->
-			{
-				if (!((Pane) getParent()).getBackground().isEmpty())
-				{
-					backgroundProperty().addListener(c ->
-					{
-						System.out.println(getBackground());
-					});
-				}
-			});
-
-			getParent().styleProperty().addListener((observable, oldValue, newValue) ->
-			{
-				System.out.println(newValue);
-			});
-		}); */
-
+		setFitContent(true);
 		// setMinWidth(DEFAULT_MIN_WIDTH);
 		// setMinHeight(DEFAULT_MIN_HEIGHT);
-		getChildren().addAll(scroll, content);
-		getStyleClass().setAll(DEFAULT_STYLE_CLASS);
+		getChildren().add(scroll);
+		getChildren().add(content);
+		getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 
 	public void select(int index)
 	{
-		setSelectedTab(getTab(index));
+		selected.set(getTab(index));
 	}
 
 	public void select(Tab tab)
 	{
-		setSelectedTab(tab);
+		selected.set(tab);
 	}
-
-	/* public void addTab(Tab tab)
-	{
-
-	} */
 
 	public void addTab(Tab... tabs)
 	{
@@ -241,35 +157,36 @@ public class TabPane extends VBox
 		{
 			if (contains(tab))
 			{
-				select(findTab(tab));
+				select(getIndex(tab));
 			}
 			else
 			{
-				this.tabs.add(tab);
+				getTabs().add(tab);
 			}
 		}
 	}
 
 	public boolean contains(Tab tab)
 	{
-		return findTab(tab) != -1;
+		return getIndex(tab) != -1;
+	}
+
+	public boolean contains(String title)
+	{
+		return getIndex(title) != -1;
 	}
 
 	public int getIndex(Tab tab)
 	{
-		return findTab(tab);
+		return getIndex(tab.getTitle());
 	}
 
-	public int findTab(Tab tab)
-	{
-		return findTab(tab.getTitle());
-	}
-
-	public int findTab(String id)
+	// 추후 ID 방식으로 바꿔야함
+	public int getIndex(String title)
 	{
 		for (int index = 0 ; index < tabs.size() ; index ++)
 		{
-			if (tabs.get(index).getId().equals(id))
+			if (tabs.get(index).getTitle().equals(title))
 			{
 				return index;
 			}
@@ -285,7 +202,7 @@ public class TabPane extends VBox
 			return ;
 		}
 
-		int index = findTab(tab), size = tabs.size();
+		int index = getIndex(tab), size = tabs.size();
 
 		if (size > 1 && index != -1)
 		{
@@ -304,115 +221,69 @@ public class TabPane extends VBox
 		tabs.remove(tab);
 	}
 
+	public Tab getTab(String title)
+	{
+		return contains(title) ? getTab(getIndex(title)) : null;
+	}
+
 	public Tab getTab(int index)
 	{
 		return tabs.get(index);
 	}
+
+    public Type getType()
+    {
+        return type.get();
+    }
 
 	public ObservableList<Tab> getTabs()
 	{
 		return tabs;
 	}
 
-	public Side getSide()
+	public ScrollPane getHeaderArea()
+    {
+        return scroll;
+    }
+
+    public StackPane getContentArea()
+    {
+        return content;
+    }
+
+	public ObjectProperty<Type> getTypeProperty()
+    {
+        return type;
+    }
+
+	// Selected Tab Property
+	public ObjectProperty<Tab> getSelectedProperty()
 	{
-		return side.get();
-	}
-
-	public void setSelectedTab(Tab tab)
-	{
-		selected.set(tab);
-	}
-
-	public void moveSelectTab(int start, int delta)
-	{
-		if (getTabs().isEmpty())
-		{
-			return;
-		}
-
-		int index = start + delta;
-
-		if (index != -1)
-		{
-			if (tabs.size() < index + 1)
-			{
-				select(0);
-			}
-			else
-			{
-				select(index);
-			}
-		}
-		else
-		{
-			select(tabs.size() - 1);
-		}
-	}
-
-	public void selectNextTab(Tab tab)
-	{
-		moveSelectTab(getIndex(tab), 1);
-	}
-
-	public void selectPreviousTab(Tab tab)
-	{
-		moveSelectTab(getIndex(tab),-1);
-	}
-
-	public Type getType()
-	{
-		return type.get();
-	}
-
-	public void setSide(Side side)
-	{
-		this.side.set(side);
-	}
-
-	/* public void setSide(Side side)
-	{
-		// scroll = new ScrollPane();
-
-		switch (side)
-		{
-			case TOP -> root = new VBox(scroll, content);
-			case RIGHT ->
-			{
-				scroll.setRotate(90);
-				root = new HBox(content, scroll);
-			}
-			case BOTTOM -> root = new VBox(content, scroll);
-			case LEFT   ->
-			{
-				scroll.setRotate(270);
-				root = new HBox(scroll, content);
-			}
-		}
-
-		getChildren().clear();
-		getChildren().add(root);
-
-		this.side.set(side);
-	} */
-
-	public void setType(Type type)
-	{
-		this.type.set(type);
-	}
-
-	public HBox getHeaderArea()
-	{
-		return header;
-	}
-
-	public Pane getContentArea()
-	{
-		return content;
+		return selected;
 	}
 
 	public Tab getSelectedTab()
 	{
 		return selected.get();
 	}
+
+    public void setType(Type type)
+    {
+        this.type.set(type);
+    }
+
+	public void setSelectedTab(Tab tab)
+	{
+		selected.set(tab);
+	}
+
+	/* public void setTabWidth(double value)
+	{
+		size.set(value);
+	}
+
+	public void setTabHeight(double value)
+	{
+		height.set(value);
+	} */
 }

@@ -1,6 +1,6 @@
 package org.beuwi.msgbots.platform.gui.control;
 
-import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.SeparatorMenuItem;
@@ -29,7 +29,7 @@ public class MenuItem extends javafx.scene.control.MenuItem
 		this(text, command, null, handler);
 	}
 
-	public MenuItem(String text, String command, BooleanProperty property, EventHandler handler)
+	public MenuItem(String text, String command, ReadOnlyBooleanProperty property, EventHandler handler)
 	{
 		Label name = new Label(text);
 		name.setMinWidth(150);

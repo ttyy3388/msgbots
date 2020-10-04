@@ -25,7 +25,7 @@ public class CreateBotAction implements Action
 
 		if (project.exists())
 		{
-			// new ExistsBotDialog(name).display();
+			System.out.println("exists project");
 		}
 		else
 		{

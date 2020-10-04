@@ -42,7 +42,6 @@ public class Button extends javafx.scene.control.Button
 
 			if (list.size() > 1)
 			{
-				System.out.println(list.get(1));
 				list.remove(list.get(1));
 			}
 
@@ -52,6 +51,8 @@ public class Button extends javafx.scene.control.Button
 				case CANCEL : list.add(CANCEL_STYLE_CLASS); break;
 			}
 		});
+
+		// setType(Type.CANCEL);
 	}
 
 	public boolean isStyled()

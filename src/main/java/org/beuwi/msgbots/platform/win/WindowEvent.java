@@ -3,7 +3,7 @@ package org.beuwi.msgbots.platform.win;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class WindowEvent
@@ -15,16 +15,16 @@ public class WindowEvent
         this.stage = stage;
     }
 
-    public void setMovable(AnchorPane titlebar)
+    public void setMovable(Pane target)
     {
         MoveListener listener = new MoveListener();
 
-        // titlebar.addEventHandler(MouseEvent.MOUSE_ENTERED, listener);
-        titlebar.addEventHandler(MouseEvent.MOUSE_PRESSED, listener);
-        titlebar.addEventHandler(MouseEvent.MOUSE_DRAGGED, listener);
-        titlebar.addEventHandler(MouseEvent.MOUSE_CLICKED, listener);
-        titlebar.addEventHandler(MouseEvent.MOUSE_RELEASED, listener);
-        // titlebar.addEventHandler(MouseEvent.MOUSE_EXITED, listener);
+        // target.addEventHandler(MouseEvent.MOUSE_ENTERED, listener);
+        target.addEventHandler(MouseEvent.MOUSE_PRESSED, listener);
+        target.addEventHandler(MouseEvent.MOUSE_DRAGGED, listener);
+        target.addEventHandler(MouseEvent.MOUSE_CLICKED, listener);
+        target.addEventHandler(MouseEvent.MOUSE_RELEASED, listener);
+        // target.addEventHandler(MouseEvent.MOUSE_EXITED, listener);
     }
 
     private class MoveListener implements EventHandler<MouseEvent>

@@ -113,7 +113,7 @@ public class WindowFrame extends StackPane
             event = new WindowEvent(stage);
 
 			menu.setNode(imvWinIcon);
-			event.setMovable(anpTitleBar);
+			event.setMovable(brpRootPane);
 
 			// lblWinTitle.setText(title);
 			brpRootPane.setCenter(content);

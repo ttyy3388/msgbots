@@ -1,5 +1,6 @@
 package org.beuwi.msgbots.platform.app.view.actions;
 
+import org.beuwi.msgbots.compiler.engine.ScriptManager;
 import org.beuwi.msgbots.platform.app.impl.Action;
 import org.beuwi.msgbots.platform.app.view.parts.DebugAreaPart;
 import org.beuwi.msgbots.platform.gui.control.Chat;
@@ -17,12 +18,17 @@ public class AddChatMessageAction implements Action
 
 	public static void execute(String message)
 	{
-		listView.addChat(new Chat(message));
+		execute(message, false);
 	}
 
 	public static void execute(String message, boolean isbot)
 	{
-		listView.addChat(new Chat(message, isbot));
+		listView.addItem(new Chat(message, isbot));
+
+		if (!isbot)
+		{
+			ScriptManager.run(message);
+		}
 	}
 
 	@Override

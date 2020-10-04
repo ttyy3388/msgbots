@@ -2,12 +2,17 @@ package org.beuwi.msgbots.platform.gui.control;
 
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.SelectionMode;
+import javafx.util.Callback;
 
 import java.util.List;
 
-public class ListView<T> extends javafx.scene.control.ListView<T>
+public class ListView<T> extends ScrollPane
 {
+	private final javafx.scene.control.ListView<T> root = new javafx.scene.control.ListView<T>();
+
 	public ListView()
 	{
 		/* setCellFactory(param -> new ListCell<>()
@@ -32,6 +37,15 @@ public class ListView<T> extends javafx.scene.control.ListView<T>
 				}
 			}
 		}); */
+
+		setContent(root);
+		setFitToWidth(true);
+		setFitToHeight(true);
+	}
+
+	public void scroll(T item)
+	{
+		root.scrollTo(item);
 	}
 
 	public void clear()
@@ -62,7 +76,12 @@ public class ListView<T> extends javafx.scene.control.ListView<T>
 	public void addItem(T item)
 	{
 		getItems().add(item);
-		scrollTo(item);
+		scroll(item);
+	}
+
+	public ObservableList<T> getItems()
+	{
+		return root.getItems();
 	}
 
 	public T getItem(int index)
@@ -70,7 +89,7 @@ public class ListView<T> extends javafx.scene.control.ListView<T>
 		return getItems().get(index);
 	}
 
-	public Node getItem(String id)
+	public T getItem(String id)
 	{
 		List<T> list = getItems();
 
@@ -80,7 +99,7 @@ public class ListView<T> extends javafx.scene.control.ListView<T>
 			{
 				if (((Node) item).getId().equals(id))
 				{
-					return (Node) item;
+					return item;
 				}
 			}
 		}
@@ -93,8 +112,23 @@ public class ListView<T> extends javafx.scene.control.ListView<T>
 		return getSelectionModel().getSelectedItems();
 	}
 
+	public MultipleSelectionModel<T> getSelectionModel()
+	{
+		return root.getSelectionModel();
+	}
+
+	public void setContextMenu(ContextMenu menu)
+	{
+		menu.setNode(this);
+	}
+
 	public void setSelectionMode(SelectionMode mode)
 	{
 		getSelectionModel().setSelectionMode(mode);
+	}
+
+	public void setCellFactory(Callback<javafx.scene.control.ListView<T>, ListCell<T>> value)
+	{
+		root.setCellFactory(value);
 	}
 }

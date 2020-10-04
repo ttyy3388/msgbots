@@ -2,13 +2,12 @@ package org.beuwi.msgbots.platform.app.view.parts;
 
 import javafx.collections.ObservableMap;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.gui.control.TabPane;
 
-public class PanelAreaPart implements View
+public class InputAreaPart implements View
 {
 	private static ObservableMap<String, Object> nameSpace;
 
@@ -21,14 +20,14 @@ public class PanelAreaPart implements View
 	@Override
 	public void init()
 	{
-		loader = new FormLoader("panel-area-part");
+		loader = new FormLoader("input-area-part");
 		nameSpace = loader.getNamespace();
 		root = loader.getRoot();
 		component = loader.getComponent();
 
-		TextArea textArea = (TextArea) nameSpace.get("txaInputArea");
+		TextArea textArea = (TextArea) nameSpace.get("textArea");
 
-		textArea.setOnKeyPressed(event ->
+		/* textArea.setOnKeyPressed(event ->
 		{
 			if (event.getCode().equals(KeyCode.ENTER))
 			{
@@ -39,30 +38,10 @@ public class PanelAreaPart implements View
 					return ;
 				}
 
-				String text = textArea.getText(); //.replace(/\n/, \g);
-
-				String[] items = text.split(" ");
-
-				switch (items[0])
-				{
-					case "open" :
-
-						switch (items[1])
-						{
-							case "log" :
-								System.out.println("show log"); break;
-						}
-
-						break;
-
-					default : break;
-				}
-
-				System.out.println(items);
-				// textArea.clear();
+				textArea.clear();
 				event.consume();
 			}
-		});
+		}); */
 
 		textArea.requestFocus();
 	}

@@ -69,10 +69,9 @@
 	-fx-close-tab-animation: NONE; */
 }
 
-/* Scroll Bar */
 /* .scroll-bar
 {
-	-fx-skin: 'org.beuwi.msgbots.platform.ui.skins.ScrollBarSkin';
+	-fx-skin: 'org.beuwi.msgbots.platform.gui.skins.ScrollBarSkin';
 }
 .scroll-bar .track
 {
@@ -97,8 +96,8 @@
 
 .scroll-bar
 {
-	/* -fx-pref-width: 10;
-	-fx-pref-height: 10; */
+    -fx-opacity: 0.5;
+    -fx-cursor: default;
 }
 .scroll-bar .thumb
 {

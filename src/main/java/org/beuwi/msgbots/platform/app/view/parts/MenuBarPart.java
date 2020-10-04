@@ -47,6 +47,7 @@ public class MenuBarPart implements View
 		);
 
 		// Edit Menu Button
+		// ((CodeArea) MainAreaPart.getComponent().getSelectedTab().getContent())
 		component.getMenu(1).setMenus
 		(
 			new MenuItem("Undo", "Ctrl + Z"),

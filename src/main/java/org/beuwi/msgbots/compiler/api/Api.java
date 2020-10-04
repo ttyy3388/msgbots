@@ -7,12 +7,12 @@ import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.utils.Settings;
 import org.beuwi.msgbots.platform.app.view.actions.AddChatMessageAction;
 import org.beuwi.msgbots.platform.app.view.actions.ShowNotificationAction;
-import org.beuwi.msgbots.platform.app.view.actions.ShowToastMessageAction;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.Scriptable;
 import org.mozilla.javascript.ScriptableObject;
 import org.mozilla.javascript.Undefined;
+import org.mozilla.javascript.annotations.JSFunction;
 import org.mozilla.javascript.annotations.JSStaticFunction;
 
 import java.io.File;
@@ -26,6 +26,7 @@ public class Api extends ScriptableObject
 		return "Api";
 	}
 
+	// 추후 제거
 	private static String getScriptName(String name)
 	{
 		return name.endsWith(".js") ? name.substring(0, name.lastIndexOf(".")) : name;
@@ -40,14 +41,14 @@ public class Api extends ScriptableObject
 		this.name = name;
 	}
 
-	@JSStaticFunction
-	public static Object getContext()
+	@JSFunction
+	public Object getContext()
 	{
 		return null;
 	}
 
-	@JSStaticFunction
-	public static Boolean on(String name) 
+	@JSFunction
+	public Boolean on(String name)
 	{
 		name = getScriptName(name);
 
@@ -74,7 +75,7 @@ public class Api extends ScriptableObject
 	}
 	
 	@JSStaticFunction
-	public static Boolean off(String name) 
+	public Boolean off(String name)
 	{
 		name = getScriptName(name);
 
@@ -100,8 +101,8 @@ public class Api extends ScriptableObject
 		return true;
 	}
 	
-	@JSStaticFunction
-	public static Boolean reload(String name, Boolean stopOnError)
+	@JSFunction
+	public Boolean reload(String name, Boolean stopOnError)
 	{
 		name = getScriptName(name);
 
@@ -122,8 +123,8 @@ public class Api extends ScriptableObject
 		}
 	}
 	
-	@JSStaticFunction
-	public static Boolean compile(String name, Boolean stopOnError) throws Exception
+	@JSFunction
+	public Boolean compile(String name, Boolean stopOnError) throws Exception
 	{
 		return reload(name, stopOnError);
 	}
@@ -223,7 +224,7 @@ public class Api extends ScriptableObject
 	@JSStaticFunction
 	public static void showToast(String content, int length)
 	{
-		ShowToastMessageAction.execute(content);
+		// AddToastMessageAction.execute(content);
 	}
 
 	@JSStaticFunction

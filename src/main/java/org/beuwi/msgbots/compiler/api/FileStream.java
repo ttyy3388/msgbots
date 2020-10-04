@@ -1,5 +1,6 @@
 package org.beuwi.msgbots.compiler.api;
 
+import org.beuwi.msgbots.manager.FileManager;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.ScriptableObject;
 import org.mozilla.javascript.annotations.JSStaticFunction;
@@ -19,7 +20,7 @@ public class FileStream extends ScriptableObject
 	{
 		try
 		{
-			File file = new File(path);
+			File file = new File(FileManager.BOTS_FOLDER + File.separator + path);
 
 			if (!file.exists())
 			{
@@ -52,7 +53,7 @@ public class FileStream extends ScriptableObject
 	{
 		try
 		{
-			File file = new File(path);
+			File file = new File(FileManager.BOTS_FOLDER + File.separator + path);
 
 			file.getParentFile().mkdirs();
 			file.createNewFile();
@@ -76,7 +77,7 @@ public class FileStream extends ScriptableObject
 	{
 		try
 		{
-			File file = new File(path);
+			File file = new File(FileManager.BOTS_FOLDER + File.separator + path);
 
 			file.getParentFile().mkdirs();
 			file.createNewFile();
@@ -100,7 +101,7 @@ public class FileStream extends ScriptableObject
 	{
     	try
     	{
-			File file = new File(path);
+			File file = new File(FileManager.BOTS_FOLDER + File.separator + path);
 
 			if (!file.exists())
 			{

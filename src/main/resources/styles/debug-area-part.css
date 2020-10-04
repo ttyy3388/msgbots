@@ -36,18 +36,9 @@
 {
 	-fx-padding: 12 10 12 10;
 }
-.debug-tab .list-cell .label
-{
-	-fx-background-color: #0583F9;
-	-fx-background-radius: 5;
-	-fx-text-fill: #FFFFFF;
-	-fx-padding: 8;
-}
 
 .debug-tab .text-area
 {
-	/* -fx-background-radius: 15; */
 	-fx-background-color: #303030;
-	-fx-border-width: 0;
 	-fx-padding: 10;
 }

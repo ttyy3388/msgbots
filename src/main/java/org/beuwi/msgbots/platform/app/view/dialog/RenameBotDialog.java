@@ -4,7 +4,6 @@ import javafx.application.Platform;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import org.beuwi.msgbots.platform.app.action.RenameBotAction;
@@ -21,12 +20,10 @@ public class RenameBotDialog extends DialogBoxWrap
 
 	private AnchorPane root;
 
-	@FXML private Label 	lblBeforeName;
-	@FXML private TextField txfAfterName;
+	// Script Name Text Field
+	@FXML private TextField field;
 
-	@FXML private Button btnRename;
-	@FXML private Button btnCancel;
-
+	private final Button button;
 	private final String name;
 
 	public RenameBotDialog(String name)
@@ -48,31 +45,27 @@ public class RenameBotDialog extends DialogBoxWrap
 		nameSpace = loader.getNamespace();
 		root = loader.getRoot();
 
-		btnRename = getOkButton();
-		btnCancel = getNoButton();
+		button = getOkButton();
 
-		btnRename.setDisable(true);
-		btnRename.setOnAction(event ->
+		button.setText("Rename");
+		button.setDisable(true);
+		button.setOnAction(event ->
 		{
 			this.action();
 		});
 
-		btnRename.setText("Rename");
-		btnCancel.setText("Cancel");
-
-		lblBeforeName.setText("Rename bot '" + name + "' ?");
-		txfAfterName.setText(name);
-
-		txfAfterName.textProperty().addListener(change ->
+		field.setText(name);
+		field.textProperty().addListener(change ->
 		{
-			btnRename.setDisable(txfAfterName.getText().isEmpty());
+			button.setDisable(field.getText().isEmpty() || field.getText().equals(name));
 		});
 
+		setUseButton(true, false);
 		setOnKeyPressed(event ->
 		{
 			if (event.getCode().equals(KeyCode.ENTER))
 			{
-				if (!btnRename.isDisable())
+				if (!button.isDisable())
 				{
 					this.action();
 				}
@@ -81,7 +74,7 @@ public class RenameBotDialog extends DialogBoxWrap
 
 		Platform.runLater(() ->
 		{
-			txfAfterName.requestFocus();
+			field.requestFocus();
 		});
 	}
 
@@ -96,6 +89,6 @@ public class RenameBotDialog extends DialogBoxWrap
 	@Override
 	public void action()
 	{
-		RenameBotAction.execute(name, txfAfterName.getText());
+		RenameBotAction.execute(name, field.getText());
 	}
 }

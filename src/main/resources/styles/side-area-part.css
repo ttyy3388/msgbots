@@ -6,10 +6,10 @@
     -fx-background-color: #252526;
 }
 
-/* .list-cell
+.list-cell
 {
-	-fx-cursor: hand;
-} */
+	-fx-padding: 0;
+}
 .bot-item
 {
     -fx-border-color: transparent;
@@ -35,6 +35,14 @@
 	-fx-background-radius: 15;
 	-fx-background-image: url('../images/reload.png');
 	-fx-background-size: 15;
+}
+.list-cell .button:hover
+{
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+.list-cell .button:armed
+{
+    -fx-background-color: rgba(255, 255, 255, 0.2);
 }
 .list-cell .check-box:disabled
 {

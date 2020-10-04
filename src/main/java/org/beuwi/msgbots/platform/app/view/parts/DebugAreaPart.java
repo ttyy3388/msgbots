@@ -3,6 +3,7 @@ package org.beuwi.msgbots.platform.app.view.parts;
 import javafx.collections.ObservableMap;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import org.beuwi.msgbots.openapi.FormLoader;
@@ -10,6 +11,7 @@ import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.actions.AddChatMessageAction;
 import org.beuwi.msgbots.platform.gui.control.ChatView;
+import org.beuwi.msgbots.platform.gui.control.LogView;
 import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.gui.control.TabPane;
 
@@ -50,6 +52,9 @@ public class DebugAreaPart implements View
 		});
 
 		new DebugRoomTab().init();
+		new GlobalLogTab().init();
+
+		component.setSelectedTab(DebugRoomTab.getRoot());
 	}
 
 	public static class DebugRoomTab implements View
@@ -62,12 +67,12 @@ public class DebugAreaPart implements View
 		@Override
 		public void init()
 		{
-			root = (Tab) nameSpace.get("tabDebugRoom");
+			root = component.getTab(0);
 
 			listView = (ChatView) nameSpace.get("lsvChatView");
 			textArea = (TextArea) nameSpace.get("txaChatInput");
 
-			textArea.setOnKeyPressed(event ->
+			textArea.addEventFilter(KeyEvent.KEY_PRESSED, event ->
 			{
 				if (event.getCode().equals(KeyCode.ENTER))
 				{
@@ -82,6 +87,12 @@ public class DebugAreaPart implements View
 
 					if (text.trim().isEmpty())
 					{
+						if (text.isEmpty())
+						{
+							textArea.clear();
+						}
+
+						event.consume();
 						return ;
 					}
 
@@ -102,6 +113,31 @@ public class DebugAreaPart implements View
 		}
 
 		public static ChatView getComponent()
+		{
+			return listView;
+		}
+	}
+
+	public static class GlobalLogTab implements View
+	{
+		private static Tab root;
+
+		private static LogView listView;
+
+		@Override
+		public void init()
+		{
+			root = component.getTab(1);
+
+			listView = (LogView) nameSpace.get("lsvLogView");
+		}
+
+		public static Tab getRoot()
+		{
+			return root;
+		}
+
+		public static LogView getComponent()
 		{
 			return listView;
 		}

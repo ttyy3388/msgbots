@@ -1,6 +1,7 @@
 package org.beuwi.msgbots.compiler.api;
 
 import org.beuwi.msgbots.manager.LogManager;
+import org.beuwi.msgbots.platform.gui.control.Log.Type;
 import org.mozilla.javascript.ScriptableObject;
 import org.mozilla.javascript.annotations.JSStaticFunction;
 
@@ -48,19 +49,19 @@ public class Log extends ScriptableObject
 	@JSStaticFunction
 	public void debug(String data, Boolean showToast)
 	{
-		// LogManager.append(name, data, ILogType.DEBUG);
+		LogManager.append(name, data, Type.DEBUG);
 	}
 
 	@JSStaticFunction
 	public void error(String data, Boolean showToast)
 	{
-		// LogManager.append(name, data, ILogType.ERROR);
+		LogManager.append(name, data, Type.ERROR);
 	}
 
 	@JSStaticFunction
 	public void info(String data, Boolean showToast)
 	{
-		// LogManager.append(name, data, ILogType.EVENT);
+		LogManager.append(name, data, Type.EVENT);
 	}
 
 	@JSStaticFunction

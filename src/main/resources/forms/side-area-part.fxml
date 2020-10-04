@@ -12,13 +12,15 @@
 <AnchorPane prefWidth="220.0" styleClass="side-area" stylesheets="@../styles/side-area-part.css" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
 		<TabPane type="SYSTEM" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
-			<Tab fx:id="tabBotList" title="BOT LIST" closable="false">
-				<content>
-					<StackPane styleClass="bots-tab">
-						<BotView fx:id="lsvBotView"> </BotView>
-					</StackPane>
-				</content>
-			</Tab>
+			<tabs>
+				<Tab fx:id="tabBotList" title="BOT LIST" closable="false">
+					<content>
+						<StackPane styleClass="bots-tab">
+							<BotView fx:id="lsvBotView"> </BotView>
+						</StackPane>
+					</content>
+				</Tab>
+			</tabs>
 		</TabPane>
 		<Pane fx:id="stpResizeBar" prefWidth="5.0" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0">
 			<cursor>

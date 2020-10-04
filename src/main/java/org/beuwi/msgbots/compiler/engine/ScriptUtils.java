@@ -1,17 +1,28 @@
 package org.beuwi.msgbots.compiler.engine;
 
+import org.mozilla.javascript.ScriptableObject;
+import org.mozilla.javascript.annotations.JSFunction;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+
 public class ScriptUtils
 {
-	/* public Class convert(Class object)
+	public static ScriptableObject convert(ScriptableObject object)
 	{
-		List list = getAllJSFunctions(object);
+	    Class clazz = object.getClass();
 
-		object.defineFunctionProperties(list, this, ScriptableObject.EMPTY);
+		String[] list = getAllJSFunctions(clazz).toArray(new String[0]);
+
+		object.defineFunctionProperties(list, clazz, ScriptableObject.EMPTY);
+
+		return object;
 	}
 
-	public List<String> getAllJSFunctions(Class<ScriptableObject> clazz)
+	public static List<String> getAllJSFunctions(Class clazz)
 	{
-		List list = new ArrayList<String>();
+        List list = new ArrayList<String>();
 
 		for (Method method : clazz.getMethods())
 		{
@@ -22,5 +33,5 @@ public class ScriptUtils
 		}
 
 		return list;
-	} */
+    }
 }

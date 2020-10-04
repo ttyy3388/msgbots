@@ -1,32 +1,58 @@
 package org.beuwi.msgbots.platform.gui.control;
 
-import javafx.geometry.Insets;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
 // Log Item
-public class Log extends StackPane
+public class Log extends ColorBox
 {
 	private static final String DEFAULT_STYLE_CLASS = "log-item";
 	private static final double DEFAULT_MIN_HEIGHT = 70;
-	private static final double DEFAULT_PADDING = 10;
 
-	private final AnchorPane pane = new AnchorPane();
+
+    // Log Text Label
+    private final Label tlabel = new Label();
+
+    // Log Date Label
+    private final Label dlabel = new Label();
+
+	private final AnchorPane pane = new AnchorPane(tlabel, dlabel);
 	private final ImageView image = new ImageView();
+	private final HBox root = new HBox(image, pane);
 
-	private final HBox hbox = new HBox();
+	private final Type type;
 
-	private final String type;
+	public enum Type
+	{
+		ERROR
+		{
+			@Override
+			public String toString()
+			{
+				return "error";
+			}
+		},
 
-	// Log Text Label
-	private final Label tlabel = new Label();
+		EVENT
+		{
+			@Override
+			public String toString()
+			{
+				return "event";
+			}
+		},
 
-	// Log Date Label
-	private final Label dlabel = new Label();
+		DEBUG
+		{
+			@Override
+			public String toString()
+			{
+				return "debug";
+			}
+		};
+	}
 
 	{
 		HBox.setHgrow(pane, Priority.ALWAYS);
@@ -35,31 +61,28 @@ public class Log extends StackPane
 		AnchorPane.setRightAnchor(tlabel, 0.0);
 		AnchorPane.setLeftAnchor(tlabel, 0.0);
 
+		AnchorPane.setRightAnchor(dlabel, 0.0);
 		AnchorPane.setBottomAnchor(dlabel, 0.0);
 		AnchorPane.setLeftAnchor(dlabel, 0.0);
 	}
 
-	public Log(String text, String date, String type)
+	public Log(String text, String date, Type type)
 	{
 		this.type = type;
 
-		image.setImage(ResourceUtils.getImage(type));
+		image.setImage(ResourceUtils.getImage(type.toString()));
 		image.setFitWidth(20);
 		image.setFitHeight(20);
 
 		tlabel.setText(text);
 		dlabel.setText(date);
 
-		pane.getChildren().addAll(tlabel, dlabel);
+		root.setSpacing(10);
 
-		hbox.setPadding(new Insets(DEFAULT_PADDING));
-		hbox.setSpacing(10);
-		hbox.setFillHeight(true);
-		hbox.getStyleClass().add(type);
-		hbox.getChildren().addAll(image, pane);
-
-		setPrefHeight(DEFAULT_MIN_HEIGHT);
-		getChildren().add(hbox);
+		setType(type);
+		setContent(root);
+		setFillHeight(true);
+		setMinHeight(DEFAULT_MIN_HEIGHT);
 		getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 
@@ -73,7 +96,7 @@ public class Log extends StackPane
 		return dlabel.getText();
 	}
 
-	public String getType()
+	public Type getType()
 	{
 		return type;
 	}

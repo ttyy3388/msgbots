@@ -7,11 +7,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.CheckBox;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import org.beuwi.msgbots.platform.app.action.CreateBotAction;
+import org.beuwi.msgbots.platform.app.utils.FileUtils;
+import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.gui.control.Button;
 import org.beuwi.msgbots.platform.gui.control.TextField;
 import org.beuwi.msgbots.platform.gui.dialog.DialogBoxWrap;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
+
+import java.io.File;
 
 public class ImportScriptDialog extends DialogBoxWrap
 {
@@ -22,6 +27,7 @@ public class ImportScriptDialog extends DialogBoxWrap
 	private AnchorPane root;
 
 	@FXML private TextField txfScriptName;
+	@FXML private Button btnScriptOpen;
 
 	// Use Unified Parameters
 	@FXML private CheckBox chkIsUnified;
@@ -29,8 +35,9 @@ public class ImportScriptDialog extends DialogBoxWrap
 	// Off On Runtime Error
 	@FXML private CheckBox chkIsOffError;
 
-	@FXML private Button btnImport;
-	@FXML private Button btnCancel;
+	private final Button button;
+
+	private File file;
 
 	public ImportScriptDialog()
 	{
@@ -49,28 +56,40 @@ public class ImportScriptDialog extends DialogBoxWrap
 		nameSpace = loader.getNamespace();
 		root = loader.getRoot();
 
-		btnImport = getOkButton();
-		btnCancel = getNoButton();
+		button = getOkButton();
 
-		btnImport.setText("Import");
-		btnCancel.setText("Cancel");
-
-		btnImport.setDisable(true);
-		btnImport.setOnAction(event ->
+		button.setText("Import");
+		button.setDisable(true);
+		button.setOnAction(event ->
 		{
 			this.action();
 		});
 
-		txfScriptName.textProperty().addListener(change ->
+		btnScriptOpen.setOnAction(event ->
 		{
-			btnImport.setDisable(txfScriptName.getText().isEmpty());
+			FileChooser fileChooser = new FileChooser();
+			fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JavaScript File", "*.js"));
+			fileChooser.setTitle("Import Script");
+
+			file = fileChooser.showOpenDialog(MainView.getStage());
+
+			if (file != null)
+			{
+				txfScriptName.setText(file.getName());
+			}
 		});
 
+		txfScriptName.textProperty().addListener(change ->
+		{
+			button.setDisable(txfScriptName.getText().isEmpty());
+		});
+
+		setUseButton(true, false);
 		setOnKeyPressed(event ->
 		{
 			if (event.getCode().equals(KeyCode.ENTER))
 			{
-				if (!btnImport.isDisable())
+				if (!button.isDisable())
 				{
 					this.action();
 				}
@@ -97,6 +116,7 @@ public class ImportScriptDialog extends DialogBoxWrap
 		CreateBotAction.execute
 		(
 			txfScriptName.getText(),
+			FileUtils.read(file), true,
 			chkIsUnified.isSelected(),
 			chkIsOffError.isSelected()
 		);

@@ -43,6 +43,11 @@ public class FileManager
 		return names;
 	}
 
+	/* public static File getBotsFolder()
+	{
+		return BOTS_FOLDER;
+	} */
+
 	public static File getBotFolder(String name)
 	{
 		return new File(BOTS_FOLDER + File.separator  + getBaseName(name));

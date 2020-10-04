@@ -6,17 +6,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import org.beuwi.msgbots.platform.gui.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import org.beuwi.msgbots.platform.gui.control.Tab?>
 <?import org.beuwi.msgbots.platform.gui.control.TabPane?>
 <?import org.beuwi.msgbots.platform.gui.control.TextArea?>
 <?import org.beuwi.msgbots.platform.gui.control.ChatView?>
+<?import org.beuwi.msgbots.platform.gui.control.LogView?>
 
 <AnchorPane prefWidth="350.0" styleClass="side-area" stylesheets="@../styles/debug-area-part.css" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
 		<TabPane type="SYSTEM" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
 			<tabs>
-				<Tab fx:id="tabDebugRoom" title="DEBUG ROOM" closable="false">
+				<Tab title="DEBUG ROOM" closable="false">
 					<content>
 						<StackPane styleClass="debug-tab">
 							<VBox alignment="CENTER">
@@ -33,8 +34,18 @@
 						</StackPane>
 					</content>
 				</Tab>
+				<Tab title="GLOBAL LOG" closable="false">
+					<content>
+						<StackPane styleClass="log-tab">
+							<ScrollPane fitToWidth="true" fitToHeight="true">
+								<content>
+									<LogView fx:id="lsvLogView" />
+								</content>
+							</ScrollPane>
+						</StackPane>
+					</content>
+				</Tab>
 			</tabs>
-			<Tab title="GLOBAL LOG" closable="false" />
 		</TabPane>
 		<Pane fx:id="stpResizeBar" prefWidth="5.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0">
 			<cursor>

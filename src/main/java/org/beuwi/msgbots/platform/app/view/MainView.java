@@ -9,7 +9,6 @@ import org.beuwi.msgbots.platform.app.view.parts.MainAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MenuBarPart;
 import org.beuwi.msgbots.platform.app.view.parts.SideAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.StatusBarPart;
-import org.beuwi.msgbots.platform.app.view.parts.ToastAreaPart;
 import org.beuwi.msgbots.platform.win.WindowType;
 import org.beuwi.msgbots.platform.win.WindowWrap;
 
@@ -32,7 +31,7 @@ public class MainView extends StackPane implements View
 		// this.setMaxHeight(1080);
 
 		this.getChildren().add(MainView.getRoot());
-		this.getChildren().add(ToastAreaPart.getRoot());
+		// this.getChildren().add(ToastAreaPart.getRoot());
 		// this.getChildren().add(PopupAreaPart.getRoot());
 	}
 
@@ -44,7 +43,7 @@ public class MainView extends StackPane implements View
 		pane.setRight(DebugAreaPart.getRoot());
 		pane.setCenter(MainAreaPart.getRoot());
 		pane.setBottom(StatusBarPart.getRoot());
-		// pane.setBottom(PanelAreaPart.getRoot());
+		// pane.setBottom(InputAreaPart.getRoot());
 	}
 
 	// Apply Final Style (High Priority)

@@ -8,9 +8,6 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.SeparatorMenuItem;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import org.beuwi.msgbots.platform.util.AllSVGIcons;
@@ -18,49 +15,33 @@ import org.beuwi.msgbots.platform.util.AllSVGIcons;
 @DefaultProperty("content")
 public class Tab extends HBox
 {
+	private static final Insets DEFAULT_TAB_PADDING = new Insets(0, 10, 0, 30);
+
 	private static final String DEFAULT_STYLE_CLASS = "tab";
+	private static final String BUTTON_STYLE_CLASS = "tab-button";
+	private static final String TITLE_STYLE_CLASS = "tab-label";
 
 	private static final Pos DEFAULT_TAB_ALIGNMENT = Pos.CENTER;
 	private static final int DEFAULT_TAB_SPACING = 10;
 	private static final int DEFAULT_TAB_WIDTH = 80;
-	private static final int DEFAULT_TAB_HEIGHT = 50;
 
-	private static final int DEFAULT_LABEL_SIZE = 60;
 	private static final int DEFAULT_BUTTON_SIZE = 10;
-
-	private final ObjectProperty<Pos> align = new SimpleObjectProperty<>(Pos.CENTER);
-
-	// Tab Closable Property
-	private final BooleanProperty closable = new SimpleBooleanProperty(true);
-
-	private final BooleanProperty pinned = new SimpleBooleanProperty(false);
+	private static final int DEFAULT_TITLE_SIZE = 60;
 
 	private final ObjectProperty<Node> content = new SimpleObjectProperty<>(null);
+	private final BooleanProperty closable = new SimpleBooleanProperty(true);
+	private final BooleanProperty pinned = new SimpleBooleanProperty(false);
 
-	// private final StringProperty title = new SimpleStringProperty(null);
-
-	// Title Label
-	private final Label label = new Label();
-
-	// Close Button
+	// Tab Close Button
 	private final Button button = new Button();
 
-	// private final HBox header = new HBox();
-	private final ContextMenu menu;
+	// Tab Title Label
+	private final Label label = new Label();
 
-	// private final TabType type;
-
-	private TabPane pane;
+	private TabPane parent;
 
 	{
 		HBox.setHgrow(label, Priority.ALWAYS);
-	}
-
-	public enum Type
-	{
-		BUTTON, // Default
-
-		TOGGLE // Option
 	}
 
 	public Tab()
@@ -76,22 +57,6 @@ public class Tab extends HBox
 	// 추후 사이드 옵션도 구현해야됨
 	public Tab(String title, Node content)
 	{
-		this.menu = new ContextMenu
-		(
-			new MenuItem("Close Tab", "Ctrl + W", closable, event -> pane.close(this)),
-			new MenuItem("Close Other Tabs"),
-			new MenuItem("Close Tabs to the Right"),
-			new MenuItem("Close Tabs to the Left"),
-			new MenuItem("Close All Tabs", event -> pane.getTabs().clear()),
-			new SeparatorMenuItem(),
-			new MenuItem("Pin Tab", event -> pinned.set(!pinned.get())),
-			new SeparatorMenuItem(),
-			new MenuItem("Select Next Tab", event -> pane.selectNextTab(this)),
-			new MenuItem("Select Previous Tab", event -> pane.selectPreviousTab(this))
-		);
-
-		menu.setNode(this);
-
 		if (title != null)
 		{
 			setId(title);
@@ -103,101 +68,55 @@ public class Tab extends HBox
 			setContent(content);
 		}
 
-		// content.setId("@content::" + title);
+		label.setMinWidth(DEFAULT_TITLE_SIZE);
+		label.setAlignment(DEFAULT_TAB_ALIGNMENT);
+		label.getStyleClass().add(TITLE_STYLE_CLASS);
 
 		button.setGraphic(AllSVGIcons.get("Tab.Close"));
 		button.setPrefWidth(DEFAULT_BUTTON_SIZE);
-
-		label.setMinWidth(DEFAULT_LABEL_SIZE);
-		label.setAlignment(DEFAULT_TAB_ALIGNMENT);
-
-		// Set Styles
-		label.getStyleClass().add("tab-label");
-		button.getStyleClass().add("tab-button");
-		content.getStyleClass().add("tab-content");
-
-		button.setOnAction(event ->
-		{
-			pane.close(this);
-		});
+		button.getStyleClass().add(BUTTON_STYLE_CLASS);
 
 		this.setOnMousePressed(event ->
 		{
-			pane.select(this);
+			parent.select(this);
 		});
 
-		align.addListener(change ->
+		button.setOnAction(event ->
 		{
-			label.setAlignment(align.get());
+			parent.close(this);
 		});
 
-		pinned.addListener(change->
+		pinned.addListener((observable, oldValue, newValue)->
 		{
-			closable.setValue(!pinned.get());
-
-			/* List<Tab> tabs = pane.getTabs();
-
-			tabs.remove(this);
-
-			// find pinned tab
-			for (int i = 0 ; i < tabs.size() ; i ++)
-			{
-				if (tabs.get(i).isPinned())
-				{
-					if (tabs.size() == i + 1)
-					{
-						tabs.add(i + 1, this);
-						break;
-					}
-					else
-					{
-						continue ;
-					}
-				}
-				else
-				{
-					tabs.add(i, this);
-					break;
-				}
-			} */
+			closable.setValue(!newValue);
 		});
 
 		closable.addListener((observable, oldValue, newValue) ->
 		{
 			button.setVisible(newValue);
-			// button.setDisable(!newValue);
+			button.setDisable(!newValue);
 		});
 
-		/* this.title.addListener(change ->
-		{
-			setId(getTitle());
-			setTitle(getTitle());
-		}); */
-
 		// setId(/* "@tab::" + */ title);
-		setPadding(new Insets(0, 10, 0, 30));
+		setPadding(DEFAULT_TAB_PADDING);
 		setSpacing(DEFAULT_TAB_SPACING);
 		setMinWidth(DEFAULT_TAB_WIDTH);
+		// setMinHeight(DEFAULT_TAB_HEIGHT);
+		// setMaxWidth(Double.MAX_VALUE);
 		// setPrefHeight(DEFAULT_TAB_HEIGHT);
 		setAlignment(DEFAULT_TAB_ALIGNMENT);
 		getChildren().addAll(label, button);
 		getStyleClass().setAll(DEFAULT_STYLE_CLASS);
 	}
 
-	public void close()
+	public String getText()
 	{
-		pane.close(this);
+		return label.getText();
 	}
 
 	public String getTitle()
 	{
 		return label.getText();
-	}
-
-	// Close Button
-	public Button getButton()
-	{
-		return button;
 	}
 
 	// Get Title Label
@@ -216,12 +135,12 @@ public class Tab extends HBox
 		return content.get();
 	}
 
-    public TabPane getTabPane()
-    {
-        return pane;
-    }
+	public TabPane getTabPane()
+	{
+		return parent;
+	}
 
-    public boolean isClosable()
+	public boolean isClosable()
 	{
 		return closable.get();
 	}
@@ -231,9 +150,14 @@ public class Tab extends HBox
 		return pinned.get();
 	}
 
-	public Pos getAlign()
+	public boolean isSelected()
 	{
-		return align.get();
+		return parent.getSelectedTab().equals(this);
+	}
+
+	public void setText(String text)
+	{
+		label.setText(text);
 	}
 
 	public void setTitle(String title)
@@ -256,18 +180,13 @@ public class Tab extends HBox
 		this.closable.set(closable);
 	}
 
-	public void setAlign(Pos pos)
-	{
-		this.align.set(pos);
-	}
-
 	public void setContent(Node content)
 	{
 		this.content.set(content);
 	}
 
-    public void setTabPane(TabPane pane)
-    {
-        this.pane = pane;
-    }
+	public void setTabPane(TabPane parent)
+	{
+		this.parent = parent;
+	}
 }

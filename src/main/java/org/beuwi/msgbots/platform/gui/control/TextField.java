@@ -10,8 +10,8 @@ public class TextField extends javafx.scene.control.TextField
 	{
 		setContextMenu(new ContextMenu
 		(
-			new MenuItem("Undo", "Ctrl + Z" , event -> this.undo()),
-		    new MenuItem("Redo", "Ctrl + Y" , event -> this.redo()),
+			new MenuItem("Undo", "Ctrl + Z" , /* undoableProperty(), */ event -> this.undo()),
+		    new MenuItem("Redo", "Ctrl + Y" , /* redoableProperty(), */ event -> this.redo()),
 		    new SeparatorMenuItem(),
 			new MenuItem("Cut", "Ctrl + X", event -> this.cut()),
 			new MenuItem("Copy", "Ctrl + C", event -> this.copy()),

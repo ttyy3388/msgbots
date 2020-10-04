@@ -5,21 +5,26 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.MainView.MainWindow;
+import org.beuwi.msgbots.platform.app.view.actions.AddBotLogItemAction;
 import org.beuwi.msgbots.platform.app.view.actions.AddChatMessageAction;
 import org.beuwi.msgbots.platform.app.view.actions.AddMainAreaTabAction;
+import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
 import org.beuwi.msgbots.platform.app.view.actions.RefreshBotListAction;
+import org.beuwi.msgbots.platform.app.view.actions.SaveScriptTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.ShowNotificationAction;
-import org.beuwi.msgbots.platform.app.view.actions.ShowToastMessageAction;
 import org.beuwi.msgbots.platform.app.view.actions.ToggleDebugAreaAction;
 import org.beuwi.msgbots.platform.app.view.actions.ToggleMenuBarAction;
 import org.beuwi.msgbots.platform.app.view.actions.ToggleSideAreaAction;
 import org.beuwi.msgbots.platform.app.view.parts.DebugAreaPart;
+import org.beuwi.msgbots.platform.app.view.parts.InputAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MainAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MenuBarPart;
-import org.beuwi.msgbots.platform.app.view.parts.PanelAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.SideAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.StatusBarPart;
-import org.beuwi.msgbots.platform.app.view.parts.ToastAreaPart;
+import org.beuwi.msgbots.platform.app.view.tabs.GlobalSettingTab;
+import org.beuwi.msgbots.platform.gui.control.Log;
+import org.beuwi.msgbots.platform.gui.control.Log.Type;
+import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
 public class Launcher extends Application
@@ -46,23 +51,25 @@ public class Launcher extends Application
 			// 기본 스타일 지정
 			Application.setUserAgentStylesheet(ResourceUtils.getTheme("base"));
 
-			new MenuBarPart().init();
 			new DebugAreaPart().init();
-			new PanelAreaPart().init();
-			new SideAreaPart().init();
+			new InputAreaPart().init();
 			new MainAreaPart().init();
+			new MenuBarPart().init();
+			new SideAreaPart().init();
 			new StatusBarPart().init();
-			new ToastAreaPart().init();
+			// new ToastAreaPart().init();
 
 			// new DebugRoomTab().init();
 			// new GlobalLogTab().init();
-			// new GlobalSettingTab().init();
+			new GlobalSettingTab().init();
 
+			new AddBotLogItemAction().init();
 			new AddChatMessageAction().init();
 			new AddMainAreaTabAction().init();
 			new RefreshBotListAction().init();
+			new SaveScriptTabAction().init();
 			new ShowNotificationAction().init();
-			new ShowToastMessageAction().init();
+			new AddToastMessageAction().init();
 			new ToggleDebugAreaAction().init();
 			new ToggleMenuBarAction().init();
 			new ToggleSideAreaAction().init();
@@ -72,7 +79,13 @@ public class Launcher extends Application
 
 			RefreshBotListAction.execute();
 
-			// ShowToastMessageAction.execute("TEST");
+			for (int i = 1 ; i < 20 ; i ++)
+			{
+				AddBotLogItemAction.execute(new Log("TEST", "TEST", Type.EVENT));
+				AddMainAreaTabAction.execute(new Tab("TEST" + i));
+			}
+
+			AddMainAreaTabAction.execute(GlobalSettingTab.getRoot());
 		}
 		catch (Exception e)
 		{
