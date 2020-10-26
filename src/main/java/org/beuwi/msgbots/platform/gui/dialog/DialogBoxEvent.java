@@ -3,7 +3,7 @@ package org.beuwi.msgbots.platform.gui.dialog;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class DialogBoxEvent
@@ -15,15 +15,15 @@ public class DialogBoxEvent
 		this.stage = stage;
 	}
 
-    public void setMovable(AnchorPane titlebar)
+    public void setMovable(Pane pane)
     {
         MoveListener listener = new MoveListener();
 
-        // titlebar.addEventHandler(MouseEvent.MOUSE_ENTERED, listener);
-        titlebar.addEventHandler(MouseEvent.MOUSE_PRESSED, listener);
-        titlebar.addEventHandler(MouseEvent.MOUSE_DRAGGED, listener);
-        titlebar.addEventHandler(MouseEvent.MOUSE_CLICKED, listener);
-        titlebar.addEventHandler(MouseEvent.MOUSE_RELEASED, listener);
+        // pane.addEventHandler(MouseEvent.MOUSE_ENTERED, listener);
+        pane.addEventHandler(MouseEvent.MOUSE_PRESSED, listener);
+        pane.addEventHandler(MouseEvent.MOUSE_DRAGGED, listener);
+        pane.addEventHandler(MouseEvent.MOUSE_CLICKED, listener);
+        pane.addEventHandler(MouseEvent.MOUSE_RELEASED, listener);
         // titlebar.addEventHandler(MouseEvent.MOUSE_EXITED, listener);
     }
 

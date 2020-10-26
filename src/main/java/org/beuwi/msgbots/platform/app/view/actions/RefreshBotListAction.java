@@ -31,6 +31,6 @@ public class RefreshBotListAction implements Action
 	@Override
 	public String getName()
 	{
-		return "refresh.bots.action";
+		return "refresh.bot.list.action";
 	}
 }

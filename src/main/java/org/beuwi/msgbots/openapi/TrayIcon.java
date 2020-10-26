@@ -10,12 +10,11 @@ public class TrayIcon extends java.awt.TrayIcon
 
 		// setToolTip();
 		// setPopupMenu();
-		setToolTip("Messenger Bot Simulator");
 		setImageAutoSize(true);
 	}
 
 	public void display(String title, String message)
     {
-        displayMessage(title, message, TrayIcon.MessageType.NONE);
+        displayMessage(title, message, MessageType.NONE);
     }
 }

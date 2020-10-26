@@ -5,10 +5,12 @@ import javafx.beans.property.ReadOnlyBooleanProperty;
 
 public class ToggleButton extends JFXToggleButton
 {
-    public static final String DEFAULT_STYLE_CLASS = "toggle-button";
+    private static final String DEFAULT_STYLE_CLASS = "toggle-button";
 
     public ToggleButton()
     {
+        // setSize(6.0);
+
         getStyleClass().add(DEFAULT_STYLE_CLASS);
     }
 

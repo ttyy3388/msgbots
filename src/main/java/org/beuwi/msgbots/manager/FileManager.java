@@ -6,33 +6,34 @@ import java.io.File;
 
 public class FileManager
 {
-	public static final File MAIN_FOLDER = new File(SharedValues.MAIN_FOLDER_PATH);
-	public static final File DATA_FOLDER = new File(SharedValues.DATA_FOLDER_PATH);
-	public static final File BOTS_FOLDER = new File(SharedValues.BOTS_FOLDER_PATH);
-
 	public static String getBaseName(String name)
 	{
-		return (name.contains(".")) ? name.substring(0, name.lastIndexOf(".")) : name;
+		return name.contains(".") ? name.substring(0, name.lastIndexOf(".")) : name;
 	}
 
 	public static String getExtension(String name)
 	{
-		return (name.contains(".")) ? name.substring(name.lastIndexOf(".") + 1) : name;
+		return name.contains(".") ? name.substring(name.lastIndexOf(".") + 1) : name;
 	}
 
     public static File getDataFile(String name)
     {
-        return new File(DATA_FOLDER + File.separator + name);
+        return new File(SharedValues.DATA_FOLDER_FILE + File.separator + name);
     }
 
     public static File[] getBotList()
 	{
-		return BOTS_FOLDER.listFiles();
+		return SharedValues.BOTS_FOLDER_FILE.listFiles();
+	}
+
+	public static File[] getBotFiles()
+	{
+		return SharedValues.BOTS_FOLDER_FILE.listFiles();
 	}
 
 	public static String[] getBotNames()
 	{
-		File[] files = BOTS_FOLDER.listFiles(File::isDirectory);
+		File[] files = SharedValues.BOTS_FOLDER_FILE.listFiles(File::isDirectory);
 		String[] names = new String[files.length];
 
 		for (int i = 0 ; i < files.length ; i ++)
@@ -43,14 +44,9 @@ public class FileManager
 		return names;
 	}
 
-	/* public static File getBotsFolder()
-	{
-		return BOTS_FOLDER;
-	} */
-
 	public static File getBotFolder(String name)
 	{
-		return new File(BOTS_FOLDER + File.separator  + getBaseName(name));
+		return new File(SharedValues.BOTS_FOLDER_FILE + File.separator  + getBaseName(name));
 	}
 
 	public static File getBotScript(String name)
@@ -67,5 +63,8 @@ public class FileManager
 	{
 		return new File(getBotFolder(name).getPath() + File.separator + "log.json");
 	}
+
+	/* ----------------------------------------------------------------------------------- */
+
 
 }

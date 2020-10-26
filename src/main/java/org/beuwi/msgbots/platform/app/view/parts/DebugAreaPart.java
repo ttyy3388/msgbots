@@ -1,6 +1,7 @@
 package org.beuwi.msgbots.platform.app.view.parts;
 
 import javafx.collections.ObservableMap;
+import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -9,9 +10,7 @@ import javafx.scene.layout.Pane;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.MainView;
-import org.beuwi.msgbots.platform.app.view.actions.AddChatMessageAction;
 import org.beuwi.msgbots.platform.gui.control.ChatView;
-import org.beuwi.msgbots.platform.gui.control.LogView;
 import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.gui.control.TabPane;
 
@@ -97,7 +96,7 @@ public class DebugAreaPart implements View
 					}
 
 					// Action
-					AddChatMessageAction.execute(text);
+					// AddChatMessageAction.execute(text);
 
 					textArea.clear();
 					event.consume();
@@ -122,14 +121,10 @@ public class DebugAreaPart implements View
 	{
 		private static Tab root;
 
-		private static LogView listView;
-
 		@Override
 		public void init()
 		{
 			root = component.getTab(1);
-
-			listView = (LogView) nameSpace.get("lsvLogView");
 		}
 
 		public static Tab getRoot()
@@ -137,9 +132,9 @@ public class DebugAreaPart implements View
 			return root;
 		}
 
-		public static LogView getComponent()
+		public static Node getComponent()
 		{
-			return listView;
+			return null;
 		}
 	}
 

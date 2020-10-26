@@ -1,38 +1,44 @@
 package org.beuwi.msgbots.platform.gui.dialog;
 
 import javafx.css.PseudoClass;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.beuwi.msgbots.platform.gui.control.Button;
 import org.beuwi.msgbots.platform.gui.control.ContextMenu;
 import org.beuwi.msgbots.platform.gui.control.HBox;
-import org.beuwi.msgbots.platform.gui.control.MenuItem;
+import org.beuwi.msgbots.platform.gui.control.Label;
+import org.beuwi.msgbots.platform.gui.control.Menu;
+import org.beuwi.msgbots.platform.gui.enums.Theme;
+import org.beuwi.msgbots.platform.gui.layout.ShadowPane;
+import org.beuwi.msgbots.platform.gui.layout.StackPane;
+import org.beuwi.msgbots.platform.util.AllSVGIcons;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 import org.beuwi.msgbots.platform.win.WindowFrame;
 import org.beuwi.msgbots.platform.win.WindowType;
 
-public class DialogBoxFrame extends StackPane
+public class DialogBoxFrame extends ShadowPane
 {
 	private static final PseudoClass FOCUSED_PSEUDO_CLASS = PseudoClass.getPseudoClass("focused");
 
 	private static final String DEFAULT_RESOURCE_NAME = "dialog-box-frame";
-	private static final String DEFAULT_STYLE_CLASS = "dialog";
+	private static final String DEFAULT_STYLE_CLASS = "dialog-box";
 
-	private static final int DEFAULT_MARGIN_INSETS = 28;
-
-	@FXML private BorderPane brpRootPane;
-	@FXML private HBox hbxButtonBar;
+	// WINDOW
+	@FXML private BorderPane brpWinRoot;
+	@FXML private ImageView imvWinIcon;
+	@FXML private StackPane stpWinMain; // Window Content
+	@FXML private Button btnWinClose;
 	@FXML private Label lblWinTitle;
 
-	@FXML private Button btnOk;
-	@FXML private Button btnNo;
+	// DIALOG
+	@FXML private HBox<Button> hbxBtnBar;
+	@FXML private Button btnAction;
+	@FXML private Button btnCancel;
 
 	private final DialogBoxEvent event;
 	private final WindowFrame frame;
@@ -42,6 +48,10 @@ public class DialogBoxFrame extends StackPane
 
 	private Region content;
 	private String title;
+
+	{
+		getStyleClass().add(DEFAULT_STYLE_CLASS);
+	}
 
 	public DialogBoxFrame()
 	{
@@ -67,7 +77,7 @@ public class DialogBoxFrame extends StackPane
 
 		this.menu = new ContextMenu
 		(
-			new MenuItem("Close")
+			new Menu("Close")
 		);
 
 		this.frame = new WindowFrame(stage);
@@ -84,24 +94,14 @@ public class DialogBoxFrame extends StackPane
 		return content;
 	}
 
-	public String getTitle()
-	{
-		return title;
-	}
-
-	public Button getOkButton()
-	{
-		return btnOk;
-	}
-
-	public Button getNoButton()
-	{
-		return btnNo;
-	}
-
 	public void setTitle(String title)
 	{
 		this.title = title;
+	}
+
+	public String getTitle()
+	{
+		return title;
 	}
 
 	public void setContent(Region content)
@@ -109,33 +109,44 @@ public class DialogBoxFrame extends StackPane
 		this.content = content;
 	}
 
-	public void setUseButton(boolean ok, boolean no)
+	// Use Action Button, Use Cancel Button
+	public void setUseButton(boolean action, boolean cancel)
 	{
-		if (!ok) { hbxButtonBar.getChildren().remove(btnOk); }
-		if (!no) { hbxButtonBar.getChildren().remove(btnNo); }
+		if (!action) { hbxBtnBar.remove(btnAction); }
+		if (!cancel) { hbxBtnBar.remove(btnCancel); }
+	}
+
+	public HBox<Button> getButtonBar()
+	{
+		return hbxBtnBar;
+	}
+
+	public Button getActionButton()
+	{
+		return btnAction;
+	}
+
+	public Button getCancelButton()
+	{
+		return btnCancel;
 	}
 
 	private void initWinSize()
 	{
-		content.setMinWidth(content.getPrefWidth());
-		content.setMinHeight(content.getPrefHeight());
+		// content.setMinWidth(content.getPrefWidth());
+		// content.setMinHeight(content.getPrefHeight());
 		// content.setMaxWidth(content.getPrefHeight());
 		// content.setMaxHeight(content.getPrefHeight());
 	}
 
 	public void create()
 	{
-		lblWinTitle.setText(title);
-		brpRootPane.setCenter(content);
+		super.setContent(brpWinRoot);
+		event.setMovable(brpWinRoot);
 
-		btnOk.addEventHandler(ActionEvent.ACTION, event ->
+		stage.focusedProperty().addListener(change ->
 		{
-			stage.close();
-		});
-
-		btnNo.addEventHandler(ActionEvent.ACTION, event ->
-		{
-			stage.close();
+			pseudoClassStateChanged(FOCUSED_PSEUDO_CLASS, stage.isFocused());
 		});
 
 		stage.addEventHandler(KeyEvent.KEY_PRESSED, event ->
@@ -146,17 +157,19 @@ public class DialogBoxFrame extends StackPane
 			}
 		});
 
-		stage.focusedProperty().addListener(change ->
-		{
-			pseudoClassStateChanged(FOCUSED_PSEUDO_CLASS, stage.isFocused());
-		});
+		lblWinTitle.setText(title);
 
-		this.initWinSize();
-		this.getChildren().add(brpRootPane);
-		this.getStyleClass().add(DEFAULT_STYLE_CLASS);
+		stpWinMain.setContent(content);
+
+		btnWinClose.setGraphic(AllSVGIcons.get("Window.Close"));
+		btnWinClose.setOnAction(event ->
+		{
+			stage.close();
+		});
 
 		frame.setContent(this);
 		frame.setTitle(title);
+		frame.setTheme(Theme.DARK);
 		frame.setType(WindowType.DIALOG);
 		frame.create();
 	}

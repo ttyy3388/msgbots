@@ -1,13 +1,7 @@
 .root
 {
-	-fx-font-family: 'Microsoft Sans Serif';
+	-fx-font-family: 'Microsoft Sans Serif', 'D2Coding';
 	-fx-font-size: 12;
-}
-
-/* CURSOR */
-.button, .toggle-button
-{
-	-fx-cursor: hand;
 }
 
 /* Alignment */
@@ -19,11 +13,6 @@
 .text
 {
     -fx-font-smoothing-type: lcd;
-}
-
-.context-menu
-{
-	-fx-cursor: default;
 }
 
 .text-area,
@@ -58,61 +47,142 @@
 	-fx-shape: "M14.4315 3.32315L5.96154 13.3232L5.17083 13.2874L1.82083 8.51736L2.63918 7.94263L5.617 12.1827L13.6685 2.67683L14.4315 3.32315Z";
 }
 
-.tab-button
-{
-    -fx-cursor: default;
-}
-
-.tab-pane
-{
-	/* -fx-open-tab-animation: NONE;
-	-fx-close-tab-animation: NONE; */
-}
-
-/* .scroll-bar
+/* SKIN */
+.scroll-bar
 {
 	-fx-skin: 'org.beuwi.msgbots.platform.gui.skins.ScrollBarSkin';
 }
-.scroll-bar .track
+
+/* DEFAULT */
+.dialog-box:focused .root-pane
 {
-	-fx-opacity: 0;
+    -fx-border-color: #007ACC;
 }
-.scroll-bar .track-background
+
+.button:styled {}
+.button:styled.action
 {
-	-fx-opacity: 0;
+	-fx-border-color: #007ACC;
 }
-.scroll-bar .thumb
+.button:styled.cancel
 {
-	-fx-fill: rgba(100, 100, 100, 0.4);
+	-fx-border-color: #555555;
 }
-.scroll-bar .thumb:hover
+/* 추후 수정 */
+.button:styled:hover,
+.button:styled:hover.action,
+.button:styled:hover.cancel
 {
-	-fx-fill: rgba(100, 100, 100, 0.5);
+	-fx-border-color: #0097FB;
 }
-.scroll-bar .thumb:pressed
+.button:styled:focused
 {
-	-fx-fill: rgba(100, 100, 100, 0.6);
-} */
+	-fx-border-color: #007ACC;
+}
+.button:styled:armed
+{
+	-fx-background-color: #007ACC;
+}
+
+.check-box
+{
+	-fx-label-padding: 0 0 0 8;
+}
+.check-box .box
+{
+	-fx-border-color: transparent;
+	-fx-border-width: 1;
+	-fx-padding: 2;
+}
+.check-box .mark
+{
+	-fx-padding: 6;
+}
+.check-box:hover .box,
+.check-box:focused .box
+{
+	-fx-border-color: #007ACC;
+}
+
+.context-menu
+{
+	-fx-background-color: #FFFFFF;
+	-fx-border-color: #BABABA;
+	-fx-border-width: 1;
+	-fx-padding: 5 0 5 0;
+	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
+}
+.context-menu .separator .line
+{
+	-fx-background-insets: 5 0 5 0;
+    -fx-background-color: #BABABA;
+	-fx-padding: 5.5 0 5.5 0;
+}
+
+.menu
+{
+	-fx-text-fill: #000000;
+	-fx-padding: 5 20 5 20;
+}
+.menu:focused
+{
+	-fx-background-color: #E8EAED;
+}
+.menu .label
+{
+	-fx-font-family: 'Microsoft Sans Serif';
+	-fx-font-size: 12;
+    -fx-text-fill: #000000;
+}
+
+.menu-bar
+{
+	-fx-background-color: #FFFFFF;
+}
+.menu-bar .button
+{
+    -fx-text-fill: #000000;
+}
+.menu-bar .button:hover,
+.menu-bar .button:showing
+{
+	-fx-background-color: #DEDEDE;
+}
+
+.menu-button
+{
+	-fx-padding: 0 5 0 5;
+}
 
 .scroll-bar
 {
-    -fx-opacity: 0.5;
-    -fx-cursor: default;
+	-fx-cursor: default;
 }
 .scroll-bar .thumb
 {
-	-fx-background-color: rgba(100, 100, 100, 0.4);
+    -fx-background-color: #FFFFFF;
 }
-.scroll-bar .thumb:hover
+
+.shadow-pane
 {
-	-fx-background-color: rgba(100, 100, 100, 0.6);
+	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
 }
-.scroll-bar .thumb:pressed
+
+.text-area, .text-field
 {
-	-fx-background-color: rgba(100, 100, 100, 0.8);
+	-fx-border-color: transparent;
+	-fx-font-family: D2Coding;
+	-fx-font-size: 14;
+}
+.text-area:hover, .text-area:focused,
+.text-field:hover, .text-field:focused
+{
+	-fx-border-color: #007ACC;
 }
 
 .toggle-button
 {
+	-jfx-untoggle-color: #FFFFFF;
+	-jfx-toggle-color: #007ACC;
     -jfx-size: 6;
 }

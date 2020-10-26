@@ -1,43 +1,37 @@
 package org.beuwi.msgbots.platform.app.view.parts;
 
-import javafx.collections.ObservableMap;
-import javafx.scene.layout.StackPane;
-import org.beuwi.msgbots.openapi.FormLoader;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Priority;
 import org.beuwi.msgbots.platform.app.impl.View;
-import org.beuwi.msgbots.platform.gui.control.TabPane;
+import org.beuwi.msgbots.platform.gui.layout.StackPane;
+import org.beuwi.msgbots.platform.gui.control.VBox;
 
-// Editor Area
 public class MainAreaPart implements View
 {
-	private static ObservableMap<String, Object> nameSpace;
+    private static final StackPane root = new StackPane();
+    private static final BorderPane pane = new BorderPane();
 
-	private static FormLoader loader;
+    {
+        VBox.setVgrow(getRoot(), Priority.ALWAYS);
+    }
 
-	private static StackPane root;
+    @Override
+    public void init()
+    {
+        pane.setLeft(SideAreaPart.getRoot());
+        pane.setRight(DebugAreaPart.getRoot());
+        pane.setCenter(EditorAreaPart.getRoot());
 
-	private static TabPane component;
+        root.setContent(MainAreaPart.getContent());
+    }
 
-	@Override
-	public void init()
-	{
-		loader = new FormLoader("main-area-part");
-		nameSpace = loader.getNamespace();
-		root = loader.getRoot();
-		component = loader.getComponent();
-	}
+    public static StackPane getRoot()
+    {
+        return root;
+    }
 
-	public static StackPane getRoot()
-	{
-		return root;
-	}
-
-	public static TabPane getComponent()
-	{
-		return component;
-	}
-
-	public static ObservableMap<String, Object> getNameSpace()
-	{
-		return nameSpace;
-	}
+    public static BorderPane getContent()
+    {
+        return pane;
+    }
 }

@@ -10,7 +10,6 @@ import java.io.OutputStreamWriter;
 
 public class FileUtils
 {
-
 	public static String save(File file, String content)
 	{
 		try
@@ -33,7 +32,7 @@ public class FileUtils
 		}
 		catch (Exception e)
 		{
-			// new ShowErrorDialog(e).display();
+			e.printStackTrace();
 		}
 
 		return null;
@@ -53,7 +52,7 @@ public class FileUtils
 		}
 		catch (Exception e)
 		{
-			// new ShowErrorDialog(e).display();
+			e.printStackTrace();
 		}
 
 		return null;
@@ -82,7 +81,7 @@ public class FileUtils
 		}
 		catch (Exception e)
 		{
-			// new ShowErrorDialog(e).display();
+			e.printStackTrace();
 		}
 
 		return null;
@@ -112,7 +111,7 @@ public class FileUtils
 		}
 		catch (Exception e)
 		{
-			// new ShowErrorDialog(e).display();
+			e.printStackTrace();
 		}
 
 		return false;

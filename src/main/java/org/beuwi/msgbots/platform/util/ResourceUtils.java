@@ -32,8 +32,8 @@ public class ResourceUtils
 		return ResourceUtils.class.getResource("/themes/" + name + ".css").toExternalForm();
 	}
 
-	public static URL getSVG(String name)
+	public static String getHtml(String name)
 	{
-		return ResourceUtils.class.getResource("/svgs/" + name + ".svg");
+		return ResourceUtils.class.getResource("/test/" + name + ".html").toExternalForm();
 	}
 }

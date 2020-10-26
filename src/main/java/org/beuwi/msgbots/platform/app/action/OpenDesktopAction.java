@@ -13,11 +13,6 @@ public class OpenDesktopAction implements Action
 
 	}
 
-	public static void execute()
-	{
-		// execute(FileManager.BOTS_FOLDER);
-	}
-
 	public static void execute(String path)
 	{
 		execute(new File(path));
@@ -31,7 +26,7 @@ public class OpenDesktopAction implements Action
 		}
 		catch (Exception e)
 		{
-		   //  new ShowErrorDialog(e).display();
+		   e.printStackTrace();
 		}
 	}
 

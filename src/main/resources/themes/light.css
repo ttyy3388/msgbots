@@ -1,0 +1,41 @@
+@import "base.css";
+
+*
+{
+	-fx-text-fill: #000000;
+}
+
+/* Dialog Box */
+.dialog-box .root-pane
+{
+    -fx-background-color: #FBFBFB;
+    -fx-border-color: #FBFBFB;
+}
+.dialog-box .title-bar .button:hover
+{
+	-fx-background-color: #D61425;
+}
+.dialog-box .title-bar .button .icon
+{
+    -fx-background-color: #000000;
+}
+.dialog-box .title-bar .button:hover .icon
+{
+	-fx-background-color: #FFFFFF;
+}
+
+.check-box .box
+{
+	-fx-border-color: #CCCCCC;
+}
+.check-box:selected .mark
+{
+	-fx-background-color: #000000;
+}
+
+.text-area,
+.text-field
+{
+	-fx-background-color: #FFFFFF;
+	-fx-border-color: #CCCCCC;
+}

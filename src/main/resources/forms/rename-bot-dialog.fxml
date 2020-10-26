@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-
 <?import org.beuwi.msgbots.platform.gui.control.TextField?>
+<?import org.beuwi.msgbots.platform.gui.layout.AnchorPane?>
 
 <AnchorPane prefHeight="50.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <Label text="Enter the new name for the file." AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+    <items>
         <TextField fx:id="field" prefHeight="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-    </children>
+    </items>
 </AnchorPane>

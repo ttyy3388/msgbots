@@ -1,7 +1,6 @@
 package org.beuwi.msgbots.platform.app.view.parts;
 
 import javafx.collections.ObservableMap;
-import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.StackPane;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
@@ -9,10 +8,11 @@ import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
 import org.beuwi.msgbots.platform.app.view.actions.ToggleDebugAreaAction;
 import org.beuwi.msgbots.platform.app.view.actions.ToggleMenuBarAction;
 import org.beuwi.msgbots.platform.app.view.actions.ToggleSideAreaAction;
-import org.beuwi.msgbots.platform.app.view.dialog.CreateBotDialog;
-import org.beuwi.msgbots.platform.app.view.dialog.ImportScriptDialog;
+import org.beuwi.msgbots.platform.app.view.dialogs.CreateBotDialog;
+import org.beuwi.msgbots.platform.app.view.dialogs.ImportBotDialog;
+import org.beuwi.msgbots.platform.gui.control.Menu;
 import org.beuwi.msgbots.platform.gui.control.MenuBar;
-import org.beuwi.msgbots.platform.gui.control.MenuItem;
+import org.beuwi.msgbots.platform.gui.control.Separator;
 
 public class MenuBarPart implements View
 {
@@ -35,56 +35,56 @@ public class MenuBarPart implements View
 		// File Menu Button
 		component.getMenu(0).setMenus
 		(
-			new MenuItem("New Bot", "Ctrl + N", event -> OpenDialogBoxAction.execute(new CreateBotDialog())),
-			new MenuItem("Import Script", "Ctrl + I", event -> OpenDialogBoxAction.execute(new ImportScriptDialog())),
-			new SeparatorMenuItem(),
-			new MenuItem("Save", "Ctrl + S"),
-			new MenuItem("Save All"),
-			new SeparatorMenuItem(),
-			new MenuItem("Refresh All Bots", "Ctrl + Alt + Y"),
-			new SeparatorMenuItem(),
-			new MenuItem("Settings", "Ctrl + Alt + S")
+			new Menu("New Bot", "Ctrl + N", event -> OpenDialogBoxAction.execute(new CreateBotDialog())),
+			new Menu("Import Script", "Ctrl + I", event -> OpenDialogBoxAction.execute(new ImportBotDialog())),
+			new Separator(),
+			new Menu("Save", "Ctrl + S"),
+			new Menu("Save All"),
+			new Separator(),
+			new Menu("Refresh All Bots", "Ctrl + Alt + Y"),
+			new Separator(),
+			new Menu("Settings", "Ctrl + Alt + S")
 		);
 
 		// Edit Menu Button
 		// ((CodeArea) MainAreaPart.getComponent().getSelectedTab().getContent())
 		component.getMenu(1).setMenus
 		(
-			new MenuItem("Undo", "Ctrl + Z"),
-			new MenuItem("Redo", "Ctrl + Y"),
-			new SeparatorMenuItem(),
-			new MenuItem("Cut", "Ctrl + X"),
-			new MenuItem("Copy", "Ctrl + C"),
-			new MenuItem("Paste", "Ctrl + V")
+			new Menu("Undo", "Ctrl + Z"),
+			new Menu("Redo", "Ctrl + Y"  /* , event -> RedoTextTabAction.execute() */),
+			new Separator(),
+			new Menu("Cut", "Ctrl + X" /*, event -> CutTextTabAction.execute() */),
+			new Menu("Copy", "Ctrl + C" /*, event -> CopyTextTabAction.execute() */),
+			new Menu("Paste", "Ctrl + V" /*, event -> PasteTextTabAction.execute() */)
 		);
 
 		// View Menu Button
 		component.getMenu(2).setMenus
 		(
-			new MenuItem("Toggle Menu Bar", /* "Alt",*/ event -> ToggleMenuBarAction.execute()),
-			new MenuItem("Toggle Side Bar", /* "Alt",*/ event -> ToggleSideAreaAction.execute()),
-			new MenuItem("Toggle Debug Area", /* "Alt",*/ event -> ToggleDebugAreaAction.execute())
+			new Menu("Toggle Menu Bar", "Alt + M", event -> ToggleMenuBarAction.execute()),
+			new Menu("Toggle Side Bar", "Alt + S", event -> ToggleSideAreaAction.execute()),
+			new Menu("Toggle Debug Area", "Alt + D", event -> ToggleDebugAreaAction.execute())
 		);
 
 		// Debug Menu Button
 		component.getMenu(3).setMenus
 		(
-			new MenuItem("Compile"),
-			new MenuItem("Power On / Off"),
-			new SeparatorMenuItem(),
-			new MenuItem("Show Global Log", "F8"),
-			new MenuItem("Open Debug Room", "F9")
+			new Menu("Compile"),
+			new Menu("Power On / Off"),
+			new Separator(),
+			new Menu("Show Global Log", "F8"),
+			new Menu("Open Debug Room", "F9")
 		);
 
 		// Help Menu Button
 		component.getMenu(4).setMenus
 		(
-			new MenuItem("View Update List"),
-			new MenuItem("View License"),
-			new SeparatorMenuItem(),
-			new MenuItem("About Program"),
-			new SeparatorMenuItem(),
-			new MenuItem("Welcome Guide")
+			new Menu("View Update List"),
+			new Menu("View License"),
+			new Separator(),
+			new Menu("About Program"),
+			new Separator(),
+			new Menu("Welcome Guide")
 		);
 	}
 
