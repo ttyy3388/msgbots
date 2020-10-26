@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import org.beuwi.msgbots.platform.gui.control.MenuBar?>
+<?import org.beuwi.msgbots.platform.gui.control.MenuButton?>
+<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
+
+<StackPane prefHeight="20" >
+	<items>
+        <MenuBar>
+            <items>
+                <MenuButton text="File" />
+                <MenuButton text="Edit" />
+                <MenuButton text="View" />
+                <MenuButton text="Debug" />
+                <MenuButton text="Help" />
+            </items>
+        </MenuBar>
+    </items>
+</StackPane>

@@ -1,0 +1,60 @@
+@import "base.css";
+
+*
+{
+	-fx-text-fill: #FFFFFF;
+}
+
+/* Dialog Box */
+.dialog-box .root-pane
+{
+    -fx-background-color: #252526;
+    -fx-border-color: #252526;
+}
+.dialog-box .title-bar .button:hover
+{
+	-fx-background-color: #D61425;
+}
+.dialog-box .title-bar .button .icon
+{
+    -fx-background-color: #FFFFFF;
+}
+
+.check-box .box
+{
+	-fx-background-color: #333333;
+}
+.check-box:selected .mark
+{
+	-fx-background-color: #FFFFFF;
+}
+
+.tab
+{
+	-fx-background-color: #2D2D2D;
+}
+
+.tab-label
+{
+	-fx-text-fill: #888888;
+}
+.tab:hover .tab-label,
+.tab:selected .tab-label
+{
+	-fx-text-fill: #FFFFFF;
+}
+
+.tab-pane
+{
+	-fx-background-color: #1E1E1E;
+}
+.tab-header-area
+{
+	-fx-background-color: #252526;
+}
+
+.text-area,
+.text-field
+{
+	-fx-background-color: #333333;
+}

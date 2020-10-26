@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.MainView;
+import org.beuwi.msgbots.platform.app.view.actions.AddChatMessageAction;
 import org.beuwi.msgbots.platform.gui.control.ChatView;
 import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.gui.control.TabPane;
@@ -95,8 +96,7 @@ public class DebugAreaPart implements View
 						return ;
 					}
 
-					// Action
-					// AddChatMessageAction.execute(text);
+					AddChatMessageAction.execute(text);
 
 					textArea.clear();
 					event.consume();

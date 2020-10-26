@@ -6,7 +6,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.beuwi.msgbots.platform.app.view.MainView.MainWindow;
 import org.beuwi.msgbots.platform.app.view.actions.AddChatMessageAction;
-import org.beuwi.msgbots.platform.app.view.actions.AddMainAreaTabAction;
+import org.beuwi.msgbots.platform.app.view.actions.AddEditorAreaTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenScriptTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.RefreshBotListAction;
 import org.beuwi.msgbots.platform.app.view.actions.ToggleDebugAreaAction;
@@ -58,7 +58,7 @@ public class Launcher extends Application
 			new MainAreaPart().init();
 
 			new AddChatMessageAction().init();
-			new AddMainAreaTabAction().init();
+			new AddEditorAreaTabAction().init();
 			new OpenScriptTabAction().init();
 			new RefreshBotListAction().init();
 			new ToggleDebugAreaAction().init();
@@ -71,7 +71,7 @@ public class Launcher extends Application
 			RefreshBotListAction.execute();
 
 			UpdateStatusBarAction.execute(new String[] { "Test Tab Name", "Test Line Position", "Test Line Encoding", "Test File Encoding" });
-			AddMainAreaTabAction.execute(new Tab("Test"));
+			AddEditorAreaTabAction.execute(new Tab("Test"));
 
 			OpenScriptTabAction.execute("TEST");
 		}

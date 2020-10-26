@@ -1,0 +1,43 @@
+.side-area
+{
+	-fx-border-color: #414141;
+	-fx-border-width: 0 0 0 1;
+}
+
+.tab
+{
+	-fx-border-width: 0;
+}
+
+.tab
+{
+	-fx-border-color: transparent;
+}
+/* .tab:hover
+{
+	-fx-background-color: #34373C;
+} */
+.tab:selected
+{
+	-fx-background-color: #1E1E1E;
+}
+.tab-header-area
+{
+	-fx-background-color: #252526;
+}
+
+.debug-tab
+{
+	-fx-font-family: D2Coding;
+	-fx-font-size: 14;
+}
+.debug-tab .list-cell
+{
+	-fx-padding: 12 10 12 10;
+}
+
+.debug-tab .text-area
+{
+	-fx-background-color: #303030;
+	-fx-padding: 10;
+}
