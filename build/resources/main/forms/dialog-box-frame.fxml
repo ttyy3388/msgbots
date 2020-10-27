@@ -13,7 +13,7 @@
 
 <BorderPane fx:id="brpWinRoot" styleClass="root-pane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<top>
-		<AnchorPane prefHeight="30.0" styleClass="title-bar" BorderPane.alignment="CENTER">
+		<AnchorPane prefHeight="30.0" styleClass="title-bar">
 			<children>
 				<HBox alignment="CENTER_LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 					<children>

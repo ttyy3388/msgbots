@@ -11,6 +11,7 @@ import javafx.scene.layout.Priority;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.action.OpenDesktopAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
+import org.beuwi.msgbots.platform.app.view.actions.OpenGlobalSettingAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenScriptTabAction;
 import org.beuwi.msgbots.platform.app.view.dialogs.RenameBotDialog;
 
@@ -70,7 +71,9 @@ public class Bot extends GridPane
 			new Menu("Copy Relative Path", "Ctrl + Shift + C"),
 			new Separator(),
 			new Menu("Rename", event -> OpenDialogBoxAction.execute(new RenameBotDialog(name))),
-			new Menu("Delete")
+			new Menu("Delete"),
+			new Separator(),
+			new Menu("Settings", "Ctrl + ,", event -> OpenGlobalSettingAction.execute())
 		);
 
 		menu.setNode(this);

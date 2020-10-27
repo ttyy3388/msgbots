@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.actions.ChangeThemeAction;
-import org.beuwi.msgbots.platform.gui.enums.Theme;
+import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
 public class WindowFrame
@@ -17,7 +17,7 @@ public class WindowFrame
 	private WindowType type;
 	private Region content;
 	private String title;
-	private Theme theme;
+	private ThemeType themeType;
 
 	public WindowFrame(Stage stage)
 	{
@@ -29,9 +29,9 @@ public class WindowFrame
 		return type;
 	}
 
-	public Theme getTheme()
+	public ThemeType getTheme()
 	{
-		return theme;
+		return themeType;
 	}
 
 	public Stage getStage()
@@ -54,9 +54,9 @@ public class WindowFrame
 		this.type = type;
 	}
 
-	public void setTheme(Theme theme)
+	public void setTheme(ThemeType themeType)
 	{
-		this.theme = theme;
+		this.themeType = themeType;
 	}
 
 	public void setTitle(String title)
@@ -105,7 +105,7 @@ public class WindowFrame
 		}
 		finally
 		{
-			ChangeThemeAction.execute(scene, theme);
+			ChangeThemeAction.execute(scene, themeType);
 		}
 	}
 

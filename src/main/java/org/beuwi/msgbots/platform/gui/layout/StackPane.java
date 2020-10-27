@@ -34,7 +34,7 @@ public class StackPane<T> extends javafx.scene.layout.StackPane
 
 	public void addItem(Node... items)
 	{
-		getItems().setAll(items);
+		getItems().addAll(items);
 	}
 
 	public Node getItem(int index)

@@ -13,7 +13,7 @@ import org.beuwi.msgbots.platform.gui.control.ContextMenu;
 import org.beuwi.msgbots.platform.gui.control.HBox;
 import org.beuwi.msgbots.platform.gui.control.Label;
 import org.beuwi.msgbots.platform.gui.control.Menu;
-import org.beuwi.msgbots.platform.gui.enums.Theme;
+import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.gui.layout.ShadowPane;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
 import org.beuwi.msgbots.platform.util.AllSVGIcons;
@@ -161,7 +161,7 @@ public class DialogBoxFrame extends ShadowPane
 
 		stpWinMain.setContent(content);
 
-		btnWinClose.setGraphic(AllSVGIcons.get("Window.Close"));
+		btnWinClose.setGraphic(AllSVGIcons.get("Dialog.Close"));
 		btnWinClose.setOnAction(event ->
 		{
 			stage.close();
@@ -169,7 +169,7 @@ public class DialogBoxFrame extends ShadowPane
 
 		frame.setContent(this);
 		frame.setTitle(title);
-		frame.setTheme(Theme.DARK);
+		frame.setTheme(ThemeType.DARK);
 		frame.setType(WindowType.DIALOG);
 		frame.create();
 	}

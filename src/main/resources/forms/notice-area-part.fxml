@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.BorderPane?>
+
+<?import org.beuwi.msgbots.platform.gui.control.NoticeView?>
+
+<BorderPane styleClass="notice-area" stylesheets="@../styles/notice-area-part.css">
+	<right>
+		<NoticeView>
+			<BorderPane.margin>
+				<Insets top="10" right="10" bottom="10" />
+			</BorderPane.margin>
+		</NoticeView>
+	</right>
+</BorderPane>

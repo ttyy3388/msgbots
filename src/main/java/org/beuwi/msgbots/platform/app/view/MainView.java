@@ -5,7 +5,7 @@ import org.beuwi.msgbots.platform.app.view.parts.MainAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MenuBarPart;
 import org.beuwi.msgbots.platform.app.view.parts.StatusBarPart;
 import org.beuwi.msgbots.platform.gui.control.VBox;
-import org.beuwi.msgbots.platform.gui.enums.Theme;
+import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.util.SharedValues;
 import org.beuwi.msgbots.platform.win.WindowType;
 import org.beuwi.msgbots.platform.win.WindowWrap;
@@ -31,6 +31,10 @@ public class MainView extends VBox
 		addItem(MenuBarPart.getRoot());
 		addItem(MainAreaPart.getRoot());
 		addItem(StatusBarPart.getRoot());
+
+		// 추후 윈도우 프레임으로 이전
+		stage.setMinWidth(800);
+		stage.setMinHeight(600);
 	}
 
 	public static class MainWindow extends WindowWrap
@@ -41,7 +45,7 @@ public class MainView extends VBox
 
 			setContent(new MainView(stage));
 			setTitle(SharedValues.DEFAULT_PROGRAM_TITLE);
-			setTheme(Theme.DARK);
+			setTheme(ThemeType.DARK);
 			setType(WindowType.WINDOW);
 		}
 	}

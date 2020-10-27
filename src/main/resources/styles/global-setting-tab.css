@@ -1,0 +1,73 @@
+.setting-tab
+{
+}
+
+.text-field
+{
+	-fx-font-size: 15;
+}
+
+.tab
+{
+	-fx-background-color: transparent;
+	-fx-border-width: 0 0 1 0;
+	-fx-cursor: hand;
+}
+.tab:hover
+{
+	-fx-background-color: transparent;
+	/* -fx-border-color: #888888; */
+}
+.tab:selected
+{
+	-fx-border-color: #FFFFFF;
+}
+
+.tab-header-area
+{
+	-fx-background-color: #1E1E1E;
+	/* -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 0, 10); */
+}
+
+.option-header-area
+{
+	-fx-border-width: 0 1 0 0;
+	-fx-border-color: #888888;
+}
+
+.option-content-area
+{
+    -fx-font-family: D2Coding;
+	-fx-font-size: 14;
+}
+
+/* .code-area:focused
+{
+    -fx-border-color: #007ACC;
+} */
+
+.item-box
+{
+    -fx-spacing: 15;
+}
+
+.item-box .label,
+.item-box .check-box
+{
+    -fx-text-fill: #888888;
+}
+.item-box .title-label
+{
+    -fx-text-fill: #FFFFFF;
+}
+
+.text-area,
+.text-field
+{
+	-fx-background-color: #333333;
+}
+.text-area:hover,
+.text-area:focused
+{
+    -fx-border-color: #007ACC;
+}

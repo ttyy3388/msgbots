@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import org.beuwi.msgbots.platform.app.view.MainView.MainWindow;
 import org.beuwi.msgbots.platform.app.view.actions.AddChatMessageAction;
 import org.beuwi.msgbots.platform.app.view.actions.AddEditorAreaTabAction;
+import org.beuwi.msgbots.platform.app.view.actions.AddNoticeMessageAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenScriptTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.RefreshBotListAction;
 import org.beuwi.msgbots.platform.app.view.actions.ToggleDebugAreaAction;
@@ -17,9 +18,9 @@ import org.beuwi.msgbots.platform.app.view.parts.DebugAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.EditorAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MainAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MenuBarPart;
+import org.beuwi.msgbots.platform.app.view.parts.NoticeAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.SideAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.StatusBarPart;
-import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
 public class Launcher extends Application
@@ -55,10 +56,12 @@ public class Launcher extends Application
 			new MenuBarPart().init();
 			new SideAreaPart().init();
 			new StatusBarPart().init();
+			new NoticeAreaPart().init();
 			new MainAreaPart().init();
 
 			new AddChatMessageAction().init();
 			new AddEditorAreaTabAction().init();
+			new AddNoticeMessageAction().init();
 			new OpenScriptTabAction().init();
 			new RefreshBotListAction().init();
 			new ToggleDebugAreaAction().init();
@@ -68,10 +71,13 @@ public class Launcher extends Application
 
 			new MainWindow(stage).create();
 
+			// AddNoticeMessageAction.execute(new Notice(NoticeType.EVENT, "Test1", "Content1"));
+			// AddNoticeMessageAction.execute(new Notice(NoticeType.ERROR, "Test2", "Content2"));
+			// AddNoticeMessageAction.execute(new Notice(NoticeType.WARNING, "Test3", "Content3"));
+
 			RefreshBotListAction.execute();
 
 			UpdateStatusBarAction.execute(new String[] { "Test Tab Name", "Test Line Position", "Test Line Encoding", "Test File Encoding" });
-			AddEditorAreaTabAction.execute(new Tab("Test"));
 
 			OpenScriptTabAction.execute("TEST");
 		}

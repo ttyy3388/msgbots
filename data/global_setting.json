@@ -9,7 +9,7 @@
 	},
 	"program":{
 		"autoCompile":true,
-		"theme":"Dark",
+		"theme":"dark",
 		"autoSave":true
 	}
 }

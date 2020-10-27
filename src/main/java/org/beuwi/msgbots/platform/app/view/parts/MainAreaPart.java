@@ -22,7 +22,8 @@ public class MainAreaPart implements View
         pane.setRight(DebugAreaPart.getRoot());
         pane.setCenter(EditorAreaPart.getRoot());
 
-        root.setContent(MainAreaPart.getContent());
+        root.addItem(MainAreaPart.getContent());
+        root.addItem(NoticeAreaPart.getRoot());
     }
 
     public static StackPane getRoot()

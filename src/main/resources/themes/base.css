@@ -59,7 +59,10 @@
     -fx-border-color: #007ACC;
 }
 
-.button:styled {}
+.button:styled
+{
+	-fx-border-color: #555555;
+}
 .button:styled.action
 {
 	-fx-border-color: #007ACC;
@@ -175,7 +178,15 @@
 }
 .scroll-bar .thumb
 {
-    -fx-background-color: #FFFFFF;
+	-fx-background-color: rgba(100, 100, 100, 0.4);
+}
+.scroll-bar .thumb:hover
+{
+	-fx-background-color: rgba(100, 100, 100, 0.5);
+}
+.scroll-bar .thumb:pressed
+{
+	-fx-background-color: rgba(100, 100, 100, 0.6);
 }
 
 .shadow-pane
@@ -193,6 +204,19 @@
 .text-field:hover, .text-field:focused
 {
 	-fx-border-color: #007ACC;
+}
+
+.notice .title-bar .button
+{
+    -fx-cursor: hand;
+}
+.notice .title-bar .button .icon
+{
+    -fx-background-color: #FFFFFF;
+}
+.notice .title-bar .button:hover .icon
+{
+	-fx-background-color: #007ACC;
 }
 
 .toggle-button

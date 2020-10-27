@@ -107,9 +107,32 @@ public class VBox<T> extends javafx.scene.layout.VBox
 		return getItems().get(index);
 	}
 
+	public Node getItem(String id)
+	{
+		return getItems().get(getIndex(id));
+	}
+
+	public int getIndex(String id)
+	{
+		for (int index = 0 ; index < getItems().size() ; index ++)
+		{
+			if (getItem(index).getId().equals(id))
+			{
+				return index;
+			}
+		}
+
+		return -1;
+	}
+
 	public ObservableList<Node> getItems()
 	{
 		return getChildren();
+	}
+
+	public ObservableList<Node> getItemsProperty()
+	{
+		return getItems();
 	}
 
 	public ReadOnlyDoubleProperty getWidthProperty()

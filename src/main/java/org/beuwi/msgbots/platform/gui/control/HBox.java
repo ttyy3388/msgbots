@@ -25,6 +25,11 @@ public class HBox<T> extends javafx.scene.layout.HBox
 			addItem(items);
 		}
 
+		getFittableProperty().addListener((observable) ->
+		{
+			setFitContent(isFittable());
+		});
+
 		getStyleClass().add(DEFAULT_STYlE_CLASS);
 	}
 
@@ -63,6 +68,7 @@ public class HBox<T> extends javafx.scene.layout.HBox
 				{
 					if (item instanceof Region)
 					{
+						// ((Region) item).setMinHeight(getHeight());
 						((Region) item).setPrefHeight(getHeight());
 					}
 				}
@@ -84,6 +90,24 @@ public class HBox<T> extends javafx.scene.layout.HBox
 		return getItems().get(index);
 	}
 
+	public Node getItem(String id)
+	{
+		return getItems().get(getIndex(id));
+	}
+
+	public int getIndex(String id)
+	{
+		for (int index = 0 ; index < getItems().size() ; index ++)
+		{
+			if (getItem(index).getId().equals(id))
+			{
+				return index;
+			}
+		}
+
+		return -1;
+	}
+
 	public Node getLastItem()
 	{
 		return getItems().get(getItems().size());
@@ -102,5 +126,10 @@ public class HBox<T> extends javafx.scene.layout.HBox
 	public ReadOnlyDoubleProperty getHeightProperty()
 	{
 		return heightProperty();
+	}
+
+	public BooleanProperty getFittableProperty()
+	{
+		return fittable;
 	}
 }
