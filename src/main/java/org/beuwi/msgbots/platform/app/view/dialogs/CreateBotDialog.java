@@ -3,20 +3,19 @@ package org.beuwi.msgbots.platform.app.view.dialogs;
 import javafx.application.Platform;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.CheckBox;
 import javafx.scene.input.KeyCode;
+import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.action.CreateBotAction;
 import org.beuwi.msgbots.platform.gui.control.TextField;
-import org.beuwi.msgbots.platform.gui.control.VBox;
 import org.beuwi.msgbots.platform.gui.dialog.DialogBoxWrap;
-import org.beuwi.msgbots.platform.util.ResourceUtils;
+import org.beuwi.msgbots.platform.gui.control.VBox;
 
 public class CreateBotDialog extends DialogBoxWrap
 {
 	private final ObservableMap<String, Object> nameSpace;
 
-	private final FXMLLoader loader = new FXMLLoader();
+	private final FormLoader loader;
 
 	private final VBox root;
 
@@ -30,18 +29,7 @@ public class CreateBotDialog extends DialogBoxWrap
 
 	public CreateBotDialog()
 	{
-		loader.setLocation(ResourceUtils.getForm("create-bot-dialog"));
-		loader.setController(this);
-
-		try
-		{
-			loader.load();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-
+		loader = new FormLoader("dialog", "create-bot-dialog", this);
 		nameSpace = loader.getNamespace();
 		root = loader.getRoot();
 

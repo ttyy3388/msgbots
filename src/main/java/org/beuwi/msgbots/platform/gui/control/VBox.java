@@ -1,6 +1,8 @@
 package org.beuwi.msgbots.platform.gui.control;
 
 import javafx.beans.DefaultProperty;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -8,12 +10,27 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.Region;
 
-@DefaultProperty("items")
+// @DefaultProperty("items")
 public class VBox<T> extends javafx.scene.layout.VBox
 {
 	private static final String DEFAULT_STYLE_CLASS = "vbox";
 
 	private final BooleanProperty fittable = new SimpleBooleanProperty();
+
+	private final InvalidationListener listener = new InvalidationListener()
+	{
+		@Override
+		public void invalidated(Observable observable)
+		{
+			for (Node item : getItems())
+			{
+				if (item instanceof Region)
+				{
+					((Region) item).setPrefWidth(getWidth());
+				}
+			}
+		}
+	};
 
 	public VBox()
 	{
@@ -24,13 +41,22 @@ public class VBox<T> extends javafx.scene.layout.VBox
 	{
 		if (items != null)
 		{
-			addItem(items);
+			addItems(items);
 		}
 
-		getFittableProperty().addListener((observable) ->
+		getFittableProperty().addListener(event ->
 		{
-			setFitContent(isFittable());
+			if (isFittable())
+			{
+				getHeightProperty().addListener(listener);
+			}
+			else
+			{
+				getHeightProperty().removeListener(listener);
+			}
 		});
+
+		// setOnMouseClicked();
 
 		getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
@@ -55,19 +81,29 @@ public class VBox<T> extends javafx.scene.layout.VBox
 		getItems().add(item);
 	}
 
-	public void addItem(Node... items)
+	public void addItem(int index, Node item)
+	{
+		getItems().add(index, item);
+	}
+
+	public void addItems(Node... items)
 	{
 		getItems().addAll(items);
 	}
 
-	public void addItem(ObservableList list)
+	public void addItems(ObservableList list)
 	{
 		getChildren().addAll(list);
 	}
 
-	public void addItem(int index, Node item)
+	public void setItem(int index, Node item)
 	{
-		getItems().add(index, item);
+		getItems().set(index, item);
+	}
+
+	public void setItems(Node... items)
+	{
+		getItems().setAll(items);
 	}
 
 	public void setFittable(boolean fittable)
@@ -75,26 +111,14 @@ public class VBox<T> extends javafx.scene.layout.VBox
 		this.fittable.set(fittable);
 	}
 
-	// 부모 높이에 자식 컴포넌트 높이를 강제로 맞춤
-	private void setFitContent(boolean resize)
+	public void addStyleClass(String style)
 	{
-		if (resize)
-		{
-			getWidthProperty().addListener(change ->
-			{
-				for (Node item : getItems())
-				{
-					if (item instanceof Region)
-					{
-						((Region) item).setPrefWidth(getWidth());
-					}
-				}
-			});
-		}
-		else
-		{
-			return ;
-		}
+		getStyleClass().add(style);
+	}
+
+	public boolean contains(Node item)
+	{
+		return getItems().contains(item);
 	}
 
 	public boolean isFittable()

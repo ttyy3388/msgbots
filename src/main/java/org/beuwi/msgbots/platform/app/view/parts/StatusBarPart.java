@@ -9,7 +9,7 @@ import org.beuwi.msgbots.platform.gui.control.HBox;
 
 public class StatusBarPart implements View
 {
-	private static ObservableMap<String, Object> nameSpace;
+	private static ObservableMap<String, Object> namespace;
 
 	private static FormLoader loader;
 
@@ -20,8 +20,8 @@ public class StatusBarPart implements View
 	@Override
 	public void init()
 	{
-		loader = new FormLoader("status-bar-part");
-		nameSpace = loader.getNamespace();
+		loader = new FormLoader("part", "status-bar-part");
+		namespace = loader.getNamespace();
 		root = loader.getRoot();
 		component = loader.getComponent();
 	}
@@ -36,8 +36,13 @@ public class StatusBarPart implements View
 		return component;
 	}
 
-	public static ObservableMap<String, Object> getNameSpace()
+	public static <T> T getComponent(String key)
 	{
-		return nameSpace;
+		return (T) namespace.get(key);
+	}
+
+	public static ObservableMap<String, Object> getNamespace()
+	{
+		return namespace;
 	}
 }

@@ -3,18 +3,17 @@ package org.beuwi.msgbots.platform.app.view.dialogs;
 import javafx.application.Platform;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.CheckBox;
 import javafx.scene.input.KeyCode;
 import javafx.stage.FileChooser;
+import org.beuwi.msgbots.manager.FileManager;
+import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.action.CreateBotAction;
-import org.beuwi.msgbots.platform.app.utils.FileUtils;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.gui.control.Button;
 import org.beuwi.msgbots.platform.gui.control.TextField;
 import org.beuwi.msgbots.platform.gui.control.VBox;
 import org.beuwi.msgbots.platform.gui.dialog.DialogBoxWrap;
-import org.beuwi.msgbots.platform.util.ResourceUtils;
 
 import java.io.File;
 
@@ -22,7 +21,7 @@ public class ImportBotDialog extends DialogBoxWrap
 {
 	private final ObservableMap<String, Object> nameSpace;
 
-	private final FXMLLoader loader = new FXMLLoader();
+	private final FormLoader loader;
 
 	private final VBox root;
 
@@ -39,18 +38,7 @@ public class ImportBotDialog extends DialogBoxWrap
 
 	public ImportBotDialog()
 	{
-		loader.setLocation(ResourceUtils.getForm("import-bot-dialog"));
-		loader.setController(this);
-
-		try
-		{
-			loader.load();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-
+		loader = new FormLoader("dialog", "import-bot-dialog", this);
 		nameSpace = loader.getNamespace();
 		root = loader.getRoot();
 
@@ -99,7 +87,7 @@ public class ImportBotDialog extends DialogBoxWrap
 		CreateBotAction.execute
 		(
 			txfScriptName.getText(),
-			FileUtils.read(file), true,
+			FileManager.read(file), true,
 			chkIsUnified.isSelected(),
 			chkIsOffError.isSelected()
 		);

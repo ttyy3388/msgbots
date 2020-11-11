@@ -2,65 +2,61 @@ package org.beuwi.msgbots.platform.gui.control;
 
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
+import org.beuwi.msgbots.compiler.engine.ScriptManager;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.action.OpenDesktopAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
-import org.beuwi.msgbots.platform.app.view.actions.OpenGlobalSettingAction;
+import org.beuwi.msgbots.platform.app.view.actions.OpenProgramTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenScriptTabAction;
 import org.beuwi.msgbots.platform.app.view.dialogs.RenameBotDialog;
+import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
+import org.beuwi.msgbots.platform.gui.layout.GridPanel;
 
 // Bot Item
-public class Bot extends GridPane
+public class Bot extends GridPanel
 {
 	private static final String DEFAULT_STYLE_CLASS = "bot";
 
 	private final CheckBox     check  = new CheckBox();     // Compiled Check Box
 	private final Label   	   label  = new Label();    	// Name Text
 	private final Button       button = new Button();       // Compile Button
-	private final ToggleButton power  = new ToggleButton(); // Power Switch
+	private final ToggleSwitch power  = new ToggleSwitch(); // Power Switch
 
 	private final ContextMenu menu;
 
 	private BotView parent;
 
 	{
-		// GridPane.setHgrow(check, Priority.ALWAYS);
-		GridPane.setHgrow(label, Priority.ALWAYS);
-		// GridPane.setHgrow(button, Priority.ALWAYS);
-		// GridPane.setHgrow(power, Priority.ALWAYS);
+		// GridPanel.setHgrow(check, Priority.ALWAYS);
+		GridPanel.setHgrow(label, Priority.ALWAYS);
+		// GridPanel.setHgrow(button, Priority.ALWAYS);
+		// GridPanel.setHgrow(power, Priority.ALWAYS);
 
-		GridPane.setVgrow(check, Priority.ALWAYS);
-		GridPane.setVgrow(label, Priority.ALWAYS);
-		GridPane.setVgrow(button, Priority.ALWAYS);
-		GridPane.setVgrow(power, Priority.ALWAYS);
+		GridPanel.setVgrow(check, Priority.ALWAYS);
+		GridPanel.setVgrow(label, Priority.ALWAYS);
+		GridPanel.setVgrow(button, Priority.ALWAYS);
+		GridPanel.setVgrow(power, Priority.ALWAYS);
 
-		GridPane.setHalignment(check, HPos.CENTER);
-		GridPane.setHalignment(label, HPos.LEFT);
-		GridPane.setHalignment(button, HPos.CENTER);
-		GridPane.setHalignment(power, HPos.CENTER);
+		GridPanel.setHalignment(check, HPos.CENTER);
+		GridPanel.setHalignment(label, HPos.LEFT);
+		GridPanel.setHalignment(button, HPos.CENTER);
+		GridPanel.setHalignment(power, HPos.CENTER);
 
-		GridPane.setValignment(check, VPos.CENTER);
-		GridPane.setValignment(label, VPos.CENTER);
-		GridPane.setValignment(button, VPos.CENTER);
-		GridPane.setValignment(power, VPos.CENTER);
+		GridPanel.setValignment(check, VPos.CENTER);
+		GridPanel.setValignment(label, VPos.CENTER);
+		GridPanel.setValignment(button, VPos.CENTER);
+		GridPanel.setValignment(power, VPos.CENTER);
 
-		getColumnConstraints().add(new ColumnConstraints(20));
-		getColumnConstraints().add(new ColumnConstraints());
-		getColumnConstraints().add(new ColumnConstraints(30));
-		getColumnConstraints().add(new ColumnConstraints(45));
+		setDefaultColumn(20, 0, 30, 45);
 	}
 
 	public Bot(String name)
 	{
 		menu = new ContextMenu
 		(
-			new Menu("Compile"),
+			new Menu("Compile", event -> ScriptManager.initBot(name, true, false)),
 			new Menu("Power On / Off", event -> power.setSelected(!getPower())),
 			new Separator(),
 			new Menu("Show Log"),
@@ -70,10 +66,10 @@ public class Bot extends GridPane
 			new Menu("Copy Path", "Ctrl + Alt + C"),
 			new Menu("Copy Relative Path", "Ctrl + Shift + C"),
 			new Separator(),
-			new Menu("Rename", event -> OpenDialogBoxAction.execute(new RenameBotDialog(name))),
+			new Menu("Rename" , event -> OpenDialogBoxAction.execute(new RenameBotDialog(name))),
 			new Menu("Delete"),
 			new Separator(),
-			new Menu("Settings", "Ctrl + ,", event -> OpenGlobalSettingAction.execute())
+			new Menu("Settings", "Ctrl + ,", event -> OpenProgramTabAction.execute(GlobalConfigTab.getRoot()))
 		);
 
 		menu.setNode(this);
@@ -81,10 +77,15 @@ public class Bot extends GridPane
 		label.setText(name);
 		check.setDisable(true);
 
-		add(check,  0, 0);
-		add(label,  1, 0);
-		add(button, 2, 0);
-		add(power,  3, 0);
+		addItem(check,  0, 0);
+		addItem(label,  1, 0);
+		addItem(button, 2, 0);
+		addItem(power,  3, 0);
+
+		button.setOnAction(event ->
+		{
+			ScriptManager.initBot(name, true, false);
+		});
 
 		setOnMouseClicked(event ->
 		{

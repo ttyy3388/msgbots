@@ -5,71 +5,59 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
+import org.beuwi.msgbots.platform.app.view.tabs.BotListTab;
 import org.beuwi.msgbots.platform.gui.control.BotView;
 import org.beuwi.msgbots.platform.gui.control.Tab;
-import org.beuwi.msgbots.platform.gui.control.TabPane;
+import org.beuwi.msgbots.platform.gui.control.TabView;
+import org.beuwi.msgbots.platform.gui.layout.AnchorPanel;
 
 public class SideAreaPart implements View
 {
-	private static final int MAX_WIDTH = 000;
-	private static final int MIN_WIDTH = 180;
+	// private static final int DEFAULT_MAX_WIDTH = 000;
+	// private static final int DEFAULT_MIN_WIDTH = 180;
 
-	private static ObservableMap<String, Object> nameSpace;
+	private static ObservableMap<String, Object> namespace;
 
 	private static FormLoader loader;
 
-	private static AnchorPane root;
+	private static AnchorPanel root;
 
-	private static TabPane component;
+	private static TabView component;
 
 	private static Pane resize;
 
 	@Override
 	public void init()
 	{
-		loader = new FormLoader("side-area-part");
-		nameSpace = loader.getNamespace();
+		loader = new FormLoader("part", "side-area-part");
+		namespace = loader.getNamespace();
 		root = loader.getRoot();
 		component = loader.getComponent();
 
 		// Resize Bar
-		resize = (Pane) nameSpace.get("stpResizeBar");
+		resize = (Pane) namespace.get("stpResizeBar");
 
 		resize.setOnMouseDragged(event ->
 		{
 			double size = event.getSceneX();
 
-			if (MIN_WIDTH < size)
+			if (root.getMinWidth() < size)
 			{
 				root.setPrefWidth(size);
 			}
 		});
 
-		new BotListTab().init();
-	}
+		component.addTab(BotListTab.getRoot());
 
-	public static class BotListTab implements View
-	{
-		private static Tab root;
+		/* HBox<Button> btnbar = (HBox) component.getButtonBar();
 
-		private static BotView component;
+		ToggleButton check = new ToggleButton(); // Show Compiled Check Box
+		ToggleButton power = new ToggleButton(); // Show Power Switch
+		Button compile = new Button(); 		 	 // Show Compile Button
 
-		@Override
-		public void init()
-		{
-			root = (Tab) nameSpace.get("tabBotList");
-			component = (BotView) nameSpace.get("lsvBotView");
-		}
+		compile.setGraphic(AllSVGIcons.get("Bot.Compile"));
 
-		public static Tab getRoot()
-		{
-			return root;
-		}
-
-		public static BotView getComponent()
-		{
-			return component;
-		}
+		btnbar.addItem(check, power, compile); */
 	}
 
 	public static AnchorPane getRoot()
@@ -77,13 +65,18 @@ public class SideAreaPart implements View
 		return root;
 	}
 
-	public static TabPane getComponent()
+	public static TabView getComponent()
 	{
 		return component;
 	}
 
-	public static ObservableMap<String, Object> getNameSpace()
+	public static <T> T getComponent(String key)
 	{
-		return nameSpace;
+		return (T) namespace.get(key);
+	}
+
+	public static ObservableMap<String, Object> getNamespace()
+	{
+		return namespace;
 	}
 }

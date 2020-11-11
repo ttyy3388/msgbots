@@ -10,7 +10,8 @@ import java.util.stream.Collectors;
 public class NoticeView extends VBox<Notice>
 {
 	private static final String DEFAULT_STYLE_CLASS = "notice-view";
-	private static final int DEFAULT_MIN_WIDTH = 500;
+
+	private static final int DEFAULT_PREF_WIDTH = 500;
 	private static final int DEFAULT_GAP_VALUE = 10;
 
 	public NoticeView()
@@ -24,27 +25,27 @@ public class NoticeView extends VBox<Notice>
 		});
 
 		setSpacing(DEFAULT_GAP_VALUE);
-		setMinWidth(DEFAULT_MIN_WIDTH);
+		setPrefWidth(DEFAULT_PREF_WIDTH);
 	    getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 
-	public void addToast(Notice notice)
+	public void addNotice(Notice notice)
 	{
 		addItem(notice);
 	}
 
-	public Notice getToast(int index)
+	public Notice getNotice(int index)
 	{
 		return (Notice) getItem(index);
 	}
 
-	public Notice getToast(String id)
+	public Notice getNotice(String id)
 	{
 		return (Notice) getItem(id);
 	}
 
 	// Listener 등록 안되고 아이템들만 받아짐 (추후 수정)
-	public ObservableList<Notice> getToasts()
+	public ObservableList<Notice> getNotices()
 	{
 		return getItems().stream().map(tab -> (Notice) tab).collect(Collectors.toCollection(FXCollections::observableArrayList));
 	}

@@ -3,7 +3,7 @@ package org.beuwi.msgbots.platform.gui.control;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MenuBar extends HBox
+public class MenuBar extends HBox<MenuButton>
 {
 	private static final String DEFAULT_STYlE_CLASS = "menu-bar";
 
@@ -17,7 +17,7 @@ public class MenuBar extends HBox
 		setMinHeight(DEFAULT_MIN_HEIGHT);
 		setPrefHeight(DEFAULT_PREF_HEIGHT);
 
-		getStyleClass().add(DEFAULT_STYlE_CLASS);
+		addStyleClass(DEFAULT_STYlE_CLASS);
 	}
 
 	public MenuButton getMenu(int index)

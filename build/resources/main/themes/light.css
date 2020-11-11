@@ -5,11 +5,163 @@
 	-fx-text-fill: #000000;
 }
 
+.root
+{
+    -fx-background-color: #FFFFFF;
+}
+
+/* BUTTON */
+.button:styled
+{
+	-fx-border-color: #555555;
+}
+.button:styled.action
+{
+	-fx-border-color: #007ACC;
+}
+.button:styled.cancel
+{
+	-fx-border-color: #555555;
+}
+/* 추후 수정 */
+.button:styled:hover,
+.button:styled:hover.action,
+.button:styled:hover.cancel
+{
+	-fx-border-color: #0097FB;
+}
+.button:styled:focused
+{
+	-fx-border-color: #007ACC;
+}
+.button:styled:armed
+{
+	-fx-background-color: #007ACC;
+}
+
+/* CHECK BOX */
+.check-box .box
+{
+	-fx-background-color: #F3F3F3;
+	-fx-border-color: #CCCCCC;
+}
+.check-box:selected .mark
+{
+	-fx-background-color: #000000;
+}
+.check-box:hover .box,
+.check-box:focused .box
+{
+	-fx-border-color: #007ACC;
+}
+
+/* CONTEXT MENU */
+.context-menu
+{
+	-fx-background-color: #FFFFFF;
+	-fx-border-color: #BABABA;
+}
+.context-menu .separator .line
+{
+	-fx-background-color: #BABABA;
+}
+
+/* MENU */
+.menu
+{
+	-fx-text-fill: #000000;
+}
+.menu .label
+{
+	-fx-text-fill: #000000;
+}
+.menu:focused
+{
+	-fx-background-color: #E8EAED;
+}
+
+/* MENU BAR */
+.menu-bar
+{
+	-fx-background-color: #FFFFFF;
+}
+.menu-bar .button
+{
+	-fx-text-fill: #000000;
+}
+.menu-bar .button:hover,
+.menu-bar .button:showing
+{
+	-fx-background-color: #DEDEDE;
+}
+
+/* SCROLL BAR */
+.scroll-bar .thumb
+{
+	-fx-background-color: rgba(100, 100, 100, 0.4);
+}
+.scroll-bar .thumb:hover
+{
+	-fx-background-color: rgba(100, 100, 100, 0.5);
+}
+.scroll-bar .thumb:pressed
+{
+	-fx-background-color: rgba(100, 100, 100, 0.6);
+}
+
+/* TAB */
+.tab
+{
+	-fx-border-width: 0 0 1 0;
+}
+.tab:selected
+{
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #007ACC;
+}
+.tab-label
+{
+	-fx-text-fill: #888888;
+}
+.tab:selected .tab-label
+{
+	-fx-text-fill: #000000;
+}
+
+/* TAB PANE */
+.tab-pane
+{
+	-fx-background-color: #FFFFFF;
+}
+.tab-header-area
+{
+	-fx-background-color: #F3F3F3;
+}
+
+/* TEXT AREA */
+.text-area,
+.text-field
+{
+	-fx-background-color: #F3F3F3;
+	-fx-border-color: #CCCCCC;
+}
+.text-area:focused,
+.text-field:focused
+{
+	-fx-border-color: #007ACC;
+}
+
+/* TOGGlE BUTTON */
+.toggle-button
+{
+	-jfx-untoggle-color: #FFFFFF;
+	-jfx-toggle-color: #007ACC;
+}
+
 /* Dialog Box */
 .dialog-box .root-pane
 {
-    -fx-background-color: #FBFBFB;
-    -fx-border-color: #FBFBFB;
+    -fx-border-color: transparent;
 }
 .dialog-box .title-bar .button:hover
 {
@@ -19,23 +171,52 @@
 {
     -fx-background-color: #000000;
 }
-.dialog-box .title-bar .button:hover .icon
+
+/* SIDE AREA */
+.side-area { }
+.side-area .tab
 {
-	-fx-background-color: #FFFFFF;
+    -fx-background-color: #F3F3F3;
+	-fx-border-color: transparent;
+}
+.side-area .tab-pane
+{
+    -fx-background-color: #F3F3F3;
 }
 
-.check-box .box
+/* DEBUG AREA */
+.debug-area
 {
-	-fx-border-color: #CCCCCC;
+	-fx-border-color: #414141;
+	-fx-border-width: 0 0 0 1;
 }
-.check-box:selected .mark
+.debug-area .tab
 {
-	-fx-background-color: #000000;
+	-fx-border-color: transparent;
+}
+.debug-area .debug-tab
+{
+	-fx-font-family: D2Coding;
+	-fx-font-size: 14;
 }
 
-.text-area,
-.text-field
+/* EDITOR AREA */
+.editor-area
 {
-	-fx-background-color: #FFFFFF;
-	-fx-border-color: #CCCCCC;
+    -fx-background-color: #1E1E1E;
+}
+.editor-area .tab:hover
+{
+	-fx-background-color: #34373C;
+}
+.editor-area .text-area
+{
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: transparent;
+}
+
+/* STATUS BAR */
+.status-bar
+{
+	-fx-background-color: #007ACC;
 }

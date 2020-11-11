@@ -8,12 +8,6 @@ import org.beuwi.msgbots.platform.util.ResourceUtils;
 
 public class ChangeThemeAction implements Action
 {
-	@Override
-	public void init()
-	{
-
-	}
-
 	public static void execute(ThemeType type)
 	{
 	    execute(MainView.getStage().getScene(), type);

@@ -1,55 +1,50 @@
 package org.beuwi.msgbots.platform.gui.control;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.Priority;
+import org.beuwi.msgbots.openapi.FormLoader;
+import org.beuwi.msgbots.platform.app.action.base.CopyAction;
 import org.beuwi.msgbots.platform.gui.enums.NoticeType;
-import org.beuwi.msgbots.platform.gui.layout.ShadowPane;
-import org.beuwi.msgbots.platform.gui.layout.StackPane;
+import org.beuwi.msgbots.platform.gui.layout.ShadowPanel;
 import org.beuwi.msgbots.platform.util.AllSVGIcons;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
-public class Notice extends ShadowPane
+public class Notice extends ShadowPanel
 {
-	private static final String DEFAULT_RESOURCE_NAME = "notice-box-frame";
 	private static final String DEFAULT_STYLE_CLASS = "notice";
 
-	private static final int DEFAULT_MIN_HEIGHT = 80;
-	private static final int DEFAULT_PREF_HEIGHT = 80;
+	// private static final int DEFAULT_NOTICE_WIDTH = 250;
+	private static final int DEFAULT_NOTICE_HEIGHT = 80;
 
 	@FXML private HBox hbxBoxRoot;
 	@FXML private ImageView imvBoxIcon;
-	@FXML private StackPane stpBoxMain;
 	@FXML private Label lblBoxTitle;
+	@FXML private Label lblBoxContent;
 	@FXML private Button btnBoxClose;
+	@FXML private HBox hbxBtnBar;
+
+	private final FormLoader loader;
+	private final ContextMenu menu;
 
 	public Notice(NoticeType type, String title, String content)
 	{
-		this(type, title, new Pane(new Label(content)));
-	}
+		loader = new FormLoader("frame", "notice-box-frame", this);
+		menu = new ContextMenu
+		(
+			new Menu("Copy Text", event -> CopyAction.execute(title + "\n\n" + content))
+		);
 
-	public Notice(NoticeType type, String title, Region content)
-	{
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(ResourceUtils.getForm(DEFAULT_RESOURCE_NAME));
-		loader.setController(this);
-
-		try
-		{
-			loader.load();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
+		menu.setNode(this);
 
 		super.setContent(hbxBoxRoot);
 
 		lblBoxTitle.setText(title);
-		stpBoxMain.setContent(content);
+		lblBoxTitle.setWrapText(true);
+
+		lblBoxContent.setText(content);
+		lblBoxContent.setWrapText(true);
+
 		imvBoxIcon.setImage(ResourceUtils.getImage(type.toString()));
 
 		btnBoxClose.setGraphic(AllSVGIcons.get("Box.Close"));
@@ -58,24 +53,24 @@ public class Notice extends ShadowPane
 			getView().remove(this);
 		});
 
-		// setPickOnBounds(true);
+		setPickOnBounds(true);
 		setMouseTransparent(false);
 
-		addEventHandler(MouseEvent.MOUSE_MOVED, event ->
-		{
-			System.out.println(event.getTarget());
-		});
-
-		// setMinHeight(DEFAULT_MIN_HEIGHT);
-		setPrefHeight(DEFAULT_PREF_HEIGHT);
-
-		getStyleClass().add(DEFAULT_STYLE_CLASS);
+		// setMinWidth(DEFAULT_NOTICE_WIDTH);
+		// setMaxWidth(DEFAULT_NOTICE_WIDTH);
+		setMinHeight(DEFAULT_NOTICE_HEIGHT);
+		addStyleClass(DEFAULT_STYLE_CLASS);
 	}
 
 	/* public void setView(ToastView parent)
 	{
 		this.parent = parent;
 	} */
+
+	public HBox getButtonBar()
+	{
+		return hbxBtnBar;
+	}
 
 	public NoticeView getView()
 	{

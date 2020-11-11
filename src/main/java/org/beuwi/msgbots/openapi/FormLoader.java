@@ -5,12 +5,26 @@ import javafx.scene.layout.Pane;
 import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
+import java.net.URL;
+
 public class FormLoader extends FXMLLoader
 {
 	public FormLoader(String name)
 	{
-		setLocation(ResourceUtils.getForm(name));
-		setController(null);
+		this("", name);
+	}
+
+	public FormLoader(String type, String name)
+	{
+		this(type, name, null);
+	}
+
+	public FormLoader(String type, String name, Object controller)
+	{
+		URL location = ResourceUtils.getForm((type != "" ? (type + "/") : "") + name);
+
+		setLocation(location);
+		setController(controller);
 
 		try
 		{
@@ -18,7 +32,6 @@ public class FormLoader extends FXMLLoader
 		}
 		catch (Exception e)
 		{
-			// new ShowToastMessage(e);
 			e.printStackTrace();
 		}
 	}

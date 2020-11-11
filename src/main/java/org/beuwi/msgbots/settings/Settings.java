@@ -1,8 +1,6 @@
 package org.beuwi.msgbots.settings;
 
 import org.beuwi.msgbots.manager.FileManager;
-import org.beuwi.msgbots.openapi.JSONObject;
-import org.beuwi.msgbots.platform.app.utils.FileUtils;
 import org.beuwi.msgbots.platform.util.SharedValues;
 
 import java.io.File;
@@ -10,7 +8,7 @@ import java.util.Map;
 
 public class Settings
 {
-	public static Public getPublicSetting(String type)
+	/* public static Public getPublicSetting(String type)
 	{
 		return new Public(type);
 	}
@@ -63,7 +61,7 @@ public class Settings
 
 				data.put(type, this);
 
-				FileUtils.save(file, data.toBeautifyString());
+				FileManager.save(file, data.toBeautifyString());
 			}
 			catch (Exception e)
 			{
@@ -112,7 +110,7 @@ public class Settings
 
 		private void apply()
 		{
-			FileUtils.save(file, this.toBeautifyString());
+			FileManager.save(file, this.toBeautifyString());
 		}
-	}
+	} */
 }

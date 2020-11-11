@@ -22,7 +22,7 @@ public class UpdateStatusBarAction implements Action
 	public void init()
 	{
 		component = StatusBarPart.getComponent();
-		nameSpace = StatusBarPart.getNameSpace();
+		nameSpace = StatusBarPart.getNamespace();
 
 		lblOpenedTabName = (Label) nameSpace.get("lblOpenedTabName");
 		lblLinePosition = (Label) nameSpace.get("lblLinePosition");

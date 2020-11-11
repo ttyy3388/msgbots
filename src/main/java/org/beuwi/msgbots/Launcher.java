@@ -5,9 +5,10 @@ import javafx.application.Platform;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.beuwi.msgbots.platform.app.view.MainView.MainWindow;
-import org.beuwi.msgbots.platform.app.view.actions.AddChatMessageAction;
+import org.beuwi.msgbots.platform.app.view.actions.SendChatMessageAction;
 import org.beuwi.msgbots.platform.app.view.actions.AddEditorAreaTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.AddNoticeMessageAction;
+import org.beuwi.msgbots.platform.app.view.actions.OpenProgramTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenScriptTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.RefreshBotListAction;
 import org.beuwi.msgbots.platform.app.view.actions.ToggleDebugAreaAction;
@@ -21,10 +22,21 @@ import org.beuwi.msgbots.platform.app.view.parts.MenuBarPart;
 import org.beuwi.msgbots.platform.app.view.parts.NoticeAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.SideAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.StatusBarPart;
+import org.beuwi.msgbots.platform.app.view.tabs.BotListTab;
+import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
+import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
+import org.beuwi.msgbots.platform.app.view.tabs.GlobalLogTab;
+import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
+
+import java.nio.file.WatchKey;
+import java.nio.file.WatchService;
 
 public class Launcher extends Application
 {
+	WatchService WATCH_SERVICE = null;
+	WatchKey     WATCH_KEY     = null;
+
 	@Override
 	public void init()
 	{
@@ -32,6 +44,62 @@ public class Launcher extends Application
 		/* System.setProperty("prism.text", "t2k");
 		System.setProperty("prism.lcdtext", "false");
 		System.setProperty("prism.subpixeltext", "false"); */
+
+		/* try
+		{
+			WATCH_SERVICE = FileSystems.getDefault().newWatchService();
+
+			Paths.get(SharedValues.BOTS_FOLDER_FILE.getPath()).register
+			(
+				WATCH_SERVICE,
+				ENTRY_CREATE,
+				ENTRY_DELETE,
+				ENTRY_MODIFY,
+				OVERFLOW
+			);
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+
+		new Thread(() ->
+		{
+			while (true)
+			{
+				try
+				{
+					WATCH_KEY = WATCH_SERVICE.take();
+				}
+				catch (InterruptedException e)
+				{
+					break;
+				}
+
+				List<WatchEvent<?>> events = WATCH_KEY.pollEvents();
+
+				for (WatchEvent<?> event : events)
+				{
+					Platform.runLater(() ->
+					{
+						RefreshBotListAction.execute();
+						RefreshBotLogsAction.execute();
+					);
+				}
+
+				if (!WATCH_KEY.reset())
+				{
+					try
+					{
+						WATCH_SERVICE.close();
+					}
+					catch (Exception e)
+					{
+						e.printStackTrace();
+					}
+				}
+			}
+		}).start(); */
 
 		// Load Fonts
 		Font.loadFont(ResourceUtils.getFont("consola"),       0); // Family : "Consolas"
@@ -51,15 +119,20 @@ public class Launcher extends Application
 	{
 		try
 		{
+			new BotListTab().init();
+			new DebugRoomTab().init();
+			new GlobalConfigTab().init();
+			new GlobalLogTab().init();
+
 			new DebugAreaPart().init();
 			new EditorAreaPart().init();
 			new MenuBarPart().init();
+			new NoticeAreaPart().init();
 			new SideAreaPart().init();
 			new StatusBarPart().init();
-			new NoticeAreaPart().init();
 			new MainAreaPart().init();
 
-			new AddChatMessageAction().init();
+			new SendChatMessageAction().init();
 			new AddEditorAreaTabAction().init();
 			new AddNoticeMessageAction().init();
 			new OpenScriptTabAction().init();
@@ -71,15 +144,18 @@ public class Launcher extends Application
 
 			new MainWindow(stage).create();
 
-			// AddNoticeMessageAction.execute(new Notice(NoticeType.EVENT, "Test1", "Content1"));
-			// AddNoticeMessageAction.execute(new Notice(NoticeType.ERROR, "Test2", "Content2"));
-			// AddNoticeMessageAction.execute(new Notice(NoticeType.WARNING, "Test3", "Content3"));
+			for (int i = 0 ; i < 10 ; i ++)
+			{
+				AddEditorAreaTabAction.execute(new Tab("TEST : " + i));
+			}
+
+			// AddNoticeMessageAction.execute(NoticeType.EVENT, "TEST TITLE", "CONTENT");
+
+			OpenProgramTabAction.execute(GlobalConfigTab.getRoot());
 
 			RefreshBotListAction.execute();
 
-			UpdateStatusBarAction.execute(new String[] { "Test Tab Name", "Test Line Position", "Test Line Encoding", "Test File Encoding" });
-
-			OpenScriptTabAction.execute("TEST");
+			// ScenicView.show(stage.getScene());
 		}
 		catch (Throwable e)
 		{
@@ -90,7 +166,7 @@ public class Launcher extends Application
 	@Override
 	public void stop()
 	{
-		// 프로그램을 종료해도 프로세서가 계속 실행되는 현상 해결 해야됨. (해결 완료)
+		// 프로그램을 종료해도 프로세서가 남아있는 현상 해결 해야됨. (해결 완료)
 		Platform.exit();
 		System.exit(0);
 	}

@@ -2,43 +2,45 @@ package org.beuwi.msgbots.platform.gui.dialog;
 
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.gui.control.Button;
+import org.beuwi.msgbots.platform.gui.control.ButtonBar;
 import org.beuwi.msgbots.platform.gui.control.ContextMenu;
 import org.beuwi.msgbots.platform.gui.control.HBox;
 import org.beuwi.msgbots.platform.gui.control.Label;
 import org.beuwi.msgbots.platform.gui.control.Menu;
 import org.beuwi.msgbots.platform.gui.enums.ThemeType;
-import org.beuwi.msgbots.platform.gui.layout.ShadowPane;
-import org.beuwi.msgbots.platform.gui.layout.StackPane;
+import org.beuwi.msgbots.platform.gui.layout.BorderPanel;
+import org.beuwi.msgbots.platform.gui.layout.ShadowPanel;
 import org.beuwi.msgbots.platform.util.AllSVGIcons;
-import org.beuwi.msgbots.platform.util.ResourceUtils;
 import org.beuwi.msgbots.platform.win.WindowFrame;
 import org.beuwi.msgbots.platform.win.WindowType;
 
-public class DialogBoxFrame extends ShadowPane
+public class DialogBoxFrame extends ShadowPanel
 {
+	private static final String DEFAULT_STYLE_CLASS = "dialog-box";
+	private static final Insets DEFAULT_PADDING_INSETS = new Insets(5.0);
 	private static final PseudoClass FOCUSED_PSEUDO_CLASS = PseudoClass.getPseudoClass("focused");
 
-	private static final String DEFAULT_RESOURCE_NAME = "dialog-box-frame";
-	private static final String DEFAULT_STYLE_CLASS = "dialog-box";
-
 	// WINDOW
-	@FXML private BorderPane brpWinRoot;
+	@FXML private BorderPanel brpWinRoot;
 	@FXML private ImageView imvWinIcon;
-	@FXML private StackPane stpWinMain; // Window Content
+	@FXML private BorderPanel brpWinMain; // Window Content
 	@FXML private Button btnWinClose;
 	@FXML private Label lblWinTitle;
 
 	// DIALOG
 	@FXML private HBox<Button> hbxBtnBar;
+
 	@FXML private Button btnAction;
 	@FXML private Button btnCancel;
+
+	private final FormLoader loader;
 
 	private final DialogBoxEvent event;
 	private final WindowFrame frame;
@@ -62,26 +64,14 @@ public class DialogBoxFrame extends ShadowPane
 	{
 		this.stage = stage;
 
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(ResourceUtils.getForm(DEFAULT_RESOURCE_NAME));
-		loader.setController(this);
-
-		try
-		{
-			loader.load();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-
-		this.menu = new ContextMenu
+		loader = new FormLoader("frame", "dialog-box-frame", this);
+		menu = new ContextMenu
 		(
 			new Menu("Close")
 		);
 
-		this.frame = new WindowFrame(stage);
-		this.event = new DialogBoxEvent(stage);
+		frame = new WindowFrame(stage);
+		event = new DialogBoxEvent(stage);
 	}
 
 	public Stage getStage()
@@ -144,6 +134,16 @@ public class DialogBoxFrame extends ShadowPane
 		super.setContent(brpWinRoot);
 		event.setMovable(brpWinRoot);
 
+		lblWinTitle.setText(title);
+
+		brpWinMain.setCenter(content);
+
+		btnWinClose.setGraphic(AllSVGIcons.get("Dialog.Close"));
+		btnWinClose.setOnAction(event ->
+		{
+			stage.close();
+		});
+
 		stage.focusedProperty().addListener(change ->
 		{
 			pseudoClassStateChanged(FOCUSED_PSEUDO_CLASS, stage.isFocused());
@@ -157,15 +157,7 @@ public class DialogBoxFrame extends ShadowPane
 			}
 		});
 
-		lblWinTitle.setText(title);
-
-		stpWinMain.setContent(content);
-
-		btnWinClose.setGraphic(AllSVGIcons.get("Dialog.Close"));
-		btnWinClose.setOnAction(event ->
-		{
-			stage.close();
-		});
+		this.setPadding(5.0);
 
 		frame.setContent(this);
 		frame.setTitle(title);

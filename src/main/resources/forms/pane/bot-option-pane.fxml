@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Slider?>
+<?import org.beuwi.msgbots.platform.gui.control.Label?>
+<?import org.beuwi.msgbots.platform.gui.control.OptionBox?>
+<?import org.beuwi.msgbots.platform.gui.control.VBox?>
+<?import org.beuwi.msgbots.platform.gui.layout.StackPanel?>
+
+<VBox spacing="30.0">
+	<items>
+		<OptionBox title="최적화">
+			<content>
+				<Slider min="0" max="10" showTickLabels="true" />
+			</content>
+		</OptionBox>
+		<OptionBox title="런타임 에러 시 전원 끄기">
+			<content>
+				<CheckBox text="런타임 에러 시, 자동으로 봇의 전원을 끕니다 (권장)." />
+			</content>
+		</OptionBox>
+		<OptionBox title="통합된 매개변수">
+			<content>
+				<CheckBox text="통합된 매개변수를 사용하며 초심자에게는 권장하지 않습니다." />
+			</content>
+		</OptionBox>
+	</items>
+	<StackPanel.margin>
+		<Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+	</StackPanel.margin>
+</VBox>

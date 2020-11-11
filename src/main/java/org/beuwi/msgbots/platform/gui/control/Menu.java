@@ -16,11 +16,6 @@ public class Menu extends javafx.scene.control.MenuItem
 		this(text, (String) null);
 	}
 
-	public Menu(Separator separator)
-	{
-
-	}
-
 	public Menu(String text, String command)
 	{
 		this(text, command, null);
@@ -61,6 +56,7 @@ public class Menu extends javafx.scene.control.MenuItem
 
 		setGraphic(new HBox(name));
 		setOnAction(handler);
+
 		getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 }

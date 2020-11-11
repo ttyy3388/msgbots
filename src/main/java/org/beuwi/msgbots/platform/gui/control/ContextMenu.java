@@ -7,6 +7,7 @@ import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.skin.ListViewSkin;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
@@ -76,7 +77,7 @@ public class ContextMenu extends javafx.scene.control.ContextMenu
 
 	public void show(Node node, MouseEvent event)
 	{
-		if (MouseButton.SECONDARY.equals(event.getButton()))
+		if (event.getButton().equals(MouseButton.SECONDARY))
 		{
 			show(node, event.getScreenX(), event.getScreenY());
 		}
@@ -88,7 +89,7 @@ public class ContextMenu extends javafx.scene.control.ContextMenu
 
 	public void show(Node node, Side side, MouseEvent event)
 	{
-		if (MouseButton.PRIMARY.equals(event.getButton()))
+		if (event.getButton().equals(MouseButton.PRIMARY))
 		{
 			show(node, side, 0, 0);
 		}

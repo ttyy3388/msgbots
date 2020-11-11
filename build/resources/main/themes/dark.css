@@ -5,56 +5,392 @@
 	-fx-text-fill: #FFFFFF;
 }
 
-/* Dialog Box */
-.dialog-box .root-pane
+/* BUTTON */
+
+
+/* STYLED BUTTON */
+.button:styled
 {
-    -fx-background-color: #252526;
-    -fx-border-color: #252526;
+	-fx-border-color: transparent;
 }
-.dialog-box .title-bar .button:hover
+.button:styled:action
 {
-	-fx-background-color: #D61425;
+	-fx-border-color: #007ACC;
 }
-.dialog-box .title-bar .button .icon
+.button:styled:cancel
 {
-    -fx-background-color: #FFFFFF;
+	-fx-border-color: #555555;
+}
+.button:styled:hover,
+.button:styled:focused
+{
+	-fx-border-color: #007ACC;
+}
+.button:styled:armed
+{
+	-fx-background-color: #007ACC;
 }
 
-.check-box .box
+/* BOT */
+.bot
+{
+	-fx-border-color: transparent;
+	-fx-border-width: 0 3 0 3;
+	-fx-opacity: 0.5;
+}
+.bot:hover
+{
+	-fx-background-color: rgba(255, 255, 255, 0.1);
+}
+.bot > .label
+{
+	-fx-font-size: 14;
+}
+.bot > .button
+{
+	-fx-background-radius: 15;
+	-fx-background-image: url('../images/reload.png');
+	-fx-background-size: 15;
+}
+.bot > .button:hover
+{
+	-fx-background-color: rgba(255, 255, 255, 0.1);
+}
+.bot > .button:armed
+{
+	-fx-background-color: rgba(255, 255, 255, 0.2);
+}
+.bot > .check-box:disabled
+{
+	-fx-opacity: 1.0;
+}
+.bot > .check-box .box
+{
+	-fx-background-radius: 10;
+	-fx-background-color: #FFFFFF;
+	-fx-border-width: 0;
+	-fx-padding: 3;
+}
+.bot > .check-box .mark
+{
+	-fx-padding: 0;
+}
+.bot > .check-box:selected .box
+{
+	-fx-background-color: transparent;
+}
+
+/* BOT VIEW */
+.bot-view { }
+.bot-view .list-cell:selected .bot
+{
+	-fx-background-color: rgba(255, 255, 255, 0.1);
+	-fx-border-color: transparent transparent transparent #007ACC;
+	-fx-opacity: 1.0;
+}
+
+/* CHAT */
+.chat .comment
+{
+	-fx-background-radius: 5;
+	-fx-text-fill: #FFFFFF;
+	-fx-padding: 8;
+}
+.chat .comment
+{
+	-fx-background-color: #0583F9;
+}
+/* .chat .comment
+{
+	-fx-background-color: #302F35;
+} */
+
+/* CHECK BOX */
+.check-box > .box
 {
 	-fx-background-color: #333333;
+	-fx-border-color: transparent;
 }
-.check-box:selected .mark
+.check-box:selected > .box > .mark
 {
 	-fx-background-color: #FFFFFF;
 }
-
-.tab
+.check-box:hover > .box,
+.check-box:focused > .box
 {
-	-fx-background-color: #2D2D2D;
+	-fx-border-color: #007ACC;
 }
 
-.tab-label
+/* CONTEXT MENU */
+.context-menu
+{
+	-fx-background-color: #FFFFFF;
+	-fx-border-color: #BABABA;
+}
+.context-menu > .separator > .line
+{
+	-fx-background-color: #BABABA;
+}
+
+/* LOG */
+.log
+{
+	/* -fx-background-radius: 10; */
+	-fx-background-color: #2B2B2B;
+}
+
+/* LOG VIEW */
+.log-view { }
+.log-view .list-cell
+{
+
+}
+
+/* MENU */
+.menu
+{
+	-fx-text-fill: #000000;
+}
+.menu .label
+{
+	-fx-text-fill: #000000;
+}
+.menu:focused
+{
+	-fx-background-color: #E8EAED;
+}
+
+/* MENU BAR */
+.menu-bar
+{
+	-fx-background-color: #FFFFFF;
+}
+.menu-bar > .button
+{
+	-fx-text-fill: #000000;
+}
+.menu-bar > .button:hover,
+.menu-bar > .button:showing
+{
+	-fx-background-color: #DEDEDE;
+}
+
+/* NAVI [ NAVIGATION ] */
+.navi { }
+.navi > .label
 {
 	-fx-text-fill: #888888;
 }
-.tab:hover .tab-label,
-.tab:selected .tab-label
+.navi:selected
 {
+	-fx-background-color: #0D293E;
+}
+.navi:selected > .label
+{
+	-fx-background-color: #0D293E;
 	-fx-text-fill: #FFFFFF;
 }
 
-.tab-pane
-{
-	-fx-background-color: #1E1E1E;
-}
-.tab-header-area
+/* NAVI VIEW [ NAVIGATION VIEW ] */
+.navi-view { }
+.navi-header-area
 {
 	-fx-background-color: #252526;
 }
 
+/* NOTICE */
+.notice
+{
+	-fx-background-color: #252526;
+	-fx-border-color: transparent;
+}
+.notice:focused
+{
+	-fx-border-color: #007ACC;
+}
+.notice .title-bar > .label
+{
+	-fx-text-fill: #ffffff;
+}
+.notice .title-bar > .button .icon
+{
+	-fx-background-color: #FFFFFF;
+}
+.notice .title-bar > .button:hover .icon
+{
+	-fx-background-color: #007ACC;
+}
+
+/* NOTICE AREA */
+.notice-area { }
+
+/* OPTION BOX */
+.option-box .label,
+.option-box .check-box
+{
+	-fx-text-fill: #888888;
+}
+.option-box .title
+{
+	-fx-text-fill: #FFFFFF;
+}
+
+/* OPTION VIEW */
+.option-view .header > .label
+{
+}
+
+/* SCROLL BAR */
+.scroll-bar > .thumb
+{
+	-fx-background-color: rgba(100, 100, 100, 0.4);
+}
+.scroll-bar > .thumb:hover
+{
+	-fx-background-color: rgba(100, 100, 100, 0.5);
+}
+.scroll-bar > .thumb:pressed
+{
+	-fx-background-color: rgba(100, 100, 100, 0.6);
+}
+
+/* SEPARATOR */
+.separator .line
+{
+	-fx-background-color: #888888;
+	-fx-padding: 0.5 0 0.5 0;
+}
+
+/* TAB */
+.tab
+{
+	-fx-border-color: transparent;
+	-fx-border-width: 0 0 1 0;
+}
+.tab:selected
+{
+	-fx-background-color: #1E1E1E;
+	-fx-border-color: #007ACC;
+}
+.tab > .label
+{
+	-fx-text-fill: #888888;
+}
+.tab:selected > .label
+{
+	-fx-text-fill: #FFFFFF;
+}
+
+/* TAB VIEW */
+.tab-view
+{
+	-fx-background-color: #1E1E1E;
+}
+.tab-view > .tab-header-area
+{
+	-fx-background-color: #252526;
+}
+.tab-view > .tab-button-bar
+{
+	/* -fx-background-color: #252526; */
+}
+
+/* TEXT AREA */
 .text-area,
 .text-field
 {
-	-fx-background-color: #333333;
+	-fx-background-color: #323233;
+	-fx-border-color: transparent;
+}
+.text-area:hover, .text-area:focused,
+.text-field:hover, .text-field:focused
+{
+	-fx-border-color: #007ACC;
+}
+
+/* TOGGlE BUTTON */
+.toggle-button
+{
+	-jfx-untoggle-color: #FFFFFF;
+	-jfx-toggle-color: #007ACC;
+}
+
+/* DIALOG BOX */
+.dialog-box > .root-pane
+{
+	-fx-background-color: #252526;
+	-fx-border-color: transparent;
+}
+.dialog-box .title-bar > .button:hover
+{
+	-fx-background-color: #D61425;
+}
+.dialog-box .title-bar > .button .icon
+{
+	-fx-background-color: #FFFFFF;
+}
+.dialog-box:focused > .root-pane
+{
+	-fx-border-color: #007ACC;
+}
+
+/* SIDE AREA */
+.side-area { }
+.side-area .tab
+{
+	-fx-background-color: #252526;
+	-fx-border-color: transparent;
+}
+.side-area .tab-view
+{
+	-fx-background-color: #252526;
+}
+
+/* DEBUG AREA */
+.debug-area
+{
+	-fx-border-color: #414141;
+	-fx-border-width: 0 0 0 1;
+}
+.debug-area .tab
+{
+	-fx-border-color: transparent;
+}
+
+/* EDITOR AREA */
+.editor-area
+{
+	-fx-background-color: #1E1E1E;
+}
+.editor-area > .tab-view .tab:hover
+{
+	-fx-background-color: #34373C;
+}
+.editor-area > .tab-view .text-area
+{
+	-fx-background-color: #1E1E1E;
+	-fx-border-color: transparent;
+}
+
+/* STATUS BAR */
+.status-bar
+{
+	-fx-background-color: #007ACC;
+}
+
+/* DEBUG TAB */
+.debug-tab
+{
+	-fx-font-family: D2Coding;
+	-fx-font-size: 14;
+}
+.debug-tab .list-cell
+{
+	-fx-padding: 12 10 12 10;
+}
+
+/* GLOBAL CONFIG TAB */
+.config-tab .navi-content-area
+{
+	-fx-font-family: 'D2Coding';
 }

@@ -1,5 +1,8 @@
 package org.beuwi.msgbots.platform.gui.control;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.SelectionMode;
@@ -8,6 +11,8 @@ import java.util.List;
 
 public class ListView<T> extends javafx.scene.control.ListView<T>
 {
+	private static final String DEFAULT_STYLE_CLASS = "list-view";
+
 	public ListView()
 	{
 		
@@ -49,6 +54,31 @@ public class ListView<T> extends javafx.scene.control.ListView<T>
 		scroll(item);
 	}
 
+	/* public void setItem(T... items)
+	{
+		getItems().setAll(items);
+	} */
+
+	public void setItems(List<T> list)
+	{
+		getItems().setAll(list);
+	}
+
+	public void setItems(T... items)
+	{
+		getItems().setAll(items);
+	}
+
+	public void setContextMenu(ContextMenu menu)
+	{
+		menu.setNode(this);
+	}
+
+	public void setSelectionMode(SelectionMode mode)
+	{
+		getSelectionModel().setSelectionMode(mode);
+	}
+
 	public T getItem(int index)
 	{
 		return getItems().get(index);
@@ -77,13 +107,13 @@ public class ListView<T> extends javafx.scene.control.ListView<T>
 		return getSelectionModel().getSelectedItems();
 	}
 
-	public void setContextMenu(ContextMenu menu)
+	public ReadOnlyDoubleProperty getWidthProperty()
 	{
-		menu.setNode(this);
+		return widthProperty();
 	}
 
-	public void setSelectionMode(SelectionMode mode)
+	public DoubleProperty getPrefWidthProperty()
 	{
-		getSelectionModel().setSelectionMode(mode);
+		return prefWidthProperty();
 	}
 }

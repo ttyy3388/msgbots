@@ -3,43 +3,48 @@ package org.beuwi.msgbots.platform.gui.control;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import org.beuwi.msgbots.platform.gui.layout.StackPane;
+import org.beuwi.msgbots.platform.gui.layout.StackPanel;
 
-public class ColorBox extends HBox<Pane>
+public class ColorBox extends HBox<StackPanel>
 {
 	private static final String DEFAULT_STYLE_CLASS = "color-box";
 
-	private final StackPane pane = new StackPane();
-	private final ColorBar bar = new ColorBar();
+	private final StackPanel content = new StackPanel();
+	private final ColorBar header = new ColorBar();
 
 	{
-		HBox.setHgrow(pane, Priority.ALWAYS);
+		HBox.setHgrow(content, Priority.ALWAYS);
 	}
 
 	public ColorBox()
 	{
-		addItem(bar, pane);
+		setItems(header, content);
 
-		getStyleClass().add(DEFAULT_STYLE_CLASS);
+		addStyleClass(DEFAULT_STYLE_CLASS);
 	}
 
-	public Node getContent()
+	public void setHeader(Node header)
 	{
-		return pane.getContent();
+		this.header.setItem(header);
 	}
 
 	public void setContent(Node content)
 	{
-		this.pane.setContent(content);
+		this.content.setItem(content);
 	}
 
-	public void setType(ColorBar.Type type)
+	public ColorBar getHeader()
 	{
-		bar.setType(type);
+		return header;
+	}
+
+	public Node getContent()
+	{
+		return content.getItem(0);
 	}
 
 	public ColorBar getColorBar()
 	{
-		return bar;
+		return header;
 	}
 }

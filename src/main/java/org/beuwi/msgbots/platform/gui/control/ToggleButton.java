@@ -1,20 +1,12 @@
 package org.beuwi.msgbots.platform.gui.control;
 
-import com.jfoenix.controls.JFXToggleButton;
-import javafx.beans.property.ReadOnlyBooleanProperty;
+import javafx.beans.property.BooleanProperty;
 
-public class ToggleButton extends JFXToggleButton
+public class ToggleButton extends javafx.scene.control.ToggleButton
 {
     private static final String DEFAULT_STYLE_CLASS = "toggle-button";
 
-    public ToggleButton()
-    {
-        // setSize(6.0);
-
-        getStyleClass().add(DEFAULT_STYLE_CLASS);
-    }
-
-    public ReadOnlyBooleanProperty getSelectedProperty()
+    public BooleanProperty getSelectedProperty()
     {
         return selectedProperty();
     }

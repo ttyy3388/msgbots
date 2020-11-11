@@ -1,125 +1,57 @@
 package org.beuwi.msgbots.platform.gui.control;
 
-import javafx.beans.DefaultProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
-import javafx.css.PseudoClass;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.scene.Node;
+import org.beuwi.msgbots.platform.gui.skins.OptionViewSkin;
 
-@DefaultProperty("options")
-public class OptionView extends HBox<Region>
+public class OptionView extends Control
 {
-	private static final PseudoClass SELECTED_PSEUDO_CLASS = PseudoClass.getPseudoClass("selected");
+    private static final String DEFAULT_STYLE_CLASS = "option-view";
 
-	private static final String DEFAULT_STYLE_CLASS = "option-view";
+    private final StringProperty title = new SimpleStringProperty();
+    private final ObjectProperty<Node> content = new SimpleObjectProperty();
 
-    private static final int DEFAULT_HEADER_WIDTH = 200;
-
-    private final ObjectProperty<Option> selected = new SimpleObjectProperty<>();
-
-	private final ObservableList<Option> options = FXCollections.observableArrayList();
-
-    private final StackPane content = new StackPane();
-    private final VBox header = new VBox();
-
+    public OptionView()
     {
-        HBox.setHgrow(content, Priority.ALWAYS);
+        addStyleClass(DEFAULT_STYLE_CLASS);
     }
 
-	public OptionView()
-	{
-		this(null);
-	}
-
-	public OptionView(Option... options)
-	{
-	    header.setMinWidth(DEFAULT_HEADER_WIDTH);
-	    header.setMaxWidth(DEFAULT_HEADER_WIDTH);
-
-        header.getStyleClass().add("option-header-area");
-        content.getStyleClass().add("option-content-area");
-
-        if (options != null)
-        {
-            addOption(options);
-        }
-
-        getOptions().addListener((ListChangeListener<Option>) change ->
-        {
-            while (change.next())
-            {
-                for (Option option : change.getRemoved())
-                {
-                    option.setView(null);
-                    header.remove(option);
-                }
-
-                for (Option option : change.getAddedSubList())
-                {
-                    option.setView(this);
-                    header.addItem(option);
-                    selected.setValue(option);
-                }
-            }
-        });
-
-		getSelectedProperty().addListener((observable, oldOption, newOption) ->
-		{
-			if (oldOption != null)
-			{
-                oldOption.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, false);
-			}
-
-            newOption.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, true);
-		});
-
-		getSelectedProperty().addListener(change ->
-		{
-			content.getChildren().clear();
-			content.getChildren().add(getSelectedOption().getContent());
-		});
-
-		getChildren().addAll(header, content);
-		getStyleClass().setAll(DEFAULT_STYLE_CLASS);
-	}
-
-	public void select(Option option)
+    public void setTitle(String title)
     {
-        selected.set(option);
+        this.title.set(title);
     }
 
-	public void addOption(Option... option)
-	{
-		options.addAll(option);
-	}
-
-	public Option getOption(int index)
+    public void setContent(Node content)
     {
-        return getOptions().get(index);
+        this.content.set(content);
     }
 
-	public ObservableList<Option> getOptions()
-	{
-		return options;
-	}
-
-	public Option getSelectedOption()
+    public String getTitle()
     {
-        return selected.get();
+        return title.get();
     }
 
-	public ObjectProperty<Option> getSelectedProperty()
+    public Node getContent()
     {
-        return selected;
+        return content.get();
     }
 
-    public void setSelectedOption(Option option)
+    public StringProperty getTitleProperty()
     {
-        selected.set(option);
+        return title;
+    }
+
+    public ObjectProperty<Node> getContentProperty()
+    {
+        return content;
+    }
+
+    @Override
+    public OptionViewSkin setDefaultSkin()
+    {
+        return new OptionViewSkin(this);
     }
 }

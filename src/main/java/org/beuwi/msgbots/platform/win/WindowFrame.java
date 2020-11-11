@@ -14,10 +14,11 @@ public class WindowFrame
 {
 	private final Stage stage;
 
+	private ThemeType theme;
+
 	private WindowType type;
 	private Region content;
 	private String title;
-	private ThemeType themeType;
 
 	public WindowFrame(Stage stage)
 	{
@@ -31,7 +32,7 @@ public class WindowFrame
 
 	public ThemeType getTheme()
 	{
-		return themeType;
+		return theme;
 	}
 
 	public Stage getStage()
@@ -54,9 +55,9 @@ public class WindowFrame
 		this.type = type;
 	}
 
-	public void setTheme(ThemeType themeType)
+	public void setTheme(ThemeType theme)
 	{
-		this.themeType = themeType;
+		this.theme = theme;
 	}
 
 	public void setTitle(String title)
@@ -87,10 +88,10 @@ public class WindowFrame
 
 			stage.addEventHandler(KeyEvent.KEY_PRESSED, event ->
 			{
-			/* if (event.getCode().equals(KeyCode.ALT))
-			{
-				ToggleMenuBarAction.execute();
-			} */
+				/* if (event.getCode().equals(KeyCode.ALT))
+				{
+					ToggleMenuBarAction.execute();
+				} */
 			});
 
 			stage.getIcons().add(ResourceUtils.getImage("program"));
@@ -105,7 +106,7 @@ public class WindowFrame
 		}
 		finally
 		{
-			ChangeThemeAction.execute(scene, themeType);
+			ChangeThemeAction.execute(scene, theme);
 		}
 	}
 

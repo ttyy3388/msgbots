@@ -1,28 +1,29 @@
 package org.beuwi.msgbots.platform.gui.control;
 
+import javafx.css.PseudoClass;
 import javafx.geometry.Pos;
 import javafx.scene.layout.Priority;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.TextAlignment;
+
+import javax.swing.text.html.ImageView;
 
 public class Chat extends HBox
 {
 	private static final String DEFAULT_STYLE_CLASS = "chat";
-	private static final String HUMAN_STYLE_CLASS = "human";
-	private static final String BOT_STYLE_CLASS = "bot";
+	private static final int DEFAULT_GAP_VALUE = 10;
+
+	private static final PseudoClass HUMAN_PSEUDO_CLASS = PseudoClass.getPseudoClass("human");
+	private static final PseudoClass BOT_PSEUDO_CLASS = PseudoClass.getPseudoClass("bot");
 
 	// private static final int DEFAULT_MIN_HEIGHT = 50;
 
-	private final Label chat = new Label();
-	private final Label name = new Label();
-
-	private final VBox item = new VBox(name, chat);
+	private final Circle profile;
+	private final Content content;
 
 	private final ContextMenu menu;
 
 	private ChatView parent;
-
-	{
-		VBox.setVgrow(chat, Priority.ALWAYS);
-	}
 
 	public Chat(String message)
 	{
@@ -31,41 +32,37 @@ public class Chat extends HBox
 
 	public Chat(String message, boolean isbot)
 	{
+        content = new Content(message, isbot);
+        profile = new Circle(35, 35, 20);
+
 		menu = new ContextMenu
 		(
 			new Menu("Copy"),
 			new Menu("Delete")
 		);
 
-		menu.setNode(chat);
+		menu.setNode(content);
 
-		// item.setSpacing(10);
-		item.setFillWidth(false);
-		// item.setFitContent(false);
-
-		chat.setText(message);
-		// chat.setMaxWidth(220);
-		chat.setWrapText(true);
-		chat.getStyleClass().add("chat");
+		profile.getStyleClass().add("profile");
 
 		if (!isbot)
 		{
-			chat.setAlignment(Pos.CENTER_RIGHT);
-			item.setAlignment(Pos.CENTER_RIGHT);
-			this.setAlignment(Pos.CENTER_RIGHT);
-			chat.getStyleClass().add("human");
+            setItems(content, profile);
+			setAlignment(Pos.TOP_RIGHT);
 		}
 		else
 		{
-			// Profile
-			chat.setAlignment(Pos.CENTER_LEFT);
-			item.setAlignment(Pos.CENTER_LEFT);
-			this.setAlignment(Pos.CENTER_LEFT);
-			chat.getStyleClass().add("bot");
+            setItems(profile, content);
+			setAlignment(Pos.TOP_LEFT);
 		}
 
-		getChildren().add(item);
-		getStyleClass().add(DEFAULT_STYLE_CLASS);
+		/* getWidthProperty().addListener(change ->
+		{
+			content.setMaxWidth(getWidth() - 100);
+		}); */
+
+		setSpacing(DEFAULT_GAP_VALUE);
+		addStyleClass(DEFAULT_STYLE_CLASS);
 	}
 
 	public ChatView getView()
@@ -76,5 +73,41 @@ public class Chat extends HBox
 	public void setView(ChatView parent)
 	{
 		this.parent = parent;
+	}
+
+	private class Content extends VBox
+	{
+		private final Label comment = new Label();
+		private final Label name = new Label();
+
+		{
+			VBox.setVgrow(comment, Priority.ALWAYS);
+		}
+
+		public Content(String message, boolean isbot)
+		{
+            name.setText("DEBUG SENDER");
+            name.addStyleClass("name");
+
+			// comment.setMaxWidth(220);
+			comment.setText(message);
+			comment.setWrapText(true);
+			comment.setMaxWidth(250);
+			comment.addStyleClass("comment");
+
+			if (!isbot)
+			{
+			    setAlignment(Pos.CENTER_RIGHT);
+			}
+			else
+			{
+				setAlignment(Pos.CENTER_LEFT);
+			}
+
+			setItems(name, comment);
+			setSpacing(5);
+			setFittable(false);
+			setFillWidth(false);
+		}
 	}
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.Pane?>
+<?import org.beuwi.msgbots.platform.gui.control.BotView?>
+<?import org.beuwi.msgbots.platform.gui.control.Tab?>
+<?import org.beuwi.msgbots.platform.gui.control.TabView?>
+<?import org.beuwi.msgbots.platform.gui.layout.AnchorPanel?>
+<?import org.beuwi.msgbots.platform.gui.layout.StackPanel?>
+
+<AnchorPanel styleClass="side-area" minWidth="200.0" prefWidth="220.0" xmlns:fx="http://javafx.com/fxml">
+	<items>
+		<TabView type="SYSTEM" AnchorPanel.topAnchor="0.0" AnchorPanel.rightAnchor="0.0" AnchorPanel.bottomAnchor="0.0" AnchorPanel.leftAnchor="0.0">
+			<tabs>
+
+			</tabs>
+		</TabView>
+		<Pane fx:id="stpResizeBar" prefWidth="5.0" AnchorPanel.topAnchor="0.0" AnchorPanel.rightAnchor="0.0" AnchorPanel.bottomAnchor="0.0">
+			<cursor>
+				<Cursor fx:constant="E_RESIZE" />
+			</cursor>
+		</Pane>
+	</items>
+</AnchorPanel>

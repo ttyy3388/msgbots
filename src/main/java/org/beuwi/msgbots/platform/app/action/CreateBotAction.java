@@ -2,7 +2,6 @@ package org.beuwi.msgbots.platform.app.action;
 
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.impl.Action;
-import org.beuwi.msgbots.platform.app.utils.FileUtils;
 
 import java.io.File;
 
@@ -35,19 +34,19 @@ public class CreateBotAction implements Action
 			{
 				if (!isUnified)
 				{
-					content = FileUtils.read(FileManager.getDataFile("script_default.js"));
+					content = FileManager.read(FileManager.getDataFile("script_default.js"));
 				}
 				else
 				{
-					content = FileUtils.read(FileManager.getDataFile("script_unified.js"));
+					content = FileManager.read(FileManager.getDataFile("script_unified.js"));
 				}
 			}
 
-			FileUtils.save(FileManager.getBotScript(name), content);
+			FileManager.save(FileManager.getBotScript(name), content);
 
-			FileUtils.save(FileManager.getBotLog(name), "[]");
+			FileManager.save(FileManager.getBotLog(name), "[]");
 
-			FileUtils.save
+			FileManager.save
 			(
 				FileManager.getBotSetting(name),
 				"{\"optimization\":1," +

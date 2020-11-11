@@ -3,6 +3,7 @@ plugins {
 	id 'application'
 	id 'org.openjfx.javafxplugin' version '0.0.9'
 	id 'org.beryx.jlink' version '2.22.0'
+    id 'org.jetbrains.kotlin.jvm' version '1.4.20-RC'
 }
 
 java {
@@ -28,12 +29,15 @@ repositories {
 }
 
 dependencies {
+	implementation files('libs/scenicview.jar')
 	implementation group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
 	implementation group: 'com.jfoenix', name: 'jfoenix', version: '9.0.10'
 	implementation group: 'org.mozilla', name: 'rhino', version: '1.7.13'
+	implementation group: 'eu.mihosoft.monacofx', name: 'monacofx', version: '0.0.2'
 	implementation (group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1') {
 		exclude group: 'org.hamcrest', module: 'hamcrest-core'
 	}
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
 compileJava {
@@ -75,4 +79,14 @@ jar {
 			it.isDirectory() ? it : zipTree(it)
 		}
 	} */
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }

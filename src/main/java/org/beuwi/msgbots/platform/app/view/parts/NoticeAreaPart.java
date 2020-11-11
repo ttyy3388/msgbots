@@ -8,7 +8,7 @@ import org.beuwi.msgbots.platform.gui.control.NoticeView;
 
 public class NoticeAreaPart implements View
 {
-	private static ObservableMap<String, Object> nameSpace;
+	private static ObservableMap<String, Object> namespace;
 
 	private static FormLoader loader;
 
@@ -19,15 +19,15 @@ public class NoticeAreaPart implements View
 	@Override
 	public void init()
 	{
-		loader = new FormLoader("notice-area-part");
-		nameSpace = loader.getNamespace();
+		loader = new FormLoader("part", "notice-area-part");
+		namespace = loader.getNamespace();
 		root = loader.getRoot();
 		component = loader.getComponent();
 
 		root.setMouseTransparent(true);
-		root.setPickOnBounds(false);
-		component.setPickOnBounds(false);
-		component.setMouseTransparent(true);
+		// root.setPickOnBounds(false);
+		// component.setPickOnBounds(false);
+		// component.setMouseTransparent(true);
 	}
 
 	public static BorderPane getRoot()
@@ -40,8 +40,13 @@ public class NoticeAreaPart implements View
 		return component;
 	}
 
-	public static ObservableMap<String, Object> getNameSpace()
+	public static <T> T getComponent(String key)
 	{
-		return nameSpace;
+		return (T) namespace.get(key);
+	}
+
+	public static ObservableMap<String, Object> getNamespace()
+	{
+		return namespace;
 	}
 }

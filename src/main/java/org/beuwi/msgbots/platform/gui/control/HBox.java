@@ -1,5 +1,8 @@
 package org.beuwi.msgbots.platform.gui.control;
 
+import javafx.beans.DefaultProperty;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -7,11 +10,28 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.Region;
 
+@DefaultProperty("items")
 public class HBox<T> extends javafx.scene.layout.HBox
 {
 	private static final String DEFAULT_STYlE_CLASS = "hbox";
 
+	// Fittable Content Property
 	private final BooleanProperty fittable = new SimpleBooleanProperty();
+
+	private final InvalidationListener listener = new InvalidationListener()
+	{
+		@Override
+		public void invalidated(Observable observable)
+		{
+			for (Node item : getItems())
+			{
+				if (item instanceof Region)
+				{
+					((Region) item).setPrefHeight(getHeight());
+				}
+			}
+		}
+	};
 
 	public HBox()
 	{
@@ -22,15 +42,22 @@ public class HBox<T> extends javafx.scene.layout.HBox
 	{
 		if (items != null)
 		{
-			addItem(items);
+			addItems(items);
 		}
 
-		getFittableProperty().addListener((observable) ->
+		getFittableProperty().addListener(event ->
 		{
-			setFitContent(isFittable());
+			if (isFittable())
+			{
+				getHeightProperty().addListener(listener);
+			}
+			else
+			{
+				getHeightProperty().removeListener(listener);
+			}
 		});
 
-		getStyleClass().add(DEFAULT_STYlE_CLASS);
+		addStyleClass(DEFAULT_STYlE_CLASS);
 	}
 
 	public void clear()
@@ -48,9 +75,39 @@ public class HBox<T> extends javafx.scene.layout.HBox
 		getItems().remove(item);
 	}
 
-	public void addItem(Node... items)
+	public void addItem(Node item)
+	{
+		getItems().add(item);
+	}
+
+	public void addItem(int index, Node item)
+	{
+		getItems().add(index, item);
+	}
+
+	public void addItems(Node... items)
 	{
 		getItems().addAll(items);
+	}
+
+	public void addItems(ObservableList list)
+	{
+		getChildren().addAll(list);
+	}
+
+	public void setItem(int index, Node item)
+	{
+		getItems().set(index, item);
+	}
+
+	public void setItem(Node item)
+	{
+		getItems().setAll(item);
+	}
+
+	public void setItems(Node... items)
+	{
+		getItems().setAll(items);
 	}
 
 	public void setFittable(boolean fittable)
@@ -58,26 +115,9 @@ public class HBox<T> extends javafx.scene.layout.HBox
 		this.fittable.set(fittable);
 	}
 
-	private void setFitContent(boolean resize)
+	public void addStyleClass(String style)
 	{
-		if (resize)
-		{
-			getHeightProperty().addListener(change ->
-			{
-				for (Node item : getItems())
-				{
-					if (item instanceof Region)
-					{
-						// ((Region) item).setMinHeight(getHeight());
-						((Region) item).setPrefHeight(getHeight());
-					}
-				}
-			});
-		}
-		else
-		{
-			return ;
-		}
+		getStyleClass().setAll(style);
 	}
 
 	public boolean isFittable()
@@ -85,17 +125,7 @@ public class HBox<T> extends javafx.scene.layout.HBox
 		return fittable.get();
 	}
 
-	public Node getItem(int index)
-	{
-		return getItems().get(index);
-	}
-
-	public Node getItem(String id)
-	{
-		return getItems().get(getIndex(id));
-	}
-
-	public int getIndex(String id)
+	public int find(String id)
 	{
 		for (int index = 0 ; index < getItems().size() ; index ++)
 		{
@@ -108,9 +138,14 @@ public class HBox<T> extends javafx.scene.layout.HBox
 		return -1;
 	}
 
-	public Node getLastItem()
+	public Node getItem(int index)
 	{
-		return getItems().get(getItems().size());
+		return getItems().get(index);
+	}
+
+	public Node getItem(String id)
+	{
+		return getItems().get(find(id));
 	}
 
 	public ObservableList<Node> getItems()

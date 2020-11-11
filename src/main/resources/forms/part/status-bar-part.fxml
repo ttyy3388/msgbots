@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+
+<?import org.beuwi.msgbots.platform.gui.control.HBox?>
+<?import org.beuwi.msgbots.platform.gui.control.Label?>
+<?import org.beuwi.msgbots.platform.gui.layout.AnchorPanel?>
+
+<AnchorPanel prefHeight="20" styleClass="status-bar" xmlns:fx="http://javafx.com/fxml">
+	<children>
+		<HBox spacing="10.0" AnchorPanel.topAnchor="0.0" AnchorPanel.leftAnchor="0.0" AnchorPanel.bottomAnchor="0.0">
+		    <Label fx:id="lblOpenedTabName" />
+			<Label fx:id="lblLinePosition" />
+		</HBox>
+		<HBox spacing="10.0" AnchorPanel.topAnchor="0.0" AnchorPanel.rightAnchor="0.0" AnchorPanel.bottomAnchor="0.0">
+			<Label fx:id="lblLineEncoding" />
+			<Label fx:id="lblFileEncoding" />
+		</HBox>
+	</children>
+	<padding>
+		<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+	</padding>
+</AnchorPanel>

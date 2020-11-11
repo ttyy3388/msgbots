@@ -1,6 +1,7 @@
 package org.beuwi.msgbots.platform.gui.control;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.StringProperty;
 
 public class TextArea extends javafx.scene.control.TextArea
 {
@@ -39,5 +40,10 @@ public class TextArea extends javafx.scene.control.TextArea
 	public DoubleProperty getScrollLeftProperty()
 	{
 		return scrollLeftProperty();
+	}
+
+	public StringProperty getTextProperty()
+	{
+		return textProperty();
 	}
 }

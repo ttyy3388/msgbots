@@ -2,21 +2,24 @@ package org.beuwi.msgbots.platform.app.view.parts;
 
 import javafx.collections.ObservableMap;
 import javafx.scene.layout.StackPane;
+import org.beuwi.msgbots.compiler.engine.ScriptManager;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
+import org.beuwi.msgbots.platform.app.view.actions.OpenProgramTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.ToggleDebugAreaAction;
 import org.beuwi.msgbots.platform.app.view.actions.ToggleMenuBarAction;
 import org.beuwi.msgbots.platform.app.view.actions.ToggleSideAreaAction;
 import org.beuwi.msgbots.platform.app.view.dialogs.CreateBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.ImportBotDialog;
+import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
 import org.beuwi.msgbots.platform.gui.control.Menu;
 import org.beuwi.msgbots.platform.gui.control.MenuBar;
 import org.beuwi.msgbots.platform.gui.control.Separator;
 
 public class MenuBarPart implements View
 {
-	private static ObservableMap<String, Object> nameSpace;
+	private static ObservableMap<String, Object> namespace;
 
 	private static FormLoader loader;
 
@@ -27,8 +30,8 @@ public class MenuBarPart implements View
 	@Override
 	public void init()
 	{
-		loader = new FormLoader("menu-bar-part");
-		nameSpace = loader.getNamespace();
+		loader = new FormLoader("part", "menu-bar-part");
+		namespace = loader.getNamespace();
 		root = loader.getRoot();
 		component = loader.getComponent();
 
@@ -43,7 +46,7 @@ public class MenuBarPart implements View
 			new Separator(),
 			new Menu("Refresh All Bots", "Ctrl + Alt + Y"),
 			new Separator(),
-			new Menu("Settings", "Ctrl + Alt + S")
+			new Menu("Settings", "Ctrl + Alt + S", event -> OpenProgramTabAction.execute(GlobalConfigTab.getRoot()))
 		);
 
 		// Edit Menu Button
@@ -69,7 +72,7 @@ public class MenuBarPart implements View
 		// Debug Menu Button
 		component.getMenu(3).setMenus
 		(
-			new Menu("Compile"),
+			new Menu("Compile", event -> ScriptManager.initAll(true)),
 			new Menu("Power On / Off"),
 			new Separator(),
 			new Menu("Show Global Log", "F8"),
@@ -98,8 +101,13 @@ public class MenuBarPart implements View
 		return component;
 	}
 
-	public static ObservableMap<String, Object> getNameSpace()
+	public static <T> T getComponent(String key)
 	{
-		return nameSpace;
+		return (T) namespace.get(key);
+	}
+
+	public static ObservableMap<String, Object> getNamespace()
+	{
+		return namespace;
 	}
 }
