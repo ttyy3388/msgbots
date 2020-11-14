@@ -3,7 +3,6 @@ package org.beuwi.msgbots.compiler.engine;
 import org.beuwi.msgbots.compiler.api.ImageDB;
 import org.beuwi.msgbots.manager.BotManager;
 import org.beuwi.msgbots.manager.FileManager;
-import org.beuwi.msgbots.settings.Settings;
 
 public class ScriptManager extends ScriptEngine
 {

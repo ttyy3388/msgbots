@@ -7,6 +7,7 @@ import javafx.scene.layout.Priority;
 import org.beuwi.msgbots.openapi.JsonObject;
 import org.beuwi.msgbots.platform.gui.enums.LogType;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
+import org.json.simple.JSONObject;
 
 // Log Item
 public class Log extends HBox
@@ -29,7 +30,7 @@ public class Log extends HBox
 		VBox.setVgrow(tlabel, Priority.ALWAYS);
 	}
 
-	public Log(JsonObject object)
+	public Log(JSONObject object)
 	{
 		this(switch (String.valueOf(object.get("b")))
 		{

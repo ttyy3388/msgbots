@@ -9,6 +9,7 @@ import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.util.SharedValues;
 import org.beuwi.msgbots.platform.win.WindowType;
 import org.beuwi.msgbots.platform.win.WindowWrap;
+import org.beuwi.msgbots.setting.GlobalSettings;
 
 // Top : Menu Bar, Center : Main Area, Bottom : Status Bar
 public class MainView extends VBox
@@ -45,7 +46,7 @@ public class MainView extends VBox
 
 			setContent(new MainView(stage));
 			setTitle(SharedValues.DEFAULT_PROGRAM_TITLE);
-			setTheme(ThemeType.DARK);
+			setTheme(GlobalSettings.getData("program.color_theme"));
 			setType(WindowType.WINDOW);
 		}
 	}

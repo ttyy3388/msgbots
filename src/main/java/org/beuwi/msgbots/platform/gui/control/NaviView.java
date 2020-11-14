@@ -52,7 +52,7 @@ public class NaviView extends HBox
             addNavis(navis);
         }
 
-        // header.setMinWidth(DEFAULT_HEADER_WIDTH);
+        header.setMinWidth(DEFAULT_HEADER_WIDTH);
         header.setPrefWidth(DEFAULT_HEADER_WIDTH);
         // header.setMaxWidth(DEFAULT_HEADER_WIDTH);
 

@@ -1,23 +1,32 @@
 package org.beuwi.msgbots.openapi;
 
 import org.beuwi.msgbots.manager.FileManager;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
 
 public class JsonObject extends org.json.simple.JSONObject
 {
+	private final File file;
+
 	public JsonObject()
 	{
-		super();
+		this(null);
 	}
 
 	public JsonObject(File file)
 	{
+		this.file = file;
+
 		try
 		{
-			this.putAll((JsonObject) new JsonParser().parse(FileManager.read(file)));
+			if (file != null)
+			{
+				this.putAll((JSONObject) new JSONParser().parse(FileManager.read(file)));
+			}
 		}
 		catch (Exception e)
 		{
@@ -25,9 +34,14 @@ public class JsonObject extends org.json.simple.JSONObject
 		}
 	}
 
-	public JsonObject getJsonObject(String type)
+	public JSONObject getJsonObject(String type)
 	{
-		return (JsonObject) this.get(type);
+		return (JSONObject) this.get(type);
+	}
+
+	public Map getMap(String type)
+	{
+		return (Map) this.get(type);
 	}
 
 	public double getDouble(String type)
@@ -55,32 +69,13 @@ public class JsonObject extends org.json.simple.JSONObject
 		return Boolean.valueOf("" + get(type));
 	}
 
-	public void putString(String type, String data)
-	{
-		this.put(type, data);
-	}
-	
-	public void putDouble(String type, double data)
-	{
-		this.put(type, data);
-	}
-
-	public void putInt(String type, int data)
-	{
-	    this.put(type, data);
-	}
-
-	public void putBoolean(String type, boolean data)
-	{
-		this.put(type, data);
-	}
-
 	public void putMap(Map map)
 	{
 		this.putAll(map);
 	}
 
-	public String toBeautifyString()
+	@Override
+	public String toString()
 	{
 		String json = this.toJSONString();
 

@@ -7,6 +7,7 @@ import javafx.scene.layout.Priority;
 import org.beuwi.msgbots.compiler.engine.ScriptManager;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.action.OpenDesktopAction;
+import org.beuwi.msgbots.platform.app.view.actions.OpenBotLogTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenProgramTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenScriptTabAction;
@@ -59,7 +60,7 @@ public class Bot extends GridPanel
 			new Menu("Compile", event -> ScriptManager.initBot(name, true, false)),
 			new Menu("Power On / Off", event -> power.setSelected(!getPower())),
 			new Separator(),
-			new Menu("Show Log"),
+			new Menu("Show Log", event -> OpenBotLogTabAction.execute(name)),
 			new Separator(),
 			new Menu("Show in Explorer", "Shift + Alt + R", event -> OpenDesktopAction.execute(FileManager.getBotFolder(name))),
 			new Separator(),

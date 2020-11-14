@@ -13,6 +13,8 @@ import org.beuwi.msgbots.compiler.api.Replier;
 import org.beuwi.msgbots.compiler.api.Utils;
 import org.beuwi.msgbots.manager.BotManager;
 import org.beuwi.msgbots.manager.FileManager;
+import org.beuwi.msgbots.manager.LogManager;
+import org.beuwi.msgbots.platform.gui.enums.LogType;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ImporterTopLevel;
@@ -21,6 +23,7 @@ import org.mozilla.javascript.ScriptableObject;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 public class ScriptEngine
 {
@@ -48,6 +51,8 @@ public class ScriptEngine
 
 	protected static boolean initialize(String name, boolean isManual, boolean ignoreError)
 	{
+		LogManager.event("Compile Start : " + name);
+
 		compiling.put(name, true);
 
 		File file = FileManager.getBotScript(name);
@@ -132,6 +137,8 @@ public class ScriptEngine
 				container.get(name).setOnStartCompile(null);
 			}
 
+			LogManager.error("Compile Error : " + e.toString() + " : " + name);
+
 			compiling.put(name, false);
 
 			if (!isManual)
@@ -149,6 +156,8 @@ public class ScriptEngine
 
 		BotManager.setCompiled(name, true);
 
+		LogManager.event("Compile Success: " + name);
+
 		return true;
 	}
 
@@ -157,23 +166,32 @@ public class ScriptEngine
 		ScriptableObject scope = container.get(name).getExecScope();
 		Function responder = container.get(name).getResponder();
 
+		Context context = Context.enter();
+
+		final long start = System.currentTimeMillis();
+
 		try
 		{
-			Context context = Context.enter();
 			context.setWrapFactory(new PrimitiveWrapFactory());
 			context.setLanguageVersion(Context.VERSION_ES6);
 			context.setOptimizationLevel(container.get(name).getOptimization());
 
 			if (responder != null)
 			{
-				responder.call(context, scope, scope, new Object[] { new ResponseParameters(room, message, sender, isGroupChat, new Replier(), imageDB, packageName) });
+				responder.call(context, scope, scope, new Object[] { room, message, sender, isGroupChat, new Replier(), imageDB, packageName });
 			}
 
 			Context.exit();
 		}
 		catch (Throwable e)
 		{
+			LogManager.error("Runtime Error : " + e.toString() + " : " + name);
+
 			e.printStackTrace();
 		}
+
+		final long end = System.currentTimeMillis();
+
+		LogManager.event("Running Time : " + (end - start));
 	}
 }

@@ -7,10 +7,13 @@ import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.gui.control.Navi;
 import org.beuwi.msgbots.platform.gui.control.NaviView;
+import org.beuwi.msgbots.platform.gui.control.OptionBox;
 import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.gui.control.TabView;
 import org.beuwi.msgbots.platform.gui.control.VBox;
 import org.beuwi.msgbots.platform.gui.layout.StackPanel;
+
+import java.util.List;
 
 public class GlobalConfigTab implements View
 {

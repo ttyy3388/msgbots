@@ -25,10 +25,10 @@ public class TextField extends javafx.scene.control.TextField
 	{
 		setContextMenu(menu);
 
-		setPrefHeight(DEFAULT_PREF_WIDTH);
+		setPrefWidth(DEFAULT_PREF_WIDTH);
 		setPrefHeight(DEFAULT_PREF_HEIGHT);
 
-		// getStyleClass().add(DEFAULT_STYLE_CLASS);
+		// addStyleClass(DEFAULT_STYLE_CLASS);
 	}
 
 	public StringProperty getTextProperty()

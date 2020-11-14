@@ -25,6 +25,8 @@ public class BotListTab implements View
 		namespace = loader.getNamespace();
 		root = loader.getRoot();
 		component = loader.getComponent();
+
+		root.setId("@program::BOT LIST");
 	}
 
 	public static Tab getRoot()

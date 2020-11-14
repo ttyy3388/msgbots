@@ -47,7 +47,8 @@ public class Chat extends HBox
 
 		if (!isbot)
 		{
-            setItems(content, profile);
+			setItems(content);
+            // setItems(content, profile);
 			setAlignment(Pos.TOP_RIGHT);
 		}
 		else
@@ -55,6 +56,9 @@ public class Chat extends HBox
             setItems(profile, content);
 			setAlignment(Pos.TOP_LEFT);
 		}
+
+		pseudoClassStateChanged(HUMAN_PSEUDO_CLASS, !isbot);
+		pseudoClassStateChanged(BOT_PSEUDO_CLASS, isbot);
 
 		/* getWidthProperty().addListener(change ->
 		{
@@ -92,7 +96,7 @@ public class Chat extends HBox
 			// comment.setMaxWidth(220);
 			comment.setText(message);
 			comment.setWrapText(true);
-			comment.setMaxWidth(250);
+			comment.setMaxWidth(180);
 			comment.addStyleClass("comment");
 
 			if (!isbot)

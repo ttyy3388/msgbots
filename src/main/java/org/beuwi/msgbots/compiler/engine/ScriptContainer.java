@@ -6,7 +6,7 @@ import org.mozilla.javascript.ScriptableObject;
 public class ScriptContainer 
 {
 	private Function responder = null;
-	private ScriptableObject execScope = null;
+	private ScriptableObject execscope = null;
 	private Function onStartCompile = null;
 	private ScriptableObject scope = null;
 	private int optimization = 0;
@@ -16,10 +16,10 @@ public class ScriptContainer
 	private Function onResume = null;
 	private Function onPause = null;
 
-	public void constructor(Function responder, ScriptableObject execScope, Function onStartCompile, ScriptableObject scope)
+	public void constructor(Function responder, ScriptableObject execscope, Function onStartCompile, ScriptableObject scope)
 	{
 		this.responder = responder;
-		this.execScope = execScope;
+		this.execscope = execscope;
 		this.onStartCompile = onStartCompile;
 		this.scope = scope;
 	}
@@ -30,9 +30,9 @@ public class ScriptContainer
 		return this;
 	}
 
-	public ScriptContainer setExecScope(ScriptableObject execScope)
+	public ScriptContainer setExecScope(ScriptableObject execscope)
 	{
-		this.execScope = execScope;
+		this.execscope = execscope;
 		return this;
 	}
 
@@ -70,7 +70,7 @@ public class ScriptContainer
 
 	public ScriptableObject getExecScope()
 	{
-		return execScope;
+		return execscope;
 	}
 
 	public Function getOnStartCompile()

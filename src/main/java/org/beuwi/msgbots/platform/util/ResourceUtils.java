@@ -7,7 +7,7 @@ import java.net.URL;
 
 public class ResourceUtils
 {
-	public static URL getResource(String path)
+	public static URL getURL(String path)
 	{
 		return ResourceUtils.class.getResource(path);
 	}

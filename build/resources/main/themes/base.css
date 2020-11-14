@@ -66,6 +66,59 @@
 
 /* ------------------------------------- COMPONENTS ------------------------------------- */
 
+/* BUTTON */
+
+/* STYLED BUTTON */
+.button:styled
+{
+	-fx-border-width: 1;
+}
+
+/* BOT */
+.bot
+{
+	-fx-border-width: 0 3 0 3;
+	-fx-opacity: 0.5;
+}
+.bot > .label
+{
+	-fx-font-size: 14;
+}
+.bot > .button
+{
+	-fx-background-radius: 15;
+	-fx-background-image: url('../images/reload.png');
+	-fx-background-size: 15;
+}
+.bot > .check-box:disabled
+{
+	-fx-opacity: 1.0;
+}
+.bot > .check-box .box
+{
+	-fx-background-radius: 10;
+	-fx-border-width: 0;
+	-fx-padding: 3;
+}
+.bot > .check-box .mark
+{
+	-fx-padding: 0;
+}
+
+/* BOT VIEW */
+.bot-view { }
+.bot-view .list-cell:selected .bot
+{
+	-fx-opacity: 1.0;
+}
+
+/* CHAT */
+.chat .comment
+{
+	-fx-background-radius: 5;
+	-fx-padding: 8;
+}
+
 /* CHECK BOX */
 .check-box
 {
@@ -78,6 +131,34 @@
 .check-box .mark
 {
 	-fx-padding: 6;
+}
+
+/* CODE AREA */
+.code-area
+{
+	-fx-border-width: 1;
+}
+
+/* COMBO BOX */
+.combo-box
+{
+	-fx-padding: 4;
+}
+.combo-box .arrow
+{
+	-fx-padding: 4 5 4 5;
+	-fx-shape: "M 0 0 h 7 l -3.5 4 z";
+}
+
+/* COMBO BOX POPUP */
+.combo-box-popup > .list-view
+{
+	-fx-border-width: 0 1 1 1;
+	-fx-padding: 5 0 5 0;
+}
+.combo-box-popup > .list-view .list-cell
+{
+	-fx-padding: 5;
 }
 
 /* CONTEXT MENU */
@@ -124,6 +205,19 @@
 	-fx-cursor: default;
 }
 
+/* SEPARATOR */
+.separator .line
+{
+	-fx-padding: 0.5 0 0.5 0;
+}
+
+/* TAB */
+.tab
+{
+	-fx-border-width: 0 0 1 0;
+}
+
+/* TEXT FIELD, TEXT AREA */
 .text-area,
 .text-field
 {
@@ -145,4 +239,40 @@
 .toggle-button:selected
 {
     -fx-opacity: 1.0;
+}
+
+/* SIDE AREA */
+.side-area {}
+
+/* DEBUG AREA */
+.debug-area
+{
+	-fx-border-width: 0 0 0 1;
+}
+
+/* EDITOR AREA */
+.editor-area {}
+.editor-area > .tab-view > .tab-content-area > .code-area
+{
+    -fx-border-width: 0;
+}
+
+/* STATUS BAR */
+.status-bar {}
+
+/* DEBUG TAB */
+.debug-tab
+{
+	-fx-font-family: D2Coding;
+	-fx-font-size: 14;
+}
+.debug-tab .list-cell
+{
+	-fx-padding: 12 10 12 10;
+}
+
+/* GLOBAL CONFIG TAB */
+.config-tab .navi-content-area
+{
+	-fx-font-family: 'D2Coding';
 }

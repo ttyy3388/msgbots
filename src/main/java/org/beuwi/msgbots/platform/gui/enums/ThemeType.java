@@ -6,7 +6,7 @@ public enum ThemeType
 	{
 		@Override
 		public String toString()
-        {
+		{
 			return "dark";
 		}
 	},
@@ -19,4 +19,27 @@ public enum ThemeType
 			return "light";
 		}
 	},
+
+	BLACK
+	{
+		@Override
+		public String toString()
+		{
+			return "black";
+		}
+	},
+
+	WHITE
+	{
+		@Override
+		public String toString()
+		{
+			return "white";
+		}
+	};
+
+	public static <T extends Enum<T>> ThemeType convert(String value)
+	{
+		return valueOf(value.toUpperCase());
+	}
 }

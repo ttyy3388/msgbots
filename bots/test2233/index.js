@@ -23,7 +23,7 @@ const DB =
 	{
 		DB.StartWord = JSON.parse(DB.get("StartWord"));
 		DB.WordList = JSON.parse(DB.get("WordList"));
-		DB.GameData = JSON.parse(DB.get("GameData"));
+		DB.GameData = JSON.parse(DB.get("GameData"));a
 	},
 
 	get : function(type, value)

@@ -20,6 +20,7 @@ import org.beuwi.msgbots.platform.gui.layout.ShadowPanel;
 import org.beuwi.msgbots.platform.util.AllSVGIcons;
 import org.beuwi.msgbots.platform.win.WindowFrame;
 import org.beuwi.msgbots.platform.win.WindowType;
+import org.beuwi.msgbots.setting.GlobalSettings;
 
 public class DialogBoxFrame extends ShadowPanel
 {
@@ -161,7 +162,7 @@ public class DialogBoxFrame extends ShadowPanel
 
 		frame.setContent(this);
 		frame.setTitle(title);
-		frame.setTheme(ThemeType.DARK);
+		frame.setTheme(GlobalSettings.getData("program.color_theme"));
 		frame.setType(WindowType.DIALOG);
 		frame.create();
 	}

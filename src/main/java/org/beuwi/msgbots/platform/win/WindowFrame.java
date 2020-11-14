@@ -55,6 +55,11 @@ public class WindowFrame
 		this.type = type;
 	}
 
+	public void setTheme(String theme)
+	{
+		this.theme = ThemeType.convert(theme);
+	}
+
 	public void setTheme(ThemeType theme)
 	{
 		this.theme = theme;

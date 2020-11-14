@@ -18,11 +18,11 @@ public class LogView extends ListView<Log>
 	{
 		if (name != null)
 		{
-			// setItems(LogManager.load(name));
+			setItems(LogManager.load(name));
 		}
 		else
 		{
-			// setItems(LogManager.load());
+			setItems(LogManager.load());
 		}
 
 		// setSpacing(DEFAULT_GAP_VALUE);

@@ -1,5 +1,6 @@
 package org.beuwi.msgbots.openapi;
 
+import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -46,7 +47,10 @@ public class FileObserver extends FileWatcher
 		{
 			for (final FileListener listener : listeners)
 			{
-				listener.changed();
+				Platform.runLater(() ->
+				{
+					listener.changed();
+				});
 			}
 		}
 	}
