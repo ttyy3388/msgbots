@@ -83,7 +83,7 @@ public class OptionBox extends Control
                     GlobalSettings.setData(getAddress(), control.isSelected());
 				});
 			}
-			else if (getContent() instanceof ComboBox)
+			/* else if (getContent() instanceof ComboBox)
 			{
 				ComboBox control = (ComboBox) getContent();
 
@@ -93,7 +93,7 @@ public class OptionBox extends Control
 				{
 					GlobalSettings.setData(getAddress(), control.getSelectedItem().toString());
 				});
-			}
+			} */
 		});
 	}
 

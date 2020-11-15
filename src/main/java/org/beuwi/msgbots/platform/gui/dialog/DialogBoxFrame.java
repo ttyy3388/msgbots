@@ -162,7 +162,7 @@ public class DialogBoxFrame extends ShadowPanel
 
 		frame.setContent(this);
 		frame.setTitle(title);
-		frame.setTheme(GlobalSettings.getData("program.color_theme"));
+		frame.setTheme(ThemeType.DARK);
 		frame.setType(WindowType.DIALOG);
 		frame.create();
 	}

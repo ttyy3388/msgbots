@@ -3,14 +3,19 @@ package org.beuwi.msgbots.platform.gui.editor;
 import eu.mihosoft.monacofx.Document;
 import eu.mihosoft.monacofx.Editor;
 import eu.mihosoft.monacofx.MonacoFX;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.gui.layout.StackPanel;
 
+import javax.swing.event.ChangeListener;
 import java.io.File;
 import java.lang.reflect.Field;
 
@@ -19,7 +24,20 @@ public class CodeArea extends StackPanel
 {
 	private static final String DEFAULT_STYLE_CLASS = "code-area";
 
-	private final ObjectProperty<File> file = new SimpleObjectProperty();
+	private final FileProperty file = new FileProperty(change ->
+	{
+		File file = this.file.get();
+
+		if (file != null)
+		{
+			setText(file);
+
+			FileManager.link(file, () ->
+			{
+				setText(file);
+			});
+		}
+	});
 
 	private final MonacoFX monaco = new MonacoFX();
 	private final Document document;
@@ -41,19 +59,6 @@ public class CodeArea extends StackPanel
 			setFile(file);
 		}
 
-		getFileProperty().addListener(change ->
-		{
-			if (getFile() != null)
-			{
-				setText(getFile());
-
-				FileManager.link(getFile(), () ->
-				{
-					setText(getFile());
-				});
-			}
-		});
-
 		setItem(monaco);
 		setTheme("vs-dark");
 		setLanguage("javascript");
@@ -65,14 +70,14 @@ public class CodeArea extends StackPanel
 		this.file.set(file);
 	}
 
-	private void setText(String text)
-	{
-		document.setText(text);
-	}
-
 	public void setText(File file)
 	{
 		document.setText(FileManager.read(file));
+	}
+
+	private void setText(String text)
+	{
+		document.setText(text);
 	}
 
 	public void setTheme(String theme)
@@ -100,8 +105,16 @@ public class CodeArea extends StackPanel
 		return document.textProperty();
 	}
 
-	public ObjectProperty<File> getFileProperty()
+	public FileProperty getFileProperty()
 	{
 		return file;
+	}
+
+	private class FileProperty extends SimpleObjectProperty<File>
+	{
+		public FileProperty(InvalidationListener listener)
+		{
+			addListener(listener);
+		}
 	}
 }

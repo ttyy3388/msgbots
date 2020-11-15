@@ -46,7 +46,7 @@ public class MainView extends VBox
 
 			setContent(new MainView(stage));
 			setTitle(SharedValues.DEFAULT_PROGRAM_TITLE);
-			setTheme(GlobalSettings.getData("program.color_theme"));
+			setTheme(ThemeType.DARK);
 			setType(WindowType.WINDOW);
 		}
 	}

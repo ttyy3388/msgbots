@@ -57,6 +57,10 @@
 {
 	-fx-shape: "M14.4315 3.32315L5.96154 13.3232L5.17083 13.2874L1.82083 8.51736L2.63918 7.94263L5.617 12.1827L13.6685 2.67683L14.4315 3.32315Z";
 }
+.combo-box .arrow
+{
+	-fx-shape: "M928.4,224.4L500,651.6L71.6,224.4L10,285.9l490,489.7l490-489.7L928.4,224.4z";
+}
 
 /* SKIN */
 .scroll-bar
@@ -64,215 +68,29 @@
 	-fx-skin: 'org.beuwi.msgbots.platform.gui.skins.ScrollBarSkin';
 }
 
-/* ------------------------------------- COMPONENTS ------------------------------------- */
-
-/* BUTTON */
-
-/* STYLED BUTTON */
-.button:styled
+/* CURSOR */
+.scroll-bar
 {
-	-fx-border-width: 1;
+	-fx-cursor: default;
 }
-
-/* BOT */
-.bot
+.text-area,
+.text-field
 {
-	-fx-border-width: 0 3 0 3;
-	-fx-opacity: 0.5;
+	-fx-cursor: text;
 }
-.bot > .label
-{
-	-fx-font-size: 14;
-}
-.bot > .button
-{
-	-fx-background-radius: 15;
-	-fx-background-image: url('../images/reload.png');
-	-fx-background-size: 15;
-}
-.bot > .check-box:disabled
-{
-	-fx-opacity: 1.0;
-}
-.bot > .check-box .box
-{
-	-fx-background-radius: 10;
-	-fx-border-width: 0;
-	-fx-padding: 3;
-}
-.bot > .check-box .mark
-{
-	-fx-padding: 0;
-}
-
-/* BOT VIEW */
-.bot-view { }
-.bot-view .list-cell:selected .bot
-{
-	-fx-opacity: 1.0;
-}
-
-/* CHAT */
-.chat .comment
-{
-	-fx-background-radius: 5;
-	-fx-padding: 8;
-}
-
-/* CHECK BOX */
-.check-box
-{
-	-fx-label-padding: 0 0 0 8;
-}
-.check-box .box
-{
-	-fx-padding: 2;
-}
-.check-box .mark
-{
-	-fx-padding: 6;
-}
-
-/* CODE AREA */
-.code-area
-{
-	-fx-border-width: 1;
-}
-
-/* COMBO BOX */
-.combo-box
-{
-	-fx-padding: 4;
-}
-.combo-box .arrow
-{
-	-fx-padding: 4 5 4 5;
-	-fx-shape: "M 0 0 h 7 l -3.5 4 z";
-}
-
-/* COMBO BOX POPUP */
-.combo-box-popup > .list-view
-{
-	-fx-border-width: 0 1 1 1;
-	-fx-padding: 5 0 5 0;
-}
-.combo-box-popup > .list-view .list-cell
-{
-	-fx-padding: 5;
-}
-
-/* CONTEXT MENU */
-.context-menu
-{
-	-fx-padding: 5 0 5 0;
-	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
-}
-.context-menu .separator .line
-{
-	-fx-background-insets: 5 0 5 0;
-	-fx-padding: 5.5 0 5.5 0;
-}
-
-/* NAVI */
-.navi > .label { }
-
-/* NOTICE */
-.notice .label
-{
-    -fx-font-size: 14;
-}
-
 /* MENU */
 .menu
 {
+	-fx-text-fill: #000000;
 	-fx-padding: 5 20 5 20;
 }
 .menu .label
 {
 	-fx-font-family: 'Microsoft Sans Serif';
 	-fx-font-size: 12;
+	-fx-text-fill: #000000;
 }
-
-/* MENU BUTTON */
-.menu-button
+.menu:focused
 {
-	-fx-padding: 0 5 0 5;
-}
-
-/* SCROLL BAR */
-.scroll-bar
-{
-	-fx-cursor: default;
-}
-
-/* SEPARATOR */
-.separator .line
-{
-	-fx-padding: 0.5 0 0.5 0;
-}
-
-/* TAB */
-.tab
-{
-	-fx-border-width: 0 0 1 0;
-}
-
-/* TEXT FIELD, TEXT AREA */
-.text-area,
-.text-field
-{
-	-fx-font-family: 'D2Coding';
-	-fx-font-size: 14;
-	-fx-cursor: text;
-	-fx-padding: 4;
-}
-
-.toggle-button
-{
-    -jfx-size: 6;
-}
-
-.toggle-button
-{
-    -fx-opacity: 0.5;
-}
-.toggle-button:selected
-{
-    -fx-opacity: 1.0;
-}
-
-/* SIDE AREA */
-.side-area {}
-
-/* DEBUG AREA */
-.debug-area
-{
-	-fx-border-width: 0 0 0 1;
-}
-
-/* EDITOR AREA */
-.editor-area {}
-.editor-area > .tab-view > .tab-content-area > .code-area
-{
-    -fx-border-width: 0;
-}
-
-/* STATUS BAR */
-.status-bar {}
-
-/* DEBUG TAB */
-.debug-tab
-{
-	-fx-font-family: D2Coding;
-	-fx-font-size: 14;
-}
-.debug-tab .list-cell
-{
-	-fx-padding: 12 10 12 10;
-}
-
-/* GLOBAL CONFIG TAB */
-.config-tab .navi-content-area
-{
-	-fx-font-family: 'D2Coding';
+	-fx-background-color: #E8EAED;
 }
