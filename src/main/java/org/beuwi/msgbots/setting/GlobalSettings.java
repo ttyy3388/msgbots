@@ -16,16 +16,31 @@ public class GlobalSettings
 		FileManager.link(file, () -> json = new JsonObject(file));
 	}
 
-	public static <V> V getData(String address)
+	public static <T> T getData(String address)
 	{
 		String[] data = address.split("\\.");
 
 		// throw new NullPointerException("this address does not exists");
 
-		return (V) json.getMap(data[0]).get(data[1]);
+		return (T) json.getMap(data[0]).get(data[1]);
 	}
 
-	public static <V> void setData(String address, V value)
+	public static int getInt(String address)
+	{
+		return (int) getData(address);
+	}
+
+	public static String getString(String address)
+	{
+		return (String) getData(address);
+	}
+
+	public static boolean getBoolean(String address)
+	{
+		return (boolean) getData(address);
+	}
+
+	public static <T> void setData(String address, T value)
 	{
 		String[] data = address.split("\\.");
 

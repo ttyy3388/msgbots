@@ -4,7 +4,10 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import org.beuwi.msgbots.compiler.engine.ScriptManager;
 import org.beuwi.msgbots.platform.app.view.MainView.MainWindow;
+import org.beuwi.msgbots.platform.app.view.actions.RefreshBotLogsAction;
+import org.beuwi.msgbots.platform.app.view.actions.SaveEditorAreaTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.SendChatMessageAction;
 import org.beuwi.msgbots.platform.app.view.actions.AddEditorAreaTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.AddNoticeMessageAction;
@@ -137,6 +140,8 @@ public class Launcher extends Application
 			new AddNoticeMessageAction().init();
 			new OpenScriptTabAction().init();
 			new RefreshBotListAction().init();
+			new RefreshBotLogsAction().init();
+			new SaveEditorAreaTabAction().init();
 			new ToggleDebugAreaAction().init();
 			new ToggleMenuBarAction().init();
 			new ToggleSideAreaAction().init();
@@ -153,7 +158,10 @@ public class Launcher extends Application
 
 			OpenProgramTabAction.execute(GlobalConfigTab.getRoot());
 
+			// 추후 전체를 로딩하는게 아닌 새 파일만 로딩해야됨 (컴파일 상태 유지)
 			RefreshBotListAction.execute();
+
+			ScriptManager.preInit();
 
 			// ScenicView.show(stage.getScene());
 		}

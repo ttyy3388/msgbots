@@ -32,6 +32,16 @@ public class TextArea extends javafx.scene.control.TextArea
 		// getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 
+	public void setStyleClass(String style)
+	{
+		getStyleClass().setAll(style);
+	}
+
+	public void addStyleClass(String style)
+	{
+		getStyleClass().add(style);
+	}
+
 	public DoubleProperty getScrollTopProperty()
 	{
 		return scrollTopProperty();

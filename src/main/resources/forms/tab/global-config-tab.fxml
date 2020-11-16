@@ -19,12 +19,12 @@
 <?import org.beuwi.msgbots.platform.gui.control.Tab?>
 <?import org.beuwi.msgbots.platform.gui.control.TextField?>
 <?import org.beuwi.msgbots.platform.gui.control.VBox?>
-<?import org.beuwi.msgbots.platform.gui.editor.CodeArea?>
 <?import org.beuwi.msgbots.platform.gui.layout.ScrollPanel?>
 <?import org.beuwi.msgbots.platform.gui.layout.StackPanel?>
 <?import org.beuwi.msgbots.platform.util.SharedValues?>
 
 <?import org.beuwi.msgbots.platform.gui.enums.ThemeType?>
+<?import org.beuwi.msgbots.platform.gui.editor.Editor?>
 <Tab text="GLOBAL SETTINGS" xmlns:fx="http://javafx.com/fxml">
 	<content>
 		<NaviView>
@@ -52,21 +52,21 @@
 														<VBox spacing="10.0" HBox.hgrow="ALWAYS">
 															<items>
 																<Label text="통합 매개변수 OFF" />
-																<CodeArea VBox.vgrow="ALWAYS">
+																<Editor VBox.vgrow="ALWAYS">
 																	<file>
 																		<SharedValues fx:constant="SCRIPT_DEFAULT_FILE" />
 																	</file>
-																</CodeArea>
+																</Editor>
 															</items>
 														</VBox>
 														<VBox spacing="10.0" HBox.hgrow="ALWAYS">
 															<items>
 																<Label text="통합 매개변수 ON" />
-																<CodeArea VBox.vgrow="ALWAYS">
+																<Editor VBox.vgrow="ALWAYS">
 																	<file>
 																		<SharedValues fx:constant="SCRIPT_UNIFIED_FILE" />
 																	</file>
-																</CodeArea>
+																</Editor>
 															</items>
 														</VBox>
 													</items>

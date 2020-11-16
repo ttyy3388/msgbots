@@ -151,16 +151,20 @@ public class TabView extends VBox
 		addStyleClass(DEFAULT_STYLE_CLASS);
 	}
 
-	public void select(int index)
-	{
-		selected.set(getTab(index));
-	}
-
 	public void select(Tab tab)
 	{
 		selected.set(tab);
 	}
 
+	public void select(int index)
+	{
+		selected.set(getTab(index));
+	}
+
+	public void select(String name)
+	{
+		selected.set(getTab(name));
+	}
 
 	public void addTab(Tab tab)
 	{

@@ -14,7 +14,9 @@ import org.beuwi.msgbots.compiler.api.Utils;
 import org.beuwi.msgbots.manager.BotManager;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.manager.LogManager;
+import org.beuwi.msgbots.platform.app.view.actions.SaveEditorAreaTabAction;
 import org.beuwi.msgbots.platform.gui.enums.LogType;
+import org.beuwi.msgbots.setting.GlobalSettings;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ImporterTopLevel;
@@ -56,6 +58,11 @@ public class ScriptEngine
 		compiling.put(name, true);
 
 		File file = FileManager.getBotScript(name);
+
+		if (GlobalSettings.getBoolean("program.compile_auto_save"))
+		{
+			SaveEditorAreaTabAction.execute(name);
+		}
 
 		int optimization = 1;
 

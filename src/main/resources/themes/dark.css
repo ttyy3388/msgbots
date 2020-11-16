@@ -131,18 +131,6 @@
 	-fx-background-color: #FFFFFF;
 }
 
-/* CODE AREA */
-.code-area
-{
-	-fx-border-color: #555555;
-	-fx-border-width: 1;
-}
-.code-area:hover,
-.code-area:focused
-{
-	-fx-border-color: #007ACC;
-}
-
 /* COMBO BOX */
 .combo-box
 {
@@ -203,6 +191,23 @@
 	-fx-background-insets: 5 0 5 0;
 	-fx-background-color: #BABABA;
 	-fx-padding: 5.5 0 5.5 0;
+}
+
+/* EDITOR */
+.editor
+{
+    -fx-background-color: #1E1E1E;
+	-fx-border-color: #555555;
+	-fx-border-width: 1;
+	-fx-font-family: 'D2Coding';
+	-fx-font-size: 14;
+	-fx-padding: 4;
+	-fx-cursor: text;
+}
+.editor:hover,
+.editor:focused
+{
+	-fx-border-color: #007ACC;
 }
 
 /* LOG */
@@ -457,7 +462,7 @@
 {
 	-fx-background-color: #1E1E1E;
 }
-.editor-area > .tab-view > .tab-content-area > .code-area
+.editor-area > .tab-view > .tab-content-area > .editor
 {
 	-fx-border-width: 0;
 }

@@ -7,9 +7,9 @@ import java.net.URL;
 
 public class ResourceUtils
 {
-	public static URL getURL(String path)
+	public static String getURL(String path)
 	{
-		return ResourceUtils.class.getResource(path);
+		return ResourceUtils.class.getResource(path).toExternalForm();
 	}
 
 	public static InputStream getFont(String name)

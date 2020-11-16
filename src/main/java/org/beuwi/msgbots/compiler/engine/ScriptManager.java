@@ -3,6 +3,7 @@ package org.beuwi.msgbots.compiler.engine;
 import org.beuwi.msgbots.compiler.api.ImageDB;
 import org.beuwi.msgbots.manager.BotManager;
 import org.beuwi.msgbots.manager.FileManager;
+import org.beuwi.msgbots.setting.GlobalSettings;
 
 public class ScriptManager extends ScriptEngine
 {
@@ -13,6 +14,11 @@ public class ScriptManager extends ScriptEngine
 
 	public static void preInit()
 	{
+		if (!GlobalSettings.getBoolean("program.start_auto_compile"))
+		{
+			return ;
+		}
+
 		for (String name : FileManager.getBotNames())
 		{
 			if (!BotManager.getPower(name))
