@@ -35,6 +35,7 @@
 							<content>
 								<VBox spacing="30.0">
 									<items>
+
 										<OptionBox address="program.start_auto_compile" title="시작 시 자동 컴파일">
 											<content>
 												<CheckBox text="앱이 시작되었을 때 전원을 켜둔 스크립트를 자동으로 컴파일 합니다." />
@@ -90,6 +91,7 @@
 									<content>
 										<VBox spacing="30.0">
 											<items>
+
 												<OptionBox address="debug.html_load_timeout" title="HTML 로드 시간 제한 (ms)">
 													<content>
 														<TextField maxWidth="100" />
@@ -218,6 +220,36 @@
 								<Insets left="15.0" />
 							</StackPanel.margin>
 						</NaviView>
+					</content>
+				</Navi>
+				<Navi text="Connection">
+					<content>
+						<ScrollPanel fitToWidth="true">
+							<content>
+								<OptionView title="Connection">
+									<content>
+										<VBox spacing="30.0">
+											<items>
+												<OptionBox address="connection.socket_local_port" title="Local Port">
+													<content>
+														<TextField maxWidth="100" />
+													</content>
+												</OptionBox>
+												<OptionBox address="connection.socket_remote_port" title="Remote Port">
+													<content>
+														<TextField maxWidth="100" />
+													</content>
+												</OptionBox>
+
+											</items>
+										</VBox>
+									</content>
+								</OptionView>
+							</content>
+							<StackPanel.margin>
+								<Insets left="15.0" />
+							</StackPanel.margin>
+						</ScrollPanel>
 					</content>
 				</Navi>
 			</navis>
