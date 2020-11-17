@@ -1,5 +1,6 @@
 package org.beuwi.msgbots.compiler.api;
 
+import org.beuwi.msgbots.setting.ScriptSettings;
 import org.mozilla.javascript.Scriptable;
 import org.mozilla.javascript.ScriptableObject;
 import org.mozilla.javascript.annotations.JSFunction;
@@ -39,6 +40,11 @@ public class Api extends ScriptableObject
 	@JSStaticFunction
 	public Boolean off(String name)
 	{
+		if (ScriptSettings.get(name).getBoolean("ignore_api_off"))
+		{
+			return false;
+		}
+
 		return true;
 	}
 	

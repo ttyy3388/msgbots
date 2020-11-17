@@ -8,7 +8,10 @@ public abstract class DialogBoxWrap extends DialogBoxFrame
 
 	}
 
+	@Override
 	public abstract void open();
 	// public abstract void init();
+
+	@Override
 	public abstract void action();
 }

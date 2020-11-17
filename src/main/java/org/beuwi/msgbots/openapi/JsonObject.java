@@ -5,7 +5,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.Map;
 
 public class JsonObject extends org.json.simple.JSONObject

@@ -2,6 +2,7 @@ package org.beuwi.msgbots.platform.app.action;
 
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.impl.Action;
+import org.beuwi.msgbots.platform.util.SharedValues;
 
 import java.io.File;
 
@@ -24,7 +25,7 @@ public class CreateBotAction implements Action
 
 		if (project.exists())
 		{
-			System.out.println("exists project");
+			System.out.println("already exists");
 		}
 		else
 		{
@@ -34,11 +35,11 @@ public class CreateBotAction implements Action
 			{
 				if (!isUnified)
 				{
-					content = FileManager.read(FileManager.getDataFile("script_default.js"));
+					content = FileManager.read(SharedValues.SCRIPT_DEFAULT_FILE);
 				}
 				else
 				{
-					content = FileManager.read(FileManager.getDataFile("script_unified.js"));
+					content = FileManager.read(SharedValues.SCRIPT_UNIFIED_FILE);
 				}
 			}
 
@@ -50,9 +51,10 @@ public class CreateBotAction implements Action
 			(
 				FileManager.getBotSetting(name),
 				"{\"optimization\":1," +
-				"\"useUnifiedParams\":" + isUnified + "," +
-				"\"offOnRuntimeError\":" + isOffError + "," +
-				"\"power\":false}"
+				"\"use_unified_params\":" + isUnified + "," +
+				"\"off_on_runtime_error\":" + isOffError + "," +
+				"\"power\":false," +
+				"\"ignore_api_off\":false}"
 			);
 		}
 	}

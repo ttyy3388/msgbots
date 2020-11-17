@@ -10,6 +10,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.Region;
 
+import java.util.Collection;
+
 // @DefaultProperty("items")
 public class VBox<T> extends javafx.scene.layout.VBox
 {
@@ -96,6 +98,11 @@ public class VBox<T> extends javafx.scene.layout.VBox
 		getChildren().addAll(list);
 	}
 
+	public void setItem(Node item)
+	{
+		getItems().setAll(item);
+	}
+
 	public void setItem(int index, Node item)
 	{
 		getItems().set(index, item);
@@ -104,6 +111,11 @@ public class VBox<T> extends javafx.scene.layout.VBox
 	public void setItems(Node... items)
 	{
 		getItems().setAll(items);
+	}
+
+	public void setItems(Collection<? extends Node> collection)
+	{
+		getItems().setAll(collection);
 	}
 
 	public void setFittable(boolean fittable)
@@ -125,6 +137,7 @@ public class VBox<T> extends javafx.scene.layout.VBox
 	{
 		return fittable.get();
 	}
+
 
 	public Node getItem(int index)
 	{

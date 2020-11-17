@@ -1,9 +1,11 @@
 package org.beuwi.msgbots.platform.gui.dialog;
 
 import javafx.css.PseudoClass;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
@@ -22,7 +24,7 @@ import org.beuwi.msgbots.platform.win.WindowFrame;
 import org.beuwi.msgbots.platform.win.WindowType;
 import org.beuwi.msgbots.setting.GlobalSettings;
 
-public class DialogBoxFrame extends ShadowPanel
+public abstract class DialogBoxFrame extends ShadowPanel
 {
 	private static final String DEFAULT_STYLE_CLASS = "dialog-box";
 	private static final Insets DEFAULT_PADDING_INSETS = new Insets(5.0);
@@ -145,6 +147,20 @@ public class DialogBoxFrame extends ShadowPanel
 			stage.close();
 		});
 
+		/* ------------------------------------------------------ */
+
+		btnAction.addEventHandler(ActionEvent.ACTION, event ->
+		{
+			this.action();
+		});
+
+		btnCancel.addEventHandler(ActionEvent.ACTION, event ->
+		{
+			this.close();
+		});
+
+		/* ------------------------------------------------------ */
+
 		stage.focusedProperty().addListener(change ->
 		{
 			pseudoClassStateChanged(FOCUSED_PSEUDO_CLASS, stage.isFocused());
@@ -155,6 +171,7 @@ public class DialogBoxFrame extends ShadowPanel
 			switch (event.getCode())
 			{
 				case ESCAPE : stage.close(); break;
+				case ENTER : this.action(); break;
 			}
 		});
 
@@ -171,4 +188,8 @@ public class DialogBoxFrame extends ShadowPanel
 	{
 		stage.close();
 	}
+
+	public abstract void open();
+	// public abstract void init();
+	public abstract void action();
 }

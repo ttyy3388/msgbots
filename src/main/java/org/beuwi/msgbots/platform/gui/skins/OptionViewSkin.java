@@ -1,15 +1,14 @@
 package org.beuwi.msgbots.platform.gui.skins;
 
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import org.beuwi.msgbots.platform.gui.control.Label;
+import org.beuwi.msgbots.platform.gui.control.Navi;
+import org.beuwi.msgbots.platform.gui.control.OptionBox;
 import org.beuwi.msgbots.platform.gui.control.OptionView;
 import org.beuwi.msgbots.platform.gui.control.SkinBase;
 import org.beuwi.msgbots.platform.gui.control.VBox;
-import org.beuwi.msgbots.platform.gui.layout.StackPanel;
 
 public class OptionViewSkin extends SkinBase<OptionView>
 {
@@ -19,7 +18,7 @@ public class OptionViewSkin extends SkinBase<OptionView>
     // private final StackPanel header = new StackPanel();
 
     private final Label title = new Label();
-    private final StackPanel content = new StackPanel();
+    private final VBox content = new VBox();
 
     private final VBox root = new VBox(title, content);
 
@@ -32,9 +31,10 @@ public class OptionViewSkin extends SkinBase<OptionView>
         super(control);
 
         title.setText(control.getTitle());
-        content.setItem(control.getContent());
-
         title.addStyleClass("h2");
+
+        content.setItems(control.getItems());
+        content.setSpacing(30.0);
         content.addStyleClass("content");
 
         root.setSpacing(DEFAULT_SPACING_VALUE);
@@ -57,9 +57,9 @@ public class OptionViewSkin extends SkinBase<OptionView>
             } */
         });
 
-        control.getContentProperty().addListener(change ->
+        control.getItems().addListener((ListChangeListener<Node>) change ->
         {
-            content.setItem(control.getContent());
+            content.setItems(control.getItems());
         });
 
         this.setItem(root);

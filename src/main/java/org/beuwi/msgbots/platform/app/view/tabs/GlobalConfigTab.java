@@ -1,19 +1,15 @@
 package org.beuwi.msgbots.platform.app.view.tabs;
 
 import javafx.collections.ObservableMap;
-import javafx.scene.layout.StackPane;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
+import org.beuwi.msgbots.platform.gui.control.Bot;
 import org.beuwi.msgbots.platform.gui.control.Navi;
 import org.beuwi.msgbots.platform.gui.control.NaviView;
-import org.beuwi.msgbots.platform.gui.control.OptionBox;
+import org.beuwi.msgbots.platform.gui.control.OptionView;
 import org.beuwi.msgbots.platform.gui.control.Tab;
-import org.beuwi.msgbots.platform.gui.control.TabView;
-import org.beuwi.msgbots.platform.gui.control.VBox;
-import org.beuwi.msgbots.platform.gui.layout.StackPanel;
-
-import java.util.List;
+import org.beuwi.msgbots.platform.gui.enums.ConfigType;
 
 public class GlobalConfigTab implements View
 {
@@ -32,6 +28,34 @@ public class GlobalConfigTab implements View
 		namespace = loader.getNamespace();
 		root = loader.getRoot();
 		component = loader.getComponent();
+
+		new BotNaviTab().init();
+	}
+
+	private static class BotNaviTab implements View
+	{
+		private static Navi root;
+		private static NaviView component;
+
+		@Override
+		public void init()
+		{
+			root = GlobalConfigTab.getComponent().getNavi("Bots");
+			component = (NaviView) root.getContent();
+
+			for (String name : FileManager.getBotNames())
+			{
+				final FormLoader loader = new FormLoader("view", "bot-option-view");
+
+				OptionView control = loader.getRoot();
+
+				control.setType(ConfigType.SCRIPT);
+				control.setName(name);
+				control.setTitle(name);
+
+				component.addNavi(new Navi(name, control));
+			}
+		}
 	}
 
 	public static Tab getRoot()

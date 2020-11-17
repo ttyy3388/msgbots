@@ -32,6 +32,11 @@ public class Label extends javafx.scene.control.Label
 		this.setGraphic(image);
 	}
 
+	public <T> void setText(T value)
+	{
+		super.setText("" + value);
+	}
+
 	public void addStyleClass(String style)
 	{
 		getStyleClass().add(style);

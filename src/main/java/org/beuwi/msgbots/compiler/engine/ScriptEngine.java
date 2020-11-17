@@ -17,6 +17,7 @@ import org.beuwi.msgbots.manager.LogManager;
 import org.beuwi.msgbots.platform.app.view.actions.SaveEditorAreaTabAction;
 import org.beuwi.msgbots.platform.gui.enums.LogType;
 import org.beuwi.msgbots.setting.GlobalSettings;
+import org.beuwi.msgbots.setting.ScriptSettings;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ImporterTopLevel;
@@ -59,12 +60,12 @@ public class ScriptEngine
 
 		File file = FileManager.getBotScript(name);
 
-		if (GlobalSettings.getBoolean("program.compile_auto_save"))
+		if (GlobalSettings.getBoolean("program:compile_auto_save"))
 		{
 			SaveEditorAreaTabAction.execute(name);
 		}
 
-		int optimization = 1;
+		int optimization = ScriptSettings.get(name).getInt("optimization");
 
 		// Parse Context
 		Context context = Context.enter();
@@ -185,7 +186,14 @@ public class ScriptEngine
 
 			if (responder != null)
 			{
-				responder.call(context, scope, scope, new Object[] { room, message, sender, isGroupChat, new Replier(), imageDB, packageName });
+				if (ScriptSettings.get(name).getBoolean("use_unified_params"))
+				{
+					responder.call(context, scope, scope, new Object[] { new ResponseParameters(room, message, sender, isGroupChat, new Replier(), imageDB, packageName) });
+				}
+				else
+				{
+					responder.call(context, scope, scope, new Object[] { room, message, sender, isGroupChat, new Replier(), imageDB, packageName });
+				}
 			}
 
 			Context.exit();
@@ -193,6 +201,11 @@ public class ScriptEngine
 		catch (Throwable e)
 		{
 			LogManager.error("Runtime Error : " + e.toString() + " : " + name);
+
+			if (ScriptSettings.get(name).getBoolean("off_on_runtime_error"))
+			{
+				BotManager.setPower(name, false);
+			}
 
 			e.printStackTrace();
 		}

@@ -28,10 +28,10 @@ public class ScriptLogTab implements View
 		root = loader.getRoot();
 		component = loader.getComponent();
 
-		FileManager.link(SharedValues.GLOBAL_LOG_FILE, () ->
+		/* FileManager.link(SharedValues.GLOBAL_LOG_FILE, () ->
 		{
 			component.setItems(LogManager.load(SharedValues.GLOBAL_LOG_FILE));
-		});
+		}); */
 	}
 
 	public static Tab getRoot()

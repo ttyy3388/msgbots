@@ -1,34 +1,59 @@
 package org.beuwi.msgbots.setting;
 
-import org.beuwi.msgbots.manager.FileManager;
-import org.beuwi.msgbots.openapi.JsonObject;
-
 import java.io.File;
 
-public class ScriptSettings {
+import org.beuwi.msgbots.manager.FileManager;
+import org.beuwi.msgbots.openapi.JsonObject;
+import org.beuwi.msgbots.platform.util.SharedValues;
 
-    /* public static class Settings extends org.beuwi.msgbots.openapi.Settings
+public class ScriptSettings
+{
+	// Name : Script Name
+	public static ScriptSettings get(String name)
     {
-        private final File file;
+        return new ScriptSettings(name);
+    }
 
-        public Settings(String name)
-        {
-            this.file = FileManager.getBotSetting(name);
+    private final JsonObject json;
+    private final File file;
 
-            try
-            {
-                this.putAll(new JsonObject(file));
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
+    private ScriptSettings(String name)
+    {
+        file = FileManager.getBotSetting(name);
+        json = new JsonObject(file);
+    }
 
-        @Override
-        public void apply()
-        {
-            FileManager.save(file, this.toBeautifyString());
-        }
-    } */
+	public <T> T getData(String address)
+	{
+		return (T) json.get(address);
+	}
+
+	public int getInt(String address)
+	{
+		return Integer.valueOf("" + getData(address));
+	}
+
+	public String getString(String address)
+	{
+		return String.valueOf("" + getData(address));
+	}
+
+	public boolean getBoolean(String address)
+	{
+		return Boolean.valueOf("" + getData(address));
+	}
+
+	public <T> void setData(String address, T value)
+	{
+		json.put(address, value);
+
+		try
+		{
+			FileManager.save(file, json.toString());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 }

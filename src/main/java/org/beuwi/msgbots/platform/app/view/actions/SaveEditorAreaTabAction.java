@@ -25,13 +25,20 @@ public class SaveEditorAreaTabAction implements Action
 
 	public static void execute(Tab tab)
 	{
-		Node content = tab.getContent();
-
-		if (content instanceof Editor)
+		if (tab != null)
 		{
-			Editor editor = (Editor) content;
+			Node content = tab.getContent();
 
-			FileManager.save(FileManager.getBotScript(tab.getText()), editor.getText());
+			if (content instanceof Editor)
+			{
+				Editor editor = (Editor) content;
+
+				FileManager.save(FileManager.getBotScript(tab.getText()), editor.getText());
+			}
+		}
+		else
+		{
+			return ;
 		}
 	}
 

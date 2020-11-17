@@ -11,7 +11,7 @@
 
 .root
 {
-	-fx-font-family: 'Microsoft Sans Serif', 'D2Coding';
+	-fx-font-family: /* 'Roboto', */ 'Microsoft Sans Serif', 'D2Coding';
 	-fx-font-size: 12;
 }
 
@@ -30,7 +30,7 @@
 .h1 { -fx-font-size: 25; }
 .h2 { -fx-font-size: 20; }
 .h3 { -fx-font-size: 18; }
-.h4 { -fx-font-size: 14; }
+.h4 { -fx-font-size: 15; }
 .h5 { -fx-font-size: 12; }
 
 /* IMAGE */

@@ -3,15 +3,16 @@ package org.beuwi.msgbots.platform.app.view.dialogs;
 import javafx.application.Platform;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import org.beuwi.msgbots.openapi.FormLoader;
+import org.beuwi.msgbots.platform.app.action.DeleteBotAction;
 import org.beuwi.msgbots.platform.app.action.RenameBotAction;
 import org.beuwi.msgbots.platform.gui.control.Button;
+import org.beuwi.msgbots.platform.gui.control.Label;
 import org.beuwi.msgbots.platform.gui.control.TextField;
 import org.beuwi.msgbots.platform.gui.dialog.DialogBoxWrap;
 
-public class RenameBotDialog extends DialogBoxWrap
+public class DeleteBotDialog extends DialogBoxWrap
 {
 	private final ObservableMap<String, Object> nameSpace;
 
@@ -19,55 +20,40 @@ public class RenameBotDialog extends DialogBoxWrap
 
 	private final AnchorPane root;
 
-	// Script Name Text Field
-	@FXML private TextField txfScriptName;
+	@FXML private Label lblDeleteMessage;
 
-	private final Button btnRename;
+	private final Button btnDelete;
 	private final Button btnCancel;
 
 	private final String name;
 
-	public RenameBotDialog(String name)
+	public DeleteBotDialog(String name)
 	{
 		this.name = name;
 
-		loader = new FormLoader("dialog", "rename-bot-dialog", this);
+		loader = new FormLoader("dialog", "delete-bot-dialog", this);
 		nameSpace = loader.getNamespace();
 		root = loader.getRoot();
 
-		btnRename = getActionButton();
+		btnDelete = getActionButton();
 		btnCancel = getCancelButton();
 
-		btnRename.setText("Rename");
+		lblDeleteMessage.setText("Are you sure you want to delete '" + name + "' ?");
 
-		txfScriptName.setText(name);
-		txfScriptName.getTextProperty().addListener(change ->
-		{
-			btnRename.setDisable(txfScriptName.getText().isEmpty());
-		});
-
-		Platform.runLater(() ->
-		{
-			txfScriptName.requestFocus();
-		});
+		btnDelete.setText("Delete");
 	}
 
 	@Override
 	public void open()
 	{
 		setContent(root);
-		setTitle("Rename Bot");
+		setTitle("Delete Bot");
 		create();
 	}
 
 	@Override
 	public void action()
 	{
-		if (txfScriptName.getText().isEmpty())
-		{
-			return ;
-		}
-
-		RenameBotAction.execute(name, txfScriptName.getText());
+		DeleteBotAction.execute(name);
 	}
 }

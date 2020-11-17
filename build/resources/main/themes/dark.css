@@ -345,6 +345,27 @@
 	-fx-padding: 0.5 0 0.5 0;
 }
 
+/* SLIDER */
+.slider .label
+{
+    -fx-text-fill: #FFFFFF;
+}
+.slider .track
+{
+    -fx-background-color: #555555;
+    -fx-padding: 1 0 1 0;
+}
+.slider .thumb
+{
+    -fx-background-radius: 10;
+    -fx-background-color: #007ACC;
+    -fx-padding: 10 3 10 3;
+}
+/* .slider .thumb:focused
+{
+    -fx-background-color: #0000FF;
+} */
+
 /* TAB */
 .tab
 {

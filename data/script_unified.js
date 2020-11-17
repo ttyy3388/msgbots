@@ -9,7 +9,7 @@
  * (String) packageName
  */
 
-function response(parmas) 
+function response(params)
 {
 
 }

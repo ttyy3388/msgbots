@@ -5,9 +5,8 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
-import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.gui.skins.OptionBoxSkin;
-import org.beuwi.msgbots.setting.GlobalSettings;
+import org.beuwi.msgbots.setting.SharedSettings;
 
 // Option Box
 public class OptionBox extends Control
@@ -16,13 +15,18 @@ public class OptionBox extends Control
 
 	private final StringProperty title = new SimpleStringProperty();
 	private final ObjectProperty<Node> content = new SimpleObjectProperty<>();
+
+	// address : "type:name:option" > "global:program:start_auto_compile"
 	private final StringProperty address = new SimpleStringProperty();
+	private final StringProperty option = new SimpleStringProperty();
+
+	private OptionView parent;
 
 	public OptionBox()
 	{
 		addStyleClass(DEFAULT_STYLE_CLASS);
 
-		address.addListener(event ->
+		getAddressProperty().addListener(event ->
 		{
 			if (getContent() instanceof Button)
 			{
@@ -32,69 +36,85 @@ public class OptionBox extends Control
 			{
 				CheckBox control = (CheckBox) getContent();
 
-				control.setSelected(GlobalSettings.getData(getAddress()));
+				control.setSelected(SharedSettings.getData(getAddress()));
 
 				control.getSelectedProperty().addListener(change ->
 				{
-					GlobalSettings.setData(getAddress(), control.isSelected());
+					SharedSettings.setData(getAddress(), control.isSelected());
 				});
 			}
 			else if (getContent() instanceof TextArea)
 			{
 				TextArea control = (TextArea) getContent();
 
-				control.setText(GlobalSettings.getData(getAddress()));
+				control.setText(SharedSettings.getData(getAddress()));
 
                 control.getTextProperty().addListener(change ->
                 {
-                    GlobalSettings.setData(getAddress(), control.getText());
+                    SharedSettings.setData(getAddress(), control.getText());
                 });
 			}
 			else if (getContent() instanceof TextField)
 			{
 				TextField control = (TextField) getContent();
 
-				control.setText(GlobalSettings.getData(getAddress()));
+				control.setText(SharedSettings.getData(getAddress()));
 
 				control.getTextProperty().addListener(change ->
 				{
-                   	GlobalSettings.setData(getAddress(), control.getText());
+                   	SharedSettings.setData(getAddress(), control.getText());
 				});
 			}
 			else if (getContent() instanceof ToggleButton)
 			{
 				ToggleButton control = (ToggleButton) getContent();
 
-				control.setSelected(GlobalSettings.getData(getAddress()));
+				control.setSelected(SharedSettings.getData(getAddress()));
 
 				control.getSelectedProperty().addListener(change ->
 				{
-                    GlobalSettings.setData(getAddress(), control.isSelected());
+                    SharedSettings.setData(getAddress(), control.isSelected());
 				});
 			}
 			else if (getContent() instanceof ToggleSwitch)
 			{
 				ToggleSwitch control = (ToggleSwitch) getContent();
 
-				control.setSelected(GlobalSettings.getData(getAddress()));
+				control.setSelected(SharedSettings.getData(getAddress()));
 
 				control.getSelectedProperty().addListener(change ->
 				{
-                    GlobalSettings.setData(getAddress(), control.isSelected());
+                    SharedSettings.setData(getAddress(), control.isSelected());
+				});
+			}
+			else if (getContent() instanceof Slider)
+			{
+				Slider control = (Slider) getContent();
+
+				control.setValue(SharedSettings.getInt(getAddress()));
+
+				control.getValueProperty().addListener(change ->
+				{
+					SharedSettings.setData(getAddress(), control.getValue());
 				});
 			}
 			/* else if (getContent() instanceof ComboBox)
 			{
 				ComboBox control = (ComboBox) getContent();
 
-				control.select(ThemeType.convert(GlobalSettings.getData(getAddress())));
+				control.select(ThemeType.convert(SharedSettings.getData(getAddress())));
 
 				control.getSelectedItemProperty().addListener(change ->
 				{
-					GlobalSettings.setData(getAddress(), control.getSelectedItem().toString());
+					SharedSettings.setData(getAddress(), control.getSelectedItem().toString());
 				});
 			} */
 		});
+	}
+
+	public void setView(OptionView parent)
+	{
+		this.parent = parent;
 	}
 
 	public void setTitle(String title)
@@ -107,14 +127,29 @@ public class OptionBox extends Control
 		this.content.set(content);
 	}
 
-	public void setAddress(String address)
+	public void setOption(String option)
+	{
+		this.option.set(option);
+	}
+
+	protected void setAddress(String address)
 	{
 		this.address.set(address);
+	}
+
+	public OptionView getView()
+	{
+		return parent;
 	}
 
 	public String getTitle()
 	{
 		return title.get();
+	}
+
+	public String getOption()
+	{
+		return option.get();
 	}
 
 	public String getAddress()
@@ -130,6 +165,11 @@ public class OptionBox extends Control
 	public StringProperty getTitleProperty()
 	{
 		return title;
+	}
+
+	public StringProperty getOptionProperty()
+	{
+		return option;
 	}
 
 	public StringProperty getAddressProperty()

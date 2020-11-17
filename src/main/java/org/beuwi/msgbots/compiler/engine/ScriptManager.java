@@ -14,7 +14,7 @@ public class ScriptManager extends ScriptEngine
 
 	public static void preInit()
 	{
-		if (!GlobalSettings.getBoolean("program.start_auto_compile"))
+		if (!GlobalSettings.getBoolean("program:start_auto_compile"))
 		{
 			return ;
 		}
@@ -38,7 +38,7 @@ public class ScriptManager extends ScriptEngine
 		}
 	}
 
-	public static boolean initBot(String name, boolean isManual, boolean ignoreError)
+	public static boolean initScript(String name, boolean isManual, boolean ignoreError)
 	{
 		return ScriptEngine.initialize(name, isManual, ignoreError);
 	}

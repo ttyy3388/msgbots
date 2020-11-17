@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
 import org.beuwi.msgbots.compiler.engine.ScriptManager;
 import org.beuwi.msgbots.platform.app.view.MainView.MainWindow;
 import org.beuwi.msgbots.platform.app.view.actions.RefreshBotLogsAction;
@@ -31,9 +32,20 @@ import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalLogTab;
 import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
+import org.beuwi.msgbots.platform.util.SharedValues;
 
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Paths;
+import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
+import java.util.List;
+
+import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
+import static java.nio.file.StandardWatchEventKinds.OVERFLOW;
 
 public class Launcher extends Application
 {
@@ -87,7 +99,7 @@ public class Launcher extends Application
 					{
 						RefreshBotListAction.execute();
 						RefreshBotLogsAction.execute();
-					);
+					});
 				}
 
 				if (!WATCH_KEY.reset())

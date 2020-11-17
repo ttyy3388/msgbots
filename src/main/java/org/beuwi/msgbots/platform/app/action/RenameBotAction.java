@@ -20,7 +20,7 @@ public class RenameBotAction implements Action
 
     public static void execute(File before, File after)
     {
-        if (before.exists())
+        if (after.exists())
         {
             System.out.println("file exists");
         }

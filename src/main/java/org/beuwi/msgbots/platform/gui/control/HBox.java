@@ -10,6 +10,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.Region;
 
+import java.util.Collection;
+
 @DefaultProperty("items")
 public class HBox<T> extends javafx.scene.layout.HBox
 {
@@ -110,12 +112,22 @@ public class HBox<T> extends javafx.scene.layout.HBox
 		getItems().setAll(items);
 	}
 
+	public void setItems(Collection<? extends Node> collection)
+	{
+		getItems().setAll(collection);
+	}
+
 	public void setFittable(boolean fittable)
 	{
 		this.fittable.set(fittable);
 	}
 
 	public void addStyleClass(String style)
+	{
+		getStyleClass().add(style);
+	}
+
+	public void setStyleClass(String style)
 	{
 		getStyleClass().setAll(style);
 	}

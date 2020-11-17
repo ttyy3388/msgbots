@@ -7,6 +7,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.input.KeyCode;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.action.CreateBotAction;
+import org.beuwi.msgbots.platform.gui.control.Button;
 import org.beuwi.msgbots.platform.gui.control.TextField;
 import org.beuwi.msgbots.platform.gui.dialog.DialogBoxWrap;
 import org.beuwi.msgbots.platform.gui.control.VBox;
@@ -27,21 +28,23 @@ public class CreateBotDialog extends DialogBoxWrap
 	// Off On Runtime Error
 	@FXML private CheckBox chkIsOffError;
 
+	private final Button btnCreate;
+	private final Button btnCancel;
+
 	public CreateBotDialog()
 	{
 		loader = new FormLoader("dialog", "create-bot-dialog", this);
 		nameSpace = loader.getNamespace();
 		root = loader.getRoot();
 
-		setOnKeyPressed(event ->
+		btnCreate = getActionButton();
+		btnCancel = getCancelButton();
+
+		btnCreate.setText("Create");
+
+		txfScriptName.getTextProperty().addListener(change ->
 		{
-			if (event.getCode().equals(KeyCode.ENTER))
-			{
-				if (!txfScriptName.getText().isEmpty())
-				{
-					this.action();
-				}
-			}
+			btnCreate.setDisable(txfScriptName.getText().isEmpty());
 		});
 
 		Platform.runLater(() ->
@@ -61,6 +64,11 @@ public class CreateBotDialog extends DialogBoxWrap
 	@Override
 	public void action()
 	{
+		if (txfScriptName.getText().isEmpty())
+		{
+			return ;
+		}
+
 		CreateBotAction.execute
 		(
 			txfScriptName.getText(),

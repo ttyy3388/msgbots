@@ -34,6 +34,9 @@ public class ImportBotDialog extends DialogBoxWrap
 	// Off On Runtime Error
 	@FXML private CheckBox chkIsOffError;
 
+	private final Button btnImport;
+	private final Button btnCancel;
+
 	private File file;
 
 	public ImportBotDialog()
@@ -41,6 +44,11 @@ public class ImportBotDialog extends DialogBoxWrap
 		loader = new FormLoader("dialog", "import-bot-dialog", this);
 		nameSpace = loader.getNamespace();
 		root = loader.getRoot();
+
+		btnImport = getActionButton();
+		btnCancel = getCancelButton();
+
+		btnImport.setText("Import");
 
 		btnScriptOpen.setOnAction(event ->
 		{
@@ -56,15 +64,9 @@ public class ImportBotDialog extends DialogBoxWrap
 			}
 		});
 
-		setOnKeyPressed(event ->
+		txfScriptName.getTextProperty().addListener(change ->
 		{
-			if (event.getCode().equals(KeyCode.ENTER))
-			{
-				if (!txfScriptName.getText().isEmpty())
-				{
-					this.action();
-				}
-			}
+			btnImport.setDisable(txfScriptName.getText().isEmpty());
 		});
 
 		Platform.runLater(() ->
@@ -84,6 +86,11 @@ public class ImportBotDialog extends DialogBoxWrap
 	@Override
 	public void action()
 	{
+		if (txfScriptName.getText().isEmpty())
+		{
+			return ;
+		}
+
 		CreateBotAction.execute
 		(
 			txfScriptName.getText(),
