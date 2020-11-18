@@ -44,6 +44,11 @@ public class StackPanel extends javafx.scene.layout.StackPane
 		getStyleClass().add(style);
 	}
 
+	public void setStyleClass(String style)
+	{
+		getStyleClass().setAll(style);
+	}
+
 	public Node getItem(int index)
 	{
 		return getItems().get(index);

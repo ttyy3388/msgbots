@@ -4,6 +4,7 @@ import javafx.collections.ObservableMap;
 import javafx.scene.layout.StackPane;
 import org.beuwi.msgbots.compiler.engine.ScriptManager;
 import org.beuwi.msgbots.openapi.FormLoader;
+import org.beuwi.msgbots.platform.app.action.OpenBrowserAction;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenProgramTabAction;
@@ -13,9 +14,11 @@ import org.beuwi.msgbots.platform.app.view.actions.ToggleSideAreaAction;
 import org.beuwi.msgbots.platform.app.view.dialogs.CreateBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.ImportBotDialog;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
+import org.beuwi.msgbots.platform.app.view.tabs.WelcomeGuideTab;
 import org.beuwi.msgbots.platform.gui.control.Menu;
 import org.beuwi.msgbots.platform.gui.control.MenuBar;
 import org.beuwi.msgbots.platform.gui.control.Separator;
+import org.beuwi.msgbots.platform.util.SharedValues;
 
 public class MenuBarPart implements View
 {
@@ -87,7 +90,7 @@ public class MenuBarPart implements View
 			new Separator(),
 			new Menu("About Program"),
 			new Separator(),
-			new Menu("Welcome Guide")
+			new Menu("Welcome Guide", event -> OpenProgramTabAction.execute(WelcomeGuideTab.getRoot()))
 		);
 	}
 

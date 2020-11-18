@@ -1,12 +1,12 @@
 /* *
 {
-    -fx-background-radius: 0;
-    -fx-background-insets: 0;
-    -fx-background-color: transparent;
-    -fx-border-radius: 0;
-    -fx-border-insets: 0;
-    -fx-border-color: transparent;
-    -fx-border-width: 0;
+	-fx-background-radius: 0;
+	-fx-background-insets: 0;
+	-fx-background-color: transparent;
+	-fx-border-radius: 0;
+	-fx-border-insets: 0;
+	-fx-border-color: transparent;
+	-fx-border-width: 0;
 } */
 
 .root
@@ -15,15 +15,21 @@
 	-fx-font-size: 12;
 }
 
+/* FONT SMOOTHING TYPE */
 .text
 {
-    -fx-font-smoothing-type: lcd;
+	 -fx-font-smoothing-type: lcd;
+}
+.web-view
+{
+	-fx-font-smoothing-type: gray;
+	-fx-context-menu-enabled: false;
 }
 
 /* Alignment */
 /* .button, .label
 {
-    -fx-alignment: center;
+	-fx-alignment: center;
 } */
 
 /* TEXT SIZE */

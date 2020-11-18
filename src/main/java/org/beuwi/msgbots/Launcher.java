@@ -7,6 +7,10 @@ import javafx.stage.Stage;
 
 import org.beuwi.msgbots.compiler.engine.ScriptManager;
 import org.beuwi.msgbots.platform.app.view.MainView.MainWindow;
+import org.beuwi.msgbots.platform.app.view.actions.AddBotLogAction;
+import org.beuwi.msgbots.platform.app.view.actions.ChangeThemeAction;
+import org.beuwi.msgbots.platform.app.view.actions.OpenBotLogTabAction;
+import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
 import org.beuwi.msgbots.platform.app.view.actions.RefreshBotLogsAction;
 import org.beuwi.msgbots.platform.app.view.actions.SaveEditorAreaTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.SendChatMessageAction;
@@ -30,22 +34,12 @@ import org.beuwi.msgbots.platform.app.view.tabs.BotListTab;
 import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalLogTab;
+import org.beuwi.msgbots.platform.app.view.tabs.WelcomeGuideTab;
 import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
-import org.beuwi.msgbots.platform.util.SharedValues;
 
-import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Paths;
-import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
-import java.util.List;
-
-import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
-import static java.nio.file.StandardWatchEventKinds.OVERFLOW;
 
 public class Launcher extends Application
 {
@@ -138,6 +132,7 @@ public class Launcher extends Application
 			new DebugRoomTab().init();
 			new GlobalConfigTab().init();
 			new GlobalLogTab().init();
+			new WelcomeGuideTab().init();
 
 			new DebugAreaPart().init();
 			new EditorAreaPart().init();
@@ -147,13 +142,18 @@ public class Launcher extends Application
 			new StatusBarPart().init();
 			new MainAreaPart().init();
 
-			new SendChatMessageAction().init();
+			new AddBotLogAction().init();
 			new AddEditorAreaTabAction().init();
 			new AddNoticeMessageAction().init();
+			new ChangeThemeAction().init();
+			new OpenBotLogTabAction().init();
+			new OpenDialogBoxAction().init();
+			new OpenProgramTabAction().init();
 			new OpenScriptTabAction().init();
 			new RefreshBotListAction().init();
 			new RefreshBotLogsAction().init();
 			new SaveEditorAreaTabAction().init();
+			new SendChatMessageAction().init();
 			new ToggleDebugAreaAction().init();
 			new ToggleMenuBarAction().init();
 			new ToggleSideAreaAction().init();

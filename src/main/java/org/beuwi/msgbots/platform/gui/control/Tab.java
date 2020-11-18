@@ -29,11 +29,7 @@ public class Tab extends HBox
 
 	private final ObjectProperty<Node> content = new SimpleObjectProperty(null);
 	private final BooleanProperty closable = new SimpleBooleanProperty(true);
-	private final ObjectProperty<Type> type = new SimpleObjectProperty(null);
-
-	public enum Type {
-		SCRIPT, PROGRAM
-	}
+	// private final ObjectProperty<Type> type = new SimpleObjectProperty(null);
 
 	// Tab Close Button ( Action Button )
 	private final Button button = new Button();
@@ -41,14 +37,9 @@ public class Tab extends HBox
 	// Tab Title Label
 	private final Label label = new Label();
 
-	private final ContextMenu menu = new ContextMenu
-	(
-		new Menu("Close", "Ctrl + W"),
-		new Menu("Close Others"),
-		new Menu("Close All Tabs")
-	);
+	private final ContextMenu menu;
 
-	private TabView control;
+	private TabView parent;
 
 	{
 		HBox.setHgrow(label, Priority.ALWAYS);
@@ -77,6 +68,13 @@ public class Tab extends HBox
 		{
 			setContent(content);
 		}
+
+		menu = new ContextMenu
+		(
+			new Menu("Close", "Ctrl + W", event -> parent.close(this)),
+			new Menu("Close Others"),
+			new Menu("Close All Tabs", event -> parent.close())
+		);
 
 		menu.setNode(this);
 
@@ -114,9 +112,9 @@ public class Tab extends HBox
 		addStyleClass(DEFAULT_STYLE_CLASS);
 	}
 
-	public void setView(TabView control)
+	public void setView(TabView parent)
 	{
-		this.control = control;
+		this.parent = parent;
 	}
 
 	public void setText(String text)
@@ -163,7 +161,7 @@ public class Tab extends HBox
 
 	public TabView getView()
 	{
-		return control;
+		return parent;
 	}
 
 	public boolean isClosable()
@@ -173,7 +171,7 @@ public class Tab extends HBox
 
 	public boolean isSelected()
 	{
-		return control.getSelectedTab().equals(this);
+		return parent.getSelectedTab().equals(this);
 	}
 
 	public BooleanProperty getClosableProperty()

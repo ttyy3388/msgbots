@@ -7,17 +7,17 @@ import org.beuwi.msgbots.platform.gui.control.TabView;
 
 public class AddEditorAreaTabAction implements Action
 {
-	private static TabView pane;
+	private static TabView control;
 
 	@Override
 	public void init()
 	{
-		pane = EditorAreaPart.getComponent();
+		control = EditorAreaPart.getComponent();
 	}
 
 	public static void execute(Tab tab)
 	{
-		pane.addTab(tab);
+		control.addTab(tab);
 	}
 
 	@Override

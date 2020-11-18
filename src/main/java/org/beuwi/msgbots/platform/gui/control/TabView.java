@@ -215,6 +215,11 @@ public class TabView extends VBox
 		return -1;
 	}
 
+	public void close()
+	{
+		tabs.clear();
+	}
+
 	public void close(Tab tab)
 	{
 		if (!tab.isClosable())

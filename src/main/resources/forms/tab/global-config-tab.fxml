@@ -26,7 +26,7 @@
 <?import org.beuwi.msgbots.platform.gui.enums.ThemeType?>
 <?import org.beuwi.msgbots.platform.gui.editor.Editor?>
 
-<Tab text="GLOBAL SETTINGS" xmlns:fx="http://javafx.com/fxml">
+<Tab text="GLOBAL CONFIG" xmlns:fx="http://javafx.com/fxml">
 	<content>
 		<NaviView>
 			<navis>

@@ -12,6 +12,11 @@ public class ResourceUtils
 		return ResourceUtils.class.getResource(path).toExternalForm();
 	}
 
+	public static String getPage(String page)
+	{
+		return ResourceUtils.class.getResource("/pages/" + page + ".html").toExternalForm();
+	}
+
 	public static InputStream getFont(String name)
 	{
 		return ResourceUtils.class.getResourceAsStream("/fonts/" + name + ".ttf");

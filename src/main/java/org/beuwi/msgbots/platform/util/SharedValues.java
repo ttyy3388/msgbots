@@ -1,6 +1,7 @@
 package org.beuwi.msgbots.platform.util;
 
 import org.beuwi.msgbots.manager.FileManager;
+import org.beuwi.msgbots.platform.gui.control.Document;
 
 import java.io.File;
 
@@ -10,6 +11,11 @@ public class SharedValues
 
 	static {
 	}
+	public static final String WELCOME_GUIDE_PAGE = "welcome-guide-page";
+
+	// public static final Document VIEW_LICENSE_DOCUMENT = new Document("")
+	public static final String PROGRAM_GUIDE_LINK = "https://ttyy3388.gitbook.io/";
+	// public static final Document ABOUT_PROGRAM_DOCUMENT = new Document();
 
 	/* Paths */
 

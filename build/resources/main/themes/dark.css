@@ -193,6 +193,12 @@
 	-fx-padding: 5.5 0 5.5 0;
 }
 
+/* DOCUMENT */
+.document
+{
+    -fx-font-size: 15;
+}
+
 /* EDITOR */
 .editor
 {
