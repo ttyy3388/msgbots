@@ -18,5 +18,9 @@
 		"compile_auto_save":true,
 		"start_auto_compile":true,
 		"color_theme":"light"
+	},
+	"connection":{
+		"socket_local_port": "9500",
+		"socket_remote_port": "9500"
 	}
 }
