@@ -1,6 +1,7 @@
 package org.beuwi.msgbots.platform.gui.layout;
 
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 
 // @DefaultProperty("center")

@@ -49,13 +49,14 @@ public class OptionView extends Control
 
 						getNameProperty().addListener(event ->
 						{
-							String type = this.type.get().toString();
-							String name = this.name.get().toString();
+							String type = this.getType().toString();
+							String name = this.getName();
 							String option = item.getOption();
 
-							System.out.println(type + ":" + name + ":" + option);
-
-							item.setAddress(type + ":" + name + ":" + option);
+							if (option != null)
+							{
+								item.setAddress(type + ":" + name + ":" + option);
+							}
 						});
 					}
 				}

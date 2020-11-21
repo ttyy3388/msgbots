@@ -60,7 +60,7 @@ public class SideAreaPart implements View
 		btnbar.addItem(check, power, compile); */
 	}
 
-	public static AnchorPane getRoot()
+	public static AnchorPanel getRoot()
 	{
 		return root;
 	}

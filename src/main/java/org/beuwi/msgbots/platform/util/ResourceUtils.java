@@ -12,9 +12,9 @@ public class ResourceUtils
 		return ResourceUtils.class.getResource(path).toExternalForm();
 	}
 
-	public static String getPage(String page)
+	public static String getHtml(String name)
 	{
-		return ResourceUtils.class.getResource("/pages/" + page + ".html").toExternalForm();
+		return ResourceUtils.class.getResource("/htmls/" + name + ".html").toExternalForm();
 	}
 
 	public static InputStream getFont(String name)
@@ -40,10 +40,5 @@ public class ResourceUtils
 	public static String getTheme(String name)
 	{
 		return ResourceUtils.class.getResource("/themes/" + name + ".css").toExternalForm();
-	}
-
-	public static String getHtml(String name)
-	{
-		return ResourceUtils.class.getResource("/test/" + name + ".html").toExternalForm();
 	}
 }

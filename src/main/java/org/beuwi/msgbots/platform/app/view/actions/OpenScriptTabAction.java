@@ -2,7 +2,7 @@ package org.beuwi.msgbots.platform.app.view.actions;
 
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.impl.Action;
-import org.beuwi.msgbots.platform.app.view.parts.EditorAreaPart;
+import org.beuwi.msgbots.platform.app.view.parts.MainAreaPart;
 import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.gui.control.TabView;
 import org.beuwi.msgbots.platform.gui.editor.Editor;
@@ -16,7 +16,7 @@ public class OpenScriptTabAction implements Action
 	@Override
 	public void init()
 	{
-		control = EditorAreaPart.getComponent();
+		control = MainAreaPart.getComponent();
 	}
 
 	public static void execute(String name)
@@ -29,7 +29,7 @@ public class OpenScriptTabAction implements Action
 		{
 			File file = FileManager.getBotScript(name);
 
-			AddEditorAreaTabAction.execute(new Tab(name, new Editor(file)));
+			AddMainAreaTabAction.execute(new Tab(name, new Editor(file)));
 		}
 	}
 

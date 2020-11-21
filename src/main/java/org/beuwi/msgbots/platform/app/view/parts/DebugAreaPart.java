@@ -9,6 +9,7 @@ import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalLogTab;
 import org.beuwi.msgbots.platform.gui.control.TabView;
+import org.beuwi.msgbots.platform.gui.layout.AnchorPanel;
 
 public class DebugAreaPart implements View
 {
@@ -19,7 +20,7 @@ public class DebugAreaPart implements View
 
 	private static FormLoader loader;
 
-	private static AnchorPane root;
+	private static AnchorPanel root;
 
 	private static TabView component;
 
@@ -51,7 +52,7 @@ public class DebugAreaPart implements View
 		component.select(DebugRoomTab.getRoot());
 	}
 
-	public static AnchorPane getRoot()
+	public static AnchorPanel getRoot()
 	{
 		return root;
 	}

@@ -4,20 +4,17 @@ import javafx.collections.ObservableMap;
 import javafx.scene.layout.StackPane;
 import org.beuwi.msgbots.compiler.engine.ScriptManager;
 import org.beuwi.msgbots.openapi.FormLoader;
-import org.beuwi.msgbots.platform.app.action.OpenBrowserAction;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
+import org.beuwi.msgbots.platform.app.view.actions.OpenDocumentAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenProgramTabAction;
-import org.beuwi.msgbots.platform.app.view.actions.ToggleDebugAreaAction;
-import org.beuwi.msgbots.platform.app.view.actions.ToggleMenuBarAction;
-import org.beuwi.msgbots.platform.app.view.actions.ToggleSideAreaAction;
 import org.beuwi.msgbots.platform.app.view.dialogs.CreateBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.ImportBotDialog;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
-import org.beuwi.msgbots.platform.app.view.tabs.WelcomeGuideTab;
 import org.beuwi.msgbots.platform.gui.control.Menu;
 import org.beuwi.msgbots.platform.gui.control.MenuBar;
 import org.beuwi.msgbots.platform.gui.control.Separator;
+import org.beuwi.msgbots.platform.gui.layout.StackPanel;
 import org.beuwi.msgbots.platform.util.SharedValues;
 
 public class MenuBarPart implements View
@@ -26,7 +23,7 @@ public class MenuBarPart implements View
 
 	private static FormLoader loader;
 
-	private static StackPane root;
+	private static StackPanel root;
 
 	private static MenuBar component;
 
@@ -67,9 +64,9 @@ public class MenuBarPart implements View
 		// View Menu Button
 		component.getMenu(2).setMenus
 		(
-			new Menu("Toggle Menu Bar", "Alt + M", event -> ToggleMenuBarAction.execute()),
-			new Menu("Toggle Side Bar", "Alt + S", event -> ToggleSideAreaAction.execute()),
-			new Menu("Toggle Debug Area", "Alt + D", event -> ToggleDebugAreaAction.execute())
+			new Menu("Toggle Menu Bar", "Alt + M"),
+			new Menu("Toggle Side Bar", "Alt + S"),
+			new Menu("Toggle Debug Area", "Alt + D")
 		);
 
 		// Debug Menu Button
@@ -86,15 +83,15 @@ public class MenuBarPart implements View
 		component.getMenu(4).setMenus
 		(
 			new Menu("View Update List"),
-			new Menu("View License"),
+			new Menu("View License", event -> OpenDocumentAction.execute(SharedValues.VIEW_LICENSE_DOCUMENT)),
 			new Separator(),
-			new Menu("About Program"),
+			new Menu("About Program", event -> OpenDocumentAction.execute(SharedValues.ABOUT_PROGRAM_DOCUMENT)),
 			new Separator(),
-			new Menu("Welcome Guide", event -> OpenProgramTabAction.execute(WelcomeGuideTab.getRoot()))
+			new Menu("Welcome Guide", event -> OpenDocumentAction.execute(SharedValues.WELCOME_GUIDE_DOCUMENT))
 		);
 	}
 
-	public static StackPane getRoot()
+	public static StackPanel getRoot()
 	{
 		return root;
 	}

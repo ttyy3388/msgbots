@@ -285,37 +285,6 @@
 	-fx-background-color: #252526;
 }
 
-/* NOTICE */
-.notice
-{
-	-fx-background-color: #252526;
-	-fx-border-color: transparent;
-	-fx-border-width: 1;
-}
-.notice .label
-{
-	-fx-font-size: 14;
-}
-.notice .title-bar > .label
-{
-	-fx-text-fill: #ffffff;
-}
-.notice .title-bar > .button .icon
-{
-	-fx-background-color: #FFFFFF;
-}
-.notice .title-bar > .button:hover .icon
-{
-	-fx-background-color: #007ACC;
-}
-.notice:focused
-{
-	-fx-border-color: #007ACC;
-}
-
-/* NOTICE AREA */
-.notice-area { }
-
 /* OPTION BOX */
 .option-box .label,
 .option-box .check-box
@@ -423,6 +392,38 @@
 	-fx-border-color: #007ACC;
 }
 
+
+/* TOAST */
+.toast
+{
+	-fx-background-color: #252526;
+	-fx-border-color: transparent;
+	-fx-border-width: 1;
+}
+.toast .title-bar > .button
+{
+    -fx-cursor: hand;
+}
+.toast .title-bar > .button .icon
+{
+	-fx-background-color: #FFFFFF;
+}
+.toast .title-bar > .button:hover .icon
+{
+	-fx-background-color: #007ACC;
+}
+.toast:focused
+{
+	-fx-border-color: #007ACC;
+}
+.toast:hover
+{
+    -fx-background-color: #2A2D2E;
+}
+
+/* TOAST VIEW */
+.toast-view { }
+
 /* TOGGlE SWITCH */
 .toggle-switch
 {
@@ -461,6 +462,9 @@
 	-fx-border-color: #007ACC;
 }
 
+/* TOAST AREA */
+.toast-area { }
+
 /* SIDE AREA */
 .side-area { }
 .side-area .tab
@@ -484,12 +488,12 @@
 	-fx-border-color: transparent;
 }
 
-/* EDITOR AREA */
-.editor-area
+/* MAIN AREA */
+.main-area
 {
 	-fx-background-color: #1E1E1E;
 }
-.editor-area > .tab-view > .tab-content-area > .editor
+.main-area > .tab-view > .tab-content-area > .editor
 {
 	-fx-border-width: 0;
 }

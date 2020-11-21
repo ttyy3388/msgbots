@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import org.beuwi.msgbots.platform.gui.control.TabView?>
+<?import org.beuwi.msgbots.platform.gui.layout.StackPanel?>
+
+<StackPanel styleClass="main-area">
+    <TabView />
+</StackPanel>

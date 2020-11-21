@@ -11,31 +11,28 @@ import org.beuwi.msgbots.platform.app.view.actions.AddBotLogAction;
 import org.beuwi.msgbots.platform.app.view.actions.ChangeThemeAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenBotLogTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
+import org.beuwi.msgbots.platform.app.view.actions.OpenDocumentAction;
 import org.beuwi.msgbots.platform.app.view.actions.RefreshBotLogsAction;
 import org.beuwi.msgbots.platform.app.view.actions.SaveEditorAreaTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.SendChatMessageAction;
-import org.beuwi.msgbots.platform.app.view.actions.AddEditorAreaTabAction;
-import org.beuwi.msgbots.platform.app.view.actions.AddNoticeMessageAction;
+import org.beuwi.msgbots.platform.app.view.actions.AddMainAreaTabAction;
+import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenProgramTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenScriptTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.RefreshBotListAction;
-import org.beuwi.msgbots.platform.app.view.actions.ToggleDebugAreaAction;
-import org.beuwi.msgbots.platform.app.view.actions.ToggleMenuBarAction;
-import org.beuwi.msgbots.platform.app.view.actions.ToggleSideAreaAction;
 import org.beuwi.msgbots.platform.app.view.actions.UpdateStatusBarAction;
 import org.beuwi.msgbots.platform.app.view.parts.DebugAreaPart;
-import org.beuwi.msgbots.platform.app.view.parts.EditorAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MainAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MenuBarPart;
-import org.beuwi.msgbots.platform.app.view.parts.NoticeAreaPart;
+import org.beuwi.msgbots.platform.app.view.parts.ToastAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.SideAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.StatusBarPart;
 import org.beuwi.msgbots.platform.app.view.tabs.BotListTab;
 import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalLogTab;
-import org.beuwi.msgbots.platform.app.view.tabs.WelcomeGuideTab;
 import org.beuwi.msgbots.platform.gui.control.Tab;
+import org.beuwi.msgbots.platform.gui.enums.NoticeType;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
 import java.nio.file.WatchKey;
@@ -132,50 +129,44 @@ public class Launcher extends Application
 			new DebugRoomTab().init();
 			new GlobalConfigTab().init();
 			new GlobalLogTab().init();
-			new WelcomeGuideTab().init();
 
 			new DebugAreaPart().init();
-			new EditorAreaPart().init();
+			new MainAreaPart().init();
 			new MenuBarPart().init();
-			new NoticeAreaPart().init();
 			new SideAreaPart().init();
 			new StatusBarPart().init();
-			new MainAreaPart().init();
+			new ToastAreaPart().init();
 
 			new AddBotLogAction().init();
-			new AddEditorAreaTabAction().init();
-			new AddNoticeMessageAction().init();
+			new AddMainAreaTabAction().init();
+			new AddToastMessageAction().init();
 			new ChangeThemeAction().init();
 			new OpenBotLogTabAction().init();
 			new OpenDialogBoxAction().init();
+			new OpenDocumentAction().init();
 			new OpenProgramTabAction().init();
 			new OpenScriptTabAction().init();
 			new RefreshBotListAction().init();
 			new RefreshBotLogsAction().init();
 			new SaveEditorAreaTabAction().init();
 			new SendChatMessageAction().init();
-			new ToggleDebugAreaAction().init();
-			new ToggleMenuBarAction().init();
-			new ToggleSideAreaAction().init();
 			new UpdateStatusBarAction().init();
 
 			new MainWindow(stage).create();
 
 			for (int i = 0 ; i < 10 ; i ++)
 			{
-				AddEditorAreaTabAction.execute(new Tab("TEST : " + i));
+				AddMainAreaTabAction.execute(new Tab("TEST : " + i));
 			}
 
-			// AddNoticeMessageAction.execute(NoticeType.EVENT, "TEST TITLE", "CONTENT");
+			AddToastMessageAction.execute(NoticeType.EVENT, "TEST TITLE", "CONTENT");
 
 			OpenProgramTabAction.execute(GlobalConfigTab.getRoot());
 
-			// 추후 전체를 로딩하는게 아닌 새 파일만 로딩해야됨 (컴파일 상태 유지)
+			// 추후 전체를 로딩하는게 아닌 새 파일만 로딩해야됨 > 스크립트 탭도 마차가지로 바꿔야됨 (컴파일 상태 유지)
 			RefreshBotListAction.execute();
 
 			ScriptManager.preInit();
-
-			// ScenicView.show(stage.getScene());
 		}
 		catch (Throwable e)
 		{

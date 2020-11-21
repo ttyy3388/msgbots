@@ -1,7 +1,40 @@
 /* DOCUMENT CSS */
-body {
-    background-color: #1E1E1E;
+* {
+    font-weight: normal;
     font-family: Roboto, Arial, sans-serif;
-    color: #FFFFFF;
+    font-weight: normal;
+    color: #CCCCCC;
+}
+h1 {
+	font-weight: bold;
+	color: #FFFFFF;
+}
+h2 {
+	font-weight: normal;
+}
+p {
+	line-height: normal;
+}
+body {
+	background-color: #1E1E1E;
+}
+a:link {
+    text-decoration: none;
+	color: #007ACC;
+}
+a:visited,
+a:active {
+	text-decoration: none;
+	color: #007ACC;
 }
 
+.center {
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%);
+	min-width: 500px;
+	max-height: 500px;
+	max-width: 800px;
+	max-height: 1000px;
+}

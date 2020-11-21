@@ -1,11 +1,11 @@
 package org.beuwi.msgbots.platform.app.view.parts;
 
 import javafx.collections.ObservableMap;
-import javafx.scene.layout.AnchorPane;
 
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.gui.control.HBox;
+import org.beuwi.msgbots.platform.gui.layout.AnchorPanel;
 
 public class StatusBarPart implements View
 {
@@ -13,7 +13,7 @@ public class StatusBarPart implements View
 
 	private static FormLoader loader;
 
-	private static AnchorPane root;
+	private static AnchorPanel root;
 
 	private static HBox component;
 
@@ -26,7 +26,7 @@ public class StatusBarPart implements View
 		component = loader.getComponent();
 	}
 
-	public static AnchorPane getRoot()
+	public static AnchorPanel getRoot()
 	{
 		return root;
 	}

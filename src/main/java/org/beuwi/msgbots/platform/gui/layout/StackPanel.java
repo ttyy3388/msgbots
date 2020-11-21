@@ -1,5 +1,6 @@
 package org.beuwi.msgbots.platform.gui.layout;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -29,7 +30,12 @@ public class StackPanel extends javafx.scene.layout.StackPane
 		getItems().addAll(item);
 	}
 
-	public void setItem(Node... item)
+	public void setItem(Node item)
+	{
+		getItems().setAll(item);
+	}
+
+	public void setItems(Node... item)
 	{
 		getItems().setAll(item);
 	}
@@ -62,5 +68,10 @@ public class StackPanel extends javafx.scene.layout.StackPane
 	public ReadOnlyObjectProperty<Parent> getParentProperty()
 	{
 		return parentProperty();
+	}
+
+	public BooleanProperty getVisibleProperty()
+	{
+		return visibleProperty();
 	}
 }

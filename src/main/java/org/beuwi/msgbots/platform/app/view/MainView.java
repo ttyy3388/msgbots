@@ -1,41 +1,69 @@
 package org.beuwi.msgbots.platform.app.view;
 
 import javafx.stage.Stage;
+import org.beuwi.msgbots.platform.app.view.parts.DebugAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MainAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MenuBarPart;
+import org.beuwi.msgbots.platform.app.view.parts.ToastAreaPart;
+import org.beuwi.msgbots.platform.app.view.parts.SideAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.StatusBarPart;
-import org.beuwi.msgbots.platform.gui.control.VBox;
 import org.beuwi.msgbots.platform.gui.enums.ThemeType;
+import org.beuwi.msgbots.platform.gui.layout.AnchorPanel;
+import org.beuwi.msgbots.platform.gui.layout.BorderPanel;
+import org.beuwi.msgbots.platform.gui.layout.StackPanel;
 import org.beuwi.msgbots.platform.util.SharedValues;
 import org.beuwi.msgbots.platform.win.WindowType;
 import org.beuwi.msgbots.platform.win.WindowWrap;
-import org.beuwi.msgbots.setting.GlobalSettings;
 
-// Top : Menu Bar, Center : Main Area, Bottom : Status Bar
-public class MainView extends VBox
+public class MainView extends StackPanel
 {
-	private static final VBox root = new VBox();
+	// Outer Area ( Vertical ) : Menu Bar, Inner Panel, Status Bar
+	private static final BorderPanel outer = new BorderPanel();
+
+	// Inner Area ( Horizontal ) : Side Bar, Main Area, Debug Area
+	private static final StackPanel panel = new StackPanel();
+	private static final BorderPanel inner = new BorderPanel();
+
+	// Primary Stage
 	private static Stage stage;
 
-	// Application Stage
+	/* Layouts */
+	private static final StackPanel menubar = MenuBarPart.getRoot();
+	private static final AnchorPanel statusbar = StatusBarPart.getRoot();
+	private static final StackPanel mainarea = MainAreaPart.getRoot();
+	private static final AnchorPanel sidearea = SideAreaPart.getRoot();
+	private static final AnchorPanel debugarea = DebugAreaPart.getRoot();
+
+	private static final AnchorPanel toastarea = ToastAreaPart.getRoot();
+
 	public MainView(Stage stage)
 	{
 		this.stage = stage;
+
+		outer.setTop(menubar);
+		outer.setCenter(panel);
+		outer.setBottom(statusbar);
+
+		panel.setItem(inner);
+
+		inner.setLeft(sidearea);
+		inner.setCenter(mainarea);
+		inner.setRight(debugarea);
+
+		panel.addItem(toastarea);
 
 		setMinWidth(800);
 		setMinHeight(600);
 		setPrefWidth(1400);
 		setPrefHeight(900);
-		// this.setMaxWidth(1920);
-		// this.setMaxHeight(1080);
-
-		addItem(MenuBarPart.getRoot());
-		addItem(MainAreaPart.getRoot());
-		addItem(StatusBarPart.getRoot());
 
 		// 추후 윈도우 프레임으로 이전
 		stage.setMinWidth(800);
 		stage.setMinHeight(600);
+		// stage.setMaxWidth(1920);
+		stage.setMaxHeight(1080);
+
+		setItems(outer);
 	}
 
 	public static class MainWindow extends WindowWrap
@@ -50,16 +78,6 @@ public class MainView extends VBox
 			setType(WindowType.WINDOW);
 		}
 	}
-
-	public static VBox getRoot()
-	{
-		return root;
-	}
-
-	/* public static BorderPane getContent()
-	{
-		return pane;
-	} */
 
 	public static Stage getStage()
 	{

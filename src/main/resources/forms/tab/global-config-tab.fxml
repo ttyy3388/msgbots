@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.io.File?>
-<?import java.util.List?>
-<?import java.lang.String?>
-
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Separator?>
@@ -25,57 +21,68 @@
 
 <?import org.beuwi.msgbots.platform.gui.enums.ThemeType?>
 <?import org.beuwi.msgbots.platform.gui.editor.Editor?>
-<Tab text="GLOBAL SETTINGS" xmlns:fx="http://javafx.com/fxml">
+
+<Tab text="GLOBAL CONFIG" xmlns:fx="http://javafx.com/fxml">
 	<content>
 		<NaviView>
 			<navis>
 				<Navi text="Program">
 					<content>
-						<OptionView title="Program">
-							<content>
-								<VBox spacing="30.0">
-									<items>
-										<OptionBox address="program.start_auto_compile" title="시작 시 자동 컴파일">
-											<content>
-												<CheckBox text="앱이 시작되었을 때 전원을 켜둔 스크립트를 자동으로 컴파일 합니다." />
-											</content>
-										</OptionBox>
-										<OptionBox address="program.compile_auto_save" title="리로드 시 자동 저장" >
-											<content>
-												<CheckBox text="리로드할 때 자동으로 세이브를 한 후 리로드를 합니다." />
-											</content>
-										</OptionBox>
-										<OptionBox title="기본 스크립트 수정" VBox.vgrow="ALWAYS">
-											<content>
-												<HBox spacing="10.0" VBox.vgrow="ALWAYS">
+						<OptionView type="GLOBAL" name="program" title="Program">
+							<items>
+								<OptionBox option="color_theme" title="프로그램 테마 변경 (재시작 시 적용)">
+									<content>
+										<ComboBox maxWidth="150" >
+											<items>
+												<FXCollections fx:factory="observableArrayList"  >
+													<ThemeType fx:constant="DARK" />
+													<ThemeType fx:constant="LIGHT" />
+													<ThemeType fx:constant="BLACK" />
+													<ThemeType fx:constant="WHITE" />
+												</FXCollections>
+											</items>
+										</ComboBox>
+									</content>
+								</OptionBox>
+								<OptionBox option="start_auto_compile" title="시작 시 자동 컴파일">
+									<content>
+										<CheckBox text="앱이 시작되었을 때 전원을 켜둔 스크립트를 자동으로 컴파일 합니다." />
+										</content>
+									</OptionBox>
+								<OptionBox option="compile_auto_save" title="리로드 시 자동 저장" >
+									<content>
+										<CheckBox text="리로드할 때 자동으로 세이브를 한 후 리로드를 합니다." />
+									</content>
+								</OptionBox>
+								<OptionBox title="기본 스크립트 수정" VBox.vgrow="ALWAYS">
+									<content>
+										<HBox spacing="10.0" VBox.vgrow="ALWAYS">
+											<items>
+												<VBox spacing="10.0" HBox.hgrow="ALWAYS">
 													<items>
-														<VBox spacing="10.0" HBox.hgrow="ALWAYS">
-															<items>
-																<Label text="통합 매개변수 OFF" />
-																<Editor VBox.vgrow="ALWAYS">
-																	<file>
-																		<SharedValues fx:constant="SCRIPT_DEFAULT_FILE" />
-																	</file>
-																</Editor>
-															</items>
-														</VBox>
-														<VBox spacing="10.0" HBox.hgrow="ALWAYS">
-															<items>
-																<Label text="통합 매개변수 ON" />
-																<Editor VBox.vgrow="ALWAYS">
-																	<file>
-																		<SharedValues fx:constant="SCRIPT_UNIFIED_FILE" />
-																	</file>
-																</Editor>
-															</items>
-														</VBox>
+														<Label text="통합 매개변수 OFF" />
+														<Editor VBox.vgrow="ALWAYS">
+															<file>
+																<SharedValues fx:constant="SCRIPT_DEFAULT_FILE" />
+															</file>
+														</Editor>
 													</items>
-												</HBox>
-											</content>
-										</OptionBox>
-									</items>
-								</VBox>
-							</content>
+												</VBox>
+												<VBox spacing="10.0" HBox.hgrow="ALWAYS">
+													<items>
+														<Label text="통합 매개변수 ON" />
+														<Editor VBox.vgrow="ALWAYS">
+															<file>
+																<SharedValues fx:constant="SCRIPT_UNIFIED_FILE" />
+															</file>
+														</Editor>
+													</items>
+												</VBox>
+											</items>
+										</HBox>
+									</content>
+								</OptionBox>
+							</items>
 							<StackPanel.margin>
 								<Insets left="15.0" />
 							</StackPanel.margin>
@@ -86,92 +93,88 @@
 					<content>
 						<ScrollPanel fitToWidth="true">
 							<content>
-								<OptionView title="Debug">
-									<content>
-										<VBox spacing="30.0">
-											<items>
-												<OptionBox address="debug.html_load_timeout" title="HTML 로드 시간 제한 (ms)">
-													<content>
-														<TextField maxWidth="100" />
-													</content>
-												</OptionBox>
-												<Separator />
-												<OptionBox address="debug.show_compile_error" title="컴파일 에러 보기">
-													<content>
-														<CheckBox text="컴파일 중 발생한 에러를 보여줍니다." />
-													</content>
-												</OptionBox>
-												<OptionBox address="debug.show_runtime_error" title="런타임 에러 보기">
-													<content>
-														<CheckBox text="실행 중 발생한 에러를 보여줍니다." />
-													</content>
-												</OptionBox>
-												<OptionBox address="debug.show_running_time" title="실행 시간 보기">
-													<content>
-														<CheckBox text="실행 시간을 보여줍니다." />
-													</content>
-												</OptionBox>
-												<Separator />
-												<OptionBox address="debug.room_name" title="방 이름">
-													<content>
-														<TextField maxWidth="250" />
-													</content>
-												</OptionBox>
-												<OptionBox address="debug.sender_name" title="전송자 이름">
-													<content>
-														<TextField maxWidth="250" />
-													</content>
-												</OptionBox>
-												<OptionBox address="debug.bot_name" title="봇 이름">
-													<content>
-														<TextField maxWidth="250" />
-													</content>
-												</OptionBox>
-												<OptionBox address="debug.package_name" title="패키지 이름">
-													<content>
-														<TextField maxWidth="250" />
-													</content>
-												</OptionBox>
-												<OptionBox address="debug.is_group_chat" title="그룹챗 여부">
-													<content>
-														<CheckBox text="그룹챗 여부를 설정합니다." />
-													</content>
-												</OptionBox>
-												<Separator />
-												<OptionBox address="debug.show_sender_profile" title="전송자 프로필 보이기">
-													<content>
-														<CheckBox text="디버그 룸에서 전송자의 프로필을 보이게 합니다." />
-													</content>
-												</OptionBox>
-												<OptionBox address="debug.show_sender_name" title="전송자 이름 보이기">
-													<content>
-														<CheckBox text="디버그 룸에서 전송자의 이름을 보이게 합니다." />
-													</content>
-												</OptionBox>
-												<OptionBox title="전송자 프로필 변경">
-													<content>
-														<Button type="ACTION" styled="true" text="Change" />
-													</content>
-												</OptionBox>
-												<Separator />
-												<OptionBox address="debug.show_bot_profile" title="봇 프로필 보이기">
-													<content>
-														<CheckBox text="디버그 룸에서 봇의 프로필을 보이게 합니다." />
-													</content>
-												</OptionBox>
-												<OptionBox address="debug.show_bot_name" title="봇 이름 보이기">
-													<content>
-														<CheckBox text="디버그 룸에서 봇의 이름을 보이게 합니다." />
-													</content>
-												</OptionBox>
-												<OptionBox title="봇 프로필 변경">
-													<content>
-														<Button type="ACTION" prefHeight="50" styled="true" text="Change" />
-													</content>
-												</OptionBox>
-											</items>
-										</VBox>
-									</content>
+								<OptionView type="GLOBAL" name="debug" title="Debug">
+									<items>
+										<OptionBox option="html_load_timeout" title="HTML 로드 시간 제한 (ms)">
+											<content>
+												<TextField maxWidth="100" />
+											</content>
+										</OptionBox>
+										<Separator />
+										<OptionBox option="show_compile_error" title="컴파일 에러 보기">
+										<content>
+											<CheckBox text="컴파일 중 발생한 에러를 보여줍니다." />
+											</content>
+										</OptionBox>
+										<OptionBox option="show_runtime_error" title="런타임 에러 보기">
+											<content>
+												<CheckBox text="실행 중 발생한 에러를 보여줍니다." />
+											</content>
+										</OptionBox>
+										<OptionBox option="show_running_time" title="실행 시간 보기">
+											<content>
+												<CheckBox text="실행 시간을 보여줍니다." />
+											</content>
+										</OptionBox>
+										<Separator />
+										<OptionBox option="room_name" title="방 이름">
+											<content>
+												<TextField maxWidth="250" />
+											</content>
+										</OptionBox>
+										<OptionBox option="sender_name" title="전송자 이름">
+											<content>
+												<TextField maxWidth="250" />
+											</content>
+										</OptionBox>
+										<OptionBox option="bot_name" title="봇 이름">
+											<content>
+												<TextField maxWidth="250" />
+											</content>
+										</OptionBox>
+										<OptionBox option="package_name" title="패키지 이름">
+											<content>
+												<TextField maxWidth="250" />
+											</content>
+										</OptionBox>
+										<OptionBox option="is_group_chat" title="그룹챗 여부">
+											<content>
+												<CheckBox text="그룹챗 여부를 설정합니다." />
+											</content>
+										</OptionBox>
+										<Separator />
+										<OptionBox option="show_sender_profile" title="전송자 프로필 보이기">
+											<content>
+												<CheckBox text="디버그 룸에서 전송자의 프로필을 보이게 합니다." />
+											</content>
+										</OptionBox>
+										<OptionBox option="show_sender_name" title="전송자 이름 보이기">
+											<content>
+												<CheckBox text="디버그 룸에서 전송자의 이름을 보이게 합니다." />
+											</content>
+										</OptionBox>
+										<OptionBox title="전송자 프로필 변경">
+											<content>
+												<Button type="ACTION" styled="true" text="Change" />
+											</content>
+										</OptionBox>
+										<Separator />
+										<OptionBox option="show_bot_profile" title="봇 프로필 보이기">
+											<content>
+												<CheckBox text="디버그 룸에서 봇의 프로필을 보이게 합니다." />
+											</content>
+										</OptionBox>
+										<OptionBox option="show_bot_name" title="봇 이름 보이기">
+											<content>
+												<CheckBox text="디버그 룸에서 봇의 이름을 보이게 합니다." />
+											</content>
+										</OptionBox>
+										<OptionBox title="봇 프로필 변경">
+											<content>
+												<Button type="ACTION" prefHeight="50" styled="true" text="Change" />
+											</content>
+										</OptionBox>
+									</items>
 								</OptionView>
 							</content>
 							<StackPanel.margin>
@@ -182,27 +185,9 @@
 				</Navi>
 				<Navi text="Design">
 					<content>
-						<OptionView title="Design">
-							<content>
-								<VBox spacing="30.0">
-									<items>
-										<OptionBox address="program.color_theme" title="프로그램 테마 변경 (재시작 시 적용)">
-											<content>
-												<ComboBox maxWidth="150" >
-													<items>
-														<FXCollections fx:factory="observableArrayList"  >
-															<ThemeType fx:constant="DARK" />
-															<ThemeType fx:constant="LIGHT" />
-															<ThemeType fx:constant="BLACK" />
-															<ThemeType fx:constant="WHITE" />
-														</FXCollections>
-													</items>
-												</ComboBox>
-											</content>
-										</OptionBox>
-									</items>
-								</VBox>
-							</content>
+						<OptionView type="GLOBAL" name="design" title="Design">
+							<items>
+							</items>
 							<StackPanel.margin>
 								<Insets left="15.0" />
 							</StackPanel.margin>

@@ -1,6 +1,5 @@
 package org.beuwi.msgbots.setting;
 
-import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.gui.enums.ConfigType;
 
 public class SharedSettings {

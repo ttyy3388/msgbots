@@ -1,5 +1,6 @@
 package org.beuwi.msgbots.platform.gui.control;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -100,6 +101,8 @@ public class TabView extends VBox
 						HBox.setHgrow(tab, Priority.ALWAYS);
 					}
 				}
+
+				this.setVisible(!getTabs().isEmpty());
 			}
 		});
 
@@ -280,6 +283,11 @@ public class TabView extends VBox
 	public ObjectProperty<Tab> getSelectedTabProperty()
 	{
 		return selected;
+	}
+
+	public BooleanProperty getVisibleProperty()
+	{
+		return visibleProperty();
 	}
 
 	/* @Override
