@@ -42,19 +42,4 @@ public class BotView extends ListView<Bot>
 
 		getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
-
-	public Bot getBot(int index)
-	{
-		return getItem(index);
-	}
-
-	public Bot getBot(String id)
-    {
-        return getItem(id);
-    }
-
-    public ObservableList<Bot> getBots()
-    {
-		return getItems();
-    }
 }

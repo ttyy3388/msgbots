@@ -1,8 +1,8 @@
 package org.beuwi.msgbots.manager;
 
-import javafx.beans.value.ChangeListener;
 import org.beuwi.msgbots.openapi.FileListener;
 import org.beuwi.msgbots.openapi.FileObserver;
+import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
 import org.beuwi.msgbots.platform.util.SharedValues;
 
 import java.io.BufferedReader;
@@ -106,7 +106,7 @@ public class FileManager
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			AddToastMessageAction.execute(e);
 		}
 
 		return null;
@@ -126,7 +126,7 @@ public class FileManager
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			AddToastMessageAction.execute(e);
 		}
 
 		return null;
@@ -155,7 +155,7 @@ public class FileManager
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			AddToastMessageAction.execute(e);
 		}
 
 		return null;
@@ -185,7 +185,7 @@ public class FileManager
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			AddToastMessageAction.execute(e);
 		}
 
 		return false;

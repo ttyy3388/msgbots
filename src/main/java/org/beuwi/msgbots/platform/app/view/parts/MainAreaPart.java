@@ -6,10 +6,13 @@ import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.gui.control.TabView;
 import org.beuwi.msgbots.platform.gui.layout.StackPanel;
+import org.beuwi.msgbots.platform.util.SharedValues;
 
 // Editor Area
 public class MainAreaPart implements View
 {
+	private static final int DEFAULT_MAX_WIDTH = 500;
+
 	private static ObservableMap<String, Object> namespace;
 
 	private static FormLoader loader;
@@ -26,12 +29,7 @@ public class MainAreaPart implements View
 		root = loader.getRoot();
 		component = loader.getComponent();
 
-		// root.getVisibleProperty().bind(component.getVisibleProperty());
-
-		component.getVisibleProperty().addListener(change ->
-		{
-			root.setVisible(component.isVisible());
-		});
+		root.setMinWidth(DEFAULT_MAX_WIDTH);
 	}
 
 	public static StackPanel getRoot()

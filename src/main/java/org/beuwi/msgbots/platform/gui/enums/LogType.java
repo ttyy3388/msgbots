@@ -28,4 +28,10 @@ public enum LogType
 			return "debug";
 		}
 	};
+
+
+	public static <T extends Enum<T>> LogType convert(String value)
+	{
+		return LogType.valueOf(value.toUpperCase());
+	}
 }

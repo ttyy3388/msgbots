@@ -1,6 +1,5 @@
 package org.beuwi.msgbots.platform.gui.control;
 
-import javafx.collections.ObservableList;
 import org.beuwi.msgbots.manager.LogManager;
 
 public class LogView extends ListView<Log>
@@ -25,13 +24,32 @@ public class LogView extends ListView<Log>
 			setItems(LogManager.load());
 		}
 
+		this.setCellFactory(param -> new ListCell<Log>()
+		{
+			{
+				//.subtract(2)
+				getPrefWidthProperty().bind(this.getWidthProperty());
+				// setMaxWidth(Control.USE_PREF_SIZE);
+			}
+
+			@Override
+			protected void updateItem(Log item, boolean empty)
+			{
+				super.updateItem(item, empty);
+
+				if (item != null && !empty)
+				{
+					setGraphic(item);
+				}
+				else
+				{
+					setGraphic(null);
+				}
+			}
+		});
+
 		// setSpacing(DEFAULT_GAP_VALUE);
 		getStyleClass().add(DEFAULT_STYLE_CLASS);
 		// getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-	}
-
-	public ObservableList<Log> getLogs()
-	{
-		return getItems();
 	}
 }

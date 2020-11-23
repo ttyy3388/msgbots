@@ -25,6 +25,16 @@ public class StackPanel extends javafx.scene.layout.StackPane
         }
 	}
 
+	public void addItem(int index, Node item)
+	{
+		getItems().add(index, item);
+	}
+
+	public void addItem(Node item)
+	{
+		getItems().add(item);
+	}
+
 	public void addItem(Node... item)
 	{
 		getItems().addAll(item);

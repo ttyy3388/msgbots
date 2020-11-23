@@ -219,13 +219,18 @@
 /* LOG */
 .log
 {
-	/* -fx-background-radius: 10; */
 	-fx-background-color: #2B2B2B;
 }
 
 /* LOG VIEW */
-.log-view { }
-.log-view .list-cell { }
+.log-view
+{
+    -fx-padding: 5;
+}
+.log-view .list-cell
+{
+    -fx-padding: 5;
+}
 
 /* MENU */
 .menu

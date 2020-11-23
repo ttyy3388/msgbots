@@ -6,6 +6,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.beuwi.msgbots.platform.app.view.MainView;
+import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
 import org.beuwi.msgbots.platform.app.view.actions.ChangeThemeAction;
 import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
@@ -102,7 +103,7 @@ public class WindowFrame
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			AddToastMessageAction.execute(e);
 		}
 		finally
 		{

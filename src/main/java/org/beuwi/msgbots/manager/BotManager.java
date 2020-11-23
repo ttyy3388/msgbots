@@ -6,21 +6,21 @@ public class BotManager
 {
 	public static void setPower(String name, boolean power)
 	{
-		BotListTab.getComponent().getBot(name).setPower(power);
+		BotListTab.getComponent().getItem(name).setPower(power);
 	}
 
 	public static void setCompiled(String name, boolean compiled)
 	{
-		BotListTab.getComponent().getBot(name).setCompiled(compiled);
+		BotListTab.getComponent().getItem(name).setCompiled(compiled);
 	}
 
 	public static boolean getPower(String name)
 	{
-		return BotListTab.getComponent().getBot(name).getPower();
+		return BotListTab.getComponent().getItem(name).getPower();
 	}
 
 	public static boolean isCompiled(String name)
 	{
-		return BotListTab.getComponent().getBot(name).isCompiled();
+		return BotListTab.getComponent().getItem(name).isCompiled();
 	}
 }

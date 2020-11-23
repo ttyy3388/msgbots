@@ -1,6 +1,7 @@
 package org.beuwi.msgbots.openapi;
 
 import org.beuwi.msgbots.manager.FileManager;
+import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
 import org.json.simple.parser.JSONParser;
 
 import java.io.File;
@@ -21,7 +22,7 @@ public class JsonArray extends org.json.simple.JSONArray
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			AddToastMessageAction.execute(e);
 		}
 	}
 }

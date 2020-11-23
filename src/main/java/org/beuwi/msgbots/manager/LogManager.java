@@ -3,6 +3,7 @@ package org.beuwi.msgbots.manager;
 import org.beuwi.msgbots.openapi.JsonArray;
 import org.beuwi.msgbots.openapi.JsonObject;
 import org.beuwi.msgbots.platform.app.view.actions.AddBotLogAction;
+import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
 import org.beuwi.msgbots.platform.gui.control.Log;
 import org.beuwi.msgbots.platform.gui.enums.LogType;
 import org.beuwi.msgbots.platform.util.SharedValues;
@@ -48,7 +49,7 @@ public class LogManager
 	// Append Global Log
 	public static void append(LogType type, String data)
 	{
-		LogManager.append(type, FileManager.getDataFile(SharedValues.GLOBAL_LOG_PATH), data, true);
+		LogManager.append(type, SharedValues.GLOBAL_LOG_FILE, data, true);
 	}
 
 	// Append Bot Log
@@ -60,7 +61,7 @@ public class LogManager
 	// Clear Global Log
 	public static void clear()
 	{
-		LogManager.clear(FileManager.getDataFile(SharedValues.GLOBAL_LOG_PATH));
+		LogManager.clear(SharedValues.GLOBAL_LOG_FILE);
 	}
 
 	// Clear Bot Log
@@ -74,7 +75,7 @@ public class LogManager
 	// file : log file
 	public static List<Log> load(File file)
 	{
-		/* try
+		try
 		{
 			if (!file.exists())
 			{
@@ -94,8 +95,8 @@ public class LogManager
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
-		} */
+			AddToastMessageAction.execute(e);
+		}
 
 		return new ArrayList<>();
 	}
@@ -104,16 +105,11 @@ public class LogManager
 	{
 		String date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss ").format(new Date());
 
-		/* JsonObject object = new JsonObject();
+		JsonObject object = new JsonObject();
 
-		object.put("a", data);
-		object.put("b", switch (type)
-		{
-			case EVENT -> 1;
-			case DEBUG -> 2;
-			case ERROR -> 3;
-		});
-		object.put("c", date);
+		object.put("type", type.toString());
+		object.put("data", data);
+		object.put("date", date);
 
 		JsonArray array = new JsonArray(file);
 
@@ -128,14 +124,14 @@ public class LogManager
 			AddBotLogAction.execute(FileManager.getBaseName(file.getName()), new Log(type, data, date));
 		}
 
-		FileManager.save(file, array.toJSONString()); */
+		FileManager.save(file, array.toJSONString());
 
-		System.out.println(type.name() + " : " + data + " : " +  date);
+		System.out.println(type + " : " + data + " : " +  date);
 	}
 
 	// file : log file
 	public static void clear(File file)
 	{
-		// FileManager.save(file, "[]");
+		FileManager.save(file, "[]");
 	}
 }

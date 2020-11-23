@@ -1,5 +1,6 @@
 package org.beuwi.msgbots.platform.app.view.actions;
 
+import javafx.application.Platform;
 import org.beuwi.msgbots.platform.app.impl.Action;
 import org.beuwi.msgbots.platform.app.view.parts.ToastAreaPart;
 import org.beuwi.msgbots.platform.gui.control.Toast;
@@ -40,7 +41,10 @@ public class AddToastMessageAction implements Action
 
 	public static void execute(Toast toast)
 	{
-		control.addItem(toast);
+		Platform.runLater(() ->
+		{
+			control.addItem(toast);
+		});
 	}
 
 	@Override

@@ -4,7 +4,7 @@ import org.beuwi.msgbots.platform.gui.layout.StackPanel;
 public class ColorBar extends StackPanel
 {
 	private static final String DEFAULT_STYLE_CLASS = "color-bar";
-	private static final int DEFAULT_PREF_WIDTH = 5;
+	private static final int DEFAULT_PREF_WIDTH = 3;
 
 	public ColorBar()
 	{

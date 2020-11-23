@@ -2,6 +2,7 @@ package org.beuwi.msgbots.setting;
 
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.openapi.JsonObject;
+import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
 import org.beuwi.msgbots.platform.util.SharedValues;
 
 import java.io.File;
@@ -58,7 +59,7 @@ public class GlobalSettings
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			AddToastMessageAction.execute(e);
 		}
 	}
 }

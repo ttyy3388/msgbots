@@ -4,6 +4,7 @@ import java.io.File;
 
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.openapi.JsonObject;
+import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
 import org.beuwi.msgbots.platform.util.SharedValues;
 
 public class ScriptSettings
@@ -53,7 +54,7 @@ public class ScriptSettings
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			AddToastMessageAction.execute(e);
 		}
 	}
 }

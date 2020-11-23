@@ -14,10 +14,11 @@ import org.beuwi.msgbots.compiler.api.Utils;
 import org.beuwi.msgbots.manager.BotManager;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.manager.LogManager;
+import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
 import org.beuwi.msgbots.platform.app.view.actions.SaveEditorAreaTabAction;
-import org.beuwi.msgbots.platform.gui.enums.LogType;
 import org.beuwi.msgbots.setting.GlobalSettings;
 import org.beuwi.msgbots.setting.ScriptSettings;
+
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ImporterTopLevel;
@@ -26,7 +27,6 @@ import org.mozilla.javascript.ScriptableObject;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.logging.Logger;
 
 public class ScriptEngine
 {
@@ -54,7 +54,7 @@ public class ScriptEngine
 
 	protected static boolean initialize(String name, boolean isManual, boolean ignoreError)
 	{
-		LogManager.event("Compile Start : " + name);
+		LogManager.event("컴파일 시작: " + name);
 
 		compiling.put(name, true);
 
@@ -83,7 +83,7 @@ public class ScriptEngine
 				Context.reportError(e.toString());
 			}
 
-			e.printStackTrace();
+			AddToastMessageAction.execute(e);
 
 			return false;
 		}
@@ -145,7 +145,7 @@ public class ScriptEngine
 				container.get(name).setOnStartCompile(null);
 			}
 
-			LogManager.error("Compile Error : " + e.toString() + " : " + name);
+			LogManager.error("컴파일 에러: " + e.toString() + " : " + name);
 
 			compiling.put(name, false);
 
@@ -157,14 +157,14 @@ public class ScriptEngine
 				}
 			}
 
-			e.printStackTrace();
+			AddToastMessageAction.execute(e);
 
 			return false;
 		}
 
 		BotManager.setCompiled(name, true);
 
-		LogManager.event("Compile Success: " + name);
+		LogManager.event("컴파일 성공: " + name);
 
 		return true;
 	}
@@ -200,18 +200,18 @@ public class ScriptEngine
 		}
 		catch (Throwable e)
 		{
-			LogManager.error("Runtime Error : " + e.toString() + " : " + name);
+			LogManager.error("런타임 에러: " + e.toString() + " : " + name);
 
 			if (ScriptSettings.get(name).getBoolean("off_on_runtime_error"))
 			{
 				BotManager.setPower(name, false);
 			}
 
-			e.printStackTrace();
+			AddToastMessageAction.execute(e);
 		}
 
 		final long end = System.currentTimeMillis();
 
-		LogManager.event("Running Time : " + (end - start));
+		// LogManager.event("실행 시간 : " + (end - start));
 	}
 }

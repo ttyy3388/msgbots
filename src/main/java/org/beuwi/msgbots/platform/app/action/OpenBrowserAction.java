@@ -1,6 +1,7 @@
 package org.beuwi.msgbots.platform.app.action;
 
 import org.beuwi.msgbots.platform.app.impl.Action;
+import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
 
 import java.awt.Desktop;
 import java.io.IOException;
@@ -23,7 +24,7 @@ public class OpenBrowserAction implements Action
 		}
 		catch (URISyntaxException e)
 		{
-			e.printStackTrace();
+			AddToastMessageAction.execute(e);
 		}
 	}
 
@@ -35,7 +36,7 @@ public class OpenBrowserAction implements Action
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace();
+			AddToastMessageAction.execute(e);
 		}
 	}
 

@@ -1,5 +1,7 @@
 package org.beuwi.msgbots.openapi;
 
+import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
+
 import java.awt.SystemTray;
 
 // Window Notification
@@ -19,7 +21,7 @@ public class WinNotice
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			AddToastMessageAction.execute(e);
 		}
 	}
 

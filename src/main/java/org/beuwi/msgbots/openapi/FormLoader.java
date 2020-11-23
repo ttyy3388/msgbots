@@ -2,6 +2,7 @@ package org.beuwi.msgbots.openapi;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
+import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
 import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
@@ -32,7 +33,7 @@ public class FormLoader extends FXMLLoader
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			AddToastMessageAction.execute(e);
 		}
 	}
 

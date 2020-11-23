@@ -82,8 +82,9 @@ public class MenuBarPart implements View
 		// Help Menu Button
 		component.getMenu(4).setMenus
 		(
-			new Menu("View Update List"),
 			new Menu("View License", event -> OpenDocumentAction.execute(SharedValues.VIEW_LICENSE_DOCUMENT)),
+			new Separator(),
+			new Menu("Release Notes", event -> OpenDocumentAction.execute(SharedValues.RELEASE_NOTES_DOCUMENT)),
 			new Separator(),
 			new Menu("About Program", event -> OpenDocumentAction.execute(SharedValues.ABOUT_PROGRAM_DOCUMENT)),
 			new Separator(),

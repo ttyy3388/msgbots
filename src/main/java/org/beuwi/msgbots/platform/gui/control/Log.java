@@ -1,94 +1,97 @@
 package org.beuwi.msgbots.platform.gui.control;
 
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Priority;
-import org.beuwi.msgbots.openapi.JsonObject;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
+import javafx.scene.control.Skin;
 import org.beuwi.msgbots.platform.gui.enums.LogType;
-import org.beuwi.msgbots.platform.util.ResourceUtils;
+
+import org.beuwi.msgbots.platform.gui.skins.LogBoxSkin;
 import org.json.simple.JSONObject;
 
 // Log Item
-public class Log extends HBox
+public class Log extends Control
 {
 	private static final String DEFAULT_STYLE_CLASS = "log";
-	private static final Insets DEFAULT_PADDING_INSETS = new Insets(15);
-	private static final double DEFAULT_PREF_HEIGHT = 80;
 
-	private final VBox<Label> content = new VBox();
-
-	private final ImageView image = new ImageView();
-
-    private final Label tlabel = new Label();
-    private final Label dlabel = new Label();
-
-	private final LogType type;
-
-	{
-		HBox.setHgrow(content, Priority.ALWAYS);
-		VBox.setVgrow(tlabel, Priority.ALWAYS);
-	}
+	private final ObjectProperty<LogType> type = new SimpleObjectProperty();
+	private final StringProperty data = new SimpleStringProperty();
+	private final StringProperty date = new SimpleStringProperty();
 
 	public Log(JSONObject object)
 	{
-		this(switch (String.valueOf(object.get("b")))
-		{
-			case "1" -> LogType.EVENT;
-			case "2" -> LogType.DEBUG;
-			case "3" -> LogType.ERROR;
-			default  -> LogType.EVENT;
-		},
-		String.valueOf(object.get("a")),
-		String.valueOf(object.get("c")));
+		this
+		(
+			String.valueOf(object.get("type")),
+			String.valueOf(object.get("data")),
+			String.valueOf(object.get("date"))
+		);
 	}
 
-	public Log(LogType type, String text, String date)
+	public Log(String type, String data, String date)
 	{
-		this.type = type;
-
-		image.setImage(ResourceUtils.getImage(type.toString()));
-		image.setFitWidth(20);
-		image.setFitHeight(20);
-
-		tlabel.setText(text);
-		dlabel.setText(date);
-
-		tlabel.setWrapText(true);
-		tlabel.setAlignment(Pos.TOP_LEFT);
-
-		content.setItems(tlabel, dlabel);
-
-		setItems(image, content);
-		setSpacing(15);
-		setPadding(DEFAULT_PADDING_INSETS);
-		setFittable(true);
-		setPrefHeight(DEFAULT_PREF_HEIGHT);
-		addStyleClass(DEFAULT_STYLE_CLASS);
+		this(LogType.convert(type), data, date);
 	}
 
-	public void setText(String text)
+	public Log(LogType type, String data, String date)
 	{
-		this.tlabel.setText(text);
+		setType(type);
+		setText(data);
+		setDate(date);
+
+		addStyleClass("log");
 	}
 
-	public void setDate(String date)
+	public void setType(LogType type)
 	{
-		this.dlabel.setText(date);
+		this.type.set(type);
+	}
+
+	public void setText(String data)
+	{
+		this.data.set(data);
+	}
+
+	public void setDate(String time)
+	{
+		this.date.set(time);
 	}
 
 	public String getText()
 	{
-		return tlabel.getText();
+		return data.get();
 	}
 
 	public String getDate()
 	{
-		return dlabel.getText();
+		return date.get();
 	}
 
 	public LogType getType()
 	{
+		return type.get();
+	}
+
+	@Override
+	public Skin<?> setDefaultSkin()
+	{
+		return new LogBoxSkin(this);
+	}
+
+	/* public ObjectProperty<LogType> getTypeProperty()
+	{
 		return type;
 	}
+
+	public StringProperty getTextProperty()
+	{
+		return data;
+	}
+
+	public StringProperty getDateProperty()
+	{
+		return date;
+	} */
 }

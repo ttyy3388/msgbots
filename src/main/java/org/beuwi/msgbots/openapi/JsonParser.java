@@ -7,7 +7,8 @@ import org.json.simple.parser.ParseException;
 public class JsonParser extends JSONParser {
 
 	@Override
-	public Object parse(String string) throws ParseException {
+	public Object parse(String string) throws ParseException
+	{
 		return super.parse(string);
 	}
 }

@@ -1,5 +1,7 @@
 package org.beuwi.msgbots.openapi;
 
+import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -92,7 +94,7 @@ public class FileWatcher extends Thread
 							}
 							catch (Exception e)
 							{
-								e.printStackTrace();
+								AddToastMessageAction.execute(e);
 							}
 
 							break;
@@ -103,7 +105,7 @@ public class FileWatcher extends Thread
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace();
+			AddToastMessageAction.execute(e);
 		}
 	}
 

@@ -1,6 +1,7 @@
 package org.beuwi.msgbots.openapi;
 
 import org.beuwi.msgbots.manager.FileManager;
+import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -29,7 +30,7 @@ public class JsonObject extends org.json.simple.JSONObject
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			AddToastMessageAction.execute(e);
 		}
 	}
 
@@ -66,6 +67,26 @@ public class JsonObject extends org.json.simple.JSONObject
 	public boolean getBoolean(String type)
 	{
 		return Boolean.valueOf("" + get(type));
+	}
+
+	public void putString(String type, String data)
+	{
+		this.put(type, data);
+	}
+
+	public void putDouble(String type, double data)
+	{
+		this.put(type, data);
+	}
+
+	public void putInt(String type, int data)
+	{
+		this.put(type, data);
+	}
+
+	public void putBoolean(String type, boolean data)
+	{
+		this.put(type, data);
 	}
 
 	public void putMap(Map map)
