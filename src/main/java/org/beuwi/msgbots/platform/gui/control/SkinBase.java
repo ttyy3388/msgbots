@@ -1,7 +1,5 @@
 package org.beuwi.msgbots.platform.gui.control;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Control;

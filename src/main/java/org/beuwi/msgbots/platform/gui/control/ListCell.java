@@ -6,6 +6,10 @@ import javafx.beans.property.ReadOnlyDoubleProperty;
 
 public class ListCell<T> extends javafx.scene.control.ListCell<T>
 {
+    {
+        // getStyleClass().add("list-cell");
+    }
+
     public ReadOnlyDoubleProperty getWidthProperty()
     {
         return widthProperty();

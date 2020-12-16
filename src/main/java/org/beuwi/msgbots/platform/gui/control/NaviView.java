@@ -6,182 +6,239 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
+import javafx.event.Event;
 import javafx.scene.Node;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import org.beuwi.msgbots.platform.gui.enums.SelectType;
 import org.beuwi.msgbots.platform.gui.layout.StackPanel;
 
 // Navigation View
-public class NaviView extends HBox
+public class NaviView extends HBox<Navi>
 {
-    private static final String DEFAULT_STYLE_CLASS = "navi-view";
+	private static final String DEFAULT_STYLE_CLASS = "navi-view";
 
-    private static final PseudoClass SELECTED_PSEUDO_CLASS = PseudoClass.getPseudoClass("selected");
+	private static final PseudoClass SELECTED_PSEUDO_CLASS = PseudoClass.getPseudoClass("selected");
 
-    private static final String HEADER_STYLE_CLASS = "navi-header-area";
-    private static final String CONTENT_STYLE_CLASS = "navi-content-area";
+	private static final String HEADER_STYLE_CLASS = "navi-header-area";
+	private static final String CONTENT_STYLE_CLASS = "navi-content-area";
 
-    // Selected Tab Property
-    private final ObjectProperty<Navi> selected = new SimpleObjectProperty<>(null);
-    private final ObservableList<Navi> navis = FXCollections.observableArrayList();
+	// Selected Tab Property
+	private final ObjectProperty<Navi> selected = new SimpleObjectProperty<>(null);
+	private final ObservableList<Navi> navis = FXCollections.observableArrayList();
 
-    private static final int DEFAULT_HEADER_WIDTH = 150;
-    // private static final int DEFAULT_HEADER_HEIGHT = 30;
+	private static final int DEFAULT_HEADER_WIDTH = 150;
+	// private static final int DEFAULT_HEADER_HEIGHT = 30;
 
-    /* Navi View [ Header Area [ Headers [ Navi Header ( Main ) ] ] , Content Area [ Navi Content ] ] */
+	/* Navi View [ Header Area [ Headers [ Navi Header ( Main ) ] ] , Content Area [ Navi Content ] ] */
 
-    // Tab Content Area
-    private final StackPanel content = new StackPanel();
+	// Tab Content Area
+	private final StackPanel content = new StackPanel();
 
-    // Navi Header List
-    private final VBox<Navi> header = new VBox();
+	// Navi Header List
+	private final VBox<Navi> header = new VBox();
 
-    {
-        HBox.setHgrow(content, Priority.ALWAYS);
-    }
+	{
+		HBox.setHgrow(content, Priority.ALWAYS);
+	}
 
-    public NaviView()
-    {
-        this(null);
-    }
+	public NaviView()
+	{
+		this(null);
+	}
 
-    public NaviView(Navi... navis)
-    {
-        if (navis != null)
-        {
-            addNavis(navis);
-        }
+	public NaviView(Navi... navis)
+	{
+		if (navis != null)
+		{
+			addNavis(navis);
+		}
 
-        header.setMinWidth(DEFAULT_HEADER_WIDTH);
-        header.setPrefWidth(DEFAULT_HEADER_WIDTH);
-        // header.setMaxWidth(DEFAULT_HEADER_WIDTH);
+		header.setMinWidth(DEFAULT_HEADER_WIDTH);
+		header.setPrefWidth(DEFAULT_HEADER_WIDTH);
+		// header.setMaxWidth(DEFAULT_HEADER_WIDTH);
 
-        header.addStyleClass(HEADER_STYLE_CLASS);
-        content.addStyleClass(CONTENT_STYLE_CLASS);
+		// 현재 작동 안하는 문제 해결해야함
+		/* header.setOnKeyPressed(event ->
+		{
+			switch (event.getCode())
+			{
+				case UP : case RIGHT :
+				    select(SelectType.NEXT); break;
+                case DOWN : case LEFT :
+                    select(SelectType.PREVIOUS); break;
+			}
+		}); */
 
-        getNavis().addListener((ListChangeListener<Navi>) change ->
-        {
-            while (change.next())
-            {
-                for (Navi navi : change.getRemoved())
-                {
-                    navi.setView(null);
-                    header.remove(navi);
-                }
+		header.addStyleClass(HEADER_STYLE_CLASS);
+		content.addStyleClass(CONTENT_STYLE_CLASS);
 
-                for (Navi navi : change.getAddedSubList())
-                {
-                    navi.setView(this);
-                    header.addItem(navi);
-                    selected.setValue(navi);
-                }
-            }
-        });
+		getNavis().addListener((ListChangeListener<Navi>) change ->
+		{
+			while (change.next())
+			{
+				for (Navi navi : change.getRemoved())
+				{
+					navi.setView(null);
+					header.remove(navi);
+				}
 
-        getSelectedNaviProperty().addListener(change ->
-        {
-            content.setItem(getSelectedNavi().getContent());
-        });
+				for (Navi navi : change.getAddedSubList())
+				{
+					navi.setView(this);
+					header.addItem(navi);
+					selected.setValue(navi);
+				}
+			}
+		});
 
-        getSelectedNaviProperty().addListener((observable, oldTab, newTab) ->
-        {
-            if (oldTab != null)
-            {
-                oldTab.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, false);
-            }
+		getSelectedNaviProperty().addListener(change ->
+		{
+			content.setItem(getSelectedNavi().getContent());
+		});
 
-            newTab.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, true);
-        });
+		getSelectedNaviProperty().addListener((observable, oldTab, newTab) ->
+		{
+			if (oldTab != null)
+			{
+				oldTab.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, false);
+			}
 
-        setItems(header, content);
-        setFittable(true);
-        addStyleClass(DEFAULT_STYLE_CLASS);
-    }
+			newTab.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, true);
+		});
 
-    public void select(int index)
-    {
-        selected.set(getNavi(index));
-    }
+		setItems(header, content);
+		setFittable(true);
+		addStyleClass("navi-view");
+	}
 
-    public void select(Navi navi)
-    {
-        selected.set(navi);
-    }
+	public void select(int index)
+	{
+		selected.set(getNavi(index));
+	}
 
-    public void addNavi(Navi navi)
-    {
-        if (contains(navi))
-        {
-            select(getIndex(navi));
-        }
-        else
-        {
-            getNavis().add(navi);
-        }
-    }
+	public void select(Navi navi)
+	{
+		selected.set(navi);
+	}
 
-    public void addNavis(Navi... navis)
-    {
-        for (Navi navi : navis)
-        {
-            addNavi(navi);
-        }
-    }
+	public void select(SelectType type)
+	{
+		Navi item = getSelectedNavi();
 
-    public boolean contains(Navi navi)
-    {
-        return getIndex(navi) != -1;
-    }
+		int index = getIndex(item),
+			size = navis.size();
 
-    public boolean contains(String title)
-    {
-        return getIndex(title) != -1;
-    }
+		if (size < 1 || index < 0)
+		{
+			return ;
+		}
 
-    public int getIndex(Navi navi)
-    {
-        return getIndex(navi.getText());
-    }
+		switch (type)
+		{
+			case NEXT :
+				// If have a next tab
+				if (size > index + 1)
+				{
+				    select(index + 1);
+				}
+				// Select first tab
+				else
+				{
+					select(0);
+				}
+				break;
+			case PREVIOUS :
+                // If have a previous tab
+				if (size < index - 1)
+				{
+					select(index - 1);
+				}
+				// Select last tab
+				else
+				{
+					select(size - 1);
+				}
+				break;
 
-    // 추후 ID 방식으로 바꿔야함
-    public int getIndex(String title)
-    {
-        for (int index = 0 ; index < getNavis().size() ; index ++)
-        {
-            if (getNavis().get(index).getText().equals(title))
-            {
-                return index;
-            }
-        }
+		}
+	}
 
-        return -1;
-    }
+	public void addNavi(Navi navi)
+	{
+		if (contains(navi))
+		{
+			select(getIndex(navi));
+		}
+		else
+		{
+			getNavis().add(navi);
+		}
+	}
 
-    public Navi getNavi(String title)
-    {
-        return contains(title) ? getNavi(getIndex(title)) : null;
-    }
+	public void addNavis(Navi... navis)
+	{
+		for (Navi navi : navis)
+		{
+			addNavi(navi);
+		}
+	}
 
-    public Navi getNavi(int index)
-    {
-        return getNavis().get(index);
-    }
+	public boolean contains(Navi navi)
+	{
+		return getIndex(navi) != -1;
+	}
 
-    public Navi getSelectedNavi()
-    {
-        return selected.get();
-    }
+	public boolean contains(String title)
+	{
+		return getIndex(title) != -1;
+	}
 
-    public ObservableList<Navi> getNavis()
-    {
-        return navis;
-    }
+	public int getIndex(Navi navi)
+	{
+		return getIndex(navi.getText());
+	}
 
-    // Selected Tab Property
-    public ObjectProperty<Navi> getSelectedNaviProperty()
-    {
-        return selected;
-    }
+	// 추후 ID 방식으로 바꿔야함
+	public int getIndex(String title)
+	{
+		for (int index = 0 ; index < getNavis().size() ; index ++)
+		{
+			if (getNavis().get(index).getText().equals(title))
+			{
+				return index;
+			}
+		}
+
+		return -1;
+	}
+
+	public Navi getNavi(String title)
+	{
+		return contains(title) ? getNavi(getIndex(title)) : null;
+	}
+
+	public Navi getNavi(int index)
+	{
+		return getNavis().get(index);
+	}
+
+	public Navi getSelectedNavi()
+	{
+		return selected.get();
+	}
+
+	public ObservableList<Navi> getNavis()
+	{
+		return navis;
+	}
+
+	// Selected Tab Property
+	public ObjectProperty<Navi> getSelectedNaviProperty()
+	{
+		return selected;
+	}
 
 	/* @Override
 	public Skin<?> setDefaultSkin()
@@ -189,10 +246,10 @@ public class NaviView extends HBox
 		return new TabViewSkin(this);
 	} */
 
-    public void setSelectedNavi(Navi navi)
-    {
-        selected.set(navi);
-    }
+	public void setSelectedNavi(Navi navi)
+	{
+		selected.set(navi);
+	}
 
 	/* public void setNaviWidth(double value)
 	{

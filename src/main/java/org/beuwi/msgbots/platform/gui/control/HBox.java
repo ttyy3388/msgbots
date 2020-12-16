@@ -67,6 +67,19 @@ public class HBox<T> extends javafx.scene.layout.HBox
 		getItems().clear();
 	}
 
+	public int find(String id)
+	{
+		for (int index = 0 ; index < getItems().size() ; index ++)
+		{
+			if (getItem(index).getId().equals(id))
+			{
+				return index;
+			}
+		}
+
+		return -1;
+	}
+
 	public void delete(T item)
 	{
 		getItems().remove(item);
@@ -137,7 +150,12 @@ public class HBox<T> extends javafx.scene.layout.HBox
 		return fittable.get();
 	}
 
-	public int find(String id)
+	public boolean contains(Node item)
+	{
+		return getItems().contains(item);
+	}
+
+	public int getIndex(String id)
 	{
 		for (int index = 0 ; index < getItems().size() ; index ++)
 		{
@@ -163,6 +181,11 @@ public class HBox<T> extends javafx.scene.layout.HBox
 	public ObservableList<Node> getItems()
 	{
 		return getChildren();
+	}
+
+	public ObservableList<Node> getItemsProperty()
+	{
+		return getItems();
 	}
 
 	public ReadOnlyDoubleProperty getWidthProperty()

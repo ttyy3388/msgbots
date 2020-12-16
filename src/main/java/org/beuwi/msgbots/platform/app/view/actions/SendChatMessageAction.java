@@ -1,6 +1,5 @@
 package org.beuwi.msgbots.platform.app.view.actions;
 
-import org.beuwi.msgbots.compiler.engine.ScriptManager;
 import org.beuwi.msgbots.platform.app.impl.Action;
 import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
 import org.beuwi.msgbots.platform.gui.control.Chat;
@@ -27,7 +26,7 @@ public class SendChatMessageAction implements Action
 
 		if (!isbot)
 		{
-			ScriptManager.run(message);
+			// ScriptManager.run(message);
 		}
 	}
 

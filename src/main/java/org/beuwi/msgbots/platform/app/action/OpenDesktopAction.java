@@ -1,7 +1,6 @@
 package org.beuwi.msgbots.platform.app.action;
 
 import org.beuwi.msgbots.platform.app.impl.Action;
-import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
 
 import java.awt.Desktop;
 import java.io.File;
@@ -27,7 +26,7 @@ public class OpenDesktopAction implements Action
 		}
 		catch (Exception e)
 		{
-			AddToastMessageAction.execute(e);
+			e.printStackTrace();
 		}
 	}
 

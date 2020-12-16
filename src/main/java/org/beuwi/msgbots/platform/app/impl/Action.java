@@ -6,9 +6,5 @@ public interface Action
 		return ;
 	};
 
-	/* public static void execute() {
-
-	}; */
-
 	String getName(); // getActionName();
 }

@@ -1,15 +1,18 @@
 package org.beuwi.msgbots.platform.util;
 
+import java.io.File;
+
+import javafx.scene.image.Image;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.gui.control.Document;
 import org.beuwi.msgbots.platform.gui.control.Page;
-import org.beuwi.msgbots.platform.gui.control.Tab;
-
-import java.io.File;
 
 public class SharedValues
 {
 	public static final String DEFAULT_PROGRAM_TITLE = "Messenger Bot Simulator";
+	public static final Image DEFAULT_PROGRAM_IMAGE = ResourceUtils.getImage("program");
+
+	// public static final String USER_WINDOWS_VERSION = System.getProperty("windows.os");
 
 	static {
 	}
@@ -26,7 +29,7 @@ public class SharedValues
 	/* Documents */
 	public static final Document ABOUT_PROGRAM_DOCUMENT = new Document("ABOUT PROGRAM", ABOUT_PROGRAM_PAGE);
 	public static final Document PROGRAM_START_DOCUMENT = new Document("START PROGRAM", PROGRAM_START_PAGE);
-    public static final Document RELEASE_NOTES_DOCUMENT = new Document("RELEASE NOTES", RELEASE_NOTES_PAGE);
+	public static final Document RELEASE_NOTES_DOCUMENT = new Document("RELEASE NOTES", RELEASE_NOTES_PAGE);
 	public static final Document VIEW_LICENSE_DOCUMENT = new Document("VIEW LICENSE", VIEW_LICENSE_PAGE);
 	public static final Document WELCOME_GUIDE_DOCUMENT = new Document("WELCOME GUIDE", WELCOME_GUIDE_PAGE);
 

@@ -3,7 +3,6 @@ plugins {
 	id 'application'
 	id 'org.openjfx.javafxplugin' version '0.0.9'
 	id 'org.beryx.jlink' version '2.22.0'
-    id 'org.jetbrains.kotlin.jvm' version '1.4.20-RC'
 }
 
 java {
@@ -37,7 +36,6 @@ dependencies {
 	implementation (group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1') {
 		exclude group: 'org.hamcrest', module: 'hamcrest-core'
 	}
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
 compileJava {
@@ -79,14 +77,4 @@ jar {
 			it.isDirectory() ? it : zipTree(it)
 		}
 	} */
-}
-compileKotlin {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
-compileTestKotlin {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
 }

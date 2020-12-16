@@ -1,6 +1,8 @@
 package org.beuwi.msgbots.platform.gui.skins;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.Priority;
@@ -9,31 +11,37 @@ import org.beuwi.msgbots.platform.gui.control.SkinBase;
 import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.gui.control.TabView;
 import org.beuwi.msgbots.platform.gui.control.VBox;
+import org.beuwi.msgbots.platform.gui.enums.ControlType;
 import org.beuwi.msgbots.platform.gui.layout.ScrollPanel;
 import org.beuwi.msgbots.platform.gui.layout.StackPanel;
 
-public class TabViewSkin // extends SkinBase<TabView>
+public class TabViewSkin extends SkinBase<TabView>
 {
-   /*  private static final PseudoClass SELECTED_PSEUDO_CLASS = PseudoClass.getPseudoClass("selected");
-    private static final PseudoClass PINNED_PSEUDO_CLASS = PseudoClass.getPseudoClass("pinned");
+	private static final String DEFAULT_STYLE_CLASS = "tab-view";
 
 	private static final String HEADER_STYLE_CLASS = "tab-header-area";
 	private static final String CONTENT_STYLE_CLASS = "tab-content-area";
 
+	public static final PseudoClass NORMAL_PSEUDO_CLASS = PseudoClass.getPseudoClass("normal");
+	public static final PseudoClass SYSTEM_PSEUDO_CLASS = PseudoClass.getPseudoClass("system");
+
+	private final ObservableList<Tab> tabs = FXCollections.observableArrayList();
+
 	// private static final int DEFAULT_HEADER_WIDTH = 100;
 	private static final int DEFAULT_HEADER_HEIGHT = 30;
 
-    /* Tab View [ Header Area [ Headers [ Tab Header ( Main ) ] ] , Content Area [ Tab Content ] ] */
+	private final VBox root = new VBox();
 
-	/* // Tab Content Area
+	/* Tab View [ Header Area [ Headers [ Tab Header ( Main ) ] ] , Content Area [ Tab Content ] ] */
+
+	// Tab Content Area
 	private final StackPanel content = new StackPanel();
 
 	// Tab Header Area [ Tab Header List ]
 	private final ScrollPanel header = new ScrollPanel();
 
 	// Tab Header List
-	private final HBox<Tab> tablist = new HBox();
-	private final VBox root = new VBox();
+	private final HBox<Tab> headers = new HBox();
 
 	private final TabView control;
 
@@ -41,14 +49,19 @@ public class TabViewSkin // extends SkinBase<TabView>
 		VBox.setVgrow(content, Priority.ALWAYS);
 	}
 
-	public TabViewSkin(TabView control)
+	public enum Type
+	{
+		NORMAL, SYSTEM
+	}
+
+	public TabViewSkin(final TabView control)
 	{
 		super(control);
 
 		this.control = control;
 
 		header.setHvalue(1.0d);
-		header.setContent(tablist);
+		header.setContent(headers);
 		header.setFitToWidth(false);
 		header.setFitToHeight(true);
 		header.setMinHeight(DEFAULT_HEADER_HEIGHT);
@@ -60,12 +73,19 @@ public class TabViewSkin // extends SkinBase<TabView>
 		header.setPrefHeight(DEFAULT_HEADER_HEIGHT);
 		// header.setMaxHeight(DEFAULT_HEADER_HEIGHT);
 
+		if (!control.getTabs().isEmpty())
+		{
+			headers.setItems(control.getTabs());
+			content.setItem(control.getSelectedTab().getContent());
+		}
+
+		if (control.getType() != null)
+        {
+            this.setType(control.getType());
+        }
+
 		header.getStyleClass().add(HEADER_STYLE_CLASS);
 		content.getStyleClass().add(CONTENT_STYLE_CLASS);
-
-		tablist.addItems(control.getTabs());
-		control.select(control.getSelectedTab());
-		control.setType(control.getType());
 
 		control.getTabs().addListener((ListChangeListener<Tab>) change ->
 		{
@@ -73,77 +93,59 @@ public class TabViewSkin // extends SkinBase<TabView>
 			{
 				for (Tab tab : change.getRemoved())
 				{
-					tablist.remove(tab);
+					headers.remove(tab);
 				}
 
 				for (Tab tab : change.getAddedSubList())
 				{
-					tablist.addItem(tab);
-					control.select(tab);
+					headers.addItem(tab);
 				}
 			}
-
-			// control.setVisible(!control.getTabs().isEmpty());
 		});
 
 		control.getTypeProperty().addListener(change ->
-        {
-            switch (control.getType())
-            {
-                case NORMAL :
-
-                    header.setFitToWidth(false);
-
-                    for (Tab tab : control.getTabs())
-                    {
-                        HBox.setHgrow(tab, Priority.NEVER);
-                    }
-
-                    break;
-
-                case SYSTEM :
-
-                    header.setFitToWidth(true);
-
-                    for (Tab tab : control.getTabs())
-                    {
-                        HBox.setHgrow(tab, Priority.ALWAYS);
-                    }
-
-                    break;
-            }
-        });
+		{
+			this.setType(control.getType());
+		});
 
 		control.getSelectedTabProperty().addListener(change ->
 		{
 			content.setItem(control.getSelectedTab().getContent());
 		});
 
-		control.getSelectedTabProperty().addListener((observable, oldTab, newTab) ->
-        {
-            if (oldTab != null)
-            {
-                oldTab.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, false);
-            }
+		root.setItems(header, content);
+		root.setFittable(true);
+		root.addStyleClass("tab-view");
 
-            newTab.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, true);
-        });
-
-        root.setItems(header, content);
-        root.setFittable(true);
-
-		// setMinWidth(DEFAULT_MIN_WIDTH);
-		// setMinHeight(DEFAULT_MIN_HEIGHT)
-		getChildren().setAll(root);
+		this.setItems(root);
 	}
 
-	public ScrollPanel getHeaderArea()
+	// private or protected
+	private void setType(ControlType type)
 	{
-		return header;
-	}
+		switch (type)
+		{
+			case NORMAL :
 
-	public StackPanel getContentArea()
-	{
-		return content;
-	} */
+				header.setFitToWidth(false);
+
+				for (Tab tab : control.getTabs())
+				{
+					HBox.setHgrow(tab, Priority.NEVER);
+				}
+
+				break;
+
+			case SYSTEM :
+
+				header.setFitToWidth(true);
+
+				for (Tab tab : control.getTabs())
+				{
+					HBox.setHgrow(tab, Priority.ALWAYS);
+				}
+
+				break;
+		}
+	}
 }

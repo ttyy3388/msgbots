@@ -2,55 +2,31 @@ package org.beuwi.msgbots.platform.gui.control;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
-import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.control.Skin;
 import javafx.scene.layout.Priority;
-import org.beuwi.msgbots.platform.gui.layout.ScrollPanel;
-import org.beuwi.msgbots.platform.gui.layout.StackPanel;
+import org.beuwi.msgbots.platform.gui.enums.SelectType;
+import org.beuwi.msgbots.platform.gui.enums.ControlType;
+import org.beuwi.msgbots.platform.gui.skins.TabViewSkin;
 
 // @DefaultProperty("tabs")
-public class TabView extends VBox
+public class TabView extends Control
 {
 	private static final String DEFAULT_STYLE_CLASS = "tab-view";
 
 	private static final PseudoClass SELECTED_PSEUDO_CLASS = PseudoClass.getPseudoClass("selected");
 	private static final PseudoClass PINNED_PSEUDO_CLASS = PseudoClass.getPseudoClass("pinned");
 
-	private static final String HEADER_STYLE_CLASS = "tab-header-area";
-	private static final String CONTENT_STYLE_CLASS = "tab-content-area";
-
+	private final ObjectProperty<ControlType> type = new SimpleObjectProperty(null);
 	// Selected Tab Property
 	private final ObjectProperty<Tab> selected = new SimpleObjectProperty(null);
-	private final ObjectProperty<Type> type = new SimpleObjectProperty(null);
 
 	private final ObservableList<Tab> tabs = FXCollections.observableArrayList();
-
-	// private static final int DEFAULT_HEADER_WIDTH = 100;
-	private static final int DEFAULT_HEADER_HEIGHT = 30;
-
-	/* Tab View [ Header Area [ Headers [ Tab Header ( Main ) ] ] , Content Area [ Tab Content ] ] */
-
-	// Tab Content Area
-	private final StackPanel content = new StackPanel();
-
-	// Tab Header Area [ Tab Header List ]
-	private final ScrollPanel header = new ScrollPanel();
-
-	// Tab Header List
-	private final HBox<Tab> headers = new HBox();
-
-	{
-		VBox.setVgrow(content, Priority.ALWAYS);
-	}
-
-	public enum Type
-	{
-		NORMAL, SYSTEM
-	}
 
 	public TabView()
 	{
@@ -64,21 +40,24 @@ public class TabView extends VBox
 			addTabs(tabs);
 		}
 
-		header.setHvalue(1.0d);
-		header.setContent(headers);
-		header.setFitToWidth(false);
-		header.setFitToHeight(true);
-		header.setMinHeight(DEFAULT_HEADER_HEIGHT);
-		header.setMaxHeight(DEFAULT_HEADER_HEIGHT);
-		header.setHbarPolicy(ScrollBarPolicy.NEVER);
-		header.setVbarPolicy(ScrollBarPolicy.NEVER);
+		setOnKeyPressed(event ->
+		{
+			if (event.isControlDown())
+			{
+				switch (event.getCode())
+				{
+					case TAB : select(SelectType.NEXT); break;
+				}
 
-		// header.setMinHeight(DEFAULT_HEADER_HEIGHT);
-		header.setPrefHeight(DEFAULT_HEADER_HEIGHT);
-		// header.setMaxHeight(DEFAULT_HEADER_HEIGHT);
-
-		header.getStyleClass().add(HEADER_STYLE_CLASS);
-		content.getStyleClass().add(CONTENT_STYLE_CLASS);
+				if (event.isShiftDown())
+				{
+					switch (event.getCode())
+					{
+						case TAB : select(SelectType.PREVIOUS); break;
+					}
+				}
+			}
+		});
 
 		getTabs().addListener((ListChangeListener<Tab>) change ->
 		{
@@ -87,28 +66,22 @@ public class TabView extends VBox
 				for (Tab tab : change.getRemoved())
 				{
 					tab.setView(null);
-					headers.remove(tab);
 				}
 
 				for (Tab tab : change.getAddedSubList())
 				{
 					tab.setView(this);
-					headers.addItem(tab);
-					selected.setValue(tab);
 
-					if (getType() != null && getType().equals(Type.SYSTEM))
+					if (getType() != null && getType().equals(ControlType.SYSTEM))
 					{
 						HBox.setHgrow(tab, Priority.ALWAYS);
 					}
+
+					selected.setValue(tab);
 				}
 
 				this.setVisible(!getTabs().isEmpty());
 			}
-		});
-
-		getSelectedTabProperty().addListener(change ->
-		{
-			content.setItem(getSelectedTab().getContent());
 		});
 
 		getSelectedTabProperty().addListener((observable, oldTab, newTab) ->
@@ -121,37 +94,7 @@ public class TabView extends VBox
 			newTab.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, true);
 		});
 
-		getTypeProperty().addListener(change ->
-        {
-			switch (getType())
-			{
-				case NORMAL :
-
-					header.setFitToWidth(false);
-
-					for (Tab tab : getTabs())
-					{
-						HBox.setHgrow(tab, Priority.NEVER);
-					}
-
-					break;
-
-				case SYSTEM :
-
-					header.setFitToWidth(true);
-
-					for (Tab tab : getTabs())
-					{
-						HBox.setHgrow(tab, Priority.ALWAYS);
-					}
-
-					break;
-			}
-        });
-
-		setItems(header, content);
-		setFittable(true);
-		addStyleClass(DEFAULT_STYLE_CLASS);
+		// addStyleClass(DEFAULT_STYLE_CLASS);
 	}
 
 	public void select(Tab tab)
@@ -167,6 +110,49 @@ public class TabView extends VBox
 	public void select(String name)
 	{
 		selected.set(getTab(name));
+	}
+
+	public void select(SelectType type)
+	{
+		select(getSelectedTab(), type);
+	}
+
+	public void select(Tab tab, SelectType type)
+	{
+		int index = getIndex(tab), size = tabs.size();
+
+		if (size < 1 || index < 0)
+		{
+			return ;
+		}
+
+		switch (type)
+		{
+			case NEXT :
+				// If have a next tab
+				if (size > index + 1)
+				{
+					select(index + 1);
+				}
+				// Select first tab
+				else
+				{
+					select(0);
+				}
+				break;
+			case PREVIOUS :
+				// If have a previous tab
+				if (size > index - 1)
+				{
+					select(index - 1);
+				}
+				// Select last tab
+				else
+				{
+					select(size - 1);
+				}
+				break;
+		}
 	}
 
 	public void addTab(Tab tab)
@@ -249,6 +235,16 @@ public class TabView extends VBox
 		tabs.remove(tab);
 	}
 
+	public void setType(ControlType type)
+	{
+		this.type.set(type);
+	}
+
+	public void setSelectedTab(Tab tab)
+	{
+		selected.set(tab);
+	}
+
 	public Tab getTab(String title)
 	{
 		return contains(title) ? getTab(getIndex(title)) : null;
@@ -259,7 +255,7 @@ public class TabView extends VBox
 		return tabs.get(index);
 	}
 
-    public Type getType()
+    public ControlType getType()
     {
         return type.get();
     }
@@ -274,7 +270,7 @@ public class TabView extends VBox
 		return tabs;
 	}
 
-	public ObjectProperty<Type> getTypeProperty()
+	public ObjectProperty<ControlType> getTypeProperty()
     {
         return type;
     }
@@ -290,20 +286,10 @@ public class TabView extends VBox
 		return visibleProperty();
 	}
 
-	/* @Override
+	@Override
 	public Skin<?> setDefaultSkin()
 	{
 		return new TabViewSkin(this);
-	} */
-
-    public void setType(Type type)
-    {
-        this.type.set(type);
-    }
-
-	public void setSelectedTab(Tab tab)
-	{
-		selected.set(tab);
 	}
 
 	/* public void setTabWidth(double value)

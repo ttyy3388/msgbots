@@ -58,7 +58,7 @@ public class ChatView extends ListView<Chat>
 		getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 
-	public Chat getChat(int index)
+	/* public Chat getChat(int index)
 	{
 		return getItem(index);
 	}
@@ -71,5 +71,5 @@ public class ChatView extends ListView<Chat>
 	public ObservableList<Chat> getChats()
 	{
 		return getItems();
-	}
+	} */
 }

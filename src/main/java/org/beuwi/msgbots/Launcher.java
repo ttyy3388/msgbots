@@ -5,12 +5,11 @@ import javafx.application.Platform;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import org.beuwi.msgbots.compiler.engine.ScriptManager;
 import org.beuwi.msgbots.platform.app.view.MainView.MainWindow;
 import org.beuwi.msgbots.platform.app.view.actions.AddBotLogAction;
 import org.beuwi.msgbots.platform.app.view.actions.ChangeThemeAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenBotLogTabAction;
-import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
+import org.beuwi.msgbots.platform.app.view.actions.OpenDialogAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDocumentAction;
 import org.beuwi.msgbots.platform.app.view.actions.RefreshBotLogsAction;
 import org.beuwi.msgbots.platform.app.view.actions.SaveEditorAreaTabAction;
@@ -31,7 +30,9 @@ import org.beuwi.msgbots.platform.app.view.tabs.BotListTab;
 import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalLogTab;
+import org.beuwi.msgbots.platform.gui.control.LogBox;
 import org.beuwi.msgbots.platform.gui.control.Tab;
+import org.beuwi.msgbots.platform.gui.enums.LogType;
 import org.beuwi.msgbots.platform.gui.enums.NoticeType;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
@@ -142,7 +143,7 @@ public class Launcher extends Application
 			new AddToastMessageAction().init();
 			new ChangeThemeAction().init();
 			new OpenBotLogTabAction().init();
-			new OpenDialogBoxAction().init();
+			new OpenDialogAction().init();
 			new OpenDocumentAction().init();
 			new OpenProgramTabAction().init();
 			new OpenScriptTabAction().init();
@@ -164,9 +165,9 @@ public class Launcher extends Application
 			OpenProgramTabAction.execute(GlobalConfigTab.getRoot());
 
 			// 추후 전체를 로딩하는게 아닌 새 파일만 로딩해야됨 > 스크립트 탭도 마차가지로 바꿔야됨 (컴파일 상태 유지)
-			RefreshBotListAction.execute();
+			// RefreshBotListAction.execute();
 
-			ScriptManager.preInit();
+			// ScriptManager.preInit();
 		}
 		catch (Throwable e)
 		{

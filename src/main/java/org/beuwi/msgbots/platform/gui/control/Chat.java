@@ -96,7 +96,7 @@ public class Chat extends HBox
 			// comment.setMaxWidth(220);
 			comment.setText(message);
 			comment.setWrapText(true);
-			comment.setMaxWidth(180);
+			comment.setMaxWidth(200);
 			comment.addStyleClass("comment");
 
 			if (!isbot)

@@ -50,22 +50,35 @@ public class VBox<T> extends javafx.scene.layout.VBox
 		{
 			if (isFittable())
 			{
-				getHeightProperty().addListener(listener);
+				getWidthProperty().addListener(listener);
 			}
 			else
 			{
-				getHeightProperty().removeListener(listener);
+				getWidthProperty().removeListener(listener);
 			}
 		});
 
 		// setOnMouseClicked();
-
-		getStyleClass().add(DEFAULT_STYLE_CLASS);
+		
+		addStyleClass(DEFAULT_STYLE_CLASS);
 	}
 
 	public void clear()
 	{
 		getItems().clear();
+	}
+
+	public int find(String id)
+	{
+		for (int index = 0 ; index < getItems().size() ; index ++)
+		{
+			if (getItem(index).getId().equals(id))
+			{
+				return index;
+			}
+		}
+
+		return -1;
 	}
 
 	public void delete(T item)
@@ -128,25 +141,14 @@ public class VBox<T> extends javafx.scene.layout.VBox
 		getStyleClass().add(style);
 	}
 
-	public boolean contains(Node item)
-	{
-		return getItems().contains(item);
-	}
-
 	public boolean isFittable()
 	{
 		return fittable.get();
 	}
 
-
-	public Node getItem(int index)
+	public boolean contains(Node item)
 	{
-		return getItems().get(index);
-	}
-
-	public Node getItem(String id)
-	{
-		return getItems().get(getIndex(id));
+		return getItems().contains(item);
 	}
 
 	public int getIndex(String id)
@@ -160,6 +162,16 @@ public class VBox<T> extends javafx.scene.layout.VBox
 		}
 
 		return -1;
+	}
+
+	public Node getItem(int index)
+	{
+		return getItems().get(index);
+	}
+
+	public Node getItem(String id)
+	{
+		return getItems().get(getIndex(id));
 	}
 
 	public ObservableList<Node> getItems()

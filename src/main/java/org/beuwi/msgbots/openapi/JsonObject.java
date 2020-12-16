@@ -8,7 +8,7 @@ import org.json.simple.parser.JSONParser;
 import java.io.File;
 import java.util.Map;
 
-public class JsonObject extends org.json.simple.JSONObject
+public class JsonObject extends JSONObject
 {
 	private final File file;
 

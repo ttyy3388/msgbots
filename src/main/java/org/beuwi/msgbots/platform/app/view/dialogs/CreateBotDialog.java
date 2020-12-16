@@ -6,13 +6,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.input.KeyCode;
 import org.beuwi.msgbots.openapi.FormLoader;
-import org.beuwi.msgbots.platform.app.action.CreateBotAction;
 import org.beuwi.msgbots.platform.gui.control.Button;
 import org.beuwi.msgbots.platform.gui.control.TextField;
-import org.beuwi.msgbots.platform.gui.dialog.DialogBoxWrap;
 import org.beuwi.msgbots.platform.gui.control.VBox;
+import org.beuwi.msgbots.platform.gui.dialog.DialogWrap;
 
-public class CreateBotDialog extends DialogBoxWrap
+public class CreateBotDialog extends DialogWrap
 {
 	private final ObservableMap<String, Object> nameSpace;
 
@@ -69,11 +68,11 @@ public class CreateBotDialog extends DialogBoxWrap
 			return ;
 		}
 
-		CreateBotAction.execute
+		/* CreateBotAction.execute
 		(
 			txfScriptName.getText(),
 			chkIsUnified.isSelected(),
 			chkIsOffError.isSelected()
-		);
+		); */
 	}
 }

@@ -16,4 +16,9 @@ public abstract class Control extends javafx.scene.control.Control {
     {
         getStyleClass().add(style);
     }
+
+    public void setStyleClass(String style)
+    {
+        getStyleClass().setAll(style);
+    }
 }

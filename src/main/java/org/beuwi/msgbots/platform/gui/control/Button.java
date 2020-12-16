@@ -10,7 +10,6 @@ import javafx.geometry.Insets;
 
 public class Button extends javafx.scene.control.Button
 {
-	private static final String DEFAULT_STYLE_CLASS = "button";
 	private static final Insets DEFAULT_PADDING_INSETS = new Insets(0, 10, 0, 10);
 
 	private static final PseudoClass ACTION_PSEUDO_CLASS = PseudoClass.getPseudoClass("action");
@@ -20,7 +19,7 @@ public class Button extends javafx.scene.control.Button
  	private static final int DEFAULT_MIN_HEIGHT = 20;
 
 	private static final int DEFAULT_PREF_WIDTH = 70;
-	private static final int DEFAULT_PREF_HEIGHT = 50;
+	private static final int DEFAULT_PREF_HEIGHT = 25;
 
 	private final ObjectProperty<Type> type = new SimpleObjectProperty(null);
 

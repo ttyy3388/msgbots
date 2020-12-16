@@ -52,7 +52,7 @@ public final class Editor extends TextArea
 			setFile(file);
 		}
 
-		setStyleClass("editor");
+		addStyleClass("editor");
 	}
 
 	public void save()

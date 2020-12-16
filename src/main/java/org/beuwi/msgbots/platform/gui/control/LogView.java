@@ -1,8 +1,9 @@
 package org.beuwi.msgbots.platform.gui.control;
 
+import javafx.collections.ListChangeListener;
 import org.beuwi.msgbots.manager.LogManager;
 
-public class LogView extends ListView<Log>
+public class LogView extends ListView<LogBox>
 {
 	private static final String DEFAULT_STYLE_CLASS = "log-view";
 	private static final int DEFAULT_GAP_VALUE = 10;
@@ -24,16 +25,31 @@ public class LogView extends ListView<Log>
 			setItems(LogManager.load());
 		}
 
-		this.setCellFactory(param -> new ListCell<Log>()
+		getItems().addListener((ListChangeListener<LogBox>) change ->
+		{
+			while (change.next())
+			{
+				for (LogBox logbox : change.getRemoved())
+				{
+					logbox.setView(null);
+				}
+
+				for (LogBox logbox : change.getAddedSubList())
+				{
+					logbox.setView(this);
+				}
+			}
+		});
+
+		/* this.setCellFactory(param -> new ListCell<LogBox>()
 		{
 			{
-				//.subtract(2)
 				getPrefWidthProperty().bind(this.getWidthProperty());
-				// setMaxWidth(Control.USE_PREF_SIZE);
+				getMaxWidthProperty().bind(this.getWidthProperty());
 			}
 
 			@Override
-			protected void updateItem(Log item, boolean empty)
+			protected void updateItem(LogBox item, boolean empty)
 			{
 				super.updateItem(item, empty);
 
@@ -46,10 +62,10 @@ public class LogView extends ListView<Log>
 					setGraphic(null);
 				}
 			}
-		});
+		}); */
 
 		// setSpacing(DEFAULT_GAP_VALUE);
-		getStyleClass().add(DEFAULT_STYLE_CLASS);
-		// getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		addStyleClass(DEFAULT_STYLE_CLASS);
+		// setSelectionMode(SelectionMode.MULTIPLE);
 	}
 }

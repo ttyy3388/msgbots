@@ -1,5 +1,4 @@
-/* *
-{
+/* * {
 	-fx-background-radius: 0;
 	-fx-background-insets: 0;
 	-fx-background-color: transparent;
@@ -9,26 +8,23 @@
 	-fx-border-width: 0;
 } */
 
-.root
-{
+.root {
 	-fx-font-family: /* 'Roboto', */ 'Microsoft Sans Serif', 'D2Coding';
 	-fx-font-size: 12;
 }
 
 /* FONT SMOOTHING TYPE */
-.text
-{
-	 -fx-font-smoothing-type: lcd;
+.text {
+    -fx-font-smoothing-type: gray;
+	/* -fx-font-smoothing-type: lcd; */
 }
-.web-view
-{
+.web-view {
 	-fx-font-smoothing-type: gray;
 	-fx-context-menu-enabled: false;
 }
 
 /* Alignment */
-/* .button, .label
-{
+/* .button, .label {
 	-fx-alignment: center;
 } */
 
@@ -40,8 +36,7 @@
 .h5 { -fx-font-size: 12; }
 
 /* IMAGE */
-.button, .toggle-button
-{
+.button, .toggle-button {
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-alignment: center;
@@ -52,51 +47,43 @@
 .button:disabled,
 .check-box:disabled,
 .menu-item:disabled,
-.toggle-button:disabled
-{
+.toggle-button:disabled {
 	-fx-opacity: 0.5;
 	-fx-cursor: default;
 }
 
 /* SHAPE */
-.check-box:selected .mark
-{
+.check-box:selected .mark {
 	-fx-shape: "M14.4315 3.32315L5.96154 13.3232L5.17083 13.2874L1.82083 8.51736L2.63918 7.94263L5.617 12.1827L13.6685 2.67683L14.4315 3.32315Z";
 }
-.combo-box .arrow
-{
+.combo-box .arrow {
 	-fx-shape: "M928.4,224.4L500,651.6L71.6,224.4L10,285.9l490,489.7l490-489.7L928.4,224.4z";
 }
 
 /* SKIN */
-.scroll-bar
-{
+.scroll-bar {
 	-fx-skin: 'org.beuwi.msgbots.platform.gui.skins.ScrollBarSkin';
 }
 
 /* CURSOR */
-.scroll-bar
-{
+.scroll-bar {
 	-fx-cursor: default;
 }
 .text-area,
-.text-field
-{
+.text-field {
 	-fx-cursor: text;
 }
+
 /* MENU */
-.menu
-{
+.menu {
 	-fx-text-fill: #000000;
 	-fx-padding: 5 20 5 20;
 }
-.menu .label
-{
+.menu .label {
 	-fx-font-family: 'Microsoft Sans Serif';
 	-fx-font-size: 12;
 	-fx-text-fill: #000000;
 }
-.menu:focused
-{
+.menu:focused {
 	-fx-background-color: #E8EAED;
 }

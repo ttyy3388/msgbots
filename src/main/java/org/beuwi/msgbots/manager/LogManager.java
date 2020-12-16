@@ -4,7 +4,7 @@ import org.beuwi.msgbots.openapi.JsonArray;
 import org.beuwi.msgbots.openapi.JsonObject;
 import org.beuwi.msgbots.platform.app.view.actions.AddBotLogAction;
 import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
-import org.beuwi.msgbots.platform.gui.control.Log;
+import org.beuwi.msgbots.platform.gui.control.LogBox;
 import org.beuwi.msgbots.platform.gui.enums.LogType;
 import org.beuwi.msgbots.platform.util.SharedValues;
 import org.json.simple.JSONObject;
@@ -35,13 +35,13 @@ public class LogManager
 	/* ----------------------------------------------------------------------------------- */
 
 	// Load Global Log
-	public static List<Log> load()
+	public static List<LogBox> load()
 	{
 		return LogManager.load(SharedValues.GLOBAL_LOG_FILE);
 	}
 
 	// Load Bot Log
-	public static List<Log> load(String name)
+	public static List<LogBox> load(String name)
 	{
 		return LogManager.load(FileManager.getBotLog(name));
 	}
@@ -73,7 +73,7 @@ public class LogManager
 	/* ----------------------------------------------------------------------------------- */
 
 	// file : log file
-	public static List<Log> load(File file)
+	public static List<LogBox> load(File file)
 	{
 		try
 		{
@@ -82,13 +82,13 @@ public class LogManager
 				return null;
 			}
 
-			List<Log> list = new ArrayList<>();
+			List<LogBox> list = new ArrayList<>();
 
 			JsonArray array = new JsonArray(file);
 
 			for (Object object : array)
 			{
-				list.add(new Log((JSONObject) object));
+				list.add(new LogBox((JSONObject) object));
 			}
 
 			return list;
@@ -117,11 +117,11 @@ public class LogManager
 
 		if (global)
 		{
-			AddBotLogAction.execute(new Log(type, data, date));
+			AddBotLogAction.execute(new LogBox(type, data, date));
 		}
 		else
 		{
-			AddBotLogAction.execute(FileManager.getBaseName(file.getName()), new Log(type, data, date));
+			AddBotLogAction.execute(FileManager.getBaseName(file.getName()), new LogBox(type, data, date));
 		}
 
 		FileManager.save(file, array.toJSONString());

@@ -2,34 +2,25 @@ package org.beuwi.msgbots.platform.gui.control;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Skin;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import org.beuwi.msgbots.platform.gui.skins.NaviSkin;
 
 // Navigation
-public class Navi extends HBox
+public class Navi extends Control
 {
     private static final String DEFAULT_STYLE_CLASS = "navi";
 
-    private static final Insets DEFAULT_PADDING_INSETS = new Insets(0, 10, 0, 10);
-
-    private static final Pos DEFAULT_NAVI_POSITION = Pos.CENTER_LEFT;
-    private static final int DEFAULT_MIN_HEIGHT = 30;
-
-    private static final int DEFAULT_TITLE_SIZE = 50;
-
+    private final StringProperty text = new SimpleStringProperty(null);
     private final ObjectProperty<Node> content = new SimpleObjectProperty<>(null);
 
-    // Tab Title Label
-    private final Label label = new Label();
-
     private NaviView control;
-
-    {
-        HBox.setHgrow(label, Priority.ALWAYS);
-    }
 
     public Navi()
     {
@@ -55,20 +46,11 @@ public class Navi extends HBox
             setContent(content);
         }
 
-        // label.setMinWidth(DEFAULT_TITLE_SIZE);
-        // label.setAlignment(DEFAULT_NAVI_ALIGNMENT);
-        // label.addStyleClass(TITLE_STYLE_CLASS);
-
         this.setOnMousePressed(event ->
         {
             getView().select(this);
         });
 
-        setItem(label);
-        setPadding(DEFAULT_PADDING_INSETS);
-        // setSpacing(DEFAULT_TAB_SPACING);
-        setMinHeight(DEFAULT_MIN_HEIGHT);
-        setAlignment(DEFAULT_NAVI_POSITION);
         addStyleClass(DEFAULT_STYLE_CLASS);
     }
 
@@ -79,7 +61,7 @@ public class Navi extends HBox
 
     public void setText(String text)
     {
-        label.setText(text);
+        this.text.set(text);
     }
 
     public void setContent(Node content)
@@ -89,18 +71,7 @@ public class Navi extends HBox
 
     public String getText()
     {
-        return label.getText();
-    }
-
-    // Get Title Label
-    public Label getLabel()
-    {
-        return label;
-    }
-
-    public HBox getHeader()
-    {
-        return this;
+        return text.get();
     }
 
     public Node getContent()
@@ -116,5 +87,21 @@ public class Navi extends HBox
     public boolean isSelected()
     {
         return control.getSelectedNavi().equals(this);
+    }
+
+    public StringProperty getTextProperty()
+    {
+        return text;
+    }
+
+    public ObjectProperty<Node> getContentProperty()
+    {
+        return content;
+    }
+
+    @Override
+    public Skin<?> setDefaultSkin()
+    {
+        return new NaviSkin(this);
     }
 }

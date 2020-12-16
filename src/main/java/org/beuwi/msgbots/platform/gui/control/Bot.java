@@ -4,19 +4,17 @@ import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Priority;
-import org.beuwi.msgbots.compiler.engine.ScriptManager;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.action.DeleteBotAction;
 import org.beuwi.msgbots.platform.app.action.OpenDesktopAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenBotLogTabAction;
-import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
+import org.beuwi.msgbots.platform.app.view.actions.OpenDialogAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenProgramTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenScriptTabAction;
 import org.beuwi.msgbots.platform.app.view.dialogs.DeleteBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.RenameBotDialog;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
 import org.beuwi.msgbots.platform.gui.layout.GridPanel;
-import org.beuwi.msgbots.setting.ScriptSettings;
 
 // Bot Item
 public class Bot extends GridPanel
@@ -60,7 +58,7 @@ public class Bot extends GridPanel
 	{
 		menu = new ContextMenu
 		(
-			new Menu("Compile", event -> ScriptManager.initScript(name, true, false)),
+			new Menu("Compile" /* , event -> ScriptManager.initScript(name, true, false) */),
 			new Menu("Power On / Off", event -> power.setSelected(!getPower())),
 			new Separator(),
 			new Menu("Show Log", event -> OpenBotLogTabAction.execute(name)),
@@ -70,8 +68,8 @@ public class Bot extends GridPanel
 			new Menu("Copy Path", "Ctrl + Alt + C"),
 			new Menu("Copy Relative Path", "Ctrl + Shift + C"),
 			new Separator(),
-			new Menu("Rename", event -> OpenDialogBoxAction.execute(new RenameBotDialog(name))),
-			new Menu("Delete", event -> OpenDialogBoxAction.execute(new DeleteBotDialog(name))),
+			new Menu("Rename", event -> OpenDialogAction.execute(new RenameBotDialog(name))),
+			new Menu("Delete", event -> OpenDialogAction.execute(new DeleteBotDialog(name))),
 			new Separator(),
 			new Menu("Settings", "Ctrl + ,", event -> OpenProgramTabAction.execute(GlobalConfigTab.getRoot()))
 		);
@@ -88,14 +86,14 @@ public class Bot extends GridPanel
 
 		button.setOnAction(event ->
 		{
-			ScriptManager.initScript(name, true, false);
+			// ScriptManager.initScript(name, true, false);
 		});
 
-		power.setSelected(ScriptSettings.get(name).getBoolean("power"));
+		/* power.setSelected(ScriptSettings.get(name).getBoolean("power"));
 		power.setOnAction(event ->
 		{
 			ScriptSettings.get(name).setData("power", power.isSelected());
-		});
+		}); */
 
 		setOnMouseClicked(event ->
 		{

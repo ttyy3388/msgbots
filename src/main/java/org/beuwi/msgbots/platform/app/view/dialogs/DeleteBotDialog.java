@@ -5,14 +5,12 @@ import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import org.beuwi.msgbots.openapi.FormLoader;
-import org.beuwi.msgbots.platform.app.action.DeleteBotAction;
-import org.beuwi.msgbots.platform.app.action.RenameBotAction;
 import org.beuwi.msgbots.platform.gui.control.Button;
 import org.beuwi.msgbots.platform.gui.control.Label;
 import org.beuwi.msgbots.platform.gui.control.TextField;
-import org.beuwi.msgbots.platform.gui.dialog.DialogBoxWrap;
+import org.beuwi.msgbots.platform.gui.dialog.DialogWrap;
 
-public class DeleteBotDialog extends DialogBoxWrap
+public class DeleteBotDialog extends DialogWrap
 {
 	private final ObservableMap<String, Object> nameSpace;
 
@@ -54,6 +52,6 @@ public class DeleteBotDialog extends DialogBoxWrap
 	@Override
 	public void action()
 	{
-		DeleteBotAction.execute(name);
+		// DeleteBotAction.execute(name);
 	}
 }

@@ -6,12 +6,11 @@ import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import org.beuwi.msgbots.openapi.FormLoader;
-import org.beuwi.msgbots.platform.app.action.RenameBotAction;
 import org.beuwi.msgbots.platform.gui.control.Button;
 import org.beuwi.msgbots.platform.gui.control.TextField;
-import org.beuwi.msgbots.platform.gui.dialog.DialogBoxWrap;
+import org.beuwi.msgbots.platform.gui.dialog.DialogWrap;
 
-public class RenameBotDialog extends DialogBoxWrap
+public class RenameBotDialog extends DialogWrap
 {
 	private final ObservableMap<String, Object> nameSpace;
 
@@ -68,6 +67,6 @@ public class RenameBotDialog extends DialogBoxWrap
 			return ;
 		}
 
-		RenameBotAction.execute(name, txfScriptName.getText());
+		// RenameBotAction.execute(name, txfScriptName.getText());
 	}
 }

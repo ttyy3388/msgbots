@@ -11,9 +11,9 @@ import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.gui.layout.AnchorPanel;
 import org.beuwi.msgbots.platform.gui.layout.BorderPanel;
 import org.beuwi.msgbots.platform.gui.layout.StackPanel;
+import org.beuwi.msgbots.platform.gui.window.WindowType;
+import org.beuwi.msgbots.platform.gui.window.WindowWrap;
 import org.beuwi.msgbots.platform.util.SharedValues;
-import org.beuwi.msgbots.platform.win.WindowType;
-import org.beuwi.msgbots.platform.win.WindowWrap;
 
 public class MainView extends StackPanel
 {
