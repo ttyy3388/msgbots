@@ -15,8 +15,8 @@
 
 /* FONT SMOOTHING TYPE */
 .text {
-    -fx-font-smoothing-type: gray;
-	/* -fx-font-smoothing-type: lcd; */
+    /* -fx-font-smoothing-type: gray; */
+	-fx-font-smoothing-type: lcd;
 }
 .web-view {
 	-fx-font-smoothing-type: gray;

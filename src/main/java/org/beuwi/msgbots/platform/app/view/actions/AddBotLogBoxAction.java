@@ -5,7 +5,7 @@ import org.beuwi.msgbots.platform.app.view.tabs.GlobalLogTab;
 import org.beuwi.msgbots.platform.gui.control.LogBox;
 import org.beuwi.msgbots.platform.gui.control.LogView;
 
-public class AddBotLogAction implements Action
+public class AddBotLogBoxAction implements Action
 {
     private static LogView control;
 

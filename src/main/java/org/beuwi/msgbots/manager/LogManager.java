@@ -2,7 +2,7 @@ package org.beuwi.msgbots.manager;
 
 import org.beuwi.msgbots.openapi.JsonArray;
 import org.beuwi.msgbots.openapi.JsonObject;
-import org.beuwi.msgbots.platform.app.view.actions.AddBotLogAction;
+import org.beuwi.msgbots.platform.app.view.actions.AddBotLogBoxAction;
 import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
 import org.beuwi.msgbots.platform.gui.control.LogBox;
 import org.beuwi.msgbots.platform.gui.enums.LogType;
@@ -117,11 +117,11 @@ public class LogManager
 
 		if (global)
 		{
-			AddBotLogAction.execute(new LogBox(type, data, date));
+			AddBotLogBoxAction.execute(new LogBox(type, data, date));
 		}
 		else
 		{
-			AddBotLogAction.execute(FileManager.getBaseName(file.getName()), new LogBox(type, data, date));
+			AddBotLogBoxAction.execute(FileManager.getBaseName(file.getName()), new LogBox(type, data, date));
 		}
 
 		FileManager.save(file, array.toJSONString());

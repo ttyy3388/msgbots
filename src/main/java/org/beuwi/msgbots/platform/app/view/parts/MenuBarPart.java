@@ -1,12 +1,14 @@
 package org.beuwi.msgbots.platform.app.view.parts;
 
 import javafx.collections.ObservableMap;
-import javafx.scene.layout.StackPane;
+import org.beuwi.msgbots.compiler.engine.ScriptManager;
 import org.beuwi.msgbots.openapi.FormLoader;
+import org.beuwi.msgbots.platform.app.action.OpenBrowserAction;
 import org.beuwi.msgbots.platform.app.impl.View;
-import org.beuwi.msgbots.platform.app.view.actions.OpenDialogAction;
+import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDocumentAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenProgramTabAction;
+import org.beuwi.msgbots.platform.app.view.actions.RefreshBotListAction;
 import org.beuwi.msgbots.platform.app.view.dialogs.CreateBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.ImportBotDialog;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
@@ -37,13 +39,13 @@ public class MenuBarPart implements View
 		// File Menu Button
 		component.getMenu(0).setMenus
 		(
-			new Menu("New Bot", "Ctrl + N", event -> OpenDialogAction.execute(new CreateBotDialog())),
-			new Menu("Import Script", "Ctrl + I", event -> OpenDialogAction.execute(new ImportBotDialog())),
+			new Menu("New Bot", "Ctrl + N", event -> OpenDialogBoxAction.execute(new CreateBotDialog())),
+			new Menu("Import Script", "Ctrl + I", event -> OpenDialogBoxAction.execute(new ImportBotDialog())),
 			new Separator(),
 			new Menu("Save", "Ctrl + S"),
 			new Menu("Save All"),
 			new Separator(),
-			new Menu("Refresh All Bots", "Ctrl + Alt + Y"),
+			new Menu("Refresh All Bots", "Ctrl + Alt + Y", event -> RefreshBotListAction.execute()),
 			new Separator(),
 			new Menu("Settings", "Ctrl + Alt + S", event -> OpenProgramTabAction.execute(GlobalConfigTab.getRoot()))
 		);
@@ -71,7 +73,7 @@ public class MenuBarPart implements View
 		// Debug Menu Button
 		component.getMenu(3).setMenus
 		(
-			new Menu("Compile" /*, event -> ScriptManager.initAll(true) */),
+			new Menu("Compile", event -> ScriptManager.initAll(true)),
 			new Menu("Power On / Off"),
 			new Separator(),
 			new Menu("Show Global Log", "F8"),
@@ -83,7 +85,7 @@ public class MenuBarPart implements View
 		(
 			new Menu("View License", event -> OpenDocumentAction.execute(SharedValues.VIEW_LICENSE_DOCUMENT)),
 			new Separator(),
-			new Menu("Release Notes", event -> OpenDocumentAction.execute(SharedValues.RELEASE_NOTES_DOCUMENT)),
+			new Menu("Release Notes", event -> OpenBrowserAction.execute(SharedValues.RELEASE_NOTES_LINK)),
 			new Separator(),
 			new Menu("About Program", event -> OpenDocumentAction.execute(SharedValues.ABOUT_PROGRAM_DOCUMENT)),
 			new Separator(),

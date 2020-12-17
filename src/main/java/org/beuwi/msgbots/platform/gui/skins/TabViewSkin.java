@@ -17,7 +17,7 @@ import org.beuwi.msgbots.platform.gui.layout.StackPanel;
 
 public class TabViewSkin extends SkinBase<TabView>
 {
-	private static final String DEFAULT_STYLE_CLASS = "tab-view";
+	// private static final String DEFAULT_STYLE_CLASS = "tab-view";
 
 	private static final String HEADER_STYLE_CLASS = "tab-header-area";
 	private static final String CONTENT_STYLE_CLASS = "tab-content-area";
@@ -115,7 +115,7 @@ public class TabViewSkin extends SkinBase<TabView>
 
 		root.setItems(header, content);
 		root.setFittable(true);
-		root.addStyleClass("tab-view");
+		// root.addStyleClass("tab-view");
 
 		this.setItems(root);
 	}

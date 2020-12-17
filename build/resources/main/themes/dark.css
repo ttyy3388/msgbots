@@ -1,10 +1,10 @@
 @import "base.css";
 
-*
-{
+* {
 	-fx-text-fill: #FFFFFF;
 }
 
+/* WINDOW */
 .root {
     -fx-background-color: #252526;
 }
@@ -83,7 +83,6 @@
 .chat .comment {
 	-fx-background-radius: 5;
 	-fx-padding: 8;
-	-fx-cursor: text;
 }
 .chat:human .comment {
 	-fx-background-color: #0583F9;
@@ -164,7 +163,10 @@
 }
 
 /* DIALOG BOX */
-.dialog-box > .root-pane {
+.dialog-box {
+    -fx-background-color: transparent;
+}
+.dialog-box .root-pane {
 	-fx-background-color: #252526;
 	-fx-border-color: transparent;
 	-fx-border-width: 1;
@@ -175,23 +177,21 @@
 .dialog-box .title-bar .button .icon {
 	-fx-background-color: #FFFFFF;
 }
-.dialog-box:focused > .root-pane {
+.dialog-box:focused .root-pane {
 	-fx-border-color: #007ACC;
 }
 
 /* EDITOR */
-.editor {
-    /* -fx-background-color: #1E1E1E;
+/* .editor {
+    -fx-background-color: #1E1E1E;
 	-fx-border-color: #555555;
 	-fx-border-width: 1;
-	-fx-font-family: 'D2Coding';
-	-fx-font-size: 14;
-	-fx-padding: 4;
-	-fx-cursor: text; */
+	-fx-font-size: 15;
 }
 .editor:hover,
 .editor:focused {
-}
+    -fx-border-color: #007ACC;
+} */
 
 /* LOG BOX */
 .log-box {
@@ -313,10 +313,10 @@
 .tab-view {
 	-fx-background-color: #1E1E1E;
 }
-.tab-view > .tab-header-area {
+.tab-view .tab-header-area {
 	-fx-background-color: #252526;
 }
-.tab-view > .tab-button-bar {
+.tab-view .tab-button-bar {
 	/* -fx-background-color: #252526; */
 }
 /* TAB VIEW : SYSTEM */
@@ -402,7 +402,7 @@
 .main-area {
 	-fx-background-color: #1E1E1E;
 }
-.main-area .tab-view .tab-content-area .editor {
+.main-area .tab-view .tab-content-area > .editor {
 	-fx-border-width: 0;
 }
 

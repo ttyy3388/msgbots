@@ -29,9 +29,11 @@ public class SharedValues
 	/* Documents */
 	public static final Document ABOUT_PROGRAM_DOCUMENT = new Document("ABOUT PROGRAM", ABOUT_PROGRAM_PAGE);
 	public static final Document PROGRAM_START_DOCUMENT = new Document("START PROGRAM", PROGRAM_START_PAGE);
-	public static final Document RELEASE_NOTES_DOCUMENT = new Document("RELEASE NOTES", RELEASE_NOTES_PAGE);
+	// public static final Document RELEASE_NOTES_DOCUMENT = new Document("RELEASE NOTES", RELEASE_NOTES_PAGE);
 	public static final Document VIEW_LICENSE_DOCUMENT = new Document("VIEW LICENSE", VIEW_LICENSE_PAGE);
 	public static final Document WELCOME_GUIDE_DOCUMENT = new Document("WELCOME GUIDE", WELCOME_GUIDE_PAGE);
+
+	public static final String RELEASE_NOTES_LINK = "https://blog.naver.com/PostList.nhn?blogId=ttyy3388&from=postList&categoryNo=27";
 
 	/* Paths */
 	public static final String MAIN_FOLDER_PATH = System.getProperty("user.dir");
@@ -56,4 +58,9 @@ public class SharedValues
 	public static final File GLOBAL_CONFIG_FILE = FileManager.getDataFile(GLOBAL_CONFIG_PATH);
 	public static final File SCRIPT_DEFAULT_FILE = FileManager.getDataFile(SCRIPT_DEFAULT_PATH);
 	public static final File SCRIPT_UNIFIED_FILE = FileManager.getDataFile(SCRIPT_UNIFIED_PATH);
+
+	public static final File DARK_THEME_FILE = ResourceUtils.getFile("/themes/dark.css");
+	public static final File LIGHT_THEME_FILE = ResourceUtils.getFile("/themes/light.css");
+	// public static final File BLACK_THEME_FILE = ResourceUtils.getFile("/themes/dark.css");
+	// public static final File WHITE_THEME_FILE = ResourceUtils.getFile("/themes/dark.css");
 }

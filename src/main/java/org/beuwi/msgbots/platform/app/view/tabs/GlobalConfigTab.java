@@ -1,15 +1,22 @@
 package org.beuwi.msgbots.platform.app.view.tabs;
 
 import javafx.collections.ObservableMap;
+import javafx.scene.layout.Priority;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.gui.control.Bot;
+import org.beuwi.msgbots.platform.gui.control.ComboBox;
 import org.beuwi.msgbots.platform.gui.control.Navi;
 import org.beuwi.msgbots.platform.gui.control.NaviView;
+import org.beuwi.msgbots.platform.gui.control.OptionBox;
 import org.beuwi.msgbots.platform.gui.control.OptionView;
 import org.beuwi.msgbots.platform.gui.control.Tab;
+import org.beuwi.msgbots.platform.gui.control.VBox;
+import org.beuwi.msgbots.platform.gui.editor.Editor;
 import org.beuwi.msgbots.platform.gui.enums.ConfigType;
+import org.beuwi.msgbots.platform.util.ResourceUtils;
+import org.beuwi.msgbots.platform.util.SharedValues;
 
 public class GlobalConfigTab implements View
 {
@@ -31,6 +38,31 @@ public class GlobalConfigTab implements View
 
 		new BotNaviTab().init();
 	}
+
+	/* private static class DesignNaviTab implements View
+	{
+		private static Navi root;
+		private static OptionView component;
+
+		@Override
+		public void init()
+		{
+			root = GlobalConfigTab.getComponent().getNavi("Design");
+			component = (OptionView) root.getContent();
+
+			OptionBox theme = (OptionBox) component.getItems().get(0);
+			Editor editor = (Editor) component.getItems().get(1);
+
+			VBox.setVgrow(editor, Priority.ALWAYS);
+
+			editor.setFile(SharedValues.DARK_THEME_FILE);
+			editor.setTheme("vs-dark");
+			editor.setLanguage("css");
+			// component.getNavi("Light").setContent(new Editor(SharedValues.LIGHT_THEME_FILE));
+			// component.getNavi("Black").setContent(new Editor(ResourceUtils.getFile("themes/dark.css")));
+			// component.getNavi("White").setContent(new Editor(ResourceUtils.getFile("themes/dark.css")));
+		}
+	} */
 
 	private static class BotNaviTab implements View
 	{

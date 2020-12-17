@@ -5,11 +5,13 @@ import javafx.application.Platform;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import org.beuwi.msgbots.compiler.engine.ScriptManager;
+import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.view.MainView.MainWindow;
-import org.beuwi.msgbots.platform.app.view.actions.AddBotLogAction;
+import org.beuwi.msgbots.platform.app.view.actions.AddBotLogBoxAction;
 import org.beuwi.msgbots.platform.app.view.actions.ChangeThemeAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenBotLogTabAction;
-import org.beuwi.msgbots.platform.app.view.actions.OpenDialogAction;
+import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDocumentAction;
 import org.beuwi.msgbots.platform.app.view.actions.RefreshBotLogsAction;
 import org.beuwi.msgbots.platform.app.view.actions.SaveEditorAreaTabAction;
@@ -30,14 +32,24 @@ import org.beuwi.msgbots.platform.app.view.tabs.BotListTab;
 import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalLogTab;
-import org.beuwi.msgbots.platform.gui.control.LogBox;
 import org.beuwi.msgbots.platform.gui.control.Tab;
-import org.beuwi.msgbots.platform.gui.enums.LogType;
 import org.beuwi.msgbots.platform.gui.enums.NoticeType;
+import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
+import org.beuwi.msgbots.platform.util.SharedValues;
 
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Paths;
+import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
+import java.util.List;
+
+import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
+import static java.nio.file.StandardWatchEventKinds.OVERFLOW;
 
 public class Launcher extends Application
 {
@@ -52,7 +64,23 @@ public class Launcher extends Application
 		System.setProperty("prism.lcdtext", "false");
 		System.setProperty("prism.subpixeltext", "false"); */
 
-		/* try
+		// Load Fonts
+		Font.loadFont(ResourceUtils.getFont("consola"),       0); // Family : "Consolas"
+		Font.loadFont(ResourceUtils.getFont("consola-bold"),  0); // Family : "Consolas Bold"
+		Font.loadFont(ResourceUtils.getFont("d2coding"),      0); // Family : "D2Coding"
+		Font.loadFont(ResourceUtils.getFont("d2coding-bold"), 0); // Family : "D2Coding"
+		Font.loadFont(ResourceUtils.getFont("roboto"), 	    0); // Family : "Roboto"
+		Font.loadFont(ResourceUtils.getFont("roboto-bold"),   0); // Family : "Roboto Bold"
+		Font.loadFont(ResourceUtils.getFont("roboto-medium"), 0); // Family : "Roboto Medium"
+
+		// Set Use Agent Style
+		Application.setUserAgentStylesheet(ResourceUtils.getTheme("base"));
+	}
+
+	@Override
+	public void start(Stage stage)
+	{
+		try
 		{
 			WATCH_SERVICE = FileSystems.getDefault().newWatchService();
 
@@ -106,24 +134,8 @@ public class Launcher extends Application
 					}
 				}
 			}
-		}).start(); */
+		}).start();
 
-		// Load Fonts
-		Font.loadFont(ResourceUtils.getFont("consola"),       0); // Family : "Consolas"
-		Font.loadFont(ResourceUtils.getFont("consola-bold"),  0); // Family : "Consolas Bold"
-		Font.loadFont(ResourceUtils.getFont("d2coding"),      0); // Family : "D2Coding"
-		Font.loadFont(ResourceUtils.getFont("d2coding-bold"), 0); // Family : "D2Coding"
-		Font.loadFont(ResourceUtils.getFont("roboto"), 	    0); // Family : "Roboto"
-		Font.loadFont(ResourceUtils.getFont("roboto-bold"),   0); // Family : "Roboto Bold"
-		Font.loadFont(ResourceUtils.getFont("roboto-medium"), 0); // Family : "Roboto Medium"
-
-		// Set Use Agent Style
-		Application.setUserAgentStylesheet(ResourceUtils.getTheme("base"));
-	}
-
-	@Override
-	public void start(Stage stage)
-	{
 		try
 		{
 			new BotListTab().init();
@@ -138,12 +150,12 @@ public class Launcher extends Application
 			new StatusBarPart().init();
 			new ToastAreaPart().init();
 
-			new AddBotLogAction().init();
+			new AddBotLogBoxAction().init();
 			new AddMainAreaTabAction().init();
 			new AddToastMessageAction().init();
 			new ChangeThemeAction().init();
 			new OpenBotLogTabAction().init();
-			new OpenDialogAction().init();
+			new OpenDialogBoxAction().init();
 			new OpenDocumentAction().init();
 			new OpenProgramTabAction().init();
 			new OpenScriptTabAction().init();
@@ -160,14 +172,17 @@ public class Launcher extends Application
 				AddMainAreaTabAction.execute(new Tab("TEST : " + i));
 			}
 
-			AddToastMessageAction.execute(NoticeType.EVENT, "TEST TITLE", "CONTENT");
+			// AddToastMessageAction.execute(NoticeType.EVENT, "TEST TITLE", "CONTENT");
 
-			OpenProgramTabAction.execute(GlobalConfigTab.getRoot());
+			FileManager.link(SharedValues.DARK_THEME_FILE, () ->
+			{
+				ChangeThemeAction.execute(ThemeType.DARK);
+			});
 
 			// 추후 전체를 로딩하는게 아닌 새 파일만 로딩해야됨 > 스크립트 탭도 마차가지로 바꿔야됨 (컴파일 상태 유지)
-			// RefreshBotListAction.execute();
+			RefreshBotListAction.execute();
 
-			// ScriptManager.preInit();
+			ScriptManager.preInit();
 		}
 		catch (Throwable e)
 		{

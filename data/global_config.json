@@ -1,4 +1,8 @@
 {
+	"connection":{
+		"socket_remote_port":"9500",
+		"socket_local_port":"9500"
+	},
 	"debug":{
 		"show_bot_profile":true,
 		"bot_name":"DEBUG BOT",
@@ -16,11 +20,8 @@
 	},
 	"program":{
 		"compile_auto_save":true,
+		"text_rendering":"lcd",
 		"start_auto_compile":true,
 		"color_theme":"light"
-	},
-	"connection":{
-		"socket_local_port": "9500",
-		"socket_remote_port": "9500"
 	}
 }

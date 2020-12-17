@@ -5,7 +5,7 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import netscape.javascript.JSObject;
 import org.beuwi.msgbots.platform.app.action.OpenBrowserAction;
-import org.beuwi.msgbots.platform.app.view.actions.OpenDialogAction;
+import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
 import org.beuwi.msgbots.platform.app.view.dialogs.CreateBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.ImportBotDialog;
 import org.beuwi.msgbots.platform.gui.layout.StackPanel;
@@ -26,8 +26,8 @@ public class Page extends StackPanel {
             switch (clazz) {
                 case "open.dialog.action" :
                     switch (param) {
-                        case "create.bot.dialog": OpenDialogAction.execute(new CreateBotDialog()); break;
-                        case "import.bot.dialog": OpenDialogAction.execute(new ImportBotDialog()); break;
+                        case "create.bot.dialog": OpenDialogBoxAction.execute(new CreateBotDialog()); break;
+                        case "import.bot.dialog": OpenDialogBoxAction.execute(new ImportBotDialog()); break;
                     }
                     break;
                 case "open.browser.action" : OpenBrowserAction.execute(param); break;

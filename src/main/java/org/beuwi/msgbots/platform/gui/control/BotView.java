@@ -1,9 +1,10 @@
 package org.beuwi.msgbots.platform.gui.control;
 
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import org.beuwi.msgbots.platform.app.action.OpenDesktopAction;
 import org.beuwi.msgbots.platform.app.action.base.CopyAction;
+import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
+import org.beuwi.msgbots.platform.app.view.dialogs.CreateBotDialog;
 import org.beuwi.msgbots.platform.util.SharedValues;
 
 public class BotView extends ListView<Bot>
@@ -12,7 +13,7 @@ public class BotView extends ListView<Bot>
 
 	private final ContextMenu menu = new ContextMenu
 	(
-		new Menu("New Bot", "Ctrl + N" /*, event -> OpenDialogBoxAction.execute(new CreateBotDialog()) */),
+		new Menu("New Bot", "Ctrl + N", event -> OpenDialogBoxAction.execute(new CreateBotDialog())),
 		new Separator(),
 		new Menu("Show in Explorer", "Shift + Alt + R", event -> OpenDesktopAction.execute(SharedValues.BOTS_FOLDER_FILE)),
 		new Separator(),

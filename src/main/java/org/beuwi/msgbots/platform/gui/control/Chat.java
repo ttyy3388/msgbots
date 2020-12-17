@@ -93,11 +93,19 @@ public class Chat extends HBox
             name.setText("DEBUG SENDER");
             name.addStyleClass("name");
 
-			// comment.setMaxWidth(220);
-			comment.setText(message);
-			comment.setWrapText(true);
-			comment.setMaxWidth(200);
-			comment.addStyleClass("comment");
+
+			/* if (message.length() > 1000)
+			{
+
+			}
+			else */
+			{
+				// comment.setMaxWidth(220);
+				comment.setText(message);
+				comment.setWrapText(true);
+				comment.setMaxWidth(200);
+				comment.addStyleClass("comment");
+			}
 
 			if (!isbot)
 			{

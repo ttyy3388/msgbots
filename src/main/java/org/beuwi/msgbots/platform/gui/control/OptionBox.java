@@ -5,7 +5,9 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
+
 import org.beuwi.msgbots.platform.gui.skins.OptionBoxSkin;
+import org.beuwi.msgbots.setting.SharedSettings;
 
 // Option Box
 public class OptionBox extends Control
@@ -25,7 +27,7 @@ public class OptionBox extends Control
 	{
 		addStyleClass(DEFAULT_STYLE_CLASS);
 
-		/* getAddressProperty().addListener(event ->
+		getAddressProperty().addListener(event ->
 		{
 			if (getContent() instanceof Button)
 			{
@@ -107,8 +109,8 @@ public class OptionBox extends Control
 				{
 					SharedSettings.setData(getAddress(), control.getSelectedItem().toString());
 				});
-			}
-		}); */
+			} */
+		});
 	}
 
 	public void setView(OptionView parent)

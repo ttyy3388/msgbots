@@ -17,7 +17,7 @@ public class OpenBotLogTabAction implements Action
 			logView.setItems(LogManager.load(FileManager.getBotLog(name)));
 		});
 
-		AddMainAreaTabAction.execute(new Tab("log:" + name, new LogView(name)));
+		AddMainAreaTabAction.execute(new Tab("LOG : " + name, new LogView(name)));
 	}
 
 	@Override

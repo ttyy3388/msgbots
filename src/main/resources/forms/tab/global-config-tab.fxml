@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Separator?>
+
 <?import org.beuwi.msgbots.platform.gui.control.Button?>
 <?import org.beuwi.msgbots.platform.gui.control.CheckBox?>
 <?import org.beuwi.msgbots.platform.gui.control.ComboBox?>
@@ -15,13 +18,13 @@
 <?import org.beuwi.msgbots.platform.gui.control.Tab?>
 <?import org.beuwi.msgbots.platform.gui.control.TextField?>
 <?import org.beuwi.msgbots.platform.gui.control.VBox?>
+<?import org.beuwi.msgbots.platform.gui.editor.Editor?>
+<?import org.beuwi.msgbots.platform.gui.enums.ThemeType?>
 <?import org.beuwi.msgbots.platform.gui.layout.ScrollPanel?>
 <?import org.beuwi.msgbots.platform.gui.layout.StackPanel?>
 <?import org.beuwi.msgbots.platform.util.SharedValues?>
 
-<?import org.beuwi.msgbots.platform.gui.enums.ThemeType?>
-<?import org.beuwi.msgbots.platform.gui.editor.Editor?>
-
+<?import javafx.scene.control.TextArea?>
 <Tab text="GLOBAL CONFIG" xmlns:fx="http://javafx.com/fxml">
 	<content>
 		<NaviView>
@@ -30,15 +33,27 @@
 					<content>
 						<OptionView type="GLOBAL" name="program" title="Program">
 							<items>
-								<OptionBox option="color_theme" title="프로그램 테마 변경 (재시작 시 적용)">
+								<OptionBox option="color_theme" title="프로그램 테마 변경">
 									<content>
 										<ComboBox maxWidth="150" >
 											<items>
-												<FXCollections fx:factory="observableArrayList"  >
+												<FXCollections fx:factory="observableArrayList">
 													<ThemeType fx:constant="DARK" />
 													<ThemeType fx:constant="LIGHT" />
 													<ThemeType fx:constant="BLACK" />
 													<ThemeType fx:constant="WHITE" />
+												</FXCollections>
+											</items>
+										</ComboBox>
+									</content>
+								</OptionBox>
+								<OptionBox option="text_rendering" title="텍스트 렌더링 방식">
+									<content>
+										<ComboBox maxWidth="150" >
+											<items>
+												<FXCollections fx:factory="observableArrayList">
+													<String fx:value="LCD" />
+													<String fx:value="GRAY" />
 												</FXCollections>
 											</items>
 										</ComboBox>
@@ -185,8 +200,33 @@
 				</Navi>
 				<Navi text="Design">
 					<content>
-						<OptionView type="GLOBAL" name="design" title="Design">
+						<OptionView title="Design">
 							<items>
+								<OptionBox title="테마 선택">
+									<content>
+										<ComboBox maxWidth="150" >
+											<items>
+												<FXCollections fx:factory="observableArrayList">
+													<String fx:value="DARK" />
+													<String fx:value="LIGHT" />
+													<String fx:value="BLACK" />
+													<String fx:value="WHITE" />
+													<String fx:value="CUSTOM" />
+												</FXCollections>
+											</items>
+										</ComboBox>
+									</content>
+								</OptionBox>
+								<Editor />
+								<!-- <NaviView>
+									<navis>
+										<Navi text="Button"/>
+										<Navi text="Text Area"/>
+										<Navi text="Text Field"/>
+										<Navi text="Navi View"/>
+										<Navi text="Dialog Box"/>
+									</navis>
+								</NaviView> -->
 							</items>
 							<StackPanel.margin>
 								<Insets left="15.0" />

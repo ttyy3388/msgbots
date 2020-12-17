@@ -10,9 +10,9 @@ require(['vs/editor/editor.main'], function()
 {
 	view = monaco.editor.create(document.getElementById('container'),
 	{
-		//theme: 'mylangTheme',
+		// theme: 'vs-dark',
 		value: getCode(),
-		//language: 'mylang',
+		// language: 'mylang',
 		automaticLayout: true,
 		roundedSelection: false,
 		mouseWheelScrollSensitivity: 0.1,

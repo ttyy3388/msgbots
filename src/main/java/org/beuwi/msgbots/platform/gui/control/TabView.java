@@ -94,7 +94,7 @@ public class TabView extends Control
 			newTab.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, true);
 		});
 
-		// addStyleClass(DEFAULT_STYLE_CLASS);
+		setStyleClass(DEFAULT_STYLE_CLASS);
 	}
 
 	public void select(Tab tab)

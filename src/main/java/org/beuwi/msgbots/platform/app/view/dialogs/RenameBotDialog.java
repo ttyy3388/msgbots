@@ -3,14 +3,14 @@ package org.beuwi.msgbots.platform.app.view.dialogs;
 import javafx.application.Platform;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import org.beuwi.msgbots.openapi.FormLoader;
+import org.beuwi.msgbots.platform.app.action.RenameBotAction;
 import org.beuwi.msgbots.platform.gui.control.Button;
 import org.beuwi.msgbots.platform.gui.control.TextField;
-import org.beuwi.msgbots.platform.gui.dialog.DialogWrap;
+import org.beuwi.msgbots.platform.gui.dialog.DialogBoxWrap;
 
-public class RenameBotDialog extends DialogWrap
+public class RenameBotDialog extends DialogBoxWrap
 {
 	private final ObservableMap<String, Object> nameSpace;
 
@@ -67,6 +67,6 @@ public class RenameBotDialog extends DialogWrap
 			return ;
 		}
 
-		// RenameBotAction.execute(name, txfScriptName.getText());
+		RenameBotAction.execute(name, txfScriptName.getText());
 	}
 }

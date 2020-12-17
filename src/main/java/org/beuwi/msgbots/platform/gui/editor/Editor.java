@@ -19,10 +19,10 @@ public final class Editor extends TextArea
 		{
 			setText(file);
 
-			FileManager.link(file, () ->
+			/* FileManager.link(file, () ->
 			{
 				setText(file);
-			});
+			}); */
 
 			setOnKeyPressed(event ->
 			{
@@ -31,6 +31,7 @@ public final class Editor extends TextArea
 					switch (event.getCode())
 					{
 						case S : save(); break;
+						case X : cut();  break;
 						case C : copy(); break;
 						case Z : redo(); break;
 						case Y : undo(); break;
