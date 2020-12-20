@@ -57,6 +57,8 @@ public class GlobalConfigTab implements View
 			ComboBox select = (ComboBox) ((OptionBox) component.getItems().get(0)).getContent();
 			Editor editor = (Editor) component.getItems().get(1);
 
+			editor.setLanguage("css");
+
 			select.getSelectedItemProperty().addListener(event ->
 			{
 				String theme = (String) select.getSelectedItem();

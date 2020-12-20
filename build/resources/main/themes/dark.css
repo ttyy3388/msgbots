@@ -182,16 +182,15 @@
 }
 
 /* EDITOR */
-/* .editor {
+.editor {
     -fx-background-color: #1E1E1E;
 	-fx-border-color: #555555;
 	-fx-border-width: 1;
-	-fx-font-size: 15;
 }
 .editor:hover,
 .editor:focused {
     -fx-border-color: #007ACC;
-} */
+}
 
 /* LOG BOX */
 .log-box {

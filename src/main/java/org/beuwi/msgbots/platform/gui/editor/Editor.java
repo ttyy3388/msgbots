@@ -1,85 +1,102 @@
 package org.beuwi.msgbots.platform.gui.editor;
 
-import java.io.File;
-
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.SimpleObjectProperty;
-import org.beuwi.msgbots.manager.FileManager;
-import org.beuwi.msgbots.platform.gui.control.TextArea;
+import javafx.beans.property.StringProperty;
 
-public final class Editor extends TextArea
+import javafx.scene.input.KeyEvent;
+import org.beuwi.msgbots.manager.FileManager;
+import org.beuwi.msgbots.platform.gui.layout.StackPanel;
+
+import java.io.File;
+
+public final class Editor extends StackPanel
 {
 	private static final String DEFAULT_STYLE_CLASS = "editor";
 
-	private final FileProperty file = new FileProperty(change ->
-	{
+	private final Monaco monaco = new Monaco();
+
+	private final FileProperty file = new FileProperty(change -> {
 		File file = this.file.get();
 
-		if (file != null)
-		{
-			setText(file);
+		if (file != null) {
+			setText(FileManager.read(file));
 
 			/* FileManager.link(file, () ->
 			{
 				setText(file);
 			}); */
 
-			setOnKeyPressed(event ->
-			{
-				if (event.isControlDown())
-				{
-					switch (event.getCode())
-					{
-						case S : save(); break;
-						case X : cut();  break;
-						case C : copy(); break;
-						case Z : redo(); break;
-						case Y : undo(); break;
+			addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+				if (event.isControlDown()) {
+
+					switch (event.getCode()) {
+						// case S :
+						// FileManager.save(file, getText()); break;
+						// case S : save(); break;
+						case C :
+							monaco.copy(); break;
+						// case Z : redo(); break;
+						// case Y : undo(); break;
 					}
 				}
 			});
 		}
 	});
 
-	public Editor()
-	{
+	public Editor() {
 		this(null);
 	}
 
-	public Editor(File file)
-	{
-		if (file != null)
-		{
+	public Editor(File file) {
+		if (file != null) {
 			setFile(file);
 		}
 
-		addStyleClass("editor");
+		setItem(monaco.getView());
+		setTheme("vs-dark");
+		setLanguage("javascript");
+		setStyleClass("editor");
 	}
 
-	public void save()
-	{
-		FileManager.save(getFile(), getText());
-	}
+	/* private void execute(String action) {
+		monaco.execute(action);
+	} */
 
-	public void setFile(File file)
-	{
+	public void setFile(File file) {
 		this.file.set(file);
 	}
 
-	private void setText(File file)
-	{
-		setText(FileManager.read(file));
+	private void setText(String text) {
+		monaco.setText(text);
 	}
 
-	public File getFile()
-	{
+	public void setTheme(String theme) {
+		monaco.setTheme(theme);
+	}
+
+	public void setLanguage(String language) {
+		monaco.setLanguage(language);
+	}
+
+	public File getFile() {
 		return file.get();
 	}
 
-	private class FileProperty extends SimpleObjectProperty<File>
-	{
-		public FileProperty(InvalidationListener listener)
-		{
+	public String getText() {
+		return monaco.getText();
+	}
+
+	public String getTheme() {
+		return monaco.getTheme();
+	}
+
+	public String getLanguage() {
+		return monaco.getLanguage();
+	}
+
+	private class FileProperty extends SimpleObjectProperty<File> {
+		public FileProperty(InvalidationListener listener) {
 			addListener(listener);
 		}
 	}
