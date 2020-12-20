@@ -46,6 +46,7 @@ public class SharedValues
 	public static final String GLOBAL_CONFIG_PATH = "global_config.json";
 	public static final String SCRIPT_DEFAULT_PATH = "script_default.js";
 	public static final String SCRIPT_UNIFIED_PATH = "script_unified.js";
+	public static final String PROGRAM_DATA_PATH = "program_data.json";
 
 	/* Files */
 	public static final File MAIN_FOLDER_FILE = new File(SharedValues.MAIN_FOLDER_PATH);
@@ -58,6 +59,7 @@ public class SharedValues
 	public static final File GLOBAL_CONFIG_FILE = FileManager.getDataFile(GLOBAL_CONFIG_PATH);
 	public static final File SCRIPT_DEFAULT_FILE = FileManager.getDataFile(SCRIPT_DEFAULT_PATH);
 	public static final File SCRIPT_UNIFIED_FILE = FileManager.getDataFile(SCRIPT_UNIFIED_PATH);
+	public static final File PROGRAM_DATA_FILE = FileManager.getDataFile(PROGRAM_DATA_PATH);
 
 	public static final File DARK_THEME_FILE = ResourceUtils.getFile("/themes/dark.css");
 	public static final File LIGHT_THEME_FILE = ResourceUtils.getFile("/themes/light.css");

@@ -5,7 +5,7 @@ import org.beuwi.msgbots.platform.app.impl.Action;
 import org.beuwi.msgbots.platform.app.view.parts.ToastAreaPart;
 import org.beuwi.msgbots.platform.gui.control.Toast;
 import org.beuwi.msgbots.platform.gui.control.ToastView;
-import org.beuwi.msgbots.platform.gui.enums.NoticeType;
+import org.beuwi.msgbots.platform.gui.enums.ToastType;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -25,7 +25,7 @@ public class AddToastMessageAction implements Action
 		StringWriter message = new StringWriter();
 		error.printStackTrace(new PrintWriter(message));
 
-		execute(NoticeType.ERROR, error.toString(), message.toString());
+		execute(ToastType.ERROR, error.toString(), message.toString());
 	}
 
 	// Default Type : Event
@@ -34,7 +34,7 @@ public class AddToastMessageAction implements Action
 		execute(NoticeType.EVENT, title, content);
 	} */
 
-	public static void execute(NoticeType type, String title, String content)
+	public static void execute(ToastType type, String title, String content)
 	{
 		execute(new Toast(type, title, content));
 	}

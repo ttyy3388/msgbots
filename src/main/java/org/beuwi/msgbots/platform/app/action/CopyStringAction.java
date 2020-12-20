@@ -1,10 +1,10 @@
-package org.beuwi.msgbots.platform.app.action.base;
+package org.beuwi.msgbots.platform.app.action;
 
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import org.beuwi.msgbots.platform.app.impl.Action;
 
-public class CopyAction implements Action
+public class CopyStringAction implements Action
 {
     public static final Clipboard clipboard = Clipboard.getSystemClipboard();
 

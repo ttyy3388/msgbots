@@ -3,8 +3,8 @@ package org.beuwi.msgbots.platform.gui.control;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import org.beuwi.msgbots.openapi.FormLoader;
-import org.beuwi.msgbots.platform.app.action.base.CopyAction;
-import org.beuwi.msgbots.platform.gui.enums.NoticeType;
+import org.beuwi.msgbots.platform.app.action.CopyStringAction;
+import org.beuwi.msgbots.platform.gui.enums.ToastType;
 import org.beuwi.msgbots.platform.gui.layout.ShadowPanel;
 import org.beuwi.msgbots.platform.util.AllSVGIcons;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
@@ -27,12 +27,12 @@ public class Toast extends ShadowPanel
 	private final FormLoader loader;
 	private final ContextMenu menu;
 
-	public Toast(NoticeType type, String title, String content)
+	public Toast(ToastType type, String title, String content)
 	{
 		loader = new FormLoader("frame", "toast-box-frame", this);
 		menu = new ContextMenu
 		(
-			new Menu("Copy Text", event -> CopyAction.execute(title + "\n\n" + content))
+			new Menu("Copy Text", event -> CopyStringAction.execute(title + "\n\n" + content))
 		);
 
 		menu.setNode(this);

@@ -15,8 +15,11 @@ import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.gui.control.VBox;
 import org.beuwi.msgbots.platform.gui.editor.Editor;
 import org.beuwi.msgbots.platform.gui.enums.ConfigType;
+import org.beuwi.msgbots.platform.gui.skins.OptionBoxSkin;
+import org.beuwi.msgbots.platform.gui.skins.OptionViewSkin;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 import org.beuwi.msgbots.platform.util.SharedValues;
+import org.beuwi.msgbots.setting.GlobalSettings;
 
 public class GlobalConfigTab implements View
 {
@@ -36,10 +39,11 @@ public class GlobalConfigTab implements View
 		root = loader.getRoot();
 		component = loader.getComponent();
 
+		new DesignNaviTab().init();
 		new BotNaviTab().init();
 	}
 
-	/* private static class DesignNaviTab implements View
+	private static class DesignNaviTab implements View
 	{
 		private static Navi root;
 		private static OptionView component;
@@ -50,19 +54,29 @@ public class GlobalConfigTab implements View
 			root = GlobalConfigTab.getComponent().getNavi("Design");
 			component = (OptionView) root.getContent();
 
-			OptionBox theme = (OptionBox) component.getItems().get(0);
+			ComboBox select = (ComboBox) ((OptionBox) component.getItems().get(0)).getContent();
 			Editor editor = (Editor) component.getItems().get(1);
+
+			select.getSelectedItemProperty().addListener(event ->
+			{
+				String theme = (String) select.getSelectedItem();
+				switch (theme)
+				{
+					case "dark" : editor.setFile(SharedValues.DARK_THEME_FILE); break;
+					case "light" : editor.setFile(SharedValues.LIGHT_THEME_FILE); break;
+				}
+			});
+
+			// Default select value : current theme
+			select.select(GlobalSettings.getString("program:color_theme"));
 
 			VBox.setVgrow(editor, Priority.ALWAYS);
 
-			editor.setFile(SharedValues.DARK_THEME_FILE);
-			editor.setTheme("vs-dark");
-			editor.setLanguage("css");
 			// component.getNavi("Light").setContent(new Editor(SharedValues.LIGHT_THEME_FILE));
 			// component.getNavi("Black").setContent(new Editor(ResourceUtils.getFile("themes/dark.css")));
 			// component.getNavi("White").setContent(new Editor(ResourceUtils.getFile("themes/dark.css")));
 		}
-	} */
+	}
 
 	private static class BotNaviTab implements View
 	{

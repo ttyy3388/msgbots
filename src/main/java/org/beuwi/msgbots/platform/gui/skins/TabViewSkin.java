@@ -4,7 +4,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
+import javafx.scene.Node;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Priority;
 import org.beuwi.msgbots.platform.gui.control.HBox;
 import org.beuwi.msgbots.platform.gui.control.SkinBase;
@@ -15,8 +17,7 @@ import org.beuwi.msgbots.platform.gui.enums.ControlType;
 import org.beuwi.msgbots.platform.gui.layout.ScrollPanel;
 import org.beuwi.msgbots.platform.gui.layout.StackPanel;
 
-public class TabViewSkin extends SkinBase<TabView>
-{
+public class TabViewSkin extends SkinBase<TabView> {
 	// private static final String DEFAULT_STYLE_CLASS = "tab-view";
 
 	private static final String HEADER_STYLE_CLASS = "tab-header-area";
@@ -49,13 +50,11 @@ public class TabViewSkin extends SkinBase<TabView>
 		VBox.setVgrow(content, Priority.ALWAYS);
 	}
 
-	public enum Type
-	{
+	public enum Type {
 		NORMAL, SYSTEM
 	}
 
-	public TabViewSkin(final TabView control)
-	{
+	public TabViewSkin(final TabView control) {
 		super(control);
 
 		this.control = control;
@@ -73,44 +72,38 @@ public class TabViewSkin extends SkinBase<TabView>
 		header.setPrefHeight(DEFAULT_HEADER_HEIGHT);
 		// header.setMaxHeight(DEFAULT_HEADER_HEIGHT);
 
-		if (!control.getTabs().isEmpty())
-		{
+		if (!control.getTabs().isEmpty()) {
 			headers.setItems(control.getTabs());
 			content.setItem(control.getSelectedTab().getContent());
 		}
 
-		if (control.getType() != null)
-        {
+		if (control.getType() != null) {
             this.setType(control.getType());
         }
 
 		header.getStyleClass().add(HEADER_STYLE_CLASS);
 		content.getStyleClass().add(CONTENT_STYLE_CLASS);
 
-		control.getTabs().addListener((ListChangeListener<Tab>) change ->
-		{
-			while (change.next())
-			{
-				for (Tab tab : change.getRemoved())
-				{
+		control.getTabs().addListener((ListChangeListener<Tab>) change -> {
+			while (change.next()) {
+				for (Tab tab : change.getRemoved()) {
 					headers.remove(tab);
 				}
-
-				for (Tab tab : change.getAddedSubList())
-				{
+				for (Tab tab : change.getAddedSubList()) {
 					headers.addItem(tab);
 				}
 			}
 		});
 
-		control.getTypeProperty().addListener(change ->
-		{
+		control.getTypeProperty().addListener(change -> {
 			this.setType(control.getType());
 		});
 
-		control.getSelectedTabProperty().addListener(change ->
-		{
-			content.setItem(control.getSelectedTab().getContent());
+		control.getSelectedTabProperty().addListener(change -> {
+			Node target = control.getSelectedTab().getContent();
+			content.setItem(target);
+			// 변경된 탭으로 포커스 이동하도록
+			target.requestFocus();
 		});
 
 		root.setItems(header, content);
@@ -121,30 +114,22 @@ public class TabViewSkin extends SkinBase<TabView>
 	}
 
 	// private or protected
-	private void setType(ControlType type)
-	{
-		switch (type)
-		{
+	private void setType(ControlType type) {
+		switch (type) {
 			case NORMAL :
-
 				header.setFitToWidth(false);
 
-				for (Tab tab : control.getTabs())
-				{
+				for (Tab tab : control.getTabs()) {
 					HBox.setHgrow(tab, Priority.NEVER);
 				}
-
 				break;
 
 			case SYSTEM :
-
 				header.setFitToWidth(true);
 
-				for (Tab tab : control.getTabs())
-				{
+				for (Tab tab : control.getTabs()) {
 					HBox.setHgrow(tab, Priority.ALWAYS);
 				}
-
 				break;
 		}
 	}

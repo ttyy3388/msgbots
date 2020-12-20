@@ -64,4 +64,9 @@ public class OptionViewSkin extends SkinBase<OptionView>
 
         this.setItem(root);
     }
+
+    public VBox getRoot()
+    {
+        return root;
+    }
 }

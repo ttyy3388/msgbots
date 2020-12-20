@@ -11,7 +11,6 @@ import javafx.scene.Node;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import org.beuwi.msgbots.platform.gui.enums.SelectType;
 import org.beuwi.msgbots.platform.gui.layout.StackPanel;
 
 // Navigation View
@@ -113,63 +112,21 @@ public class NaviView extends HBox<Navi>
 		addStyleClass("navi-view");
 	}
 
-	public void select(int index)
+	public void selectNavi(int index)
 	{
 		selected.set(getNavi(index));
 	}
 
-	public void select(Navi navi)
+	public void selectNavi(Navi navi)
 	{
 		selected.set(navi);
-	}
-
-	public void select(SelectType type)
-	{
-		Navi item = getSelectedNavi();
-
-		int index = getIndex(item),
-			size = navis.size();
-
-		if (size < 1 || index < 0)
-		{
-			return ;
-		}
-
-		switch (type)
-		{
-			case NEXT :
-				// If have a next tab
-				if (size > index + 1)
-				{
-				    select(index + 1);
-				}
-				// Select first tab
-				else
-				{
-					select(0);
-				}
-				break;
-			case PREVIOUS :
-                // If have a previous tab
-				if (size < index - 1)
-				{
-					select(index - 1);
-				}
-				// Select last tab
-				else
-				{
-					select(size - 1);
-				}
-				break;
-
-		}
 	}
 
 	public void addNavi(Navi navi)
 	{
 		if (contains(navi))
 		{
-			select(getIndex(navi));
+			selectNavi(getNaviIndex(navi));
 		}
 		else
 		{
@@ -185,23 +142,13 @@ public class NaviView extends HBox<Navi>
 		}
 	}
 
-	public boolean contains(Navi navi)
+	public int getNaviIndex(Navi navi)
 	{
-		return getIndex(navi) != -1;
-	}
-
-	public boolean contains(String title)
-	{
-		return getIndex(title) != -1;
-	}
-
-	public int getIndex(Navi navi)
-	{
-		return getIndex(navi.getText());
+		return getNaviIndex(navi.getText());
 	}
 
 	// 추후 ID 방식으로 바꿔야함
-	public int getIndex(String title)
+	public int getNaviIndex(String title)
 	{
 		for (int index = 0 ; index < getNavis().size() ; index ++)
 		{
@@ -214,9 +161,19 @@ public class NaviView extends HBox<Navi>
 		return -1;
 	}
 
+	public boolean containsNavi(Navi tab)
+	{
+		return getNaviIndex(tab) != -1;
+	}
+
+	public boolean containsNavi(String title)
+	{
+		return getNaviIndex(title) != -1;
+	}
+
 	public Navi getNavi(String title)
 	{
-		return contains(title) ? getNavi(getIndex(title)) : null;
+		return containsNavi(title) ? getNavi(getNaviIndex(title)) : null;
 	}
 
 	public Navi getNavi(int index)

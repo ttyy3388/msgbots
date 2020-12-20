@@ -21,9 +21,9 @@ public class OpenScriptTabAction implements Action
 
 	public static void execute(String name)
 	{
-		if (control.contains(name))
+		if (control.containsTab(name))
 		{
-			control.select(name);
+			control.selectTab(name);
 		}
 		else
 		{

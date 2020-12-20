@@ -2,6 +2,8 @@ package org.beuwi.msgbots.platform.app.action;
 
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.impl.Action;
+import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
+import org.beuwi.msgbots.platform.gui.enums.ToastType;
 import org.beuwi.msgbots.platform.util.SharedValues;
 
 import java.io.File;
@@ -25,7 +27,7 @@ public class CreateBotAction implements Action
 
 		if (project.exists())
 		{
-			System.out.println("already exists");
+			AddToastMessageAction.execute(ToastType.ERROR, "Create bot error", "Bot " + name + " : already exists");
 		}
 		else
 		{

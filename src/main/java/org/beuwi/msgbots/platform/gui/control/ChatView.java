@@ -3,6 +3,7 @@ package org.beuwi.msgbots.platform.gui.control;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.text.Text;
 
 public class ChatView extends ListView<Chat>
@@ -55,7 +56,7 @@ public class ChatView extends ListView<Chat>
 			}
 		});
 
-		getStyleClass().add(DEFAULT_STYLE_CLASS);
+		addStyleClass(DEFAULT_STYLE_CLASS);
 	}
 
 	/* public Chat getChat(int index)

@@ -47,7 +47,7 @@
 										</ComboBox>
 									</content>
 								</OptionBox>
-								<OptionBox option="text_rendering" title="텍스트 렌더링 방식">
+								<!-- <OptionBox option="text_rendering" title="텍스트 렌더링 방식">
 									<content>
 										<ComboBox maxWidth="150" >
 											<items>
@@ -58,7 +58,7 @@
 											</items>
 										</ComboBox>
 									</content>
-								</OptionBox>
+								</OptionBox> -->
 								<OptionBox option="start_auto_compile" title="시작 시 자동 컴파일">
 									<content>
 										<CheckBox text="앱이 시작되었을 때 전원을 켜둔 스크립트를 자동으로 컴파일 합니다." />
@@ -207,11 +207,10 @@
 										<ComboBox maxWidth="150" >
 											<items>
 												<FXCollections fx:factory="observableArrayList">
-													<String fx:value="DARK" />
-													<String fx:value="LIGHT" />
-													<String fx:value="BLACK" />
-													<String fx:value="WHITE" />
-													<String fx:value="CUSTOM" />
+													<String fx:value="dark" />
+													<String fx:value="light" />
+													<String fx:value="black" />
+													<String fx:value="white" />
 												</FXCollections>
 											</items>
 										</ComboBox>

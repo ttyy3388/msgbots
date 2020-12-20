@@ -33,7 +33,6 @@ import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalLogTab;
 import org.beuwi.msgbots.platform.gui.control.Tab;
-import org.beuwi.msgbots.platform.gui.enums.NoticeType;
 import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 import org.beuwi.msgbots.platform.util.SharedValues;
@@ -51,14 +50,12 @@ import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
 import static java.nio.file.StandardWatchEventKinds.OVERFLOW;
 
-public class Launcher extends Application
-{
+public class Launcher extends Application {
 	WatchService WATCH_SERVICE = null;
 	WatchKey     WATCH_KEY     = null;
 
 	@Override
-	public void init()
-	{
+	public void init() {
 		// Text Anti Aliasing
 		/* System.setProperty("prism.text", "t2k");
 		System.setProperty("prism.lcdtext", "false");
@@ -78,14 +75,11 @@ public class Launcher extends Application
 	}
 
 	@Override
-	public void start(Stage stage)
-	{
-		try
-		{
+	public void start(Stage stage) {
+		try {
 			WATCH_SERVICE = FileSystems.getDefault().newWatchService();
 
-			Paths.get(SharedValues.BOTS_FOLDER_FILE.getPath()).register
-			(
+			Paths.get(SharedValues.BOTS_FOLDER_FILE.getPath()).register(
 				WATCH_SERVICE,
 				ENTRY_CREATE,
 				ENTRY_DELETE,
@@ -93,21 +87,16 @@ public class Launcher extends Application
 				OVERFLOW
 			);
 		}
-		catch (IOException e)
-		{
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		new Thread(() ->
-		{
-			while (true)
-			{
-				try
-				{
+		new Thread(() -> {
+			while (true) {
+				try {
 					WATCH_KEY = WATCH_SERVICE.take();
 				}
-				catch (InterruptedException e)
-				{
+				catch (InterruptedException e) {
 					break;
 				}
 
@@ -136,8 +125,7 @@ public class Launcher extends Application
 			}
 		}).start();
 
-		try
-		{
+		try {
 			new BotListTab().init();
 			new DebugRoomTab().init();
 			new GlobalConfigTab().init();
@@ -167,15 +155,9 @@ public class Launcher extends Application
 
 			new MainWindow(stage).create();
 
-			for (int i = 0 ; i < 10 ; i ++)
-			{
-				AddMainAreaTabAction.execute(new Tab("TEST : " + i));
-			}
-
 			// AddToastMessageAction.execute(NoticeType.EVENT, "TEST TITLE", "CONTENT");
 
-			FileManager.link(SharedValues.DARK_THEME_FILE, () ->
-			{
+			FileManager.link(SharedValues.DARK_THEME_FILE, () -> {
 				ChangeThemeAction.execute(ThemeType.DARK);
 			});
 
@@ -184,22 +166,19 @@ public class Launcher extends Application
 
 			ScriptManager.preInit();
 		}
-		catch (Throwable e)
-		{
+		catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	public void stop()
-	{
+	public void stop() {
 		// 프로그램을 종료해도 프로세서가 남아있는 현상 해결 해야됨. (해결 완료)
 		Platform.exit();
 		System.exit(0);
 	}
 
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		launch(args);
 	}
 }

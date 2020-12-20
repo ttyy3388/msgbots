@@ -12,8 +12,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Skin;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import org.beuwi.msgbots.platform.gui.enums.CloseType;
-import org.beuwi.msgbots.platform.gui.enums.SelectType;
 import org.beuwi.msgbots.platform.gui.skins.TabSkin;
 import org.beuwi.msgbots.platform.util.AllSVGIcons;
 
@@ -56,19 +54,19 @@ public class Tab extends Control
 
 		menu = new ContextMenu
 		(
-			new Menu("Close", "Ctrl + W", event -> parent.close(this)),
-			new Menu("Close Others"),
-			new Menu("Close All Tabs", event -> parent.close())
-			// new Separator()
-			// new Menu("Select Next Tab", "Ctrl + Tab", event -> parent.select(this, SelectType.NEXT)),
-			// new Menu("Select Previous Tab", "Ctrl + Shift + Tab", event -> parent.select(this, SelectType.PREVIOUS)) */
+			new Menu("Close", "Ctrl + W", event -> parent.closeTab(this)),
+			new Menu("Close Others", event -> parent.closeOtherTabs(this)),
+			new Menu("Close All Tabs", event -> parent.closeAllTabs()),
+			new Separator(),
+			new Menu("Select Next Tab", "Ctrl + Tab", event -> parent.selectNextTab(this)),
+			new Menu("Select Previous Tab", "Ctrl + Shift + Tab", event ->  parent.selectPrevTab(this))
 		);
 
 		menu.setNode(this);
 
 		this.setOnMousePressed(event ->
 		{
-			getView().select(this);
+			getView().selectTab(this);
 		});
 
 		addStyleClass(DEFAULT_STYLE_CLASS);

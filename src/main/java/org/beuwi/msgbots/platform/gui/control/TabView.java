@@ -1,5 +1,6 @@
 package org.beuwi.msgbots.platform.gui.control;
 
+import com.sun.javafx.scene.control.behavior.TabPaneBehavior;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -9,14 +10,16 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.scene.control.Skin;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Priority;
-import org.beuwi.msgbots.platform.gui.enums.SelectType;
 import org.beuwi.msgbots.platform.gui.enums.ControlType;
 import org.beuwi.msgbots.platform.gui.skins.TabViewSkin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // @DefaultProperty("tabs")
-public class TabView extends Control
-{
+public class TabView extends Control {
 	private static final String DEFAULT_STYLE_CLASS = "tab-view";
 
 	private static final PseudoClass SELECTED_PSEUDO_CLASS = PseudoClass.getPseudoClass("selected");
@@ -28,52 +31,25 @@ public class TabView extends Control
 
 	private final ObservableList<Tab> tabs = FXCollections.observableArrayList();
 
-	public TabView()
-	{
+	public TabView() {
 		this(null);
 	}
 
-	public TabView(Tab... tabs)
-	{
-		if (tabs != null)
-		{
+	public TabView(Tab... tabs) {
+		if (tabs != null) {
 			addTabs(tabs);
 		}
 
-		setOnKeyPressed(event ->
-		{
-			if (event.isControlDown())
-			{
-				switch (event.getCode())
-				{
-					case TAB : select(SelectType.NEXT); break;
-				}
-
-				if (event.isShiftDown())
-				{
-					switch (event.getCode())
-					{
-						case TAB : select(SelectType.PREVIOUS); break;
-					}
-				}
-			}
-		});
-
-		getTabs().addListener((ListChangeListener<Tab>) change ->
-		{
-			while (change.next())
-			{
-				for (Tab tab : change.getRemoved())
-				{
+		getTabs().addListener((ListChangeListener<Tab>) change -> {
+			while (change.next()) {
+				for (Tab tab : change.getRemoved()) {
 					tab.setView(null);
 				}
 
-				for (Tab tab : change.getAddedSubList())
-				{
+				for (Tab tab : change.getAddedSubList()) {
 					tab.setView(this);
 
-					if (getType() != null && getType().equals(ControlType.SYSTEM))
-					{
+					if (getType() != null && getType().equals(ControlType.SYSTEM)) {
 						HBox.setHgrow(tab, Priority.ALWAYS);
 					}
 
@@ -84,119 +60,129 @@ public class TabView extends Control
 			}
 		});
 
-		getSelectedTabProperty().addListener((observable, oldTab, newTab) ->
-		{
-			if (oldTab != null)
-			{
+		getSelectedTabProperty().addListener((observable, oldTab, newTab) -> {
+			if (oldTab != null) {
 				oldTab.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, false);
 			}
 
 			newTab.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, true);
 		});
 
+		addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+			if (event.isControlDown()) {
+				switch (event.getCode()) {
+					case W : closeTab(); break;
+					case TAB :
+						if (!event.isShiftDown()) {
+							selectNextTab();
+						}
+						break;
+				}
+
+				if (event.isShiftDown()) {
+					switch (event.getCode()) {
+						case TAB : selectPrevTab(); break;
+					}
+				}
+			}
+		});
+
 		setStyleClass(DEFAULT_STYLE_CLASS);
 	}
 
-	public void select(Tab tab)
-	{
+	public void selectTab(Tab tab) {
 		selected.set(tab);
 	}
 
-	public void select(int index)
-	{
+	public void selectTab(int index) {
 		selected.set(getTab(index));
 	}
 
-	public void select(String name)
-	{
+	public void selectTab(String name) {
 		selected.set(getTab(name));
 	}
 
-	public void select(SelectType type)
-	{
-		select(getSelectedTab(), type);
+	/* private void selectFirstTab() {
+		selectTab(0);
 	}
 
-	public void select(Tab tab, SelectType type)
-	{
-		int index = getIndex(tab), size = tabs.size();
+	private void selectLastTab() {
+		selectTab(tabs.size() - 1);
+	} */
 
-		if (size < 1 || index < 0)
-		{
+	private void selectNextTab() {
+		selectNextTab(getSelectedTab());
+	}
+
+	public void selectNextTab(Tab tab) {
+		int index = getTabIndex(tab), size = tabs.size();
+
+		if (size < 1 || index < 0) {
 			return ;
 		}
 
-		switch (type)
-		{
-			case NEXT :
-				// If have a next tab
-				if (size > index + 1)
-				{
-					select(index + 1);
-				}
-				// Select first tab
-				else
-				{
-					select(0);
-				}
-				break;
-			case PREVIOUS :
-				// If have a previous tab
-				if (size > index - 1)
-				{
-					select(index - 1);
-				}
-				// Select last tab
-				else
-				{
-					select(size - 1);
-				}
-				break;
+		// If have a next tab
+		if (size > index + 1) {
+			selectTab(index + 1);
+		}
+		// Select first tab
+		else {
+			selectTab(0);
 		}
 	}
 
-	public void addTab(Tab tab)
-	{
-		if (contains(tab))
-		{
-			select(getIndex(tab));
+	private void selectPrevTab() {
+		selectPrevTab(getSelectedTab());
+	}
+
+	public void selectPrevTab(Tab tab) {
+		int index = getTabIndex(tab), size = tabs.size();
+
+		if (size < 1 || index < 0) {
+			return ;
 		}
-		else
-		{
+
+		// If have a previous tab
+		try {
+			selectTab(index - 1);
+		}
+		// 만약 0번째 탭에서 이전탭으로 이동하려고 한다면 에러가 발생하기에 편법사용
+		catch (IndexOutOfBoundsException e) {
+			selectTab(size - 1);
+		}
+	}
+
+	public void addTab(Tab tab) {
+		if (containsTab(tab)) {
+			selectTab(getTabIndex(tab));
+		}
+		else {
 			getTabs().add(tab);
 		}
 	}
 
-	public void addTabs(Tab... tabs)
-	{
-		for (Tab tab : tabs)
-		{
+	public void addTabs(Tab... tabs) {
+		for (Tab tab : tabs) {
 			addTab(tab);
 		}
 	}
 
-	public boolean contains(Tab tab)
-	{
-		return getIndex(tab) != -1;
+	public boolean containsTab(Tab tab) {
+		return getTabIndex(tab) != -1;
 	}
 
-	public boolean contains(String title)
-	{
-		return getIndex(title) != -1;
+	public boolean containsTab(String title) {
+		return getTabIndex(title) != -1;
 	}
 
-	public int getIndex(Tab tab)
-	{
-		return getIndex(tab.getText());
+	public int getTabIndex(Tab tab) {
+		return getTabIndex(tab.getText());
 	}
 
 	// 추후 ID 방식으로 바꿔야함
-	public int getIndex(String title)
-	{
-		for (int index = 0 ; index < tabs.size() ; index ++)
-		{
-			if (tabs.get(index).getText().equals(title))
-			{
+	public int getTabIndex(String title) {
+		for (int index = 0 ; index < tabs.size() ; index ++) {
+			if (tabs.get(index).getText().equals(title)) {
 				return index;
 			}
 		}
@@ -204,101 +190,106 @@ public class TabView extends Control
 		return -1;
 	}
 
-	public void close()
-	{
-		tabs.clear();
+	public void closeOtherTabs(Tab tab) {
+		List<Tab> others = new ArrayList<>();
+
+		for (Tab item : tabs) {
+			if (tab.equals(item)) {
+				continue;
+			}
+
+			others.add(item);
+		}
+
+		closeTab(others);
 	}
 
-	public void close(Tab tab)
-	{
-		if (!tab.isClosable())
-		{
+	public void closeAllTabs() {
+		closeTab(getTabs());
+	}
+
+	private void closeTab() {
+		closeTab(getSelectedTab());
+	}
+
+	private void closeTab(List<Tab> list) {
+		for (Tab item : list) {
+			closeTab(item);
+		}
+	}
+
+	public void closeTab(Tab tab) {
+		if (!tab.isClosable()) {
 			return ;
 		}
 
-		int index = getIndex(tab), size = tabs.size();
+		int index = getTabIndex(tab), size = tabs.size();
 
-		if (size > 1 && index != -1)
-		{
+		if (size > 1 && index != -1) {
 			// If have a next tab
-			if (size > index + 1)
-			{
-				select(index + 1);
+			if (size > index + 1) {
+				selectTab(index + 1);
 			}
 			// If have a previous tab
-			else if (size > index)
-			{
-				select(index - 1);
+			else if (size > index) {
+				selectTab(index - 1);
 			}
 		}
 
 		tabs.remove(tab);
 	}
 
-	public void setType(ControlType type)
-	{
+	public void setType(ControlType type) {
 		this.type.set(type);
 	}
 
-	public void setSelectedTab(Tab tab)
-	{
+	public void setSelectedTab(Tab tab) {
 		selected.set(tab);
 	}
 
-	public Tab getTab(String title)
-	{
-		return contains(title) ? getTab(getIndex(title)) : null;
+	public Tab getTab(String title) {
+		return containsTab(title) ? getTab(getTabIndex(title)) : null;
 	}
 
-	public Tab getTab(int index)
-	{
+	public Tab getTab(int index) {
 		return tabs.get(index);
 	}
 
-    public ControlType getType()
-    {
+    public ControlType getType() {
         return type.get();
     }
 
-	public Tab getSelectedTab()
-	{
+	public Tab getSelectedTab() {
 		return selected.get();
 	}
 
-	public ObservableList<Tab> getTabs()
-	{
+	public ObservableList<Tab> getTabs() {
 		return tabs;
 	}
 
-	public ObjectProperty<ControlType> getTypeProperty()
-    {
+	public ObjectProperty<ControlType> getTypeProperty() {
         return type;
     }
 
 	// Selected Tab Property
-	public ObjectProperty<Tab> getSelectedTabProperty()
-	{
+	public ObjectProperty<Tab> getSelectedTabProperty() {
 		return selected;
 	}
 
-	public BooleanProperty getVisibleProperty()
-	{
+	public BooleanProperty getVisibleProperty() {
 		return visibleProperty();
 	}
 
 	@Override
-	public Skin<?> setDefaultSkin()
-	{
+	public Skin<?> setDefaultSkin() {
 		return new TabViewSkin(this);
 	}
 
-	/* public void setTabWidth(double value)
-	{
+	/* public void setTabWidth(double value) {
 		size.set(value);
 	}
 
-	public void setTabHeight(double value)
-	{
+	public void setTabHeight(double value) {
 		height.set(value);
 	} */
 }

@@ -4,9 +4,7 @@ import javafx.css.PseudoClass;
 import javafx.geometry.Pos;
 import javafx.scene.layout.Priority;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.TextAlignment;
-
-import javax.swing.text.html.ImageView;
+import org.beuwi.msgbots.platform.app.action.CopyStringAction;
 
 public class Chat extends HBox
 {
@@ -37,8 +35,8 @@ public class Chat extends HBox
 
 		menu = new ContextMenu
 		(
-			new Menu("Copy"),
-			new Menu("Delete")
+			new Menu("Copy", event -> CopyStringAction.execute(message)),
+			new Menu("Delete", event -> parent.remove(this))
 		);
 
 		menu.setNode(content);
@@ -92,7 +90,6 @@ public class Chat extends HBox
 		{
             name.setText("DEBUG SENDER");
             name.addStyleClass("name");
-
 
 			/* if (message.length() > 1000)
 			{

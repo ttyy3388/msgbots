@@ -6,6 +6,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
 
+import org.beuwi.msgbots.platform.app.view.actions.ChangeThemeAction;
+import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.gui.skins.OptionBoxSkin;
 import org.beuwi.msgbots.setting.SharedSettings;
 
@@ -99,17 +101,24 @@ public class OptionBox extends Control
 					SharedSettings.setData(getAddress(), control.getValue());
 				});
 			}
-			/* else if (getContent() instanceof ComboBox)
+			else if (getContent() instanceof ComboBox)
 			{
 				ComboBox control = (ComboBox) getContent();
 
-				control.select(ThemeType.convert(SharedSettings.getData(getAddress())));
-
-				control.getSelectedItemProperty().addListener(change ->
+				if (getAddress().equals("global:program:color_theme"))
 				{
-					SharedSettings.setData(getAddress(), control.getSelectedItem().toString());
-				});
-			} */
+					control.select(ThemeType.convert(SharedSettings.getData(getAddress())));
+
+					control.getSelectedItemProperty().addListener(change ->
+					{
+						SharedSettings.setData(getAddress(), control.getSelectedItem().toString());
+					});
+				}
+				else if (getAddress().equals("global;program:text_rendering"))
+				{
+
+				}
+			}
 		});
 	}
 

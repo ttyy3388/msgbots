@@ -49,7 +49,7 @@ public class DebugAreaPart implements View
 
 		component.addTabs(DebugRoomTab.getRoot(), GlobalLogTab.getRoot());
 
-		component.select(DebugRoomTab.getRoot());
+		component.selectTab(DebugRoomTab.getRoot());
 	}
 
 	public static AnchorPanel getRoot()

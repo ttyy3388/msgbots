@@ -5,7 +5,9 @@ import javafx.geometry.VPos;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Priority;
 import org.beuwi.msgbots.compiler.engine.ScriptManager;
+import org.beuwi.msgbots.manager.BotManager;
 import org.beuwi.msgbots.manager.FileManager;
+import org.beuwi.msgbots.platform.app.action.CopyStringAction;
 import org.beuwi.msgbots.platform.app.action.OpenDesktopAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenBotLogTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
@@ -18,8 +20,7 @@ import org.beuwi.msgbots.platform.gui.layout.GridPanel;
 import org.beuwi.msgbots.setting.ScriptSettings;
 
 // Bot Item
-public class Bot extends GridPanel
-{
+public class Bot extends GridPanel {
 	private static final String DEFAULT_STYLE_CLASS = "bot";
 
 	private final CheckBox     check  = new CheckBox();     // Compiled Check Box
@@ -55,10 +56,8 @@ public class Bot extends GridPanel
 		setDefaultColumn(20, 0, 30, 45);
 	}
 
-	public Bot(String name)
-	{
-		menu = new ContextMenu
-		(
+	public Bot(String name) {
+		menu = new ContextMenu(
 			new Menu("Compile", event -> ScriptManager.initScript(name, true, false)),
 			new Menu("Power On / Off", event -> power.setSelected(!getPower())),
 			new Separator(),
@@ -66,8 +65,8 @@ public class Bot extends GridPanel
 			new Separator(),
 			new Menu("Show in Explorer", "Shift + Alt + R", event -> OpenDesktopAction.execute(FileManager.getBotFolder(name))),
 			new Separator(),
-			new Menu("Copy Path", "Ctrl + Alt + C"),
-			new Menu("Copy Relative Path", "Ctrl + Shift + C"),
+			new Menu("Copy Path", "Ctrl + Alt + C", event -> CopyStringAction.execute(FileManager.getBotScript(name).getPath())),
+			new Menu("Copy Relative Path", "Ctrl + Shift + C", event -> CopyStringAction.execute(FileManager.getBotScript(name).getAbsolutePath())),
 			new Separator(),
 			new Menu("Rename", event -> OpenDialogBoxAction.execute(new RenameBotDialog(name))),
 			new Menu("Delete", event -> OpenDialogBoxAction.execute(new DeleteBotDialog(name))),
@@ -85,21 +84,17 @@ public class Bot extends GridPanel
 		addItem(button, 2, 0);
 		addItem(power,  3, 0);
 
-		button.setOnAction(event ->
-		{
+		button.setOnAction(event -> {
 			ScriptManager.initScript(name, true, false);
 		});
 
 		power.setSelected(ScriptSettings.get(name).getBoolean("power"));
-		power.setOnAction(event ->
-		{
+		power.setOnAction(event -> {
 			ScriptSettings.get(name).setData("power", power.isSelected());
 		});
 
-		setOnMouseClicked(event ->
-		{
-			if (event.getButton().equals(MouseButton.PRIMARY))
-			{
+		setOnMouseClicked(event -> {
+			if (event.getButton().equals(MouseButton.PRIMARY)) {
 				OpenScriptTabAction.execute(name);
 			}
 		});
@@ -114,33 +109,27 @@ public class Bot extends GridPanel
 		getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 
-	public BotView getView()
-	{
+	public BotView getView() {
 		return parent;
 	}
 
-	public boolean getPower()
-	{
+	public boolean getPower() {
 		return power.isSelected();
 	}
 
-	public boolean isCompiled()
-	{
+	public boolean isCompiled() {
 		return check.isSelected();
 	}
 
-	public void setPower(boolean power)
-	{
+	public void setPower(boolean power) {
 		this.power.setSelected(power);
 	}
 
-	public void setCompiled(boolean compiled)
-	{
+	public void setCompiled(boolean compiled) {
 		this.check.setSelected(compiled);
 	}
 
-	public void setView(BotView parent)
-	{
+	public void setView(BotView parent) {
 		this.parent = parent;
 	}
 }

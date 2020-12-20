@@ -48,7 +48,7 @@ public class Navi extends Control
 
         this.setOnMousePressed(event ->
         {
-            getView().select(this);
+            getView().selectNavi(this);
         });
 
         addStyleClass(DEFAULT_STYLE_CLASS);

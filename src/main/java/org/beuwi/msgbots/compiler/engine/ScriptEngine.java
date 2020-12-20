@@ -212,6 +212,9 @@ public class ScriptEngine
 
 		final long end = System.currentTimeMillis();
 
-		LogManager.event("Running Time : " + (end - start));
+		if (GlobalSettings.getBoolean("program:show_running_time"))
+		{
+			LogManager.event("Running Time : " + (end - start));
+		}
 	}
 }

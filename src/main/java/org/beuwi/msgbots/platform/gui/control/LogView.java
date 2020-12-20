@@ -1,6 +1,7 @@
 package org.beuwi.msgbots.platform.gui.control;
 
 import javafx.collections.ListChangeListener;
+import javafx.scene.control.SelectionMode;
 import org.beuwi.msgbots.manager.LogManager;
 
 public class LogView extends ListView<LogBox>
@@ -66,6 +67,5 @@ public class LogView extends ListView<LogBox>
 
 		// setSpacing(DEFAULT_GAP_VALUE);
 		addStyleClass(DEFAULT_STYLE_CLASS);
-		// setSelectionMode(SelectionMode.MULTIPLE);
 	}
 }
