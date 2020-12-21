@@ -22,38 +22,10 @@ public class TextArea extends javafx.scene.control.TextArea
 		new Menu("Select All", "Ctrl + A", event -> this.selectAll())
 	);
 
-	public TextArea()
-	{
+	public TextArea() {
 		setContextMenu(menu);
-
 		setPrefHeight(DEFAULT_PREF_WIDTH);
 		setPrefHeight(DEFAULT_PREF_HEIGHT);
-
 		// getStyleClass().add(DEFAULT_STYLE_CLASS);
-	}
-
-	public void setStyleClass(String style)
-	{
-		getStyleClass().setAll(style);
-	}
-
-	public void addStyleClass(String style)
-	{
-		getStyleClass().add(style);
-	}
-
-	public DoubleProperty getScrollTopProperty()
-	{
-		return scrollTopProperty();
-	}
-
-	public DoubleProperty getScrollLeftProperty()
-	{
-		return scrollLeftProperty();
-	}
-
-	public StringProperty getTextProperty()
-	{
-		return textProperty();
 	}
 }

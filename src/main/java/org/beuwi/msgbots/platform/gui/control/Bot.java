@@ -1,9 +1,12 @@
 package org.beuwi.msgbots.platform.gui.control;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Priority;
+
 import org.beuwi.msgbots.compiler.engine.ScriptManager;
 import org.beuwi.msgbots.manager.BotManager;
 import org.beuwi.msgbots.manager.FileManager;
@@ -23,7 +26,7 @@ import org.beuwi.msgbots.setting.ScriptSettings;
 public class Bot extends GridPanel {
 	private static final String DEFAULT_STYLE_CLASS = "bot";
 
-	private final CheckBox     check  = new CheckBox();     // Compiled Check Box
+	private final CheckBox 	   check  = new CheckBox();     // Compiled Check Box
 	private final Label   	   label  = new Label();    	// Name Text
 	private final Button       button = new Button();       // Compile Button
 	private final ToggleSwitch power  = new ToggleSwitch(); // Power Switch

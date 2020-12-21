@@ -3,8 +3,7 @@ package org.beuwi.msgbots.platform.gui.control;
 import javafx.beans.property.DoubleProperty;
 import javafx.scene.layout.Priority;
 
-public class Slider extends HBox
-{
+public class Slider extends HBox {
 	private final javafx.scene.control.Slider slider = new javafx.scene.control.Slider();
 	private final Label label = new Label();
 
@@ -12,8 +11,7 @@ public class Slider extends HBox
 		HBox.setHgrow(slider, Priority.ALWAYS);
 	}
 
-	public Slider()
-	{
+	public Slider() {
 		slider.setSnapToTicks(true);
 		slider.setMajorTickUnit(1);
 		slider.setMinorTickCount(0);
@@ -22,49 +20,42 @@ public class Slider extends HBox
 		slider.setShowTickLabels(false);
 
 		// setText(Math.floor(getValue()));
-		getValueProperty().addListener(change ->
-		{
+		valueProperty().addListener(change -> {
 			setValue(Math.round(getValue()));
 		});
 
-		setItems(slider, label);
 		setSpacing(10);
-		setStyleClass("slider");
+		getItems().setAll(slider, label);
+
+		// getStyleClass().setAll("slider");
 	}
 
-	public void setMin(double value)
-	{
+	public void setMin(double value) {
 		slider.setMin(value);
 	}
 
-	public void setMax(double value)
-	{
+	public void setMax(double value) {
 		slider.setMax(value);
 	}
 
-	public void setValue(int value)
-	{
+	public void setValue(int value) {
 		slider.setValue(value);
 		label.setText(value);
 	}
 
-	public double getMin()
-	{
+	public double getMin() {
 		return slider.getMin();
 	}
 
-	public double getMax()
-	{
+	public double getMax() {
 		return slider.getMax();
 	}
 
-	public int getValue()
-	{
+	public int getValue() {
 		return (int) slider.getValue();
 	}
 
-	public DoubleProperty getValueProperty()
-	{
+	public DoubleProperty valueProperty() {
 		return slider.valueProperty();
 	}
 }

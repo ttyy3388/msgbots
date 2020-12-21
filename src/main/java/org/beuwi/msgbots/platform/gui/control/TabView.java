@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
+import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Priority;
@@ -87,7 +88,7 @@ public class TabView extends Control {
 			}
 		});
 
-		setStyleClass(DEFAULT_STYLE_CLASS);
+		getStyleClass().setAll(DEFAULT_STYLE_CLASS);
 	}
 
 	public void selectTab(Tab tab) {
@@ -281,7 +282,7 @@ public class TabView extends Control {
 	}
 
 	@Override
-	public Skin<?> setDefaultSkin() {
+	public TabViewSkin createDefaultSkin() {
 		return new TabViewSkin(this);
 	}
 

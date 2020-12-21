@@ -12,7 +12,7 @@
 		"show_runtime_error":true,
 		"show_running_time":true,
 		"room_name":"DEBUG ROOM",
-		"show_sender_name":true,
+		"show_sender_name":false,
 		"package_name":"com.kakao.talk",
 		"html_load_timeout":"10000",
 		"is_group_chat":true,
@@ -22,6 +22,6 @@
 		"compile_auto_save":true,
 		"text_rendering":"lcd",
 		"start_auto_compile":true,
-		"color_theme":"light"
+		"color_theme":"black"
 	}
 }

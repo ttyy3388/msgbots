@@ -3,10 +3,9 @@ package org.beuwi.msgbots.compiler.engine;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
 
-public class ScriptContainer 
-{
+public class ScriptContainer {
 	private Function responder = null;
-	private ScriptableObject execscope = null;
+	private ScriptableObject execScope = null;
 	private Function onStartCompile = null;
 	private ScriptableObject scope = null;
 	private int optimization = 0;
@@ -16,51 +15,44 @@ public class ScriptContainer
 	private Function onResume = null;
 	private Function onPause = null;
 
-	public void constructor(Function responder, ScriptableObject execscope, Function onStartCompile, ScriptableObject scope)
+	public void constructor(Function responder, ScriptableObject execScope, Function onStartCompile, ScriptableObject scope)
 	{
 		this.responder = responder;
-		this.execscope = execscope;
+		this.execScope = execScope;
 		this.onStartCompile = onStartCompile;
 		this.scope = scope;
 	}
 
-	public ScriptContainer setResponder(Function responder)
-	{
+	public ScriptContainer setResponder(Function responder) {
 		this.responder = responder;
 		return this;
 	}
 
-	public ScriptContainer setExecScope(ScriptableObject execscope)
-	{
-		this.execscope = execscope;
+	public ScriptContainer setExecScope(ScriptableObject execscope) {
+		this.execScope = execscope;
 		return this;
 	}
 
-	public ScriptContainer setOnStartCompile(Function onStartCompile)
-	{
+	public ScriptContainer setOnStartCompile(Function onStartCompile) {
 		this.onStartCompile = onStartCompile;
 		return this;
 	}
 
-	public ScriptContainer setOptimization(int optimization)
-	{
+	public ScriptContainer setOptimization(int optimization) {
 		this.optimization = optimization;
 		return this;
 	}
 
-	public ScriptableObject getScope()
-	{
+	public ScriptableObject getScope() {
 		return scope;
 	}
 
-	public ScriptContainer setScope(ScriptableObject scope)
-	{
+	public ScriptContainer setScope(ScriptableObject scope) {
 		this.scope = scope;
 		return this;
 	}
 
-	public ScriptContainer setScriptActivity(Function onCreate, Function onStop, Function onResume, Function onPause)
-	{
+	public ScriptContainer setScriptActivity(Function onCreate, Function onStop, Function onResume, Function onPause) {
 		this.onCreate = onCreate;
 		this.onStop = onStop;
 		this.onResume = onResume;
@@ -68,23 +60,19 @@ public class ScriptContainer
 		return this;
 	}
 
-	public ScriptableObject getExecScope()
-	{
-		return execscope;
+	public ScriptableObject getExecScope() {
+		return execScope;
 	}
 
-	public Function getOnStartCompile()
-	{
+	public Function getOnStartCompile() {
 		return onStartCompile;
 	}
 
-	public Function getResponder()
-	{
+	public Function getResponder() {
 		return responder;
 	}
 
-	public int getOptimization()
-	{
+	public int getOptimization() {
 		return optimization;
 	}
 }

@@ -31,11 +31,11 @@ public final class Editor extends StackPanel
 				if (event.isControlDown()) {
 
 					switch (event.getCode()) {
-						// case S :
-						// FileManager.save(file, getText()); break;
+						case S :
+						    FileManager.save(file, getText()); break;
 						// case S : save(); break;
 						case C :
-							monaco.copy(); break;
+						//	monaco.copy(); break;
 						// case Z : redo(); break;
 						// case Y : undo(); break;
 					}
@@ -53,15 +53,22 @@ public final class Editor extends StackPanel
 			setFile(file);
 		}
 
-		setItem(monaco.getView());
 		setTheme("vs-dark");
 		setLanguage("javascript");
-		setStyleClass("editor");
+		getStyleClass().add("editor");
+
+		getItems().setAll(monaco.getView());
 	}
 
 	/* private void execute(String action) {
 		monaco.execute(action);
 	} */
+
+	public void action(String action) {
+		monaco.action(action);
+	}
+
+	/* --------------------------------------------------------- */
 
 	public void setFile(File file) {
 		this.file.set(file);

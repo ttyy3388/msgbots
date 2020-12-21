@@ -6,8 +6,7 @@ public class Separator extends SeparatorMenuItem
 {
     private static final String DEFAULT_STYLE_CLASS = "separator";
 
-    public Separator()
-    {
+    public Separator() {
 
     }
 }

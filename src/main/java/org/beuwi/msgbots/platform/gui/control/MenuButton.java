@@ -4,8 +4,7 @@ import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.geometry.Insets;
 import javafx.scene.control.MenuItem;
 
-public class MenuButton extends Button
-{
+public class MenuButton extends Button {
 	private static final String DEFAULT_STYLE_CLASS = "menu-button";
 	private static final Insets DEFAULT_PADDING_INSETS = new Insets(0, 10, 0, 10);
 
@@ -15,13 +14,11 @@ public class MenuButton extends Button
 	// private static final int DEFAULT_PREF_WIDTH = 40;
 	private static final int DEFAULT_PREF_HEIGHT = 30;
 
-	public MenuButton()
-	{
+	public MenuButton() {
 		this(null);
 	}
 
-	public MenuButton(String text)
-	{
+	public MenuButton(String text) {
 		setPadding(DEFAULT_PADDING_INSETS);
 		setMinWidth(DEFAULT_MIN_WIDTH);
 		setMinHeight(DEFAULT_MIN_HEIGHT);
@@ -29,26 +26,18 @@ public class MenuButton extends Button
 		// setPrefWidth(DEFAULT_PREF_HEIGHT);
 		// setPrefHeight(DEFAULT_PREF_HEIGHT);
 
-		if (text != null)
-		{
+		if (text != null) {
 			setText(text);
 		}
 
 		getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 
-	public void setMenu(ContextMenu menu)
-	{
+	public void setMenu(ContextMenu menu) {
 		menu.setNode(this);
 	}
 
-	public void setMenus(MenuItem... items)
-	{
+	public void setMenus(MenuItem... items) {
 		setMenu(new ContextMenu(items));
-	}
-
-	public ReadOnlyBooleanProperty getFocusedProperty()
-	{
-		return focusedProperty();
 	}
 }

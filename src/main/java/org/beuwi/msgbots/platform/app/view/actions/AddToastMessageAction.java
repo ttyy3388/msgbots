@@ -10,18 +10,15 @@ import org.beuwi.msgbots.platform.gui.enums.ToastType;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-public class AddToastMessageAction implements Action
-{
+public class AddToastMessageAction implements Action {
 	private static ToastView control;
 
 	@Override
-	public void init()
-	{
+	public void init() {
 		control = ToastAreaPart.getComponent();
 	}
 
-	public static void execute(Throwable error)
-	{
+	public static void execute(Throwable error) {
 		StringWriter message = new StringWriter();
 		error.printStackTrace(new PrintWriter(message));
 
@@ -34,22 +31,18 @@ public class AddToastMessageAction implements Action
 		execute(NoticeType.EVENT, title, content);
 	} */
 
-	public static void execute(ToastType type, String title, String content)
-	{
+	public static void execute(ToastType type, String title, String content) {
 		execute(new Toast(type, title, content));
 	}
 
-	public static void execute(Toast toast)
-	{
-		Platform.runLater(() ->
-		{
-			control.addItem(toast);
+	public static void execute(Toast toast) {
+		Platform.runLater(() -> {
+			control.getItems().add(toast);
 		});
 	}
 
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return "add.toast.message.action";
 	}
 }

@@ -9,8 +9,7 @@ public class TextField extends javafx.scene.control.TextField
     private static final int DEFAULT_PREF_WIDTH = 200;
     private static final int DEFAULT_PREF_HEIGHT = 25;
 
-    private final ContextMenu menu = new ContextMenu
-	(
+    private final ContextMenu menu = new ContextMenu(
 		new Menu("Undo", "Ctrl + Z" , event -> this.undo()),
 		new Menu("Redo", "Ctrl + Y" , event -> this.redo()),
 		new Separator(),
@@ -21,18 +20,10 @@ public class TextField extends javafx.scene.control.TextField
 		new Menu("Select All", "Ctrl + A", event -> this.selectAll())
 	);
 
-	public TextField()
-	{
+	public TextField() {
 		setContextMenu(menu);
-
 		setPrefWidth(DEFAULT_PREF_WIDTH);
 		setPrefHeight(DEFAULT_PREF_HEIGHT);
-
-		// addStyleClass(DEFAULT_STYLE_CLASS);
-	}
-
-	public StringProperty getTextProperty()
-	{
-		return textProperty();
+		// getItems().addAll(DEFAULT_STYLE_CLASS);
 	}
 }

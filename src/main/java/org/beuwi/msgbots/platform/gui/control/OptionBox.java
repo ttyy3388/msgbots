@@ -6,6 +6,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
 
+import javafx.scene.control.Control;
+
 import org.beuwi.msgbots.platform.app.view.actions.ChangeThemeAction;
 import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.gui.skins.OptionBoxSkin;
@@ -25,176 +27,127 @@ public class OptionBox extends Control
 
 	private OptionView parent;
 
-	public OptionBox()
-	{
-		addStyleClass(DEFAULT_STYLE_CLASS);
-
-		getAddressProperty().addListener(event ->
-		{
-			if (getContent() instanceof Button)
-			{
+	public OptionBox() {
+		addressProperty().addListener(event -> {
+			if (getContent() instanceof Button) {
 				Button control = (Button) getContent();
 			}
-			else if (getContent() instanceof CheckBox)
-			{
+			else if (getContent() instanceof CheckBox) {
 				CheckBox control = (CheckBox) getContent();
-
 				control.setSelected(SharedSettings.getData(getAddress()));
-
-				control.getSelectedProperty().addListener(change ->
-				{
+				control.selectedProperty().addListener(change -> {
 					SharedSettings.setData(getAddress(), control.isSelected());
 				});
 			}
-			else if (getContent() instanceof TextArea)
-			{
+			else if (getContent() instanceof TextArea) {
 				TextArea control = (TextArea) getContent();
-
 				control.setText(SharedSettings.getData(getAddress()));
-
-                control.getTextProperty().addListener(change ->
-                {
+                control.textProperty().addListener(change -> {
                     SharedSettings.setData(getAddress(), control.getText());
                 });
 			}
-			else if (getContent() instanceof TextField)
-			{
+			else if (getContent() instanceof TextField) {
 				TextField control = (TextField) getContent();
-
 				control.setText(SharedSettings.getData(getAddress()));
-
-				control.getTextProperty().addListener(change ->
-				{
+				control.textProperty().addListener(change -> {
                    	SharedSettings.setData(getAddress(), control.getText());
 				});
 			}
-			else if (getContent() instanceof ToggleButton)
-			{
+			else if (getContent() instanceof ToggleButton) {
 				ToggleButton control = (ToggleButton) getContent();
-
 				control.setSelected(SharedSettings.getData(getAddress()));
-
-				control.getSelectedProperty().addListener(change ->
-				{
+				control.getSelectedProperty().addListener(change -> {
                     SharedSettings.setData(getAddress(), control.isSelected());
 				});
 			}
-			else if (getContent() instanceof ToggleSwitch)
-			{
+			else if (getContent() instanceof ToggleSwitch) {
 				ToggleSwitch control = (ToggleSwitch) getContent();
-
 				control.setSelected(SharedSettings.getData(getAddress()));
-
-				control.getSelectedProperty().addListener(change ->
-				{
+				control.selectedProperty().addListener(change -> {
                     SharedSettings.setData(getAddress(), control.isSelected());
 				});
 			}
-			else if (getContent() instanceof Slider)
-			{
+			else if (getContent() instanceof Slider) {
 				Slider control = (Slider) getContent();
-
 				control.setValue(SharedSettings.getInt(getAddress()));
-
-				control.getValueProperty().addListener(change ->
-				{
+				control.valueProperty().addListener(change -> {
 					SharedSettings.setData(getAddress(), control.getValue());
 				});
 			}
-			else if (getContent() instanceof ComboBox)
-			{
+			else if (getContent() instanceof ComboBox) {
 				ComboBox control = (ComboBox) getContent();
-
-				if (getAddress().equals("global:program:color_theme"))
-				{
-					control.select(ThemeType.convert(SharedSettings.getData(getAddress())));
-
-					control.getSelectedItemProperty().addListener(change ->
-					{
+				if (getAddress().equals("global:program:color_theme")) {
+					control.selectItem(ThemeType.convert(SharedSettings.getData(getAddress())));
+					control.selectedItemProperty().addListener(change -> {
 						SharedSettings.setData(getAddress(), control.getSelectedItem().toString());
 					});
 				}
-				else if (getAddress().equals("global;program:text_rendering"))
-				{
-
+				else if (getAddress().equals("global:program:text_rendering")) {
 				}
 			}
 		});
+
+		getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 
-	public void setView(OptionView parent)
-	{
+	public void setView(OptionView parent) {
 		this.parent = parent;
 	}
 
-	public void setTitle(String title)
-	{
+	public void setTitle(String title) {
 		this.title.set(title);
 	}
 
-	public void setContent(Node content)
-	{
+	public void setContent(Node content) {
 		this.content.set(content);
 	}
 
-	public void setOption(String option)
-	{
+	public void setOption(String option) {
 		this.option.set(option);
 	}
 
-	protected void setAddress(String address)
-	{
+	protected void setAddress(String address) {
 		this.address.set(address);
 	}
 
-	public OptionView getView()
-	{
+	public OptionView getView() {
 		return parent;
 	}
 
-	public String getTitle()
-	{
+	public String getTitle() {
 		return title.get();
 	}
 
-	public String getOption()
-	{
+	public String getOption() {
 		return option.get();
 	}
 
-	public String getAddress()
-	{
+	public String getAddress() {
 		return address.get();
 	}
 
-	public Node getContent()
-	{
+	public Node getContent() {
 		return content.get();
 	}
 
-	public StringProperty getTitleProperty()
-	{
+	public StringProperty titleProperty() {
 		return title;
 	}
 
-	public StringProperty getOptionProperty()
-	{
+	public StringProperty optionProperty() {
 		return option;
 	}
 
-	public StringProperty getAddressProperty()
-	{
+	public StringProperty addressProperty() {
 		return address;
 	}
 
-	public ObjectProperty<Node> getContentProperty()
-	{
+	public ObjectProperty<Node> contentProperty() {
 		return content;
 	}
 
 	@Override
-	public OptionBoxSkin setDefaultSkin()
-	{
+	public OptionBoxSkin createDefaultSkin() {
 		return new OptionBoxSkin(this);
 	}
 }

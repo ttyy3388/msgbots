@@ -22,15 +22,11 @@ public class ToastView extends VBox<Toast>
 	    getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 
-	@Override
-	public Toast getItem(int index)
-	{
-		return getItem(index);
+	public Toast getToast(int index) {
+		return (Toast) getItems().get(index);
 	}
 
-	@Override
-	public Toast getItem(String id)
-	{
-		return getItem(id);
+	public Toast getToast(String id) {
+		return (Toast) getItems().get(findItem(id));
 	}
 }

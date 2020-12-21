@@ -70,14 +70,14 @@
 .bot > .check-box:selected .box {
 	-fx-background-color: transparent;
 }
-
-/* BOT VIEW */
-.bot-view { }
-.bot-view .list-cell:selected .bot {
+.bot:selected {
 	-fx-background-color: rgba(255, 255, 255, 0.1);
 	-fx-border-color: transparent transparent transparent #007ACC;
 	-fx-opacity: 1.0;
 }
+
+/* BOT VIEW */
+.bot-view { }
 
 /* CHAT */
 .chat .comment {
@@ -90,6 +90,12 @@
 .chat:bot .comment {
 	-fx-background-color: #302F35;
 }
+.chat:selected .comment {
+    -fx-background-color: #094771;
+}
+
+/* CHAT VIEW */
+.chat-view { }
 
 /* CHECK BOX */
 .check-box {
@@ -197,6 +203,9 @@
 	-fx-background-color: #2B2B2B;
 	/* -fx-background-color: #353535; */
 }
+.log-box:selected {
+    -fx-background-color: #094771;
+}
 
 /* LOG VIEW */
 .log-view {
@@ -204,9 +213,6 @@
 }
 .log-view .list-cell {
     -fx-padding: 2.5 5 2.5 5;
-}
-.log-view .list-cell:selected .log-box {
-    -fx-background-color: #094771;
 }
 
 /* MENU */

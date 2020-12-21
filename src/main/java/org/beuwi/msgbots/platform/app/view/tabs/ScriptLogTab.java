@@ -30,7 +30,7 @@ public class ScriptLogTab implements View
 
 		/* FileManager.link(SharedValues.GLOBAL_LOG_FILE, () ->
 		{
-			component.setItems(LogManager.load(SharedValues.GLOBAL_LOG_FILE));
+			component.getItems().setAll(LogManager.load(SharedValues.GLOBAL_LOG_FILE));
 		}); */
 	}
 

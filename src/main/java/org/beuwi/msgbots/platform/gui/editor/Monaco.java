@@ -116,27 +116,14 @@ public final class Monaco {
 		});
 	}
 
-	public void cut() {
-		engine.executeScript("editor.replaceSelection(\"\");");
-		CopyStringAction.execute(getSelectedText());
-	}
-
-	public void copy() {
-		CopyStringAction.execute(getSelectedText());
-	}
-
-	public void paste() {
-		final Clipboard clipboard = Clipboard.getSystemClipboard();
-		String content = (String) clipboard.getContent(DataFormat.PLAIN_TEXT);
-		engine.executeScript(String.format("editorView.replaceSelection(\"%s\");", content));
-	}
-
-	private void execute(String action) {
+	public void action(String action) {
 		if (engine == null) {
 			return ;
 		}
-		engine.executeScript(action);
-		// engine.executeScript("monaco.editor.execCommand(" + action + ")");
+
+		engine.executeScript("editorView.getAction('editor.action." + action + "').run()");
+		// engine.executeScript("editorView.trigger('source','editor.action.clipboardCopyAction')");
+		// engine.executeScript("document.execCommand('" + action + "')");
 	}
 
 	protected void setText(String text) {

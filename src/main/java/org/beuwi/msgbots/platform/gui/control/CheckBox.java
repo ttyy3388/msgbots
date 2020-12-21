@@ -1,11 +1,5 @@
 package org.beuwi.msgbots.platform.gui.control;
 
-import javafx.beans.property.BooleanProperty;
-
-public class CheckBox extends javafx.scene.control.CheckBox
-{
-    public BooleanProperty getSelectedProperty()
-    {
-        return selectedProperty();
-    }
+public class CheckBox extends javafx.scene.control.CheckBox {
+    private static final String DEFAULT_STYLE_CLASS = "check-box";
 }

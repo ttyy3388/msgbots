@@ -7,18 +7,15 @@ import org.beuwi.msgbots.platform.util.SharedValues;
 
 import java.io.File;
 
-public class GlobalSettings
-{
+public class GlobalSettings {
 	private static final File file = SharedValues.GLOBAL_CONFIG_FILE;
 	private static JsonObject json = new JsonObject(file);
 
-	static
-	{
+	static {
 		FileManager.link(file, () -> json = new JsonObject(file));
 	}
 
-	public static <T> T getData(String address)
-	{
+	public static <T> T getData(String address) {
 		String[] data = address.split(":");
 
 		String name = data[0];
@@ -29,23 +26,19 @@ public class GlobalSettings
 		return (T) json.getMap(name).get(option);
 	}
 
-	public static int getInt(String address)
-	{
+	public static int getInt(String address) {
 		return Integer.valueOf("" + getData(address));
 	}
 
-	public static String getString(String address)
-	{
+	public static String getString(String address) {
 		return String.valueOf("" + getData(address));
 	}
 
-	public static boolean getBoolean(String address)
-	{
+	public static boolean getBoolean(String address) {
 		return Boolean.valueOf("" + getData(address));
 	}
 
-	public static <T> void setData(String address, T value)
-	{
+	public static <T> void setData(String address, T value) {
 		String[] data = address.split(":");
 
 		String name = data[0];
@@ -53,12 +46,10 @@ public class GlobalSettings
 
 		json.getMap(name).put(option, value);
 
-		try
-		{
+		try {
 			FileManager.save(file, json.toString());
 		}
-		catch (Exception e)
-		{
+		catch (Exception e) {
 			AddToastMessageAction.execute(e);
 		}
 	}

@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Priority;
+
 import org.beuwi.msgbots.platform.gui.control.HBox;
 import org.beuwi.msgbots.platform.gui.control.SkinBase;
 import org.beuwi.msgbots.platform.gui.control.Tab;
@@ -73,8 +74,8 @@ public class TabViewSkin extends SkinBase<TabView> {
 		// header.setMaxHeight(DEFAULT_HEADER_HEIGHT);
 
 		if (!control.getTabs().isEmpty()) {
-			headers.setItems(control.getTabs());
-			content.setItem(control.getSelectedTab().getContent());
+			headers.getItems().setAll(control.getTabs());
+			content.getItems().setAll(control.getSelectedTab().getContent());
 		}
 
 		if (control.getType() != null) {
@@ -87,10 +88,10 @@ public class TabViewSkin extends SkinBase<TabView> {
 		control.getTabs().addListener((ListChangeListener<Tab>) change -> {
 			while (change.next()) {
 				for (Tab tab : change.getRemoved()) {
-					headers.remove(tab);
+					headers.getItems().remove(tab);
 				}
 				for (Tab tab : change.getAddedSubList()) {
-					headers.addItem(tab);
+					headers.getItems().add(tab);
 				}
 			}
 		});
@@ -101,16 +102,16 @@ public class TabViewSkin extends SkinBase<TabView> {
 
 		control.getSelectedTabProperty().addListener(change -> {
 			Node target = control.getSelectedTab().getContent();
-			content.setItem(target);
+			content.getItems().setAll(target);
 			// 변경된 탭으로 포커스 이동하도록
 			target.requestFocus();
 		});
 
-		root.setItems(header, content);
+		root.getItems().setAll(header, content);
 		root.setFittable(true);
-		// root.addStyleClass("tab-view");
+		// root.getItems().addAll("tab-view");
 
-		this.setItems(root);
+		this.getItems().setAll(root);
 	}
 
 	// private or protected

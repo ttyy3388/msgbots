@@ -8,39 +8,31 @@ import org.beuwi.msgbots.platform.util.ResourceUtils;
 
 import java.net.URL;
 
-public class FormLoader extends FXMLLoader
-{
-	public FormLoader(String name)
-	{
+public class FormLoader extends FXMLLoader {
+	public FormLoader(String name) {
 		this("", name);
 	}
 
-	public FormLoader(String type, String name)
-	{
+	public FormLoader(String type, String name) {
 		this(type, name, null);
 	}
 
-	public FormLoader(String type, String name, Object controller)
-	{
+	public FormLoader(String type, String name, Object controller) {
 		URL location = ResourceUtils.getForm((type != "" ? (type + "/") : "") + name);
 
 		setLocation(location);
 		setController(controller);
 
-		try
-		{
+		try {
 			this.load();
 		}
-		catch (Exception e)
-		{
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public <T> T getComponent()
-	{
-		if (getRoot() instanceof Tab)
-		{
+	public <T> T getComponent() {
+		if (getRoot() instanceof Tab) {
 			return (T) ((Tab) getRoot()).getContent();
 		}
 

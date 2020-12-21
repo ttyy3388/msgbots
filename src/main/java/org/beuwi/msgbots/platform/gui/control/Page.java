@@ -12,12 +12,10 @@ import org.beuwi.msgbots.platform.gui.layout.StackPanel;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
 public class Page extends StackPanel {
-
     private static final String DEFAULT_STYLE_CLASS = "page";
 
     private final Actions actions = new Actions();
-    public class Actions
-    {
+    public class Actions {
         public void execute(String action)
         {
             String clazz = action.split("\\(")[0];
@@ -39,13 +37,11 @@ public class Page extends StackPanel {
     private final WebEngine engine;
     private final Worker worker;
 
-    public Page()
-    {
+    public Page() {
         this(null);
     }
 
-    public Page(String name)
-    {
+    public Page(String name) {
         engine = view.getEngine();
         worker = engine.getLoadWorker();
 
@@ -54,19 +50,17 @@ public class Page extends StackPanel {
         engine.setJavaScriptEnabled(true);
         engine.setUserStyleSheetLocation(ResourceUtils.getStyle("page"));;
 
-        worker.stateProperty().addListener(change ->
-        {
+        worker.stateProperty().addListener(change -> {
             Worker.State state = worker.getState();
 
-            if (state.equals(Worker.State.SUCCEEDED))
-            {
+            if (state.equals(Worker.State.SUCCEEDED)) {
                 JSObject object = (JSObject) engine.executeScript("window");
 
                 object.setMember("program", actions);
             }
         });
 
-        setItem(view);
-        setStyleClass("page");
+        getItems().setAll(view);
+        getStyleClass().setAll(DEFAULT_STYLE_CLASS);
     }
 }

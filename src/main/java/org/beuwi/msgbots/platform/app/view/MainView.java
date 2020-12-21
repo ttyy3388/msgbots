@@ -15,8 +15,7 @@ import org.beuwi.msgbots.platform.gui.window.WindowType;
 import org.beuwi.msgbots.platform.gui.window.WindowWrap;
 import org.beuwi.msgbots.platform.util.SharedValues;
 
-public class MainView extends StackPanel
-{
+public class MainView extends StackPanel {
 	// Outer Area ( Vertical ) : Menu Bar, Inner Panel, Status Bar
 	private static final BorderPanel outer = new BorderPanel();
 
@@ -36,21 +35,18 @@ public class MainView extends StackPanel
 
 	private static final AnchorPanel toastarea = ToastAreaPart.getRoot();
 
-	public MainView(Stage stage)
-	{
+	public MainView(Stage stage) {
 		this.stage = stage;
 
 		outer.setTop(menubar);
 		outer.setCenter(panel);
 		outer.setBottom(statusbar);
-
-		panel.setItem(inner);
+		panel.getItems().add(inner);
 
 		inner.setLeft(sidearea);
 		inner.setCenter(mainarea);
 		inner.setRight(debugarea);
-
-		panel.addItem(toastarea);
+		panel.getItems().add(toastarea);
 
 		setMinWidth(800);
 		setMinHeight(600);
@@ -63,13 +59,11 @@ public class MainView extends StackPanel
 		// stage.setMaxWidth(1920);
 		stage.setMaxHeight(1080);
 
-		setItems(outer);
+		getChildren().setAll(outer);
 	}
 
-	public static class MainWindow extends WindowWrap
-	{
-		public MainWindow(Stage stage)
-		{
+	public static class MainWindow extends WindowWrap {
+		public MainWindow(Stage stage) {
 			super(stage);
 
 			setContent(new MainView(stage));
@@ -79,8 +73,7 @@ public class MainView extends StackPanel
 		}
 	}
 
-	public static Stage getStage()
-	{
+	public static Stage getStage() {
 		return stage;
 	}
 }

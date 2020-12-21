@@ -16,8 +16,7 @@ import org.beuwi.msgbots.platform.gui.dialog.DialogBoxWrap;
 
 import java.io.File;
 
-public class ImportBotDialog extends DialogBoxWrap
-{
+public class ImportBotDialog extends DialogBoxWrap {
 	private final ObservableMap<String, Object> nameSpace;
 
 	private final FormLoader loader;
@@ -38,8 +37,7 @@ public class ImportBotDialog extends DialogBoxWrap
 
 	private File file;
 
-	public ImportBotDialog()
-	{
+	public ImportBotDialog() {
 		loader = new FormLoader("dialog", "import-bot-dialog", this);
 		nameSpace = loader.getNamespace();
 		root = loader.getRoot();
@@ -49,49 +47,41 @@ public class ImportBotDialog extends DialogBoxWrap
 
 		btnImport.setText("Import");
 
-		btnScriptOpen.setOnAction(event ->
-		{
+		btnScriptOpen.setOnAction(event -> {
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JavaScript File", "*.js"));
 			fileChooser.setTitle("Import Script");
 
 			file = fileChooser.showOpenDialog(MainView.getStage());
 
-			if (file != null)
-			{
+			if (file != null) {
 				txfScriptName.setText(file.getName());
 			}
 		});
 
-		txfScriptName.getTextProperty().addListener(change ->
-		{
+		txfScriptName.textProperty().addListener(change -> {
 			btnImport.setDisable(txfScriptName.getText().isEmpty());
 		});
 
-		Platform.runLater(() ->
-		{
+		Platform.runLater(() -> {
 			txfScriptName.requestFocus();
 		});
 	}
 
 	@Override
-	public void open()
-	{
+	public void open() {
 		setContent(root);
 		setTitle("Import Script");
 		create();
 	}
 
 	@Override
-	public void action()
-	{
-		if (txfScriptName.getText().isEmpty())
-		{
+	public void action() {
+		if (txfScriptName.getText().isEmpty()) {
 			return ;
 		}
 
-		CreateBotAction.execute
-		(
+		CreateBotAction.execute(
 			txfScriptName.getText(),
 			FileManager.read(file), true,
 			chkIsUnified.isSelected(),

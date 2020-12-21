@@ -4,14 +4,14 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+
 import org.beuwi.msgbots.platform.gui.control.Label;
 import org.beuwi.msgbots.platform.gui.control.OptionBox;
 import org.beuwi.msgbots.platform.gui.control.SkinBase;
 import org.beuwi.msgbots.platform.gui.control.VBox;
 import org.beuwi.msgbots.platform.gui.layout.StackPanel;
 
-public class OptionBoxSkin extends SkinBase<OptionBox>
-{
+public class OptionBoxSkin extends SkinBase<OptionBox> {
     private static final int DEFAULT_SPACING_VALUE = 10;
 
     private final Label title = new Label();
@@ -23,49 +23,42 @@ public class OptionBoxSkin extends SkinBase<OptionBox>
         VBox.setVgrow(content, Priority.ALWAYS);
     }
 
-    public OptionBoxSkin(OptionBox control)
-    {
+    public OptionBoxSkin(OptionBox control) {
         super(control);
 
         title.setText(control.getTitle());
-        content.setItem(control.getContent());
+        content.getItems().setAll(control.getContent());
 
-        title.addStyleClass("title");
-        content.addStyleClass("content");
+        title.getStyleClass().add("title");
+        content.getStyleClass().add("content");
         content.setAlignment(Pos.CENTER_LEFT);
 
         root.setSpacing(DEFAULT_SPACING_VALUE);
 
-        control.getTitleProperty().addListener(change ->
-        {
+        control.titleProperty().addListener(change -> {
             title.setText(getSkinnable().getTitle());
         });
 
-        control.getContentProperty().addListener(change ->
-        {
-            content.setItem(getSkinnable().getContent());
+        control.contentProperty().addListener(change -> {
+            content.getItems().setAll(getSkinnable().getContent());
         });
 
-        this.setItem(root);
+        getItems().setAll(root);
     }
 
-    public void setTitle(String title)
-    {
+    public void setTitle(String title) {
         this.title.setText(title);
     }
 
-    public void setContent(Region content)
-    {
-        this.content.setItem(content);
+    public void setContent(Region content) {
+        this.content.getItems().setAll(content);
     }
 
-    public String getTitle()
-    {
+    public String getTitle() {
         return title.getText();
     }
 
-    public Node getContent()
-    {
-        return content.getItem(0);
+    public Node getContent() {
+        return content.getItems().get(0);
     }
 }

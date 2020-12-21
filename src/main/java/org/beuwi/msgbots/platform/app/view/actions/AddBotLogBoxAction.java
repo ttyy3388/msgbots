@@ -5,36 +5,29 @@ import org.beuwi.msgbots.platform.app.view.tabs.GlobalLogTab;
 import org.beuwi.msgbots.platform.gui.control.LogBox;
 import org.beuwi.msgbots.platform.gui.control.LogView;
 
-public class AddBotLogBoxAction implements Action
-{
+public class AddBotLogBoxAction implements Action {
     private static LogView control;
 
     @Override
-    public void init()
-    {
+    public void init() {
         control = GlobalLogTab.getComponent();
     }
 
-    public static void execute(LogBox log)
-    {
-        control.addItem(log);
+    public static void execute(LogBox log) {
+        control.getItems().add(log);
     }
 
-    public static void execute(String name, LogBox log)
-    {
+    public static void execute(String name, LogBox log) {
         // LogView logView = LogManager.getView(name);
 
-        //  if (logView != null)
-        {
-            // logView.addItem(log);
-        }
+        //  if (logView != null) {
+            // logView.addItem(log); }
 
-        control.addItem(log);
+        control.getItems().add(log);
     }
 
     @Override
-    public String getName()
-    {
+    public String getName() {
         return "add.bot.log.action";
     }
 }

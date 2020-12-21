@@ -12,10 +12,8 @@ import java.nio.file.FileSystem;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class ResourceUtils
-{
-	public static File getFile(String path)
-	{
+public class ResourceUtils {
+	public static File getFile(String path) {
 		Path uri = null;
 
 		try {
@@ -28,38 +26,31 @@ public class ResourceUtils
 		return uri.toFile();
 	}
 
-	public static String getURL(String path)
-	{
+	public static String getURL(String path) {
 		return ResourceUtils.class.getResource(path).toExternalForm();
 	}
 
-	public static String getHtml(String name)
-	{
+	public static String getHtml(String name) {
 		return ResourceUtils.class.getResource("/htmls/" + name + ".html").toExternalForm();
 	}
 
-	public static InputStream getFont(String name)
-	{
+	public static InputStream getFont(String name) {
 		return ResourceUtils.class.getResourceAsStream("/fonts/" + name + ".ttf");
 	}
 
-	public static Image getImage(String name)
-	{
+	public static Image getImage(String name) {
 		return new Image(ResourceUtils.class.getResource("/images/" + name + ".png").toExternalForm());
 	}
 
-	public static URL getForm(String name)
-	{
+	public static URL getForm(String name) {
 		return ResourceUtils.class.getResource("/forms/" + name + ".fxml");
 	}
 
-	public static String getStyle(String name)
-	{
+	public static String getStyle(String name) {
 		return ResourceUtils.class.getResource("/styles/" + name + ".css").toExternalForm();
 	}
 
-	public static String getTheme(String name)
-	{
+	public static String getTheme(String name) {
 		return ResourceUtils.class.getResource("/themes/" + name + ".css").toExternalForm();
 	}
 }

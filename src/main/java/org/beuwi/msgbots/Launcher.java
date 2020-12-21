@@ -13,6 +13,7 @@ import org.beuwi.msgbots.platform.app.view.actions.ChangeThemeAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenBotLogTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDocumentAction;
+import org.beuwi.msgbots.platform.app.view.actions.RedoEditorTextAction;
 import org.beuwi.msgbots.platform.app.view.actions.RefreshBotLogsAction;
 import org.beuwi.msgbots.platform.app.view.actions.SaveEditorAreaTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.SendChatMessageAction;
@@ -147,6 +148,7 @@ public class Launcher extends Application {
 			new OpenDocumentAction().init();
 			new OpenProgramTabAction().init();
 			new OpenScriptTabAction().init();
+			new RedoEditorTextAction().init();
 			new RefreshBotListAction().init();
 			new RefreshBotLogsAction().init();
 			new SaveEditorAreaTabAction().init();

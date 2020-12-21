@@ -10,8 +10,7 @@ import org.beuwi.msgbots.platform.util.AllSVGIcons;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
 // Toast Message
-public class Toast extends ShadowPanel
-{
+public class Toast extends ShadowPanel {
 	private static final String DEFAULT_STYLE_CLASS = "toast";
 
 	// private static final int DEFAULT_NOTICE_WIDTH = 250;
@@ -27,11 +26,9 @@ public class Toast extends ShadowPanel
 	private final FormLoader loader;
 	private final ContextMenu menu;
 
-	public Toast(ToastType type, String title, String content)
-	{
+	public Toast(ToastType type, String title, String content) {
 		loader = new FormLoader("frame", "toast-box-frame", this);
-		menu = new ContextMenu
-		(
+		menu = new ContextMenu(
 			new Menu("Copy Text", event -> CopyStringAction.execute(title + "\n\n" + content))
 		);
 
@@ -51,13 +48,11 @@ public class Toast extends ShadowPanel
 		imvBoxIcon.setImage(ResourceUtils.getImage(type.toString()));
 
 		btnBoxClose.setGraphic(AllSVGIcons.get("Box.Close"));
-		btnBoxClose.setOnAction(event ->
-		{
-			getView().remove(this);
+		btnBoxClose.setOnAction(event -> {
+			getView().getItems().remove(this);
 		});
 
-		/* setOnMouseClicked(event ->
-		{
+		/* setOnMouseClicked(event -> {
 			requestFocus();
 		}); */
 
@@ -66,7 +61,7 @@ public class Toast extends ShadowPanel
 		// setMinWidth(DEFAULT_NOTICE_WIDTH);
 		// setMaxWidth(DEFAULT_NOTICE_WIDTH);
 		setMinHeight(DEFAULT_NOTICE_HEIGHT);
-		addStyleClass(DEFAULT_STYLE_CLASS);
+		getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 
 	/* public void setView(ToastView parent)
@@ -74,13 +69,11 @@ public class Toast extends ShadowPanel
 		this.parent = parent;
 	} */
 
-	public HBox getButtonBar()
-	{
+	public HBox getButtonBar() {
 		return hbxBtnBar;
 	}
 
-	public ToastView getView()
-	{
+	public ToastView getView() {
 		return (ToastView) getParent();
 	}
 }

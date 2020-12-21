@@ -3,8 +3,7 @@ package org.beuwi.msgbots.platform.gui.control;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Label extends javafx.scene.control.Label
-{
+public class Label extends javafx.scene.control.Label {
 	private static final String DEFAULT_STYLE_CLASS = "label";
 
 	{
@@ -12,33 +11,23 @@ public class Label extends javafx.scene.control.Label
 		setMaxHeight(Double.MAX_VALUE);
 	}
 
-	public Label()
-	{
+	public Label() {
 		super();
 	}
 
-    public Label(String text)
-    {
+    public Label(String text) {
         super(text);
     }
 
-	public Label(Image image)
-	{
+	public Label(Image image) {
 		this(new ImageView(image));
 	}
 
-	public Label(ImageView image)
-	{
+	public Label(ImageView image) {
 		this.setGraphic(image);
 	}
 
-	public <T> void setText(T value)
-	{
+	public <T> void setText(T value) {
 		super.setText("" + value);
-	}
-
-	public void addStyleClass(String style)
-	{
-		getStyleClass().add(style);
 	}
 }

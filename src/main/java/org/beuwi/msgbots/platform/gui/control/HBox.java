@@ -13,22 +13,17 @@ import javafx.scene.layout.Region;
 import java.util.Collection;
 
 @DefaultProperty("items")
-public class HBox<T> extends javafx.scene.layout.HBox
-{
+public class HBox<T> extends javafx.scene.layout.HBox {
 	private static final String DEFAULT_STYlE_CLASS = "hbox";
 
 	// Fittable Content Property
 	private final BooleanProperty fittable = new SimpleBooleanProperty();
 
-	private final InvalidationListener listener = new InvalidationListener()
-	{
+	private final InvalidationListener listener = new InvalidationListener() {
 		@Override
-		public void invalidated(Observable observable)
-		{
-			for (Node item : getItems())
-			{
-				if (item instanceof Region)
-				{
+		public void invalidated(Observable observable) {
+			for (Node item : getItems()) {
+				if (item instanceof Region) {
 					((Region) item).setPrefHeight(getHeight());
 				}
 			}
@@ -42,164 +37,45 @@ public class HBox<T> extends javafx.scene.layout.HBox
 
 	public HBox(Node... items)
 	{
-		if (items != null)
-		{
-			addItems(items);
+		if (items != null) {
+			getItems().addAll(items);
 		}
 
-		getFittableProperty().addListener(event ->
-		{
-			if (isFittable())
-			{
-				getHeightProperty().addListener(listener);
+		fittableProperty().addListener(event -> {
+			if (isFittable()) {
+				heightProperty().addListener(listener);
 			}
-			else
-			{
-				getHeightProperty().removeListener(listener);
+			else {
+				heightProperty().removeListener(listener);
 			}
 		});
 
-		addStyleClass(DEFAULT_STYlE_CLASS);
+		getStyleClass().add(DEFAULT_STYlE_CLASS);
 	}
 
-	public void clear()
-	{
-		getItems().clear();
-	}
-
-	public int find(String id)
-	{
-		for (int index = 0 ; index < getItems().size() ; index ++)
-		{
-			if (getItem(index).getId().equals(id))
-			{
-				return index;
-			}
-		}
-
-		return -1;
-	}
-
-	public void delete(T item)
-	{
-		getItems().remove(item);
-	}
-
-	public void remove(T item)
-	{
-		getItems().remove(item);
-	}
-
-	public void addItem(Node item)
-	{
-		getItems().add(item);
-	}
-
-	public void addItem(int index, Node item)
-	{
-		getItems().add(index, item);
-	}
-
-	public void addItems(Node... items)
-	{
-		getItems().addAll(items);
-	}
-
-	public void addItems(ObservableList list)
-	{
-		getChildren().addAll(list);
-	}
-
-	public void setItem(int index, Node item)
-	{
-		getItems().set(index, item);
-	}
-
-	public void setItem(Node item)
-	{
-		getItems().setAll(item);
-	}
-
-	public void setItems(Node... items)
-	{
-		getItems().setAll(items);
-	}
-
-	public void setItems(Collection<? extends Node> collection)
-	{
-		getItems().setAll(collection);
-	}
-
-	public void setFittable(boolean fittable)
-	{
+	public void setFittable(boolean fittable) {
 		this.fittable.set(fittable);
 	}
 
-	public void addStyleClass(String style)
-	{
-		getStyleClass().add(style);
-	}
-
-	public void setStyleClass(String style)
-	{
-		getStyleClass().setAll(style);
-	}
-
-	public boolean isFittable()
-	{
+	public boolean isFittable() {
 		return fittable.get();
 	}
 
-	public boolean contains(Node item)
-	{
-		return getItems().contains(item);
-	}
-
-	public int getIndex(String id)
-	{
-		for (int index = 0 ; index < getItems().size() ; index ++)
-		{
-			if (getItem(index).getId().equals(id))
-			{
+	/* public int getItemIndex(String id) {
+		for (int index = 0 ; index < getItems().size() ; index ++) {
+			if (getItems().get(index).getId().equals(id)) {
 				return index;
 			}
 		}
 
 		return -1;
-	}
+	} */
 
-	public Node getItem(int index)
-	{
-		return getItems().get(index);
-	}
-
-	public Node getItem(String id)
-	{
-		return getItems().get(find(id));
-	}
-
-	public ObservableList<Node> getItems()
-	{
+	public ObservableList<Node> getItems() {
 		return getChildren();
 	}
 
-	public ObservableList<Node> getItemsProperty()
-	{
-		return getItems();
-	}
-
-	public ReadOnlyDoubleProperty getWidthProperty()
-	{
-		return widthProperty();
-	}
-
-	public ReadOnlyDoubleProperty getHeightProperty()
-	{
-		return heightProperty();
-	}
-
-	public BooleanProperty getFittableProperty()
-	{
+	public BooleanProperty fittableProperty() {
 		return fittable;
 	}
 }

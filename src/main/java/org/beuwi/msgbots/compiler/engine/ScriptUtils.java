@@ -7,10 +7,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScriptUtils
-{
-	public static ScriptableObject convert(ScriptableObject object)
-	{
+public class ScriptUtils {
+	public static ScriptableObject convert(ScriptableObject object) {
 	    Class clazz = object.getClass();
 
 		String[] list = getJSFunctions(clazz).toArray(new String[0]);
@@ -20,14 +18,11 @@ public class ScriptUtils
 		return object;
 	}
 
-	public static List<String> getJSFunctions(Class clazz)
-	{
+	public static List<String> getJSFunctions(Class clazz) {
         List list = new ArrayList<String>();
 
-		for (Method method : clazz.getMethods())
-		{
-			if (method.getAnnotation(JSFunction.class) != null)
-			{
+		for (Method method : clazz.getMethods()) {
+			if (method.getAnnotation(JSFunction.class) != null) {
 				list.add(method.getName());
 			}
 		}

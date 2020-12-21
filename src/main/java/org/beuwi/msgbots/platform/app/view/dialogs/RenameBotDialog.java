@@ -10,8 +10,7 @@ import org.beuwi.msgbots.platform.gui.control.Button;
 import org.beuwi.msgbots.platform.gui.control.TextField;
 import org.beuwi.msgbots.platform.gui.dialog.DialogBoxWrap;
 
-public class RenameBotDialog extends DialogBoxWrap
-{
+public class RenameBotDialog extends DialogBoxWrap {
 	private final ObservableMap<String, Object> nameSpace;
 
 	private final FormLoader loader;
@@ -26,8 +25,7 @@ public class RenameBotDialog extends DialogBoxWrap
 
 	private final String name;
 
-	public RenameBotDialog(String name)
-	{
+	public RenameBotDialog(String name) {
 		this.name = name;
 
 		loader = new FormLoader("dialog", "rename-bot-dialog", this);
@@ -40,30 +38,25 @@ public class RenameBotDialog extends DialogBoxWrap
 		btnRename.setText("Rename");
 
 		txfScriptName.setText(name);
-		txfScriptName.getTextProperty().addListener(change ->
-		{
+		txfScriptName.textProperty().addListener(change -> {
 			btnRename.setDisable(txfScriptName.getText().isEmpty());
 		});
 
-		Platform.runLater(() ->
-		{
+		Platform.runLater(() -> {
 			txfScriptName.requestFocus();
 		});
 	}
 
 	@Override
-	public void open()
-	{
+	public void open() {
 		setContent(root);
 		setTitle("Rename Bot");
 		create();
 	}
 
 	@Override
-	public void action()
-	{
-		if (txfScriptName.getText().isEmpty())
-		{
+	public void action() {
+		if (txfScriptName.getText().isEmpty()) {
 			return ;
 		}
 

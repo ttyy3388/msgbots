@@ -5,9 +5,9 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.Priority;
 import javafx.scene.shape.Circle;
 import org.beuwi.msgbots.platform.app.action.CopyStringAction;
+import org.beuwi.msgbots.setting.GlobalSettings;
 
-public class Chat extends HBox
-{
+public class Chat extends HBox {
 	private static final String DEFAULT_STYLE_CLASS = "chat";
 	private static final int DEFAULT_GAP_VALUE = 10;
 
@@ -23,40 +23,42 @@ public class Chat extends HBox
 
 	private ChatView parent;
 
-	public Chat(String message)
-	{
+	public Chat(String message) {
 		this(message, false);
 	}
 
-	public Chat(String message, boolean isbot)
-	{
-        content = new Content(message, isbot);
+	public Chat(String message, boolean isBot) {
+        content = new Content(message, isBot);
         profile = new Circle(35, 35, 20);
 
 		menu = new ContextMenu
 		(
 			new Menu("Copy", event -> CopyStringAction.execute(message)),
-			new Menu("Delete", event -> parent.remove(this))
+			new Menu("Delete", event -> parent.getItems().remove(this))
 		);
 
 		menu.setNode(content);
 
 		profile.getStyleClass().add("profile");
 
-		if (!isbot)
-		{
-			setItems(content);
-            // setItems(content, profile);
+		if (!isBot) {
+			getItems().setAll(content);
+            // getItems().setAll(content, profile);
 			setAlignment(Pos.TOP_RIGHT);
 		}
-		else
-		{
-            setItems(profile, content);
+		else {
+			if (GlobalSettings.getBoolean("debug:show_bot_profile")) {
+				getItems().setAll(profile, content);
+			}
+			else {
+				getItems().setAll(content);
+			}
+
 			setAlignment(Pos.TOP_LEFT);
 		}
 
-		pseudoClassStateChanged(HUMAN_PSEUDO_CLASS, !isbot);
-		pseudoClassStateChanged(BOT_PSEUDO_CLASS, isbot);
+		pseudoClassStateChanged(HUMAN_PSEUDO_CLASS, !isBot);
+		pseudoClassStateChanged(BOT_PSEUDO_CLASS, isBot);
 
 		/* getWidthProperty().addListener(change ->
 		{
@@ -64,21 +66,18 @@ public class Chat extends HBox
 		}); */
 
 		setSpacing(DEFAULT_GAP_VALUE);
-		addStyleClass(DEFAULT_STYLE_CLASS);
+		getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 
-	public ChatView getView()
-	{
+	public ChatView getView() {
 		return parent;
 	}
 
-	public void setView(ChatView parent)
-	{
+	public void setView(ChatView parent) {
 		this.parent = parent;
 	}
 
-	private class Content extends VBox
-	{
+	private class Content extends VBox {
 		private final Label comment = new Label();
 		private final Label name = new Label();
 
@@ -86,10 +85,9 @@ public class Chat extends HBox
 			VBox.setVgrow(comment, Priority.ALWAYS);
 		}
 
-		public Content(String message, boolean isbot)
-		{
+		public Content(String message, boolean isbot) {
             name.setText("DEBUG SENDER");
-            name.addStyleClass("name");
+            name.getStyleClass().add("name");
 
 			/* if (message.length() > 1000)
 			{
@@ -101,22 +99,37 @@ public class Chat extends HBox
 				comment.setText(message);
 				comment.setWrapText(true);
 				comment.setMaxWidth(200);
-				comment.addStyleClass("comment");
+				comment.getStyleClass().add("comment");
 			}
 
-			if (!isbot)
-			{
+			if (!isbot) {
 			    setAlignment(Pos.CENTER_RIGHT);
 			}
-			else
-			{
+			else {
 				setAlignment(Pos.CENTER_LEFT);
 			}
 
-			setItems(name, comment);
 			setSpacing(5);
 			setFittable(false);
 			setFillWidth(false);
+
+			if (!isbot) {
+				if (GlobalSettings.getBoolean("debug:show_sender_name")) {
+					getItems().setAll(name, comment);
+				}
+				else {
+					getItems().setAll(comment);
+				}
+			}
+			else {
+
+				if (GlobalSettings.getBoolean("debug:show_bot_name")) {
+					getItems().setAll(name, comment);
+				}
+				else {
+					getItems().setAll(comment);
+				}
+			}
 		}
 	}
 }

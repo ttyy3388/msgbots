@@ -9,6 +9,7 @@ import javafx.beans.property.StringProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -16,8 +17,7 @@ import org.beuwi.msgbots.platform.gui.skins.TabSkin;
 import org.beuwi.msgbots.platform.util.AllSVGIcons;
 
 // @DefaultProperty("content")
-public class Tab extends Control
-{
+public class Tab extends Control {
 	private static final String DEFAULT_STYLE_CLASS = "tab";
 
 	private final ObjectProperty<Node> content = new SimpleObjectProperty(null);
@@ -29,31 +29,25 @@ public class Tab extends Control
 
 	private TabView parent;
 
-	public Tab()
-	{
+	public Tab() {
 		this(null);
 	}
 
-	public Tab(String title)
-	{
+	public Tab(String title) {
 		this(title, new Pane());
 	}
 
-	public Tab(String title, Node content)
-	{
-		if (title != null)
-		{
+	public Tab(String title, Node content) {
+		if (title != null) {
 			setId(title);
 			setText(title);
 		}
 
-		if (content != null)
-		{
+		if (content != null) {
 			setContent(content);
 		}
 
-		menu = new ContextMenu
-		(
+		menu = new ContextMenu(
 			new Menu("Close", "Ctrl + W", event -> parent.closeTab(this)),
 			new Menu("Close Others", event -> parent.closeOtherTabs(this)),
 			new Menu("Close All Tabs", event -> parent.closeAllTabs()),
@@ -69,66 +63,55 @@ public class Tab extends Control
 			getView().selectTab(this);
 		});
 
-		addStyleClass(DEFAULT_STYLE_CLASS);
+		getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 
-	public void setView(TabView parent)
-	{
+	public void setView(TabView parent) {
 		this.parent = parent;
 	}
 
-	public void setText(String text)
-	{
+	public void setText(String text) {
 		this.text.set(text);
 	}
 
-	public void setClosable(boolean closable)
-	{
+	public void setClosable(boolean closable) {
 		this.closable.set(closable);
 	}
 
-	public void setContent(Node content)
-	{
+	public void setContent(Node content) {
 		this.content.set(content);
 	}
 
-	public TabView getView()
-	{
+	public TabView getView() {
 		return parent;
 	}
 
-	public String getText()
-	{
+	public String getText() {
 		return text.get();
 	}
 
-	public Node getContent()
-	{
+	public Node getContent() {
 		return content.get();
 	}
 
-	public boolean isClosable()
-	{
+	public boolean isClosable() {
 		return closable.get();
 	}
 
-	public boolean isSelected()
-	{
+	public boolean isSelected() {
 		return parent.getSelectedTab().equals(this);
 	}
 
-	public StringProperty getTextProperty()
-	{
+	public StringProperty textProperty() {
 		return text;
 	}
 
-	public BooleanProperty getClosableProperty()
-	{
+	public BooleanProperty closableProperty() {
 		return closable;
 	}
 
 	@Override
-	public Skin<?> setDefaultSkin()
+	public TabSkin createDefaultSkin()
 	{
 		return new TabSkin(this);
 	}

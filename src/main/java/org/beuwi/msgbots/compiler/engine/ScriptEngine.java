@@ -15,9 +15,9 @@ import org.beuwi.msgbots.manager.BotManager;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.manager.LogManager;
 import org.beuwi.msgbots.platform.app.view.actions.SaveEditorAreaTabAction;
-import org.beuwi.msgbots.platform.gui.enums.LogType;
 import org.beuwi.msgbots.setting.GlobalSettings;
 import org.beuwi.msgbots.setting.ScriptSettings;
+
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ImporterTopLevel;
@@ -26,25 +26,19 @@ import org.mozilla.javascript.ScriptableObject;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.logging.Logger;
 
-public class ScriptEngine
-{
+public class ScriptEngine {
 	public static HashMap<String, ScriptContainer> container = new HashMap<>();
 	public static HashMap<String, Boolean> compiling = new HashMap<>();
-	public static ScriptableObject execscope = null;
+	public static ScriptableObject execScope = null;
 
-	protected static void run(String room, String message, String sender, boolean isGroupChat, ImageDB imageDB, String packageName)
-	{
-		for (String name : FileManager.getBotNames())
-		{
-			if (!BotManager.getPower(name))
-			{
+	protected static void run(String room, String message, String sender, boolean isGroupChat, ImageDB imageDB, String packageName) {
+		for (String name : FileManager.getBotNames()) {
+			if (!BotManager.getPower(name)) {
 				continue ;
 			}
 
-			if (!container.containsKey(name))
-			{
+			if (!container.containsKey(name)) {
 				continue ;
 			}
 
@@ -52,16 +46,14 @@ public class ScriptEngine
 		}
 	}
 
-	protected static boolean initialize(String name, boolean isManual, boolean ignoreError)
-	{
+	protected static boolean initialize(String name, boolean isManual, boolean ignoreError) {
 		LogManager.event("Compile Start : " + name);
 
 		compiling.put(name, true);
 
 		File file = FileManager.getBotScript(name);
 
-		if (GlobalSettings.getBoolean("program:compile_auto_save"))
-		{
+		if (GlobalSettings.getBoolean("program:compile_auto_save")) {
 			SaveEditorAreaTabAction.execute(name);
 		}
 
@@ -70,16 +62,13 @@ public class ScriptEngine
 		// Parse Context
 		Context context = Context.enter();
 
-		try
-		{
+		try {
 			context.setWrapFactory(new PrimitiveWrapFactory());
 			context.setLanguageVersion(Context.VERSION_ES6);
 			context.setOptimizationLevel(optimization);
 		}
-		catch (Exception e)
-		{
-			if (!isManual)
-			{
+		catch (Exception e) {
+			if (!isManual) {
 				Context.reportError(e.toString());
 			}
 
@@ -93,13 +82,10 @@ public class ScriptEngine
 		ScriptableObject scope = null;
 		Script script = null;
 
-		try
-		{
-			if (container.get(name) != null)
-			{
-				if (container.get(name).getOnStartCompile() != null)
-				{
-					container.get(name).getOnStartCompile().call(context, execscope, execscope, new Object[] { });
+		try {
+			if (container.get(name) != null) {
+				if (container.get(name).getOnStartCompile() != null) {
+					container.get(name).getOnStartCompile().call(context, execScope, execScope, new Object[] { });
 				}
 			}
 
@@ -120,7 +106,7 @@ public class ScriptEngine
 			ScriptableObject.defineClass(scope, Bridge.class);
 			ScriptableObject.defineClass(scope, FileStream.class);
 
-			execscope = scope;
+			execScope = scope;
 
 			script.exec(context, scope);
 
@@ -138,10 +124,8 @@ public class ScriptEngine
 
 			compiling.put(name, false);
 		}
-		catch (Throwable e)
-		{
-			if (container.get(name) != null)
-			{
+		catch (Throwable e) {
+			if (container.get(name) != null) {
 				container.get(name).setOnStartCompile(null);
 			}
 
@@ -149,10 +133,8 @@ public class ScriptEngine
 
 			compiling.put(name, false);
 
-			if (!isManual)
-			{
-				if (!ignoreError)
-				{
+			if (!isManual) {
+				if (!ignoreError) {
 					Context.reportError(e.toString());
 				}
 			}
@@ -169,8 +151,7 @@ public class ScriptEngine
 		return true;
 	}
 
-	protected static void callResponder(String name, String room, String message, String sender, Boolean isGroupChat, ImageDB imageDB, String packageName)
-	{
+	protected static void callResponder(String name, String room, String message, String sender, Boolean isGroupChat, ImageDB imageDB, String packageName) {
 		ScriptableObject scope = container.get(name).getExecScope();
 		Function responder = container.get(name).getResponder();
 
@@ -178,32 +159,26 @@ public class ScriptEngine
 
 		final long start = System.currentTimeMillis();
 
-		try
-		{
+		try {
 			context.setWrapFactory(new PrimitiveWrapFactory());
 			context.setLanguageVersion(Context.VERSION_ES6);
 			context.setOptimizationLevel(container.get(name).getOptimization());
 
-			if (responder != null)
-			{
-				if (ScriptSettings.get(name).getBoolean("use_unified_params"))
-				{
+			if (responder != null) {
+				if (ScriptSettings.get(name).getBoolean("use_unified_params")) {
 					responder.call(context, scope, scope, new Object[] { new ResponseParameters(room, message, sender, isGroupChat, new Replier(), imageDB, packageName) });
 				}
-				else
-				{
+				else {
 					responder.call(context, scope, scope, new Object[] { room, message, sender, isGroupChat, new Replier(), imageDB, packageName });
 				}
 			}
 
 			Context.exit();
 		}
-		catch (Throwable e)
-		{
+		catch (Throwable e) {
 			LogManager.error("Runtime Error : " + e.toString() + " : " + name);
 
-			if (ScriptSettings.get(name).getBoolean("off_on_runtime_error"))
-			{
+			if (ScriptSettings.get(name).getBoolean("off_on_runtime_error")) {
 				BotManager.setPower(name, false);
 			}
 
@@ -212,8 +187,7 @@ public class ScriptEngine
 
 		final long end = System.currentTimeMillis();
 
-		if (GlobalSettings.getBoolean("program:show_running_time"))
-		{
+		if (GlobalSettings.getBoolean("program:show_running_time")) {
 			LogManager.event("Running Time : " + (end - start));
 		}
 	}

@@ -9,11 +9,12 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 
+import javafx.scene.control.Control;
+
 import org.beuwi.msgbots.platform.gui.enums.ConfigType;
 import org.beuwi.msgbots.platform.gui.skins.OptionViewSkin;
 
-public class OptionView extends Control
-{
+public class OptionView extends Control {
 	private static final String DEFAULT_STYLE_CLASS = "option-view";
 
 	private final ObservableList<Node> items = FXCollections.observableArrayList();
@@ -23,38 +24,29 @@ public class OptionView extends Control
 
 	private final StringProperty title = new SimpleStringProperty();
 
-	public OptionView()
-	{
-		getItems().addListener((ListChangeListener<Node>) change ->
-		{
-			while (change.next())
-			{
-				for (Node node : change.getRemoved())
-				{
-					if (node instanceof OptionBox)
-					{
+	public OptionView() {
+		getItems().addListener((ListChangeListener<Node>) change -> {
+			while (change.next()) {
+				for (Node node : change.getRemoved()) {
+					if (node instanceof OptionBox) {
 						OptionBox item = (OptionBox) node;
 
 						item.setView(null);
 					}
 				}
 
-				for (Node node : change.getAddedSubList())
-				{
-					if (node instanceof OptionBox)
-					{
+				for (Node node : change.getAddedSubList()) {
+					if (node instanceof OptionBox) {
 						OptionBox item = (OptionBox) node;
 
 						item.setView(this);
 
-						getNameProperty().addListener(event ->
-						{
+						nameProperty().addListener(event -> {
 							String type = this.getType().toString();
 							String name = this.getName();
 							String option = item.getOption();
 
-							if (option != null)
-							{
+							if (option != null) {
 								item.setAddress(type + ":" + name + ":" + option);
 							}
 						});
@@ -63,68 +55,52 @@ public class OptionView extends Control
 			}
 		});
 
-		addStyleClass(DEFAULT_STYLE_CLASS);
+		getStyleClass().addAll(DEFAULT_STYLE_CLASS);
 	}
 
 	// Link Bot Name
-	public void setName(String name)
-    {
+	public void setName(String name) {
         this.name.set(name);
     }
 
-	public void setTitle(String title)
-	{
+	public void setTitle(String title) {
 		this.title.set(title);
 	}
 
-	public void setItems(Node item)
-	{
-		this.items.setAll(item);
-	}
-
-	public void setType(ConfigType type)
-	{
+	public void setType(ConfigType type) {
 		this.type.set(type);
 	}
 
-	public String getName()
-    {
+	public String getName() {
         return name.get();
     }
 
-	public ConfigType getType()
-	{
+	public ConfigType getType() {
 		return type.get();
 	}
 
-	public String getTitle()
-	{
+	public String getTitle() {
 		return title.get();
 	}
 
-	public ObservableList<Node> getItems()
-	{
+	public ObservableList<Node> getItems() {
 		return items;
 	}
 
-	public StringProperty getNameProperty()
-	{
+	public StringProperty nameProperty() {
 		return name;
 	}
 
-	public ObjectProperty<ConfigType> getTypeProperty()
-	{
+	public ObjectProperty<ConfigType> typeProperty() {
 		return type;
 	}
 
-	public StringProperty getTitleProperty()
-	{
+	public StringProperty titleProperty() {
 		return title;
 	}
 
 	@Override
-	public OptionViewSkin setDefaultSkin()
-	{
+	public OptionViewSkin createDefaultSkin() {
 		return new OptionViewSkin(this);
 	}
 }

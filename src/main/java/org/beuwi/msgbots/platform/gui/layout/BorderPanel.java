@@ -1,5 +1,6 @@
 package org.beuwi.msgbots.platform.gui.layout;
 
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
@@ -9,13 +10,11 @@ public class BorderPanel extends BorderPane
 {
     private static final String DEFAULT_STYLE_CLASS = "border-panel";
 
-    public void setPadding(double padding)
-    {
+    public void setPadding(double padding) {
         setPadding(new Insets(padding));
     }
 
-    public void addStyleClass(String style)
-    {
-        getStyleClass().add(style);
+    public ObservableList<Node> getItems() {
+        return getChildren();
     }
 }

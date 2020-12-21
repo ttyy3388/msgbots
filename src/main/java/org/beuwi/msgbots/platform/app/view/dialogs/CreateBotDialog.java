@@ -11,8 +11,7 @@ import org.beuwi.msgbots.platform.gui.control.TextField;
 import org.beuwi.msgbots.platform.gui.control.VBox;
 import org.beuwi.msgbots.platform.gui.dialog.DialogBoxWrap;
 
-public class CreateBotDialog extends DialogBoxWrap
-{
+public class CreateBotDialog extends DialogBoxWrap {
 	private final ObservableMap<String, Object> nameSpace;
 
 	private final FormLoader loader;
@@ -30,8 +29,7 @@ public class CreateBotDialog extends DialogBoxWrap
 	private final Button btnCreate;
 	private final Button btnCancel;
 
-	public CreateBotDialog()
-	{
+	public CreateBotDialog() {
 		loader = new FormLoader("dialog", "create-bot-dialog", this);
 		nameSpace = loader.getNamespace();
 		root = loader.getRoot();
@@ -41,35 +39,29 @@ public class CreateBotDialog extends DialogBoxWrap
 
 		btnCreate.setText("Create");
 
-		txfScriptName.getTextProperty().addListener(change ->
-		{
+		txfScriptName.textProperty().addListener(change -> {
 			btnCreate.setDisable(txfScriptName.getText().isEmpty());
 		});
 
-		Platform.runLater(() ->
-		{
+		Platform.runLater(() -> {
 			txfScriptName.requestFocus();
 		});
 	}
 
 	@Override
-	public void open()
-	{
+	public void open() {
 		setContent(root);
 		setTitle("Create New Bot");
 		create();
 	}
 
 	@Override
-	public void action()
-	{
-		if (txfScriptName.getText().isEmpty())
-		{
+	public void action() {
+		if (txfScriptName.getText().isEmpty()) {
 			return ;
 		}
 
-		CreateBotAction.execute
-		(
+		CreateBotAction.execute(
 			txfScriptName.getText(),
 			chkIsUnified.isSelected(),
 			chkIsOffError.isSelected()

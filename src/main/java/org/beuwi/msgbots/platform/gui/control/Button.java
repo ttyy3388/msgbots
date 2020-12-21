@@ -8,10 +8,10 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.css.PseudoClass;
 import javafx.geometry.Insets;
 
-public class Button extends javafx.scene.control.Button
-{
+public class Button extends javafx.scene.control.Button {
 	private static final Insets DEFAULT_PADDING_INSETS = new Insets(0, 10, 0, 10);
 
+	private static final PseudoClass STYLED_PSEUDO_CLASS = PseudoClass.getPseudoClass("styled");
 	private static final PseudoClass ACTION_PSEUDO_CLASS = PseudoClass.getPseudoClass("action");
 	private static final PseudoClass CANCEL_PSEUDO_CLASS = PseudoClass.getPseudoClass("cancel");
 
@@ -25,29 +25,23 @@ public class Button extends javafx.scene.control.Button
 
 	private final BooleanProperty styled = new SimpleBooleanProperty(false);
 
-	public enum Type
-	{
+	public enum Type {
 		ACTION, CANCEL
 	}
 
-	public Button()
-	{
+	public Button() {
 		this(null);
 	}
 
-	public Button(String text)
-	{
-		if (text != null)
-		{
+	public Button(String text) {
+		if (text != null) {
 			setText(text);
 		}
 
-		styled.addListener(change ->
-		{
-			pseudoClassStateChanged(PseudoClass.getPseudoClass("styled"), getStyled());
+		styledProperty().addListener(change -> {
+			pseudoClassStateChanged(STYLED_PSEUDO_CLASS, getStyled());
 
-			if (getStyled())
-			{
+			if (getStyled()) {
 				setMinWidth(DEFAULT_MIN_WIDTH);
 				setMinHeight(DEFAULT_MIN_HEIGHT);
 				// setPrefWidth(DEFAULT_PREF_WIDTH);
@@ -55,16 +49,13 @@ public class Button extends javafx.scene.control.Button
 			}
 		});
 
-		type.addListener(change ->
-		{
+		typeProperty().addListener(change -> {
 			pseudoClassStateChanged(ACTION_PSEUDO_CLASS, getType().equals(Type.ACTION));
 			pseudoClassStateChanged(CANCEL_PSEUDO_CLASS, getType().equals(Type.CANCEL));
 		});
 
-		getTextProperty().addListener((observable, oldValue, newValue) ->
-		{
-			if (getText() != null)
-			{
+		textProperty().addListener((observable, oldValue, newValue) -> {
+			if (getText() != null) {
 				setPadding(DEFAULT_PADDING_INSETS);
 			}
 		});
@@ -72,33 +63,31 @@ public class Button extends javafx.scene.control.Button
 		// setType(Type.CANCEL);
 	}
 
-	public Type getType()
-	{
+	public Type getType() {
 		return type.get();
 	}
 
-	public boolean getStyled()
-	{
+	public boolean getStyled() {
 		return styled.get();
 	}
 
-	public void setType(Type type)
-	{
+	public void setType(Type type) {
 		this.type.set(type);
 	}
 
-	public void setMenu(ContextMenu menu)
-	{
+	public void setMenu(ContextMenu menu) {
 		menu.setNode(this);
 	}
 
-	public void setStyled(boolean styled)
-	{
+	public void setStyled(boolean styled) {
 		this.styled.set(styled);
 	}
 
-	public ReadOnlyStringProperty getTextProperty()
-	{
-		return textProperty();
+	public BooleanProperty styledProperty() {
+		return styled;
+	}
+
+	public ObjectProperty<Type> typeProperty() {
+		return type;
 	}
 }
