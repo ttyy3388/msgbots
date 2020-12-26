@@ -9,24 +9,19 @@ import org.beuwi.msgbots.platform.gui.editor.Editor;
 
 import java.io.File;
 
-public class OpenScriptTabAction implements Action
-{
+public class OpenScriptTabAction implements Action {
 	private static TabView control;
 
 	@Override
-	public void init()
-	{
+	public void init() {
 		control = MainAreaPart.getComponent();
 	}
 
-	public static void execute(String name)
-	{
-		if (control.containsTab(name))
-		{
+	public static void execute(String name) {
+		if (control.containsTab(name)) {
 			control.selectTab(name);
 		}
-		else
-		{
+		else {
 			File file = FileManager.getBotScript(name);
 
 			AddMainAreaTabAction.execute(new Tab(name, new Editor(file)));
@@ -34,8 +29,7 @@ public class OpenScriptTabAction implements Action
 	}
 
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return "open.script.tab.action";
 	}
 }

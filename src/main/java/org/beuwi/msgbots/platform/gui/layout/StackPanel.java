@@ -27,4 +27,8 @@ public class StackPanel extends javafx.scene.layout.StackPane {
 	public ObservableList<Node> getItems() {
 		return getChildren();
 	}
+
+	/* public static void setMargin(StackPanel panel, double value) {
+		setMargin(panel, new Insets(value));
+	} */
 }

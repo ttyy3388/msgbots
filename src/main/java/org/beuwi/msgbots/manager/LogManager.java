@@ -3,10 +3,10 @@ package org.beuwi.msgbots.manager;
 import org.beuwi.msgbots.openapi.JsonArray;
 import org.beuwi.msgbots.openapi.JsonObject;
 import org.beuwi.msgbots.platform.app.view.actions.AddBotLogBoxAction;
-import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
 import org.beuwi.msgbots.platform.gui.control.LogBox;
 import org.beuwi.msgbots.platform.gui.enums.LogType;
 import org.beuwi.msgbots.platform.util.SharedValues;
+
 import org.json.simple.JSONObject;
 
 import java.io.File;
@@ -80,7 +80,7 @@ public class LogManager {
 			return list;
 		}
 		catch (Exception e) {
-			AddToastMessageAction.execute(e);
+			e.printStackTrace();
 		}
 
 		return new ArrayList<>();

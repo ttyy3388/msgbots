@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+
+<?import org.beuwi.msgbots.platform.gui.control.ChatView?>
+<?import org.beuwi.msgbots.platform.gui.control.Navi?>
+<?import org.beuwi.msgbots.platform.gui.control.TextArea?>
+<?import org.beuwi.msgbots.platform.gui.control.VBox?>
+<?import org.beuwi.msgbots.platform.gui.layout.StackPanel?>
+
+<Navi text="DEBUG ROOM" xmlns:fx="http://javafx.com/fxml">
+	<content>
+		<VBox styleClass="debug-tab">
+			<items>
+				<ChatView fx:id="lsvChatView" VBox.vgrow="ALWAYS"/>
+				<StackPanel prefHeight="80.0">
+					<items>
+						<TextArea fx:id="txaChatInput" />
+					</items>
+					<VBox.margin>
+						<Insets top="8.0" right="8.0" bottom="8.0" left="8.0" />
+					</VBox.margin>
+				</StackPanel>
+			</items>
+		</VBox>
+	</content>
+</Navi>

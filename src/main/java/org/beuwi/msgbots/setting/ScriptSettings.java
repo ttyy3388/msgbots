@@ -1,11 +1,10 @@
 package org.beuwi.msgbots.setting;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.openapi.JsonObject;
-import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
-import org.beuwi.msgbots.platform.util.SharedValues;
 
 public class ScriptSettings {
 	// Name : Script Name
@@ -38,13 +37,23 @@ public class ScriptSettings {
 	}
 
 	public <T> void setData(String address, T value) {
-		json.put(address, value);
+		// 기본 타입이 아닐 경우
+		if (!(value instanceof String ||
+				value instanceof Double ||
+				value instanceof Integer ||
+				value instanceof Long)) {
+			json.put(address, value.toString());
+		}
+		else {
+			json.put(address, value);
+		}
 
 		try {
 			FileManager.save(file, json.toString());
 		}
 		catch (Exception e) {
-			AddToastMessageAction.execute(e);
+			// 작동 안할 거 같음 (파일 매니저에서 잡으니까)
+			e.printStackTrace();
 		}
 	}
 }

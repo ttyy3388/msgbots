@@ -1,13 +1,20 @@
 package org.beuwi.msgbots.platform.gui.editor;
 
-public final class Position
-{
-    public final int line;
-    public final int column;
+// Cursor Position
+public class Position {
+    private final int lineNumber;
+    private final int column;
 
-    public Position(int line, int column)
-    {
-        this.line = line;
+    public Position(int lineNumber, int column) {
+        this.lineNumber = lineNumber;
         this.column = column;
+    }
+
+    public int getLineNumber() {
+        return lineNumber;
+    }
+
+    public int getColumn() {
+        return column;
     }
 }

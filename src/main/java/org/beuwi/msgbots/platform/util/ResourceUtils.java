@@ -26,6 +26,10 @@ public class ResourceUtils {
 		return uri.toFile();
 	}
 
+	public static File getData(String name) {
+		return getFile("/datas/" + name);
+	}
+
 	public static String getURL(String path) {
 		return ResourceUtils.class.getResource(path).toExternalForm();
 	}

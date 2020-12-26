@@ -6,50 +6,17 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import org.beuwi.msgbots.compiler.engine.ScriptManager;
-import org.beuwi.msgbots.manager.FileManager;
+import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.MainView.MainWindow;
-import org.beuwi.msgbots.platform.app.view.actions.AddBotLogBoxAction;
-import org.beuwi.msgbots.platform.app.view.actions.ChangeThemeAction;
-import org.beuwi.msgbots.platform.app.view.actions.OpenBotLogTabAction;
-import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
-import org.beuwi.msgbots.platform.app.view.actions.OpenDocumentAction;
-import org.beuwi.msgbots.platform.app.view.actions.RedoEditorTextAction;
-import org.beuwi.msgbots.platform.app.view.actions.RefreshBotLogsAction;
-import org.beuwi.msgbots.platform.app.view.actions.SaveEditorAreaTabAction;
-import org.beuwi.msgbots.platform.app.view.actions.SendChatMessageAction;
-import org.beuwi.msgbots.platform.app.view.actions.AddMainAreaTabAction;
-import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
-import org.beuwi.msgbots.platform.app.view.actions.OpenProgramTabAction;
-import org.beuwi.msgbots.platform.app.view.actions.OpenScriptTabAction;
-import org.beuwi.msgbots.platform.app.view.actions.RefreshBotListAction;
-import org.beuwi.msgbots.platform.app.view.actions.UpdateStatusBarAction;
-import org.beuwi.msgbots.platform.app.view.parts.DebugAreaPart;
-import org.beuwi.msgbots.platform.app.view.parts.MainAreaPart;
-import org.beuwi.msgbots.platform.app.view.parts.MenuBarPart;
-import org.beuwi.msgbots.platform.app.view.parts.ToastAreaPart;
-import org.beuwi.msgbots.platform.app.view.parts.SideAreaPart;
-import org.beuwi.msgbots.platform.app.view.parts.StatusBarPart;
-import org.beuwi.msgbots.platform.app.view.tabs.BotListTab;
-import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
-import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
-import org.beuwi.msgbots.platform.app.view.tabs.GlobalLogTab;
-import org.beuwi.msgbots.platform.gui.control.Tab;
-import org.beuwi.msgbots.platform.gui.enums.ThemeType;
-import org.beuwi.msgbots.platform.util.ResourceUtils;
-import org.beuwi.msgbots.platform.util.SharedValues;
+import org.beuwi.msgbots.platform.app.view.actions.*;
+import org.beuwi.msgbots.platform.app.view.navis.BotListNavi;
+import org.beuwi.msgbots.platform.app.view.navis.DebugRoomNavi;
+import org.beuwi.msgbots.platform.app.view.parts.*;
+import org.beuwi.msgbots.platform.app.view.tabs.*;
+import org.beuwi.msgbots.platform.util.*;
 
-import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Paths;
-import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
-import java.util.List;
-
-import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
-import static java.nio.file.StandardWatchEventKinds.OVERFLOW;
 
 public class Launcher extends Application {
 	WatchService WATCH_SERVICE = null;
@@ -77,7 +44,7 @@ public class Launcher extends Application {
 
 	@Override
 	public void start(Stage stage) {
-		try {
+		/* try {
 			WATCH_SERVICE = FileSystems.getDefault().newWatchService();
 
 			Paths.get(SharedValues.BOTS_FOLDER_FILE.getPath()).register(
@@ -124,54 +91,71 @@ public class Launcher extends Application {
 					}
 				}
 			}
-		}).start();
+		}).start(); */
 
 		try {
-			new BotListTab().init();
-			new DebugRoomTab().init();
+			// Initialize Tabs
+			new BotListNavi().init();
+			new DebugRoomNavi().init();
 			new GlobalConfigTab().init();
 			new GlobalLogTab().init();
 
+			// Initialize Layouts
+			new ActiveAreaPart().init();
 			new DebugAreaPart().init();
 			new MainAreaPart().init();
 			new MenuBarPart().init();
-			new SideAreaPart().init();
 			new StatusBarPart().init();
-			new ToastAreaPart().init();
 
+			// Initialize Actions
 			new AddBotLogBoxAction().init();
 			new AddMainAreaTabAction().init();
-			new AddToastMessageAction().init();
-			new ChangeThemeAction().init();
 			new OpenBotLogTabAction().init();
 			new OpenDialogBoxAction().init();
 			new OpenDocumentAction().init();
 			new OpenProgramTabAction().init();
 			new OpenScriptTabAction().init();
-			new RedoEditorTextAction().init();
+			new ExecuteEditMenuAction().init();
 			new RefreshBotListAction().init();
 			new RefreshBotLogsAction().init();
-			new SaveEditorAreaTabAction().init();
+			new SaveEditorTabAction().init();
 			new SendChatMessageAction().init();
-			new UpdateStatusBarAction().init();
+			new TogglePowerBotsAction().init();
 
+			new MainView(stage).init();
 			new MainWindow(stage).create();
-
-			// AddToastMessageAction.execute(NoticeType.EVENT, "TEST TITLE", "CONTENT");
-
-			FileManager.link(SharedValues.DARK_THEME_FILE, () -> {
-				ChangeThemeAction.execute(ThemeType.DARK);
-			});
 
 			// 추후 전체를 로딩하는게 아닌 새 파일만 로딩해야됨 > 스크립트 탭도 마차가지로 바꿔야됨 (컴파일 상태 유지)
 			RefreshBotListAction.execute();
 
 			ScriptManager.preInit();
 		}
-		catch (Throwable e) {
-			e.printStackTrace();
+		catch (Throwable t) {
+			t.printStackTrace();
+			try {
+				DisplayErrorDialogAction.execute(t);
+			}
+			// 에러 다이얼로그도 띄울 수 없으면 실행 불가능 상태이므로 OS 에러 메시지 출력
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			// FileManager.save("", e.)
 		}
 	}
+	
+	// Registry Program Data <- Edit 메뉴를 만들기 위해 사용하려고 했으나 너무 많은 수고가 들어가기에 개발 일시정지
+	/* private void registry(Parent parent) {
+		for (Node node : parent.getChildrenUnmodifiable()) {
+			System.out.println(node);
+			node.focusedProperty().addListener(event -> {
+				ProgramData.selectedItemProperty().set(node);
+			});
+			if (node instanceof Parent) {
+				registry((Parent) node);
+			}
+		}
+	} */
 
 	@Override
 	public void stop() {

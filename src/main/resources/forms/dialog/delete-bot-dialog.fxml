@@ -5,6 +5,6 @@
 
 <AnchorPanel prefHeight="50.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <items>
-        <Label fx:id="lblDeleteMessage" styleClass="h4"/>
+        <Label fx:id="lblDeleteMessage" styleClass="h4" prefHeight="30.0"/>
     </items>
 </AnchorPanel>

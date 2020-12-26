@@ -8,8 +8,8 @@ import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDocumentAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenProgramTabAction;
-import org.beuwi.msgbots.platform.app.view.actions.RedoEditorTextAction;
 import org.beuwi.msgbots.platform.app.view.actions.RefreshBotListAction;
+import org.beuwi.msgbots.platform.app.view.actions.TogglePowerBotsAction;
 import org.beuwi.msgbots.platform.app.view.dialogs.CreateBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.ImportBotDialog;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
@@ -46,27 +46,26 @@ public class MenuBarPart implements View {
 		);
 
 		// Edit Menu Button
-		// ((CodeArea) MainAreaPart.getComponent().getSelectedTab().getContent())
 		component.getMenu(1).setMenus(
-			new Menu("Undo", "Ctrl + Z"),
-			new Menu("Redo", "Ctrl + Y", event -> RedoEditorTextAction.execute()),
+			new Menu("Undo", "Ctrl + Z").disable(true),
+			new Menu("Redo", "Ctrl + Y").disable(true),
 			new Separator(),
-			new Menu("Cut", "Ctrl + X" /*, event -> CutTextTabAction.execute() */),
-			new Menu("Copy", "Ctrl + C" /*, event -> CopyTextTabAction.execute() */),
-			new Menu("Paste", "Ctrl + V" /*, event -> PasteTextTabAction.execute() */)
+			new Menu("Cut", "Ctrl + X").disable(true),
+			new Menu("Copy", "Ctrl + C").disable(true),
+			new Menu("Paste", "Ctrl + V").disable(true)
 		);
 
 		// View Menu Button
 		component.getMenu(2).setMenus(
-			new Menu("Toggle Menu Bar", "Alt + M"),
-			new Menu("Toggle Side Bar", "Alt + S"),
-			new Menu("Toggle Debug Area", "Alt + D")
+			new Menu("Toggle Menu Bar", "Alt + M").disable(true),
+			new Menu("Toggle Side Bar", "Alt + S").disable(true),
+			new Menu("Toggle Debug Area", "Alt + D").disable(true)
 		);
 
 		// Debug Menu Button
 		component.getMenu(3).setMenus(
 			new Menu("Compile", event -> ScriptManager.initAll(true)),
-			new Menu("Power On / Off"),
+			new Menu("Power On / Off", event -> TogglePowerBotsAction.execute()),
 			new Separator(),
 			new Menu("Show Global Log", "F8"),
 			new Menu("Open Debug Room", "F9")

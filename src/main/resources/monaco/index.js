@@ -1,75 +1,137 @@
 var editorCreatedCallback;
-var foldingProvider;
-var editorView;
 var contentChangeListener;
+var cursorChangeListener;
 var scrollChangeListener;
+
+var editor;
 
 require.config({ paths: { 'vs': './package/min/vs' }});
 
-require(['vs/editor/editor.main'], function()
-{
-	editorView = monaco.editor.create(document.getElementById('container'),
-	{
+require(['vs/editor/editor.main'], function() {
+	editor = monaco.editor.create(document.getElementById('container'), {
 		theme: 'vs-dark',
 		value: getCode(),
-		language: 'javascript',
+		// language: 'javascript',
 		automaticLayout: true,
 		roundedSelection: false,
 		mouseWheelScrollSensitivity: 0.1,
 		scrollBeyondLastLine: false,
 		contextmenu: true,
 		scrollbar: {
-            // Subtle shadows to the left & top. Defaults to true.
-            useShadows: true,
-            // Render vertical arrows. Defaults to false.
-            verticalHasArrows: true,
-            // Render horizontal arrows. Defaults to false.
-            horizontalHasArrows: true,
-            // Render vertical scrollbar.
-            // Accepted values: 'auto', 'visible', 'hidden'.
-            // Defaults to 'auto'
-            vertical: 'auto',
-            // Render horizontal scrollbar.
-            // Accepted values: 'auto', 'visible', 'hidden'.
-            // Defaults to 'auto'
-            horizontal: 'auto',
-            verticalScrollbarSize: 15,
-            horizontalScrollbarSize: 15,
-            arrowSize: 15,
-            alwaysConsumeMouseWheel: false
-        }
-    });
+			// Subtle shadows to the left & top. Defaults to true.
+			useShadows: true,
+			// Render vertical arrows. Defaults to false.
+			verticalHasArrows: false,
+			// Render horizontal arrows. Defaults to false.
+			horizontalHasArrows: false,
+			// Render vertical scrollbar.
+			// Accepted values: 'auto', 'visible', 'hidden'.
+			// Defaults to 'auto'
+			vertical: 'auto',
+			// Render horizontal scrollbar.
+			// Accepted values: 'auto', 'visible', 'hidden'.
+			// Defaults to 'auto'
+			horizontal: 'auto',
+			verticalScrollbarSize: 15,
+			horizontalScrollbarSize: 15,
+			// arrowSize: 15,
+			alwaysConsumeMouseWheel: false
+		}
+	});
 
-    if (editorCreatedCallback != null)
-    {
-        editorCreatedCallback.apply([editorView]);
-    }
+	// Regist Actions
+	editor.addAction({
+		id: 'undo',
+		label: 'Undo',
+		run: () => {
+			editor.focus()
+			if (!document.execCommand('undo')) {
+				editor.getModel().undo()
+			}
+		},
+	});
+	editor.addAction({
+		id: 'redo',
+		label: 'Redo',
+		run: () => {
+			editor.focus()
+			if (!document.execCommand('redo')) {
+				editor.getModel().redo()
+			}
+		},
+	});
+	editor.addAction({
+		id: 'copy',
+		// id: 'editor.action.clipboardCopyAction',
+		label: 'Copy',
+		keybindings: [
+			monaco.KeyMod.chord(monaco.KeyMod.CtrlCmd | monaco.KeyCode.C),
+		],
+		run: () => {
+			editor.focus()
+			document.execCommand('copy')
+		},
+	});
+	editor.addAction({
+		id: 'cut',
+		// id: 'editor.action.clipboardCutAction',
+		label: 'Cut',
+		run: () => {
+			editor.focus()
+			document.execCommand('cut')
+		},
+	});
+	editor.addAction({
+		id: 'paste',
+		// id: 'editor.action.clipboardPasteAction',
+		label: 'Paste',
+		run: () => {
+			editor.focus()
+			document.execCommand('paste')
+		},
+	});
 
-    editorView.onDidChangeModelContent((ev) =>
-    {
-        contentChangeListener.apply([ev]);
-    });
+	if (editorCreatedCallback != null) {
+		editorCreatedCallback.apply([editor]);
+	}
 
-    editorView.onDidScrollChange((ev) =>
-    {
-        scrollChangeListener.apply([ev]);
-    });
+	/* editor.onContextMenu((ev) => {
+		alert("showing")
+	}); */
 
-    /* editor.onDidChangeCursorPosition((e) => {
-        console.log(JSON.stringify(e));
-    });
+	editor.onDidChangeCursorPosition((ev) => {
+	    cursorChangeListener.apply([ev]);
+	});
 
-    editor.onDidChangeCursorSelection((e) => {
-        console.log(JSON.stringify(e));
-    }); */
+	editor.onDidChangeModelContent((ev) => {
+		contentChangeListener.apply([ev]);
+	});
+
+	editor.onDidScrollChange((ev) => {
+		scrollChangeListener.apply([ev]);
+	});
+
+	/* editor.onDidChangeCursorPosition((e) => {
+		console.log(JSON.stringify(e));
+	});
+
+	editor.onDidChangeCursorSelection((e) => {
+		console.log(JSON.stringify(e));
+	}); */
 });
 
-function getCode()
-{
+function changeText(data) {
+	var range =  editor.getModel().getFullModelRange();
+	var id = { major: 1, minor: 1 };
+	var text = data;
+	var op = { identifier: id, range: range, text: text, forceMoveMarkers: true };
+	editor.executeEdits("my-source", [op]);
+}
+
+function getCode() {
 	return [''].join('\n');
 }
 
-function getEditorView()
-{
-	return editorView;
+function getEditor() {
+	return editor;
 }

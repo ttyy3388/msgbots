@@ -19,6 +19,7 @@ javafx {
 }
 
 application {
+	mainModule = "org.beuwi.msgbots"
 	mainClassName = "org.beuwi.msgbots.Launcher"
 }
 
@@ -28,7 +29,6 @@ repositories {
 }
 
 dependencies {
-	implementation files('libs/scenicview.jar')
 	implementation group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
 	implementation group: 'com.jfoenix', name: 'jfoenix', version: '9.0.10'
 	implementation group: 'org.mozilla', name: 'rhino', version: '1.7.13'

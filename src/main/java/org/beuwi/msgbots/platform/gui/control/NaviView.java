@@ -6,11 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
-import javafx.event.Event;
-import javafx.scene.Node;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+
 import org.beuwi.msgbots.platform.gui.layout.StackPanel;
 
 // Navigation View

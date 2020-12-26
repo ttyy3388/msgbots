@@ -7,14 +7,12 @@ import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.action.DeleteBotAction;
 import org.beuwi.msgbots.platform.gui.control.Button;
 import org.beuwi.msgbots.platform.gui.control.Label;
-import org.beuwi.msgbots.platform.gui.dialog.DialogBoxWrap;
+import org.beuwi.msgbots.platform.gui.dialog.DialogType;
+import org.beuwi.msgbots.platform.gui.dialog.DialogWrap;
 
-public class DeleteBotDialog extends DialogBoxWrap
-{
+public class DeleteBotDialog extends DialogWrap {
 	private final ObservableMap<String, Object> nameSpace;
-
 	private final FormLoader loader;
-
 	private final AnchorPane root;
 
 	@FXML private Label lblDeleteMessage;
@@ -24,8 +22,9 @@ public class DeleteBotDialog extends DialogBoxWrap
 
 	private final String name;
 
-	public DeleteBotDialog(String name)
-	{
+	public DeleteBotDialog(String name) {
+		super(DialogType.EVENT);
+
 		this.name = name;
 
 		loader = new FormLoader("dialog", "delete-bot-dialog", this);
@@ -41,16 +40,14 @@ public class DeleteBotDialog extends DialogBoxWrap
 	}
 
 	@Override
-	public void open()
-	{
+	public void open() {
 		setContent(root);
-		setTitle("Delete Bot");
+		setTitle("Delete bot");
 		create();
 	}
 
 	@Override
-	public void action()
-	{
+	public void action() {
 		DeleteBotAction.execute(name);
 	}
 }

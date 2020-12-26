@@ -2,53 +2,40 @@ package org.beuwi.msgbots.platform.app.action;
 
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.impl.Action;
-import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
-import org.beuwi.msgbots.platform.gui.enums.ToastType;
+import org.beuwi.msgbots.platform.app.view.actions.DisplayErrorDialogAction;
 import org.beuwi.msgbots.platform.util.SharedValues;
 
 import java.io.File;
+import java.io.IOException;
 
-public class CreateBotAction implements Action
-{
-	@Override
-	public void init()
-	{
-
-	}
-
-	public static void execute(String name, boolean isUnified, boolean isOffError)
-	{
+public class CreateBotAction implements Action {
+	public static void execute(String name, boolean isUnified, boolean isOffError) {
 		execute(name, null, false, isUnified, isOffError);
 	}
 
-	public static void execute(String name, String content, boolean isImport, boolean isUnified, boolean isOffError)
-	{
+	public static void execute(String name, String content, boolean isImport, boolean isUnified, boolean isOffError) {
 		File project = FileManager.getBotFolder(name);
 
-		if (project.exists())
-		{
-			AddToastMessageAction.execute(ToastType.ERROR, "Create bot error", "Bot " + name + " : already exists");
+		if (project.exists()) {
+			DisplayErrorDialogAction.execute(new IOException("Bot " + name + " already exists"));
 		}
-		else
-		{
+		else {
 			project.mkdir();
 
-			if (!isImport)
-			{
-				if (!isUnified)
-				{
+			if (!isImport) {
+				if (!isUnified) {
 					content = FileManager.read(SharedValues.SCRIPT_DEFAULT_FILE);
 				}
-				else
-				{
+				else {
 					content = FileManager.read(SharedValues.SCRIPT_UNIFIED_FILE);
 				}
 			}
 
+			// Create bot script file
 			FileManager.save(FileManager.getBotScript(name), content);
-
+			// Create bot log file
 			FileManager.save(FileManager.getBotLog(name), "[]");
-
+			// Create bot setting file
 			FileManager.save
 			(
 				FileManager.getBotSetting(name),
@@ -62,8 +49,7 @@ public class CreateBotAction implements Action
 	}
 
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return "create.bot.action";
 	}
 }

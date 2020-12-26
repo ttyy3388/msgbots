@@ -9,13 +9,14 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 
-import javafx.scene.control.Control;
-
+import javafx.scene.layout.Priority;
 import org.beuwi.msgbots.platform.gui.enums.ConfigType;
-import org.beuwi.msgbots.platform.gui.skins.OptionViewSkin;
 
-public class OptionView extends Control {
+public class OptionView extends VBox {
 	private static final String DEFAULT_STYLE_CLASS = "option-view";
+
+	private static final int DEFAULT_SPACING_VALUE = 10;
+	private static final int DEFAULT_HEADER_HEIGHT = 50;
 
 	private final ObservableList<Node> items = FXCollections.observableArrayList();
 
@@ -24,23 +25,48 @@ public class OptionView extends Control {
 
 	private final StringProperty title = new SimpleStringProperty();
 
+	// Title label
+	private final Label label = new Label();
+
+	// Content안에 Optionbox가 들어감
+	private final VBox content = new VBox();
+
+	{
+		VBox.setVgrow(content, Priority.ALWAYS);
+	}
+
 	public OptionView() {
+		super.getItems().setAll(label, content);
+
+		label.setMinHeight(DEFAULT_HEADER_HEIGHT);
+		label.getStyleClass().add("h2");
+
+		content.getItems().setAll(getItems());
+		content.setSpacing(30.0);
+		content.getStyleClass().add("content1");
+
+		titleProperty().addListener(change -> {
+			label.setText(getTitle());
+
+            /* if (title.getText().isEmpty()) {
+                root.remove(title);
+            }
+            else {
+                if (!root.contains(title)) {
+                    root.addItem(0, title);
+                }
+            } */
+		});
 		getItems().addListener((ListChangeListener<Node>) change -> {
 			while (change.next()) {
 				for (Node node : change.getRemoved()) {
 					if (node instanceof OptionBox) {
-						OptionBox item = (OptionBox) node;
-
-						item.setView(null);
+						((OptionBox) node).setView(null);
 					}
 				}
-
 				for (Node node : change.getAddedSubList()) {
 					if (node instanceof OptionBox) {
 						OptionBox item = (OptionBox) node;
-
-						item.setView(this);
-
 						nameProperty().addListener(event -> {
 							String type = this.getType().toString();
 							String name = this.getName();
@@ -50,11 +76,16 @@ public class OptionView extends Control {
 								item.setAddress(type + ":" + name + ":" + option);
 							}
 						});
+						item.setView(this);
 					}
 				}
 			}
 		});
+		getItems().addListener((ListChangeListener<Node>) change -> {
+			content.getItems().setAll(getItems());
+		});
 
+		setSpacing(DEFAULT_SPACING_VALUE);
 		getStyleClass().addAll(DEFAULT_STYLE_CLASS);
 	}
 
@@ -83,6 +114,7 @@ public class OptionView extends Control {
 		return title.get();
 	}
 
+	@Override
 	public ObservableList<Node> getItems() {
 		return items;
 	}
@@ -97,10 +129,5 @@ public class OptionView extends Control {
 
 	public StringProperty titleProperty() {
 		return title;
-	}
-
-	@Override
-	public OptionViewSkin createDefaultSkin() {
-		return new OptionViewSkin(this);
 	}
 }

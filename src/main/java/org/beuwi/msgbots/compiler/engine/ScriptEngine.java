@@ -14,7 +14,7 @@ import org.beuwi.msgbots.compiler.api.Utils;
 import org.beuwi.msgbots.manager.BotManager;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.manager.LogManager;
-import org.beuwi.msgbots.platform.app.view.actions.SaveEditorAreaTabAction;
+import org.beuwi.msgbots.platform.app.view.actions.SaveEditorTabAction;
 import org.beuwi.msgbots.setting.GlobalSettings;
 import org.beuwi.msgbots.setting.ScriptSettings;
 
@@ -54,7 +54,7 @@ public class ScriptEngine {
 		File file = FileManager.getBotScript(name);
 
 		if (GlobalSettings.getBoolean("program:compile_auto_save")) {
-			SaveEditorAreaTabAction.execute(name);
+			SaveEditorTabAction.execute(name);
 		}
 
 		int optimization = ScriptSettings.get(name).getInt("optimization");
@@ -72,7 +72,7 @@ public class ScriptEngine {
 				Context.reportError(e.toString());
 			}
 
-			e.printStackTrace();
+			// e.printStackTrace();
 
 			return false;
 		}
@@ -139,7 +139,7 @@ public class ScriptEngine {
 				}
 			}
 
-			e.printStackTrace();
+			// e.printStackTrace();
 
 			return false;
 		}
@@ -182,7 +182,7 @@ public class ScriptEngine {
 				BotManager.setPower(name, false);
 			}
 
-			e.printStackTrace();
+			// e.printStackTrace();
 		}
 
 		final long end = System.currentTimeMillis();

@@ -3,21 +3,22 @@ package org.beuwi.msgbots.platform.app.view.dialogs;
 import javafx.application.Platform;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
+
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.action.RenameBotAction;
 import org.beuwi.msgbots.platform.gui.control.Button;
+import org.beuwi.msgbots.platform.gui.control.Label;
 import org.beuwi.msgbots.platform.gui.control.TextField;
-import org.beuwi.msgbots.platform.gui.dialog.DialogBoxWrap;
+import org.beuwi.msgbots.platform.gui.control.VBox;
+import org.beuwi.msgbots.platform.gui.dialog.DialogWrap;
 
-public class RenameBotDialog extends DialogBoxWrap {
-	private final ObservableMap<String, Object> nameSpace;
-
+public class RenameBotDialog extends DialogWrap {
+	private final ObservableMap<String, Object> namespace;
 	private final FormLoader loader;
-
-	private final AnchorPane root;
+	private final VBox root;
 
 	// Script Name Text Field
+	@FXML private Label lblRenameText;
 	@FXML private TextField txfScriptName;
 
 	private final Button btnRename;
@@ -29,18 +30,22 @@ public class RenameBotDialog extends DialogBoxWrap {
 		this.name = name;
 
 		loader = new FormLoader("dialog", "rename-bot-dialog", this);
-		nameSpace = loader.getNamespace();
+		namespace = loader.getNamespace();
 		root = loader.getRoot();
 
 		btnRename = getActionButton();
 		btnCancel = getCancelButton();
 
 		btnRename.setText("Rename");
+		btnRename.setDisable(true);
 
 		txfScriptName.setText(name);
 		txfScriptName.textProperty().addListener(change -> {
-			btnRename.setDisable(txfScriptName.getText().isEmpty());
+			// 이름 변경을 안했으면 막음
+			btnRename.setDisable(txfScriptName.getText().isEmpty() || (txfScriptName.getText().equals(name)));
 		});
+
+		lblRenameText.setText("Rename bot '" + name + "' and its usages to");
 
 		Platform.runLater(() -> {
 			txfScriptName.requestFocus();
@@ -50,7 +55,7 @@ public class RenameBotDialog extends DialogBoxWrap {
 	@Override
 	public void open() {
 		setContent(root);
-		setTitle("Rename Bot");
+		setTitle("Rename bot");
 		create();
 	}
 

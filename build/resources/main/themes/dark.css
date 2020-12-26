@@ -4,6 +4,11 @@
 	-fx-text-fill: #FFFFFF;
 }
 
+/* TEST RENDERING */
+.text {
+	-fx-font-smoothing-type: lcd;
+}
+
 /* WINDOW */
 .root {
     -fx-background-color: #252526;
@@ -245,13 +250,13 @@
 
 /* NAVI [ NAVIGATION ] */
 .navi { }
-.navi > .label {
+.navi .label {
 	-fx-text-fill: #888888;
 }
 .navi:selected {
 	-fx-background-color: #0D293E;
 }
-.navi:selected > .label {
+.navi:selected .label {
 	-fx-background-color: #0D293E;
 	-fx-text-fill: #FFFFFF;
 }
@@ -262,6 +267,15 @@
 }
 .navi-view > .navi-header-area {
 	-fx-background-color: #252526;
+}
+
+/* OPTION BOX */
+.option-box .label,
+.option-box .check-box {
+	-fx-text-fill: #888888;
+}
+.option-box .title {
+	-fx-text-fill: #FFFFFF;
 }
 
 /* SCROLL BAR */
@@ -307,10 +321,10 @@
 	-fx-background-color: #1E1E1E;
 	-fx-border-color: #007ACC;
 }
-.tab > .label {
+.tab .label {
 	-fx-text-fill: #888888;
 }
-.tab:selected > .label {
+.tab:selected .label {
 	-fx-text-fill: #FFFFFF;
 }
 
@@ -330,40 +344,33 @@
 } */
 
 /* TEXT AREA */
-.text-area,
+.text-area {
+	-fx-border-color: #555555;
+	-fx-border-width: 1;
+	-fx-font-family: 'D2Coding';
+	-fx-font-size: 14;
+	-fx-cursor: text;
+}
+.text-area:hover,
+.text-area:focused {
+	-fx-border-color: #007ACC;
+}
+.text-area .content {
+	-fx-padding: 4;
+}
+
+/* TEXT FIELD */
 .text-field {
 	-fx-border-color: #555555;
 	-fx-border-width: 1;
 	-fx-font-family: 'D2Coding';
 	-fx-font-size: 14;
-	-fx-padding: 4;
 	-fx-cursor: text;
+	-fx-padding: 4;
 }
-.text-area:hover, .text-area:focused,
-.text-field:hover, .text-field:focused {
+.text-field:hover,
+.text-field:focused {
 	-fx-border-color: #007ACC;
-}
-
-/* TOAST */
-.toast {
-	-fx-background-color: #252526;
-	-fx-border-color: transparent;
-	-fx-border-width: 1;
-}
-.toast .title-bar .button {
-    -fx-cursor: hand;
-}
-.toast .title-bar .button .icon {
-	-fx-background-color: #FFFFFF;
-}
-.toast .title-bar .button:hover .icon {
-	-fx-background-color: #007ACC;
-}
-.toast:focused {
-	-fx-border-color: #007ACC;
-}
-.toast:hover {
-    -fx-background-color: #2A2D2E;
 }
 
 /* TOGGlE SWITCH */
@@ -380,9 +387,6 @@
 .toggle-button:selected {
 	-fx-opacity: 1.0;
 }
-
-/* TOAST AREA */
-.toast-area { }
 
 /* SIDE AREA */
 .side-area { }

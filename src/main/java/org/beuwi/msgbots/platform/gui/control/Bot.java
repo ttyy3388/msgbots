@@ -92,7 +92,7 @@ public class Bot extends GridPanel {
 		});
 
 		power.setSelected(ScriptSettings.get(name).getBoolean("power"));
-		power.setOnAction(event -> {
+		power.selectedProperty().addListener(event -> {
 			ScriptSettings.get(name).setData("power", power.isSelected());
 		});
 

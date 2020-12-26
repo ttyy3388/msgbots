@@ -10,10 +10,9 @@ public class TextArea extends javafx.scene.control.TextArea
 	private static final int DEFAULT_PREF_WIDTH = 200;
 	private static final int DEFAULT_PREF_HEIGHT = 50;
 
-	private final ContextMenu menu = new ContextMenu
-	(
-		new Menu("Undo", "Ctrl + Z" , event -> this.undo()),
-		new Menu("Redo", "Ctrl + Y" , event -> this.redo()),
+	private final ContextMenu menu = new ContextMenu (
+		new Menu("Undo", "Ctrl + Z" , event -> this.undo()).disable(true).enable(undoableProperty()),
+		new Menu("Redo", "Ctrl + Y" , event -> this.redo()).disable(true).enable(redoableProperty()),
 		new Separator(),
 		new Menu("Cut", "Ctrl + X", event -> this.cut()),
 		new Menu("Copy", "Ctrl + C", event -> this.copy()),
@@ -26,6 +25,7 @@ public class TextArea extends javafx.scene.control.TextArea
 		setContextMenu(menu);
 		setPrefHeight(DEFAULT_PREF_WIDTH);
 		setPrefHeight(DEFAULT_PREF_HEIGHT);
+
 		// getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 }

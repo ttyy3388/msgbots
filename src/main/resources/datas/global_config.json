@@ -1,0 +1,27 @@
+{
+	"connection":{
+		"socket_remote_port":"9500",
+		"socket_local_port":"9500"
+	},
+	"debug":{
+		"show_bot_profile":true,
+		"bot_name":"DEBUG BOT",
+		"show_bot_name":true,
+		"sender_name":"DEBUG SENDER",
+		"show_compile_error":true,
+		"show_runtime_error":true,
+		"show_running_time":true,
+		"room_name":"DEBUG ROOM",
+		"show_sender_name":true,
+		"package_name":"com.kakao.talk",
+		"html_load_timeout":"10000",
+		"is_group_chat":true,
+		"show_sender_profile":false
+	},
+	"program":{
+		"compile_auto_save":true,
+		"text_rendering":"lcd",
+		"start_auto_compile":true,
+		"color_theme":"User"
+	}
+}

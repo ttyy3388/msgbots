@@ -2,9 +2,13 @@ package org.beuwi.msgbots.platform.app.impl;
 
 public interface View
 {
-    void init() /* throws Exception */;
+    default void init() {
+        return ;
+    } /* throws Exception */;
 
-	// AnchorPane getRoot();
+	// T getRoot(); : return Main Panel
+
+    // T getComponent(); : return Main Component
 
 	// ObservableMap<String, Object> getNameSpace();
 }

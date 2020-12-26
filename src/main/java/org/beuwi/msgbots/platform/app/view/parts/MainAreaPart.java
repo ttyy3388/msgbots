@@ -9,8 +9,7 @@ import org.beuwi.msgbots.platform.gui.layout.StackPanel;
 import org.beuwi.msgbots.platform.util.SharedValues;
 
 // Editor Area
-public class MainAreaPart implements View
-{
+public class MainAreaPart implements View {
 	private static final int DEFAULT_MAX_WIDTH = 500;
 
 	private static ObservableMap<String, Object> namespace;

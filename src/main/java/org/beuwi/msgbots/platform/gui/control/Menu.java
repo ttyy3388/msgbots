@@ -2,6 +2,8 @@ package org.beuwi.msgbots.platform.gui.control;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ReadOnlyBooleanProperty;
+import javafx.beans.property.ReadOnlyProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCombination;
@@ -23,14 +25,6 @@ public class Menu extends javafx.scene.control.MenuItem {
 	}
 
 	public Menu(String text, String command, EventHandler handler) {
-		this(text, command, null, handler);
-	}
-
-	public Menu(String text, String command, BooleanProperty property, EventHandler handler) {
-		this(text, command, (ReadOnlyBooleanProperty) property, handler);
-	}
-
-	public Menu(String text, String command, ReadOnlyBooleanProperty property, EventHandler handler) {
 		Label name = new Label(text);
 		name.setMinWidth(150);
 
@@ -38,15 +32,63 @@ public class Menu extends javafx.scene.control.MenuItem {
 			setAccelerator(KeyCombination.keyCombination(command));
 		}
 
-		if (property != null) {
-			property.addListener((observable, oldValue, newValue) -> {
-				setDisable(!newValue);
-			});
-		}
-
 		setGraphic(new HBox(name));
 		setOnAction(handler);
 
 		getStyleClass().add(DEFAULT_STYLE_CLASS);
+	}
+
+	public Menu visible(boolean visible) {
+		setVisible(visible);
+		return this;
+	}
+
+	public Menu disable(boolean disable) {
+		setDisable(disable);
+		return this;
+	}
+
+	public Menu disable(BooleanProperty property) {
+		return disable((ReadOnlyBooleanProperty) property);
+	}
+
+	// Disable Property
+	public Menu disable(ReadOnlyBooleanProperty property) {
+		parentPopupProperty().addListener(event -> {
+			ContextMenu parent = getParent();
+			if (parent != null) {
+				parent.showingProperty().addListener(change -> {
+					setDisable(property.get());
+				});
+			}
+		});
+		/* property.addListener((observable, oldValue, newValue) -> {
+			setDisable(newValue);
+		}); */
+
+		return this;
+	}
+
+	public Menu enable(BooleanProperty property) {
+		return enable((ReadOnlyBooleanProperty) property);
+	}
+	public Menu enable(ReadOnlyBooleanProperty property) {
+		parentPopupProperty().addListener(event -> {
+			ContextMenu parent = getParent();
+			if (parent != null) {
+				parent.showingProperty().addListener(change -> {
+					setDisable(!property.get());
+				});
+			}
+		});
+		/* property.addListener(change -> {
+			setDisable(!property.get());
+		}); */
+
+		return this;
+	}
+
+	public ContextMenu getParent() {
+		return (ContextMenu) getParentPopup();
 	}
 }

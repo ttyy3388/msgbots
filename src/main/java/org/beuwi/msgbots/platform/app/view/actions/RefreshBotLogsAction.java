@@ -10,16 +10,13 @@ import org.beuwi.msgbots.platform.gui.control.LogView;
 
 import java.io.File;
 
-public class RefreshBotLogsAction implements Action
-{
+public class RefreshBotLogsAction implements Action {
     @Override
-    public void init()
-    {
+    public void init() {
 
     }
 
-    public static void execute()
-    {
+    public static void execute() {
 
     }
 

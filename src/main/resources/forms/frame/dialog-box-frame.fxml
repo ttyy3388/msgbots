@@ -3,8 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+
 <?import org.beuwi.msgbots.platform.gui.control.Button?>
-<?import org.beuwi.msgbots.platform.gui.control.ButtonBar?>
 <?import org.beuwi.msgbots.platform.gui.control.Label?>
 <?import org.beuwi.msgbots.platform.gui.layout.AnchorPanel?>
 <?import org.beuwi.msgbots.platform.gui.layout.BorderPanel?>
@@ -13,40 +13,48 @@
 <BorderPanel fx:id="brpWinRoot" styleClass="root-pane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<top>
 		<AnchorPanel prefHeight="30.0" styleClass="title-bar">
-			<children>
+			<items>
 				<HBox alignment="CENTER_LEFT" AnchorPanel.bottomAnchor="0.0" AnchorPanel.leftAnchor="0.0" AnchorPanel.rightAnchor="0.0" AnchorPanel.topAnchor="0.0">
-					<children>
+					<items>
 						<ImageView fx:id="imvWinIcon" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true">
 							<image>
-								<Image url="@../../images/program.png" />
+								<Image url="@../../images/program.png"></Image>
 							</image>
 							<HBox.margin>
-								<Insets left="6.0" right="6.0" />
+								<Insets left="6.0" right="6.0"></Insets>
 							</HBox.margin>
 						</ImageView>
-					<Label fx:id="lblWinTitle" />
-					</children>
+						<Label fx:id="lblWinTitle"></Label>
+					</items>
 				</HBox>
-				<Button fx:id="btnWinClose" prefWidth="45.0" AnchorPanel.bottomAnchor="0.0" AnchorPanel.rightAnchor="0.0" AnchorPanel.topAnchor="0.0" HBox.hgrow="ALWAYS" />
-			</children>
+				<Button fx:id="btnWinClose" HBox.hgrow="ALWAYS" prefWidth="45.0" AnchorPanel.bottomAnchor="0.0" AnchorPanel.rightAnchor="0.0" AnchorPanel.topAnchor="0.0"></Button>
+			</items>
 		</AnchorPanel>
 	</top>
 	<center>
+		<!-- Dialog Content -->
 		<BorderPanel fx:id="brpWinMain" styleClass="content-area">
+			<left>
+				<ImageView fx:id="imvDialogIcon" fitWidth="35.0" fitHeight="35.0">
+					<BorderPanel.margin>
+						<Insets right="15.0"></Insets>
+					</BorderPanel.margin>
+				</ImageView>
+			</left>
+			<bottom>
+				<HBox fx:id="hbxButtonBar" fittable="true" spacing="10.0" prefHeight="25.0" alignment="CENTER_RIGHT">
+					<items>
+						<Button fx:id="btnAction" styled="true" type="ACTION" text="Action"></Button>
+						<Button fx:id="btnCancel" styled="true" type="CANCEL" text="Cancel"></Button>
+					</items>
+					<BorderPanel.margin>
+						<Insets top="15.0"></Insets>
+					</BorderPanel.margin>
+				</HBox>
+			</bottom>
 			<BorderPanel.margin>
-				<Insets top="15.0" right="15.0" bottom="15.0" left="15.0" />
+				<Insets top="15.0" right="15.0" bottom="15.0" left="15.0"></Insets>
 			</BorderPanel.margin>
 		</BorderPanel>
 	</center>
-	<bottom>
-		<HBox fx:id="hbxBtnBar" fittable="true" spacing="10.0" prefHeight="25.0" alignment="CENTER_RIGHT">
-			<items>
-				<Button fx:id="btnAction" text="Action" styled="true" type="ACTION" />
-				<Button fx:id="btnCancel" text="Cancel" styled="true" type="CANCEL" />
-			</items>
-			<BorderPanel.margin>
-				<Insets top="15.0" right="15.0" bottom="15.0" left="15.0" />
-			</BorderPanel.margin>
-		</HBox>
-	</bottom>
 </BorderPanel>

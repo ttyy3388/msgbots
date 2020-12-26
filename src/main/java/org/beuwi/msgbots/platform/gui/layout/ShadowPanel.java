@@ -29,11 +29,7 @@ public class ShadowPanel extends StackPanel {
 	}
 
 	public Node getContent() {
-		return getChildren().get(0);
-	}
-
-	public ObservableList<Node> getItems() {
-		return getChildren();
+		return getItems().get(0);
 	}
 
 	/* @Override

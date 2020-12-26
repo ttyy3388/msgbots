@@ -10,19 +10,14 @@ import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.gui.layout.StackPanel;
 import org.beuwi.msgbots.platform.util.SharedValues;
 
-public class ScriptLogTab implements View
-{
+public class ScriptLogTab implements View {
 	private static ObservableMap<String, Object> namespace;
-
 	private static FormLoader loader;
-
 	private static Tab root;
-
 	private static LogView component;
 
 	@Override
-	public void init()
-	{
+	public void init() {
 		loader = new FormLoader("tab", "script-log-tab");
 		namespace = loader.getNamespace();
 		root = loader.getRoot();
@@ -34,23 +29,19 @@ public class ScriptLogTab implements View
 		}); */
 	}
 
-	public static Tab getRoot()
-	{
+	public static Tab getRoot() {
 		return root;
 	}
 
-	public static LogView getComponent()
-	{
+	public static LogView getComponent() {
 		return component;
 	}
 
-	public static <T> T getComponent(String key)
-	{
+	public static <T> T getComponent(String key) {
 		return (T) namespace.get(key);
 	}
 
-	public static ObservableMap<String, Object> getNamespace()
-	{
+	public static ObservableMap<String, Object> getNamespace() {
 		return namespace;
 	}
 }

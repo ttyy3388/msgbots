@@ -2,7 +2,7 @@ package org.beuwi.msgbots.setting;
 
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.openapi.JsonObject;
-import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
+import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.util.SharedValues;
 
 import java.io.File;
@@ -44,13 +44,23 @@ public class GlobalSettings {
 		String name = data[0];
 		String option = data[1];
 
-		json.getMap(name).put(option, value);
+		// 기본 타입이 아닐 경우
+		if (!(value instanceof String ||
+			value instanceof Double ||
+			value instanceof Integer ||
+			value instanceof Long)) {
+			json.getMap(name).put(option, value.toString());
+		}
+		else {
+			json.getMap(name).put(option, value);
+		}
 
 		try {
 			FileManager.save(file, json.toString());
 		}
 		catch (Exception e) {
-			AddToastMessageAction.execute(e);
+			// 이미 파일 매니저에서 IOException 으로 막기 때문에 에러가 잡힐 거 같진 않음
+			e.printStackTrace();
 		}
 	}
 }

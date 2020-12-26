@@ -1,6 +1,7 @@
 package org.beuwi.msgbots.platform.gui.control;
 
-import com.sun.javafx.scene.control.behavior.TabPaneBehavior;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -9,28 +10,55 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
-import javafx.scene.control.Control;
-import javafx.scene.control.Skin;
+import javafx.scene.Node;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Priority;
+
 import org.beuwi.msgbots.platform.gui.enums.ControlType;
-import org.beuwi.msgbots.platform.gui.skins.TabViewSkin;
+import org.beuwi.msgbots.platform.gui.layout.ScrollPanel;
+import org.beuwi.msgbots.platform.gui.layout.StackPanel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 // @DefaultProperty("tabs")
-public class TabView extends Control {
+public class TabView extends VBox {
 	private static final String DEFAULT_STYLE_CLASS = "tab-view";
+	private static final String HEADER_STYLE_CLASS = "tab-header-area";
+	private static final String CONTENT_STYLE_CLASS = "tab-content-area";
 
 	private static final PseudoClass SELECTED_PSEUDO_CLASS = PseudoClass.getPseudoClass("selected");
 	private static final PseudoClass PINNED_PSEUDO_CLASS = PseudoClass.getPseudoClass("pinned");
+	public static final PseudoClass NORMAL_PSEUDO_CLASS = PseudoClass.getPseudoClass("normal");
+	public static final PseudoClass SYSTEM_PSEUDO_CLASS = PseudoClass.getPseudoClass("system");
+
+	// private static final int DEFAULT_HEADER_WIDTH = 100;
+	private static final int DEFAULT_HEADER_HEIGHT = 30;
 
 	private final ObjectProperty<ControlType> type = new SimpleObjectProperty(null);
-	// Selected Tab Property
-	private final ObjectProperty<Tab> selected = new SimpleObjectProperty(null);
+	private final ObjectProperty<Tab> selectedTab = new SimpleObjectProperty(null);
 
 	private final ObservableList<Tab> tabs = FXCollections.observableArrayList();
+
+	/* Tab View [ Header Area [ Headers [ Tab Header ( Main ) ] ] , Content Area [ Tab Content ] ] */
+
+	// Tab Content Area
+	private final StackPanel content = new StackPanel();
+
+	// Tab Header Area [ Tab Header List ]
+	private final ScrollPanel header = new ScrollPanel();
+
+	// Tab Header List
+	private final HBox<Tab> headers = new HBox();
+
+	{
+		VBox.setVgrow(content, Priority.ALWAYS);
+	}
+
+	public enum Type {
+		NORMAL, SYSTEM
+	}
 
 	public TabView() {
 		this(null);
@@ -41,38 +69,75 @@ public class TabView extends Control {
 			addTabs(tabs);
 		}
 
+		header.setHvalue(1.0d);
+		header.setContent(headers);
+		header.setFitToWidth(false);
+		header.setFitToHeight(true);
+		header.setMinHeight(DEFAULT_HEADER_HEIGHT);
+		header.setMaxHeight(DEFAULT_HEADER_HEIGHT);
+		header.setHbarPolicy(ScrollBarPolicy.NEVER);
+		header.setVbarPolicy(ScrollBarPolicy.NEVER);
+		// header.setMinHeight(DEFAULT_HEADER_HEIGHT);
+		header.setPrefHeight(DEFAULT_HEADER_HEIGHT);
+		// header.setMaxHeight(DEFAULT_HEADER_HEIGHT);
+		header.getStyleClass().add(HEADER_STYLE_CLASS);
+
+		content.getStyleClass().add(CONTENT_STYLE_CLASS);
+
 		getTabs().addListener((ListChangeListener<Tab>) change -> {
 			while (change.next()) {
 				for (Tab tab : change.getRemoved()) {
+					headers.getItems().remove(tab);
 					tab.setView(null);
 				}
-
 				for (Tab tab : change.getAddedSubList()) {
+					headers.getItems().add(tab);
 					tab.setView(this);
-
 					if (getType() != null && getType().equals(ControlType.SYSTEM)) {
 						HBox.setHgrow(tab, Priority.ALWAYS);
 					}
-
-					selected.setValue(tab);
+					setSelectedTab(tab);
 				}
-
 				this.setVisible(!getTabs().isEmpty());
 			}
 		});
 
-		getSelectedTabProperty().addListener((observable, oldTab, newTab) -> {
+		typeProperty().addListener(change -> {
+			switch (getType()) {
+				case NORMAL :
+					header.setFitToWidth(false);
+					for (Tab tab : getTabs()) {
+						HBox.setHgrow(tab, Priority.NEVER);
+					}
+					break;
+
+				case SYSTEM :
+					header.setFitToWidth(true);
+					for (Tab tab : getTabs()) {
+						HBox.setHgrow(tab, Priority.ALWAYS);
+					}
+					break;
+			}
+		});
+		// Content Area Change
+		selectedTabProperty().addListener(change -> {
+			Node target = getSelectedTab().getContent();
+			content.getItems().setAll(target);
+			// 변경된 탭으로 포커스 이동하도록
+			target.requestFocus();
+		});
+
+		selectedTabProperty().addListener((observable, oldTab, newTab) -> {
 			if (oldTab != null) {
 				oldTab.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, false);
 			}
-
 			newTab.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, true);
 		});
 
 		addEventFilter(KeyEvent.KEY_PRESSED, event -> {
 			if (event.isControlDown()) {
 				switch (event.getCode()) {
-					case W : closeTab(); break;
+					case W : closeTab(getSelectedTab()); break;
 					case TAB :
 						if (!event.isShiftDown()) {
 							selectNextTab();
@@ -88,20 +153,23 @@ public class TabView extends Control {
 			}
 		});
 
+		setVisible(false);
+		setFittable(true);
+		getItems().setAll(header, content);
 		getStyleClass().setAll(DEFAULT_STYLE_CLASS);
 	}
 
-	public void selectTab(Tab tab) {
-		selected.set(tab);
-	}
+    public void selectTab(Tab tab) {
+        selectedTabProperty().set(tab);
+    }
 
-	public void selectTab(int index) {
-		selected.set(getTab(index));
-	}
+    public void selectTab(int index) {
+        selectedTabProperty().set(getTab(index));
+    }
 
-	public void selectTab(String name) {
-		selected.set(getTab(name));
-	}
+    public void selectTab(String name) {
+        selectedTabProperty().set(getTab(name));
+    }
 
 	/* private void selectFirstTab() {
 		selectTab(0);
@@ -209,43 +277,39 @@ public class TabView extends Control {
 		closeTab(getTabs());
 	}
 
-	private void closeTab() {
-		closeTab(getSelectedTab());
-	}
-
 	private void closeTab(List<Tab> list) {
 		for (Tab item : list) {
 			closeTab(item);
 		}
 	}
 
-	public void closeTab(Tab tab) {
-		if (!tab.isClosable()) {
-			return ;
-		}
+    public void closeTab(Tab tab) {
+        if (!tab.isClosable()) {
+            return ;
+        }
 
-		int index = getTabIndex(tab), size = tabs.size();
+        int index = getTabIndex(tab), size = tabs.size();
 
-		if (size > 1 && index != -1) {
-			// If have a next tab
-			if (size > index + 1) {
-				selectTab(index + 1);
-			}
-			// If have a previous tab
-			else if (size > index) {
-				selectTab(index - 1);
-			}
-		}
+        if (size > 1 && index != -1) {
+            // If have a next tab
+            if (size > index + 1) {
+                selectTab(index + 1);
+            }
+            // If have a previous tab
+            else if (size > index) {
+                selectTab(index - 1);
+            }
+        }
 
-		tabs.remove(tab);
-	}
+        tabs.remove(tab);
+    }
 
 	public void setType(ControlType type) {
 		this.type.set(type);
 	}
 
 	public void setSelectedTab(Tab tab) {
-		selected.set(tab);
+		selectedTabProperty().set(tab);
 	}
 
 	public Tab getTab(String title) {
@@ -256,34 +320,25 @@ public class TabView extends Control {
 		return tabs.get(index);
 	}
 
-    public ControlType getType() {
-        return type.get();
-    }
+	public ControlType getType() {
+		return type.get();
+	}
 
 	public Tab getSelectedTab() {
-		return selected.get();
+		return selectedTabProperty().get();
 	}
 
 	public ObservableList<Tab> getTabs() {
 		return tabs;
 	}
 
-	public ObjectProperty<ControlType> getTypeProperty() {
-        return type;
-    }
+	public ObjectProperty<ControlType> typeProperty() {
+		return type;
+	}
 
 	// Selected Tab Property
-	public ObjectProperty<Tab> getSelectedTabProperty() {
-		return selected;
-	}
-
-	public BooleanProperty getVisibleProperty() {
-		return visibleProperty();
-	}
-
-	@Override
-	public TabViewSkin createDefaultSkin() {
-		return new TabViewSkin(this);
+	public ObjectProperty<Tab> selectedTabProperty() {
+		return selectedTab;
 	}
 
 	/* public void setTabWidth(double value) {

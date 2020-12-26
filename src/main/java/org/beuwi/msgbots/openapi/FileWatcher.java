@@ -1,6 +1,6 @@
 package org.beuwi.msgbots.openapi;
 
-import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
+import org.beuwi.msgbots.platform.app.view.actions.DisplayErrorDialogAction;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,8 +19,7 @@ import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
 import static java.nio.file.StandardWatchEventKinds.OVERFLOW;
 
-public class FileWatcher extends Thread
-{
+public class FileWatcher extends Thread {
 	private WatchService WATCH_SERVICE;
 	private WatchKey WATCH_KEY = null;
 
@@ -28,73 +27,57 @@ public class FileWatcher extends Thread
 
 	private final File file;
 
-	public FileWatcher(File file)
-	{
+	public FileWatcher(File file) {
 		this.file = file;
 
-		try
-		{
+		try {
 			WATCH_SERVICE = FileSystems.getDefault().newWatchService();
 
-			file.toPath().getParent().register
-			(
+			file.toPath().getParent().register(
 				WATCH_SERVICE,
 				ENTRY_CREATE,
 				ENTRY_DELETE,
 				ENTRY_MODIFY
 			);
 
-			new Thread(() ->
-			{
-				while (true)
-				{
-					try
-					{
+			new Thread(() -> {
+				while (true) {
+					try {
 						WATCH_KEY = WATCH_SERVICE.take();
 					}
-					catch (InterruptedException e)
-					{
+					catch (InterruptedException e) {
 						break;
 					}
 
 					List<WatchEvent<?>> events = WATCH_KEY.pollEvents();
 
-					for (WatchEvent<?> event : events)
-					{
-						synchronized (observers)
-						{
+					for (WatchEvent<?> event : events) {
+						synchronized (observers) {
 							// Changed File Path
 							final Kind kind = event.kind();
 							final Path path = (Path) event.context();
 
-							if (file.getName().equals(path.toString()))
-							{
+							if (file.getName().equals(path.toString())) {
 								changed();
 
-								if (kind.equals(ENTRY_CREATE))
-								{
+								if (kind.equals(ENTRY_CREATE)) {
 									created();
 								}
-								if (kind.equals(ENTRY_MODIFY))
-								{
+								else if (kind.equals(ENTRY_MODIFY)) {
 									modified();
 								}
-								if (kind.equals(ENTRY_DELETE))
-								{
+								else if (kind.equals(ENTRY_DELETE)) {
 									modified();
 								}
 							}
 						}
 
-						if (!WATCH_KEY.reset())
-						{
-							try
-							{
+						if (!WATCH_KEY.reset()) {
+							try {
 								WATCH_SERVICE.close();
 							}
-							catch (Exception e)
-							{
-								AddToastMessageAction.execute(e);
+							catch (Exception e) {
+								DisplayErrorDialogAction.execute(e);
 							}
 
 							break;
@@ -103,9 +86,8 @@ public class FileWatcher extends Thread
 				}
 			}).start();
 		}
-		catch (IOException e)
-		{
-			AddToastMessageAction.execute(e);
+		catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 

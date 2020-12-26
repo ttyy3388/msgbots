@@ -12,15 +12,13 @@ import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.gui.control.Button;
 import org.beuwi.msgbots.platform.gui.control.TextField;
 import org.beuwi.msgbots.platform.gui.control.VBox;
-import org.beuwi.msgbots.platform.gui.dialog.DialogBoxWrap;
+import org.beuwi.msgbots.platform.gui.dialog.DialogWrap;
 
 import java.io.File;
 
-public class ImportBotDialog extends DialogBoxWrap {
-	private final ObservableMap<String, Object> nameSpace;
-
+public class ImportBotDialog extends DialogWrap {
+	private final ObservableMap<String, Object> namespace;
 	private final FormLoader loader;
-
 	private final VBox root;
 
 	@FXML private TextField txfScriptName;
@@ -39,7 +37,7 @@ public class ImportBotDialog extends DialogBoxWrap {
 
 	public ImportBotDialog() {
 		loader = new FormLoader("dialog", "import-bot-dialog", this);
-		nameSpace = loader.getNamespace();
+		namespace = loader.getNamespace();
 		root = loader.getRoot();
 
 		btnImport = getActionButton();
@@ -71,7 +69,7 @@ public class ImportBotDialog extends DialogBoxWrap {
 	@Override
 	public void open() {
 		setContent(root);
-		setTitle("Import Script");
+		setTitle("Import script");
 		create();
 	}
 

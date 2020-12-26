@@ -2,7 +2,6 @@ package org.beuwi.msgbots.manager;
 
 import org.beuwi.msgbots.openapi.FileListener;
 import org.beuwi.msgbots.openapi.FileObserver;
-import org.beuwi.msgbots.platform.app.view.actions.AddToastMessageAction;
 import org.beuwi.msgbots.platform.util.SharedValues;
 
 import java.io.BufferedReader;
@@ -10,6 +9,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
@@ -22,9 +22,10 @@ public class FileManager {
 		return name.contains(".") ? name.substring(name.lastIndexOf(".") + 1) : name;
 	}
 
-	public static File getDataFile(String name) {
+	// ResourceUtils.getData로 이전
+	/* public static File getDataFile(String name) {
 		return new File(SharedValues.DATA_FOLDER_FILE + File.separator + name);
-	}
+	} */
 
 	public static File[] getBotList() {
 		return SharedValues.BOTS_FOLDER_FILE.listFiles();
@@ -65,9 +66,7 @@ public class FileManager {
 
 	public static FileObserver link(File file, FileListener listener) {
 		FileObserver observer = new FileObserver(file);
-
 		observer.addListener(listener);
-
 		return observer;
 	}
 
@@ -87,8 +86,8 @@ public class FileManager {
 
 			return content;
 		}
-		catch (Exception e) {
-			AddToastMessageAction.execute(e);
+		catch (IOException e) {
+			e.printStackTrace();
 		}
 
 		return null;
@@ -104,8 +103,8 @@ public class FileManager {
 
 			return content;
 		}
-		catch (Exception e) {
-			AddToastMessageAction.execute(e);
+		catch (IOException e) {
+			e.printStackTrace();
 		}
 
 		return null;
@@ -128,8 +127,8 @@ public class FileManager {
 
 			return text;
 		}
-		catch (Exception e) {
-			AddToastMessageAction.execute(e);
+		catch (IOException e) {
+			e.printStackTrace();
 		}
 
 		return null;
@@ -152,8 +151,9 @@ public class FileManager {
 
 			return file.delete();
 		}
+		// File Not Found Exception ??
 		catch (Exception e) {
-			AddToastMessageAction.execute(e);
+			e.printStackTrace();
 		}
 
 		return false;

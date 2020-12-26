@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.Pane?>
+
+<?import org.beuwi.msgbots.platform.gui.layout.AnchorPanel?>
+<?import org.beuwi.msgbots.platform.gui.control.NaviView?>
+
+<AnchorPanel styleClass="active-area" minWidth="200.0" prefWidth="220.0" xmlns:fx="http://javafx.com/fxml">
+	<items>
+		<NaviView AnchorPanel.topAnchor="0.0" AnchorPanel.rightAnchor="0.0" AnchorPanel.bottomAnchor="0.0" AnchorPanel.leftAnchor="0.0">
+			<navis>
+
+			</navis>
+		</NaviView>
+		<Pane fx:id="stpResizeBar" prefWidth="5.0" AnchorPanel.topAnchor="0.0" AnchorPanel.rightAnchor="0.0" AnchorPanel.bottomAnchor="0.0">
+			<cursor>
+				<Cursor fx:constant="E_RESIZE" />
+			</cursor>
+		</Pane>
+	</items>
+</AnchorPanel>

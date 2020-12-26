@@ -9,13 +9,11 @@ import org.beuwi.msgbots.platform.app.action.CreateBotAction;
 import org.beuwi.msgbots.platform.gui.control.Button;
 import org.beuwi.msgbots.platform.gui.control.TextField;
 import org.beuwi.msgbots.platform.gui.control.VBox;
-import org.beuwi.msgbots.platform.gui.dialog.DialogBoxWrap;
+import org.beuwi.msgbots.platform.gui.dialog.DialogWrap;
 
-public class CreateBotDialog extends DialogBoxWrap {
-	private final ObservableMap<String, Object> nameSpace;
-
+public class CreateBotDialog extends DialogWrap {
+	private final ObservableMap<String, Object> namespace;
 	private final FormLoader loader;
-
 	private final VBox root;
 
 	@FXML private TextField txfScriptName;
@@ -31,7 +29,7 @@ public class CreateBotDialog extends DialogBoxWrap {
 
 	public CreateBotDialog() {
 		loader = new FormLoader("dialog", "create-bot-dialog", this);
-		nameSpace = loader.getNamespace();
+		namespace = loader.getNamespace();
 		root = loader.getRoot();
 
 		btnCreate = getActionButton();
@@ -51,7 +49,7 @@ public class CreateBotDialog extends DialogBoxWrap {
 	@Override
 	public void open() {
 		setContent(root);
-		setTitle("Create New Bot");
+		setTitle("Create new bot");
 		create();
 	}
 
