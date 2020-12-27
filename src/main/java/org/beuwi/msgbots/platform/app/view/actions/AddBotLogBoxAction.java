@@ -2,7 +2,7 @@ package org.beuwi.msgbots.platform.app.view.actions;
 
 import org.beuwi.msgbots.platform.app.impl.Action;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalLogTab;
-import org.beuwi.msgbots.platform.gui.control.LogBox;
+import org.beuwi.msgbots.platform.gui.control.LogItem;
 import org.beuwi.msgbots.platform.gui.control.LogView;
 
 public class AddBotLogBoxAction implements Action {
@@ -13,11 +13,11 @@ public class AddBotLogBoxAction implements Action {
         control = GlobalLogTab.getComponent();
     }
 
-    public static void execute(LogBox log) {
+    public static void execute(LogItem log) {
         control.getItems().add(log);
     }
 
-    public static void execute(String name, LogBox log) {
+    public static void execute(String name, LogItem log) {
         // LogView logView = LogManager.getView(name);
 
         //  if (logView != null) {

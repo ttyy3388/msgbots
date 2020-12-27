@@ -48,7 +48,7 @@ public class Page extends StackPanel {
         engine.load(ResourceUtils.getHtml(name));
         // engine.setUserAgent("");
         engine.setJavaScriptEnabled(true);
-        engine.setUserStyleSheetLocation(ResourceUtils.getStyle("page"));;
+        // engine.setUserStyleSheetLocation(ResourceUtils.getStyle("page"));;
 
         worker.stateProperty().addListener(change -> {
             Worker.State state = worker.getState();

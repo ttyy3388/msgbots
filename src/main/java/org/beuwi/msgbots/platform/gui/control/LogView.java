@@ -2,11 +2,9 @@ package org.beuwi.msgbots.platform.gui.control;
 
 import javafx.collections.ListChangeListener;
 
-import javafx.scene.control.ListCell;
-import javafx.scene.control.SelectionMode;
 import org.beuwi.msgbots.manager.LogManager;
 
-public class LogView extends ListView<LogBox> {
+public class LogView extends ListView<LogItem> {
 	private static final String DEFAULT_STYLE_CLASS = "log-view";
 
 	public LogView() {
@@ -15,12 +13,12 @@ public class LogView extends ListView<LogBox> {
 
 	// Name : Script Name
 	public LogView(String name) {
-		getItems().addListener((ListChangeListener<LogBox>) change -> {
+		getItems().addListener((ListChangeListener<LogItem>) change -> {
 			while (change.next()) {
-				for (LogBox logbox : change.getRemoved()) {
+				for (LogItem logbox : change.getRemoved()) {
 					logbox.setView(null);
 				}
-				for (LogBox logbox : change.getAddedSubList()) {
+				for (LogItem logbox : change.getAddedSubList()) {
 					logbox.setView(this);
 				}
 			}

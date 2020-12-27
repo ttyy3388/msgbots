@@ -6,12 +6,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
+import javafx.scene.Node;
 import javafx.scene.layout.Priority;
 
 import org.beuwi.msgbots.platform.gui.layout.StackPanel;
 
 // Navigation View
-public class NaviView extends HBox<Navi> {
+public class NaviView extends HBox {
 	private static final String DEFAULT_STYLE_CLASS = "navi-view";
 
 	private static final PseudoClass SELECTED_PSEUDO_CLASS = PseudoClass.getPseudoClass("selected");
@@ -78,6 +79,14 @@ public class NaviView extends HBox<Navi> {
 					header.getItems().add(navi);
 				}
 			}
+		});
+
+		// Content Area Change
+		selectedNaviProperty().addListener(change -> {
+			Node target = getSelectedNavi().getContent();
+			content.getItems().setAll(target);
+			// 변경된 탭으로 포커스 이동하도록
+			target.requestFocus();
 		});
 
 		selectedNaviProperty().addListener(change -> {

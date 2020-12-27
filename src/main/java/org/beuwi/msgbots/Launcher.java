@@ -6,15 +6,19 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import org.beuwi.msgbots.compiler.engine.ScriptManager;
+import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.MainView.MainWindow;
 import org.beuwi.msgbots.platform.app.view.actions.*;
-import org.beuwi.msgbots.platform.app.view.navis.BotListNavi;
-import org.beuwi.msgbots.platform.app.view.navis.DebugRoomNavi;
+import org.beuwi.msgbots.platform.app.view.tabs.BotListTab;
 import org.beuwi.msgbots.platform.app.view.parts.*;
+import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
 import org.beuwi.msgbots.platform.app.view.tabs.*;
 import org.beuwi.msgbots.platform.util.*;
 
+import java.io.File;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 
@@ -95,16 +99,16 @@ public class Launcher extends Application {
 
 		try {
 			// Initialize Tabs
-			new BotListNavi().init();
-			new DebugRoomNavi().init();
+			new BotListTab().init();
+			new DebugRoomTab().init();
 			new GlobalConfigTab().init();
 			new GlobalLogTab().init();
 
 			// Initialize Layouts
-			new ActiveAreaPart().init();
 			new DebugAreaPart().init();
 			new MainAreaPart().init();
 			new MenuBarPart().init();
+			new SideAreaPart().init();
 			new StatusBarPart().init();
 
 			// Initialize Actions
@@ -127,8 +131,7 @@ public class Launcher extends Application {
 
 			// 추후 전체를 로딩하는게 아닌 새 파일만 로딩해야됨 > 스크립트 탭도 마차가지로 바꿔야됨 (컴파일 상태 유지)
 			RefreshBotListAction.execute();
-
-			ScriptManager.preInit();
+			// ScriptManager.preInit();
 		}
 		catch (Throwable t) {
 			t.printStackTrace();
@@ -139,8 +142,6 @@ public class Launcher extends Application {
 			catch (Exception e) {
 				e.printStackTrace();
 			}
-
-			// FileManager.save("", e.)
 		}
 	}
 	
@@ -165,6 +166,13 @@ public class Launcher extends Application {
 	}
 
 	public static void main(String[] args) {
-		launch(args);
+		try {
+			launch(args);
+		}
+		catch (Exception ex) {
+			StringWriter message = new StringWriter();
+			ex.printStackTrace(new PrintWriter(message));
+			FileManager.save(new File(SharedValues.BOTS_FOLDER_PATH + "/" + "error.txt"), message.toString());
+		}
 	}
 }

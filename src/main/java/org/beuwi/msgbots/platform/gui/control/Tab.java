@@ -17,6 +17,7 @@ import org.beuwi.msgbots.platform.util.AllSVGIcons;
 // @DefaultProperty("content")
 public class Tab extends HBox {
 	private static final String DEFAULT_STYLE_CLASS = "tab";
+	private static final String LABEL_STYLE_CLASS = "tab-label";
 
 	private static final Insets DEFAULT_TAB_PADDING = new Insets(0, 10, 0, 30);
 
@@ -83,6 +84,7 @@ public class Tab extends HBox {
 
 		label.setMinWidth(DEFAULT_TITLE_SIZE);
 		label.setAlignment(DEFAULT_TAB_ALIGNMENT);
+		label.getStyleClass().add(LABEL_STYLE_CLASS);
 
 		button.setGraphic(AllSVGIcons.get("Tab.Close"));
 		button.setOnAction(event -> {

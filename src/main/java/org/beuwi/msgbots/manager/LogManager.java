@@ -3,7 +3,7 @@ package org.beuwi.msgbots.manager;
 import org.beuwi.msgbots.openapi.JsonArray;
 import org.beuwi.msgbots.openapi.JsonObject;
 import org.beuwi.msgbots.platform.app.view.actions.AddBotLogBoxAction;
-import org.beuwi.msgbots.platform.gui.control.LogBox;
+import org.beuwi.msgbots.platform.gui.control.LogItem;
 import org.beuwi.msgbots.platform.gui.enums.LogType;
 import org.beuwi.msgbots.platform.util.SharedValues;
 
@@ -31,12 +31,12 @@ public class LogManager {
 	/* ----------------------------------------------------------------------------------- */
 
 	// Load Global Log
-	public static List<LogBox> load() {
+	public static List<LogItem> load() {
 		return LogManager.load(SharedValues.GLOBAL_LOG_FILE);
 	}
 
 	// Load Bot Log
-	public static List<LogBox> load(String name) {
+	public static List<LogItem> load(String name) {
 		return LogManager.load(FileManager.getBotLog(name));
 	}
 
@@ -63,18 +63,18 @@ public class LogManager {
 	/* ----------------------------------------------------------------------------------- */
 
 	// file : log file
-	public static List<LogBox> load(File file) {
+	public static List<LogItem> load(File file) {
 		try {
 			if (!file.exists()) {
 				return null;
 			}
 
-			List<LogBox> list = new ArrayList<>();
+			List<LogItem> list = new ArrayList<>();
 
 			JsonArray array = new JsonArray(file);
 
 			for (Object object : array) {
-				list.add(new LogBox((JSONObject) object));
+				list.add(new LogItem((JSONObject) object));
 			}
 
 			return list;
@@ -100,10 +100,10 @@ public class LogManager {
 		array.add(object);
 
 		if (global) {
-			AddBotLogBoxAction.execute(new LogBox(type, data, date));
+			AddBotLogBoxAction.execute(new LogItem(type, data, date));
 		}
 		else {
-			AddBotLogBoxAction.execute(FileManager.getBaseName(file.getName()), new LogBox(type, data, date));
+			AddBotLogBoxAction.execute(FileManager.getBaseName(file.getName()), new LogItem(type, data, date));
 		}
 
 		FileManager.save(file, array.toJSONString());

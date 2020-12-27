@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import org.beuwi.msgbots.platform.gui.control.BotView?>
-<?import org.beuwi.msgbots.platform.gui.control.Navi?>
+<?import org.beuwi.msgbots.platform.gui.control.Tab?>
 
-<Navi text="BOT LIST" xmlns:fx="http://javafx.com/fxml">
+<Tab text="BOT LIST" closable="false" xmlns:fx="http://javafx.com/fxml">
 	<content>
 		<BotView styleClass="bots-tab" />
 	</content>
-</Navi>
+</Tab>

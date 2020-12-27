@@ -6,7 +6,7 @@ import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.parts.DebugAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MainAreaPart;
 import org.beuwi.msgbots.platform.app.view.parts.MenuBarPart;
-import org.beuwi.msgbots.platform.app.view.parts.ActiveAreaPart;
+import org.beuwi.msgbots.platform.app.view.parts.SideAreaPart;
 import org.beuwi.msgbots.platform.gui.layout.BorderPanel;
 import org.beuwi.msgbots.platform.gui.window.WindowType;
 import org.beuwi.msgbots.platform.gui.window.WindowWrap;
@@ -24,10 +24,10 @@ public class MainView implements View {
 
 	public void init() {
 		root.setTop(MenuBarPart.getRoot());
-		root.setLeft(ActiveAreaPart.getRoot());
+		root.setLeft(SideAreaPart.getRoot());
 		root.setCenter(MainAreaPart.getRoot());
 		root.setRight(DebugAreaPart.getRoot());
-		// root.setBottom(StatusBarPart.getRoot());
+		// root.setBottom(LowerAreaPart.getRoot());
 
 		root.setMinWidth(800);
 		root.setMinHeight(600);

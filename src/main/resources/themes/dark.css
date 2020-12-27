@@ -204,11 +204,11 @@
 }
 
 /* LOG BOX */
-.log-box {
+.log-item {
 	-fx-background-color: #2B2B2B;
 	/* -fx-background-color: #353535; */
 }
-.log-box:selected {
+.log-item:selected {
     -fx-background-color: #094771;
 }
 
@@ -321,10 +321,10 @@
 	-fx-background-color: #1E1E1E;
 	-fx-border-color: #007ACC;
 }
-.tab .label {
+.tab .tab-label {
 	-fx-text-fill: #888888;
 }
-.tab:selected .label {
+.tab:selected .tab-label {
 	-fx-text-fill: #FFFFFF;
 }
 

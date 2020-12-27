@@ -5,7 +5,7 @@ import javafx.scene.layout.Pane;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.MainView;
-import org.beuwi.msgbots.platform.app.view.navis.DebugRoomNavi;
+import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalLogTab;
 import org.beuwi.msgbots.platform.gui.control.TabView;
 import org.beuwi.msgbots.platform.gui.layout.AnchorPanel;
@@ -38,8 +38,10 @@ public class DebugAreaPart implements View {
 			}
 		});
 
-		component.addTabs(DebugRoomNavi.getRoot(), GlobalLogTab.getRoot());
-		component.selectTab(DebugRoomNavi.getRoot());
+		component.addTabs(
+			DebugRoomTab.getRoot(),
+			GlobalLogTab.getRoot()
+		);
 	}
 
 	public static AnchorPanel getRoot() {

@@ -12,10 +12,13 @@ import org.beuwi.msgbots.platform.app.view.actions.RefreshBotListAction;
 import org.beuwi.msgbots.platform.app.view.actions.TogglePowerBotsAction;
 import org.beuwi.msgbots.platform.app.view.dialogs.CreateBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.ImportBotDialog;
+import org.beuwi.msgbots.platform.app.view.dialogs.ShowNodeDialog;
+import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
 import org.beuwi.msgbots.platform.gui.control.Menu;
 import org.beuwi.msgbots.platform.gui.control.MenuBar;
 import org.beuwi.msgbots.platform.gui.control.Separator;
+import org.beuwi.msgbots.platform.gui.control.TabView;
 import org.beuwi.msgbots.platform.gui.layout.StackPanel;
 import org.beuwi.msgbots.platform.util.SharedValues;
 

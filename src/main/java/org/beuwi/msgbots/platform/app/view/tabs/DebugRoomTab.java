@@ -1,8 +1,9 @@
-package org.beuwi.msgbots.platform.app.view.navis;
+package org.beuwi.msgbots.platform.app.view.tabs;
 
 import javafx.collections.ObservableMap;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.actions.SendChatMessageAction;
@@ -11,7 +12,7 @@ import org.beuwi.msgbots.platform.gui.control.Tab;
 import org.beuwi.msgbots.platform.gui.control.TextArea;
 import org.beuwi.msgbots.platform.gui.control.VBox;
 
-public class DebugRoomNavi implements View {
+public class DebugRoomTab implements View {
 	private static ObservableMap<String, Object> namespace;
 	private static FormLoader loader;
 	private static Tab root;
@@ -19,7 +20,7 @@ public class DebugRoomNavi implements View {
 
 	@Override
 	public void init() {
-		loader = new FormLoader("navi", "debug-room-navi");
+		loader = new FormLoader("tab", "debug-room-tab");
 		namespace = loader.getNamespace();
 		root = loader.getRoot();
 		component = loader.getComponent();

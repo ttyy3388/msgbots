@@ -25,6 +25,7 @@ import java.util.List;
 // @DefaultProperty("tabs")
 public class TabView extends VBox {
 	private static final String DEFAULT_STYLE_CLASS = "tab-view";
+
 	private static final String HEADER_STYLE_CLASS = "tab-header-area";
 	private static final String CONTENT_STYLE_CLASS = "tab-content-area";
 

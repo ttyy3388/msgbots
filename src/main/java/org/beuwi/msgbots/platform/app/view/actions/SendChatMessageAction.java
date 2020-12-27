@@ -1,7 +1,8 @@
 package org.beuwi.msgbots.platform.app.view.actions;
 
 import org.beuwi.msgbots.platform.app.impl.Action;
-import org.beuwi.msgbots.platform.app.view.navis.DebugRoomNavi;
+import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
+import org.beuwi.msgbots.platform.gui.control.Chat;
 import org.beuwi.msgbots.platform.gui.control.ChatView;
 
 public class SendChatMessageAction implements Action {
@@ -9,7 +10,7 @@ public class SendChatMessageAction implements Action {
 
 	@Override
 	public void init() {
-		listView = DebugRoomNavi.getComponent("lsvChatView");
+		listView = DebugRoomTab.getComponent("lsvChatView");
 	}
 
 	public static void execute(String message) {
@@ -17,10 +18,9 @@ public class SendChatMessageAction implements Action {
 	}
 
 	public static void execute(String message, boolean isbot) {
-		ExecuteEditMenuAction.execute(message);
-		/* listView.getItems().add(new Chat(message, isbot));
+		listView.getItems().add(new Chat(message, isbot));
 
-		if (!isbot) {
+		/* if (!isbot) {
 			ScriptManager.run(message);
 		} */
 	}

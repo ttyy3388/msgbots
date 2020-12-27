@@ -1,7 +1,7 @@
 package org.beuwi.msgbots.platform.app.view.actions;
 
 import org.beuwi.msgbots.platform.app.impl.View;
-import org.beuwi.msgbots.platform.app.view.navis.BotListNavi;
+import org.beuwi.msgbots.platform.app.view.tabs.BotListTab;
 import org.beuwi.msgbots.platform.gui.control.Bot;
 import org.beuwi.msgbots.platform.gui.control.BotView;
 
@@ -12,7 +12,7 @@ public class TogglePowerBotsAction implements View {
 
 	@Override
 	public void init() {
-		control = BotListNavi.getComponent();
+		control = BotListTab.getComponent();
 	}
 
 	public static void execute() {

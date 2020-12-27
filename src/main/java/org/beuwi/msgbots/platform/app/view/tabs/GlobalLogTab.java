@@ -22,8 +22,7 @@ public class GlobalLogTab implements View {
 		root = loader.getRoot();
 		component = loader.getComponent();
 
-		/* FileManager.link(SharedValues.GLOBAL_LOG_FILE, () ->
-		{
+		/* FileManager.link(SharedValues.GLOBAL_LOG_FILE, () -> {
 			component.getItems().setAll(LogManager.load(SharedValues.GLOBAL_LOG_FILE));
 		}); */
 	}

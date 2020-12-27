@@ -2,7 +2,7 @@ package org.beuwi.msgbots.platform.app.view.actions;
 
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.impl.Action;
-import org.beuwi.msgbots.platform.app.view.navis.BotListNavi;
+import org.beuwi.msgbots.platform.app.view.tabs.BotListTab;
 import org.beuwi.msgbots.platform.gui.control.Bot;
 import org.beuwi.msgbots.platform.gui.control.BotView;
 
@@ -13,7 +13,7 @@ public class RefreshBotListAction implements Action {
 
 	@Override
 	public void init() {
-		botView = BotListNavi.getComponent();
+		botView = BotListTab.getComponent();
 	}
 
 	public static void execute() {

@@ -4,7 +4,7 @@ import javafx.collections.ObservableMap;
 import javafx.scene.layout.Pane;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
-import org.beuwi.msgbots.platform.app.view.navis.BotListNavi;
+import org.beuwi.msgbots.platform.app.view.tabs.BotListTab;
 import org.beuwi.msgbots.platform.gui.control.TabView;
 import org.beuwi.msgbots.platform.gui.layout.AnchorPanel;
 
@@ -33,7 +33,7 @@ public class SideAreaPart implements View {
 			}
 		});
 
-		component.addTab(BotListNavi.getRoot());
+		component.addTab(BotListTab.getRoot());
 
 		/* HBox<Button> btnbar = (HBox) component.getButtonBar();
 
