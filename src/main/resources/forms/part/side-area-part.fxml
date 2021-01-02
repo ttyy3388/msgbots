@@ -3,7 +3,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.Pane?>
 <?import org.beuwi.msgbots.platform.gui.control.BotView?>
-<?import org.beuwi.msgbots.platform.gui.control.Tab?>
+<?import org.beuwi.msgbots.platform.gui.control.TabItem?>
 <?import org.beuwi.msgbots.platform.gui.control.TabView?>
 <?import org.beuwi.msgbots.platform.gui.layout.AnchorPanel?>
 <?import org.beuwi.msgbots.platform.gui.layout.StackPanel?>

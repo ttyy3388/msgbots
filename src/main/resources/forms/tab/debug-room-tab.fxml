@@ -4,11 +4,11 @@
 
 <?import org.beuwi.msgbots.platform.gui.control.ChatView?>
 <?import org.beuwi.msgbots.platform.gui.control.TextArea?>
-<?import org.beuwi.msgbots.platform.gui.control.Tab?>
+<?import org.beuwi.msgbots.platform.gui.control.TabItem?>
 <?import org.beuwi.msgbots.platform.gui.control.VBox?>
 <?import org.beuwi.msgbots.platform.gui.layout.StackPanel?>
 
-<Tab text="DEBUG ROOM" closable="false" xmlns:fx="http://javafx.com/fxml">
+<TabItem text="DEBUG ROOM" closable="false" xmlns:fx="http://javafx.com/fxml">
 	<content>
 		<VBox styleClass="debug-tab">
 			<items>
@@ -24,4 +24,4 @@
 			</items>
 		</VBox>
 	</content>
-</Tab>
+</TabItem>

@@ -37,71 +37,6 @@
 	-fx-background-color: #007ACC;
 }
 
-/* BOT */
-.bot {
-	-fx-border-color: transparent;
-	-fx-border-width: 0 3 0 3;
-	-fx-opacity: 0.5;
-}
-.bot:hover {
-	-fx-background-color: rgba(255, 255, 255, 0.1);
-}
-.bot > .label {
-	-fx-font-size: 14;
-}
-.bot > .button {
-	-fx-background-radius: 15;
-	-fx-background-image: url('../images/reload.png');
-	-fx-background-size: 15;
-}
-.bot > .button:hover {
-	-fx-background-color: rgba(255, 255, 255, 0.1);
-}
-.bot > .button:armed {
-	-fx-background-color: rgba(255, 255, 255, 0.2);
-}
-.bot > .check-box .box {
-	-fx-background-color: #FFFFFF;
-	-fx-background-radius: 10;
-	-fx-border-width: 0;
-	-fx-padding: 3;
-}
-.bot > .check-box .mark {
-	-fx-padding: 0;
-}
-.bot > .check-box:disabled {
-	-fx-opacity: 1.0;
-}
-.bot > .check-box:selected .box {
-	-fx-background-color: transparent;
-}
-.bot:selected {
-	-fx-background-color: rgba(255, 255, 255, 0.1);
-	-fx-border-color: transparent transparent transparent #007ACC;
-	-fx-opacity: 1.0;
-}
-
-/* BOT VIEW */
-.bot-view { }
-
-/* CHAT */
-.chat .comment {
-	-fx-background-radius: 5;
-	-fx-padding: 8;
-}
-.chat:human .comment {
-	-fx-background-color: #0583F9;
-}
-.chat:bot .comment {
-	-fx-background-color: #302F35;
-}
-.chat:selected .comment {
-    -fx-background-color: #094771;
-}
-
-/* CHAT VIEW */
-.chat-view { }
-
 /* CHECK BOX */
 .check-box {
 	-fx-label-padding: 0 0 0 8;
@@ -173,61 +108,14 @@
 	-fx-padding: 5.5 0 5.5 0;
 }
 
-/* DIALOG BOX */
-.dialog-box {
-    -fx-background-color: transparent;
-}
-.dialog-box .root-pane {
-	-fx-background-color: #252526;
-	-fx-border-color: transparent;
-	-fx-border-width: 1;
-}
-.dialog-box .title-bar .button:hover {
-	-fx-background-color: #D61425;
-}
-.dialog-box .title-bar .button .icon {
-	-fx-background-color: #FFFFFF;
-}
-.dialog-box:focused .root-pane {
-	-fx-border-color: #007ACC;
-}
-
-/* EDITOR */
-.editor {
-    -fx-background-color: #1E1E1E;
-	-fx-border-color: #555555;
-	-fx-border-width: 1;
-}
-.editor:hover,
-.editor:focused {
-    -fx-border-color: #007ACC;
-}
-
-/* LOG BOX */
-.log-item {
-	-fx-background-color: #2B2B2B;
-	/* -fx-background-color: #353535; */
-}
-.log-item:selected {
-    -fx-background-color: #094771;
-}
-
-/* LOG VIEW */
-.log-view {
-    -fx-padding: 2.5 0 2.5 0;
-}
-.log-view .list-cell {
-    -fx-padding: 2.5 5 2.5 5;
-}
-
-/* MENU */
-.menu {
+/* MENU ITEM */
+.menu-item {
 	-fx-padding: 5 20 5 20;
 }
-.menu .label {
+.menu-item .label {
 	-fx-text-fill: #000000;
 }
-.menu:focused {
+.menu-item:focused {
 	-fx-background-color: #E8EAED;
 }
 
@@ -235,47 +123,17 @@
 .menu-bar {
 	-fx-background-color: #FFFFFF;
 }
-.menu-bar > .button {
+.menu-bar .menu-button {
 	-fx-text-fill: #000000;
 }
-.menu-bar > .button:hover,
-.menu-bar > .button:showing {
+.menu-bar .menu-button:hover,
+.menu-bar .menu-button:showing {
 	-fx-background-color: #DEDEDE;
 }
 
 /* MENU BUTTON */
 .menu-button {
 	-fx-padding: 0 5 0 5;
-}
-
-/* NAVI [ NAVIGATION ] */
-.navi { }
-.navi .label {
-	-fx-text-fill: #888888;
-}
-.navi:selected {
-	-fx-background-color: #0D293E;
-}
-.navi:selected .label {
-	-fx-background-color: #0D293E;
-	-fx-text-fill: #FFFFFF;
-}
-
-/* NAVI VIEW [ NAVIGATION VIEW ] */
-.navi-view {
-	-fx-background-color: #1E1E1E;
-}
-.navi-view > .navi-header-area {
-	-fx-background-color: #252526;
-}
-
-/* OPTION BOX */
-.option-box .label,
-.option-box .check-box {
-	-fx-text-fill: #888888;
-}
-.option-box .title {
-	-fx-text-fill: #FFFFFF;
 }
 
 /* SCROLL BAR */
@@ -293,6 +151,23 @@
 .separator .line {
 	-fx-background-color: #888888;
 	-fx-padding: 0.5 0 0.5 0;
+}
+
+/* SIDE ITEM */
+.side-item { }
+.side-item:selected {
+	-fx-background-color: #1E1E1E;
+}
+
+/* SIDE VIEW */
+.side-view .side-header-area {
+	-fx-background-color: #252526;
+}
+.side-view .side-content-area {
+	-fx-background-color: #1E1E1E;
+}
+.side-view .side-button-bar {
+	/* -fx-background-color: #252526; */
 }
 
 /* SLIDER */
@@ -317,22 +192,22 @@
 	-fx-border-color: transparent;
 	-fx-border-width: 0 0 1 0;
 }
+.tab .tab-label {
+	-fx-text-fill: #888888;
+}
 .tab:selected {
 	-fx-background-color: #1E1E1E;
 	-fx-border-color: #007ACC;
-}
-.tab .tab-label {
-	-fx-text-fill: #888888;
 }
 .tab:selected .tab-label {
 	-fx-text-fill: #FFFFFF;
 }
 
 /* TAB VIEW */
-.tab-view {
-	-fx-background-color: #1E1E1E;
-}
 .tab-view .tab-header-area {
+	-fx-background-color: #252526;
+}
+.tab-view .tab-content-area {
 	-fx-background-color: #252526;
 }
 .tab-view .tab-button-bar {

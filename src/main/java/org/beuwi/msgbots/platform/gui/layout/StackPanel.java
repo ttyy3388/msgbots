@@ -1,6 +1,5 @@
 package org.beuwi.msgbots.platform.gui.layout;
 
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 
@@ -13,19 +12,15 @@ public class StackPanel extends javafx.scene.layout.StackPane {
 	}
 
 	public StackPanel(Node... content) {
-	    if (content != null) {
-			getItems().setAll(content);
-        }
+		if (content != null) {
+			getChildren().setAll(content);
+		}
 
-	    getStyleClass().add(DEFAULT_STYLE_CLASS);
+		getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 
 	public void setPadding(double padding) {
 		super.setPadding(new Insets(padding));
-	}
-
-	public ObservableList<Node> getItems() {
-		return getChildren();
 	}
 
 	/* public static void setMargin(StackPanel panel, double value) {

@@ -43,7 +43,6 @@ public class ContextMenu extends javafx.scene.control.ContextMenu
 			item.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
 				if (item instanceof ListView) {
 					EventTarget target = event.getTarget();
-
 					if (target.toString().contains("Group") || target.toString().contains("ListViewSkin")) {
 						show(item, event);
 					}

@@ -1,5 +1,7 @@
 package org.beuwi.msgbots.platform.gui.layout;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.effect.BlurType;
@@ -11,13 +13,22 @@ public class ShadowPanel extends StackPanel {
     private static final String DEFAULT_STYLE_CLASS = "shadow-panel";
     private static final DropShadow DEFAULT_DROP_SHADOW = new DropShadow(BlurType.THREE_PASS_BOX, Color.color(0, 0, 0, 0.8), 10, 0, 0, 0);
 
+    private final ObjectProperty<Node> content = new SimpleObjectProperty();
+
     public ShadowPanel() {
 		this(null);
 	}
 
 	public ShadowPanel(Node content) {
+    	contentProperty().addListener(change -> {
+    		Node target = getContent();
+    		if (target != null) {
+				getChildren().setAll(target);
+			}
+		});
+
 		if (content != null) {
-			getChildren().setAll(content);
+			setContent(content);
 		}
 
 		setEffect(DEFAULT_DROP_SHADOW);
@@ -25,16 +36,14 @@ public class ShadowPanel extends StackPanel {
 	}
 
 	public void setContent(Node content) {
-		getChildren().setAll(content);
+		contentProperty().set(content);
 	}
 
 	public Node getContent() {
-		return getItems().get(0);
+		return contentProperty().get();
 	}
 
-	/* @Override
-	public void setPadding(double padding)
-	{
-		super.setPadding(padding);
-	} */
+	public ObjectProperty<Node> contentProperty() {
+    	return content;
+	}
 }

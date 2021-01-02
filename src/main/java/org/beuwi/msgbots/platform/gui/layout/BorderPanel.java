@@ -11,10 +11,10 @@ public class BorderPanel extends BorderPane
     private static final String DEFAULT_STYLE_CLASS = "border-panel";
 
     public void setPadding(double padding) {
-        setPadding(new Insets(padding));
+        super.setPadding(new Insets(padding));
     }
 
-    public ObservableList<Node> getItems() {
+    /* public ObservableList<Node> getItems() {
         return getChildren();
-    }
+    } */
 }

@@ -2,23 +2,15 @@ package org.beuwi.msgbots;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import org.beuwi.msgbots.compiler.engine.ScriptManager;
-import org.beuwi.msgbots.manager.FileManager;
-import org.beuwi.msgbots.platform.app.view.MainView;
-import org.beuwi.msgbots.platform.app.view.MainView.MainWindow;
-import org.beuwi.msgbots.platform.app.view.actions.*;
-import org.beuwi.msgbots.platform.app.view.tabs.BotListTab;
-import org.beuwi.msgbots.platform.app.view.parts.*;
-import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
-import org.beuwi.msgbots.platform.app.view.tabs.*;
+import org.beuwi.msgbots.platform.gui.control.TabItem;
+import org.beuwi.msgbots.platform.gui.control.TabView;
 import org.beuwi.msgbots.platform.util.*;
 
-import java.io.File;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 
@@ -43,120 +35,29 @@ public class Launcher extends Application {
 		Font.loadFont(ResourceUtils.getFont("roboto-medium"), 0); // Family : "Roboto Medium"
 
 		// Set Use Agent Style
-		Application.setUserAgentStylesheet(ResourceUtils.getTheme("base"));
+		// Application.setUserAgentStylesheet(ResourceUtils.getTheme("base"));
+		Application.setUserAgentStylesheet(ResourceUtils.getTheme("dark"));
 	}
 
 	@Override
 	public void start(Stage stage) {
-		/* try {
-			WATCH_SERVICE = FileSystems.getDefault().newWatchService();
-
-			Paths.get(SharedValues.BOTS_FOLDER_FILE.getPath()).register(
-				WATCH_SERVICE,
-				ENTRY_CREATE,
-				ENTRY_DELETE,
-				ENTRY_MODIFY,
-				OVERFLOW
+		try {
+			TabView test = new TabView(
+				new TabItem("TEST", new Label("TEST")),
+				new TabItem("TEST", new Label("TEST")),
+				new TabItem("TEST", new Label("TEST")),
+				new TabItem("TEST", new Label("TEST")),
+				new TabItem("TEST", new Label("TEST"))
 			);
+			// test.setType(Side.LEFT);
+
+			stage.setScene(new Scene(test));
+			stage.show();
 		}
-		catch (IOException e) {
+		catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		new Thread(() -> {
-			while (true) {
-				try {
-					WATCH_KEY = WATCH_SERVICE.take();
-				}
-				catch (InterruptedException e) {
-					break;
-				}
-
-				List<WatchEvent<?>> events = WATCH_KEY.pollEvents();
-
-				for (WatchEvent<?> event : events)
-				{
-					Platform.runLater(() ->
-					{
-						RefreshBotListAction.execute();
-						RefreshBotLogsAction.execute();
-					});
-				}
-
-				if (!WATCH_KEY.reset())
-				{
-					try
-					{
-						WATCH_SERVICE.close();
-					}
-					catch (Exception e)
-					{
-						e.printStackTrace();
-					}
-				}
-			}
-		}).start(); */
-
-		try {
-			// Initialize Tabs
-			new BotListTab().init();
-			new DebugRoomTab().init();
-			new GlobalConfigTab().init();
-			new GlobalLogTab().init();
-
-			// Initialize Layouts
-			new DebugAreaPart().init();
-			new MainAreaPart().init();
-			new MenuBarPart().init();
-			new SideAreaPart().init();
-			new StatusBarPart().init();
-
-			// Initialize Actions
-			new AddBotLogBoxAction().init();
-			new AddMainAreaTabAction().init();
-			new OpenBotLogTabAction().init();
-			new OpenDialogBoxAction().init();
-			new OpenDocumentAction().init();
-			new OpenProgramTabAction().init();
-			new OpenScriptTabAction().init();
-			new ExecuteEditMenuAction().init();
-			new RefreshBotListAction().init();
-			new RefreshBotLogsAction().init();
-			new SaveEditorTabAction().init();
-			new SendChatMessageAction().init();
-			new TogglePowerBotsAction().init();
-
-			new MainView(stage).init();
-			new MainWindow(stage).create();
-
-			// 추후 전체를 로딩하는게 아닌 새 파일만 로딩해야됨 > 스크립트 탭도 마차가지로 바꿔야됨 (컴파일 상태 유지)
-			RefreshBotListAction.execute();
-			// ScriptManager.preInit();
-		}
-		catch (Throwable t) {
-			t.printStackTrace();
-			try {
-				DisplayErrorDialogAction.execute(t);
-			}
-			// 에러 다이얼로그도 띄울 수 없으면 실행 불가능 상태이므로 OS 에러 메시지 출력
-			catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 	}
-	
-	// Registry Program Data <- Edit 메뉴를 만들기 위해 사용하려고 했으나 너무 많은 수고가 들어가기에 개발 일시정지
-	/* private void registry(Parent parent) {
-		for (Node node : parent.getChildrenUnmodifiable()) {
-			System.out.println(node);
-			node.focusedProperty().addListener(event -> {
-				ProgramData.selectedItemProperty().set(node);
-			});
-			if (node instanceof Parent) {
-				registry((Parent) node);
-			}
-		}
-	} */
 
 	@Override
 	public void stop() {
@@ -166,13 +67,6 @@ public class Launcher extends Application {
 	}
 
 	public static void main(String[] args) {
-		try {
-			launch(args);
-		}
-		catch (Exception ex) {
-			StringWriter message = new StringWriter();
-			ex.printStackTrace(new PrintWriter(message));
-			FileManager.save(new File(SharedValues.BOTS_FOLDER_PATH + "/" + "error.txt"), message.toString());
-		}
+		launch(args);
 	}
 }

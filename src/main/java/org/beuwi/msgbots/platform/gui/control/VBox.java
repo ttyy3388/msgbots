@@ -1,12 +1,9 @@
 package org.beuwi.msgbots.platform.gui.control;
 
-import javafx.beans.DefaultProperty;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.Region;
 
@@ -19,9 +16,9 @@ public class VBox<T> extends javafx.scene.layout.VBox {
 	private final InvalidationListener listener = new InvalidationListener() {
 		@Override
 		public void invalidated(Observable observable) {
-			for (Node item : getItems()) {
-				if (item instanceof Region) {
-					((Region) item).setPrefWidth(getWidth());
+			for (Node child : getChildren()) {
+				if (child instanceof Region) {
+					((Region) child).setPrefWidth(getWidth());
 				}
 			}
 		}
@@ -33,7 +30,7 @@ public class VBox<T> extends javafx.scene.layout.VBox {
 
 	public VBox(Node... items) {
 		if (items != null) {
-			getItems().addAll(items);
+			getChildren().setAll(items);
 		}
 
 		fittableProperty().addListener(event -> {
@@ -45,30 +42,15 @@ public class VBox<T> extends javafx.scene.layout.VBox {
 			}
 		});
 
-		// setOnMouseClicked();
 		getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 
-	public int findItem(String id) {
-		for (int index = 0 ; index < getItems().size() ; index ++) {
-			if (getItems().get(index).getId().equals(id)) {
-				return index;
-			}
-		}
-
-		return -1;
-	}
-
 	public void setFittable(boolean fittable) {
-		this.fittable.set(fittable);
+		fittableProperty().set(fittable);
 	}
 
 	public boolean isFittable() {
-		return fittable.get();
-	}
-
-	public ObservableList<Node> getItems() {
-		return getChildren();
+		return fittableProperty().get();
 	}
 
 	public BooleanProperty fittableProperty() {

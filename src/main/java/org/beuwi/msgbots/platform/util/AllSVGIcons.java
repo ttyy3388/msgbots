@@ -1,9 +1,10 @@
 package org.beuwi.msgbots.platform.util;
 
-import javafx.scene.paint.Color;
-import org.beuwi.msgbots.platform.gui.control.SVGGlyph;
-
 import java.util.HashMap;
+
+import javafx.scene.paint.Color;
+
+import org.beuwi.msgbots.openapi.SVGGlyph;
 
 public class AllSVGIcons {
 	public static SVGGlyph get(String key) {

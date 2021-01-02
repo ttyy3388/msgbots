@@ -15,7 +15,7 @@
 <?import org.beuwi.msgbots.platform.gui.control.NaviView?>
 <?import org.beuwi.msgbots.platform.gui.control.OptionBox?>
 <?import org.beuwi.msgbots.platform.gui.control.OptionView?>
-<?import org.beuwi.msgbots.platform.gui.control.Tab?>
+<?import org.beuwi.msgbots.platform.gui.control.TabItem?>
 <?import org.beuwi.msgbots.platform.gui.control.TextField?>
 <?import org.beuwi.msgbots.platform.gui.control.VBox?>
 <?import org.beuwi.msgbots.platform.gui.editor.Editor?>
@@ -24,7 +24,7 @@
 <?import org.beuwi.msgbots.platform.gui.layout.StackPanel?>
 <?import org.beuwi.msgbots.platform.util.SharedValues?>
 
-<Tab text="GLOBAL CONFIG" xmlns:fx="http://javafx.com/fxml">
+<TabItem text="GLOBAL CONFIG" xmlns:fx="http://javafx.com/fxml">
 	<content>
 		<NaviView>
 			<navis>
@@ -242,4 +242,4 @@
 			</StackPanel.margin>
 		</NaviView>
 	</content>
-</Tab>
+</TabItem>

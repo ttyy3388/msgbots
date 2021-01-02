@@ -14,7 +14,7 @@ public class Label extends javafx.scene.control.Label {
 		setMaxHeight(Double.MAX_VALUE);
 		setAlignment(Pos.CENTER_LEFT); // 기본 정렬 : 중앙 좌측
 		setTextAlignment(TextAlignment.LEFT);
-		// setContentDisplay(ContentDisplay.CENTER);
+		setContentDisplay(ContentDisplay.CENTER);
 	}
 
 	public Label() {

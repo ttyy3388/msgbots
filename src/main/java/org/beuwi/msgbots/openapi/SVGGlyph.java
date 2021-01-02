@@ -1,4 +1,4 @@
-package org.beuwi.msgbots.platform.gui.control;
+package org.beuwi.msgbots.openapi;
 
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.scene.Node;
@@ -6,8 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 
-public class SVGGlyph extends com.jfoenix.svg.SVGGlyph
-{
+public class SVGGlyph extends com.jfoenix.svg.SVGGlyph {
 	private static final String DEFAULT_STYLE_CLASS = "icon";
 
 	private Color fill;

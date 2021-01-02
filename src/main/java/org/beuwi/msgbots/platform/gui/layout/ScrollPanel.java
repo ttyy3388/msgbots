@@ -8,7 +8,6 @@ import javafx.scene.input.ScrollEvent;
 // @DefaultProperty("content")
 public class ScrollPanel extends javafx.scene.control.ScrollPane {
 	private static final String DEFAULT_STYLE_CLASS = "scroll-panel";
-
 	private static final double DEFAULT_SCROLL_SPEED = 0.005;
 
 	public ScrollPanel() {
@@ -36,7 +35,7 @@ public class ScrollPanel extends javafx.scene.control.ScrollPane {
 		super.setPadding(new Insets(padding));
 	}
 
-	public ObservableList<Node> getItems() {
+	/* public ObservableList<Node> getItems() {
 		return getChildren();
-	}
+	} */
 }
