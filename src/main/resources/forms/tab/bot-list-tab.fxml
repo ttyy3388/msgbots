@@ -5,6 +5,6 @@
 
 <TabItem text="BOT LIST" closable="false" xmlns:fx="http://javafx.com/fxml">
 	<content>
-		<BotView styleClass="bots-tab" />
+		<BotView fx:id="btvBotList"></BotView>
 	</content>
 </TabItem>

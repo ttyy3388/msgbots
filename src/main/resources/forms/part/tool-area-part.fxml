@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+
+<?import org.beuwi.msgbots.platform.gui.base.Anchor?>
+<?import org.beuwi.msgbots.platform.gui.control.TabView?>
+<?import org.beuwi.msgbots.platform.gui.layout.AnchorPane?>
+<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
+
+<AnchorPane styleClass="tool-area" prefHeight="250.0" xmlns:fx="http://javafx.com/fxml">
+	<children>
+		<TabView>
+			<tabs>
+
+			</tabs>
+			<AnchorPane.anchor>
+				<Anchor top="0.0" left="10.0" right="10.0" bottom="0.0"></Anchor>
+			</AnchorPane.anchor>
+		</TabView>
+		<StackPane fx:id="stpResizeBar" prefHeight="5.0">
+			<cursor>
+				<Cursor fx:constant="N_RESIZE"></Cursor>
+			</cursor>
+			<AnchorPane.anchor>
+				<Anchor top="0.0" right="0.0" left="0.0"></Anchor>
+			</AnchorPane.anchor>
+		</StackPane>
+	</children>
+</AnchorPane>

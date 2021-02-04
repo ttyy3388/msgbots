@@ -2,18 +2,18 @@
 
 <?import org.beuwi.msgbots.platform.gui.control.MenuBar?>
 <?import org.beuwi.msgbots.platform.gui.control.MenuButton?>
-<?import org.beuwi.msgbots.platform.gui.layout.StackPanel?>
+<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
 
-<StackPanel prefHeight="20" >
-	<items>
+<StackPane prefHeight="20" >
+	<children>
         <MenuBar>
-            <items>
+            <children>
                 <MenuButton text="File" />
                 <MenuButton text="Edit" />
                 <MenuButton text="View" />
                 <MenuButton text="Debug" />
                 <MenuButton text="Help" />
-            </items>
+            </children>
         </MenuBar>
-    </items>
-</StackPanel>
+    </children>
+</StackPane>

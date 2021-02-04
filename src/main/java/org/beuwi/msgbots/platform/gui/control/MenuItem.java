@@ -1,5 +1,6 @@
 package org.beuwi.msgbots.platform.gui.control;
 
+import javafx.beans.binding.BooleanExpression;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.event.EventHandler;
@@ -46,12 +47,8 @@ public class MenuItem extends javafx.scene.control.MenuItem {
 		return this;
 	}
 
-	public MenuItem disable(BooleanProperty property) {
-		return disable((ReadOnlyBooleanProperty) property);
-	}
-
 	// Disable Property
-	public MenuItem disable(ReadOnlyBooleanProperty property) {
+	public MenuItem disable(BooleanExpression property) {
 		parentPopupProperty().addListener(event -> {
 			ContextMenu parent = getParent();
 			if (parent != null) {
@@ -67,10 +64,10 @@ public class MenuItem extends javafx.scene.control.MenuItem {
 		return this;
 	}
 
-	public MenuItem enable(BooleanProperty property) {
+	/* public MenuItem enable(BooleanProperty property) {
 		return enable((ReadOnlyBooleanProperty) property);
-	}
-	public MenuItem enable(ReadOnlyBooleanProperty property) {
+	} */
+	public MenuItem enable(BooleanExpression property) {
 		parentPopupProperty().addListener(event -> {
 			ContextMenu parent = getParent();
 			if (parent != null) {

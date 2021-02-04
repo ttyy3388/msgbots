@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+
+<?import org.beuwi.msgbots.platform.gui.control.Button?>
+<?import org.beuwi.msgbots.platform.gui.control.Label?>
+<?import org.beuwi.msgbots.platform.gui.layout.HBox?>
+<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
+<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
+
+<HBox fx:id="hbxBoxRoot" styleClass="root-pane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+	<children>
+		<StackPane alignment="TOP_CENTER">
+			<children>
+				<ImageView fx:id="imvBoxIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true">
+					<StackPane.margin>
+						<Insets top="10.0" right="10.0" left="10.0" />
+					</StackPane.margin>
+				</ImageView>
+			</children>
+		</StackPane>
+		<VBox HBox.hgrow="ALWAYS">
+			<children>
+				<HBox styleClass="title-bar" fittable="true" prefHeight="40.0">
+					<children>
+						<Label fx:id="lblBoxTitle" HBox.hgrow="ALWAYS" />
+						<Button fx:id="btnBoxClose" prefWidth="45.0" />
+					</children>
+				</HBox>
+				<Label fx:id="lblBoxContent" VBox.vgrow="ALWAYS" />
+				<HBox fx:id="hbxBtnBar" styleClass="button-bar" alignment="CENTER_RIGHT" fittable="true" spacing="10.0" prefHeight="30">
+					<children>
+						<Button text="TEST BUTTON" />
+					</children>
+					<VBox.margin>
+						<Insets top="10.0" right="10.0" bottom="10.0" />
+					</VBox.margin>
+				</HBox>
+			</children>
+		</VBox>
+	</children>
+</HBox>

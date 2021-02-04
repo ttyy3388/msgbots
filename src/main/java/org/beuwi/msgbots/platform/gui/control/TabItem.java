@@ -4,98 +4,148 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Control;
-import javafx.scene.control.Skin;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 
-import org.beuwi.msgbots.platform.gui.skins.TabItemSkin;
+import org.beuwi.msgbots.platform.gui.control.base.TabItemBase;
+import org.beuwi.msgbots.platform.gui.layout.HBox;
+import org.beuwi.msgbots.platform.util.AllSVGIcons;
 
-public class TabItem extends Control {
-    private static final String DEFAULT_STYLE_CLASS = "tab";
+public class TabItem extends TabItemBase {
+	private static final String DEFAULT_STYLE_CLASS = "tab-item";
 
-    private final ObjectProperty<Node> content = new SimpleObjectProperty(null);
-    private final BooleanProperty closable = new SimpleBooleanProperty(true);
-    // private final ObjectProperty<Type> type = new SimpleObjectProperty(null);
-    private final StringProperty text = new SimpleStringProperty();
+	// Padding(30) | Label(50) | Space(10) | Button(10)
+	private static final Insets DEFAULT_ITEM_PADDING = new Insets(0, 0, 0, 30);
+	// private static final int DEFAULT_ITEM_WIDTH = 80;
+	private static final int DEFAULT_ITEM_HEIGHT = 30;
 
-    // private final ObjectProperty<Type> type = new SimpleObjectProperty(null);
+	// private static final String HEADER_STYLE_CLASS = "tab-header";
+	private static final String LABEL_STYLE_CLASS = "tab-label";
+	private static final String BUTTON_STYLE_CLASS = "tab-button";
 
-    private TabView parent;
+	private static final Pos DEFAULT_HEADER_ALIGNMENT = Pos.CENTER;
+	private static final int DEFAULT_HEADER_SPACING = 10;
 
-    public TabItem() {
-        this(null);
-    }
+	private static final int DEFAULT_BUTTON_SIZE = 30;
+	private static final int DEFAULT_TITLE_SIZE = 50;
 
-    public TabItem(String text) {
-        this(text, new Region());
-    }
+	private final HBox header = new HBox();
+	private final Label label = new Label();
 
-    public TabItem(String text, Node content) {
-        if (text != null) {
-            setText(text);
-        }
-        if (content != null) {
-            setContent(content);
-        }
+	// Action Button ( Default : Close )
+	private final Button button = new Button();
 
-        addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
-            // 탭 뷰가 지정돼지 않았을 경우가 없을 거 같긴 하지만 막아둠
-            getView().selectTab(this);
-        });
+	private final ContextMenu menu;
 
-        getStyleClass().add(DEFAULT_STYLE_CLASS);
-    }
+	{
+		HBox.setHgrow(label, Priority.ALWAYS);
+	}
 
-    public void setView(TabView parent) {
-        this.parent = parent;
-    }
+	public TabItem() {
+		this(null);
+	}
+	public TabItem(String title) {
+		this(title, new Pane());
+	}
+	public TabItem(String title, Node content) {
+		if (title != null) {
+			setId(title);
+			setText(title);
+		}
 
-    public void setText(String text) {
-        textProperty().set(text);
-    }
+		if (content != null) {
+			setContent(content);
+		}
+		setHeader(header);
 
-    public void setContent(Node content) {
-        contentProperty().set(content);
-    }
+		textProperty().addListener(change -> {
+			label.setText(getText());
+		});
+		closableProperty().addListener(change -> {
+			button.setVisible(isClosable());
+			button.setDisable(!isClosable());
+		});
+		/* prefWidthProperty().addListener(change -> {
+			header.setPrefWidth(getPrefWidth());
+		}); */
 
-    public void setClosable(boolean value) {
-        closableProperty().set(value);
-    }
+		menu = new ContextMenu(
+			new MenuItem("Close", "Ctrl + W", event -> getView().closeTab(this)),
+			new MenuItem("Close Others", event -> getView().closeOtherTabs(this)),
+			new MenuItem("Close All Tabs", event -> getView().closeAllTabs()),
+			new Separator(),
+			new MenuItem("Select Next Tab", "Ctrl + Tab", event -> getView().selectNextTab(this)),
+			new MenuItem("Select Previous Tab", "Ctrl + Shift + Tab", event ->  getView().selectPrevTab(this))
+		);
+		menu.setNode(this);
 
-    public TabView getView() {
-        return parent;
-    }
+		// label.setText(control.getText());
+		label.setMinWidth(DEFAULT_TITLE_SIZE);
+		label.setAlignment(DEFAULT_HEADER_ALIGNMENT);
+		label.getStyleClass().add(LABEL_STYLE_CLASS);
 
-    public String getText() {
-        return textProperty().get();
-    }
+		// header.setSpacing(DEFAULT_HEADER_SPACING);
+		// header.setPrefWidth(DEFAULT_HEADER_WIDTH);
+		header.getChildren().setAll(label, button);
+		// header.getStyleClass().add(HEADER_STYLE_CLASS);
 
-    public Node getContent() {
-        return contentProperty().get();
-    }
+		// Default action : close
+		button.setOnAction(event -> {
+			if (getView() != null) {
+				getView().closeTab(this);
+			}
+		});
+		button.setGraphic(AllSVGIcons.get("Tab.Close"));
+		button.setPrefWidth(DEFAULT_BUTTON_SIZE);
+		button.getStyleClass().add(BUTTON_STYLE_CLASS);
 
-    public boolean isClosable() {
-        return closableProperty().get();
-    }
+		addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
+			// 좌측 마우스 클릭 시
+			if (event.getButton().equals(MouseButton.PRIMARY)) {
+				if (getView() != null) {
+					getView().selectTab(this);
+				}
+			}
+		});
 
-    public StringProperty textProperty() {
-        return text;
-    }
+		setPadding(DEFAULT_ITEM_PADDING);
+		// setMinWidth(DEFAULT_ITEM_WIDTH); // 너비 최소 지정
+		// setPrefWidth(DEFAULT_ITEM_WIDTH);
+		// setMaxWidth(DEFAULT_ITEM_WIDTH);
+		setMinHeight(DEFAULT_ITEM_HEIGHT); // 높이 강제 지정
+		setPrefHeight(DEFAULT_ITEM_HEIGHT); // 높이 강제 지정
+		setMaxHeight(DEFAULT_ITEM_HEIGHT); // 높이 강제 지정
+	}
 
-    public ObjectProperty<Node> contentProperty() {
-        return content;
-    }
+	// Action button
+	public Button getButton() {
+		return button;
+	}
 
-    public BooleanProperty closableProperty() {
-        return closable;
-    }
+	public void setText(String text) {
+		label.setText(text);
+	}
+	public String getText() {
+		return label.getText();
+	}
+	public StringProperty textProperty() {
+		return label.textProperty();
+	}
 
-    @Override
-    public Skin<?> createDefaultSkin() {
-        return new TabItemSkin(this);
-    }
+	private final BooleanProperty closableProperty = new SimpleBooleanProperty(true);
+	public void setClosable(boolean closable) {
+		this.closableProperty.set(closable);
+	}
+	public boolean isClosable() {
+		return closableProperty.get();
+	}
+	public BooleanProperty closableProperty() {
+		return closableProperty;
+	}
 }

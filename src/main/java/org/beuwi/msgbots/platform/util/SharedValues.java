@@ -4,21 +4,31 @@ import java.io.File;
 
 import javafx.scene.image.Image;
 
-public class SharedValues
-{
+public class SharedValues {
 	public static final String DEFAULT_PROGRAM_TITLE = "Messenger Bot Simulator";
 	public static final Image DEFAULT_PROGRAM_IMAGE = ResourceUtils.getImage("program");
 
 	// public static final String USER_WINDOWS_VERSION = System.getProperty("windows.os");
 
 	static {
+		// 정적 변수에서 초기화(파일이 없다거나 등...) 에러가 발생하면 노답이기 때문에 최대한 모든 에러를 잡아서 해결해 줘야 함
+		/* try {
+			new SharedValues();
+		} catch (Throwable t) {
+			t.printStackTrace(System.err);
+		} */
 	}
 
 	public static final String SYSTEM_USER_NAME = System.getProperty("user.name");
 
+	/* public static final ObjectProperty<File> CURRENT_SCRIPT_FILE = new SimpleObjectProperty();
+	public static final ObjectProperty<File> getCurrentScriptFileProperty() {
+		return CURRENT_SCRIPT_FILE;
+	} */
+
 	/* Paths */
 	public static final String MAIN_FOLDER_PATH = System.getProperty("user.dir");
-	public static final String DATA_FOLDER_PATH = System.getProperty("user.dir") + File.separator + "datas";
+	public static final String DATA_FOLDER_PATH = System.getProperty("user.dir") + File.separator + "data";
 	public static final String BOTS_FOLDER_PATH = System.getProperty("user.dir") + File.separator + "bots";
 
     public static final String PROFILE_USER_PATH = "profile_user.png";
@@ -44,7 +54,7 @@ public class SharedValues
 
 	public static final File BASE_THEME_FILE =  ResourceUtils.getFile("/themes/base.css");
 	public static final File DARK_THEME_FILE = ResourceUtils.getFile("/themes/dark.css");
-	public static final File LIGHT_THEME_FILE = ResourceUtils.getFile("/themes/light.css");
+	// public static final File LIGHT_THEME_FILE = ResourceUtils.getFile("/themes/light.css");
 	public static final File USER_THEME_FILE = ResourceUtils.getFile("/themes/user.css");
 	// public static final File BLACK_THEME_FILE = ResourceUtils.getFile("/themes/dark.css");
 	// public static final File WHITE_THEME_FILE = ResourceUtils.getFile("/themes/dark.css");

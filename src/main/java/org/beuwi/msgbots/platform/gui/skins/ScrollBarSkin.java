@@ -16,14 +16,11 @@ public class ScrollBarSkin extends javafx.scene.control.skin.ScrollBarSkin {
 
 		/* Parent parent = control.getParent();
 
-		if (parent != null)
-		{
-			if (parent.getParent() instanceof TextArea)
-			{
+		if (parent != null){
+			if (parent.getParent() instanceof TextArea){
 				TextArea textarea = (TextArea) parent.getParent();
 
-				textarea.getScrollTopProperty().addListener(event ->
-				{
+				textarea.getScrollTopProperty().addListener(event ->{
 					textarea.setScrollTop(textarea.getScrollTop() + 10);
 				});
 			}

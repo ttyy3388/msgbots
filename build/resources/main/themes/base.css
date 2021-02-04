@@ -86,3 +86,14 @@
 .menu:focused {
 	-fx-background-color: #E8EAED;
 }
+
+/* TEXT BOX */
+.text-area,
+.text-field {
+	-fx-font-family: 'D2Coding';
+	-fx-font-size: 14;
+	-fx-cursor: text;
+}
+.text-area .content {
+	-fx-padding: 4;
+}

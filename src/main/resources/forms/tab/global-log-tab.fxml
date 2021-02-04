@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.beuwi.msgbots.platform.gui.control.TabItem?>
 <?import org.beuwi.msgbots.platform.gui.control.LogView?>
+<?import org.beuwi.msgbots.platform.gui.control.TabItem?>
 
-<TabItem text="GLOBAL LOG" closable="false">
+<TabItem text="GLOBAL LOG" closable="false" xmlns:fx="http://javafx.com/fxml">
 	<content>
-		<LogView styleClass="log-tab" />
+		<LogView fx:id="lgvLogList"></LogView>
 	</content>
 </TabItem>

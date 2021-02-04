@@ -3,25 +3,25 @@
 <?import javafx.geometry.Insets?>
 
 <?import org.beuwi.msgbots.platform.gui.control.ChatView?>
-<?import org.beuwi.msgbots.platform.gui.control.TextArea?>
 <?import org.beuwi.msgbots.platform.gui.control.TabItem?>
-<?import org.beuwi.msgbots.platform.gui.control.VBox?>
-<?import org.beuwi.msgbots.platform.gui.layout.StackPanel?>
+<?import org.beuwi.msgbots.platform.gui.control.TextArea?>
+<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
+<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
 
 <TabItem text="DEBUG ROOM" closable="false" xmlns:fx="http://javafx.com/fxml">
 	<content>
-		<VBox styleClass="debug-tab">
-			<items>
-				<ChatView fx:id="lsvChatView" VBox.vgrow="ALWAYS"/>
-				<StackPanel prefHeight="80.0">
-					<items>
-						<TextArea fx:id="txaChatInput" />
-					</items>
+		<VBox>
+			<children>
+				<ChatView fx:id="lsvChatView" VBox.vgrow="ALWAYS"></ChatView>
+				<StackPane prefHeight="80.0">
+					<children>
+						<TextArea fx:id="txaChatInput"></TextArea>
+					</children>
 					<VBox.margin>
-						<Insets top="8.0" right="8.0" bottom="8.0" left="8.0" />
+						<Insets top="8.0" right="8.0" bottom="8.0" left="8.0"></Insets>
 					</VBox.margin>
-				</StackPanel>
-			</items>
+				</StackPane>
+			</children>
 		</VBox>
 	</content>
 </TabItem>

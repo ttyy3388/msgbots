@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.beuwi.msgbots.platform.gui.layout.AnchorPanel?>
 <?import org.beuwi.msgbots.platform.gui.control.Label?>
+<?import org.beuwi.msgbots.platform.gui.layout.AnchorPane?>
 
-<AnchorPanel prefHeight="50.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <items>
-        <Label fx:id="lblDeleteMessage" styleClass="h4" prefHeight="30.0"/>
-    </items>
-</AnchorPanel>
+<AnchorPane prefHeight="50.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label fx:id="lblDeleteMessage" styleClass="h4" prefHeight="30.0"></Label>
+    </children>
+</AnchorPane>

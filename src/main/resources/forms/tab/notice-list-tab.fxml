@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+
+<?import org.beuwi.msgbots.platform.gui.control.NoticeView?>
+<?import org.beuwi.msgbots.platform.gui.control.TabItem?>
+
+<TabItem text="NOTIFICATIONS" closable="false" xmlns:fx="http://javafx.com/fxml">
+	<content>
+		<NoticeView></NoticeView>
+	</content>
+	<padding>
+		<Insets top="0.0" right="10.0" bottom="0.0" left="0.0"></Insets>
+	</padding>
+</TabItem>

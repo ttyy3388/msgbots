@@ -2,11 +2,11 @@
 
 <?import org.beuwi.msgbots.platform.gui.control.Label?>
 <?import org.beuwi.msgbots.platform.gui.control.TextField?>
-<?import org.beuwi.msgbots.platform.gui.control.VBox?>
+<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
 
 <VBox spacing="10.0" prefHeight="50.0" prefWidth="400.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-    <items>
-        <Label fx:id="lblRenameText" prefHeight="30.0"/>
-        <TextField fx:id="txfScriptName" VBox.vgrow="ALWAYS" prefHeight="30.0" />
-    </items>
+    <children>
+        <Label fx:id="lblRenameText" prefHeight="30.0"></Label>
+        <TextField fx:id="txfScriptName" VBox.vgrow="ALWAYS" prefHeight="30.0"></TextField>
+    </children>
 </VBox>

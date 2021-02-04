@@ -1,13 +1,11 @@
 package org.beuwi.msgbots.platform.gui.control;
 
-import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.css.PseudoClass;
 import javafx.event.EventTarget;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.skin.ListViewSkin;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
@@ -43,6 +41,7 @@ public class ContextMenu extends javafx.scene.control.ContextMenu
 			item.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
 				if (item instanceof ListView) {
 					EventTarget target = event.getTarget();
+
 					if (target.toString().contains("Group") || target.toString().contains("ListViewSkin")) {
 						show(item, event);
 					}

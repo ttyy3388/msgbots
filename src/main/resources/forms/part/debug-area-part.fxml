@@ -3,16 +3,25 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.Pane?>
 
+<?import org.beuwi.msgbots.platform.gui.base.Anchor?>
 <?import org.beuwi.msgbots.platform.gui.control.TabView?>
-<?import org.beuwi.msgbots.platform.gui.layout.AnchorPanel?>
+<?import org.beuwi.msgbots.platform.gui.layout.AnchorPane?>
+<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
 
-<AnchorPanel prefWidth="350.0" styleClass="debug-area" xmlns:fx="http://javafx.com/fxml">
-	<items>
-		<TabView type="SYSTEM" AnchorPanel.topAnchor="0.0" AnchorPanel.rightAnchor="0.0" AnchorPanel.bottomAnchor="0.0" AnchorPanel.leftAnchor="0.0" />
-		<Pane fx:id="stpResizeBar" prefWidth="5.0" AnchorPanel.topAnchor="0.0" AnchorPanel.leftAnchor="0.0" AnchorPanel.bottomAnchor="0.0">
+<AnchorPane styleClass="debug-area" minWidth="250.0" prefWidth="350.0"  xmlns:fx="http://javafx.com/fxml">
+	<children>
+		<TabView fittable="true">
+			<AnchorPane.anchor>
+				<Anchor top="0.0" right="0.0" bottom="0.0" left="0.0"></Anchor>
+			</AnchorPane.anchor>
+		</TabView>
+		<StackPane fx:id="stpResizeBar" prefWidth="5.0">
 			<cursor>
-				<Cursor fx:constant="E_RESIZE" />
+				<Cursor fx:constant="E_RESIZE"></Cursor>
 			</cursor>
-		</Pane>
-	</items>
-</AnchorPanel>
+			<AnchorPane.anchor>
+				<Anchor top="0.0" bottom="0.0" left="0.0"></Anchor>
+			</AnchorPane.anchor>
+		</StackPane>
+	</children>
+</AnchorPane>

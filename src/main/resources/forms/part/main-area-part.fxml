@@ -1,8 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.beuwi.msgbots.platform.gui.control.TabView?>
-<?import org.beuwi.msgbots.platform.gui.layout.StackPanel?>
+<?import javafx.geometry.Insets?>
 
-<StackPanel styleClass="main-area">
-    <TabView />
-</StackPanel>
+<?import org.beuwi.msgbots.platform.gui.control.NaviView?>
+<?import org.beuwi.msgbots.platform.gui.control.NaviItem?>
+<?import org.beuwi.msgbots.platform.gui.control.TabItem?>
+<?import org.beuwi.msgbots.platform.gui.control.TabView?>
+<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
+
+<StackPane styleClass="main-area">
+    <children>
+        <TabView>
+            <tabs>
+                <TabItem text="TAB 1">
+                    <content>
+                        <NaviView>
+                            <tabs>
+                                <NaviItem text="TEST 1"></NaviItem>
+                                <NaviItem text="TEST 2"></NaviItem>
+                                <NaviItem text="TEST 3"></NaviItem>
+                                <NaviItem text="TEST 4"></NaviItem>
+                            </tabs>
+                            <StackPane.margin>
+                                <Insets top="10.0" right="10.0" bottom="10.0" left="10.0"></Insets>
+                            </StackPane.margin>
+                        </NaviView>
+                    </content>
+                </TabItem>
+                <TabItem text="TAB 2"></TabItem>
+                <TabItem text="TAB 3"></TabItem>
+                <TabItem text="TAB 4"></TabItem>
+            </tabs>
+        </TabView>
+    </children>
+</StackPane>
