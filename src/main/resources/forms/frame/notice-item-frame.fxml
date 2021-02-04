@@ -15,7 +15,7 @@
 			<children>
 				<ImageView fx:id="imvBoxIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true">
 					<StackPane.margin>
-						<Insets top="10.0" right="10.0" left="10.0" />
+						<Insets top="10.0" right="10.0" left="10.0"></Insets>
 					</StackPane.margin>
 				</ImageView>
 			</children>
@@ -24,18 +24,15 @@
 			<children>
 				<HBox styleClass="title-bar" fittable="true" prefHeight="40.0">
 					<children>
-						<Label fx:id="lblBoxTitle" HBox.hgrow="ALWAYS" />
-						<Button fx:id="btnBoxClose" prefWidth="45.0" />
+						<Label fx:id="lblBoxTitle" HBox.hgrow="ALWAYS"></Label>
+						<Button fx:id="btnBoxClose" prefWidth="45.0"></Button>
 					</children>
 				</HBox>
-				<Label fx:id="lblBoxContent" VBox.vgrow="ALWAYS" />
+				<Label fx:id="lblBoxText" VBox.vgrow="ALWAYS"></Label>
 				<HBox fx:id="hbxBtnBar" styleClass="button-bar" alignment="CENTER_RIGHT" fittable="true" spacing="10.0" prefHeight="30">
 					<children>
-						<Button text="TEST BUTTON" />
+						<Button text="TEST BUTTON"></Button>
 					</children>
-					<VBox.margin>
-						<Insets top="10.0" right="10.0" bottom="10.0" />
-					</VBox.margin>
 				</HBox>
 			</children>
 		</VBox>

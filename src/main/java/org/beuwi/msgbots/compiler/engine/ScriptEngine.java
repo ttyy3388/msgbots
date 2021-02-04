@@ -187,7 +187,7 @@ public class ScriptEngine {
 
 		final long end = System.currentTimeMillis();
 
-		InputDetailLogAction.execute("Running Time", "" + (end - start));
+		InputDetailLogAction.execute("Running Time", name + " (" + (end - start) + ".ms)");
 
 		if (GlobalSettings.getBoolean("program:show_running_time")) {
 			// LogManager.event("Running Time : " + (end - start));

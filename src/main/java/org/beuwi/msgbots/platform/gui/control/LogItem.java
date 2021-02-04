@@ -5,7 +5,6 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.Priority;
 
 import org.beuwi.msgbots.platform.gui.enums.LogType;
-import org.beuwi.msgbots.platform.gui.layout.HBox;
 import org.beuwi.msgbots.platform.gui.layout.VBox;
 
 import org.json.simple.JSONObject;

@@ -394,6 +394,9 @@
 .tool-area .tab-item {
     -fx-border-width: 0;
 }
+.tool-area .tab-item .tab-label {
+    -fx-cursor: hand;
+}
 .tool-area .tab-item:selected .tab-label {
     -fx-border-color: #FFFFFF;
     -fx-border-width: 0 0 1 0;

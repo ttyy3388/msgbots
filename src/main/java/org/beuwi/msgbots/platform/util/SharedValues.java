@@ -3,6 +3,7 @@ package org.beuwi.msgbots.platform.util;
 import java.io.File;
 
 import javafx.scene.image.Image;
+import org.beuwi.msgbots.manager.FileManager;
 
 public class SharedValues {
 	public static final String DEFAULT_PROGRAM_TITLE = "Messenger Bot Simulator";
@@ -44,18 +45,18 @@ public class SharedValues {
 	public static final File DATA_FOLDER_FILE = new File(SharedValues.DATA_FOLDER_PATH);
 	public static final File BOTS_FOLDER_FILE = new File(SharedValues.BOTS_FOLDER_PATH);
 
-	public static final File PROFILE_USER_FILE = ResourceUtils.getData(PROFILE_USER_PATH);
-	public static final File PROFILE_BOT_FILE = ResourceUtils.getData(PROFILE_BOT_PATH);
-	public static final File GLOBAL_LOG_FILE = ResourceUtils.getData(GLOBAL_LOG_PATH);
-	public static final File GLOBAL_CONFIG_FILE = ResourceUtils.getData(GLOBAL_CONFIG_PATH);
-	public static final File SCRIPT_DEFAULT_FILE = ResourceUtils.getData(SCRIPT_DEFAULT_PATH);
-	public static final File SCRIPT_UNIFIED_FILE = ResourceUtils.getData(SCRIPT_UNIFIED_PATH);
-	public static final File PROGRAM_DATA_FILE = ResourceUtils.getData(PROGRAM_DATA_PATH);
+	public static final File PROFILE_USER_FILE = FileManager.getDataFile(PROFILE_USER_PATH);
+	public static final File PROFILE_BOT_FILE = FileManager.getDataFile(PROFILE_BOT_PATH);
+	public static final File GLOBAL_LOG_FILE = FileManager.getDataFile(GLOBAL_LOG_PATH);
+	public static final File GLOBAL_CONFIG_FILE = FileManager.getDataFile(GLOBAL_CONFIG_PATH);
+	public static final File SCRIPT_DEFAULT_FILE = FileManager.getDataFile(SCRIPT_DEFAULT_PATH);
+	public static final File SCRIPT_UNIFIED_FILE = FileManager.getDataFile(SCRIPT_UNIFIED_PATH);
+	public static final File PROGRAM_DATA_FILE = FileManager.getDataFile(PROGRAM_DATA_PATH);
 
-	public static final File BASE_THEME_FILE =  ResourceUtils.getFile("/themes/base.css");
-	public static final File DARK_THEME_FILE = ResourceUtils.getFile("/themes/dark.css");
+	// public static final File BASE_THEME_FILE =  ResourceUtils.getTheme("/themes/base.css");
+	// public static final File DARK_THEME_FILE = ResourceUtils.getFile("/themes/dark.css");
 	// public static final File LIGHT_THEME_FILE = ResourceUtils.getFile("/themes/light.css");
-	public static final File USER_THEME_FILE = ResourceUtils.getFile("/themes/user.css");
+	// public static final File USER_THEME_FILE = ResourceUtils.getFile("/themes/user.css");
 	// public static final File BLACK_THEME_FILE = ResourceUtils.getFile("/themes/dark.css");
 	// public static final File WHITE_THEME_FILE = ResourceUtils.getFile("/themes/dark.css");
 }

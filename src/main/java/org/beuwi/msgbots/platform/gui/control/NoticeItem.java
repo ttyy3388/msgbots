@@ -21,7 +21,7 @@ public class NoticeItem extends StackPane {
 	@FXML private HBox hbxBoxRoot;
 	@FXML private ImageView imvBoxIcon;
 	@FXML private Label lblBoxTitle;
-	@FXML private Label lblBoxContent;
+	@FXML private Label lblBoxText;
 	@FXML private Button btnBoxClose;
 	@FXML private HBox hbxBtnBar;
 
@@ -35,19 +35,18 @@ public class NoticeItem extends StackPane {
 		menu = new ContextMenu(
 			new MenuItem("Copy Text", event -> CopyStringAction.execute(title + "\n\n" + content))
 		);
+		menu.setNode(this);
 
 		widthProperty().addListener(change -> {
-			System.out.println(getChildren());
-			System.out.println(1);
+			System.out.println(change);
+			System.out.println("Width Changed");
 		});
-
-		menu.setNode(this);
 
 		lblBoxTitle.setText(title);
 		lblBoxTitle.setWrapText(true);
 
-		lblBoxContent.setText(content);
-		lblBoxContent.setWrapText(true);
+		lblBoxText.setText(content);
+		lblBoxText.setWrapText(true);
 
 		imvBoxIcon.setImage(ResourceUtils.getImage(type.toString()));
 

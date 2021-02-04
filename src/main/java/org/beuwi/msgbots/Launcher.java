@@ -6,6 +6,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import org.beuwi.msgbots.compiler.engine.ScriptManager;
+import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.MainView.MainWindow;
 import org.beuwi.msgbots.platform.app.view.actions.*;
@@ -19,6 +20,8 @@ import org.beuwi.msgbots.platform.gui.control.NoticeItem;
 import org.beuwi.msgbots.platform.gui.enums.NoticeType;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 import org.beuwi.msgbots.platform.util.SharedValues;
+
+import java.io.File;
 
 public class Launcher extends Application {
 
@@ -49,7 +52,7 @@ public class Launcher extends Application {
 	@Override
 	public void start(Stage stage) {
 		try {
-			/* // Initialize tabs
+			// Initialize tabs
 			new BotListTab().init();
 			new DebugRoomTab().init();
 			new DetailLogTab().init();
@@ -106,7 +109,7 @@ public class Launcher extends Application {
 			botView.getItems().add(new BotItem("TEST 4"));
 			botView.getItems().add(new BotItem("TEST 5")); */
 
-			/* LogView logView = GlobalLogTab.getComponent();
+			LogView logView = GlobalLogTab.getComponent();
 
 			logView.getItems().add(new LogItem("error", "TEST 1", "2021 / 12 / 01"));
 			logView.getItems().add(new LogItem("error", "TEST 1", "2021 / 12 / 01"));
@@ -124,9 +127,6 @@ public class Launcher extends Application {
 			InputDetailLogAction.execute("> Task : Running bots ... : \"TEST 2\" (1.7s)");
 			InputDetailLogAction.execute("> Task : Running bots ... : \"TEST 3\" (1.7s)"); */
 			// InputDetailLogAction.execute("Runtime Error : Cannot call method \"reply\" of undefined at \"TEST 1\":297 (response)");
-
-			System.out.println(1);
-			System.out.println(ResourceUtils.getData("global_log.json").exists());
 
 			// RefreshBotListAction.execute();
 			// ScriptManager.preInit();

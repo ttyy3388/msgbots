@@ -7,6 +7,7 @@ import org.beuwi.msgbots.platform.app.action.OpenBrowserAction;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenProgramTabAction;
+import org.beuwi.msgbots.platform.app.view.actions.RefreshBotListAction;
 import org.beuwi.msgbots.platform.app.view.dialogs.CreateBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.ImportBotDialog;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
@@ -41,7 +42,9 @@ public class MenuBarPart implements View {
 			new MenuItem("Save", "Ctrl + S"),
 			new MenuItem("Save All"),
 			new Separator(),
-			new MenuItem("Refresh All Bots", "Ctrl + Alt + Y"),
+			new MenuItem("Refresh All Bots", "Ctrl + Alt + Y", event -> {
+				RefreshBotListAction.execute();
+			}),
 			new Separator(),
 			new MenuItem("Settings", "Ctrl + Alt + S", event -> {
 				OpenProgramTabAction.execute(GlobalConfigTab.getRoot());

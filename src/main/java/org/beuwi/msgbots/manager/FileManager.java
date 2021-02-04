@@ -22,6 +22,10 @@ public class FileManager {
 		return name.contains(".") ? name.substring(name.lastIndexOf(".") + 1) : name;
 	}
 
+	public static File getDataFile(String name) {
+		return new File(SharedValues.DATA_FOLDER_FILE + File.separator + name);
+	}
+
 	// ResourceUtils.getData로 이전
 	/* public static File getDataFile(String name) {
 		return new File(SharedValues.DATA_FOLDER_FILE + File.separator + name);

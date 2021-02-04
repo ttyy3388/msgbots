@@ -46,7 +46,7 @@
 										</ComboBox>
 									</content>
 								</OptionItem> -->
-								<!-- <OptionItem address="global:program:start_auto_compile" title="시작 시 자동 컴파일">
+								<OptionItem address="global:program:start_auto_compile" title="시작 시 자동 컴파일">
 									<content>
 										<CheckBox text="앱이 시작되었을 때 전원을 켜둔 스크립트를 자동으로 컴파일 합니다."></CheckBox>
 									</content>
@@ -55,7 +55,7 @@
 									<content>
 										<CheckBox text="리로드할 때 자동으로 세이브를 한 후 리로드를 합니다."></CheckBox>
 									</content>
-								</OptionItem> -->
+								</OptionItem>
 								<OptionItem title="기본 스크립트 수정" VBox.vgrow="ALWAYS">
 									<content>
 										<HBox spacing="10.0" VBox.vgrow="ALWAYS">
@@ -189,7 +189,7 @@
 					<content>
 						<OptionView title="Design">
 							<items>
-								<OptionItem title="커스텀 테마에서 적용되는 스타일입니다." VBox.vgrow="ALWAYS">
+								<!-- <OptionItem title="커스텀 테마에서 적용되는 스타일입니다." VBox.vgrow="ALWAYS">
 									<content>
 										<Editor language="css">
 											<file>
@@ -197,7 +197,7 @@
 											</file>
 										</Editor>
 									</content>
-								</OptionItem>
+								</OptionItem> -->
 							</items>
 							<StackPane.margin>
 								<Insets left="15.0"></Insets>

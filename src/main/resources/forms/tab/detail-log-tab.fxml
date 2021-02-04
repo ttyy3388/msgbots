@@ -10,7 +10,7 @@
 	<content>
 		<TextArea fx:id="txaDetailLog">
 			<StackPane.margin>
-				<Insets top="5.0" right="5.0" bottom="0.0"></Insets>
+				<Insets top="5.0" bottom="0.0"></Insets>
 			</StackPane.margin>
 		</TextArea>
 	</content>
