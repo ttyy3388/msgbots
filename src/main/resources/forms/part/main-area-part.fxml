@@ -8,7 +8,7 @@
 <?import org.beuwi.msgbots.platform.gui.control.TabView?>
 <?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
 
-<StackPane styleClass="main-area">
+<StackPane styleClass="main-area" minWidth="500.0" >
     <children>
         <TabView>
             <tabs>

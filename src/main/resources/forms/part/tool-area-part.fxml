@@ -7,7 +7,7 @@
 <?import org.beuwi.msgbots.platform.gui.layout.AnchorPane?>
 <?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
 
-<AnchorPane styleClass="tool-area" prefHeight="250.0" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane styleClass="tool-area" minHeight="30.0" prefHeight="250.0" xmlns:fx="http://javafx.com/fxml">
 	<children>
 		<TabView>
 			<tabs>

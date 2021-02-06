@@ -2,11 +2,11 @@ package org.beuwi.msgbots.platform.gui.control;
 
 import javafx.collections.ObservableList;
 import javafx.geometry.Side;
-import org.beuwi.msgbots.platform.gui.control.base.TabItemBase;
+
 import org.beuwi.msgbots.platform.gui.control.base.TabViewBase;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
 
-public class NaviView extends TabViewBase {
+public class NaviView extends TabViewBase<NaviItem> {
 	private static final String DEFAULT_STYLE_CLASS = "navi-view";
 
 	private final static int DEFAULT_VIEW_WIDTH = 500;
@@ -32,9 +32,5 @@ public class NaviView extends TabViewBase {
 		setPrefWidth(DEFAULT_VIEW_WIDTH);
 		setPrefHeight(DEFAULT_VIEW_HEIGHT);
 		getStyleClass().add(DEFAULT_STYLE_CLASS);
-	}
-
-	public ObservableList<TabItemBase> getNavis() {
-		return getTabs();
 	}
 }

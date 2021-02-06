@@ -4,15 +4,15 @@
 <?import org.beuwi.msgbots.platform.gui.control.MenuButton?>
 <?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
 
-<StackPane prefHeight="20" >
+<StackPane minHeight="20.0" prefHeight="20.0">
 	<children>
         <MenuBar>
             <children>
-                <MenuButton text="File" />
-                <MenuButton text="Edit" />
-                <MenuButton text="View" />
-                <MenuButton text="Debug" />
-                <MenuButton text="Help" />
+                <MenuButton text="File"></MenuButton>
+                <MenuButton text="Edit"></MenuButton>
+                <MenuButton text="View"></MenuButton>
+                <MenuButton text="Debug"></MenuButton>
+                <MenuButton text="Help"></MenuButton>
             </children>
         </MenuBar>
     </children>

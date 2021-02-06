@@ -1,21 +1,17 @@
 package org.beuwi.msgbots.platform.gui.enums;
 
-public enum ConfigType
+public enum OptionType
 {
-	GLOBAL
-	{
+	GLOBAL {
 		@Override
-		public String toString()
-		{
+		public String toString() {
 			return "global";
 		}
 	},
 
-	SCRIPT
-	{
+	SCRIPT {
 		@Override
-		public String toString()
-		{
+		public String toString() {
 			return "script";
 		}
 	}

@@ -5,6 +5,7 @@ import javafx.collections.ObservableMap;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.tabs.BotListTab;
+import org.beuwi.msgbots.platform.gui.control.TabItem;
 import org.beuwi.msgbots.platform.gui.control.TabView;
 import org.beuwi.msgbots.platform.gui.layout.AnchorPane;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;

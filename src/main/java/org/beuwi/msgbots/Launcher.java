@@ -53,10 +53,10 @@ public class Launcher extends Application {
 	public void start(Stage stage) {
 		try {
 			// Initialize tabs
+			new GlobalConfigTab().init();
 			new BotListTab().init();
 			new DebugRoomTab().init();
 			new DetailLogTab().init();
-			new GlobalConfigTab().init();
 			new GlobalLogTab().init();
 			new NoticeListTab().init();
 			new ProblemListTab().init();

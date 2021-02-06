@@ -16,7 +16,7 @@ public class NoticeItem extends StackPane {
 	private static final String DEFAULT_STYLE_CLASS = "notice-item";
 
 	// private static final int DEFAULT_NOTICE_WIDTH = 250;
-	private static final int DEFAULT_NOTICE_HEIGHT = 80;
+	private static final int DEFAULT_NOTICE_HEIGHT = 60;
 
 	@FXML private HBox hbxBoxRoot;
 	@FXML private ImageView imvBoxIcon;
@@ -36,11 +36,6 @@ public class NoticeItem extends StackPane {
 			new MenuItem("Copy Text", event -> CopyStringAction.execute(title + "\n\n" + content))
 		);
 		menu.setNode(this);
-
-		widthProperty().addListener(change -> {
-			System.out.println(change);
-			System.out.println("Width Changed");
-		});
 
 		lblBoxTitle.setText(title);
 		lblBoxTitle.setWrapText(true);

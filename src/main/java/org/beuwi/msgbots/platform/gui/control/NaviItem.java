@@ -43,6 +43,7 @@ public class NaviItem extends TabItemBase {
 		if (content != null) {
 			setContent(content);
 		}
+		setId(title);
 		setHeader(label);
 
         // label.setText(control.getText());
@@ -50,6 +51,7 @@ public class NaviItem extends TabItemBase {
        	label.getStyleClass().add(LABEL_STYLE_CLASS);
 
 		textProperty().addListener(change -> {
+			this.setId(getText());
 			label.setText(getText());
 		});
 

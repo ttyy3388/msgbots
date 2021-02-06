@@ -1,18 +1,11 @@
 package org.beuwi.msgbots.platform.app.view.tabs;
 
 import javafx.collections.ObservableMap;
-import javafx.scene.layout.Priority;
 
-import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
-import org.beuwi.msgbots.platform.gui.control.ComboBox;
 import org.beuwi.msgbots.platform.gui.control.NaviView;
-import org.beuwi.msgbots.platform.gui.control.OptionView;
 import org.beuwi.msgbots.platform.gui.control.TabItem;
-import org.beuwi.msgbots.platform.gui.editor.Editor;
-import org.beuwi.msgbots.platform.gui.enums.ConfigType;
-import org.beuwi.msgbots.platform.util.SharedValues;
 
 public class GlobalConfigTab implements View {
 	private static ObservableMap<String, Object> namespace;

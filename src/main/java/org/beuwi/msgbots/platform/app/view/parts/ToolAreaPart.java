@@ -40,8 +40,8 @@ public class ToolAreaPart implements View {
 
 		component.addTab(
 			NoticeListTab.getRoot(),
-			DetailLogTab.getRoot(),
-			ProblemListTab.getRoot()
+			ProblemListTab.getRoot(),
+			DetailLogTab.getRoot()
 		);
 		component.selectTab(DetailLogTab.getRoot());
 	}

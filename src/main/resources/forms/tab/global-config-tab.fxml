@@ -24,7 +24,7 @@
 <TabItem text="GLOBAL CONFIG" xmlns:fx="http://javafx.com/fxml">
 	<content>
 		<NaviView>
-			<navis>
+			<tabs>
 				<NaviItem text="Program">
 					<content>
 						<OptionView title="Program">
@@ -217,15 +217,15 @@
 				<NaviItem text="Bots">
 					<content>
 						<NaviView>
-							<navis>
-							</navis>
+							<tabs>
+							</tabs>
 							<StackPane.margin>
 								<Insets left="15.0"></Insets>
 							</StackPane.margin>
 						</NaviView>
 					</content>
 				</NaviItem>
-			</navis>
+			</tabs>
 			<StackPane.margin>
 				<Insets top="15.0" right="15.0" bottom="15.0" left="15.0"></Insets>
 			</StackPane.margin>

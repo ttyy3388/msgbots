@@ -9,7 +9,6 @@ import javafx.scene.Node;
 
 import javafx.scene.layout.Priority;
 
-import org.beuwi.msgbots.platform.app.view.actions.InputDetailLogAction;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
 import org.beuwi.msgbots.platform.gui.layout.VBox;
 import org.beuwi.msgbots.setting.SharedSettings;
@@ -39,8 +38,13 @@ public class OptionItem extends VBox {
 		VBox.setVgrow(panel, Priority.ALWAYS);
 	}
 
-	public OptionItem() {
+	public OptionItem(/* @NamedArg("type") PrefType type */) {
 		addressProperty().addListener(event -> {
+			// 어드레스에 "{$name}"과 같이 변수 삽입 부분이 남아있다면 작동 X
+			if (getAddress().indexOf("$") != -1) {
+				return ;
+			}
+
 			if (getContent() instanceof Button) {
 			}
 			else if (getContent() instanceof CheckBox) {

@@ -2,7 +2,7 @@
 
 <?import org.beuwi.msgbots.platform.gui.layout.AnchorPane?>
 
-<AnchorPane prefHeight="20.0" styleClass="status-bar" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane styleClass="status-bar" minHeight="20.0" prefHeight="20.0" xmlns:fx="http://javafx.com/fxml">
 	<children>
 	</children>
 	<!-- <padding>

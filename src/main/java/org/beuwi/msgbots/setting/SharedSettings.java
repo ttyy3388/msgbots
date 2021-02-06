@@ -1,8 +1,6 @@
 package org.beuwi.msgbots.setting;
 
-import javafx.beans.InvalidationListener;
-
-import org.beuwi.msgbots.platform.gui.enums.ConfigType;
+import org.beuwi.msgbots.platform.gui.enums.OptionType;
 
 public class SharedSettings {
 
@@ -16,10 +14,10 @@ public class SharedSettings {
 		String name = data[1];
 		String option = data[2];
 
-		if (type.equals(ConfigType.GLOBAL.toString())) {
+		if (type.equals(OptionType.GLOBAL.toString())) {
 			return GlobalSettings.getData(name + ":" + option);
 		}
-		if (type.equals(ConfigType.SCRIPT.toString())) {
+		if (type.equals(OptionType.SCRIPT.toString())) {
 			return ScriptSettings.get(name).getData(option);
 		}
 
@@ -33,10 +31,10 @@ public class SharedSettings {
 		String name = data[1];
 		String option = data[2];
 
-		if (type.equals(ConfigType.GLOBAL.toString())) {
+		if (type.equals(OptionType.GLOBAL.toString())) {
 			GlobalSettings.setData(name + ":" + option, value);
 		}
-		if (type.equals(ConfigType.SCRIPT.toString())) {
+		if (type.equals(OptionType.SCRIPT.toString())) {
 			ScriptSettings.get(name).setData(option, value);
 		}
 	}

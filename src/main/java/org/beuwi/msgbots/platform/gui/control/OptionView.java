@@ -12,7 +12,7 @@ import javafx.scene.layout.Priority;
 import org.beuwi.msgbots.platform.gui.layout.VBox;
 
 public class OptionView extends VBox {
-	private static final String DEFAULT_STYLE_CLASS = "option-view";
+	private static final String DEFAULT_STYLE_CLASS = "pref-view";
 
 	private static final int DEFAULT_SPACING_VALUE = 10;
 	private static final int DEFAULT_HEADER_HEIGHT = 50;
@@ -34,7 +34,7 @@ public class OptionView extends VBox {
 
 		contentArea.getChildren().setAll(getChildren());
 		contentArea.setSpacing(30.0);
-		contentArea.getStyleClass().add("content1");
+		// contentArea.getStyleClass().add("content");
 
 		titleProperty().addListener(change -> {
 			titleLabel.setText(getTitle());
@@ -58,6 +58,18 @@ public class OptionView extends VBox {
 	public StringProperty titleProperty() {
 		return titleProperty;
 	}
+
+
+	/* private final ObjectProperty<PrefType> typeProperty = new SimpleObjectProperty();
+	public void setType(PrefType type) {
+		typeProperty.set(type);
+	}
+	public PrefType getType() {
+		return typeProperty.get();
+	}
+	public ObjectProperty<PrefType> typeProperty() {
+		return typeProperty;
+	} */
 
 	public ObservableList<Node> getItems() {
 		return items;

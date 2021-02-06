@@ -212,9 +212,9 @@
 .notice-item .title-bar .button .icon {
 	-fx-background-color: #FFFFFF;
 }
-.notice-item .title-bar .button:hover .icon {
+/* .notice-item .title-bar .button:hover .icon {
 	-fx-background-color: #007ACC;
-}
+} */
 .notice-item:focused {
 	-fx-border-color: #007ACC;
 }
@@ -276,10 +276,28 @@
 	-fx-padding: 0.5 0 0.5 0;
 }
 
+/* SLIDER */
+.slider .label {
+    -fx-text-fill: #FFFFFF;
+}
+.slider .track {
+    -fx-background-color: #555555;
+    -fx-padding: 0.5 0 0.5 0;
+}
+.slider .thumb {
+    -fx-background-radius: 10;
+    -fx-background-color: #007ACC;
+    -fx-padding: 10 2 10 2;
+}
+/* .slider .thumb:focused {
+    -fx-background-color: #0000FF;
+} */
+
 /* TAB ITEM */
 .tab-item {
 	-fx-border-color: transparent;
 	-fx-border-width: 1;
+	/* -fx-cursor: hand; */
 }
 .tab-item .tab-label {
 	-fx-text-fill: #888888;
@@ -291,6 +309,7 @@
 	-fx-background-color: #1E1E1E;
 	-fx-border-color: transparent transparent #007ACC transparent;
 }
+.tab-item:hover .tab-label,
 .tab-item:selected .tab-label {
 	-fx-text-fill: #FFFFFF;
 }
@@ -395,8 +414,10 @@
     -fx-border-width: 0;
 }
 .tool-area .tab-item .tab-label {
-    -fx-cursor: hand;
+    /* -fx-cursor: hand; */
 }
+/* .tool-area .tab-item:hover .tab-label {
+} */
 .tool-area .tab-item:selected .tab-label {
     -fx-border-color: #FFFFFF;
     -fx-border-width: 0 0 1 0;

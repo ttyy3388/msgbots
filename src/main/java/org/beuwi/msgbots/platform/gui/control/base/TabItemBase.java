@@ -11,7 +11,7 @@ import javafx.scene.input.MouseEvent;
 import org.beuwi.msgbots.platform.gui.base.Control;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
 
-public class TabItemBase extends StackPane implements Control {
+public abstract class TabItemBase extends StackPane implements Control {
     private static final String DEFAULT_STYLE_CLASS = "tab-item";
     // private static final String HEADER_STYLE_CLASS = "tab-header";
 
@@ -39,6 +39,7 @@ public class TabItemBase extends StackPane implements Control {
         getStyleClass().add(DEFAULT_STYLE_CLASS);
     }
 
+    // Tab item header
     private final ObjectProperty<Node> headerProperty = new SimpleObjectProperty(null);
     public void setHeader(Node header) {
         headerProperty.set(header);
@@ -48,6 +49,18 @@ public class TabItemBase extends StackPane implements Control {
     }
     public ObjectProperty<Node> headerProperty() {
         return headerProperty;
+    }
+
+    // Tab item content
+    private final ObjectProperty<Node> contentProperty = new SimpleObjectProperty(null);
+    public void setContent(Node content) {
+        this.contentProperty.set(content);
+    }
+    public Node getContent() {
+        return contentProperty.get();
+    }
+    public ObjectProperty<Node> contentProperty() {
+        return contentProperty;
     }
 
     private final ObjectProperty<TabViewBase> viewProperty = new SimpleObjectProperty(null);
@@ -70,17 +83,6 @@ public class TabItemBase extends StackPane implements Control {
     }
     public BooleanProperty selectedProperty() {
         return selectedProperty;
-    }
-
-    private final ObjectProperty<Node> contentProperty = new SimpleObjectProperty(null);
-    public void setContent(Node content) {
-        this.contentProperty.set(content);
-    }
-    public Node getContent() {
-        return contentProperty.get();
-    }
-    public ObjectProperty<Node> contentProperty() {
-        return contentProperty;
     }
 
     private final BooleanProperty closableProperty = new SimpleBooleanProperty(true);

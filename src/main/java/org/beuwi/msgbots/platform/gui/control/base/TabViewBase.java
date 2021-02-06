@@ -15,7 +15,6 @@ import javafx.scene.layout.Priority;
 
 import org.beuwi.msgbots.platform.gui.base.Control;
 import org.beuwi.msgbots.platform.gui.control.ListView;
-import org.beuwi.msgbots.platform.gui.control.base.TabItemBase;
 import org.beuwi.msgbots.platform.gui.layout.HBox;
 import org.beuwi.msgbots.platform.gui.layout.ScrollPane;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
@@ -25,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class TabViewBase extends StackPane implements Control {
+public abstract class TabViewBase<T extends TabItemBase> extends StackPane implements Control {
     private static final String DEFAULT_STYLE_CLASS = "tab-view";
 
     private static final String HEADER_STYLE_CLASS = "tab-header-area";
@@ -41,7 +40,7 @@ public class TabViewBase extends StackPane implements Control {
     private final static int DEFAULT_VIEW_WIDTH = 500;
     private final static int DEFAULT_VIEW_HEIGHT = 600;
 
-    private final ListView<TabItemBase> headerArea = new ListView();
+    private final ListView<T> headerArea = new ListView();
     public final ListView getHeaderArea() {
         return headerArea;
     }
@@ -59,15 +58,15 @@ public class TabViewBase extends StackPane implements Control {
     public TabViewBase() {
         this(null);
     }
-    public TabViewBase(TabItemBase... tabs) {
-        getTabs().addListener((ListChangeListener<TabItemBase>) change -> {
+    public TabViewBase(T... tabs) {
+        getTabs().addListener((ListChangeListener<T>) change -> {
             while (change.next()) {
-                for (TabItemBase item : change.getRemoved()) {
+                for (T item : change.getRemoved()) {
                     item.setView(null);
                     // this.selectTab(null);
                     headerArea.getItems().remove(item);
                 }
-                for (TabItemBase item : change.getAddedSubList()) {
+                for (T item : change.getAddedSubList()) {
                     item.setView(this);
                     this.selectTab(item);
                     headerArea.getItems().add(item);
@@ -169,11 +168,11 @@ public class TabViewBase extends StackPane implements Control {
         getStyleClass().add(DEFAULT_STYLE_CLASS);
     }
 
-    private final ObservableList<TabItemBase> tabList = FXCollections.observableArrayList();
-    public ObservableList<TabItemBase> getTabs() {
+    private final ObservableList<T> tabList = FXCollections.observableArrayList();
+    public ObservableList<T> getTabs() {
         return tabList;
     }
-    public void addTab(int index, TabItemBase tab) {
+    public void addTab(int index, T tab) {
         if (getTabs().contains(tab)) {
             selectTab(tab);
         }
@@ -181,23 +180,23 @@ public class TabViewBase extends StackPane implements Control {
             getTabs().add(index, tab);
         }
     }
-    public void addTab(TabItemBase tab) {
+    public void addTab(T tab) {
         addTab(getTabs().size(), tab);
     }
-    public void addTab(TabItemBase... tabs) {
-        for (TabItemBase tab : tabs) {
+    public void addTab(T... tabs) {
+        for (T tab : tabs) {
             addTab(tab);
         }
     }
 
-    public TabItemBase getTab(int index) {
+    public T getTab(int index) {
         return getTabs().get(index);
     }
-    public TabItemBase getTab(String id) {
+    public T getTab(String id) {
         return getTabs().get(findTab(id));
     }
     private int findTab(String id) {
-        List<TabItemBase> items = getTabs();
+        List<T> items = getTabs();
 
         for (int index = 0 ; index < items.size() ; index ++) {
             if (items.get(index).getId().equals(id)) {
@@ -208,7 +207,7 @@ public class TabViewBase extends StackPane implements Control {
         return -1;
     }
 
-    public void closeTab(TabItemBase tab) {
+    public void closeTab(T tab) {
         if (!tab.isClosable()) {
             return ;
         }
@@ -232,15 +231,15 @@ public class TabViewBase extends StackPane implements Control {
     public void closeAllTabs() {
         closeTabList(getTabs());
     }
-    public void closeTabList(Collection<? extends TabItemBase> tabs) {
-        for (TabItemBase item : getTabs()) {
+    public void closeTabList(Collection<? extends T> tabs) {
+        for (T item : getTabs()) {
             closeTab(item);
         }
     }
-    public void closeOtherTabs(TabItemBase tab) {
-        List<TabItemBase> others = new ArrayList<>();
+    public void closeOtherTabs(T tab) {
+        List<T> others = new ArrayList<>();
 
-        for (TabItemBase item : getTabs()) {
+        for (T item : getTabs()) {
             if (tab.equals(item)) {
                 continue;
             }
@@ -261,17 +260,17 @@ public class TabViewBase extends StackPane implements Control {
         return sideProperty;
     }
     
-    private final ObjectProperty<TabItemBase> selectedTabProperty = new SimpleObjectProperty(null);
-    public void setSelectedTab(TabItemBase tab) {
+    private final ObjectProperty<T> selectedTabProperty = new SimpleObjectProperty(null);
+    public void setSelectedTab(T tab) {
         selectedTabProperty.set(tab);
     }
-    public TabItemBase getSelectedTab() {
+    public T getSelectedTab() {
         return selectedTabProperty.get();
     }
-    public ObjectProperty<TabItemBase> selectedTabProperty() {
+    public ObjectProperty<T> selectedTabProperty() {
         return selectedTabProperty;
     }
-    public void selectTab(TabItemBase tab) {
+    public void selectTab(T tab) {
         selectedTabProperty.set(tab);
     }
     public void selectTab(int index) {
@@ -280,7 +279,7 @@ public class TabViewBase extends StackPane implements Control {
     public void selectNextTab() {
         selectNextTab(getSelectedTab());
     }
-    public void selectNextTab(TabItemBase tab) {
+    public void selectNextTab(T tab) {
         int index = getTabs().indexOf(tab),
                 size = getTabs().size();
 
@@ -301,7 +300,7 @@ public class TabViewBase extends StackPane implements Control {
     public void selectPrevTab() {
         selectPrevTab(getSelectedTab());
     }
-    public void selectPrevTab(TabItemBase tab) {
+    public void selectPrevTab(T tab) {
         int index = getTabs().indexOf(tab),
                 size = getTabs().size();
 
