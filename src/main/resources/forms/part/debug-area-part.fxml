@@ -10,18 +10,19 @@
 
 <AnchorPane styleClass="debug-area" minWidth="300.0" prefWidth="350.0"  xmlns:fx="http://javafx.com/fxml">
 	<children>
-		<TabView fittable="true">
-			<AnchorPane.anchor>
-				<Anchor top="0.0" right="0.0" bottom="0.0" left="0.0"></Anchor>
-			</AnchorPane.anchor>
+		<TabView AnchorPane.topAnchor="0.0"
+				 AnchorPane.rightAnchor="0.0"
+				 AnchorPane.bottomAnchor="0.0"
+				 AnchorPane.leftAnchor="0.0"
+				 fittable="true">
 		</TabView>
-		<StackPane fx:id="stpResizeBar" prefWidth="5.0">
+		<StackPane AnchorPane.topAnchor="0.0"
+				   AnchorPane.bottomAnchor="0.0"
+				   AnchorPane.leftAnchor="0.0"
+				   fx:id="stpResizeBar" prefWidth="5.0">
 			<cursor>
 				<Cursor fx:constant="E_RESIZE"></Cursor>
 			</cursor>
-			<AnchorPane.anchor>
-				<Anchor top="0.0" bottom="0.0" left="0.0"></Anchor>
-			</AnchorPane.anchor>
 		</StackPane>
 	</children>
 </AnchorPane>

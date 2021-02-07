@@ -6,7 +6,6 @@ import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.tabs.DetailLogTab;
-import org.beuwi.msgbots.platform.app.view.tabs.NoticeListTab;
 import org.beuwi.msgbots.platform.app.view.tabs.ProblemListTab;
 import org.beuwi.msgbots.platform.gui.control.TabView;
 import org.beuwi.msgbots.platform.gui.layout.AnchorPane;
@@ -39,7 +38,7 @@ public class ToolAreaPart implements View {
 		});
 
 		component.addTab(
-			NoticeListTab.getRoot(),
+			/* NoticeListTab.getRoot(), */
 			ProblemListTab.getRoot(),
 			DetailLogTab.getRoot()
 		);

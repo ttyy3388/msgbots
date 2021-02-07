@@ -5,15 +5,15 @@ import javafx.scene.image.ImageView;
 
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.action.CopyStringAction;
-import org.beuwi.msgbots.platform.gui.enums.NoticeType;
+import org.beuwi.msgbots.platform.gui.enums.ToastType;
 import org.beuwi.msgbots.platform.gui.layout.HBox;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
 import org.beuwi.msgbots.platform.util.AllSVGIcons;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
 // Toast Message
-public class NoticeItem extends StackPane {
-	private static final String DEFAULT_STYLE_CLASS = "notice-item";
+public class ToastItem extends StackPane {
+	private static final String DEFAULT_STYLE_CLASS = "toast-item";
 
 	// private static final int DEFAULT_NOTICE_WIDTH = 250;
 	private static final int DEFAULT_NOTICE_HEIGHT = 60;
@@ -28,14 +28,15 @@ public class NoticeItem extends StackPane {
 	private final FormLoader loader;
 	private final ContextMenu menu;
 
-	private NoticeView parent;
-
-	public NoticeItem(NoticeType type, String title, String content) {
-		loader = new FormLoader("frame", "notice-item-frame", this);
+	public ToastItem(ToastType type, String title, String content) {
+		loader = new FormLoader("frame", "toast-item-frame", this);
 		menu = new ContextMenu(
 			new MenuItem("Copy Text", event -> CopyStringAction.execute(title + "\n\n" + content))
 		);
 		menu.setNode(this);
+
+		hbxBoxRoot.setPickOnBounds(true);
+		// hbxBoxRoot.setMouseTransparent(false);
 
 		lblBoxTitle.setText(title);
 		lblBoxTitle.setWrapText(true);
@@ -47,7 +48,7 @@ public class NoticeItem extends StackPane {
 
 		btnBoxClose.setGraphic(AllSVGIcons.get("Box.Close"));
 		btnBoxClose.setOnAction(event -> {
-			getView().getItems().remove(this);
+			getView().getChildren().remove(this);
 		});
 
 		/* setOnMouseClicked(event -> {
@@ -61,15 +62,15 @@ public class NoticeItem extends StackPane {
 		getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 
-	public void setView(NoticeView parent) {
+	private ToastView parent;
+	public void setView(ToastView parent) {
 		this.parent = parent;
+	}
+	public ToastView getView() {
+		return parent;
 	}
 
 	public HBox getButtonBar() {
 		return hbxBtnBar;
-	}
-
-	public NoticeView getView() {
-		return parent;
 	}
 }

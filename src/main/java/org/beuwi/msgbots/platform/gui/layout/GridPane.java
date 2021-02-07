@@ -18,6 +18,9 @@ public class GridPane extends javafx.scene.layout.GridPane implements Layout {
     public void addItem(Node item, int column, int row) {
         add(item, column, row);
     }
+    public void addItem(Node item, int column, int row, int colspan, int rowspan) {
+        add(item, column, row, colspan, rowspan);
+    }
 
     public void addColumn() {
         getColumnConstraints().add(new ColumnConstraints());

@@ -24,14 +24,14 @@ public class AnchorPane extends javafx.scene.layout.AnchorPane implements Layout
 		return findById(this, id);
 	};
 
-	public static void setAnchor(Node child, Anchor value) {
+	/* public static void setAnchor(Node child, Anchor value) {
 		/* System.out.println(value.getTop() + " : " +
 				value.getRight() + " : " +
 				value.getBottom() + " : " +
 				value.getLeft()); */
-		setTopAnchor(child, value.getTop());
+		/* setTopAnchor(child, value.getTop());
 		setRightAnchor(child, value.getRight());
 		setBottomAnchor(child, value.getBottom());
 		setLeftAnchor(child, value.getLeft());
-	}
+	} */
 }

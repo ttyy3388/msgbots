@@ -1,6 +1,6 @@
 package org.beuwi.msgbots.platform.gui.enums;
 
-public enum NoticeType {
+public enum ToastType {
 	EVENT {
 		@Override
 		public String toString() {

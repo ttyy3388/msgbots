@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<?import org.beuwi.msgbots.platform.gui.layout.GridPane?>
+<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
+
+<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+	<GridPane>
+		<columnConstraints>
+			<ColumnConstraints hgrow="SOMETIMES"></ColumnConstraints>
+		</columnConstraints>
+		<rowConstraints>
+			<RowConstraints vgrow="SOMETIMES"></RowConstraints>
+			<RowConstraints vgrow="SOMETIMES"></RowConstraints>
+			<RowConstraints vgrow="SOMETIMES"></RowConstraints>
+		</rowConstraints>
+		<children>
+			<!-- Menu Bar Area -->
+			<StackPane fx:id="stpMenuBar"
+					   GridPane.columnIndex="0"
+					   GridPane.rowIndex="0"
+					   GridPane.columnSpan="1"
+					   GridPane.rowSpan="1"></StackPane>
+			<!-- Inner View Area -->
+			<StackPane fx:id="stpInnerArea"
+					   GridPane.columnIndex="0"
+					   GridPane.rowIndex="1"
+					   GridPane.columnSpan="1"
+					   GridPane.rowSpan="1"
+					   GridPane.hgrow="ALWAYS"
+					   GridPane.vgrow="ALWAYS">
+				<children>
+					<GridPane>
+						<columnConstraints>
+							<ColumnConstraints hgrow="SOMETIMES"></ColumnConstraints>
+							<ColumnConstraints hgrow="SOMETIMES"></ColumnConstraints>
+							<ColumnConstraints hgrow="SOMETIMES"></ColumnConstraints>
+						</columnConstraints>
+						<rowConstraints>
+							<RowConstraints vgrow="SOMETIMES"></RowConstraints>
+							<RowConstraints vgrow="SOMETIMES"></RowConstraints>
+						</rowConstraints>
+						<children>
+							<!-- Side Area Part -->
+							<StackPane fx:id="stpSideArea"
+									   GridPane.columnIndex="0"
+									   GridPane.rowIndex="0"
+									   GridPane.columnSpan="1"
+									   GridPane.rowSpan="1"></StackPane>
+							<!-- Tool Area Part -->
+							<StackPane fx:id="stpToolArea"
+									   GridPane.columnIndex="0"
+									   GridPane.rowIndex="1"
+									   GridPane.columnSpan="2"
+									   GridPane.rowSpan="1"></StackPane>
+							<!-- Main Area Part -->
+							<StackPane fx:id="stpMainArea"
+									   GridPane.columnIndex="1"
+									   GridPane.rowIndex="0"
+									   GridPane.columnSpan="1"
+									   GridPane.rowSpan="1"
+									   GridPane.hgrow="ALWAYS"
+									   GridPane.vgrow="ALWAYS"></StackPane>
+							<!-- Debug Area Part -->
+							<StackPane fx:id="stpDebugArea"
+									   GridPane.columnIndex="2"
+									   GridPane.rowIndex="0"
+									   GridPane.columnSpan="1"
+									   GridPane.rowSpan="2"></StackPane>
+						</children>
+					</GridPane>
+				</children>
+			</StackPane>
+			<!-- Status Bar Area -->
+			<StackPane fx:id="stpStatusBar"
+					   GridPane.columnIndex="0"
+					   GridPane.rowIndex="2"
+					   GridPane.columnSpan="1"
+					   GridPane.rowSpan="1"></StackPane>
+		</children>
+	</GridPane>
+</StackPane>

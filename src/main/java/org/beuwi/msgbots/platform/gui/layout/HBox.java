@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 
 import org.beuwi.msgbots.platform.gui.base.Control;

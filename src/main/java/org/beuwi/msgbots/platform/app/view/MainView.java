@@ -1,24 +1,39 @@
 package org.beuwi.msgbots.platform.app.view;
 
+import javafx.collections.ObservableMap;
+import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
+import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
-import org.beuwi.msgbots.platform.app.view.parts.DebugAreaPart;
-import org.beuwi.msgbots.platform.app.view.parts.MainAreaPart;
-import org.beuwi.msgbots.platform.app.view.parts.MenuBarPart;
-import org.beuwi.msgbots.platform.app.view.parts.SideAreaPart;
-import org.beuwi.msgbots.platform.app.view.parts.StatusBarPart;
-import org.beuwi.msgbots.platform.app.view.parts.ToolAreaPart;
+import org.beuwi.msgbots.platform.app.view.parts.*;
 import org.beuwi.msgbots.platform.gui.layout.BorderPane;
+import org.beuwi.msgbots.platform.gui.layout.GridPane;
+import org.beuwi.msgbots.platform.gui.layout.HBox;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
+import org.beuwi.msgbots.platform.gui.layout.VBox;
 import org.beuwi.msgbots.platform.gui.window.WindowType;
 import org.beuwi.msgbots.platform.gui.window.WindowWrap;
 import org.beuwi.msgbots.platform.util.SharedValues;
 
+import java.util.List;
+
 public class MainView implements View {
-	private static final BorderPane innerArea = new BorderPane();
-	private static final BorderPane outerArea = new BorderPane();
-	private static final StackPane rootArea = new StackPane();
+
+	private static ObservableMap<String, Object> namespace;
+	private static StackPane root;
+	private static FormLoader loader;
+
+	@FXML private StackPane stpMenuBar;
+	@FXML private StackPane stpInnerArea;
+	@FXML private StackPane stpStatusBar;
+
+	@FXML private StackPane stpSideArea;
+	@FXML private StackPane stpMainArea;
+	@FXML private StackPane stpToolArea;
+	@FXML private StackPane stpDebugArea;
 
 	// Primary Stage
 	private static Stage stage;
@@ -27,22 +42,27 @@ public class MainView implements View {
 		this.stage = stage;
 	}
 
+	@Override
 	public void init() {
-		innerArea.setLeft(SideAreaPart.getRoot());
-		innerArea.setCenter(MainAreaPart.getRoot());
-		innerArea.setBottom(ToolAreaPart.getRoot());
+		loader = new FormLoader("layout", "main-view-layout", this);
+		namespace = loader.getNamespace();
+		root = loader.getRoot();
 
-		outerArea.setTop(MenuBarPart.getRoot());
-		outerArea.setRight(DebugAreaPart.getRoot());
-		outerArea.setCenter(innerArea);
-		outerArea.setBottom(StatusBarPart.getRoot());
+		// Add parts
+		stpMenuBar.getChildren().add(MenuBarPart.getRoot());
+		stpInnerArea.getChildren().add(ToastListPart.getRoot());
+		stpSideArea.getChildren().add(SideAreaPart.getRoot());
+		stpMainArea.getChildren().add(MainAreaPart.getRoot());
+		stpToolArea.getChildren().add(ToolAreaPart.getRoot());
+		stpDebugArea.getChildren().add(DebugAreaPart.getRoot());
+		stpStatusBar.getChildren().add(StatusBarPart.getRoot());
 
-		rootArea.setMinWidth(800);
-		rootArea.setMinHeight(600);
-		rootArea.setPrefWidth(1400);
-		rootArea.setPrefHeight(900);
+		// List<Node> children = root.getChildren();
 
-		rootArea.getChildren().setAll(outerArea);
+		root.setMinWidth(800);
+		root.setMinHeight(600);
+		root.setPrefWidth(1400);
+		root.setPrefHeight(900);
 
 		// 추후 윈도우 프레임으로 이전
 		stage.setMinWidth(800);
@@ -67,6 +87,6 @@ public class MainView implements View {
 	}
 
 	public static StackPane getRoot() {
-		return rootArea;
+		return root;
 	}
 }

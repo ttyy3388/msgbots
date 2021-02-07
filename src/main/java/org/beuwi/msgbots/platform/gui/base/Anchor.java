@@ -5,7 +5,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class Anchor {
-    public static final Anchor EMPTY = new Anchor(null, null, null, null);
+    /* public static final Anchor EMPTY = new Anchor(null, null, null, null);
 
     private Double top;
     private Double right;
@@ -33,7 +33,7 @@ public class Anchor {
     }
     public Double getLeft() {
         return left;
-    }
+    } */
 
     /* @Override
     public boolean equals(Object object) {

@@ -200,36 +200,6 @@
 	-fx-padding: 0 5 0 5;
 }
 
-/* NOTICE ITEM */
-.notice-item {
-	-fx-background-color: #252526;
-	-fx-border-color: transparent;
-	-fx-border-width: 1;
-}
-.notice-item .title-bar .button {
-    -fx-cursor: hand;
-}
-.notice-item .title-bar .button .icon {
-	-fx-background-color: #FFFFFF;
-}
-/* .notice-item .title-bar .button:hover .icon {
-	-fx-background-color: #007ACC;
-} */
-.notice-item:focused {
-	-fx-border-color: #007ACC;
-}
-.notice-item:hover {
-    -fx-background-color: #2A2D2E;
-}
-
-/* NOTICE VIEW */
-/* .notice-view {
-    -fx-padding: 2.5 0 2.5 0;
-}
-.notice-view .list-cell {
-    -fx-padding: 2.5 5 2.5 5;
-} */
-
 /* LOG ITEM */
 .log-item {
 	-fx-background-color: #2B2B2B;
@@ -351,6 +321,37 @@
 .text-field:focused {
 	-fx-border-color: #007ACC;
 }
+
+/* TOAST ITEM */
+.toast-item {
+	-fx-background-color: #252526;
+	-fx-border-color: #2B2B2B;
+	-fx-border-width: 1;
+}
+.toast-item .title-bar .button {
+    -fx-cursor: hand;
+}
+.toast-item .title-bar .button .icon {
+	-fx-background-color: #FFFFFF;
+}
+/* .notice-item .title-bar .button:hover .icon {
+	-fx-background-color: #007ACC;
+} */
+.toast-item:hover,
+.toast-item:focused {
+	-fx-border-color: #007ACC;
+}
+.toast-item:hover {
+    -fx-background-color: #2A2D2E;
+}
+
+/* TOAST VIEW */
+/* .toast-view {
+    -fx-padding: 2.5 0 2.5 0;
+}
+.toast-view .list-cell {
+    -fx-padding: 2.5 5 2.5 5;
+} */
 
 /* TOGGlE SWITCH */
 .toggle-switch {

@@ -9,21 +9,20 @@
 
 <AnchorPane styleClass="tool-area" minHeight="30.0" prefHeight="250.0" xmlns:fx="http://javafx.com/fxml">
 	<children>
-		<TabView>
+		<TabView AnchorPane.topAnchor="0.0"
+				 AnchorPane.rightAnchor="10.0"
+				 AnchorPane.bottomAnchor="0.0"
+				 AnchorPane.leftAnchor="10.0">
 			<tabs>
-
 			</tabs>
-			<AnchorPane.anchor>
-				<Anchor top="0.0" left="10.0" right="10.0" bottom="0.0"></Anchor>
-			</AnchorPane.anchor>
 		</TabView>
-		<StackPane fx:id="stpResizeBar" prefHeight="5.0">
+		<StackPane AnchorPane.topAnchor="0.0"
+				   AnchorPane.rightAnchor="0.0"
+				   AnchorPane.leftAnchor="0.0"
+				   fx:id="stpResizeBar" prefHeight="5.0">
 			<cursor>
 				<Cursor fx:constant="N_RESIZE"></Cursor>
 			</cursor>
-			<AnchorPane.anchor>
-				<Anchor top="0.0" right="0.0" left="0.0"></Anchor>
-			</AnchorPane.anchor>
 		</StackPane>
 	</children>
 </AnchorPane>

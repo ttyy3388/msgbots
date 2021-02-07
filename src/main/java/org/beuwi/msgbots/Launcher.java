@@ -5,23 +5,16 @@ import javafx.application.Platform;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import org.beuwi.msgbots.compiler.engine.ScriptManager;
-import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.MainView.MainWindow;
 import org.beuwi.msgbots.platform.app.view.actions.*;
 import org.beuwi.msgbots.platform.app.view.parts.*;
 import org.beuwi.msgbots.platform.app.view.tabs.*;
-import org.beuwi.msgbots.platform.gui.control.BotItem;
-import org.beuwi.msgbots.platform.gui.control.BotView;
 import org.beuwi.msgbots.platform.gui.control.LogItem;
 import org.beuwi.msgbots.platform.gui.control.LogView;
-import org.beuwi.msgbots.platform.gui.control.NoticeItem;
-import org.beuwi.msgbots.platform.gui.enums.NoticeType;
+import org.beuwi.msgbots.platform.gui.control.ToastItem;
+import org.beuwi.msgbots.platform.gui.enums.ToastType;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
-import org.beuwi.msgbots.platform.util.SharedValues;
-
-import java.io.File;
 
 public class Launcher extends Application {
 
@@ -58,7 +51,7 @@ public class Launcher extends Application {
 			new DebugRoomTab().init();
 			new DetailLogTab().init();
 			new GlobalLogTab().init();
-			new NoticeListTab().init();
+			// new NoticeListTab().init();
 			new ProblemListTab().init();
 			// new RunningBotsTab().init();
 
@@ -68,11 +61,12 @@ public class Launcher extends Application {
 			new MenuBarPart().init();
 			new SideAreaPart().init();
 			new StatusBarPart().init();
+			new ToastListPart().init();
 			new ToolAreaPart().init();
 
 			// Initialize actions
 			new AddMainAreaTabAction().init();
-			new AddNoticeListItemAction().init();
+			new AddToastListItemAction().init();
 			new InputDetailLogAction().init();
 			new OpenProgramTabAction().init();
 			new OpenScriptTabAction().init();
@@ -83,18 +77,18 @@ public class Launcher extends Application {
 			new MainWindow(stage).create();
 
 			OpenProgramTabAction.execute(GlobalConfigTab.getRoot());
-			AddNoticeListItemAction.execute(new NoticeItem(
-				NoticeType.ERROR,
+			AddToastListItemAction.execute(new ToastItem(
+				ToastType.ERROR,
 				"TEST TITLE",
 				"TEST CONTENT"
 			));
-			AddNoticeListItemAction.execute(new NoticeItem(
-				NoticeType.EVENT,
+			AddToastListItemAction.execute(new ToastItem(
+				ToastType.EVENT,
 				"TEST TITLE",
 				"TEST CONTENT"
 			));
-			AddNoticeListItemAction.execute(new NoticeItem(
-				NoticeType.WARNING,
+			AddToastListItemAction.execute(new ToastItem(
+				ToastType.WARNING,
 				"TEST TITLE",
 				"TEST CONTENT"
 			));
