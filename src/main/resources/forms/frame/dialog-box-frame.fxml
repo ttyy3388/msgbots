@@ -9,7 +9,7 @@
 <?import org.beuwi.msgbots.platform.gui.layout.BorderPane?>
 <?import org.beuwi.msgbots.platform.gui.layout.HBox?>
 
-<BorderPane fx:id="brpWinRoot" styleClass="root-pane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<BorderPane fx:id="brpWinRoot" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<top>
 		<HBox styleClass="title-bar" fittable="true" prefHeight="30.0">
 			<children>

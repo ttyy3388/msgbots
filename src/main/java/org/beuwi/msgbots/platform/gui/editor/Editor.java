@@ -7,7 +7,9 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.input.KeyEvent;
 
 import org.beuwi.msgbots.manager.FileManager;
+import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
+import org.beuwi.msgbots.setting.GlobalSettings;
 
 import java.io.File;
 
@@ -26,9 +28,9 @@ public final class Editor extends StackPane {
 			// 한 파일만 지정 가능함
 			if (!check) {
 				setText(FileManager.read(file));
-				FileManager.link(file, () -> {
+				/* FileManager.link(file, () -> {
 					setText(FileManager.read(file));
-				});
+				}); */
 
 				check = true;
 			}
@@ -63,6 +65,14 @@ public final class Editor extends StackPane {
 			UpdateStatusBarAction.execute(new String[] { fileName, linePosition, lineEncoding, fileEncoding});
 		}); */
 
+		focusedProperty().addListener(change -> {
+			/* if (isFocused()) {
+
+			} */
+
+			// setText(FileManager.read(file));
+		});
+
 		addEventHandler(KeyEvent.KEY_PRESSED, event -> {
 			if (event.isControlDown()) {
 				switch (event.getCode()) {
@@ -79,15 +89,15 @@ public final class Editor extends StackPane {
 			}
 		});
 
-		/* setTheme(switch (ThemeType.parse(GlobalSettings.getString("program:color_theme"))) {
+		setTheme(switch (ThemeType.parse(GlobalSettings.getString("program:color_theme"))) {
 			case DARK -> "vs-dark";
 			case LIGHT -> "vs-light";
-			case BLACK -> "black";
-			case WHITE -> "white";
-			case USER -> "vs-light";
-		}); */
+			// case BLACK -> "black";
+			// case WHITE -> "white";
+			// case USER -> "vs-light";
+		});
 		// Default Theme
-		setTheme("vs-dark");
+		// setTheme("vs-dark");
 		// Default Language
 		setLanguage("javascript");
 		getStyleClass().add("editor");

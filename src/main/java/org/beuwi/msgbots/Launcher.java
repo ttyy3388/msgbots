@@ -13,8 +13,10 @@ import org.beuwi.msgbots.platform.app.view.tabs.*;
 import org.beuwi.msgbots.platform.gui.control.LogItem;
 import org.beuwi.msgbots.platform.gui.control.LogView;
 import org.beuwi.msgbots.platform.gui.control.ToastItem;
+import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.gui.enums.ToastType;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
+import org.beuwi.msgbots.setting.GlobalSettings;
 
 public class Launcher extends Application {
 
@@ -35,7 +37,12 @@ public class Launcher extends Application {
 			Font.loadFont(ResourceUtils.getFont("roboto-bold"),   0); // Family : "Roboto Bold"
 			Font.loadFont(ResourceUtils.getFont("roboto-medium"), 0); // Family : "Roboto Medium"
 
+			// Base Theme
 			Application.setUserAgentStylesheet(ResourceUtils.getTheme("base"));
+
+			/* GlobalSettings.addChangedListener(() -> {
+				ChangeColorThemeAction.execute(ThemeType.parse(GlobalSettings.getData("program:color_theme")));
+			}); */
 		}
 		catch (Exception e) {
 			e.printStackTrace();

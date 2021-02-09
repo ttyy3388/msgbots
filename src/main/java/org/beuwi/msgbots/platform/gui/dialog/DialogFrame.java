@@ -18,15 +18,15 @@ import org.beuwi.msgbots.platform.gui.control.MenuItem;
 import org.beuwi.msgbots.platform.gui.layout.BorderPane;
 import org.beuwi.msgbots.platform.gui.layout.HBox;
 import org.beuwi.msgbots.platform.gui.layout.ShadowPane;
+import org.beuwi.msgbots.platform.gui.layout.StackPane;
 import org.beuwi.msgbots.platform.gui.window.WindowFrame;
 import org.beuwi.msgbots.platform.gui.window.WindowType;
 import org.beuwi.msgbots.platform.util.AllSVGIcons;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
-public abstract class DialogFrame extends ShadowPane {
+public abstract class DialogFrame extends BorderPane {
 	private static final String DEFAULT_STYLE_CLASS = "dialog-box";
 	private static final Insets DEFAULT_PADDING_INSETS = new Insets(5.0);
-	private static final PseudoClass FOCUSED_PSEUDO_CLASS = PseudoClass.getPseudoClass("focused");
 
 	// WINDOW
 	@FXML private BorderPane brpWinRoot;
@@ -83,7 +83,6 @@ public abstract class DialogFrame extends ShadowPane {
 		this.title = title;
 	}
 
-	@Override
 	public void setContent(Node content) {
 		this.content = content;
 	}
@@ -96,7 +95,6 @@ public abstract class DialogFrame extends ShadowPane {
 		return title;
 	}
 
-	@Override
 	public Node getContent() {
 		return content;
 	}
@@ -127,7 +125,7 @@ public abstract class DialogFrame extends ShadowPane {
 	}
 
 	public void create() {
-		super.setContent(brpWinRoot);
+		super.setCenter(brpWinRoot);
 		event.setMovable(brpWinRoot);
 
 		brpWinMain.setCenter(content);
@@ -163,9 +161,9 @@ public abstract class DialogFrame extends ShadowPane {
 
 		/* ------------------------------------------------------ */
 
-		stage.focusedProperty().addListener(change -> {
-			pseudoClassStateChanged(FOCUSED_PSEUDO_CLASS, stage.isFocused());
-		});
+		/* stage.focusedProperty().addListener(change -> {
+			// pseudoClassStateChanged(FOCUSED_PSEUDO_CLASS, stage.isFocused());
+		}); */
 
 		stage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
 			switch (event.getCode()) {
@@ -177,7 +175,7 @@ public abstract class DialogFrame extends ShadowPane {
 			}
 		});
 
-		this.setPadding(DEFAULT_PADDING_INSETS);
+		// this.setPadding(DEFAULT_PADDING_INSETS);
 
 		frame.setContent(this);
 		frame.setTitle(title);

@@ -1,6 +1,7 @@
 package org.beuwi.msgbots.platform.util;
 
 import javafx.scene.image.Image;
+import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -40,5 +41,9 @@ public class ResourceUtils {
 
 	public static String getTheme(String name) {
 		return ResourceUtils.class.getResource("/themes/" + name + ".css").toExternalForm();
+	}
+
+	public static String getTheme(ThemeType theme) {
+		return ResourceUtils.class.getResource("/themes/" + theme.toString() + ".css").toExternalForm();
 	}
 }

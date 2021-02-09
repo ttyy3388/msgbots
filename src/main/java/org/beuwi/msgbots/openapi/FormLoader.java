@@ -1,9 +1,11 @@
 package org.beuwi.msgbots.openapi;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 
 import org.beuwi.msgbots.platform.gui.control.TabItem;
+import org.beuwi.msgbots.platform.gui.layout.ScrollPane;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
 import java.net.URL;
@@ -34,6 +36,9 @@ public class FormLoader extends FXMLLoader {
 	public <T> T getComponent() {
 		if (getRoot() instanceof TabItem) {
 			return (T) ((TabItem) getRoot()).getContent();
+		}
+		if (getRoot() instanceof ScrollPane) {
+			return (T) ((ScrollPane) getRoot()).getContent();
 		}
 		/* if (getRoot() instanceof SideItem) {
 			VBox item = ((SideItem) getRoot()).getContent();

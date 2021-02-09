@@ -21,7 +21,7 @@
 	"program":{
 		"compile_auto_save":true,
 		"text_rendering":"lcd",
-		"start_auto_compile":true,
-		"color_theme":"Dark"
+		"start_auto_compile":"true",
+		"color_theme":"Light"
 	}
 }

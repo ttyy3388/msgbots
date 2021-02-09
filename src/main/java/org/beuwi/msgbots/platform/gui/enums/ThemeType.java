@@ -16,8 +16,8 @@ public enum ThemeType {
 		public String toString() {
 			return "Light";
 		}
-	},
-	BLACK {
+	};
+	/* BLACK {
 		@Override
 		public String toString() {
 			return "Black";
@@ -34,7 +34,7 @@ public enum ThemeType {
 		public String toString() {
 			return "User";
 		}
-	};
+	}; */
 
 	public File toFile() {
 		return null; /* switch (this) {
@@ -48,8 +48,7 @@ public enum ThemeType {
 
 	public static <T extends Enum<T>> ThemeType parse(String value) {
 		return valueOf(value.toUpperCase());
-		/*
-		// 대문자 변환 시 일치하는게 없다면
+		/* // 대문자 변환 시 일치하는게 없다면
 		ThemeType result = valueOf(value.toUpperCase());
 
 		if (result != null) {

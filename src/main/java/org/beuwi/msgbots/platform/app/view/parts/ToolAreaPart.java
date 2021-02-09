@@ -7,10 +7,13 @@ import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.tabs.DetailLogTab;
 import org.beuwi.msgbots.platform.app.view.tabs.ProblemListTab;
+import org.beuwi.msgbots.platform.gui.control.Button;
 import org.beuwi.msgbots.platform.gui.control.TabView;
 import org.beuwi.msgbots.platform.gui.layout.AnchorPane;
+import org.beuwi.msgbots.platform.gui.layout.HBox;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
 import org.beuwi.msgbots.platform.gui.layout.VBox;
+import org.beuwi.msgbots.platform.util.AllSVGIcons;
 
 public class ToolAreaPart implements View {
 	private static ObservableMap<String, Object> namespace;
@@ -18,6 +21,8 @@ public class ToolAreaPart implements View {
 	private static AnchorPane root;
 	private static TabView component;
 	private static StackPane resizeBar;
+
+	// private static HBox buttonBar;
 
 	@Override
 	public void init() {
@@ -37,10 +42,15 @@ public class ToolAreaPart implements View {
 			}
 		});
 
+		// Button Bar
+		/* buttonBar = (HBox) namespace.get("hbxButtonBar");
+		Button reload = (Button) buttonBar.getChildren().get(0);
+		reload.setGraphic(AllSVGIcons.get("Bot.Reload")); */
+
 		component.addTab(
-			/* NoticeListTab.getRoot(), */
-			ProblemListTab.getRoot(),
-			DetailLogTab.getRoot()
+			// NoticeListTab.getRoot(),
+			DetailLogTab.getRoot(),
+			ProblemListTab.getRoot()
 		);
 		component.selectTab(DetailLogTab.getRoot());
 	}

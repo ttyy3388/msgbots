@@ -30,7 +30,7 @@
 }
 .bot-item > .button {
 	-fx-background-radius: 15;
-	-fx-background-image: url('../images/reload.png');
+	/* -fx-background-image: url('../images/reload.png'); */
 	-fx-background-size: 15;
 }
 .bot-item > .button:hover {
@@ -39,10 +39,13 @@
 .bot-item > .button:armed {
 	-fx-background-color: rgba(255, 255, 255, 0.2);
 }
+.bot-item > .button .icon {
+	-fx-background-color: #FFFFFF;
+}
 .bot-item > .check-box .box {
 	/* -fx-background-color: #FF3333; */
 	-fx-background-radius: 10;
-	-fx-background-color: FFFFFF;
+	-fx-background-color: #FFFFFF;
 	-fx-border-width: 0;
 	-fx-padding: 3;
 }
@@ -134,16 +137,16 @@
 }
 
 /* COMBO BOX POPUP */
-.combo-box-popup > .list-view {
+.combo-box-popup .list-view {
 	-fx-background-color: #252526;
 	-fx-border-color: #007ACC;
 	-fx-border-width: 0 1 1 1;
 	-fx-padding: 5 0 5 0;
 }
-.combo-box-popup > .list-view .list-cell {
+.combo-box-popup .list-view .list-cell {
 	-fx-padding: 5;
 }
-.combo-box-popup > .list-view .list-cell:hover {
+.combo-box-popup .list-view .list-cell:hover {
 	-fx-background-color: #062F4A;
 }
 
@@ -159,6 +162,22 @@
 	-fx-background-insets: 5 0 5 0;
 	-fx-background-color: #BABABA;
 	-fx-padding: 5.5 0 5.5 0;
+}
+
+/* DIALOG BOX */
+.dialog-box {
+	-fx-background-color: #252526;
+	-fx-border-color: transparent;
+	-fx-border-width: 1;
+}
+.dialog-box:focused {
+	-fx-border-color: #007ACC;
+}
+.dialog-box .title-bar .button:hover {
+	-fx-background-color: #D61425;
+}
+.dialog-box .title-bar .button .icon {
+	-fx-background-color: #FFFFFF;
 }
 
 /* EDITOR */
@@ -244,6 +263,11 @@
 .separator .line {
 	-fx-background-color: #888888;
 	-fx-padding: 0.5 0 0.5 0;
+}
+
+/* SHADOW PANE */
+.shadow-pane {
+    -fx-background-color: transparent;
 }
 
 /* SLIDER */
@@ -408,20 +432,21 @@
     -fx-border-color: #FFFFFF;
     -fx-border-width: 0 0 1 0;
 } */
-.tool-area .tab-view .tab-header-area {
-    -fx-background-color: #1E1E1E;
-}
 .tool-area .tab-item {
     -fx-border-width: 0;
+    -fx-cursor: hand;
 }
 .tool-area .tab-item .tab-label {
-    /* -fx-cursor: hand; */
+    -fx-border-color: transparent;
+    -fx-border-width: 0 0 1 0;
 }
 /* .tool-area .tab-item:hover .tab-label {
 } */
 .tool-area .tab-item:selected .tab-label {
     -fx-border-color: #FFFFFF;
-    -fx-border-width: 0 0 1 0;
+}
+.tool-area .tab-view .tab-header-area {
+    -fx-background-color: #1E1E1E;
 }
 .tool-area .text-area {
      -fx-border-width: 0;

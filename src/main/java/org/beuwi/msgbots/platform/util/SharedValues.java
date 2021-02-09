@@ -4,6 +4,8 @@ import java.io.File;
 
 import javafx.scene.image.Image;
 import org.beuwi.msgbots.manager.FileManager;
+import org.beuwi.msgbots.platform.gui.enums.ThemeType;
+import org.beuwi.msgbots.setting.GlobalSettings;
 
 public class SharedValues {
 	public static final String DEFAULT_PROGRAM_TITLE = "Messenger Bot Simulator";
@@ -32,6 +34,7 @@ public class SharedValues {
 	public static final String DATA_FOLDER_PATH = System.getProperty("user.dir") + File.separator + "data";
 	public static final String BOTS_FOLDER_PATH = System.getProperty("user.dir") + File.separator + "bots";
 
+	public static final String CUSTOM_THEME_PATH = "custom_theme.css";
     public static final String PROFILE_USER_PATH = "profile_user.png";
 	public static final String PROFILE_BOT_PATH = "profile_bot.png";
 	public static final String GLOBAL_LOG_PATH = "global_log.json";
@@ -45,6 +48,7 @@ public class SharedValues {
 	public static final File DATA_FOLDER_FILE = new File(SharedValues.DATA_FOLDER_PATH);
 	public static final File BOTS_FOLDER_FILE = new File(SharedValues.BOTS_FOLDER_PATH);
 
+	public static final File CUSTOM_THEME_FILE = FileManager.getDataFile(CUSTOM_THEME_PATH);
 	public static final File PROFILE_USER_FILE = FileManager.getDataFile(PROFILE_USER_PATH);
 	public static final File PROFILE_BOT_FILE = FileManager.getDataFile(PROFILE_BOT_PATH);
 	public static final File GLOBAL_LOG_FILE = FileManager.getDataFile(GLOBAL_LOG_PATH);
@@ -56,7 +60,6 @@ public class SharedValues {
 	// public static final File BASE_THEME_FILE =  ResourceUtils.getTheme("/themes/base.css");
 	// public static final File DARK_THEME_FILE = ResourceUtils.getFile("/themes/dark.css");
 	// public static final File LIGHT_THEME_FILE = ResourceUtils.getFile("/themes/light.css");
-	// public static final File USER_THEME_FILE = ResourceUtils.getFile("/themes/user.css");
 	// public static final File BLACK_THEME_FILE = ResourceUtils.getFile("/themes/dark.css");
 	// public static final File WHITE_THEME_FILE = ResourceUtils.getFile("/themes/dark.css");
 }

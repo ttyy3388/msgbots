@@ -21,12 +21,12 @@ public class TextArea extends javafx.scene.control.TextArea {
 	private static final int DEFAULT_PREF_HEIGHT = 50;
 
 	private final ContextMenu menu = new ContextMenu(
-		new MenuItem("Undo", "Ctrl + Z" , event -> this.undo()),
-		new MenuItem("Redo", "Ctrl + Y" , event -> this.redo()),
+		new MenuItem("Undo", "Ctrl + Z" , event -> this.undo()).enable(editableProperty()),
+		new MenuItem("Redo", "Ctrl + Y" , event -> this.redo()).enable(editableProperty()),
 		new Separator(),
-		new MenuItem("Cut", "Ctrl + X", event -> this.cut()),
+		new MenuItem("Cut", "Ctrl + X", event -> this.cut()).enable(editableProperty()),
 		new MenuItem("Copy", "Ctrl + C", event -> this.copy()),
-		new MenuItem("Paste", "Ctrl + V", event -> this.paste()),
+		new MenuItem("Paste", "Ctrl + V", event -> this.paste()).enable(editableProperty()),
 		new Separator(),
 		new MenuItem("Select All", "Ctrl + A", event -> this.selectAll())
 	);

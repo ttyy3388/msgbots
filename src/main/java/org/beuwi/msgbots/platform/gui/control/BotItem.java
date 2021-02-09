@@ -16,18 +16,19 @@ import org.beuwi.msgbots.platform.app.view.dialogs.DeleteBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.RenameBotDialog;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
 import org.beuwi.msgbots.platform.gui.layout.GridPane;
+import org.beuwi.msgbots.platform.util.AllSVGIcons;
 import org.beuwi.msgbots.setting.ScriptSettings;
 
 // Bot Item
 public class BotItem extends GridPane {
 	private static final String DEFAULT_STYLE_CLASS = "bot-item";
 
-	private final CheckBox 	   chbIsCompiled  = new CheckBox();
-	private final Label   	   lblBotName  = new Label();
-	private final Button       btnCompile = new Button();
+	private final CheckBox chbIsCompiled = new CheckBox();
+	private final Label lblBotName = new Label();
+	private final Button btnCompile = new Button();
 	
 	// Power Switch
-	private final ToggleSwitch tgbBotPower  = new ToggleSwitch();
+	private final ToggleSwitch tgbBotPower = new ToggleSwitch();
 	
 	private final ContextMenu menu;
 
@@ -106,6 +107,7 @@ public class BotItem extends GridPane {
 			}
 		});
 
+		btnCompile.setGraphic(AllSVGIcons.get("Bot.Reload"));
 		btnCompile.setOnAction(event -> {
 			ScriptManager.initScript(name, true, false);
 		});

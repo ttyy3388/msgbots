@@ -9,6 +9,7 @@ import javafx.scene.Node;
 
 import javafx.scene.layout.Priority;
 
+import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
 import org.beuwi.msgbots.platform.gui.layout.VBox;
 import org.beuwi.msgbots.setting.SharedSettings;
@@ -38,70 +39,68 @@ public class OptionItem extends VBox {
 		VBox.setVgrow(panel, Priority.ALWAYS);
 	}
 
+	public void initValue() {
+		// 주소에 "{$name}"과 같이 변수 삽입 부분이 남아있다면 작동 X
+		if (getAddress().indexOf("$") != -1) {
+			return ;
+		}
+
+		if (getContent() instanceof Button) {
+		}
+		else if (getContent() instanceof CheckBox) {
+			CheckBox control = (CheckBox) getContent();
+			control.setSelected(SharedSettings.getBoolean(getAddress()));
+			control.selectedProperty().addListener(change -> {
+				SharedSettings.setData(getAddress(), control.isSelected());
+			});
+		}
+		else if (getContent() instanceof TextArea) {
+			TextArea control = (TextArea) getContent();
+			control.setText(SharedSettings.getString(getAddress()));
+			control.focusedProperty().addListener(change -> {
+				SharedSettings.setData(getAddress(), control.getText());
+			});
+		}
+		else if (getContent() instanceof TextField) {
+			TextField control = (TextField) getContent();
+			control.setText(SharedSettings.getString(getAddress()));
+			control.focusedProperty().addListener(change -> {
+				SharedSettings.setData(getAddress(), control.getText());
+			});
+		}
+		else if (getContent() instanceof ToggleButton) {
+			ToggleButton control = (ToggleButton) getContent();
+			control.setSelected(SharedSettings.getBoolean(getAddress()));
+			control.selectedProperty().addListener(change -> {
+				SharedSettings.setData(getAddress(), control.isSelected());
+			});
+		}
+		else if (getContent() instanceof ToggleSwitch) {
+			ToggleSwitch control = (ToggleSwitch) getContent();
+			control.setSelected(SharedSettings.getBoolean(getAddress()));
+			control.selectedProperty().addListener(change -> {
+				SharedSettings.setData(getAddress(), control.isSelected());
+			});
+		}
+		else if (getContent() instanceof Slider) {
+			Slider control = (Slider) getContent();
+			control.setValue(SharedSettings.getInt(getAddress()));
+			control.focusedProperty().addListener(change -> {
+				SharedSettings.setData(getAddress(), control.getValue());
+			});
+		}
+		else if (getContent() instanceof ComboBox) {
+			ComboBox<ThemeType> control = (ComboBox) getContent();
+			if (getAddress().equals("global:program:color_theme")) {
+				control.selectItem(ThemeType.parse(SharedSettings.getData(getAddress())));
+				control.selectedItemProperty().addListener(change -> {
+					SharedSettings.setData(getAddress(), control.getSelectedItem().toString());
+				});
+			}
+		}
+	}
+
 	public OptionItem(/* @NamedArg("type") PrefType type */) {
-		addressProperty().addListener(event -> {
-			// 어드레스에 "{$name}"과 같이 변수 삽입 부분이 남아있다면 작동 X
-			if (getAddress().indexOf("$") != -1) {
-				return ;
-			}
-
-			if (getContent() instanceof Button) {
-			}
-			else if (getContent() instanceof CheckBox) {
-				CheckBox control = (CheckBox) getContent();
-				control.setSelected(SharedSettings.getData(getAddress()));
-				control.selectedProperty().addListener(change -> {
-					SharedSettings.setData(getAddress(), control.isSelected());
-				});
-			}
-			else if (getContent() instanceof TextArea) {
-				TextArea control = (TextArea) getContent();
-				control.setText(SharedSettings.getData(getAddress()));
-				control.focusedProperty().addListener(change -> {
-					SharedSettings.setData(getAddress(), control.getText());
-				});
-			}
-			else if (getContent() instanceof TextField) {
-				TextField control = (TextField) getContent();
-				control.setText(SharedSettings.getData(getAddress()));
-				control.focusedProperty().addListener(change -> {
-					SharedSettings.setData(getAddress(), control.getText());
-				});
-			}
-			else if (getContent() instanceof ToggleButton) {
-				ToggleButton control = (ToggleButton) getContent();
-				control.setSelected(SharedSettings.getData(getAddress()));
-				control.selectedProperty().addListener(change -> {
-					SharedSettings.setData(getAddress(), control.isSelected());
-				});
-			}
-			else if (getContent() instanceof ToggleSwitch) {
-				ToggleSwitch control = (ToggleSwitch) getContent();
-				control.setSelected(SharedSettings.getData(getAddress()));
-				control.selectedProperty().addListener(change -> {
-					SharedSettings.setData(getAddress(), control.isSelected());
-				});
-			}
-			else if (getContent() instanceof Slider) {
-				Slider control = (Slider) getContent();
-				control.setValue(SharedSettings.getInt(getAddress()));
-				control.focusedProperty().addListener(change -> {
-					SharedSettings.setData(getAddress(), control.getValue());
-				});
-			}
-			else if (getContent() instanceof ComboBox) {
-				/* ComboBox control = (ComboBox) getContent();
-				if (getAddress().equals("global:program:color_theme")) {
-					control.selectItem(ThemeType.parse(SharedSettings.getData(getAddress())));
-					control.selectedItemProperty().addListener(change -> {
-						ThemeType theme = (ThemeType) control.getSelectedItem();
-						SharedSettings.setData(getAddress(), theme.toString());
-						SetColorThemeAction.execute(theme);
-					});
-				} */
-			}
-		});
-
 		label.getStyleClass().add("title");
 		panel.getStyleClass().add("content");
 		panel.setAlignment(Pos.CENTER_LEFT);
@@ -113,6 +112,8 @@ public class OptionItem extends VBox {
 		contentProperty().addListener(change -> {
 			panel.getChildren().setAll(getContent());
 		});
+
+		addressProperty().addListener(event -> initValue());
 
 		setSpacing(DEFAULT_SPACING_VALUE);
 		getChildren().setAll(label, panel);

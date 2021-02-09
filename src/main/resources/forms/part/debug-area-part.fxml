@@ -16,10 +16,11 @@
 				 AnchorPane.leftAnchor="0.0"
 				 fittable="true">
 		</TabView>
-		<StackPane AnchorPane.topAnchor="0.0"
+		<StackPane fx:id="stpResizeBar"
+				   AnchorPane.topAnchor="0.0"
 				   AnchorPane.bottomAnchor="0.0"
 				   AnchorPane.leftAnchor="0.0"
-				   fx:id="stpResizeBar" prefWidth="5.0">
+				   prefWidth="5.0">
 			<cursor>
 				<Cursor fx:constant="E_RESIZE"></Cursor>
 			</cursor>

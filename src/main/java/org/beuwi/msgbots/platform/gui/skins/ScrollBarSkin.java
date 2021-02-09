@@ -1,7 +1,10 @@
 package org.beuwi.msgbots.platform.gui.skins;
 
+import javafx.scene.Parent;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.input.ScrollEvent;
+
+import org.beuwi.msgbots.platform.gui.control.TextArea;
 
 public class ScrollBarSkin extends javafx.scene.control.skin.ScrollBarSkin {
 	private static final double DEFAULT_SCROLL_SPEED = 0.005;
@@ -14,15 +17,16 @@ public class ScrollBarSkin extends javafx.scene.control.skin.ScrollBarSkin {
 			control.setValue(control.getValue() - (event.getDeltaY() * DEFAULT_SCROLL_SPEED));
 		});
 
-		/* Parent parent = control.getParent();
+		/* if (control.getParent() != null){
+			// ScrollPane, VirtualFlow 등등이 나옴
+			Parent parent = control.getParent();
+			// TextArea, ListView 등등이 나옴
+			Parent target = parent.getParent();
+			// 텍스트 박스 스크롤 속도 조정
+			if (target instanceof TextArea){
+				TextArea textarea = (TextArea) target;
+				ScrollBar scrollbar = (ScrollBar) textarea.lookup(".scroll-bar:vertical");
 
-		if (parent != null){
-			if (parent.getParent() instanceof TextArea){
-				TextArea textarea = (TextArea) parent.getParent();
-
-				textarea.getScrollTopProperty().addListener(event ->{
-					textarea.setScrollTop(textarea.getScrollTop() + 10);
-				});
 			}
 		} */
 	}

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Separator?>
 
@@ -14,6 +15,7 @@
 <?import org.beuwi.msgbots.platform.gui.control.TabItem?>
 <?import org.beuwi.msgbots.platform.gui.control.TextField?>
 <?import org.beuwi.msgbots.platform.gui.editor.Editor?>
+<?import org.beuwi.msgbots.platform.gui.enums.ThemeType?>
 <?import org.beuwi.msgbots.platform.gui.layout.AnchorPane?>
 <?import org.beuwi.msgbots.platform.gui.layout.HBox?>
 <?import org.beuwi.msgbots.platform.gui.layout.ScrollPane?>
@@ -31,7 +33,14 @@
 							<items>
 								<OptionItem address="global:program:color_theme" title="프로그램 테마 변경">
 									<content>
-										<ComboBox maxWidth="150"></ComboBox>
+										<ComboBox maxWidth="150">
+											<items>
+												<FXCollections fx:factory="observableArrayList">
+													<ThemeType fx:constant="DARK"></ThemeType>
+													<ThemeType fx:constant="LIGHT"></ThemeType>
+												</FXCollections>
+											</items>
+										</ComboBox>
 									</content>
 								</OptionItem>
 								<!-- <OptionItem address="global:program:text_rendering" title="텍스트 렌더링 방식">
@@ -193,7 +202,7 @@
 									<content>
 										<Editor language="css">
 											<file>
-												<SharedValues fx:constant="USER_THEME_FILE"></SharedValues>
+												<SharedValues fx:constant="CUSTOM_THEME_FILE"></SharedValues>
 											</file>
 										</Editor>
 									</content>
@@ -203,15 +212,6 @@
 								<Insets left="15.0"></Insets>
 							</StackPane.margin>
 						</OptionView>
-						<!-- <NaviView>
-							<navis>
-								<NaviItem text="Button"
-								<NaviItem text="Text Area"
-								<NaviItem text="Text Field"
-								<NaviItem text="NaviItem View"
-								<NaviItem text="Dialog Box"
-							</navis>
-						</NaviView> -->
 					</content>
 				</NaviItem>
 				<NaviItem text="Bots">

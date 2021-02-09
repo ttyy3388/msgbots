@@ -10,7 +10,7 @@
 		<ToastView AnchorPane.topAnchor="10.0"
 				   AnchorPane.rightAnchor="10.0"
 				   AnchorPane.bottomAnchor="10.0"
-				   fx:id="toastView" VBox.vgrow="ALWAYS">
+				   VBox.vgrow="ALWAYS">
 		</ToastView>
 	</children>
 </AnchorPane>

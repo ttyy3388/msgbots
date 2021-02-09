@@ -1,5 +1,6 @@
 package org.beuwi.msgbots.platform.gui.window;
 
+import javafx.css.PseudoClass;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.stage.Modality;
@@ -7,10 +8,15 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import org.beuwi.msgbots.platform.app.view.MainView;
+import org.beuwi.msgbots.platform.gui.enums.ThemeType;
+import org.beuwi.msgbots.platform.gui.layout.ShadowPane;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 import org.beuwi.msgbots.platform.util.SharedValues;
+import org.beuwi.msgbots.setting.GlobalSettings;
 
 public class WindowFrame {
+	private static final PseudoClass FOCUSED_PSEUDO_CLASS = PseudoClass.getPseudoClass("focused");
+
 	private final Stage stage;
 
 	private WindowType type;
@@ -58,7 +64,15 @@ public class WindowFrame {
 	} */
 
 	public void create() {
-		final WindowScene scene = new WindowScene(content);
+		final WindowScene scene;
+
+		// 타입이 다이얼 로그라면 그림자 박스 안에 넣음
+		if (type.equals(WindowType.DIALOG)) {
+			scene =  new WindowScene(new ShadowPane(content));
+		}
+		else {
+			scene = new WindowScene(content);
+		}
 
 		try {
 			if (type.equals(WindowType.DIALOG)) {
@@ -67,8 +81,15 @@ public class WindowFrame {
 				stage.initStyle(StageStyle.TRANSPARENT);
 				stage.initOwner(MainView.getStage());
 			}
+			else {
+
+			}
 
 			// super.setContent(content);
+
+			stage.focusedProperty().addListener(change -> {
+				content.pseudoClassStateChanged(FOCUSED_PSEUDO_CLASS, stage.isFocused());
+			});
 
 			stage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
 				/* if (event.getCode().equals(KeyCode.ALT)) {
@@ -76,7 +97,11 @@ public class WindowFrame {
 				} */
 			});
 
-			scene.getStylesheets().setAll(ResourceUtils.getTheme("dark"));
+			scene.getStylesheets().setAll(
+				ResourceUtils.getTheme(
+					ThemeType.parse(GlobalSettings.getString("program:color_theme"))
+				)
+			);
 			/* String style = FileManager.read(SharedValues.BASE_THEME_FILE);
 			String data = style.replace(" ", "").split(".text\\{")[1].split("}")[0];
 			data.split("-fx-font-smoothing-type:")[1].split(";")[0]

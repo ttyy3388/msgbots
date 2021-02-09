@@ -7,6 +7,7 @@ import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.gui.control.ToastView;
 import org.beuwi.msgbots.platform.gui.layout.AnchorPane;
 
+// 추후 쓸 예정 ( 다이얼로그 박스로 대체 )
 public class ToastListPart implements View {
 	private static ObservableMap<String, Object> namespace;
 	private static FormLoader loader;

@@ -3,8 +3,10 @@
 <?import javafx.scene.Cursor?>
 
 <?import org.beuwi.msgbots.platform.gui.base.Anchor?>
+<?import org.beuwi.msgbots.platform.gui.control.Button?>
 <?import org.beuwi.msgbots.platform.gui.control.TabView?>
 <?import org.beuwi.msgbots.platform.gui.layout.AnchorPane?>
+<?import org.beuwi.msgbots.platform.gui.layout.HBox?>
 <?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
 
 <AnchorPane styleClass="tool-area" minHeight="30.0" prefHeight="250.0" xmlns:fx="http://javafx.com/fxml">
@@ -16,10 +18,19 @@
 			<tabs>
 			</tabs>
 		</TabView>
-		<StackPane AnchorPane.topAnchor="0.0"
+		<!-- <HBox fx:id="hbxButtonBar"
+			  AnchorPane.topAnchor="0.0"
+			  AnchorPane.rightAnchor="0.0"
+			  fittable="true" prefHeight="30.0">
+			<children>
+				<Button fx:id="btnAllReload" prefWidth="30.0"></Button>
+			</children>
+		</HBox> -->
+		<StackPane fx:id="stpResizeBar"
+				   AnchorPane.topAnchor="0.0"
 				   AnchorPane.rightAnchor="0.0"
 				   AnchorPane.leftAnchor="0.0"
-				   fx:id="stpResizeBar" prefHeight="5.0">
+				   prefHeight="5.0">
 			<cursor>
 				<Cursor fx:constant="N_RESIZE"></Cursor>
 			</cursor>
