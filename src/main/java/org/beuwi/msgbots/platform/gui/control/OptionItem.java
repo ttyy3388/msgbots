@@ -4,19 +4,30 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 
 import javafx.scene.layout.Priority;
+import javafx.stage.FileChooser;
 
+import org.beuwi.msgbots.platform.app.action.WriteImageFileAction;
+import org.beuwi.msgbots.platform.app.view.actions.OpenFileChooserAction;
+import org.beuwi.msgbots.platform.gui.enums.TextType;
 import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
 import org.beuwi.msgbots.platform.gui.layout.VBox;
+import org.beuwi.msgbots.platform.util.SharedValues;
 import org.beuwi.msgbots.setting.SharedSettings;
+
+import java.io.File;
 
 // Option Box
 public class OptionItem extends VBox {
-	private static final String DEFAULT_STYLE_CLASS = "option-box";
+	private static final String DEFAULT_STYLE_CLASS = "option-item";
+
+	// private static final Insets DEFAULT_PADDING_VALUE = new Insets(10, 0, 10, 10);
 	private static final int DEFAULT_SPACING_VALUE = 10;
 
 	// Title [ Content ]
@@ -46,6 +57,29 @@ public class OptionItem extends VBox {
 		}
 
 		if (getContent() instanceof Button) {
+			Button control = (Button) getContent();
+			if (getAddress().equals("control:button:change_bot_profile")) {
+				control.setOnAction(event -> {
+					File file = OpenFileChooserAction.execute("Change Bot Profile",
+						new FileChooser.ExtensionFilter("Image File", "*.jpg", "*.png", "*.gif")
+					);
+
+					if (file != null) {
+						WriteImageFileAction.execute(file, "png", SharedValues.PROFILE_BOT_FILE);
+					}
+				});
+			}
+			if (getAddress().equals("control:button:change_sender_profile")) {
+				control.setOnAction(event -> {
+					File file = OpenFileChooserAction.execute("Change Sender Profile",
+							new FileChooser.ExtensionFilter("Image File", "*.jpg", "*.png", "*.gif")
+					);
+
+					if (file != null) {
+						WriteImageFileAction.execute(file, "png", SharedValues.PROFILE_SENDER_FILE);
+					}
+				});
+			}
 		}
 		else if (getContent() instanceof CheckBox) {
 			CheckBox control = (CheckBox) getContent();
@@ -90,13 +124,18 @@ public class OptionItem extends VBox {
 			});
 		}
 		else if (getContent() instanceof ComboBox) {
-			ComboBox<ThemeType> control = (ComboBox) getContent();
+			ComboBox control = (ComboBox) getContent();
 			if (getAddress().equals("global:program:color_theme")) {
+				// 프로그램 컬러 테마
 				control.selectItem(ThemeType.parse(SharedSettings.getData(getAddress())));
-				control.selectedItemProperty().addListener(change -> {
-					SharedSettings.setData(getAddress(), control.getSelectedItem().toString());
-				});
 			}
+			if (getAddress().equals("global:program:text_rendering")) {
+				// 텍스트 렌더링 타입
+				control.selectItem(TextType.parse(SharedSettings.getData(getAddress())));
+			}
+			control.selectedItemProperty().addListener(change -> {
+				SharedSettings.setData(getAddress(), control.getSelectedItem().toString());
+			});
 		}
 	}
 
@@ -115,6 +154,7 @@ public class OptionItem extends VBox {
 
 		addressProperty().addListener(event -> initValue());
 
+		// setPadding(DEFAULT_PADDING_VALUE);
 		setSpacing(DEFAULT_SPACING_VALUE);
 		getChildren().setAll(label, panel);
 		getStyleClass().add(DEFAULT_STYLE_CLASS);

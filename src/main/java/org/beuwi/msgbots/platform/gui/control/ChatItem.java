@@ -3,11 +3,13 @@ package org.beuwi.msgbots.platform.gui.control;
 import javafx.css.PseudoClass;
 import javafx.geometry.Pos;
 import javafx.scene.layout.Priority;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 import org.beuwi.msgbots.platform.app.action.CopyStringAction;
 import org.beuwi.msgbots.platform.gui.layout.HBox;
 import org.beuwi.msgbots.platform.gui.layout.VBox;
+import org.beuwi.msgbots.platform.util.SharedValues;
 import org.beuwi.msgbots.setting.GlobalSettings;
 
 public class ChatItem extends HBox {
@@ -47,13 +49,30 @@ public class ChatItem extends HBox {
 		profile.getStyleClass().add("profile");
 
 		if (!isBot) {
-			getChildren().setAll(content);
-            // getItems().setAll(content, profile);
+			// Sender Profile
+			profile.setFill(new ImagePattern(SharedValues.PROFILE_SENDER_IMAGE));
+
+			if (GlobalSettings.getBoolean("debug:show_sender_profile")) {
+				getChildren().setAll(content, profile);
+			}
+			else {
+				getChildren().setAll(content);
+			}
+
 			setAlignment(Pos.TOP_RIGHT);
 			getStyleClass().add(HUMAN_STYLE_CLASS);
 		}
 		else {
-			getChildren().setAll(profile, content);
+			// Bot Profile
+			profile.setFill(new ImagePattern(SharedValues.PROFILE_BOT_IMAGE));
+
+			if (GlobalSettings.getBoolean("debug:show_bot_profile")) {
+				getChildren().setAll(profile, content);
+			}
+			else {
+				getChildren().setAll(content);
+			}
+
 			setAlignment(Pos.TOP_LEFT);
 			getStyleClass().add(BOT_STYLE_CLASS);
 		}
@@ -86,6 +105,7 @@ public class ChatItem extends HBox {
 		}
 
 		public Content(String message, boolean isBot) {
+
             name.setText("DEBUG SENDER");
             name.getStyleClass().add("name");
 
@@ -103,16 +123,29 @@ public class ChatItem extends HBox {
 			}
 
 			if (!isBot) {
-			    setAlignment(Pos.CENTER_RIGHT);
+				if (GlobalSettings.getBoolean("debug:show_sender_name")) {
+					getChildren().setAll(name, comment);
+				}
+				else {
+					getChildren().setAll(comment);
+				}
+
+				setAlignment(Pos.CENTER_RIGHT);
 			}
 			else {
+				if (GlobalSettings.getBoolean("debug:show_bot_name")) {
+					getChildren().setAll(name, comment);
+				}
+				else {
+					getChildren().setAll(comment);
+				}
+
 				setAlignment(Pos.CENTER_LEFT);
 			}
 
 			setSpacing(5);
 			setFittable(false);
 			setFillWidth(false);
-			getChildren().setAll(name, comment);
 		}
 	}
 }

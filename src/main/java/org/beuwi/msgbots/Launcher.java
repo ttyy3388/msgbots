@@ -12,11 +12,9 @@ import org.beuwi.msgbots.platform.app.view.parts.*;
 import org.beuwi.msgbots.platform.app.view.tabs.*;
 import org.beuwi.msgbots.platform.gui.control.LogItem;
 import org.beuwi.msgbots.platform.gui.control.LogView;
-import org.beuwi.msgbots.platform.gui.control.ToastItem;
-import org.beuwi.msgbots.platform.gui.enums.ThemeType;
-import org.beuwi.msgbots.platform.gui.enums.ToastType;
+import org.beuwi.msgbots.platform.gui.control.NoticeItem;
+import org.beuwi.msgbots.platform.gui.enums.NoticeType;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
-import org.beuwi.msgbots.setting.GlobalSettings;
 
 public class Launcher extends Application {
 
@@ -45,7 +43,7 @@ public class Launcher extends Application {
 			}); */
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+			DisplayErrorDialogAction.execute(e);
 		}
 	}
 
@@ -61,6 +59,7 @@ public class Launcher extends Application {
 			// new NoticeListTab().init();
 			new ProblemListTab().init();
 			// new RunningBotsTab().init();
+			// new NoticeListTab().init();
 
 			// Initialize parts
 			new DebugAreaPart().init();
@@ -68,36 +67,59 @@ public class Launcher extends Application {
 			new MenuBarPart().init();
 			new SideAreaPart().init();
 			new StatusBarPart().init();
-			new ToastListPart().init();
+			new NoticeListPart().init();
 			new ToolAreaPart().init();
 
 			// Initialize actions
 			new AddMainAreaTabAction().init();
-			new AddToastListItemAction().init();
+			new AddNoticeListItemAction().init();
 			new InputDetailLogAction().init();
+			new OpenDocumentTabAction().init();
 			new OpenProgramTabAction().init();
 			new OpenScriptTabAction().init();
 			new RefreshBotListAction().init();
 			new SendChatMessageAction().init();
+			new UpdateCurrentPathAction().init();
+			new UpdateStatusBarAction().init();
 
 			new MainView(stage).init();
 			new MainWindow(stage).create();
 
 			OpenProgramTabAction.execute(GlobalConfigTab.getRoot());
-			AddToastListItemAction.execute(new ToastItem(
-				ToastType.ERROR,
+			AddNoticeListItemAction.execute(new NoticeItem(
+				NoticeType.ERROR,
 				"TEST TITLE",
 				"TEST CONTENT"
 			));
-			AddToastListItemAction.execute(new ToastItem(
-				ToastType.EVENT,
+			AddNoticeListItemAction.execute(new NoticeItem(
+				NoticeType.EVENT,
 				"TEST TITLE",
 				"TEST CONTENT"
 			));
-			AddToastListItemAction.execute(new ToastItem(
-				ToastType.WARNING,
+			AddNoticeListItemAction.execute(new NoticeItem(
+				NoticeType.WARNING,
 				"TEST TITLE",
 				"TEST CONTENT"
+			));
+			AddNoticeListItemAction.execute(new NoticeItem(
+					NoticeType.WARNING,
+					"TEST TITLE",
+					"TEST CONTENT"
+			));
+			AddNoticeListItemAction.execute(new NoticeItem(
+					NoticeType.WARNING,
+					"TEST TITLE",
+					"TEST CONTENT"
+			));
+			AddNoticeListItemAction.execute(new NoticeItem(
+					NoticeType.WARNING,
+					"TEST TITLE",
+					"TEST CONTENT"
+			));
+			AddNoticeListItemAction.execute(new NoticeItem(
+					NoticeType.WARNING,
+					"TEST TITLE",
+					"TEST CONTENT"
 			));
 
 			// System.out.println(SharedValues.BOTS_FOLDER_FILE);
@@ -133,7 +155,7 @@ public class Launcher extends Application {
 			// ScriptManager.preInit();
 		}
 		catch (Throwable e) {
-			e.printStackTrace();
+			DisplayErrorDialogAction.execute(e);
 		}
 	}
 

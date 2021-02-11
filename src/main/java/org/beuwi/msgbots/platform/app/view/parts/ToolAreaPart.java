@@ -7,20 +7,17 @@ import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.tabs.DetailLogTab;
 import org.beuwi.msgbots.platform.app.view.tabs.ProblemListTab;
-import org.beuwi.msgbots.platform.gui.control.Button;
 import org.beuwi.msgbots.platform.gui.control.TabView;
 import org.beuwi.msgbots.platform.gui.layout.AnchorPane;
-import org.beuwi.msgbots.platform.gui.layout.HBox;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
-import org.beuwi.msgbots.platform.gui.layout.VBox;
-import org.beuwi.msgbots.platform.util.AllSVGIcons;
 
 public class ToolAreaPart implements View {
 	private static ObservableMap<String, Object> namespace;
 	private static FormLoader loader;
 	private static AnchorPane root;
 	private static TabView component;
-	private static StackPane resizeBar;
+
+	private static StackPane resizebar;
 
 	// private static HBox buttonBar;
 
@@ -32,8 +29,8 @@ public class ToolAreaPart implements View {
 		component = loader.getComponent();
 
 		// Resize Bar
-		resizeBar = (StackPane) namespace.get("stpResizeBar");
-		resizeBar.setOnMouseDragged(event -> {
+		resizebar = (StackPane) namespace.get("stpResizeBar");
+		resizebar.setOnMouseDragged(event -> {
 			double size = MainView.getStage().getHeight() - event.getSceneY();
 
 			// Default Min Width
@@ -42,12 +39,14 @@ public class ToolAreaPart implements View {
 			}
 		});
 
+		// component.setDividerPosition(0, 0.5);
+
 		// Button Bar
 		/* buttonBar = (HBox) namespace.get("hbxButtonBar");
 		Button reload = (Button) buttonBar.getChildren().get(0);
 		reload.setGraphic(AllSVGIcons.get("Bot.Reload")); */
 
-		component.addTab(
+		component.setTab(
 			// NoticeListTab.getRoot(),
 			DetailLogTab.getRoot(),
 			ProblemListTab.getRoot()

@@ -12,7 +12,7 @@ import javafx.scene.layout.Region;
 import org.beuwi.msgbots.platform.gui.base.Control;
 import org.beuwi.msgbots.platform.gui.base.Layout;
 
-public class VBox<T> extends javafx.scene.layout.VBox implements Layout {
+public class VBox<T extends Node> extends javafx.scene.layout.VBox implements Layout {
     private static final String DEFAULT_STYLE_CLASS = "vbox";
 
     private final BooleanProperty fittableProperty = new SimpleBooleanProperty();
@@ -94,4 +94,9 @@ public class VBox<T> extends javafx.scene.layout.VBox implements Layout {
     public BooleanProperty fittableProperty() {
         return fittableProperty;
     }
+
+    /* @Override
+    public ObservableList<T> getChildren() {
+        return (ObservableList) super.getChildren();
+    } */
 }

@@ -8,7 +8,10 @@ import org.beuwi.msgbots.setting.GlobalSettings;
 public class ScriptManager extends ScriptEngine
 {
 	public static void run(String message) {
-		ScriptEngine.run("room", message, "sender", false, new ImageDB(),"packageName");
+		ScriptEngine.run("room", message, "sender",
+			GlobalSettings.getBoolean("debug:is_group_chat"),
+			new ImageDB(),"packageName"
+		);
 	}
 
 	public static void preInit() {

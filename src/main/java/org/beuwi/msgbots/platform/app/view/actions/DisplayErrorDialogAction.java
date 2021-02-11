@@ -5,8 +5,8 @@ import org.beuwi.msgbots.platform.app.view.dialogs.ShowErrorDialog;
 
 public class DisplayErrorDialogAction implements Action {
 
-	public static void execute(Throwable t) {
-		OpenDialogBoxAction.execute(new ShowErrorDialog(t));
+	public static void execute(Throwable throwable) {
+		OpenDialogBoxAction.execute(new ShowErrorDialog(throwable));
 	}
 
 	@Override

@@ -20,7 +20,8 @@ public class DebugAreaPart implements View {
 	private static FormLoader loader;
 	private static AnchorPane root;
 	private static TabView component;
-	private static StackPane resizeBar;
+
+	private static StackPane resizebar;
 
 	@Override
 	public void init() {
@@ -30,8 +31,8 @@ public class DebugAreaPart implements View {
 		component = loader.getComponent();
 
 		// Resize Bar
-		resizeBar = (StackPane) namespace.get("stpResizeBar");
-		resizeBar.setOnMouseDragged(event -> {
+		resizebar = (StackPane) namespace.get("stpResizeBar");
+		resizebar.setOnMouseDragged(event -> {
 			double size = MainView.getStage().getWidth() - (event.getSceneX() + 16);
 
 			// Default Min Width
@@ -40,7 +41,7 @@ public class DebugAreaPart implements View {
 			}
 		});
 
-		component.addTab(
+		component.setTab(
 			DebugRoomTab.getRoot(),
 			GlobalLogTab.getRoot()
 		);
@@ -55,8 +56,8 @@ public class DebugAreaPart implements View {
 		return component;
 	}
 
-	public static <T> T getComponent(String key) {
-		return (T) namespace.get(key);
+	public static Object getComponent(String key) {
+		return namespace.get(key);
 	}
 
 	public static ObservableMap<String, Object> getNamespace() {

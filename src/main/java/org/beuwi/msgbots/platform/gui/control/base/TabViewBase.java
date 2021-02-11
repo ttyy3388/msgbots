@@ -172,21 +172,26 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane imple
     public ObservableList<T> getTabs() {
         return tabList;
     }
-    public void addTab(int index, T tab) {
+    public void addTab(T tab) {
         if (getTabs().contains(tab)) {
             selectTab(tab);
         }
         else {
-            getTabs().add(index, tab);
+            getTabs().add(tab);
         }
     }
-    public void addTab(T tab) {
+    /* public void addTab(T tab) {
         addTab(getTabs().size(), tab);
-    }
+    } */
     public void addTab(T... tabs) {
         for (T tab : tabs) {
             addTab(tab);
         }
+    }
+
+    public void setTab(T... tabs) {
+        closeAllTabs();
+        addTab(tabs);
     }
 
     public T getTab(int index) {

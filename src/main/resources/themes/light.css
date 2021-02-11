@@ -14,11 +14,6 @@
 	-fx-background-color: #FFFFFF;
 }
 
-/* BUTTON */
-.button:hover {
-    -fx-background-color: rgba(0, 0, 0, 0.1);
-}
-
 /* BOT ITEM */
 .bot-item {
 	-fx-border-color: transparent;
@@ -66,7 +61,27 @@
 }
 
 /* BUTTON */
-.button {
+.button:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* STYLED BUTTON */
+.button:styled {
+	-fx-border-color: transparent;
+	-fx-border-width: 1;
+}
+.button:styled.action {
+	-fx-border-color: #007ACC;
+}
+.button:styled.cancel {
+	-fx-border-color: #555555;
+}
+/* .button:styled:hover,
+.button:styled:focused {
+	-fx-border-color: #007ACC;
+} */
+.button:styled:armed {
+	-fx-background-color: #007ACC;
 }
 
 /* CHAT ITEM */
@@ -249,6 +264,15 @@
 	-fx-padding: 2.5 5 2.5 5;
 }
 
+/* OPTION ITEM */
+/* .option-item {
+    -fx-border-color: #000000;
+    -fx-border-width: 0 0 0 2;
+}
+.option-item:hover {
+	-fx-border-color: #007ACC;
+} */
+
 /* SCROLL BAR */
 .scroll-bar > .thumb {
 	-fx-background-color: rgba(100, 100, 100, 0.4);
@@ -419,7 +443,7 @@
 
 /* MAIN AREA */
 .main-area {
-    -fx-background-color: #1E1E1E;
+    /* -fx-background-color: #FFFFFF; */
 }
 .main-area > .tab-view .editor {
 	-fx-border-width: 0;
@@ -455,8 +479,6 @@
 }
 .tool-area .text-area {
      -fx-border-width: 0;
-    /* -fx-border-color: #414141;
-    -fx-border-width: 0 1 0 0; */
 }
 
 /* STATUS BAR */

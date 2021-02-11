@@ -18,7 +18,8 @@ public class SideAreaPart implements View {
 	private static FormLoader loader;
 	private static AnchorPane root;
 	private static TabView component;
-	private static StackPane resizeBar;
+
+	private static StackPane resizebar;
 
 	@Override
 	public void init() {
@@ -27,15 +28,15 @@ public class SideAreaPart implements View {
 		root = loader.getRoot();
 		component = loader.getComponent();
 
-		resizeBar = (StackPane) namespace.get("stpResizeBar");
-		resizeBar.setOnMouseDragged(event -> {
+		resizebar = (StackPane) namespace.get("stpResizeBar");
+		resizebar.setOnMouseDragged(event -> {
 			double size = event.getSceneX();
 			if (root.getMinWidth() < size) {
 				root.setPrefWidth(size);
 			}
 		});
 
-		component.addTab(BotListTab.getRoot());
+		component.setTab(BotListTab.getRoot());
 
 		/* HBox<Button> btnbar = (HBox) component.getButtonBar();
 

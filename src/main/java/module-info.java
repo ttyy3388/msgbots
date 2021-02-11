@@ -17,5 +17,7 @@ open module org.beuwi.msgbots {
 
     requires jdk.jsobject;
 
+    requires javafx.swing;
+
     exports org.beuwi.msgbots;
 }

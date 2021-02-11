@@ -1,6 +1,7 @@
 package org.beuwi.msgbots.openapi;
 
 import org.beuwi.msgbots.manager.FileManager;
+import org.beuwi.msgbots.platform.app.view.actions.DisplayErrorDialogAction;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -26,7 +27,7 @@ public class JSONObject extends org.json.simple.JSONObject {
 			putAll((org.json.simple.JSONObject) new JSONParser().parse(data));
 		}
 		catch (ParseException e) {
-			e.printStackTrace();
+			DisplayErrorDialogAction.execute(e);
 		}
 	}
 

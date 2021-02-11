@@ -4,10 +4,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 
+import org.beuwi.msgbots.platform.app.view.actions.DisplayErrorDialogAction;
 import org.beuwi.msgbots.platform.gui.control.TabItem;
 import org.beuwi.msgbots.platform.gui.layout.ScrollPane;
+import org.beuwi.msgbots.platform.gui.layout.ShadowPane;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
+import java.io.IOException;
 import java.net.URL;
 
 public class FormLoader extends FXMLLoader {
@@ -28,8 +31,8 @@ public class FormLoader extends FXMLLoader {
 		try {
 			this.load();
 		}
-		catch (Exception e) {
-			e.printStackTrace();
+		catch (IOException e) {
+			DisplayErrorDialogAction.execute(e);
 		}
 	}
 
@@ -39,6 +42,9 @@ public class FormLoader extends FXMLLoader {
 		}
 		if (getRoot() instanceof ScrollPane) {
 			return (T) ((ScrollPane) getRoot()).getContent();
+		}
+		if (getRoot() instanceof ShadowPane) {
+			return (T) ((ShadowPane) getRoot()).getContent();
 		}
 		/* if (getRoot() instanceof SideItem) {
 			VBox item = ((SideItem) getRoot()).getContent();

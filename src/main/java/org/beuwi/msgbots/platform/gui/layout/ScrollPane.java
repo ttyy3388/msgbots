@@ -27,8 +27,10 @@ public class ScrollPane extends javafx.scene.control.ScrollPane implements Layou
 		setFitToWidth(true);
 		setFitToHeight(true);
 
-		setHbarPolicy(ScrollBarPolicy.ALWAYS);
-		setVbarPolicy(ScrollBarPolicy.ALWAYS);
+		// setHbarPolicy(ScrollBarPolicy.ALWAYS);
+		// setVbarPolicy(ScrollBarPolicy.ALWAYS);
+		setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
+		setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
 
 		// addStyleClass(DEFAULT_STYLE_CLASS);
 	}

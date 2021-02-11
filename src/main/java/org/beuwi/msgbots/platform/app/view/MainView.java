@@ -3,6 +3,7 @@ package org.beuwi.msgbots.platform.app.view;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
@@ -50,7 +51,7 @@ public class MainView implements View {
 
 		// Add parts
 		stpMenuBar.getChildren().add(MenuBarPart.getRoot());
-		// stpInnerArea.getChildren().add(ToastListPart.getRoot());
+		stpInnerArea.getChildren().add(NoticeListPart.getRoot());
 		stpSideArea.getChildren().add(SideAreaPart.getRoot());
 		stpMainArea.getChildren().add(MainAreaPart.getRoot());
 		stpToolArea.getChildren().add(ToolAreaPart.getRoot());
@@ -58,6 +59,10 @@ public class MainView implements View {
 		stpStatusBar.getChildren().add(StatusBarPart.getRoot());
 
 		// List<Node> children = root.getChildren();
+
+		/* stage.addEventFilter(MouseEvent.MOUSE_MOVED, event -> {
+			System.out.println("SceneY : " + event.getSceneY());
+		}); */
 
 		root.setMinWidth(800);
 		root.setMinHeight(600);

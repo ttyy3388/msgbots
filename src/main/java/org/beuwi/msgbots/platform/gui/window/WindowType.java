@@ -1,6 +1,5 @@
 package org.beuwi.msgbots.platform.gui.window;
 
-public enum WindowType
-{
+public enum WindowType {
     WINDOW, DIALOG
 }

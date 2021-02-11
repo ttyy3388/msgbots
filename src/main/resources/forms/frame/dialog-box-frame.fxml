@@ -43,8 +43,8 @@
 			<bottom>
 				<HBox fx:id="hbxButtonBar" fittable="true" spacing="10.0" prefHeight="25.0" alignment="CENTER_RIGHT">
 					<children>
-						<Button fx:id="btnAction" text="Action"></Button>
-						<Button fx:id="btnCancel" text="Cancel"></Button>
+						<Button fx:id="btnAction" styled="true" type="ACTION" text="Action"></Button>
+						<Button fx:id="btnCancel" styled="true" type="CANCEL" text="Cancel"></Button>
 					</children>
 					<BorderPane.margin>
 						<Insets top="15.0"></Insets>

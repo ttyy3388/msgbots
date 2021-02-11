@@ -16,6 +16,7 @@
 <?import org.beuwi.msgbots.platform.gui.control.TextField?>
 <?import org.beuwi.msgbots.platform.gui.editor.Editor?>
 <?import org.beuwi.msgbots.platform.gui.enums.ThemeType?>
+<?import org.beuwi.msgbots.platform.gui.enums.TextType?>
 <?import org.beuwi.msgbots.platform.gui.layout.AnchorPane?>
 <?import org.beuwi.msgbots.platform.gui.layout.HBox?>
 <?import org.beuwi.msgbots.platform.gui.layout.ScrollPane?>
@@ -48,8 +49,8 @@
 										<ComboBox maxWidth="150" >
 											<items>
 												<FXCollections fx:factory="observableArrayList">
-													<String fx:value="lcd"></String>
-													<String fx:value="gray"></String>
+													<TextType fx:value="GRAY"></TextType>
+													<TextType fx:value="LCD"></TextType>
 												</FXCollections>
 											</items>
 										</ComboBox>
@@ -154,7 +155,7 @@
 											</content>
 										</OptionItem>
 										<Separator></Separator>
-										<OptionItem address="global:debug:show_sender_profile" title="전송자 프로필 보이기" disable="true">
+										<OptionItem address="global:debug:show_sender_profile" title="전송자 프로필 보이기">
 											<content>
 												<CheckBox text="디버그 룸에서 전송자의 프로필을 보이게 합니다."></CheckBox>
 											</content>
@@ -164,9 +165,9 @@
 												<CheckBox text="디버그 룸에서 전송자의 이름을 보이게 합니다."></CheckBox>
 											</content>
 										</OptionItem>
-										<OptionItem title="전송자 프로필 변경" disable="true">
+										<OptionItem address="control:button:change_bot_profile" title="전송자 프로필 변경">
 											<content>
-												<Button text="Change" minHeight="30.0"></Button>
+												<Button text="Change" styled="true" type="ACTION" minHeight="30.0"></Button>
 											</content>
 										</OptionItem>
 										<Separator></Separator>
@@ -180,9 +181,9 @@
 												<CheckBox text="디버그 룸에서 봇의 이름을 보이게 합니다."></CheckBox>
 											</content>
 										</OptionItem>
-										<OptionItem title="봇 프로필 변경">
+										<OptionItem address="control:button:change_sender_profile" title="봇 프로필 변경">
 											<content>
-												<Button text="Change" minHeight="30.0"></Button>
+												<Button text="Change" styled="true" type="ACTION" minHeight="30.0"></Button>
 											</content>
 										</OptionItem>
 									</items>
@@ -197,6 +198,26 @@
 				<NaviItem text="Design">
 					<content>
 						<OptionView title="Design">
+							<items>
+								<!-- <OptionItem title="커스텀 테마에서 적용되는 스타일입니다." VBox.vgrow="ALWAYS">
+									<content>
+										<Editor language="css">
+											<file>
+												<SharedValues fx:constant="CUSTOM_THEME_FILE"></SharedValues>
+											</file>
+										</Editor>
+									</content>
+								</OptionItem> -->
+							</items>
+							<StackPane.margin>
+								<Insets left="15.0"></Insets>
+							</StackPane.margin>
+						</OptionView>
+					</content>
+				</NaviItem>
+				<NaviItem text="Connect">
+					<content>
+						<OptionView title="ADB">
 							<items>
 								<!-- <OptionItem title="커스텀 테마에서 적용되는 스타일입니다." VBox.vgrow="ALWAYS">
 									<content>

@@ -12,6 +12,7 @@ import org.beuwi.msgbots.platform.app.action.OpenDesktopAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenProgramTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenScriptTabAction;
+import org.beuwi.msgbots.platform.app.view.actions.UpdateCurrentPathAction;
 import org.beuwi.msgbots.platform.app.view.dialogs.DeleteBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.RenameBotDialog;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
@@ -105,6 +106,9 @@ public class BotItem extends GridPane {
 			if (event.getButton().equals(MouseButton.PRIMARY)) {
 				OpenScriptTabAction.execute(name);
 			}
+
+			// 현재 경로 업데이트
+			UpdateCurrentPathAction.execute(FileManager.getBotScript(name).getAbsolutePath());
 		});
 
 		btnCompile.setGraphic(AllSVGIcons.get("Bot.Reload"));

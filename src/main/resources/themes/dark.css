@@ -6,17 +6,12 @@
 
 /* TEXT RENDERING */
 .text {
-	-fx-font-smoothing-type: gray;
+	-fx-font-smoothing-type: lcd;
 }
 
 /* WINDOW */
 .root {
 	-fx-background-color: #252526;
-}
-
-/* BUTTON */
-.button:hover {
-    -fx-background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* BOT ITEM */
@@ -66,7 +61,27 @@
 }
 
 /* BUTTON */
-.button {
+.button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* STYLED BUTTON */
+.button:styled {
+	-fx-border-color: transparent;
+	-fx-border-width: 1;
+}
+.button:styled.action {
+	-fx-border-color: #007ACC;
+}
+.button:styled.cancel {
+	-fx-border-color: #555555;
+}
+/* .button:styled:hover,
+.button:styled:focused {
+	-fx-border-color: #007ACC;
+} */
+.button:styled:armed {
+	-fx-background-color: #007ACC;
 }
 
 /* CHAT ITEM */
@@ -190,6 +205,38 @@
 .editor:focused {
 	-fx-border-color: #007ACC;
 }
+
+/* NOTICE ITEM */
+.notice-item {
+	-fx-background-color: #252526;
+	/* -fx-border-color: #2B2B2B;
+	-fx-border-width: 1; */
+	-fx-cursor: hand;
+}
+.notice-item .title-bar .button {
+    -fx-cursor: hand;
+}
+.notice-item .title-bar .button .icon {
+	-fx-background-color: #FFFFFF;
+}
+/* .notice-item .title-bar .button:hover .icon {
+	-fx-background-color: #007ACC;
+} */
+.notice-item:hover {
+    -fx-background-color: #2A2D2E;
+	/* -fx-border-color: #007ACC; */
+}
+.notice-item:selected {
+    -fx-background-color: #062F4A;
+}
+
+/* NOTICE VIEW */
+/* .notice-view {
+    -fx-padding: 2.5 0 2.5 0;
+}
+.notice-view .list-cell {
+    -fx-padding: 2.5 5 2.5 5;
+} */
 
 /* MENU ITEM */
 .menu-item {
@@ -346,37 +393,6 @@
 	-fx-border-color: #007ACC;
 }
 
-/* TOAST ITEM */
-.toast-item {
-	-fx-background-color: #252526;
-	-fx-border-color: #2B2B2B;
-	-fx-border-width: 1;
-}
-.toast-item .title-bar .button {
-    -fx-cursor: hand;
-}
-.toast-item .title-bar .button .icon {
-	-fx-background-color: #FFFFFF;
-}
-/* .notice-item .title-bar .button:hover .icon {
-	-fx-background-color: #007ACC;
-} */
-.toast-item:hover,
-.toast-item:focused {
-	-fx-border-color: #007ACC;
-}
-.toast-item:hover {
-    -fx-background-color: #2A2D2E;
-}
-
-/* TOAST VIEW */
-/* .toast-view {
-    -fx-padding: 2.5 0 2.5 0;
-}
-.toast-view .list-cell {
-    -fx-padding: 2.5 5 2.5 5;
-} */
-
 /* TOGGlE SWITCH */
 .toggle-switch {
 	-jfx-untoggle-color: #FFFFFF;
@@ -390,6 +406,11 @@
 }
 .toggle-button:selected {
 	-fx-opacity: 1.0;
+}
+
+/* NOTICE AREA */
+.notice-area .notice-box {
+    -fx-background-color: #323233;
 }
 
 /* SIDE AREA */
@@ -414,7 +435,7 @@
 
 /* MAIN AREA */
 .main-area {
-    -fx-background-color: #1E1E1E;
+    /* -fx-background-color: #1E1E1E; */
 }
 .main-area > .tab-view .editor {
 	-fx-border-width: 0;

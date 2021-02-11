@@ -11,9 +11,10 @@
 
 <AnchorPane styleClass="tool-area" minHeight="30.0" prefHeight="250.0" xmlns:fx="http://javafx.com/fxml">
 	<children>
-		<TabView AnchorPane.topAnchor="0.0"
+		<TabView fx:id="tavMainView"
+				 AnchorPane.topAnchor="0.0"
 				 AnchorPane.rightAnchor="10.0"
-				 AnchorPane.bottomAnchor="0.0"
+				 AnchorPane.bottomAnchor="10.0"
 				 AnchorPane.leftAnchor="10.0">
 			<tabs>
 			</tabs>

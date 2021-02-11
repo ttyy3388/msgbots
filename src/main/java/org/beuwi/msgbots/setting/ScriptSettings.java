@@ -47,12 +47,6 @@ public class ScriptSettings {
 			json.put(address, value);
 		}
 
-		try {
-			FileManager.save(file, json.toString());
-		}
-		catch (Exception e) {
-			// 작동 안할 거 같음 (파일 매니저에서 잡으니까)
-			e.printStackTrace();
-		}
+		FileManager.save(file, json.toString());
 	}
 }

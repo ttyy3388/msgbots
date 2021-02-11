@@ -2,6 +2,7 @@ package org.beuwi.msgbots.manager;
 
 import org.beuwi.msgbots.openapi.FileListener;
 import org.beuwi.msgbots.openapi.FileObserver;
+import org.beuwi.msgbots.platform.app.view.actions.DisplayErrorDialogAction;
 import org.beuwi.msgbots.platform.util.SharedValues;
 
 import java.io.BufferedReader;
@@ -91,7 +92,7 @@ public class FileManager {
 			return content;
 		}
 		catch (IOException e) {
-			e.printStackTrace();
+			DisplayErrorDialogAction.execute(e);
 		}
 
 		return null;
@@ -108,7 +109,7 @@ public class FileManager {
 			return content;
 		}
 		catch (IOException e) {
-			e.printStackTrace();
+			DisplayErrorDialogAction.execute(e);
 		}
 
 		return null;
@@ -132,7 +133,7 @@ public class FileManager {
 			return text;
 		}
 		catch (IOException e) {
-			e.printStackTrace();
+			DisplayErrorDialogAction.execute(e);
 		}
 
 		return null;
@@ -157,7 +158,7 @@ public class FileManager {
 		}
 		// File Not Found Exception ??
 		catch (Exception e) {
-			e.printStackTrace();
+			DisplayErrorDialogAction.execute(e);
 		}
 
 		return false;

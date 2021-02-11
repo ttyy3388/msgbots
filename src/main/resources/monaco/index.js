@@ -7,10 +7,30 @@ var editor;
 
 require.config({ paths: { 'vs': './package/min/vs' }});
 
+/* monaco.languages.registerCompletionItemProvider('rhino-js', {
+	provideCompletionItems: function(model, position) {
+		return [
+			{
+				label: 'Api',
+				kind: monaco.languages.CompletionItemKind.Interface,
+				documentation: "My first Custom Interface",
+				insertText: 'Api'
+			},
+			{
+				label: 'AppData',
+				kind: monaco.languages.CompletionItemKind.Interface,
+				documentation: "My second Custom Interface",
+				insertText: 'AppData'
+			}
+		];
+	}
+}); */
+
 require(['vs/editor/editor.main'], function() {
 	editor = monaco.editor.create(document.getElementById('container'), {
 		theme: 'vs-dark',
 		value: getCode(),
+		language: 'rhino-js',
 		// language: 'javascript',
 		automaticLayout: true,
 		roundedSelection: false,

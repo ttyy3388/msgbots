@@ -1,6 +1,7 @@
 package org.beuwi.msgbots.platform.app.action;
 
 import org.beuwi.msgbots.platform.app.impl.Action;
+import org.beuwi.msgbots.platform.app.view.actions.DisplayErrorDialogAction;
 
 import java.awt.Desktop;
 import java.io.File;
@@ -15,8 +16,8 @@ public class OpenDesktopAction implements Action {
 		try {
 			Desktop.getDesktop().open(file);
 		}
-		catch (Exception e) {
-			e.printStackTrace();
+		catch (IOException e) {
+			DisplayErrorDialogAction.execute(e);
 		}
 	}
 

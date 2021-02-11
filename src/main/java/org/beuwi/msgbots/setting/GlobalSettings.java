@@ -47,7 +47,7 @@ public class GlobalSettings {
 
 	} */
 
-	public static <T> T getData(String address) {
+	protected static <T> T getData(String address) {
 		String[] data = address.split(":");
 
 		String name = data[0];
@@ -87,12 +87,6 @@ public class GlobalSettings {
 			json.getMap(name).put(option, value);
 		}
 
-		try {
-			FileManager.save(file, json.toString());
-		}
-		catch (Exception e) {
-			// 이미 파일 매니저에서 IOException 으로 막기 때문에 에러가 잡힐 거 같진 않음
-			e.printStackTrace();
-		}
+		FileManager.save(file, json.toString());
 	}
 }

@@ -43,8 +43,11 @@ public class OptionView extends VBox {
 			contentArea.getChildren().setAll(getItems());
 		});
 
-		getChildren().setAll(titleLabel, contentArea);
 		setSpacing(DEFAULT_SPACING_VALUE);
+		getChildren().setAll(
+			titleLabel,
+			contentArea
+		);
 		getStyleClass().addAll(DEFAULT_STYLE_CLASS);
 	}
 

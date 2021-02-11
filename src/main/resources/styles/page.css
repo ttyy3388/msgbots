@@ -1,0 +1,67 @@
+/* DOCUMENT CSS */
+@CHARSET "UTF-8";
+
+@font-face {
+    font-family: 'D2Coding';
+    src: url('../fonts/d2coding.ttf');
+}
+@font-face {
+    font-family: 'D2Coding';
+    font-weight: bold;
+    src: url('../fonts/d2coding-bold.ttf');
+}
+@font-face {
+    font-family: 'NanumGothic';
+    src: url('../fonts/nanumgothic.ttf');
+}
+@font-face {
+    font-family: 'NanumGothic';
+    font-weight: bold;
+    src: url('../fonts/nanumgothic-bold.ttf');
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/roboto.ttf');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-weight: bold;
+    src: url('../fonts/roboto-bold.ttf');
+}
+
+* {
+    font-weight: normal;
+    font-family: 'Roboto', 'NanumGothic', sans-serif;
+    font-weight: normal;
+    color: #CCCCCC;
+}
+
+h1 {
+	font-weight: bold;
+	color: #FFFFFF;
+}
+h2 {
+	font-weight: normal;
+}
+h3 {
+	font-weight: normal;
+}
+h4 {
+	font-weight: normal;
+}
+
+p {
+	line-height: normal;
+}
+body {
+	background-color: #1E1E1E;
+}
+a:link {
+    text-decoration: none;
+	color: #007ACC;
+}
+a:visited,
+a:active {
+	text-decoration: none;
+	color: #007ACC;
+}

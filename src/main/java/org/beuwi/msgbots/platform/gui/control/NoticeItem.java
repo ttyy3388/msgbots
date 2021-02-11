@@ -1,22 +1,23 @@
 package org.beuwi.msgbots.platform.gui.control;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
-
+import javafx.scene.input.MouseEvent;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.action.CopyStringAction;
-import org.beuwi.msgbots.platform.gui.enums.ToastType;
+import org.beuwi.msgbots.platform.gui.enums.NoticeType;
 import org.beuwi.msgbots.platform.gui.layout.HBox;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
 import org.beuwi.msgbots.platform.util.AllSVGIcons;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
 // Toast Message
-public class ToastItem extends StackPane {
-	private static final String DEFAULT_STYLE_CLASS = "toast-item";
+public class NoticeItem extends StackPane {
+	private static final String DEFAULT_STYLE_CLASS = "notice-item";
 
 	// private static final int DEFAULT_NOTICE_WIDTH = 250;
-	private static final int DEFAULT_NOTICE_HEIGHT = 60;
+	private static final int DEFAULT_NOTICE_HEIGHT = 100;
 
 	@FXML private HBox hbxBoxRoot;
 	@FXML private ImageView imvBoxIcon;
@@ -28,15 +29,18 @@ public class ToastItem extends StackPane {
 	private final FormLoader loader;
 	private final ContextMenu menu;
 
-	public ToastItem(ToastType type, String title, String content) {
-		loader = new FormLoader("frame", "toast-item-frame", this);
+	private NoticeView parent;
+
+	public NoticeItem(NoticeType type, String title, String content) {
+		loader = new FormLoader("frame", "notice-item-frame", this);
 		menu = new ContextMenu(
 			new MenuItem("Copy Text", event -> CopyStringAction.execute(title + "\n\n" + content))
 		);
 		menu.setNode(this);
 
-		hbxBoxRoot.setPickOnBounds(true);
-		// hbxBoxRoot.setMouseTransparent(false);
+		// hbxBoxRoot.setPickOnBounds(false);
+		// hbxBoxRoot.setFocusTraversable(true);
+		// hbxBoxRoot.setMouseTransparent(true);
 
 		lblBoxTitle.setText(title);
 		lblBoxTitle.setWrapText(true);
@@ -48,25 +52,31 @@ public class ToastItem extends StackPane {
 
 		btnBoxClose.setGraphic(AllSVGIcons.get("Box.Close"));
 		btnBoxClose.setOnAction(event -> {
-			getView().getChildren().remove(this);
+			getView().getItems().remove(this);
 		});
 
 		/* setOnMouseClicked(event -> {
 			requestFocus();
 		}); */
 
+		addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
+			getView().selectItem(this);
+		});
+
 		getChildren().setAll(hbxBoxRoot);
+
 		// setMinWidth(DEFAULT_NOTICE_WIDTH);
 		// setMaxWidth(DEFAULT_NOTICE_WIDTH);
 		setMinHeight(DEFAULT_NOTICE_HEIGHT);
+
 		getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 
-	private ToastView parent;
-	public void setView(ToastView parent) {
+	public void setView(NoticeView parent) {
 		this.parent = parent;
 	}
-	public ToastView getView() {
+
+	public NoticeView getView() {
 		return parent;
 	}
 
