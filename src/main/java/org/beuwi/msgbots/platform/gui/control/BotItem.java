@@ -9,6 +9,7 @@ import org.beuwi.msgbots.compiler.engine.ScriptManager;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.action.CopyStringAction;
 import org.beuwi.msgbots.platform.app.action.OpenDesktopAction;
+import org.beuwi.msgbots.platform.app.view.actions.DisplayErrorDialogAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenProgramTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenScriptTabAction;
@@ -19,6 +20,8 @@ import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
 import org.beuwi.msgbots.platform.gui.layout.GridPane;
 import org.beuwi.msgbots.platform.util.AllSVGIcons;
 import org.beuwi.msgbots.setting.ScriptSettings;
+
+import java.io.File;
 
 // Bot Item
 public class BotItem extends GridPane {
@@ -32,6 +35,9 @@ public class BotItem extends GridPane {
 	private final ToggleSwitch tgbBotPower = new ToggleSwitch();
 	
 	private final ContextMenu menu;
+
+	private final String name;
+	private final File file;
 
 	private BotView parent;
 
@@ -60,6 +66,17 @@ public class BotItem extends GridPane {
 	}
 
 	public BotItem(String name) {
+		this(FileManager.getBotScript(name), name);
+	}
+
+	public BotItem(File file, String name) {
+		if (file == null || name == null) {
+			DisplayErrorDialogAction.execute(new NullPointerException());
+		}
+
+		this.name = name;
+		this.file = file;
+
 		menu = new ContextMenu(
 			new MenuItem("Compile", event -> {
 				ScriptManager.initScript(name, true, false);
@@ -104,11 +121,11 @@ public class BotItem extends GridPane {
 
 		setOnMouseClicked(event -> {
 			if (event.getButton().equals(MouseButton.PRIMARY)) {
-				OpenScriptTabAction.execute(name);
+				OpenScriptTabAction.execute(this);
 			}
 
 			// 현재 경로 업데이트
-			UpdateCurrentPathAction.execute(FileManager.getBotScript(name).getAbsolutePath());
+			UpdateCurrentPathAction.execute(file);
 		});
 
 		btnCompile.setGraphic(AllSVGIcons.get("Bot.Reload"));
@@ -134,11 +151,20 @@ public class BotItem extends GridPane {
 	public BotView getView() {
 		return parent;
 	}
+	public void setView(BotView parent) {
+		this.parent = parent;
+	}
+
+	public File getFile() {
+		return file;
+	}
+	public String getName() {
+		return name;
+	}
 
 	public boolean getPower() {
 		return tgbBotPower.isSelected();
 	}
-
 	public boolean isCompiled() {
 		return chbIsCompiled.isSelected();
 	}
@@ -146,12 +172,7 @@ public class BotItem extends GridPane {
 	public void setPower(boolean tgbBotPower) {
 		this.tgbBotPower.setSelected(tgbBotPower);
 	}
-
 	public void setCompiled(boolean compiled) {
 		this.chbIsCompiled.setSelected(compiled);
-	}
-
-	public void setView(BotView parent) {
-		this.parent = parent;
 	}
 }

@@ -96,6 +96,15 @@ public class Api extends ScriptableObject {
 		return ;
 	}
 
+	/**
+	 *
+	 * @param sourceLanguage sdafasdfasd
+	 * @param targetLanguage
+	 * @param data
+	 * @param errorToString
+	 * @return adsf asdfsdafa
+	 * @
+	 */
 	@JSStaticFunction
 	public static String papagoTranslate(String sourceLanguage, String targetLanguage, String data, Boolean errorToString) {
 		return null;

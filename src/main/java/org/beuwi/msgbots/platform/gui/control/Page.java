@@ -38,10 +38,11 @@ public class Page extends StackPane {
 	private final WebEngine engine;
 	private final Worker worker;
 
-	public Page() {
+	/* public Page() {
 		this(null);
-	}
+	} */
 
+	// Not Null
 	public Page(String name) {
 		engine = view.getEngine();
 		worker = engine.getLoadWorker();
@@ -49,9 +50,11 @@ public class Page extends StackPane {
 		engine.load(ResourceUtils.getHtml(name));
 		// engine.setUserAgent("");
 		engine.setJavaScriptEnabled(true);
-		engine.setUserStyleSheetLocation(
+
+		// JLINK 패키징 시 경로 에러가 나므로 사용 안함
+		/* engine.setUserStyleSheetLocation(
 			ResourceUtils.getStyle("page"))
-		;;
+		); */
 
 		worker.stateProperty().addListener(change -> {
 			Worker.State state = worker.getState();

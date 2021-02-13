@@ -4,6 +4,7 @@ import org.beuwi.msgbots.platform.app.impl.Action;
 import org.beuwi.msgbots.platform.app.view.parts.ToolAreaPart;
 import org.beuwi.msgbots.platform.app.view.tabs.DetailLogTab;
 import org.beuwi.msgbots.platform.gui.control.TextArea;
+import org.beuwi.msgbots.platform.gui.enums.LogType;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,11 +19,15 @@ public class InputDetailLogAction implements Action {
 	}
 
 	public static void execute(String task, String text) {
-		execute(formatter.format(new Date()), task, text);
+		execute(LogType.EVENT, formatter.format(new Date()), task, text);
 	}
 
-	public static void execute(String time, String task, String text) {
-		textArea.appendText("[" + time + "] < Task : " + task + " > : " + text + "\n");
+	public static void execute(LogType type, String task, String text) {
+		execute(type, formatter.format(new Date()), task, text);
+	}
+
+	public static void execute(LogType type, String time, String task, String text) {
+		textArea.appendText("[" + time + "] [" + type.toString() + "] < Task : " + task + " > : " + text + "\n");
 	}
 
 	@Override

@@ -12,6 +12,7 @@ import org.beuwi.msgbots.platform.app.view.dialogs.CreateBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.ImportBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.ShowPageDialog;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
+import org.beuwi.msgbots.platform.gui.control.MenuButton;
 import org.beuwi.msgbots.platform.gui.control.MenuItem;
 import org.beuwi.msgbots.platform.gui.control.MenuBar;
 import org.beuwi.msgbots.platform.gui.control.Separator;
@@ -31,8 +32,14 @@ public class MenuBarPart implements View {
 		root = loader.getRoot();
 		component = loader.getComponent();
 
+		MenuButton btnFileMenu = (MenuButton) namespace.get("btnFileMenu");
+		MenuButton btnEditMenu = (MenuButton) namespace.get("btnEditMenu");
+		MenuButton btnViewMenu = (MenuButton) namespace.get("btnViewMenu");
+		MenuButton btnDebugMenu = (MenuButton) namespace.get("btnDebugMenu");
+		MenuButton btnHelpMenu = (MenuButton) namespace.get("btnHelpMenu");
+
 		// File Menu Button
-		component.getMenu(0).setMenus(
+		btnFileMenu.setMenus(
 			new MenuItem("New Bot", "Ctrl + N", event -> {
 				OpenDialogBoxAction.execute(new CreateBotDialog());
 			}),
@@ -53,7 +60,7 @@ public class MenuBarPart implements View {
 		);
 
 		// Edit Menu Button
-		component.getMenu(1).setMenus(
+		btnEditMenu.setMenus(
 			new MenuItem("Undo", "Ctrl + Z").disable(true),
 			new MenuItem("Redo", "Ctrl + Y").disable(true),
 			new Separator(),
@@ -63,14 +70,14 @@ public class MenuBarPart implements View {
 		);
 
 		// View Menu Button
-		component.getMenu(2).setMenus(
+		btnViewMenu.setMenus(
 			new MenuItem("Toggle Menu Bar", "Alt + M").disable(true),
 			new MenuItem("Toggle Side Bar", "Alt + S").disable(true),
 			new MenuItem("Toggle Debug Area", "Alt + D").disable(true)
 		);
 
 		// Debug Menu Button
-		component.getMenu(3).setMenus(
+		btnDebugMenu.setMenus(
 			new MenuItem("Compile"),
 			new MenuItem("Power On / Off"),
 			new Separator(),
@@ -79,14 +86,14 @@ public class MenuBarPart implements View {
 		);
 
 		// Help Menu Button
-		component.getMenu(4).setMenus(
+		btnHelpMenu.setMenus(
 			new MenuItem("View License", event -> {
 				OpenDocumentTabAction.execute(SharedValues.VIEW_LICENSE_DOCUMENT);
 			}),
 			new Separator(),
-			new MenuItem("Release Notes" /* , event -> {
-				OpenDocumentTabAction.execute(SharedValues.RELEASE_NOTES_DOCUMENT);
-			} */),
+			new MenuItem("Release Notes", event -> {
+				// OpenDocumentTabAction.execute(SharedValues.RELEASE_NOTES_DOCUMENT);
+			}),
 			new Separator(),
 			new MenuItem("About Program", event -> {
 				OpenDocumentTabAction.execute(SharedValues.ABOUT_PROGRAM_DOCUMENT);

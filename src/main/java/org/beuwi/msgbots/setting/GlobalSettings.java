@@ -30,9 +30,9 @@ public class GlobalSettings {
 		// 파일 변경 감지 안함
 		/* FileManager.link(file, () -> {
 			json = new JSONObject(file);
-		});
+		});*/
 
-		FileManager.link(file, () -> {
+		/* FileManager.link(file, () -> {
 			for (Listener listener : listeners) {
 				listener.changed();
 			}

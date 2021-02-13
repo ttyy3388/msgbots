@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="FacetManager">
+    <facet __external-system-id="GRADLE" type="kotlin-language" name="Kotlin">
+      <configuration version="3" platform="JVM 1.6" allPlatforms="JVM [1.6]" useProjectSettings="false">
+        <compilerSettings>
+          <option name="additionalArguments" value="-Xallow-no-source-files" />
+        </compilerSettings>
+        <compilerArguments>
+          <option name="destination" value="$MODULE_DIR$/../../build/classes/kotlin/test" />
+          <option name="classpath" value="$MODULE_DIR$/../../build/classes/java/main;D:/Develop Files/Java/IntelliJ/Messenger Bot Simulator/msgbots/build/classes/kotlin/main;D:/Develop Files/Java/IntelliJ/Messenger Bot Simulator/msgbots/build/resources/main;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-fxml/14/71c819f0445fc613f631698c495d9ae92a35b041/javafx-fxml-14-win.jar;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-web/14/af6899fcd98420da5273f17e91b937fcc15a2ac9/javafx-web-14-win.jar;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-controls/14/f0f836ec9d1dd5ce0f3776cd2a87949e5191e085/javafx-controls-14-win.jar;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-controls/14/312b419feb6d5d927c80dafe13f8770bb5ff5b77/javafx-controls-14.jar;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-swing/14/3a4621195292f0a685c4bb2c0172d30b0a42e694/javafx-swing-14-win.jar;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-media/14/4a08bb1a89b3ee89615633c3139ed933bbf28041/javafx-media-14-win.jar;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-media/14/51ec4899654f6b2496e5c40d96ba58d26ff3888b/javafx-media-14.jar;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-graphics/14/ed1f8b8c5893d2d62e7c1fc66c9ba06dfe02787d/javafx-graphics-14-win.jar;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-graphics/14/132514c6e75c58dd34592dad8d356f78c3f0a680/javafx-graphics-14.jar;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-base/14/956a9be2db3fe917ebfc24c2d04ab0cb5d6714c7/javafx-base-14-win.jar;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-base/14/4eddcdd8713831212ec9b396169959655cf0dc21/javafx-base-14.jar;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/org.jsoup/jsoup/1.13.1/f9577f3732bb7caa4fee8aba5053158f4010c118/jsoup-1.13.1.jar;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/com.jfoenix/jfoenix/9.0.10/a7625792db8d15615ea6eebbc31e01504f20b2df/jfoenix-9.0.10.jar;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/org.mozilla/rhino/1.7.13/e6b2e12dc79fbdc58d8bf62a583705a551ec37d6/rhino-1.7.13.jar;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/eu.mihosoft.monacofx/monacofx/0.0.2/22438058d963e645bfbc26505a71809f7e58c63d/monacofx-0.0.2.jar;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/com.googlecode.json-simple/json-simple/1.1.1/c9ad4a0850ab676c5c64461a05ca524cdfff59f1/json-simple-1.1.1.jar;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.4.30-RC/796829938e5ccff3e1fc94cd791573b002c64609/kotlin-stdlib-jdk8-1.4.30-RC.jar;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/junit/junit/4.10/e4f1766ce7404a08f45d859fb9c226fc9e41a861/junit-4.10.jar;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.4.30-RC/f2b84e0547fda7db19a8831674298c23c5314491/kotlin-stdlib-jdk7-1.4.30-RC.jar;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.4.30-RC/a21490a380dc2ef0d89cf3108519b05041de6661/kotlin-stdlib-1.4.30-RC.jar;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.4.30-RC/625d81e977a267f0c56e080417258a8544e7c696/kotlin-stdlib-common-1.4.30-RC.jar;C:/Users/ttyy3/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" />
+          <option name="noStdlib" value="true" />
+          <option name="noReflect" value="true" />
+          <option name="moduleName" value="msgbots" />
+          <option name="friendPaths">
+            <array>
+              <option value="$MODULE_DIR$/../../build/classes/java/main" />
+              <option value="$MODULE_DIR$/../../build/classes/kotlin/main" />
+              <option value="$MODULE_DIR$/../../build/libs/msgbots.jar" />
+            </array>
+          </option>
+          <option name="languageVersion" value="1.4" />
+          <option name="apiVersion" value="1.4" />
+          <option name="pluginOptions">
+            <array />
+          </option>
+          <option name="pluginClasspaths">
+            <array>
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-script-runtime/1.4.30-RC/b9a2c17e49ca27d5032c54f3a62a463192801cc7/kotlin-script-runtime-1.4.30-RC.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-scripting-common/1.4.30-RC/19d1f616571b7ce7e0843cd2b01163935b7ee859/kotlin-scripting-common-1.4.30-RC.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-scripting-jvm/1.4.30-RC/77b31ff9f6c368095851ec0a68b17ddbdd0b0ba4/kotlin-scripting-jvm-1.4.30-RC.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.4.30-RC/625d81e977a267f0c56e080417258a8544e7c696/kotlin-stdlib-common-1.4.30-RC.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.4.30-RC/a21490a380dc2ef0d89cf3108519b05041de6661/kotlin-stdlib-1.4.30-RC.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core/1.3.8/f62be6d4cbf27781c2969867b4ed952f38378492/kotlinx-coroutines-core-1.3.8.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" />
+            </array>
+          </option>
+          <option name="errors">
+            <ArgumentParseErrors />
+          </option>
+        </compilerArguments>
+      </configuration>
+    </facet>
+  </component>
+</module>

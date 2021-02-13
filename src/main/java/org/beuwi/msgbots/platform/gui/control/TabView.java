@@ -12,7 +12,7 @@ import org.beuwi.msgbots.platform.gui.control.base.TabViewBase;
 import org.beuwi.msgbots.platform.gui.layout.HBox;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
 
-public class TabView extends TabViewBase {
+public class TabView extends TabViewBase<TabItem> {
 	private static final String DEFAULT_STYLE_CLASS = "tab-view";
 
 	private final static int DEFAULT_VIEW_WIDTH = 500;

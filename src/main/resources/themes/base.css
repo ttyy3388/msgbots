@@ -9,7 +9,7 @@
 } */
 
 .root {
-	-fx-font-family: /* 'Roboto', */ 'Microsoft Sans Serif', 'D2Coding';
+	-fx-font-family: 'Roboto', 'Microsoft Sans Serif', 'D2Coding';
 	-fx-font-size: 12;
 }
 

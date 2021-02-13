@@ -13,12 +13,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileManager {
+	public static String getBaseName(File file) {
+		return getBaseName(file.getName());
+	}
+	public static String getExtension(File file) {
+		return getExtension(file.getName());
+	}
+
 	public static String getBaseName(String name) {
 		return name.contains(".") ? name.substring(0, name.lastIndexOf(".")) : name;
 	}
-
 	public static String getExtension(String name) {
 		return name.contains(".") ? name.substring(name.lastIndexOf(".") + 1) : name;
 	}
@@ -40,12 +48,23 @@ public class FileManager {
 		return SharedValues.BOTS_FOLDER_FILE.listFiles();
 	}
 
-	public static String[] getBotNames() {
+	/* public static String[] getBotNames() {
 		File[] files = SharedValues.BOTS_FOLDER_FILE.listFiles(File::isDirectory);
 		String[] names = new String[files.length];
 
 		for (int i = 0 ; i < files.length ; i ++) {
 			names[i] = files[i].getName();
+		}
+
+		return names;
+	} */
+
+	public static List<String> getBotNames() {
+		File[] files = SharedValues.BOTS_FOLDER_FILE.listFiles(File::isDirectory);
+		List<String> names = new ArrayList<>();
+
+		for (int i = 0 ; i < files.length ; i ++) {
+			names.add(files[i].getName());
 		}
 
 		return names;

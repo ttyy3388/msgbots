@@ -71,7 +71,7 @@ public class ScriptEngine {
 				Context.reportError(e.toString());
 			}
 
-			// e.printStackTrace();
+
 
 			return false;
 		}

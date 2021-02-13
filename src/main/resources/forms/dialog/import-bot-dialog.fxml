@@ -11,8 +11,8 @@
 	<children>
 		<HBox fittable="true" prefHeight="30.0" spacing="10.0">
 			<children>
-				<TextField fx:id="txfScriptName" editable="false" HBox.hgrow="ALWAYS"></TextField>
-				<Button fx:id="btnScriptOpen" prefWidth="35.0" text="..."></Button>
+				<TextField fx:id="txfScriptName" HBox.hgrow="ALWAYS" editable="false"></TextField>
+				<Button fx:id="btnScriptOpen" text="..." styled="true" type="ACTION" prefWidth="35.0"></Button>
 			</children>
 		</HBox>
 		<VBox fittable="true" spacing="20.0" VBox.vgrow="ALWAYS">

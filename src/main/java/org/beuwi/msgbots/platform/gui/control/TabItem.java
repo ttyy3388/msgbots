@@ -75,6 +75,10 @@ public class TabItem extends TabItemBase {
 			header.setPrefWidth(getPrefWidth());
 		}); */
 
+		textProperty().addListener(change -> {
+			this.setId(getText());
+		});
+
 		menu = new ContextMenu(
 			new MenuItem("Close", "Ctrl + W", event -> getView().closeTab(this)),
 			new MenuItem("Close Others", event -> getView().closeOtherTabs(this)),

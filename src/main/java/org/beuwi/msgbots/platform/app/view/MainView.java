@@ -2,24 +2,15 @@ package org.beuwi.msgbots.platform.app.view;
 
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.parts.*;
-import org.beuwi.msgbots.platform.gui.layout.BorderPane;
-import org.beuwi.msgbots.platform.gui.layout.GridPane;
-import org.beuwi.msgbots.platform.gui.layout.HBox;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
-import org.beuwi.msgbots.platform.gui.layout.VBox;
 import org.beuwi.msgbots.platform.gui.window.WindowType;
 import org.beuwi.msgbots.platform.gui.window.WindowWrap;
 import org.beuwi.msgbots.platform.util.SharedValues;
-
-import java.util.List;
 
 public class MainView implements View {
 
@@ -51,7 +42,7 @@ public class MainView implements View {
 
 		// Add parts
 		stpMenuBar.getChildren().add(MenuBarPart.getRoot());
-		stpInnerArea.getChildren().add(NoticeListPart.getRoot());
+		stpInnerArea.getChildren().add(ToastListPart.getRoot());
 		stpSideArea.getChildren().add(SideAreaPart.getRoot());
 		stpMainArea.getChildren().add(MainAreaPart.getRoot());
 		stpToolArea.getChildren().add(ToolAreaPart.getRoot());

@@ -50,7 +50,7 @@ public class ChatItem extends HBox {
 
 		if (!isBot) {
 			// Sender Profile
-			profile.setFill(new ImagePattern(SharedValues.PROFILE_SENDER_IMAGE));
+			// profile.setFill(new ImagePattern(SharedValues.PROFILE_SENDER_IMAGE));
 
 			if (GlobalSettings.getBoolean("debug:show_sender_profile")) {
 				getChildren().setAll(content, profile);
@@ -64,7 +64,7 @@ public class ChatItem extends HBox {
 		}
 		else {
 			// Bot Profile
-			profile.setFill(new ImagePattern(SharedValues.PROFILE_BOT_IMAGE));
+			// profile.setFill(new ImagePattern(SharedValues.PROFILE_BOT_IMAGE));
 
 			if (GlobalSettings.getBoolean("debug:show_bot_profile")) {
 				getChildren().setAll(profile, content);

@@ -206,38 +206,6 @@
 	-fx-border-color: #007ACC;
 }
 
-/* NOTICE ITEM */
-.notice-item {
-	-fx-background-color: #252526;
-	/* -fx-border-color: #2B2B2B;
-	-fx-border-width: 1; */
-	-fx-cursor: hand;
-}
-.notice-item .title-bar .button {
-    -fx-cursor: hand;
-}
-.notice-item .title-bar .button .icon {
-	-fx-background-color: #FFFFFF;
-}
-/* .notice-item .title-bar .button:hover .icon {
-	-fx-background-color: #007ACC;
-} */
-.notice-item:hover {
-    -fx-background-color: #2A2D2E;
-	/* -fx-border-color: #007ACC; */
-}
-.notice-item:selected {
-    -fx-background-color: #062F4A;
-}
-
-/* NOTICE VIEW */
-/* .notice-view {
-    -fx-padding: 2.5 0 2.5 0;
-}
-.notice-view .list-cell {
-    -fx-padding: 2.5 5 2.5 5;
-} */
-
 /* MENU ITEM */
 .menu-item {
 	-fx-padding: 5 20 5 20;
@@ -393,6 +361,38 @@
 	-fx-border-color: #007ACC;
 }
 
+/* TOAST ITEM */
+.toast-item {
+	-fx-background-color: #252526;
+	/* -fx-border-color: #2B2B2B;
+	-fx-border-width: 1; */
+	-fx-cursor: hand;
+}
+.toast-item .title-bar .button {
+    -fx-cursor: hand;
+}
+.toast-item .title-bar .button .icon {
+	-fx-background-color: #FFFFFF;
+}
+/* .toast-item .title-bar .button:hover .icon {
+	-fx-background-color: #007ACC;
+} */
+.toast-item:hover {
+    -fx-background-color: #2A2D2E;
+	/* -fx-border-color: #007ACC; */
+}
+.toast-item:selected {
+    -fx-background-color: #062F4A;
+}
+
+/* TOAST VIEW */
+/* .toast-view {
+    -fx-padding: 2.5 0 2.5 0;
+}
+.toast-view .list-cell {
+    -fx-padding: 2.5 5 2.5 5;
+} */
+
 /* TOGGlE SWITCH */
 .toggle-switch {
 	-jfx-untoggle-color: #FFFFFF;
@@ -408,8 +408,8 @@
 	-fx-opacity: 1.0;
 }
 
-/* NOTICE AREA */
-.notice-area .notice-box {
+/* TOAST AREA */
+.toast-area .toast-box {
     -fx-background-color: #323233;
 }
 

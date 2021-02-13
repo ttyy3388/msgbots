@@ -3,6 +3,7 @@ package org.beuwi.msgbots.platform.app.view.actions;
 import org.beuwi.msgbots.platform.app.impl.Action;
 import org.beuwi.msgbots.platform.app.view.dialogs.ShowErrorDialog;
 
+// Dialog Box
 public class DisplayErrorDialogAction implements Action {
 
 	public static void execute(Throwable throwable) {

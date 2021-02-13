@@ -198,7 +198,12 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane imple
         return getTabs().get(index);
     }
     public T getTab(String id) {
-        return getTabs().get(findTab(id));
+        int index = findTab(id);
+        if (index != -1) {
+            return getTabs().get(index);
+        }
+
+        return null;
     }
     private int findTab(String id) {
         List<T> items = getTabs();
@@ -232,6 +237,9 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane imple
         }
 
         getTabs().remove(tab);
+    }
+    public void closeTab(String id) {
+        closeTab(getTab(id));
     }
     public void closeAllTabs() {
         closeTabList(getTabs());

@@ -13,7 +13,8 @@ public class SharedValues {
 	public static final String DEFAULT_PROGRAM_TITLE = "Messenger Bot Simulator";
 	public static final Image DEFAULT_PROGRAM_IMAGE = ResourceUtils.getImage("program");
 
-	// public static final String USER_WINDOWS_VERSION = System.getProperty("windows.os");
+	public static final String SYSTEM_WINDOWS_VERSION = System.getProperty("windows.os");
+	public static final String SYSTEM_USER_NAME = System.getProperty("user.name");
 
 	static {
 		// 정적 변수에서 초기화(파일이 없다거나 등...) 에러가 발생하면 노답이기 때문에 최대한 모든 에러를 잡아서 해결해 줘야 함
@@ -34,11 +35,9 @@ public class SharedValues {
 	/* Documents */
 	public static final Document ABOUT_PROGRAM_DOCUMENT = new Document("ABOUT PROGRAM", ABOUT_PROGRAM_PAGE);
 	public static final Document PROGRAM_START_DOCUMENT = new Document("START PROGRAM", PROGRAM_START_PAGE);
-	// public static final Document RELEASE_NOTES_DOCUMENT = new Document("RELEASE NOTES", RELEASE_NOTES_PAGE);
+	public static final Document RELEASE_NOTES_DOCUMENT = new Document("RELEASE NOTES", RELEASE_NOTES_PAGE);
 	public static final Document VIEW_LICENSE_DOCUMENT = new Document("VIEW LICENSE", VIEW_LICENSE_PAGE);
 	public static final Document WELCOME_GUIDE_DOCUMENT = new Document("WELCOME GUIDE", WELCOME_GUIDE_PAGE);
-
-	public static final String SYSTEM_USER_NAME = System.getProperty("user.name");
 
 	/* public static final ObjectProperty<File> CURRENT_SCRIPT_FILE = new SimpleObjectProperty();
 	public static final ObjectProperty<File> getCurrentScriptFileProperty() {
@@ -73,8 +72,8 @@ public class SharedValues {
 	public static final File SCRIPT_UNIFIED_FILE = FileManager.getDataFile(SCRIPT_UNIFIED_PATH);
 	public static final File PROGRAM_DATA_FILE = FileManager.getDataFile(PROGRAM_DATA_PATH);
 
-	public static final Image PROFILE_SENDER_IMAGE = new Image(SharedValues.PROFILE_SENDER_FILE.toURI().toString());
-	public static final Image PROFILE_BOT_IMAGE = new Image(SharedValues.PROFILE_BOT_FILE.toURI().toString());
+	// public static final Image PROFILE_SENDER_IMAGE = new Image(SharedValues.PROFILE_SENDER_FILE.toURI().toString());
+	// public static final Image PROFILE_BOT_IMAGE = new Image(SharedValues.PROFILE_BOT_FILE.toURI().toString());
 
 	// public static final File BASE_THEME_FILE =  ResourceUtils.getTheme("/themes/base.css");
 	// public static final File DARK_THEME_FILE = ResourceUtils.getFile("/themes/dark.css");

@@ -8,31 +8,31 @@ public enum ThemeType {
 	DARK {
 		@Override
 		public String toString() {
-			return "Dark";
+			return "dark";
 		}
 	},
 	LIGHT {
 		@Override
 		public String toString() {
-			return "Light";
+			return "light";
 		}
 	};
 	/* BLACK {
 		@Override
 		public String toString() {
-			return "Black";
+			return "black";
 		}
 	},
 	WHITE {
 		@Override
 		public String toString() {
-			return "White";
+			return "white";
 		}
 	},
 	USER {
 		@Override
 		public String toString() {
-			return "User";
+			return "user";
 		}
 	}; */
 

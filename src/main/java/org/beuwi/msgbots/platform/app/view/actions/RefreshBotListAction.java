@@ -2,25 +2,82 @@ package org.beuwi.msgbots.platform.app.view.actions;
 
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.impl.Action;
+import org.beuwi.msgbots.platform.app.view.parts.MainAreaPart;
 import org.beuwi.msgbots.platform.app.view.tabs.BotListTab;
 import org.beuwi.msgbots.platform.gui.control.BotItem;
 import org.beuwi.msgbots.platform.gui.control.BotView;
+import org.beuwi.msgbots.platform.gui.control.TabItem;
+import org.beuwi.msgbots.platform.gui.control.TabView;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RefreshBotListAction implements Action {
 	private static BotView botView;
+	private static TabView tabView;
 
 	@Override
 	public void init() {
 		botView = BotListTab.getComponent();
+		tabView = MainAreaPart.getComponent();
 	}
 
 	public static void execute() {
-		botView.getItems().clear();
+		List<BotItem> items = botView.getItems();
 
-		for (File folder : FileManager.getBotList()) {
-			botView.getItems().add(new BotItem(folder.getName()));
+		if (items.size() != 0) {
+			List<String> fileNames = FileManager.getBotNames();
+			List<BotItem> removeItems = new ArrayList();
+
+			List<String> botNames = new ArrayList<>();
+			botView.getItems().forEach(item ->
+				botNames.add(item.getName())
+			);
+
+			// 봇 목록을 기준으로 검사
+			for (BotItem item : items) {
+				String botName = item.getName();
+
+				// 봇 목록에도 있고 파일 목록에도 있을 때
+				if (fileNames.contains(botName)) {
+					// 대상이 아니므로 넘어감
+					continue ;
+				}
+				// 봇 목록에는 있는데 파일 목록에 없으면 삭제된 아이템이라고 간주
+				else {
+					removeItems.add(item);
+
+					// 에디터 탭도 열려 있다면 탭 닫음
+					if (tabView.getTab(botName) != null) {
+						tabView.closeTab(botName);
+					}
+				}
+			}
+
+			items.removeAll(removeItems);
+
+			List<BotItem> addItems = new ArrayList();
+
+            // 파일 목록을 기준으로 검사
+            for (String fileName : fileNames) {
+            	// 파일이 봇 목록에 포함되어 있다면 넘어감
+            	if (botNames.contains(fileName)) {
+            		continue ;
+				}
+            	// 아니라면 추가된 아이템이므로 추가함
+            	else {
+            		addItems.add(new BotItem(fileName));
+				}
+            }
+
+            items.addAll(addItems);
+		}
+		// 봇 목록이 비어있다면 새로 시작했거나 등 경우임
+		else {
+			for (File folder : FileManager.getBotList()) {
+				botView.getItems().add(new BotItem(folder.getName()));
+			}
 		}
 	}
 

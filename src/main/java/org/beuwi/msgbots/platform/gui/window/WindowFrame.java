@@ -100,7 +100,7 @@ public class WindowFrame {
 			scene.getStylesheets().setAll(
 				ResourceUtils.getTheme(
 					ThemeType.parse(GlobalSettings.getString("program:color_theme"))
-				)
+				).toString()
 			);
 			/* String style = FileManager.read(SharedValues.BASE_THEME_FILE);
 			String data = style.replace(" ", "").split(".text\\{")[1].split("}")[0];

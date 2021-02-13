@@ -12,11 +12,27 @@ import org.beuwi.msgbots.platform.app.view.parts.*;
 import org.beuwi.msgbots.platform.app.view.tabs.*;
 import org.beuwi.msgbots.platform.gui.control.LogItem;
 import org.beuwi.msgbots.platform.gui.control.LogView;
-import org.beuwi.msgbots.platform.gui.control.NoticeItem;
-import org.beuwi.msgbots.platform.gui.enums.NoticeType;
+import org.beuwi.msgbots.platform.gui.control.ToastItem;
+import org.beuwi.msgbots.platform.gui.enums.ToastType;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
+import org.beuwi.msgbots.platform.util.SharedValues;
+
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Paths;
+import java.nio.file.WatchEvent;
+import java.nio.file.WatchKey;
+import java.nio.file.WatchService;
+import java.util.List;
+
+import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
+import static java.nio.file.StandardWatchEventKinds.OVERFLOW;
 
 public class Launcher extends Application {
+	WatchService WATCH_SERVICE = null;
+	WatchKey     WATCH_KEY     = null;
 
 	@Override
 	public void init() {
@@ -35,6 +51,8 @@ public class Launcher extends Application {
 			Font.loadFont(ResourceUtils.getFont("roboto-bold"),   0); // Family : "Roboto Bold"
 			Font.loadFont(ResourceUtils.getFont("roboto-medium"), 0); // Family : "Roboto Medium"
 
+			// Font.getFamilies().forEach(family -> System.out.println(family));
+
 			// Base Theme
 			Application.setUserAgentStylesheet(ResourceUtils.getTheme("base"));
 
@@ -42,14 +60,57 @@ public class Launcher extends Application {
 				ChangeColorThemeAction.execute(ThemeType.parse(GlobalSettings.getData("program:color_theme")));
 			}); */
 		}
-		catch (Exception e) {
-			DisplayErrorDialogAction.execute(e);
+		catch (Throwable e) {
+			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void start(Stage stage) {
 		try {
+			try {
+				WATCH_SERVICE = FileSystems.getDefault().newWatchService();
+
+				Paths.get(SharedValues.BOTS_FOLDER_FILE.getPath()).register(
+					WATCH_SERVICE,
+					ENTRY_CREATE,
+					ENTRY_DELETE,
+					ENTRY_MODIFY,
+					OVERFLOW
+				);
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			new Thread(() -> {
+				while (true) {
+					try {
+						WATCH_KEY = WATCH_SERVICE.take();
+					}
+					catch (InterruptedException e) {
+						break;
+					}
+
+					List<WatchEvent<?>> events = WATCH_KEY.pollEvents();
+
+					for (WatchEvent<?> event : events) {
+						Platform.runLater(() -> {
+							RefreshBotListAction.execute();
+						});
+					}
+
+					if (!WATCH_KEY.reset()) {
+						try {
+							WATCH_SERVICE.close();
+						}
+						catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}).start();
+
 			// Initialize tabs
 			new GlobalConfigTab().init();
 			new BotListTab().init();
@@ -67,59 +128,42 @@ public class Launcher extends Application {
 			new MenuBarPart().init();
 			new SideAreaPart().init();
 			new StatusBarPart().init();
-			new NoticeListPart().init();
+			new ToastListPart().init();
 			new ToolAreaPart().init();
 
 			// Initialize actions
 			new AddMainAreaTabAction().init();
-			new AddNoticeListItemAction().init();
+			new ShowToastMessageAction().init();
 			new InputDetailLogAction().init();
 			new OpenDocumentTabAction().init();
 			new OpenProgramTabAction().init();
 			new OpenScriptTabAction().init();
 			new RefreshBotListAction().init();
 			new SendChatMessageAction().init();
+			new ShowToastMessageAction().init();
 			new UpdateCurrentPathAction().init();
 			new UpdateStatusBarAction().init();
 
 			new MainView(stage).init();
 			new MainWindow(stage).create();
 
+			DisplayErrorToastAction.execute(new Exception());
+
 			OpenProgramTabAction.execute(GlobalConfigTab.getRoot());
-			AddNoticeListItemAction.execute(new NoticeItem(
-				NoticeType.ERROR,
+			ShowToastMessageAction.execute(new ToastItem(
+				ToastType.ERROR,
 				"TEST TITLE",
 				"TEST CONTENT"
 			));
-			AddNoticeListItemAction.execute(new NoticeItem(
-				NoticeType.EVENT,
+			ShowToastMessageAction.execute(new ToastItem(
+				ToastType.EVENT,
 				"TEST TITLE",
 				"TEST CONTENT"
 			));
-			AddNoticeListItemAction.execute(new NoticeItem(
-				NoticeType.WARNING,
+			ShowToastMessageAction.execute(new ToastItem(
+				ToastType.WARNING,
 				"TEST TITLE",
 				"TEST CONTENT"
-			));
-			AddNoticeListItemAction.execute(new NoticeItem(
-					NoticeType.WARNING,
-					"TEST TITLE",
-					"TEST CONTENT"
-			));
-			AddNoticeListItemAction.execute(new NoticeItem(
-					NoticeType.WARNING,
-					"TEST TITLE",
-					"TEST CONTENT"
-			));
-			AddNoticeListItemAction.execute(new NoticeItem(
-					NoticeType.WARNING,
-					"TEST TITLE",
-					"TEST CONTENT"
-			));
-			AddNoticeListItemAction.execute(new NoticeItem(
-					NoticeType.WARNING,
-					"TEST TITLE",
-					"TEST CONTENT"
 			));
 
 			// System.out.println(SharedValues.BOTS_FOLDER_FILE);
@@ -154,8 +198,15 @@ public class Launcher extends Application {
 			// RefreshBotListAction.execute();
 			// ScriptManager.preInit();
 		}
-		catch (Throwable e) {
-			DisplayErrorDialogAction.execute(e);
+		catch (Throwable t1) {
+			t1.printStackTrace();
+			try {
+				// DisplayErrorDialogAction.execute(t1);
+			}
+			// 다이얼 로그 박스도 안열리면 에러 출력
+			catch (Throwable t2) {
+				t2.printStackTrace();
+			}
 		}
 	}
 
@@ -167,6 +218,11 @@ public class Launcher extends Application {
 	}
 
 	public static void main(String[] args) {
-		launch(args);
+		try {
+			launch(args);
+		}
+		catch (Throwable e) {
+			e.printStackTrace();
+		}
 	}
 }
