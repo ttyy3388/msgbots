@@ -1,1 +1,5 @@
 public/src/main/resources/monaco/* linguist-vendored
+* linguist-vendored
+*.java linguist-vendored=false
+*.css linguist-vendored=false
+*.html linguist-vendored=false
