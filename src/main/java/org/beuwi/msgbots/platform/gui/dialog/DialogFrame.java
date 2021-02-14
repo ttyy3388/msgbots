@@ -1,13 +1,11 @@
 package org.beuwi.msgbots.platform.gui.dialog;
 
-import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 import org.beuwi.msgbots.openapi.FormLoader;
@@ -17,8 +15,6 @@ import org.beuwi.msgbots.platform.gui.control.Label;
 import org.beuwi.msgbots.platform.gui.control.MenuItem;
 import org.beuwi.msgbots.platform.gui.layout.BorderPane;
 import org.beuwi.msgbots.platform.gui.layout.HBox;
-import org.beuwi.msgbots.platform.gui.layout.ShadowPane;
-import org.beuwi.msgbots.platform.gui.layout.StackPane;
 import org.beuwi.msgbots.platform.gui.window.WindowFrame;
 import org.beuwi.msgbots.platform.gui.window.WindowType;
 import org.beuwi.msgbots.platform.util.AllSVGIcons;
@@ -151,12 +147,12 @@ public abstract class DialogFrame extends BorderPane {
 
 		switch (type) {
 			// None : Remove icon
-			case NONE -> brpWinMain.getChildren().remove(imvDialogIcon);
+			case NONE : brpWinMain.getChildren().remove(imvDialogIcon); break;
 
 			// Others : Display icon
-			case EVENT -> imvDialogIcon.setImage(ResourceUtils.getImage("event_big"));
-			case WARNING -> imvDialogIcon.setImage(ResourceUtils.getImage("warning_big"));
-			case ERROR -> imvDialogIcon.setImage(ResourceUtils.getImage("error_big"));
+			case EVENT : imvDialogIcon.setImage(ResourceUtils.getImage("event_big")); break;
+			case WARNING : imvDialogIcon.setImage(ResourceUtils.getImage("warning_big")); break;
+			case ERROR : imvDialogIcon.setImage(ResourceUtils.getImage("error_big")); break;
 		}
 
 		/* ------------------------------------------------------ */

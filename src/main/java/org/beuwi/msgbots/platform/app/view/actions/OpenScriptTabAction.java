@@ -1,6 +1,5 @@
 package org.beuwi.msgbots.platform.app.view.actions;
 
-import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.impl.Action;
 import org.beuwi.msgbots.platform.app.view.parts.MainAreaPart;
 import org.beuwi.msgbots.platform.gui.control.BotItem;

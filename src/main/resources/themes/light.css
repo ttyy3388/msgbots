@@ -32,7 +32,7 @@
 	-fx-background-color: rgba(0, 0, 0, 0.1);
 }
 .bot-item > .button:armed {
-	-fx-background-color: rgba(0, 0, 0, 0.1);
+	-fx-background-color: rgba(0, 0, 0, 0.2);
 }
 .bot-item > .button .icon {
 	-fx-background-color: #000000;
@@ -253,7 +253,7 @@
     -fx-border-color: "#FF3333";
 }
 .log-item.debug {
-    -fx-border-color: "#00FF00";
+    -fx-border-color: "#EB6100";
 }
 
 /* LOG VIEW */
@@ -377,25 +377,20 @@
 
 /* TOAST ITEM */
 .toast-item {
-	-fx-background-color: #252526;
-	-fx-border-color: #2B2B2B;
-	-fx-border-width: 1;
-}
-.toast-item .title-bar .button {
+	-fx-background-color: #F3F3F3;
     -fx-cursor: hand;
 }
 .toast-item .title-bar .button .icon {
-	-fx-background-color: #FFFFFF;
+	-fx-background-color: #000000;
 }
 /* .notice-item .title-bar .button:hover .icon {
 	-fx-background-color: #007ACC;
 } */
-.toast-item:hover,
-.toast-item:focused {
-	-fx-border-color: #007ACC;
-}
 .toast-item:hover {
-    -fx-background-color: #2A2D2E;
+    -fx-background-color: #E8E8E8;
+}
+.toast-item:selected {
+    -fx-background-color: #D6EBFF;
 }
 
 /* TOAST VIEW */
@@ -419,6 +414,14 @@
 }
 .toggle-button:selected {
 	-fx-opacity: 1.0;
+}
+
+/* TOAST AREA */
+.toast-area .toast-box {
+    -fx-background-color: #E7E7E7;
+}
+.toast-area .toast-box .button .icon {
+    -fx-background-color: #000000;
 }
 
 /* SIDE AREA */
@@ -484,4 +487,7 @@
 /* STATUS BAR */
 .status-bar {
 	-fx-background-color: #007ACC;
+}
+.status-bar .label {
+	-fx-text-fill: #FFFFFF;
 }

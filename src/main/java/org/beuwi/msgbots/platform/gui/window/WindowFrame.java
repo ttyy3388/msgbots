@@ -107,7 +107,7 @@ public class WindowFrame {
 			data.split("-fx-font-smoothing-type:")[1].split(";")[0]
 			scene.getStylesheets().addAll(".text {-fx-font-smoothing-type: " +
 					GlobalSettings.getString("program:text_rendering") + "};"); */
-			// stage.getIcons().add(SharedValues.DEFAULT_PROGRAM_IMAGE);
+			stage.getIcons().add(SharedValues.DEFAULT_PROGRAM_IMAGE);
 			// stage.setAlwaysOnTop();
 			stage.setScene(scene);
 			stage.setTitle(title);

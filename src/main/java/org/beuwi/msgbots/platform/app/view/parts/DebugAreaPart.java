@@ -2,7 +2,6 @@ package org.beuwi.msgbots.platform.app.view.parts;
 
 import javafx.collections.ObservableMap;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;

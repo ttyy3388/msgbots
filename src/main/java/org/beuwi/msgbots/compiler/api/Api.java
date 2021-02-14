@@ -1,12 +1,24 @@
 package org.beuwi.msgbots.compiler.api;
 
-import org.beuwi.msgbots.setting.ScriptSettings;
-import org.mozilla.javascript.Scriptable;
-import org.mozilla.javascript.ScriptableObject;
-import org.mozilla.javascript.annotations.JSFunction;
-import org.mozilla.javascript.annotations.JSStaticFunction;
+import javafx.application.Platform;
 
-import java.util.function.Function;
+import org.beuwi.msgbots.compiler.engine.ScriptEngine;
+import org.beuwi.msgbots.compiler.engine.ScriptManager;
+import org.beuwi.msgbots.manager.BotManager;
+import org.beuwi.msgbots.manager.FileManager;
+import org.beuwi.msgbots.platform.app.action.ShowWinMsgAction;
+import org.beuwi.msgbots.platform.app.view.actions.SendChatMessageAction;
+import org.beuwi.msgbots.platform.app.view.actions.ShowToastMessageAction;
+import org.beuwi.msgbots.platform.gui.control.ToastItem;
+import org.beuwi.msgbots.platform.gui.enums.ToastType;
+import org.beuwi.msgbots.platform.util.SharedValues;
+import org.beuwi.msgbots.setting.ScriptSettings;
+
+import org.mozilla.javascript.*;
+import org.mozilla.javascript.annotations.JSFunction;
+import org.mozilla.javascript.annotations.JSFunction;
+
+import java.io.File;
 
 public class Api extends ScriptableObject {
 	@Override
@@ -28,100 +40,196 @@ public class Api extends ScriptableObject {
 	}
 
 	@JSFunction
-	public Boolean on(String name) {
-		return true;
-	}
-	
-	@JSStaticFunction
-	public Boolean off(String name) {
-		if (ScriptSettings.get(name).getBoolean("ignore_api_off")) {
-			return false;
+	public Boolean on(String inputName) {
+		if (Undefined.isUndefined(inputName)) {
+			FileManager.getBotNames().forEach(botName ->
+				BotManager.setPower(botName, true)
+			);
+		}
+		else {
+			String scriptName = Utils.toScriptName(inputName);
+			try {
+				BotManager.setPower(scriptName, true);
+			}
+			catch (Exception e) {
+				return false;
+			}
 		}
 
 		return true;
 	}
 	
 	@JSFunction
-	public Boolean reload(String name, Boolean stopOnError) {
+	public Boolean off(String inputName) {
+		if (Undefined.isUndefined(inputName)) {
+			FileManager.getBotNames().forEach(botName ->
+				BotManager.setPower(botName, false)
+			);
+		}
+		else {
+			String scriptName = Utils.toScriptName(inputName);
+			// Api Off 설정이 켜져 있으면 무시
+			if (ScriptSettings.get(scriptName).getBoolean("ignore_api_off")) {
+				return false;
+			}
+
+			try {
+				BotManager.setPower(scriptName, false);
+			}
+			catch (Exception e) {
+				return false;
+			}
+		}
+
 		return true;
+	}
+
+	@JSFunction
+	public Boolean compile(String inputName, Boolean stopOnError) throws Exception {
+		return reload(inputName, stopOnError);
+	}
+	@JSFunction
+	public Boolean reload(String inputName, Boolean stopOnError) {
+		if (!Undefined.isUndefined(inputName)) {
+			String scriptName = Utils.toScriptName(inputName);
+			if (!FileManager.getBotScript(scriptName).exists()) {
+				return false;
+			}
+
+			return ScriptManager.initScript(scriptName, false, !stopOnError);
+		}
+		else {
+			ScriptManager.initAll(false);
+			return true;
+		}
+	}
+
+	@JSFunction
+	public int prepare(String inputName, Boolean stopOnError) {
+		if (Undefined.isUndefined(inputName)) {
+			int compiled = 0;
+			for (String botName : FileManager.getBotNames()) {
+				if (isCompiled(botName) || isCompiling(botName) != null) {
+					continue ;
+				}
+				else {
+					reload(botName, stopOnError);
+				}
+				compiled ++;
+			};
+			return compiled;
+		}
+		else {
+			String scriptName = Utils.toScriptName(inputName);
+
+			if (isCompiled(scriptName)) {
+				return 2;
+			}
+			if (reload(scriptName, stopOnError)) {
+				return 1;
+			}
+			else {
+				return 0;
+			}
+		}
+	}
+
+	@JSFunction
+	public Boolean unload(String inputName) {
+		if (Undefined.isUndefined(inputName)) {
+			return false;
+		}
+		else {
+			String scriptName = Utils.toScriptName(inputName);
+			if (ScriptManager.container.get(scriptName) != null) {
+				ScriptManager.container.remove(scriptName);
+			}
+			else {
+				return false;
+			}
+			return true;
+		}
 	}
 	
 	@JSFunction
-	public Boolean compile(String name, Boolean stopOnError) throws Exception {
-		return false;
+	public Boolean isOn(String inputName) {
+		if (Undefined.isUndefined(inputName)) {
+			return false;
+		}
+		else {
+			return BotManager.getPower(Utils.toScriptName(inputName));
+		}
 	}
 
-	@JSStaticFunction
-	public static int prepare(String name) {
-		return 0;
+	@JSFunction
+	public Boolean isCompiled(String inputName) {
+		if (Undefined.isUndefined(inputName)) {
+			return false;
+		}
+		else {
+			return BotManager.isCompiled(Utils.toScriptName(inputName));
+		}
 	}
 
-	@JSStaticFunction
-	public static Boolean unload(String name) {
+	@JSFunction
+	public Boolean isCompiling(String inputName) {
+		if (Undefined.isUndefined(inputName)) {
+			for (String botName : FileManager.getBotNames()) {
+				if (ScriptManager.compiling.get(botName) != null) {
+					return true;
+				}
+			};
+			return false;
+		}
+		else {
+			return ScriptManager.compiling.get(Utils.toScriptName(inputName)) != null;
+		}
+	}
+
+	@JSFunction
+	public Scriptable getScriptNames() {
+		return Context.enter().newArray(
+				ScriptEngine.execScope,
+				FileManager.getBotNames().toArray()
+		);
+	}
+
+	@JSFunction
+	public Boolean replyRoom(String room, String message, Boolean hideToast) {
+		Replier.reply(message);
 		return true;
 	}
-	
-	@JSStaticFunction
-	public static Boolean isOn(String name) {
-		return false;
+
+	@JSFunction
+	public Boolean canReply(String room) {
+		return true;
 	}
 
-	@JSStaticFunction
-	public static Boolean isCompiled(String name) {
-		return false;
+	@JSFunction
+	public void showToast(String content, int length) {
+		Platform.runLater(() -> ShowToastMessageAction.execute(new ToastItem(
+			ToastType.EVENT, "Toast Message", content
+		)));
 	}
 
-	@JSStaticFunction
-	public static Boolean isCompiling(String name) {
-		return false;
-	}
-
-	@JSStaticFunction
-	public static Scriptable getScriptNames() {
+	@JSFunction
+	public String papagoTranslate(String sourceLanguage, String targetLanguage, String data, Boolean errorToString) {
 		return null;
 	}
 
-	@JSStaticFunction
-	public static Boolean replyRoom(String room, String message, Boolean hideToast) {
+	@JSFunction
+	public Boolean makeNoti(String title, String content, int id) {
+		ShowWinMsgAction.execute(title, content);
 		return true;
 	}
 
-	@JSStaticFunction
-	public static Boolean canReply(String room) {
-		return true;
-	}
-
-	@JSStaticFunction
-	public static void showToast(String content, int length) {
-		return ;
-	}
-
-	/**
-	 *
-	 * @param sourceLanguage sdafasdfasd
-	 * @param targetLanguage
-	 * @param data
-	 * @param errorToString
-	 * @return adsf asdfsdafa
-	 * @
-	 */
-	@JSStaticFunction
-	public static String papagoTranslate(String sourceLanguage, String targetLanguage, String data, Boolean errorToString) {
-		return null;
-	}
-
-	@JSStaticFunction
-	public static Boolean makeNoti(String title, String content, int id) {
-		return true;
-	}
-
-	@JSStaticFunction
-	public static void gc() {
+	@JSFunction
+	public void gc() {
 		System.gc();
 	}
 
-	@JSStaticFunction
-	public static void UIThread(Function function, Function onComplete) {
+	@JSFunction("UIThread")
+	public void UIThread(Function function, Function onComplete) {
 		return ;
 	}
 }

@@ -1,5 +1,15 @@
 package org.beuwi.msgbots.compiler.api;
 
+import org.beuwi.msgbots.manager.FileManager;
+import org.beuwi.msgbots.platform.app.view.actions.DisplayErrorDialogAction;
+import org.beuwi.msgbots.platform.util.SharedValues;
+
+import sun.misc.IOUtils;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.Base64;
+
 public class ImageDB {
     public String getProfileImage() {
         return getProfileBase64();
@@ -7,12 +17,14 @@ public class ImageDB {
 
     public String getProfileBase64() {
 		try {
-			// byte[] bytes = IOUtils.toByteArray(FileManager.getDataFile("profile_bot.png"));
-
-			// return Base64.getEncoder().encodeToString(bytes);
+			File file = SharedValues.PROFILE_BOT_FILE;
+			FileInputStream inputStream = new FileInputStream(file);
+			byte[] bytes = new byte[(int) file.length()];
+			inputStream.read(bytes);
+			return Base64.getEncoder().encodeToString(bytes);
 		}
 		catch (Exception e) {
-			// new ShowErrorDialog(e).display();
+			DisplayErrorDialogAction.execute(e);
 		}
 
 		return null;

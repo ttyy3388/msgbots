@@ -9,14 +9,9 @@ import org.beuwi.msgbots.compiler.engine.ScriptManager;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.action.CopyStringAction;
 import org.beuwi.msgbots.platform.app.action.OpenDesktopAction;
-import org.beuwi.msgbots.platform.app.view.actions.DisplayErrorDialogAction;
-import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
-import org.beuwi.msgbots.platform.app.view.actions.OpenProgramTabAction;
-import org.beuwi.msgbots.platform.app.view.actions.OpenScriptTabAction;
-import org.beuwi.msgbots.platform.app.view.actions.UpdateCurrentPathAction;
+import org.beuwi.msgbots.platform.app.view.actions.*;
 import org.beuwi.msgbots.platform.app.view.dialogs.DeleteBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.RenameBotDialog;
-import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
 import org.beuwi.msgbots.platform.gui.layout.GridPane;
 import org.beuwi.msgbots.platform.util.AllSVGIcons;
 import org.beuwi.msgbots.setting.ScriptSettings;
@@ -85,7 +80,9 @@ public class BotItem extends GridPane {
 				tgbBotPower.setSelected(!getPower());
 			}),
 			new Separator(),
-			// new MenuItem("Show Log", event -> OpenBotLogTabAction.execute(name)),
+			new MenuItem("Show Log", event -> {
+				OpenBotLogTabAction.execute(name);
+			}),
 			new Separator(),
 			new MenuItem("Show in Explorer", "Shift + Alt + R", event -> {
 				OpenDesktopAction.execute(FileManager.getBotFolder(name));
@@ -104,10 +101,10 @@ public class BotItem extends GridPane {
 			new MenuItem("Delete", event -> {
 				OpenDialogBoxAction.execute(new DeleteBotDialog(name));
 			}),
-			new Separator(),
-			new MenuItem("Settings", "Ctrl + ,", event -> {
+			new Separator()
+			/* new MenuItem("Settings", "Ctrl + ,", event -> {
 				OpenProgramTabAction.execute(GlobalConfigTab.getRoot());
-			})
+			}) */
 		);
 		menu.setNode(this);
 		

@@ -1,8 +1,6 @@
 package org.beuwi.msgbots.openapi;
 
-import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 

@@ -1,20 +1,24 @@
 package org.beuwi.msgbots.platform.gui.control;
 
-import javafx.geometry.Insets;
+import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.layout.Priority;
+import javafx.scene.image.ImageView;
 
+import org.beuwi.msgbots.openapi.FormLoader;
+import org.beuwi.msgbots.platform.app.action.CopyStringAction;
 import org.beuwi.msgbots.platform.gui.enums.LogType;
-import org.beuwi.msgbots.platform.gui.layout.VBox;
+import org.beuwi.msgbots.platform.gui.layout.HBox;
+import org.beuwi.msgbots.platform.gui.layout.StackPane;
 
+import org.beuwi.msgbots.platform.util.ResourceUtils;
 import org.json.simple.JSONObject;
 
 // Log Item
-public class LogItem extends VBox<Label> {
+public class LogItem extends StackPane {
 	private static final String DEFAULT_STYLE_CLASS = "log-item";
 
-	private static final Insets DEFAULT_PADDING_INSETS = new Insets(10);
-	private static final double DEFAULT_SPACING_VALUE = 10;
+	// private static final Insets DEFAULT_PADDING_INSETS = new Insets(5);
+	// private static final double DEFAULT_SPACING_VALUE = 10;
 
 	private static final double DEFAULT_PREF_WIDTH = 200;
 	private static final double DEFAULT_MIN_HEIGHT = 80;
@@ -24,15 +28,13 @@ public class LogItem extends VBox<Label> {
 	private final StringProperty data = new SimpleStringProperty();
 	private final StringProperty date = new SimpleStringProperty(); */
 
-	// Data Label
-	private final Label headerLabel = new Label();
+	@FXML private HBox hbxBoxRoot;
+	@FXML private ImageView imvBoxIcon;
+	@FXML private Label lblBoxText;
+	@FXML private Label lblBoxDate;
 
-	// Date Label
-	private final Label footerLabel = new Label();
-
-	{
-		VBox.setVgrow(headerLabel, Priority.ALWAYS);
-	}
+	private final FormLoader loader;
+	private final ContextMenu menu;
 
 	private LogView parent;
 
@@ -49,30 +51,26 @@ public class LogItem extends VBox<Label> {
 	}
 
 	public LogItem(LogType type, String data, String date) {
-		/* colorBar.setColor(
-			switch (type) {
-				// case EVENT -> "#186DE6";
-				case EVENT -> "#007ACC";
-				case ERROR -> "#FF3333";
-				case DEBUG -> "#00FF00";
-			}
-		); */
+		loader = new FormLoader("frame", "log-item-frame", this);
+		menu = new ContextMenu(
+				new MenuItem("Copy Text", event -> CopyStringAction.execute("[" + date + "] " + data))
+		);
+		menu.setNode(this);
+
+		imvBoxIcon.setImage(ResourceUtils.getImage(type.toString()));
+
+		lblBoxText.setText(data);
+		lblBoxText.setWrapText(true);
+		lblBoxText.setAlignment(Pos.TOP_LEFT);
+
+		lblBoxDate.setText(date);
+
+		getChildren().setAll(hbxBoxRoot);
 		getStyleClass().add(type.toString());
 
-		headerLabel.setText(data);
-		headerLabel.setWrapText(true);
-		headerLabel.setAlignment(Pos.TOP_LEFT);
-
-		footerLabel.setText(date);
-
-		// content.setFittable(true);
-		setSpacing(DEFAULT_SPACING_VALUE);
-		setPadding(DEFAULT_PADDING_INSETS);
-		getChildren().setAll(
-			headerLabel, footerLabel
-		);
-
 		// setFittable(true);
+		// setSpacing(DEFAULT_SPACING_VALUE);
+		// setPadding(DEFAULT_PADDING_INSETS);
 		setPrefWidth(DEFAULT_PREF_WIDTH);
 		// setMinHeight(DEFAULT_MIN_HEIGHT);
 		setPrefHeight(DEFAULT_PREF_HEIGHT);

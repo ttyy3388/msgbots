@@ -1,7 +1,6 @@
 package org.beuwi.msgbots.platform.app.view.tabs;
 
 import javafx.collections.ObservableMap;
-import javafx.scene.Node;
 
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;

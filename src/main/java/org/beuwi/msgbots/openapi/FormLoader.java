@@ -1,7 +1,6 @@
 package org.beuwi.msgbots.openapi;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 
 import org.beuwi.msgbots.platform.app.view.actions.DisplayErrorDialogAction;

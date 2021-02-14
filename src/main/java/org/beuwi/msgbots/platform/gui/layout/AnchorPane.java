@@ -2,7 +2,6 @@ package org.beuwi.msgbots.platform.gui.layout;
 
 import javafx.scene.Node;
 
-import org.beuwi.msgbots.platform.gui.base.Anchor;
 import org.beuwi.msgbots.platform.gui.base.Layout;
 
 public class AnchorPane extends javafx.scene.layout.AnchorPane implements Layout {

@@ -236,14 +236,17 @@
 
 /* LOG ITEM */
 .log-item {
-	-fx-background-color: #2B2B2B;
+	/* -fx-background-color: #2B2B2B; */
 	/* -fx-background-color: #353535; */
 	/* -fx-background-radius: 5; */
 	-fx-border-width: 1;
 }
-.log-item:hover,
+.log-item:hover {
+    -fx-background-color: #2A2D2E;
+}
 .log-item:selected {
-    -fx-background-color: rgba(0, 122, 204, 0.5);
+    /* -fx-background-color: rgba(0, 122, 204, 0.5); */
+    -fx-background-color: #062F4A;
 }
 .log-item.event {
     -fx-border-color: "#007ACC";
@@ -252,7 +255,7 @@
     -fx-border-color: "#FF3333";
 }
 .log-item.debug {
-    -fx-border-color: "#00FF00";
+    -fx-border-color: "#EB6100";
 }
 
 /* LOG VIEW */
@@ -305,7 +308,7 @@
 /* TAB ITEM */
 .tab-item {
 	-fx-border-color: transparent;
-	-fx-border-width: 1;
+	-fx-border-width: 0 0 1 0;
 	/* -fx-cursor: hand; */
 }
 .tab-item .tab-label {
@@ -316,7 +319,7 @@
 }
 .tab-item:selected {
 	-fx-background-color: #1E1E1E;
-	-fx-border-color: transparent transparent #007ACC transparent;
+	-fx-border-color: #007ACC;
 }
 .tab-item:hover .tab-label,
 .tab-item:selected .tab-label {
@@ -435,7 +438,7 @@
 
 /* MAIN AREA */
 .main-area {
-    /* -fx-background-color: #1E1E1E; */
+    -fx-background-color: #1E1E1E;
 }
 .main-area > .tab-view .editor {
 	-fx-border-width: 0;

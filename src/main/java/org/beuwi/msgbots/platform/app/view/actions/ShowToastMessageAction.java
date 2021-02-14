@@ -4,7 +4,6 @@ import org.beuwi.msgbots.platform.app.impl.Action;
 import org.beuwi.msgbots.platform.app.view.parts.ToastListPart;
 import org.beuwi.msgbots.platform.gui.control.ToastItem;
 import org.beuwi.msgbots.platform.gui.control.ToastView;
-import org.beuwi.msgbots.platform.gui.enums.ToastType;
 
 public class ShowToastMessageAction implements Action {
     private static ToastView control;

@@ -15,7 +15,10 @@ public class JSONArray extends org.json.simple.JSONArray {
 
 	public JSONArray(File file) {
 		try {
-			this.addAll((List) new JSONParser().parse(FileManager.read(file)));
+			String text = FileManager.read(file);
+			if (text != null) {
+				this.addAll((List) new JSONParser().parse(text));
+			}
 		}
 		catch (ParseException e) {
 			DisplayErrorDialogAction.execute(e);

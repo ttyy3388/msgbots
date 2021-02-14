@@ -1,12 +1,10 @@
 package org.beuwi.msgbots.platform.gui.control;
 
-import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
+
 import org.beuwi.msgbots.platform.gui.enums.ThemeType;
-import org.beuwi.msgbots.platform.util.SharedValues;
 import org.beuwi.msgbots.setting.GlobalSettings;
 
 public class SVGGlyph extends com.jfoenix.svg.SVGGlyph {
@@ -52,11 +50,8 @@ public class SVGGlyph extends com.jfoenix.svg.SVGGlyph {
 	// Parent
 	public void applyStyles(Node node) {
 		// Default Color
-		final Color color = switch (ThemeType.parse(GlobalSettings.getString("program:color_theme"))) {
-			case DARK -> Color.WHITE;
-			// case LIGHT -> "007ACC";
-			case LIGHT -> Color.BLACK;
-		};
+		final ThemeType theme = ThemeType.parse(GlobalSettings.getString("program:color_theme"));
+		final Color color = theme.equals(ThemeType.DARK) ? Color.WHITE : Color.BLACK;
 
 		if (node instanceof Button) {
 			node.hoverProperty().addListener((observable, oldValue, newValue) -> {

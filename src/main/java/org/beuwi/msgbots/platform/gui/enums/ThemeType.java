@@ -1,7 +1,5 @@
 package org.beuwi.msgbots.platform.gui.enums;
 
-import org.beuwi.msgbots.platform.util.SharedValues;
-
 import java.io.File;
 
 public enum ThemeType {

@@ -1,6 +1,5 @@
 package org.beuwi.msgbots.platform.gui.control;
 
-import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.geometry.Insets;
 import javafx.scene.control.MenuItem;
 

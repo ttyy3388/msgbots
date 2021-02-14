@@ -2,10 +2,8 @@ package org.beuwi.msgbots.platform.app.action;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
-import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.impl.Action;
 import org.beuwi.msgbots.platform.app.view.actions.DisplayErrorDialogAction;
-import org.beuwi.msgbots.platform.app.view.dialogs.ShowErrorDialog;
 
 import javax.imageio.ImageIO;
 import java.io.File;

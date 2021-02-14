@@ -13,8 +13,8 @@
 
 <AnchorPane styleClass="toast-area" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<children>
-		<ShadowPane AnchorPane.topAnchor="10.0"
-					AnchorPane.rightAnchor="10.0">
+		<ShadowPane AnchorPane.topAnchor="15.0"
+                    AnchorPane.rightAnchor="5.0">
 			<content>
 				<VBox styleClass="toast-box">
 					<children>
@@ -29,9 +29,10 @@
 							</children>
 						</HBox>
 						<ScrollPane VBox.vgrow="ALWAYS"
-									hbarPolicy="NEVER"
-									fitToWidth="true"
-									fitToHeight="false" maxHeight="400.0">
+                                    hbarPolicy="NEVER"
+                                    fitToWidth="true"
+                                    fitToHeight="false"
+                                    autoScroll="true" maxHeight="400.0" vvalue="1.0d">
 							<content>
 								<ToastView fx:id="tsvToastList">
 								</ToastView>

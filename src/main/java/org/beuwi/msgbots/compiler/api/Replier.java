@@ -4,13 +4,10 @@ import javafx.application.Platform;
 import org.beuwi.msgbots.platform.app.view.actions.SendChatMessageAction;
 import org.mozilla.javascript.annotations.JSStaticFunction;
 
-public class Replier
-{
+public class Replier {
 	@JSStaticFunction
-	public static Boolean reply(String message)
-	{
-		Platform.runLater(() ->
-        {
+	public static Boolean reply(String message) {
+		Platform.runLater(() -> {
 			SendChatMessageAction.execute(message, true);
 		});
 
@@ -18,10 +15,8 @@ public class Replier
 	}
 
 	@JSStaticFunction
-	public static Boolean reply(String room, String message, Boolean hideToast)
-	{
-        Platform.runLater(() ->
-        {
+	public static Boolean reply(String room, String message, Boolean hideToast) {
+        Platform.runLater(() -> {
             SendChatMessageAction.execute(message, true);
         });
 

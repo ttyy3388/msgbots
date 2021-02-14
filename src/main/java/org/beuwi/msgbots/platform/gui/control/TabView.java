@@ -1,15 +1,9 @@
 package org.beuwi.msgbots.platform.gui.control;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Priority;
 
-import org.beuwi.msgbots.platform.gui.control.base.TabItemBase;
 import org.beuwi.msgbots.platform.gui.control.base.TabViewBase;
-import org.beuwi.msgbots.platform.gui.layout.HBox;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
 
 public class TabView extends TabViewBase<TabItem> {

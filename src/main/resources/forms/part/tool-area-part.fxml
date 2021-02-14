@@ -12,10 +12,10 @@
 <AnchorPane styleClass="tool-area" minHeight="30.0" prefHeight="250.0" xmlns:fx="http://javafx.com/fxml">
 	<children>
 		<TabView fx:id="tavMainView"
-				 AnchorPane.topAnchor="0.0"
-				 AnchorPane.rightAnchor="10.0"
-				 AnchorPane.bottomAnchor="10.0"
-				 AnchorPane.leftAnchor="10.0">
+                 AnchorPane.topAnchor="0.0"
+                 AnchorPane.rightAnchor="10.0"
+                 AnchorPane.bottomAnchor="10.0"
+                 AnchorPane.leftAnchor="10.0">
 			<tabs>
 			</tabs>
 		</TabView>
@@ -28,10 +28,10 @@
 			</children>
 		</HBox> -->
 		<StackPane fx:id="stpResizeBar"
-				   AnchorPane.topAnchor="0.0"
-				   AnchorPane.rightAnchor="0.0"
-				   AnchorPane.leftAnchor="0.0"
-				   prefHeight="5.0">
+                   AnchorPane.topAnchor="0.0"
+                   AnchorPane.rightAnchor="0.0"
+                   AnchorPane.leftAnchor="0.0"
+                   prefHeight="5.0">
 			<cursor>
 				<Cursor fx:constant="N_RESIZE"></Cursor>
 			</cursor>

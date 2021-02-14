@@ -17,7 +17,7 @@ public class ToastItem extends StackPane {
 	private static final String DEFAULT_STYLE_CLASS = "toast-item";
 
 	// private static final int DEFAULT_NOTICE_WIDTH = 250;
-	private static final int DEFAULT_NOTICE_HEIGHT = 100;
+	private static final int DEFAULT_NOTICE_HEIGHT = 80;
 
 	@FXML private HBox hbxBoxRoot;
 	@FXML private ImageView imvBoxIcon;
@@ -80,7 +80,7 @@ public class ToastItem extends StackPane {
 		return parent;
 	}
 
-	public HBox getButtonBar() {
+	/* public HBox getButtonBar() {
 		return hbxBtnBar;
-	}
+	} */
 }

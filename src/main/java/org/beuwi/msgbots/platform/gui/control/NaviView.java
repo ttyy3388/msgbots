@@ -1,6 +1,5 @@
 package org.beuwi.msgbots.platform.gui.control;
 
-import javafx.collections.ObservableList;
 import javafx.geometry.Side;
 
 import org.beuwi.msgbots.platform.gui.control.base.TabViewBase;

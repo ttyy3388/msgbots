@@ -7,8 +7,6 @@ import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
-import java.io.File;
-
 public class ChangeColorThemeAction implements Action {
 	/* public static void execute(File file) {
 		execute(MainView.getStage().getScene(), file);

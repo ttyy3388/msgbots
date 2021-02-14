@@ -3,11 +3,10 @@ package org.beuwi.msgbots.platform.util;
 import java.io.File;
 
 import javafx.scene.image.Image;
+
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.gui.control.Document;
 import org.beuwi.msgbots.platform.gui.control.Page;
-import org.beuwi.msgbots.platform.gui.enums.ThemeType;
-import org.beuwi.msgbots.setting.GlobalSettings;
 
 public class SharedValues {
 	public static final String DEFAULT_PROGRAM_TITLE = "Messenger Bot Simulator";
@@ -15,6 +14,16 @@ public class SharedValues {
 
 	public static final String SYSTEM_WINDOWS_VERSION = System.getProperty("windows.os");
 	public static final String SYSTEM_USER_NAME = System.getProperty("user.name");
+
+	/* static {
+		try {
+			SYSTEM_WINDOWS_VERSION;
+			SYSTEM_USER_NAME ;
+		}
+		catch (Exception e) {
+			throw new ExceptionInInitializerError(e);
+		}
+	} */
 
 	static {
 		// 정적 변수에서 초기화(파일이 없다거나 등...) 에러가 발생하면 노답이기 때문에 최대한 모든 에러를 잡아서 해결해 줘야 함
@@ -28,16 +37,20 @@ public class SharedValues {
 	/* Pages */
 	public static final Page ABOUT_PROGRAM_PAGE = new Page("about-program-page");
 	public static final Page PROGRAM_START_PAGE = new Page("program-start-page");
-	public static final Page RELEASE_NOTES_PAGE = new Page("release-notes-page");
-	public static final Page VIEW_LICENSE_PAGE = new Page("view-license-page");
+	// public static final Page RELEASE_NOTES_PAGE = new Page("release-notes-page");
+	// public static final Page VIEW_LICENSE_PAGE = new Page("view-license-page");
 	public static final Page WELCOME_GUIDE_PAGE = new Page("welcome-guide-page");
 
 	/* Documents */
 	public static final Document ABOUT_PROGRAM_DOCUMENT = new Document("ABOUT PROGRAM", ABOUT_PROGRAM_PAGE);
 	public static final Document PROGRAM_START_DOCUMENT = new Document("START PROGRAM", PROGRAM_START_PAGE);
-	public static final Document RELEASE_NOTES_DOCUMENT = new Document("RELEASE NOTES", RELEASE_NOTES_PAGE);
-	public static final Document VIEW_LICENSE_DOCUMENT = new Document("VIEW LICENSE", VIEW_LICENSE_PAGE);
+	// public static final Document RELEASE_NOTES_DOCUMENT = new Document("RELEASE NOTES", RELEASE_NOTES_PAGE);
+	// public static final Document VIEW_LICENSE_DOCUMENT = new Document("VIEW LICENSE", VIEW_LICENSE_PAGE);
 	public static final Document WELCOME_GUIDE_DOCUMENT = new Document("WELCOME GUIDE", WELCOME_GUIDE_PAGE);
+
+	/* LINKS */
+	public static final String VIEW_LICENSE_LINK = "https://github.com/ttyy3388/msgbots/blob/master/LICENSE";
+	public static final String RELEASE_NOTES_LINK = "https://ttyy3388.gitbook.io/messenger-bot-simulator";
 
 	/* public static final ObjectProperty<File> CURRENT_SCRIPT_FILE = new SimpleObjectProperty();
 	public static final ObjectProperty<File> getCurrentScriptFileProperty() {

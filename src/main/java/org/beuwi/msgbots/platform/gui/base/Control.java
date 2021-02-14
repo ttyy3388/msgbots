@@ -1,13 +1,6 @@
 package org.beuwi.msgbots.platform.gui.base;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.binding.DoubleExpression;
-import javafx.beans.binding.NumberExpression;
-import javafx.beans.property.Property;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import org.beuwi.msgbots.platform.gui.control.ListView;
 

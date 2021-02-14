@@ -78,11 +78,11 @@ public class MainView implements View {
 		}
 	}
 
-	public static Stage getStage() {
+	public static final Stage getStage() {
 		return stage;
 	}
 
-	public static StackPane getRoot() {
+	public static final StackPane getRoot() {
 		return root;
 	}
 }

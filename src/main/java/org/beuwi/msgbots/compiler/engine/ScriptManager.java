@@ -23,7 +23,6 @@ public class ScriptManager extends ScriptEngine
 			if (!BotManager.getPower(name)) {
 				continue ;
 			}
-
 			ScriptEngine.initialize(name, true, false);
 		}
 	}

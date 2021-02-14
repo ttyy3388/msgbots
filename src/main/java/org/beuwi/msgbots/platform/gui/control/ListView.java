@@ -59,7 +59,7 @@ public class ListView<T> extends javafx.scene.control.ListView<T> {
 		return fitHeightProperty;
 	} */
 
-	// 해당 프로펄티가 활성화일 때는 자동으로 추가된 아이템 및 선택된 아이템으로 스크롤함
+	// 해당 프로펄티가 활성화일 때는 자동으로 추가된 아이템으로 스크롤함
 	private final BooleanProperty autoScrollProperty = new SimpleBooleanProperty();
 	/* private final InvalidationListener autoScrollListener = new InvalidationListener() {
 		@Override
@@ -83,6 +83,18 @@ public class ListView<T> extends javafx.scene.control.ListView<T> {
 	}
 	public BooleanProperty autoScrollProperty() {
 		return autoScrollProperty;
+	}
+
+	// 해당 프로펄티가 활성화일 때는 선택된 아이템으로 스크롤함
+	private final BooleanProperty pickScrollProperty = new SimpleBooleanProperty();
+	public void setPickScroll(boolean value) {
+		pickScrollProperty.set(value);
+	}
+	public boolean isPickScroll() {
+		return pickScrollProperty.get();
+	}
+	public BooleanProperty pickScrollProperty() {
+		return pickScrollProperty;
 	}
 
 	public ListView() {
@@ -128,7 +140,7 @@ public class ListView<T> extends javafx.scene.control.ListView<T> {
 		});
 		selectedItemProperty().addListener(change -> {
 			// 자동 스크롤 기능이 켜져있으면 선택된 아이템으로 이동
-			if (isAutoScroll()) {
+			if (isPickScroll()) {
 				scrollTo(getSelectedItem());
 			}
 		});

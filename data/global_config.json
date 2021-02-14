@@ -9,7 +9,7 @@
 		"show_bot_name":"true",
 		"sender_name":"DEBUG SENDER",
 		"show_compile_error":true,
-		"show_runtime_error":true,
+		"show_runtime_error":"true",
 		"show_running_time":true,
 		"room_name":"DEBUG ROOM",
 		"show_sender_name":"false",
@@ -22,6 +22,6 @@
 		"compile_auto_save":true,
 		"text_rendering":"LCD",
 		"start_auto_compile":"true",
-		"color_theme":"Dark"
+		"color_theme":"light"
 	}
 }

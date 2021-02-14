@@ -3,6 +3,7 @@ package org.beuwi.msgbots.platform.app.view.parts;
 import javafx.collections.ObservableMap;
 
 import org.beuwi.msgbots.openapi.FormLoader;
+import org.beuwi.msgbots.platform.app.action.OpenBrowserAction;
 import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDocumentTabAction;
@@ -10,7 +11,6 @@ import org.beuwi.msgbots.platform.app.view.actions.OpenProgramTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.RefreshBotListAction;
 import org.beuwi.msgbots.platform.app.view.dialogs.CreateBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.ImportBotDialog;
-import org.beuwi.msgbots.platform.app.view.dialogs.ShowPageDialog;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
 import org.beuwi.msgbots.platform.gui.control.MenuButton;
 import org.beuwi.msgbots.platform.gui.control.MenuItem;
@@ -88,11 +88,11 @@ public class MenuBarPart implements View {
 		// Help Menu Button
 		btnHelpMenu.setMenus(
 			new MenuItem("View License", event -> {
-				OpenDocumentTabAction.execute(SharedValues.VIEW_LICENSE_DOCUMENT);
+				OpenBrowserAction.execute(SharedValues.VIEW_LICENSE_LINK);
 			}),
 			new Separator(),
 			new MenuItem("Release Notes", event -> {
-				// OpenDocumentTabAction.execute(SharedValues.RELEASE_NOTES_DOCUMENT);
+				OpenBrowserAction.execute(SharedValues.RELEASE_NOTES_LINK);
 			}),
 			new Separator(),
 			new MenuItem("About Program", event -> {

@@ -4,7 +4,6 @@ import javafx.collections.ObservableMap;
 
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
-import org.beuwi.msgbots.platform.gui.control.BotView;
 import org.beuwi.msgbots.platform.gui.control.Button;
 import org.beuwi.msgbots.platform.gui.control.TabItem;
 import org.beuwi.msgbots.platform.gui.control.TextArea;

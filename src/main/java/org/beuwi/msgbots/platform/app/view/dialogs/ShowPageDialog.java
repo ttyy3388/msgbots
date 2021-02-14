@@ -1,15 +1,10 @@
 package org.beuwi.msgbots.platform.app.view.dialogs;
 
-import javafx.collections.ObservableMap;
-
 import javafx.scene.Node;
-import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.gui.control.Button;
-import org.beuwi.msgbots.platform.gui.control.Page;
 import org.beuwi.msgbots.platform.gui.dialog.DialogType;
 import org.beuwi.msgbots.platform.gui.dialog.DialogWrap;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
-import org.beuwi.msgbots.platform.gui.layout.VBox;
 
 public class ShowPageDialog extends DialogWrap {
     private final StackPane root = new StackPane();

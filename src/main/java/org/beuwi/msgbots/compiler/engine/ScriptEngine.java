@@ -13,7 +13,13 @@ import org.beuwi.msgbots.compiler.api.Replier;
 import org.beuwi.msgbots.compiler.api.Utils;
 import org.beuwi.msgbots.manager.BotManager;
 import org.beuwi.msgbots.manager.FileManager;
+import org.beuwi.msgbots.manager.LogManager;
+import org.beuwi.msgbots.platform.app.view.actions.DisplayErrorToastAction;
 import org.beuwi.msgbots.platform.app.view.actions.InputDetailLogAction;
+import org.beuwi.msgbots.platform.app.view.actions.SaveBotScriptTabAction;
+import org.beuwi.msgbots.platform.app.view.actions.ShowToastMessageAction;
+import org.beuwi.msgbots.platform.gui.control.ToastItem;
+import org.beuwi.msgbots.platform.gui.enums.ToastType;
 import org.beuwi.msgbots.setting.GlobalSettings;
 import org.beuwi.msgbots.setting.ScriptSettings;
 
@@ -41,19 +47,27 @@ public class ScriptEngine {
 				continue ;
 			}
 
-			new Thread(() -> callResponder(name, room, message, sender, isGroupChat, imageDB, packageName)).start();
+			new Thread(() -> {
+				callResponder(name, room, message, sender, isGroupChat, imageDB, packageName);
+			}).start();
 		}
 	}
 
 	protected static boolean initialize(String name, boolean isManual, boolean ignoreError) {
 		InputDetailLogAction.execute("Compile Start", name);
 
+		final long start = System.currentTimeMillis();
+
 		compiling.put(name, true);
 
 		File file = FileManager.getBotScript(name);
 
+		/* if (file == null) {
+			new Exception("File must not be null");
+		} */
+
 		if (GlobalSettings.getBoolean("program:compile_auto_save")) {
-			// SaveEditorTabAction.execute(name);
+			SaveBotScriptTabAction.execute(name);
 		}
 
 		int optimization = ScriptSettings.get(name).getInt("optimization");
@@ -71,7 +85,7 @@ public class ScriptEngine {
 				Context.reportError(e.toString());
 			}
 
-
+			DisplayErrorToastAction.execute(e);
 
 			return false;
 		}
@@ -128,9 +142,6 @@ public class ScriptEngine {
 				container.get(name).setOnStartCompile(null);
 			}
 
-			InputDetailLogAction.execute("Compile Error",e.toString() + " : " + name);
-			// LogManager.error("Compile Error : " + e.toString() + " : " + name);
-
 			compiling.put(name, false);
 
 			if (!isManual) {
@@ -139,25 +150,37 @@ public class ScriptEngine {
 				}
 			}
 
-			// e.printStackTrace();
+			ShowToastMessageAction.execute(
+				new ToastItem(
+					ToastType.ERROR,
+					"Compile Error : " + name,
+					e.toString()
+				)
+			);
+
+			LogManager.error("Compile Error : " + e.toString() + " : " + name);
 
 			return false;
 		}
 
+		final long end = System.currentTimeMillis();
+
 		BotManager.setCompiled(name, true);
 
-		InputDetailLogAction.execute("Compile Completed", name);
+		InputDetailLogAction.execute("Compile Complete", name + " (" + (end - start) + ".ms)");
+
+		LogManager.event("Compile Complete: " + name);
 
 		return true;
 	}
 
 	protected static void callResponder(String name, String room, String message, String sender, Boolean isGroupChat, ImageDB imageDB, String packageName) {
+		final long start = System.currentTimeMillis();
+
 		ScriptableObject scope = container.get(name).getExecScope();
 		Function responder = container.get(name).getResponder();
 
 		Context context = Context.enter();
-
-		final long start = System.currentTimeMillis();
 
 		try {
 			context.setWrapFactory(new PrimitiveWrapFactory());
@@ -176,21 +199,17 @@ public class ScriptEngine {
 			Context.exit();
 		}
 		catch (Throwable e) {
-			InputDetailLogAction.execute("Runtime Error", e.toString() + " : " + name);
-
 			if (ScriptSettings.get(name).getBoolean("off_on_runtime_error")) {
 				BotManager.setPower(name, false);
 			}
 
-			// e.printStackTrace();
+			LogManager.error("Runtime Error : " + e.toString() + " : " + name);
 		}
 
 		final long end = System.currentTimeMillis();
 
-		InputDetailLogAction.execute("Running Time", name + " (" + (end - start) + ".ms)");
-
-		if (GlobalSettings.getBoolean("program:show_running_time")) {
-			// LogManager.event("Running Time : " + (end - start));
+		if (GlobalSettings.getBoolean("debug:show_running_time")) {
+			InputDetailLogAction.execute("Running Time", name + " (" + (end - start) + ".ms)");
 		}
 	}
 }

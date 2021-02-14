@@ -1,15 +1,12 @@
 package org.beuwi.msgbots.platform.gui.control;
 
-import javafx.css.PseudoClass;
 import javafx.geometry.Pos;
 import javafx.scene.layout.Priority;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 import org.beuwi.msgbots.platform.app.action.CopyStringAction;
 import org.beuwi.msgbots.platform.gui.layout.HBox;
 import org.beuwi.msgbots.platform.gui.layout.VBox;
-import org.beuwi.msgbots.platform.util.SharedValues;
 import org.beuwi.msgbots.setting.GlobalSettings;
 
 public class ChatItem extends HBox {

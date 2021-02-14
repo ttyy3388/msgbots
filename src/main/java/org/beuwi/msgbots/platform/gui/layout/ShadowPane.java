@@ -1,8 +1,5 @@
 package org.beuwi.msgbots.platform.gui.layout;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.css.PseudoClass;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.effect.BlurType;
@@ -31,7 +28,9 @@ public class ShadowPane extends StackPane {
 
 		contentArea.setEffect(DEFAULT_DROP_SHADOW);
 		contentArea.setPadding(DEFAULT_PADDING_VALUE);
+		contentArea.setPickOnBounds(false);
 
+		setPickOnBounds(false);
 		getChildren().setAll(contentArea);
 		getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}

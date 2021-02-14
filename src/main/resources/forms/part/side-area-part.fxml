@@ -10,16 +10,16 @@
 <AnchorPane styleClass="side-area" minWidth="200.0" prefWidth="250.0" xmlns:fx="http://javafx.com/fxml">
 	<children>
 		<TabView AnchorPane.topAnchor="0.0"
-				 AnchorPane.rightAnchor="0.0"
-				 AnchorPane.bottomAnchor="0.0"
-				 AnchorPane.leftAnchor="0.0"
-				 fittable="true">
+                 AnchorPane.rightAnchor="0.0"
+                 AnchorPane.bottomAnchor="0.0"
+                 AnchorPane.leftAnchor="0.0"
+                 fittable="true">
 		</TabView>
 		<StackPane fx:id="stpResizeBar"
-				   AnchorPane.topAnchor="0.0"
-				   AnchorPane.rightAnchor="0.0"
-				   AnchorPane.bottomAnchor="0.0"
-				   prefWidth="5.0">
+                   AnchorPane.topAnchor="0.0"
+                   AnchorPane.rightAnchor="0.0"
+                   AnchorPane.bottomAnchor="0.0"
+                   prefWidth="5.0">
 			<cursor>
 				<Cursor fx:constant="E_RESIZE"></Cursor>
 			</cursor>

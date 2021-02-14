@@ -10,7 +10,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
@@ -110,7 +109,7 @@ public class FileManager {
 
 			return content;
 		}
-		catch (IOException e) {
+		catch (Exception e) {
 			DisplayErrorDialogAction.execute(e);
 		}
 
@@ -127,7 +126,7 @@ public class FileManager {
 
 			return content;
 		}
-		catch (IOException e) {
+		catch (Exception e) {
 			DisplayErrorDialogAction.execute(e);
 		}
 
@@ -151,7 +150,7 @@ public class FileManager {
 
 			return text;
 		}
-		catch (IOException e) {
+		catch (Exception e) {
 			DisplayErrorDialogAction.execute(e);
 		}
 

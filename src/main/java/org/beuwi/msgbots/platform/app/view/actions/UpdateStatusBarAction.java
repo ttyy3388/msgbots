@@ -3,8 +3,6 @@ package org.beuwi.msgbots.platform.app.view.actions;
 import org.beuwi.msgbots.platform.app.impl.Action;
 import org.beuwi.msgbots.platform.app.view.parts.StatusBarPart;
 import org.beuwi.msgbots.platform.gui.control.Label;
-import org.beuwi.msgbots.platform.gui.layout.AnchorPane;
-import org.beuwi.msgbots.platform.gui.layout.HBox;
 
 public class UpdateStatusBarAction implements Action {
     private static Label lblCurrentPath;

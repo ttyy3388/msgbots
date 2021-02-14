@@ -20,8 +20,8 @@ public final class Editor extends StackPane {
 
 	private boolean check = false;
 
-	private final FileProperty file = new FileProperty(change -> {
-		File file = this.file.get();
+	private final FileProperty fileProperty = new FileProperty(change -> {
+		File file = this.fileProperty.get();
 
 		if (file != null) {
 
@@ -65,13 +65,24 @@ public final class Editor extends StackPane {
 			UpdateStatusBarAction.execute(new String[] { fileName, linePosition, lineEncoding, fileEncoding});
 		}); */
 
-		focusedProperty().addListener(change -> {
-			/* if (isFocused()) {
+		// 텍스트 변경 감지 기능을 지원할 순 있으나 구현상의 문제로 더이상 진행하지 않음
+		/* sceneProperty().addListener(change -> {
+			// 프로그램 포커스 시
+			final Stage stage = MainView.getStage();
 
-			} */
+			stage.focusedProperty().addListener(event -> {
+				if (stage.isFocused()) {
+					System.out.println(1);
+					String changedText = FileManager.read(file);
+					String currentText = getText();
 
-			// setText(FileManager.read(file));
-		});
+					// 에디터에 입력된 텍스트랑 파일에서 읽은 텍스트랑 다를경우
+					if (!currentText.equals(changedText)) {
+						setText(changedText);
+					}
+				};
+			});
+		}); */
 
 		addEventHandler(KeyEvent.KEY_PRESSED, event -> {
 			if (event.isControlDown()) {
@@ -89,13 +100,10 @@ public final class Editor extends StackPane {
 			}
 		});
 
-		setTheme(switch (ThemeType.parse(GlobalSettings.getString("program:color_theme"))) {
-			case DARK -> "vs-dark";
-			case LIGHT -> "vs-light";
-			// case BLACK -> "black";
-			// case WHITE -> "white";
-			// case USER -> "vs-light";
-		});
+		ThemeType theme = ThemeType.parse(GlobalSettings.getString("program:color_theme"));
+		String value = theme.equals(ThemeType.DARK) ? "vs-dark" : "vs-light";
+
+		setTheme(value);
 		// Default Theme
 		// setTheme("vs-dark");
 		// Default Language
@@ -111,7 +119,7 @@ public final class Editor extends StackPane {
 	/* --------------------------------------------------------- */
 
 	public void setFile(File file) {
-		this.file.set(file);
+		this.fileProperty.set(file);
 	}
 
 	private void setText(String text) {
@@ -127,7 +135,7 @@ public final class Editor extends StackPane {
 	}
 
 	public File getFile() {
-		return file.get();
+		return fileProperty.get();
 	}
 
 	public String getText() {
@@ -144,6 +152,10 @@ public final class Editor extends StackPane {
 
 	public Position getCaretPosition() {
 		return caretProperty().get();
+	}
+
+	public FileProperty fileProperty() {
+		return fileProperty;
 	}
 
 	public ReadOnlyStringProperty textProperty() {

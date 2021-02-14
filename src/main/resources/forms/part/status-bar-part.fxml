@@ -7,8 +7,8 @@
 <AnchorPane styleClass="status-bar" minHeight="20.0" prefHeight="20.0" xmlns:fx="http://javafx.com/fxml">
 	<children>
 		<HBox AnchorPane.topAnchor="0.0"
-			  AnchorPane.bottomAnchor="0.0"
-			  AnchorPane.leftAnchor="5.0">
+              AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="5.0">
 			<children>
 				<Label fx:id="lblCurrentPath"></Label>
 			</children>

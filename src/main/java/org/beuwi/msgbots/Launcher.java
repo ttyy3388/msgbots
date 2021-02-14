@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import org.beuwi.msgbots.compiler.engine.ScriptManager;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.MainView.MainWindow;
 import org.beuwi.msgbots.platform.app.view.actions.*;
@@ -16,6 +17,7 @@ import org.beuwi.msgbots.platform.gui.control.ToastItem;
 import org.beuwi.msgbots.platform.gui.enums.ToastType;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 import org.beuwi.msgbots.platform.util.SharedValues;
+import org.beuwi.msgbots.setting.GlobalSettings;
 
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -72,11 +74,11 @@ public class Launcher extends Application {
 				WATCH_SERVICE = FileSystems.getDefault().newWatchService();
 
 				Paths.get(SharedValues.BOTS_FOLDER_FILE.getPath()).register(
-					WATCH_SERVICE,
-					ENTRY_CREATE,
-					ENTRY_DELETE,
-					ENTRY_MODIFY,
-					OVERFLOW
+						WATCH_SERVICE,
+						ENTRY_CREATE,
+						ENTRY_DELETE,
+						ENTRY_MODIFY,
+						OVERFLOW
 				);
 			}
 			catch (IOException e) {
@@ -132,9 +134,12 @@ public class Launcher extends Application {
 			new ToolAreaPart().init();
 
 			// Initialize actions
+			new AddBotLogItemAction().init();
 			new AddMainAreaTabAction().init();
+			new SaveBotScriptTabAction().init();
 			new ShowToastMessageAction().init();
 			new InputDetailLogAction().init();
+			new OpenBotLogTabAction().init();
 			new OpenDocumentTabAction().init();
 			new OpenProgramTabAction().init();
 			new OpenScriptTabAction().init();
@@ -147,25 +152,6 @@ public class Launcher extends Application {
 			new MainView(stage).init();
 			new MainWindow(stage).create();
 
-			DisplayErrorToastAction.execute(new Exception());
-
-			OpenProgramTabAction.execute(GlobalConfigTab.getRoot());
-			ShowToastMessageAction.execute(new ToastItem(
-				ToastType.ERROR,
-				"TEST TITLE",
-				"TEST CONTENT"
-			));
-			ShowToastMessageAction.execute(new ToastItem(
-				ToastType.EVENT,
-				"TEST TITLE",
-				"TEST CONTENT"
-			));
-			ShowToastMessageAction.execute(new ToastItem(
-				ToastType.WARNING,
-				"TEST TITLE",
-				"TEST CONTENT"
-			));
-
 			// System.out.println(SharedValues.BOTS_FOLDER_FILE);
 
 			/* BotView botView = BotListTab.getComponent();
@@ -175,14 +161,6 @@ public class Launcher extends Application {
 			botView.getItems().add(new BotItem("TEST 3"));
 			botView.getItems().add(new BotItem("TEST 4"));
 			botView.getItems().add(new BotItem("TEST 5")); */
-
-			LogView logView = GlobalLogTab.getComponent();
-
-			logView.getItems().add(new LogItem("error", "TEST 1", "2021 / 12 / 01"));
-			logView.getItems().add(new LogItem("error", "TEST 1", "2021 / 12 / 01"));
-			logView.getItems().add(new LogItem("error", "TEST 1", "2021 / 12 / 01"));
-			logView.getItems().add(new LogItem("error", "TEST 1", "2021 / 12 / 01"));
-			logView.getItems().add(new LogItem("error", "TEST 1", "2021 / 12 / 01"));
 
 			/* InputDetailLogAction.execute(" Compile started : \"TEST 1\" (1.7s)");
 			InputDetailLogAction.execute("> Task : Compile completed : \"TEST 1\" (1.7s)");
@@ -195,17 +173,19 @@ public class Launcher extends Application {
 			InputDetailLogAction.execute("> Task : Running bots ... : \"TEST 3\" (1.7s)"); */
 			// InputDetailLogAction.execute("Runtime Error : Cannot call method \"reply\" of undefined at \"TEST 1\":297 (response)");
 
-			// RefreshBotListAction.execute();
-			// ScriptManager.preInit();
+			RefreshBotListAction.execute();
+
+			if (GlobalSettings.getBoolean("program:start_auto_compile")) {
+				ScriptManager.preInit();
+			}
 		}
-		catch (Throwable t1) {
-			t1.printStackTrace();
+		catch (Throwable e) {
 			try {
-				// DisplayErrorDialogAction.execute(t1);
+				DisplayErrorDialogAction.execute(e);
 			}
 			// 다이얼 로그 박스도 안열리면 에러 출력
-			catch (Throwable t2) {
-				t2.printStackTrace();
+			catch (Throwable a) {
+				e.printStackTrace();
 			}
 		}
 	}

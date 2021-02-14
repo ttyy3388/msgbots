@@ -5,9 +5,6 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import org.beuwi.msgbots.platform.app.impl.Action;
 
-import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
-
 public class CopyStringAction implements Action {
     public static final Clipboard clipboard = Clipboard.getSystemClipboard();
 

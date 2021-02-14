@@ -4,12 +4,10 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.layout.Region;
 
-import org.beuwi.msgbots.platform.gui.base.Control;
 import org.beuwi.msgbots.platform.gui.base.Layout;
 
 public class VBox<T extends Node> extends javafx.scene.layout.VBox implements Layout {

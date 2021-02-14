@@ -1,7 +1,6 @@
 package org.beuwi.msgbots.platform.app.view.actions;
 
 import org.beuwi.msgbots.platform.app.impl.Action;
-import org.beuwi.msgbots.platform.app.view.dialogs.ShowErrorDialog;
 import org.beuwi.msgbots.platform.gui.control.ToastItem;
 import org.beuwi.msgbots.platform.gui.enums.ToastType;
 
