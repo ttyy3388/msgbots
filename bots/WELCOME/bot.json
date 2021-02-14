@@ -1,0 +1,8 @@
+{
+	"use_unified_params":false,
+	"tgbBotPower":"true",
+	"off_on_runtime_error":true,
+	"power":"true",
+	"ignore_api_off":false,
+	"optimization":1
+}
