@@ -10,5 +10,5 @@
  */
 
 function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
-    replier.reply("안녕하세요!");
+    replier.reply("Hellow World!");
 }
