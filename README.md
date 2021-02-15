@@ -21,4 +21,4 @@
 https://blog.naver.com/ttyy3388/221850492456
 
 ### LICNESE
-Licensed under the MIT license.
+Licensed under the "GPL-3.0" license.
