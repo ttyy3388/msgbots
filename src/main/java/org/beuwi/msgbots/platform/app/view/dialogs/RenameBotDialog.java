@@ -66,5 +66,6 @@ public class RenameBotDialog extends DialogWrap {
 		}
 
 		RenameBotAction.execute(name, txfScriptName.getText());
+		close();
 	}
 }

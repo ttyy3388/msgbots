@@ -65,5 +65,6 @@ public class ShowErrorDialog extends DialogWrap {
 		} */
 
 		CopyStringAction.execute(txaErrorMessage.getText());
+		close();
 	}
 }

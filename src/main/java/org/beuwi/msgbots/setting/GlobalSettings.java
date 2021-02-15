@@ -8,6 +8,7 @@ import org.beuwi.msgbots.platform.util.SharedValues;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 // 기존에는 파일 변경 시 감지했지만 시작 시 값으로 진행함.
 public class GlobalSettings {
@@ -48,7 +49,11 @@ public class GlobalSettings {
 
 		// throw new NullPointerException("this address does not exists");
 
-		return (T) json.getMap(name).get(option);
+		Map map = json.getMap(name);
+		if(map==null){
+			throw new NullPointerException("map name "+name+" does not exist");
+		}
+		return (T) map.get(option);
 	}
 
 	public static int getInt(String address) {
@@ -56,7 +61,9 @@ public class GlobalSettings {
 	}
 
 	public static String getString(String address) {
-		return String.valueOf("" + getData(address));
+		String data = getData(address);
+		if(data==null)return null;
+		return String.valueOf("" + data);
 	}
 
 	public static boolean getBoolean(String address) {

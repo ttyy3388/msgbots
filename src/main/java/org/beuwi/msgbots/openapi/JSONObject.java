@@ -19,7 +19,7 @@ public class JSONObject extends org.json.simple.JSONObject {
 	}
 
 	public JSONObject(String data) {
-		if (data.isEmpty() || data == null) {
+		if (data == null||data.isEmpty()) {
 			return ;
 		}
 		

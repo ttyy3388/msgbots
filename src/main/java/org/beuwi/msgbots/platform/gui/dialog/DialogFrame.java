@@ -136,7 +136,6 @@ public abstract class DialogFrame extends BorderPane {
 
 		btnAction.addEventHandler(ActionEvent.ACTION, event -> {
 			this.action();
-			this.close();
 		});
 
 		btnCancel.addEventHandler(ActionEvent.ACTION, event -> {

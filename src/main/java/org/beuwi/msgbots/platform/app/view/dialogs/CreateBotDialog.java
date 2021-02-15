@@ -65,5 +65,6 @@ public class CreateBotDialog extends DialogWrap {
 			chkIsUnified.isSelected(),
 			chkIsOffError.isSelected()
 		);
+		close();
 	}
 }

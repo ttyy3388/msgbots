@@ -50,5 +50,6 @@ public class DeleteBotDialog extends DialogWrap {
 	@Override
 	public void action() {
 		DeleteBotAction.execute(name);
+		close();
 	}
 }

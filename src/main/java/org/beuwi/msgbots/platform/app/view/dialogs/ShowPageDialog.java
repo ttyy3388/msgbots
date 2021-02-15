@@ -39,5 +39,6 @@ public class ShowPageDialog extends DialogWrap {
 
     @Override
     public void action() {
+        close();
     }
 }
