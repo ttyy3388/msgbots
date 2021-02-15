@@ -58,12 +58,27 @@ public class FileManager {
 		return names;
 	} */
 
+	public static boolean isBotFolder(File folder) {
+		String botName = folder.getName();
+		// 스크립트, 로그, 셋팅 파일 3가지가 다 있어야 봇 폴더로 인식
+		if (FileManager.getBotScript(botName).exists() &&
+			FileManager.getBotLog(botName).exists() &&
+			FileManager.getBotSetting(botName).exists()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
 	public static List<String> getBotNames() {
 		File[] files = SharedValues.BOTS_FOLDER_FILE.listFiles(File::isDirectory);
 		List<String> names = new ArrayList<>();
 
-		for (int i = 0 ; i < files.length ; i ++) {
-			names.add(files[i].getName());
+		for (File file : files) {
+			if (FileManager.isBotFolder(file)) {
+				names.add(file.getName());
+			}
 		}
 
 		return names;

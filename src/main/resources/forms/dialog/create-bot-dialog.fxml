@@ -5,7 +5,7 @@
 <?import org.beuwi.msgbots.platform.gui.control.TextField?>
 <?import org.beuwi.msgbots.platform.gui.layout.VBox?>
 
-<VBox spacing="25.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox spacing="25.0" prefWidth="450.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<children>
 		<TextField fx:id="txfScriptName" prefHeight="30.0"></TextField>
 		<VBox spacing="20.0" VBox.vgrow="ALWAYS">

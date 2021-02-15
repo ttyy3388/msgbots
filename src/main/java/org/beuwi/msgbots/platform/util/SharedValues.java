@@ -61,7 +61,7 @@ public class SharedValues {
 	/* Paths */
 	public static final String MAIN_FOLDER_PATH = System.getProperty("user.dir");
 	public static final String DATA_FOLDER_PATH = System.getProperty("user.dir") + File.separator + "data";
-	public static String BOTS_FOLDER_PATH = null;
+	public static final String BOTS_FOLDER_PATH = System.getProperty("user.dir") + File.separator + "bots";
 
 	public static final String CUSTOM_THEME_PATH = "custom_theme.css";
     public static final String PROFILE_SENDER_PATH = "profile_sender.png";
@@ -75,7 +75,7 @@ public class SharedValues {
 	/* Files */
 	public static final File MAIN_FOLDER_FILE = new File(SharedValues.MAIN_FOLDER_PATH);
 	public static final File DATA_FOLDER_FILE = new File(SharedValues.DATA_FOLDER_PATH);
-	public static File BOTS_FOLDER_FILE = null;
+	public static final File BOTS_FOLDER_FILE = new File(SharedValues.BOTS_FOLDER_PATH);
 
 	public static final File CUSTOM_THEME_FILE = FileManager.getDataFile(CUSTOM_THEME_PATH);
 	public static final File PROFILE_SENDER_FILE = FileManager.getDataFile(PROFILE_SENDER_PATH);

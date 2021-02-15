@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.geometry.Orientation;
 import javafx.geometry.Side;
+import javafx.scene.Node;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -102,9 +103,12 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane imple
 		selectedTabProperty().addListener(change -> {
 			headerArea.setSelectedItem(getSelectedTab());
 		});
-		// 해당 탭에 대한 컨텐츠 변경 이벤트
 		selectedTabProperty().addListener(change -> {
-			contentArea.getChildren().setAll(getSelectedTab().getContent());
+			Node content = getSelectedTab().getContent();
+			// 해당 탭에 대한 컨텐츠 변경 이벤트
+			contentArea.getChildren().setAll(content);
+			// 변경된 탭에 포커스가 가도록
+			content.requestFocus();
 		});
 		// 해당 탭에 대한 선택됨 여부 변경
 		selectedTabProperty().addListener((observable, oldTab, newTab) -> {
@@ -129,12 +133,18 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane imple
 			if (event.isControlDown()) {
 				switch (event.getCode()) {
 					case TAB :
+						// Select Previous Tab
 						if (event.isShiftDown()) {
 							selectPrevTab();
 						}
+						// Select Next Tab
 						else {
 							selectNextTab();
 						}
+						break;
+					// Close Current Tab
+					case W :
+						closeTab(getSelectedTab());
 						break;
 				}
 			}
@@ -149,6 +159,7 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane imple
 		// headerArea.setMaxHeight(0);
 		headerArea.setPickScroll(true);
 		headerArea.setAutoScroll(true);
+		headerArea.setSecBtnSelect(false); // 우측 마우스 클릭 비허용
 		/* headerArea.setOrientation(Orientation.HORIZONTAL);
 		getChildren().setAll(new VBox(
 			headerArea,
@@ -174,7 +185,9 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane imple
 		return tabList;
 	}
 	public void addTab(T tab) {
-		if (getTabs().contains(tab)) {
+		boolean already = getTab(tab.getId()) != null;
+		// 이미 있으면 해당 탭 선택
+		if (already) {
 			selectTab(tab);
 		}
 		else {
@@ -203,8 +216,9 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane imple
 		if (index != -1) {
 			return getTabs().get(index);
 		}
-
-		return null;
+		else {
+			return null;
+		}
 	}
 	private int findTab(String id) {
 		List<T> items = getTabs();
@@ -332,6 +346,7 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane imple
 		}
 		// 만약 0번째 탭에서 이전탭으로 이동하려고 한다면 에러가 발생하기에 편법을 사용해서 다음 탭으로 이동
 		catch (IndexOutOfBoundsException e) {
+			e.printStackTrace();
 			selectTab(size - 1);
 		}
 	}

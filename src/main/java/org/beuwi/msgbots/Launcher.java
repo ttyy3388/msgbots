@@ -9,7 +9,6 @@ import org.beuwi.msgbots.compiler.engine.ScriptManager;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.MainView.MainWindow;
 import org.beuwi.msgbots.platform.app.view.actions.*;
-import org.beuwi.msgbots.platform.app.view.dialogs.ChooseBotsPathDialog;
 import org.beuwi.msgbots.platform.app.view.parts.*;
 import org.beuwi.msgbots.platform.app.view.tabs.*;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
@@ -67,116 +66,89 @@ public class Launcher extends Application {
 	@Override
 	public void start(Stage stage) {
 		try {
-			SharedValues.BOTS_FOLDER_PATH = GlobalSettings.getString("program:bots_path");
-			if(SharedValues.BOTS_FOLDER_PATH==null||!(new File(SharedValues.BOTS_FOLDER_PATH).isDirectory())) {
-
-				ChooseBotsPathDialog dialog = new ChooseBotsPathDialog();
-				dialog.setOnAction(event -> {
-					UpdateBotsPathAction.execute();
-					setContent(stage);
-				});
-				OpenDialogBoxAction.execute(dialog);
-
-			} else {
-				SharedValues.BOTS_FOLDER_FILE = new File(SharedValues.BOTS_FOLDER_PATH);
-				setContent(stage);
-			}
-
-		}
-		catch (Throwable e) {
 			try {
-				DisplayErrorDialogAction.execute(e);
+				WATCH_SERVICE = FileSystems.getDefault().newWatchService();
+
+				Paths.get(SharedValues.BOTS_FOLDER_FILE.getPath()).register(
+						WATCH_SERVICE,
+						ENTRY_CREATE,
+						ENTRY_DELETE,
+						ENTRY_MODIFY,
+						OVERFLOW
+				);
 			}
-			// 다이얼 로그 박스도 안열리면 에러 출력
-			catch (Throwable a) {
+			catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
-	}
-	private void setContent(Stage stage){
-		try {
-			WATCH_SERVICE = FileSystems.getDefault().newWatchService();
 
-			Paths.get(SharedValues.BOTS_FOLDER_FILE.getPath()).register(
-					WATCH_SERVICE,
-					ENTRY_CREATE,
-					ENTRY_DELETE,
-					ENTRY_MODIFY,
-					OVERFLOW
-			);
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		new Thread(() -> {
-			while (true) {
-				try {
-					WATCH_KEY = WATCH_SERVICE.take();
-				}
-				catch (InterruptedException e) {
-					break;
-				}
-
-				List<WatchEvent<?>> events = WATCH_KEY.pollEvents();
-
-				for (WatchEvent<?> event : events) {
-					Platform.runLater(() -> {
-						RefreshBotListAction.execute();
-					});
-				}
-
-				if (!WATCH_KEY.reset()) {
+			new Thread(() -> {
+				while (true) {
 					try {
-						WATCH_SERVICE.close();
+						WATCH_KEY = WATCH_SERVICE.take();
 					}
-					catch (IOException e) {
-						e.printStackTrace();
+					catch (InterruptedException e) {
+						break;
+					}
+
+					List<WatchEvent<?>> events = WATCH_KEY.pollEvents();
+
+					for (WatchEvent<?> event : events) {
+						Platform.runLater(() -> {
+							RefreshBotListAction.execute();
+						});
+					}
+
+					if (!WATCH_KEY.reset()) {
+						try {
+							WATCH_SERVICE.close();
+						}
+						catch (IOException e) {
+							e.printStackTrace();
+						}
 					}
 				}
-			}
-		}).start();
+			}).start();
 
-		// Initialize tabs
-		new GlobalConfigTab().init();
-		new BotListTab().init();
-		new DebugRoomTab().init();
-		new DetailLogTab().init();
-		new GlobalLogTab().init();
-		// new NoticeListTab().init();
-		new ProblemListTab().init();
-		// new RunningBotsTab().init();
-		// new NoticeListTab().init();
+			// Initialize tabs
+			new GlobalConfigTab().init();
+			new BotListTab().init();
+			new DebugRoomTab().init();
+			new DetailLogTab().init();
+			new GlobalLogTab().init();
+			// new NoticeListTab().init();
+			new ProblemListTab().init();
+			// new RunningBotsTab().init();
+			// new NoticeListTab().init();
 
-		// Initialize parts
-		new DebugAreaPart().init();
-		new MainAreaPart().init();
-		new MenuBarPart().init();
-		new SideAreaPart().init();
-		new StatusBarPart().init();
-		new ToastListPart().init();
-		new ToolAreaPart().init();
+			// Initialize parts
+			new DebugAreaPart().init();
+			new MainAreaPart().init();
+			new MenuBarPart().init();
+			new SideAreaPart().init();
+			new StatusBarPart().init();
+			new ToastListPart().init();
+			new ToolAreaPart().init();
 
-		// Initialize actions
-		new AddBotLogItemAction().init();
-		new AddMainAreaTabAction().init();
-		new SaveBotScriptTabAction().init();
-		new ShowToastMessageAction().init();
-		new InputDetailLogAction().init();
-		new OpenBotLogTabAction().init();
-		new OpenDocumentTabAction().init();
-		new OpenProgramTabAction().init();
-		new OpenScriptTabAction().init();
-		new RefreshBotListAction().init();
-		new SendChatMessageAction().init();
-		new ShowToastMessageAction().init();
-		new UpdateCurrentPathAction().init();
-		new UpdateStatusBarAction().init();
+			// Initialize actions
+			new AddBotLogItemAction().init();
+			new AddMainAreaTabAction().init();
+			new SaveBotScriptTabAction().init();
+			new ShowToastMessageAction().init();
+			new InputDetailLogAction().init();
+			new OpenBotLogTabAction().init();
+			new OpenDocumentTabAction().init();
+			new OpenProgramTabAction().init();
+			new OpenScriptTabAction().init();
+			new RefreshBotListAction().init();
+			new SendChatMessageAction().init();
+			new ShowToastMessageAction().init();
+			new UpdateCurrentPathAction().init();
+			new UpdateStatusBarAction().init();
 
-		new MainView(stage).init();
-		new MainWindow(stage).create();
+			new MainView(stage).init();
+			new MainWindow(stage).create();
 
-		// System.out.println(SharedValues.BOTS_FOLDER_FILE);
+			// System.out.println(SharedValues.BOTS_FOLDER_FILE);
 
 			/* BotView botView = BotListTab.getComponent();
 
@@ -195,15 +167,23 @@ public class Launcher extends Application {
 			InputDetailLogAction.execute("> Task : Running bots ... : \"TEST 1\" (1.7s)");
 			InputDetailLogAction.execute("> Task : Running bots ... : \"TEST 2\" (1.7s)");
 			InputDetailLogAction.execute("> Task : Running bots ... : \"TEST 3\" (1.7s)"); */
-		// InputDetailLogAction.execute("Runtime Error : Cannot call method \"reply\" of undefined at \"TEST 1\":297 (response)");
+			// InputDetailLogAction.execute("Runtime Error : Cannot call method \"reply\" of undefined at \"TEST 1\":297 (response)");
 
-		RefreshBotListAction.execute();
+			RefreshBotListAction.execute();
 
-		if (GlobalSettings.getBoolean("program:start_auto_compile")) {
-			ScriptManager.preInit();
+			if (GlobalSettings.getBoolean("program:start_auto_compile")) {
+				ScriptManager.preInit();
+			}
 		}
-
-
+		catch (Throwable e) {
+			try {
+				DisplayErrorDialogAction.execute(e);
+			}
+			// 다이얼 로그 박스도 안열리면 에러 출력
+			catch (Throwable a) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
@@ -218,7 +198,7 @@ public class Launcher extends Application {
 			launch(args);
 		}
 		catch (Throwable e) {
-			e.printStackTrace();
+			DisplayErrorDialogAction.execute(e);
 		}
 	}
 }

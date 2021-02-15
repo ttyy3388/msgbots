@@ -8,7 +8,13 @@ import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ListChangeListener;
 import javafx.css.PseudoClass;
+import javafx.event.Event;
 import javafx.scene.Node;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 public class ListView<T> extends javafx.scene.control.ListView<T> {
@@ -36,6 +42,19 @@ public class ListView<T> extends javafx.scene.control.ListView<T> {
 	public BooleanProperty fitWidthProperty() {
 		return fitWidthProperty;
 	}
+
+	// Enable Mouse Secondary Button Select
+	private final BooleanProperty secBtnSelectProperty = new SimpleBooleanProperty();
+	public boolean isSecBtnSelect() {
+		return secBtnSelectProperty.get();
+	}
+	public void setSecBtnSelect(boolean value) {
+		secBtnSelectProperty.set(value);
+	}
+	public BooleanProperty secBtnSelectProperty() {
+		return secBtnSelectProperty;
+	}
+
 
 	/* private final BooleanProperty fitHeightProperty = new SimpleBooleanProperty();
 	private final InvalidationListener fitHeightListener = new InvalidationListener() {
@@ -129,6 +148,19 @@ public class ListView<T> extends javafx.scene.control.ListView<T> {
 			 }
 		 });
 
+		addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
+			if (event.getButton().equals(MouseButton.SECONDARY)) {
+				if (!isSecBtnSelect()) {
+					/* ContextMenu contextMenu = getContextMenu();
+					if (contextMenu != null) {
+						contextMenu.show(this, event.getScreenX(), event.getScreenY());
+					} */
+					event.consume();
+					return ;
+				}
+			}
+		});
+
 		// 셀이 선택되었을 경우 자동으로 하위 아이템이 선택된거로 인식하도록
 		selectedItemProperty().addListener((observable, oldItem, newItem) -> {
 			if (newItem instanceof Node) {
@@ -144,10 +176,21 @@ public class ListView<T> extends javafx.scene.control.ListView<T> {
 				scrollTo(getSelectedItem());
 			}
 		});
+
+		setSecBtnSelect(true);
 	}
 
+	public void selectItem(T item) {
+		getSelectionModel().select(item);
+	}
+	public void selectAll() {
+		getSelectionModel().selectAll();
+	}
 	public void setSelectedItem(T item) {
 		getSelectionModel().select(item);
+	}
+	public void setSelectionMode(SelectionMode mode) {
+		getSelectionModel().setSelectionMode(mode);
 	}
 
 	public T getSelectedItem() {

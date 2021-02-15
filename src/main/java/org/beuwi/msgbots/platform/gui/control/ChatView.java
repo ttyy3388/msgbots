@@ -1,6 +1,7 @@
 package org.beuwi.msgbots.platform.gui.control;
 
 import javafx.collections.ListChangeListener;
+import javafx.scene.control.SelectionMode;
 
 public class ChatView extends ListView<ChatItem> {
 	private static final String DEFAULT_STYLE_CLASS = "chat-view";
@@ -16,6 +17,12 @@ public class ChatView extends ListView<ChatItem> {
 				}
 			}
 		});
+
+		/* new ContextMenu(
+			new MenuItem("Select All", event -> {
+				getSelectionModel().selectAll();
+			})
+		).setNode(this); */
 
 		setAutoScroll(true);
 		// setSelectionMode(SelectionMode.MULTIPLE);

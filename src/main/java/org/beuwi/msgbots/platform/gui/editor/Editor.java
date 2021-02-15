@@ -84,6 +84,10 @@ public final class Editor extends StackPane {
 			});
 		}); */
 
+		focusedProperty().addListener(change -> {
+			monaco.getView().requestFocus();
+		});
+
 		addEventHandler(KeyEvent.KEY_PRESSED, event -> {
 			if (event.isControlDown()) {
 				switch (event.getCode()) {

@@ -130,9 +130,9 @@ public class BotItem extends GridPane {
 			ScriptManager.initScript(name, true, false);
 		});
 
-		tgbBotPower.setSelected(ScriptSettings.get(name).getBoolean("tgbBotPower"));
+		tgbBotPower.setSelected(ScriptSettings.get(name).getBoolean("power"));
 		tgbBotPower.selectedProperty().addListener(event -> {
-			ScriptSettings.get(name).setData("tgbBotPower", tgbBotPower.isSelected());
+			ScriptSettings.get(name).setData("power", tgbBotPower.isSelected());
 		});
 
 		lblBotName.setPrefWidth(50);

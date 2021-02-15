@@ -22,7 +22,6 @@
 		"compile_auto_save":true,
 		"text_rendering":"LCD",
 		"start_auto_compile":"true",
-		"bots_path":null,
 		"color_theme":"light"
 	}
 }

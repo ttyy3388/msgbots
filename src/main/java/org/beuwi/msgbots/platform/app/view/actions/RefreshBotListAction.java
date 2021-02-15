@@ -23,12 +23,11 @@ public class RefreshBotListAction implements Action {
 	}
 
 	public static void execute() {
-		if(botView==null)return;
 		List<BotItem> botItems = botView.getItems();
 
 		if (botItems.size() != 0) {
 			List<String> fileNames = FileManager.getBotNames();
-			List<BotItem> removeItems = new ArrayList();
+			List<BotItem> removeItems = new ArrayList(); // Modify 에러가 나서 따로 리스트에 담아서 삭제해야 함
 
 			List<String> botNames = new ArrayList<>();
 			botView.getItems().forEach(item ->

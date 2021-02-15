@@ -66,6 +66,11 @@ public class MenuItem extends javafx.scene.control.MenuItem {
 		return enable((ReadOnlyBooleanProperty) property);
 	} */
 	public MenuItem enable(BooleanExpression property) {
+		// 기본값 : 비활성화
+		if (property != null) {
+			setDisable(true);
+		}
+
 		parentPopupProperty().addListener(event -> {
 			ContextMenu parent = getParent();
 			if (parent != null) {

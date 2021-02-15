@@ -19,9 +19,16 @@ public class OpenScriptTabAction implements Action {
 
 	public static void execute(BotItem item) {
 		String name = item.getName();
-		File file = item.getFile();
-		Editor editor = new Editor(file);
-		AddMainAreaTabAction.execute(new TabItem(name, editor));
+		TabItem target = control.getTab(name);
+		// 이미 에디터 탭이 있으면 선택
+		if (target == null) {
+			File file = item.getFile();
+			Editor editor = new Editor(file);
+			AddMainAreaTabAction.execute(new TabItem(name, editor));
+		}
+		else {
+			control.selectTab(target);
+		}
 	}
 
 	@Override
