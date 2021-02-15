@@ -68,7 +68,7 @@ public class Launcher extends Application {
 	public void start(Stage stage) {
 		try {
 			SharedValues.BOTS_FOLDER_PATH = GlobalSettings.getString("program:bots_path");
-			if(SharedValues.BOTS_FOLDER_PATH==null) {
+			if(SharedValues.BOTS_FOLDER_PATH==null||!(new File(SharedValues.BOTS_FOLDER_PATH).isDirectory())) {
 
 				ChooseBotsPathDialog dialog = new ChooseBotsPathDialog();
 				dialog.setOnAction(event -> {
