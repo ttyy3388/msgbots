@@ -13,6 +13,9 @@ import org.beuwi.msgbots.platform.gui.control.OptionView;
 import org.beuwi.msgbots.platform.gui.control.TabItem;
 import org.beuwi.msgbots.platform.util.SharedValues;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GlobalConfigTab implements View {
 	private static ObservableMap<String, Object> namespace;
 	private static FormLoader loader;
@@ -55,9 +58,12 @@ public class GlobalConfigTab implements View {
 			FileManager.link(SharedValues.BOTS_FOLDER_FILE, () -> {
 				refresh();
 			});
+			
+			refresh();
 		}
 
 		private void refresh() {
+			List<NaviItem> addItems = new ArrayList<>();
 			for (String name : FileManager.getBotNames()) {
 				final FormLoader loader = new FormLoader("view", "bot-option-view");
 				OptionView control = loader.getRoot();
@@ -69,8 +75,9 @@ public class GlobalConfigTab implements View {
 				}
 				control.setTitle(name);
 
-				component.addTab(new NaviItem(name, control));
+				addItems.add(new NaviItem(name, control));
 			}
+			component.addTab(addItems);
 		}
 	}
 

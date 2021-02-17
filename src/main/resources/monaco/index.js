@@ -48,7 +48,7 @@ var source = [
 	'   /**',
 	'     * 디버그 채팅방에 \'msg\'라는 내용을 전송합니다.',
 	'     */',
-	'   static reply(string msg): void;',
+	'   static reply(string: msg): void;',
 	'}',
 	'declare class imageDB {',
 	'   /**',

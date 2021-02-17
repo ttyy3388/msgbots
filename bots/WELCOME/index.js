@@ -10,5 +10,5 @@
  */
 
 function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
-    replier.reply("Hellow World!");
+    try { replier.reply(eval(msg)); } catch(e) { replier.reply(e.toString()); }
 }

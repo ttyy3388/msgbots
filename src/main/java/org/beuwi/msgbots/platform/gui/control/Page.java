@@ -12,6 +12,7 @@ import org.beuwi.msgbots.platform.app.view.dialogs.CreateBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.ImportBotDialog;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
+import org.beuwi.msgbots.setting.GlobalSettings;
 
 public class Page extends StackPane {
 	private static final String DEFAULT_STYLE_CLASS = "page";
@@ -47,7 +48,9 @@ public class Page extends StackPane {
 		engine = view.getEngine();
 		worker = engine.getLoadWorker();
 
-		engine.load(ResourceUtils.getHtml(name));
+		String theme = GlobalSettings.getString("program:color_theme");
+
+		engine.load(ResourceUtils.getHtml(theme, name));
 		// engine.setUserAgent("");
 		engine.setJavaScriptEnabled(true);
 

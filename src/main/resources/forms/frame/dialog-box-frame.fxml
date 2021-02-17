@@ -11,7 +11,7 @@
 
 <BorderPane fx:id="brpWinRoot" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<top>
-		<HBox styleClass="title-bar" fittable="true" prefHeight="30.0">
+		<HBox fx:id="hbxTitleBar" styleClass="title-bar" fittable="true" prefHeight="30.0">
 			<children>
 				<HBox HBox.hgrow="ALWAYS" alignment="CENTER_LEFT">
 					<children>

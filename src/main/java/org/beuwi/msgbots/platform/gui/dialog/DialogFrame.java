@@ -6,8 +6,10 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javafx.stage.StageStyle;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.gui.control.Button;
 import org.beuwi.msgbots.platform.gui.control.ContextMenu;
@@ -31,6 +33,8 @@ public abstract class DialogFrame extends BorderPane {
 	@FXML private Button btnWinClose;
 	@FXML private Label lblWinTitle;
 
+	@FXML private HBox hbxTitleBar;
+
 	// DIALOG
 	@FXML private ImageView imvDialogIcon;
 	@FXML private HBox<Button> hbxButtonBar;
@@ -47,7 +51,11 @@ public abstract class DialogFrame extends BorderPane {
 	private final Stage stage;
 
 	// Default Type : None
-	private final DialogType type ;
+	private final DialogType type;
+
+	// private StageStyle winstyle = StageStyle.UNDECORATED; // Default
+	// private Modality modality = Modality.WINDOW_MODAL; // Default
+	// private Stage owner = null; // Default
 
 	private String title;
 	private Node content;
@@ -83,6 +91,14 @@ public abstract class DialogFrame extends BorderPane {
 		this.content = content;
 	}
 
+	/* public void setModality(Modality modality) {
+		this.modality = modality;
+	}
+
+	public void setWinStyle(StageStyle winstyle) {
+		this.winstyle = winstyle;
+	} */
+
 	public Stage getStage() {
 		return stage;
 	}
@@ -95,10 +111,35 @@ public abstract class DialogFrame extends BorderPane {
 		return content;
 	}
 
+	/* public StageStyle getWinStyle() {
+		return winstyle;
+	}
+
+	public Modality getModality() {
+		return modality;
+	}
+
+	public Stage getOwner() {
+		return owner;
+	} */
+
+	/* public void setUseTitlebar(boolean value) {
+		if (value) {
+			brpWinRoot.getChildren().add(hbxTitleBar);
+		}
+		else {
+			brpWinRoot.getChildren().remove(hbxTitleBar);
+		}
+	} */
+
 	// Use Action Button, Use Cancel Button
 	public void setUseButton(boolean action, boolean cancel) {
-		if (!action) { hbxButtonBar.getChildren().remove(btnAction); }
-		if (!cancel) { hbxButtonBar.getChildren().remove(btnCancel); }
+		if (!action) {
+			hbxButtonBar.getChildren().remove(btnAction);
+		}
+		if (!cancel) {
+			hbxButtonBar.getChildren().remove(btnCancel);
+		}
 	}
 
 	public HBox<Button> getButtonBar() {

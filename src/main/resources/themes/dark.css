@@ -437,9 +437,6 @@
 }
 
 /* MAIN AREA */
-.main-area {
-    -fx-background-color: #1E1E1E;
-}
 .main-area > .tab-view .editor {
 	-fx-border-width: 0;
 }

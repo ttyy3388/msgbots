@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+
+<?import org.beuwi.msgbots.platform.gui.control.Label?>
+<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
+
+<VBox spacing="10.0" prefWidth="450.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+	<children>
+		<Label fx:id="lblNewVersion" text="현재 버전 : {}" prefHeight="30.0"></Label>
+		<Label fx:id="lblOldVersion" text="새 버전 : {}" prefHeight="30.0"></Label>
+	</children>
+</VBox>

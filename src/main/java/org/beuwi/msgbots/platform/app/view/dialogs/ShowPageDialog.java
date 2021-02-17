@@ -1,6 +1,7 @@
 package org.beuwi.msgbots.platform.app.view.dialogs;
 
 import javafx.scene.Node;
+
 import org.beuwi.msgbots.platform.gui.control.Button;
 import org.beuwi.msgbots.platform.gui.dialog.DialogType;
 import org.beuwi.msgbots.platform.gui.dialog.DialogWrap;

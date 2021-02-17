@@ -50,7 +50,7 @@ public class CreateBotDialog extends DialogWrap {
 	@Override
 	public void open() {
 		setContent(root);
-		setTitle("Create new bot");
+		setTitle("Create New Bot");
 		create();
 	}
 

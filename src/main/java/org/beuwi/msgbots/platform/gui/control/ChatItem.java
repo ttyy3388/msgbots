@@ -115,7 +115,7 @@ public class ChatItem extends HBox {
 				// comment.setMaxWidth(220);
 				comment.setText(message);
 				comment.setWrapText(true);
-				comment.setMaxWidth(200);
+				comment.setMaxWidth(250);
 				comment.getStyleClass().add("comment");
 			}
 

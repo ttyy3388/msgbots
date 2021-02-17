@@ -82,6 +82,9 @@ public class TabItem extends TabItemBase {
 			new MenuItem("Close Others", event -> getView().closeOtherTabs(this)),
 			new MenuItem("Close All Tabs", event -> getView().closeAllTabs()),
 			new Separator(),
+			// new MenuItem("Move Tab to Right", event -> getView().moveToRightTab(this)),
+			// new MenuItem("Move Tab to Left", event -> getView().moveToLeftTab(this)),
+			// new Separator(),
 			new MenuItem("Select Next Tab", "Ctrl + Tab", event -> getView().selectNextTab(this)),
 			new MenuItem("Select Previous Tab", "Ctrl + Shift + Tab", event ->  getView().selectPrevTab(this))
 		);

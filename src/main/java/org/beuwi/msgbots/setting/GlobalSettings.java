@@ -33,12 +33,8 @@ public class GlobalSettings {
 		}); */
 	}
 
-	public static void addChangedListener(Listener listener) {
+	/* public static void addChangedListener(Listener listener) {
 		listeners.add(listener);
-	}
-
-	/* public static ReadOnlyBooleanProperty changedProperty(String address) {
-
 	} */
 
 	protected static <T> T getData(String address) {
@@ -50,8 +46,8 @@ public class GlobalSettings {
 		// throw new NullPointerException("this address does not exists");
 
 		Map map = json.getMap(name);
-		if(map==null){
-			throw new NullPointerException("map name "+name+" does not exist");
+		if (map == null) {
+			throw new NullPointerException("map name " + name + " does not exist");
 		}
 		return (T) map.get(option);
 	}
@@ -62,8 +58,12 @@ public class GlobalSettings {
 
 	public static String getString(String address) {
 		String data = getData(address);
-		if(data==null)return null;
-		return String.valueOf("" + data);
+		if (data != null) {
+			return String.valueOf("" + data);
+		}
+		else {
+			return null;
+		}
 	}
 
 	public static boolean getBoolean(String address) {

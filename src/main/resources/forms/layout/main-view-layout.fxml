@@ -6,6 +6,8 @@
 <?import org.beuwi.msgbots.platform.gui.layout.GridPane?>
 <?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
 
+<?import org.beuwi.msgbots.platform.gui.control.Page?>
+<?import org.beuwi.msgbots.platform.util.SharedValues?>
 <StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<GridPane>
 		<columnConstraints>
@@ -55,14 +57,23 @@
                                        GridPane.rowIndex="1"
                                        GridPane.columnSpan="2"
                                        GridPane.rowSpan="1"></StackPane>
-							<!-- Main Area Part -->
-							<StackPane fx:id="stpMainArea"
-                                       GridPane.columnIndex="1"
-                                       GridPane.rowIndex="0"
-                                       GridPane.columnSpan="1"
-                                       GridPane.rowSpan="1"
-                                       GridPane.hgrow="ALWAYS"
-                                       GridPane.vgrow="ALWAYS"></StackPane>
+							<StackPane GridPane.columnIndex="1"
+									   GridPane.rowIndex="0"
+									   GridPane.columnSpan="1"
+									   GridPane.rowSpan="1"
+									   GridPane.hgrow="ALWAYS"
+									   GridPane.vgrow="ALWAYS">
+								<children>
+									<!-- Program Start Page -->
+									<!-- <StackPane>
+										<children>
+											<SharedValues fx:constant="PROGRAM_START_PAGE"></SharedValues>
+										</children>
+									</StackPane> -->
+									<!-- Main Area Part -->
+									<StackPane fx:id="stpMainArea"></StackPane>
+								</children>
+							</StackPane>
 							<!-- Debug Area Part -->
 							<StackPane fx:id="stpDebugArea"
                                        GridPane.columnIndex="2"

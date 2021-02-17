@@ -19,6 +19,9 @@ public class ResourceUtils {
 		return ResourceUtils.class.getResource(path).toExternalForm();
 	}
 
+	public static String getHtml(String theme, String name) {
+		return ResourceUtils.class.getResource("/htmls/" + theme + "/" + name + ".html").toExternalForm();
+	}
 	public static String getHtml(String name) {
 		return ResourceUtils.class.getResource("/htmls/" + name + ".html").toExternalForm();
 	}

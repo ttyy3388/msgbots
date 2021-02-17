@@ -19,10 +19,7 @@ import org.beuwi.msgbots.platform.gui.layout.HBox;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
 import org.beuwi.msgbots.platform.gui.layout.VBox;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public abstract class TabViewBase<T extends TabItemBase> extends StackPane implements Control {
 	private static final String DEFAULT_STYLE_CLASS = "tab-view";
@@ -71,10 +68,10 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane imple
 					this.selectTab(item);
 					headerArea.getItems().add(item);
 				}
-
-				// 비어있다면 안보이도록
-				setVisible(getTabs().size() != 0);
 			}
+
+			// 비어있다면 안보이도록
+			setVisible(!getTabs().isEmpty());
 		});
 
 		sideProperty().addListener(change -> {
@@ -184,22 +181,25 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane imple
 	public ObservableList<T> getTabs() {
 		return tabList;
 	}
-	public void addTab(T tab) {
-		boolean already = getTab(tab.getId()) != null;
-		// 이미 있으면 해당 탭 선택
-		if (already) {
-			selectTab(tab);
-		}
-		else {
-			getTabs().add(tab);
-		}
+	public void addTab(Collection<T> tabs) {
+		addTabList(tabs);
+	}
+	public void addTab(T... tabs) {
+		addTabList(Arrays.asList(tabs));
 	}
 	/* public void addTab(T tab) {
 		addTab(getTabs().size(), tab);
 	} */
-	public void addTab(T... tabs) {
+	private void addTabList(Collection<T> tabs) {
 		for (T tab : tabs) {
-			addTab(tab);
+			boolean already = getTab(tab.getId()) != null;
+			// 이미 있으면 해당 탭 선택
+			if (already) {
+				selectTab(tab);
+			}
+			else {
+				getTabs().add(tab);
+			}
 		}
 	}
 
@@ -279,6 +279,29 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane imple
 
 		closeTabList(others);
 	}
+
+	/* public void moveToRightTab(T tab) {
+		int index = getTabs().indexOf(tab),
+			size = getTabs().size();
+
+		List<T> list = getTabs();
+
+		System.out.println(size + " : " + index);
+		// 만약 탭이 마지막 자리에 있다면 해당 값이 사이즈를 초과하므로 다음 탭이 있는 경우에만 통과됨
+		if (size >= index + 1) {
+			Collections.swap(getTabs(), index, index + 1);
+		}
+	}
+
+	public void moveToLeftTab(T tab) {
+		int index = getTabs().indexOf(tab),
+				size = getTabs().size();
+
+		// 만약 탭이 0번째 자리에 있다면 해당 값이 -1이므로 이전 탭이 있는 경우에만 통과됨
+		if (index - 1 >= 0) {
+			Collections.swap(getTabs(), index, index - 1);
+		}
+	} */
 
 	private final ObjectProperty<Side> sideProperty = new SimpleObjectProperty();
 	public void setSide(Side side) {

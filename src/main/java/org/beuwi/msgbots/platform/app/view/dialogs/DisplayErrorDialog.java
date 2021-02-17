@@ -15,7 +15,7 @@ import org.beuwi.msgbots.platform.gui.layout.VBox;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-public class ShowErrorDialog extends DialogWrap {
+public class DisplayErrorDialog extends DialogWrap {
 	private final ObservableMap<String, Object> namespace;
 	private final FormLoader loader;
 	private final VBox root;
@@ -26,10 +26,10 @@ public class ShowErrorDialog extends DialogWrap {
 	private final Button btnCopy;
 	private final Button btnClose;
 
-	public ShowErrorDialog(Throwable error) {
+	public DisplayErrorDialog(Throwable error) {
 		super(DialogType.ERROR);
 
-		loader = new FormLoader("dialog", "show-error-dialog", this);
+		loader = new FormLoader("dialog", "display-error-dialog", this);
 		namespace = loader.getNamespace();
 		root = loader.getRoot();
 

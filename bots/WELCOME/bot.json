@@ -1,7 +1,7 @@
 {
 	"use_unified_params":false,
-	"optimization":1,
 	"off_on_runtime_error":true,
 	"power":"true",
-	"ignore_api_off":false
+	"ignore_api_off":false,
+	"optimization":1
 }

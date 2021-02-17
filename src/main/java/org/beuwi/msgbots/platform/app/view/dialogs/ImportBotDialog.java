@@ -70,7 +70,7 @@ public class ImportBotDialog extends DialogWrap {
 	@Override
 	public void open() {
 		setContent(root);
-		setTitle("Import script");
+		setTitle("Import Script");
 		create();
 	}
 

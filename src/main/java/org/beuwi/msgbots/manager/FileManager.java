@@ -31,7 +31,8 @@ public class FileManager {
 	}
 
 	public static File getDataFile(String name) {
-		return new File(SharedValues.DATA_FOLDER_FILE + File.separator + name);
+		File file = new File(SharedValues.DATA_FOLDER_PATH + File.separator + name);
+		return file;
 	}
 
 	// ResourceUtils.getData로 이전
@@ -125,7 +126,7 @@ public class FileManager {
 			return content;
 		}
 		catch (Exception e) {
-			DisplayErrorDialogAction.execute(e);
+			e.printStackTrace();
 		}
 
 		return null;
@@ -142,7 +143,7 @@ public class FileManager {
 			return content;
 		}
 		catch (Exception e) {
-			DisplayErrorDialogAction.execute(e);
+			e.printStackTrace();
 		}
 
 		return null;
@@ -166,7 +167,31 @@ public class FileManager {
 			return text;
 		}
 		catch (Exception e) {
-			DisplayErrorDialogAction.execute(e);
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	public static String read(InputStreamReader inputReader) {
+		try {
+			if (inputReader == null) {
+				return null;
+			}
+
+			BufferedReader bufferedReader = new BufferedReader(inputReader);
+			String line = "", text = bufferedReader.readLine();
+
+			while ((line = bufferedReader.readLine()) != null) {
+				text += "\n" + line;
+			}
+
+			bufferedReader.close();
+
+			return text;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		return null;
@@ -191,7 +216,7 @@ public class FileManager {
 		}
 		// File Not Found Exception ??
 		catch (Exception e) {
-			DisplayErrorDialogAction.execute(e);
+			e.printStackTrace();
 		}
 
 		return false;

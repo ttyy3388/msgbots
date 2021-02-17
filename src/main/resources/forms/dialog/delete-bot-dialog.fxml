@@ -5,6 +5,6 @@
 
 <AnchorPane prefHeight="50.0" prefWidth="400.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <children>
-        <Label fx:id="lblDeleteMessage" styleClass="h4" prefHeight="30.0"></Label>
+        <Label fx:id="lblDeleteMessage" text="Are you sure you want to delete '{}' ?" styleClass="h4" prefHeight="30.0"></Label>
     </children>
 </AnchorPane>

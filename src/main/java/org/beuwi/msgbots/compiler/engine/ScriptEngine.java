@@ -113,7 +113,7 @@ public class ScriptEngine {
 			ScriptableObject.defineProperty(scope, "GlobalLog", ScriptUtils.convert(new GlobalLog(scope)), flags);
 			ScriptableObject.defineProperty(scope, "Log", 		 ScriptUtils.convert(new Log(scope, name)), flags);
 			ScriptableObject.defineProperty(scope, "DataBase",  ScriptUtils.convert(new DataBase(scope, name)), flags);
-			ScriptableObject.defineProperty(scope, "Utils", 	 ScriptUtils.convert(new Utils(scope, name)), flags);
+			ScriptableObject.defineProperty(scope, "Utils", 	 ScriptUtils.convert(new Utils(scope)), flags);
 
 			ScriptableObject.defineClass(scope, AppData.class);
 			ScriptableObject.defineClass(scope, Bridge.class);

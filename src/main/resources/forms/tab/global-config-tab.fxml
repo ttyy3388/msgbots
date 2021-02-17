@@ -32,11 +32,6 @@
 					<content>
 						<OptionView title="Program">
 							<items>
-								<OptionItem address="control:button:choose_bots_path" title="봇 폴더 경로 변경">
-									<content>
-										<Button text="Change" styled="true" type="ACTION" minHeight="30.0"></Button>
-									</content>
-								</OptionItem>
 								<OptionItem address="global:program:color_theme" title="프로그램 테마 변경">
 									<content>
 										<ComboBox maxWidth="150">

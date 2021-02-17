@@ -6,17 +6,20 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import org.beuwi.msgbots.compiler.engine.ScriptManager;
+import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.MainView.MainWindow;
 import org.beuwi.msgbots.platform.app.view.actions.*;
 import org.beuwi.msgbots.platform.app.view.parts.*;
 import org.beuwi.msgbots.platform.app.view.tabs.*;
+import org.beuwi.msgbots.platform.gui.control.TabItem;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 import org.beuwi.msgbots.platform.util.SharedValues;
 import org.beuwi.msgbots.setting.GlobalSettings;
 
-import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.lang.reflect.Method;
 import java.nio.file.FileSystems;
 import java.nio.file.Paths;
 import java.nio.file.WatchEvent;
@@ -148,6 +151,10 @@ public class Launcher extends Application {
 			new MainView(stage).init();
 			new MainWindow(stage).create();
 
+			CheckAppUpdateAction.execute();
+
+			OpenDocumentTabAction.execute(SharedValues.WELCOME_GUIDE_DOCUMENT);
+
 			// System.out.println(SharedValues.BOTS_FOLDER_FILE);
 
 			/* BotView botView = BotListTab.getComponent();
@@ -195,10 +202,23 @@ public class Launcher extends Application {
 
 	public static void main(String[] args) {
 		try {
+
+			/* Method method = ClassLoader.class.getDeclaredMethod("findLoadedClass", new Class[] { String.class });
+			method.setAccessible(true);
+			ClassLoader loader = ClassLoader.getSystemClassLoader();
+
+			/* // 미리 로드해야 하는 클래스들임 ( 안하면 Null 에러남 )
+			Class.forName("org.beuwi.msgbots.manager.FileManager");
+			Class.forName("org.beuwi.msgbots.platform.util.SharedValues");
+			Class.forName("org.beuwi.msgbots.platform.util.ResourceUtils");
+			Class.forName("org.beuwi.msgbots.setting.SharedSettings");
+			Class.forName("org.beuwi.msgbots.setting.GlobalSettings");
+			Class.forName("org.beuwi.msgbots.setting.ScriptSettings"); */
+
 			launch(args);
 		}
 		catch (Throwable e) {
-			DisplayErrorDialogAction.execute(e);
+			e.printStackTrace();
 		}
 	}
 }

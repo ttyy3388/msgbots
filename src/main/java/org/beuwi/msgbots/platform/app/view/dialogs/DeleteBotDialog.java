@@ -35,7 +35,9 @@ public class DeleteBotDialog extends DialogWrap {
 		btnDelete = getActionButton();
 		btnCancel = getCancelButton();
 
-		lblDeleteMessage.setText("Are you sure you want to delete '" + name + "' ?");
+		lblDeleteMessage.setText(
+			lblDeleteMessage.getText().replace("{}", name)
+		);
 
 		btnDelete.setText("Delete");
 	}
@@ -43,7 +45,7 @@ public class DeleteBotDialog extends DialogWrap {
 	@Override
 	public void open() {
 		setContent(root);
-		setTitle("Delete bot");
+		setTitle("Delete Bot");
 		create();
 	}
 

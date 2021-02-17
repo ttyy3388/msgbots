@@ -1,6 +1,7 @@
 package org.beuwi.msgbots.compiler.api;
 
 import org.beuwi.msgbots.manager.FileManager;
+import org.beuwi.msgbots.platform.util.SharedValues;
 import org.beuwi.msgbots.setting.GlobalSettings;
 import org.jsoup.nodes.Document;
 import org.jsoup.Jsoup;
@@ -11,7 +12,6 @@ import org.mozilla.javascript.Undefined;
 import org.mozilla.javascript.annotations.JSFunction;
 
 public class Utils extends ScriptableObject {
-
 	protected static String toScriptName(String inputName) {
 		return FileManager.getBaseName(inputName);
 	}
@@ -21,12 +21,8 @@ public class Utils extends ScriptableObject {
         return "Utils";
     }
 
-    final String name;
-
-    public Utils(ScriptableObject object, String name) {
+    public Utils(ScriptableObject object) {
 		super(object, object.getPrototype());
-
-		this.name = name;
 	}
 
 	@JSFunction
@@ -34,8 +30,8 @@ public class Utils extends ScriptableObject {
 		try {
 			return Jsoup.connect(url)
 					.ignoreContentType(true)
-					.timeout(GlobalSettings.getInt("script:html_time_out"))
-					.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36")
+					.timeout(GlobalSettings.getInt("debug:html_load_timeout"))
+					.userAgent(SharedValues.DEFAULT_USER_AGENT)
 					.referrer("http://www.google.com")
 					.get().toString();
 		}
@@ -50,8 +46,8 @@ public class Utils extends ScriptableObject {
 		try {
 			return Jsoup.connect(url)
 					.ignoreContentType(true)
-					.timeout(GlobalSettings.getInt("script:html_time_out"))
-					.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36")
+					.timeout(GlobalSettings.getInt("debug:html_load_timeout"))
+					.userAgent(SharedValues.DEFAULT_USER_AGENT)
 					.referrer("http://www.google.com")
 					.get();
 		}

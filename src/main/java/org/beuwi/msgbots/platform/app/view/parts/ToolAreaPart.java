@@ -7,9 +7,12 @@ import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.tabs.DetailLogTab;
 import org.beuwi.msgbots.platform.app.view.tabs.ProblemListTab;
+import org.beuwi.msgbots.platform.gui.control.Button;
 import org.beuwi.msgbots.platform.gui.control.TabView;
 import org.beuwi.msgbots.platform.gui.layout.AnchorPane;
+import org.beuwi.msgbots.platform.gui.layout.HBox;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
+import org.beuwi.msgbots.platform.util.AllSVGIcons;
 
 public class ToolAreaPart implements View {
 	private static ObservableMap<String, Object> namespace;
@@ -19,7 +22,7 @@ public class ToolAreaPart implements View {
 
 	private static StackPane resizebar;
 
-	// private static HBox buttonBar;
+	// private static HBox buttonbar;
 
 	@Override
 	public void init() {
@@ -39,11 +42,9 @@ public class ToolAreaPart implements View {
 			}
 		});
 
-		// component.setDividerPosition(0, 0.5);
-
 		// Button Bar
-		/* buttonBar = (HBox) namespace.get("hbxButtonBar");
-		Button reload = (Button) buttonBar.getChildren().get(0);
+		/* buttonbar = (HBox) namespace.get("hbxButtonBar");
+		Button reload = (Button) buttonbar.getChildren().get(0);
 		reload.setGraphic(AllSVGIcons.get("Bot.Reload")); */
 
 		component.setTab(
