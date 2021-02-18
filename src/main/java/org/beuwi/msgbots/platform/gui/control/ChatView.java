@@ -2,6 +2,13 @@ package org.beuwi.msgbots.platform.gui.control;
 
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.input.KeyEvent;
+
+import org.beuwi.msgbots.platform.app.action.CopyListAction;
+import org.beuwi.msgbots.platform.app.action.CopyStringAction;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChatView extends ListView<ChatItem> {
 	private static final String DEFAULT_STYLE_CLASS = "chat-view";
@@ -18,6 +25,21 @@ public class ChatView extends ListView<ChatItem> {
 			}
 		});
 
+		addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+			if (event.isControlDown()) {
+				switch (event.getCode()) {
+					// Copy
+					case C :
+						final List<String> chats = new ArrayList<>();
+						getSelectedItems().forEach(item -> {
+							chats.add(item.getMessage());
+						});
+						CopyListAction.execute(chats, "\n");
+						break;
+				}
+			}
+		});
+
 		/* new ContextMenu(
 			new MenuItem("Select All", event -> {
 				getSelectionModel().selectAll();
@@ -25,7 +47,7 @@ public class ChatView extends ListView<ChatItem> {
 		).setNode(this); */
 
 		setAutoScroll(true);
-		// setSelectionMode(SelectionMode.MULTIPLE);
+		setSelectionMode(SelectionMode.MULTIPLE);
 		getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 }

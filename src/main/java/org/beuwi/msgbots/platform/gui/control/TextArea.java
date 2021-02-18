@@ -10,8 +10,10 @@ public class TextArea extends javafx.scene.control.TextArea {
 	private final InvalidationListener autoScrollListener = new InvalidationListener() {
 		@Override
 		public void invalidated(Observable observable) {
-			setScrollTop(Double.MAX_VALUE);
+			// SetText 호출 시에는 반응 안하므로 다른 방법 사용
+			// setScrollTop(Double.MAX_VALUE);
 			// setScrollLeft(Double.MIN_VALUE);
+			appendText("");
 		}
 	};
 

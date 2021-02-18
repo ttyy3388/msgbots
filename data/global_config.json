@@ -19,12 +19,12 @@
 		"show_sender_profile":"false"
 	},
 	"program":{
+		"version_name":"0.6.2",
 		"bot_path":null,
 		"compile_auto_save":true,
 		"text_rendering":"LCD",
+		"version_code":1,
 		"start_auto_compile":"true",
-		"color_theme":"light",
-		"version_code": 0,
-		"version_name": "0.6.0"
+		"color_theme":"dark"
 	}
 }

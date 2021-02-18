@@ -51,6 +51,8 @@ public class ScriptEngine {
 				callResponder(name, room, message, sender, isGroupChat, imageDB, packageName);
 			}).start();
 		}
+
+		InputDetailLogAction.execute("Message Send", message);
 	}
 
 	protected static boolean initialize(String name, boolean isManual, boolean ignoreError) {

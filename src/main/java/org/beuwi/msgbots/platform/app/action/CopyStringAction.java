@@ -3,6 +3,7 @@ package org.beuwi.msgbots.platform.app.action;
 import javafx.application.Platform;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+
 import org.beuwi.msgbots.platform.app.impl.Action;
 
 public class CopyStringAction implements Action {
@@ -20,13 +21,6 @@ public class CopyStringAction implements Action {
             clipboard.setContent(content);
         });
     }
-
-    // or
-    /* public static void execute(String text) {
-        final Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        StringSelection selection = new StringSelection(String.valueOf(text));
-        clipboard.setContents(selection, selection);
-    } */
 
     @Override
     public String getName() {

@@ -24,11 +24,11 @@
 			<children>
 				<HBox styleClass="title-bar" prefHeight="30.0">
 					<children>
-						<Label fx:id="lblBoxTitle" HBox.hgrow="ALWAYS"></Label>
+						<Label styleClass="title-label" fx:id="lblBoxTitle" HBox.hgrow="ALWAYS"></Label>
 						<Button fx:id="btnBoxClose" prefWidth="30.0"></Button>
 					</children>
 				</HBox>
-				<Label fx:id="lblBoxText" alignment="TOP_LEFT" VBox.vgrow="ALWAYS"></Label>
+				<Label fx:id="lblBoxText" styleClass="content-label" alignment="TOP_LEFT" VBox.vgrow="ALWAYS"></Label>
 				<!-- <HBox fx:id="hbxBtnBar" styleClass="button-bar" alignment="CENTER_RIGHT" spacing="10.0" prefHeight="30">
 					<children>
 						<Button text="TEST BUTTON" styled="true" type="ACTION" ></Button>

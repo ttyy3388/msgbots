@@ -21,10 +21,10 @@ public class ChatItem extends HBox {
 
 	// private static final int DEFAULT_MIN_HEIGHT = 50;
 
+	private final String message;
+
 	private final Circle profile;
 	private final Content content;
-
-	private final ContextMenu menu;
 
 	private ChatView parent;
 
@@ -33,15 +33,10 @@ public class ChatItem extends HBox {
 	}
 
 	public ChatItem(String message, boolean isBot) {
+		this.message = message;
+
         content = new Content(message, isBot);
         profile = new Circle(35, 35, 20);
-
-		menu = new ContextMenu(
-			new MenuItem("Copy", event -> CopyStringAction.execute(message)),
-			new MenuItem("Delete", event -> parent.getItems().remove(this))
-		);
-
-		menu.setNode(content);
 
 		profile.getStyleClass().add("profile");
 
@@ -94,17 +89,25 @@ public class ChatItem extends HBox {
 	}
 
 	private class Content extends VBox {
+		// 텍스트 필드로 바꾸면 드래그가 가능하긴 함
 		private final Label comment = new Label();
 		private final Label name = new Label();
+
+		private final ContextMenu menu;
 
 		{
 			VBox.setVgrow(comment, Priority.ALWAYS);
 		}
 
 		public Content(String message, boolean isBot) {
-
             name.setText("DEBUG SENDER");
             name.getStyleClass().add("name");
+
+			menu = new ContextMenu(
+				new MenuItem("Copy", event -> CopyStringAction.execute(message)),
+				new MenuItem("Delete", event -> parent.getItems().remove(this))
+			);
+			menu.setNode(comment);
 
 			/* if (message.length() > 1000)
 			{
@@ -144,5 +147,9 @@ public class ChatItem extends HBox {
 			setFittable(false);
 			setFillWidth(false);
 		}
+	}
+
+	public String getMessage() {
+		return message;
 	}
 }

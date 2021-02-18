@@ -21,7 +21,8 @@ public class InputDetailLogAction implements Action {
 	}
 
 	public static void execute(String time, String title, String text) {
-		textArea.appendText("[" + time + "] < " + title + " > : " + text + "\n");
+		// Append Text 부분에서 자꾸 에러가 나서 직접 컨트롤
+		textArea.setText(textArea.getText() + "[" + time + "] < " + title + " > : " + text + "\n");
 	}
 
 	// Default log type : Event

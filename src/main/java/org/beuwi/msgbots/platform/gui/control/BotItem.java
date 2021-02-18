@@ -100,8 +100,7 @@ public class BotItem extends GridPane {
 			}),
 			new MenuItem("Delete", event -> {
 				OpenDialogBoxAction.execute(new DeleteBotDialog(name));
-			}),
-			new Separator()
+			})
 			/* new MenuItem("Settings", "Ctrl + ,", event -> {
 				OpenProgramTabAction.execute(GlobalConfigTab.getRoot());
 			}) */

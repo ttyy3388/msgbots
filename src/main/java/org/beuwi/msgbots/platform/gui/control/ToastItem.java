@@ -1,5 +1,6 @@
 package org.beuwi.msgbots.platform.gui.control;
 
+import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -70,6 +71,9 @@ public class ToastItem extends StackPane {
 		setMinHeight(DEFAULT_NOTICE_HEIGHT);
 
 		getStyleClass().add(DEFAULT_STYLE_CLASS);
+
+		// .event .error .warning
+		getStyleClass().add(type.toString());
 	}
 
 	public void setView(ToastView parent) {

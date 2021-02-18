@@ -36,7 +36,9 @@ public class DebugRoomTab implements View {
 			}
 			if (keyCode.equals(KeyCode.ENTER)) {
 				if (event.isShiftDown()) {
-					textArea.appendText(System.lineSeparator());
+					// 현재 커서의 위치를 가져옴
+					int position = textArea.getCaretPosition();
+					textArea.insertText(position, System.lineSeparator());
 					event.consume();
 					return ;
 				}

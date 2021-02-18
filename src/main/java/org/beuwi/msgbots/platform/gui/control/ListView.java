@@ -7,6 +7,7 @@ import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.event.Event;
 import javafx.scene.Node;
@@ -198,6 +199,10 @@ public class ListView<T> extends javafx.scene.control.ListView<T> {
 	}
 	public int getSelectedIndex() {
 		return getSelectionModel().getSelectedIndex();
+	}
+
+	public ObservableList<T> getSelectedItems() {
+		return getSelectionModel().getSelectedItems();
 	}
 
 	public ReadOnlyObjectProperty<T> selectedItemProperty() {

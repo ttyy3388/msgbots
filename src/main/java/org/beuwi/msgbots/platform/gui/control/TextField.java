@@ -6,13 +6,13 @@ public class TextField extends javafx.scene.control.TextField {
     private static final int DEFAULT_PREF_WIDTH = 200;
     private static final int DEFAULT_PREF_HEIGHT = 25;
 
-    private final ContextMenu menu = new ContextMenu(
-		new MenuItem("Undo", "Ctrl + Z" , event -> this.undo()),
-		new MenuItem("Redo", "Ctrl + Y" , event -> this.redo()),
+	private final ContextMenu menu = new ContextMenu(
+		new MenuItem("Undo", "Ctrl + Z" , event -> this.undo()).disable(true).enable(undoableProperty()),
+		new MenuItem("Redo", "Ctrl + Y" , event -> this.redo()).disable(true).enable(redoableProperty()),
 		new Separator(),
-		new MenuItem("Cut", "Ctrl + X", event -> this.cut()),
+		new MenuItem("Cut", "Ctrl + X", event -> this.cut()).enable(editableProperty()),
 		new MenuItem("Copy", "Ctrl + C", event -> this.copy()),
-		new MenuItem("Paste", "Ctrl + V", event -> this.paste()),
+		new MenuItem("Paste", "Ctrl + V", event -> this.paste()).enable(editableProperty()),
 		new Separator(),
 		new MenuItem("Select All", "Ctrl + A", event -> this.selectAll())
 	);
