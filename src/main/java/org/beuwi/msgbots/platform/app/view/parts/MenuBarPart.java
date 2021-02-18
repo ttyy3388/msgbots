@@ -12,10 +12,7 @@ import org.beuwi.msgbots.platform.app.view.actions.RefreshBotListAction;
 import org.beuwi.msgbots.platform.app.view.dialogs.CreateBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.ImportBotDialog;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
-import org.beuwi.msgbots.platform.gui.control.MenuButton;
-import org.beuwi.msgbots.platform.gui.control.MenuItem;
-import org.beuwi.msgbots.platform.gui.control.MenuBar;
-import org.beuwi.msgbots.platform.gui.control.Separator;
+import org.beuwi.msgbots.platform.gui.control.*;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
 import org.beuwi.msgbots.platform.util.SharedValues;
 
@@ -96,11 +93,11 @@ public class MenuBarPart implements View {
 			}),
 			new Separator(),
 			new MenuItem("About Program", event -> {
-				OpenDocumentTabAction.execute(SharedValues.ABOUT_PROGRAM_DOCUMENT);
+				OpenDocumentTabAction.execute(new Document("ABOUT PROGRAM", new Page("about-program-page")));
 			}),
 			new Separator(),
 			new MenuItem("Welcome Guide", event -> {
-				OpenDocumentTabAction.execute(SharedValues.WELCOME_GUIDE_DOCUMENT);
+				OpenDocumentTabAction.execute(new Document("WELCOME GUIDE", new Page("welcome-guide-page")));
 			})
 		);
 	}

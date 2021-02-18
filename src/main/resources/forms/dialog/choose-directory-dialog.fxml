@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+
+<?import org.beuwi.msgbots.platform.gui.control.Button?>
+<?import org.beuwi.msgbots.platform.gui.control.TextField?>
+<?import org.beuwi.msgbots.platform.gui.layout.HBox?>
+<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
+
+<VBox spacing="25.0" prefWidth="450.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <children>
+        <HBox fittable="true" prefHeight="30.0" spacing="10.0">
+            <children>
+                <TextField fx:id="txfPath" HBox.hgrow="ALWAYS" editable="true"></TextField>
+                <Button fx:id="btnChooseDirectory" text="..." styled="true" type="ACTION" prefWidth="35.0"></Button>
+            </children>
+        </HBox>
+    </children>
+</VBox>

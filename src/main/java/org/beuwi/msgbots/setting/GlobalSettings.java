@@ -36,7 +36,6 @@ public class GlobalSettings {
 	/* public static void addChangedListener(Listener listener) {
 		listeners.add(listener);
 	} */
-
 	protected static <T> T getData(String address) {
 		String[] data = address.split(":");
 

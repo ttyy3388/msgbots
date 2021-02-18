@@ -49,7 +49,7 @@ public class SharedValues /* implements java.io.Serializable */ {
 	/* Paths */
 	public static final String MAIN_FOLDER_PATH = System.getProperty("user.dir");
 	public static final String DATA_FOLDER_PATH = System.getProperty("user.dir") + File.separator + "data";
-	public static final String BOTS_FOLDER_PATH = System.getProperty("user.dir") + File.separator + "bots";
+	public static String BOTS_FOLDER_PATH = System.getProperty("user.dir") + File.separator + "bots";
 
 	// public static final String CUSTOM_THEME_PATH = "custom_theme.css";
     public static final String PROFILE_SENDER_PATH = "profile_sender.png";
@@ -63,7 +63,7 @@ public class SharedValues /* implements java.io.Serializable */ {
 	/* Files */
 	public static final File MAIN_FOLDER_FILE;
 	public static final File DATA_FOLDER_FILE;
-	public static final File BOTS_FOLDER_FILE;
+	public static File BOTS_FOLDER_FILE;
 
 	// public static final File CUSTOM_THEME_FILE;
 	public static final File PROFILE_SENDER_FILE;
@@ -84,18 +84,18 @@ public class SharedValues /* implements java.io.Serializable */ {
 	// public static final File WHITE_THEME_FILE = ResourceUtils.getFile("/themes/dark.css");
 
 	/* Pages */
-	public static final Page ABOUT_PROGRAM_PAGE;
-	public static final Page PROGRAM_START_PAGE;
+	//public static final Page ABOUT_PROGRAM_PAGE;
+	//public static final Page PROGRAM_START_PAGE;
 	// public static final Page RELEASE_NOTES_PAGE;
 	// public static final Page VIEW_LICENSE_PAGE;
-	public static final Page WELCOME_GUIDE_PAGE;
+	//public static final Page WELCOME_GUIDE_PAGE;
 
 	/* Documents */
-	public static final Document ABOUT_PROGRAM_DOCUMENT;
-	public static final Document PROGRAM_START_DOCUMENT;
+	//public static final Document ABOUT_PROGRAM_DOCUMENT;
+	//public static final Document PROGRAM_START_DOCUMENT;
 	// public static final Document RELEASE_NOTES_DOCUMENT = new Document("RELEASE NOTES", RELEASE_NOTES_PAGE);
 	// public static final Document VIEW_LICENSE_DOCUMENT = new Document("VIEW LICENSE", VIEW_LICENSE_PAGE);
-	public static final Document WELCOME_GUIDE_DOCUMENT;
+	//public static final Document WELCOME_GUIDE_DOCUMENT;
 
 	// 주의 : 기본 형식이 아닌 오브젝트는 "try catch" 감싸줘야 함
 	static {
@@ -115,18 +115,18 @@ public class SharedValues /* implements java.io.Serializable */ {
 			SCRIPT_UNIFIED_FILE = FileManager.getDataFile(SCRIPT_UNIFIED_PATH);
 			PROGRAM_DATA_FILE = FileManager.getDataFile(PROGRAM_DATA_PATH);
 
-			ABOUT_PROGRAM_PAGE = new Page("about-program-page");
-			PROGRAM_START_PAGE = new Page("program-start-page");
-			WELCOME_GUIDE_PAGE = new Page("welcome-guide-page");
+			//ABOUT_PROGRAM_PAGE = new Page("about-program-page");
+			//PROGRAM_START_PAGE = new Page("program-start-page");
+			//WELCOME_GUIDE_PAGE = new Page("welcome-guide-page");
 			// RELEASE_NOTES_PAGE = new Page("release-notes-page");
 			// VIEW_LICENSE_PAGE = new Page("view-license-page");
 
 			// PROFILE_SENDER_IMAGE = new Image(SharedValues.PROFILE_SENDER_FILE.toURI().toString());
 			// PROFILE_BOT_IMAGE = new Image(SharedValues.PROFILE_BOT_FILE.toURI().toString());
 
-			ABOUT_PROGRAM_DOCUMENT = new Document("ABOUT PROGRAM", ABOUT_PROGRAM_PAGE);
-			PROGRAM_START_DOCUMENT = new Document("START PROGRAM", PROGRAM_START_PAGE);
-			WELCOME_GUIDE_DOCUMENT = new Document("WELCOME GUIDE", WELCOME_GUIDE_PAGE);
+			// ABOUT_PROGRAM_DOCUMENT = new Document("ABOUT PROGRAM", ABOUT_PROGRAM_PAGE);
+			// PROGRAM_START_DOCUMENT = new Document("START PROGRAM", PROGRAM_START_PAGE);
+			// WELCOME_GUIDE_DOCUMENT = new Document("WELCOME GUIDE", WELCOME_GUIDE_PAGE);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

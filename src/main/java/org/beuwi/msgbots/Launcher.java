@@ -10,13 +10,17 @@ import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.MainView.MainWindow;
 import org.beuwi.msgbots.platform.app.view.actions.*;
+import org.beuwi.msgbots.platform.app.view.dialogs.ChooseBotsPathDialog;
 import org.beuwi.msgbots.platform.app.view.parts.*;
 import org.beuwi.msgbots.platform.app.view.tabs.*;
+import org.beuwi.msgbots.platform.gui.control.Document;
+import org.beuwi.msgbots.platform.gui.control.Page;
 import org.beuwi.msgbots.platform.gui.control.TabItem;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 import org.beuwi.msgbots.platform.util.SharedValues;
 import org.beuwi.msgbots.setting.GlobalSettings;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
@@ -69,117 +73,19 @@ public class Launcher extends Application {
 	@Override
 	public void start(Stage stage) {
 		try {
-			try {
-				WATCH_SERVICE = FileSystems.getDefault().newWatchService();
+			SharedValues.BOTS_FOLDER_PATH = GlobalSettings.getString("program:bots_path");
+			if(SharedValues.BOTS_FOLDER_PATH==null||!(new File(SharedValues.BOTS_FOLDER_PATH).isDirectory())) {
 
-				Paths.get(SharedValues.BOTS_FOLDER_FILE.getPath()).register(
-						WATCH_SERVICE,
-						ENTRY_CREATE,
-						ENTRY_DELETE,
-						ENTRY_MODIFY,
-						OVERFLOW
-				);
-			}
-			catch (IOException e) {
-				e.printStackTrace();
-			}
+				ChooseBotsPathDialog dialog = new ChooseBotsPathDialog();
+				dialog.setOnAction(event -> {
+					UpdateBotsPathAction.execute();
+					startMainView(stage);
+				});
+				OpenDialogBoxAction.execute(dialog);
 
-			new Thread(() -> {
-				while (true) {
-					try {
-						WATCH_KEY = WATCH_SERVICE.take();
-					}
-					catch (InterruptedException e) {
-						break;
-					}
-
-					List<WatchEvent<?>> events = WATCH_KEY.pollEvents();
-
-					for (WatchEvent<?> event : events) {
-						Platform.runLater(() -> {
-							RefreshBotListAction.execute();
-						});
-					}
-
-					if (!WATCH_KEY.reset()) {
-						try {
-							WATCH_SERVICE.close();
-						}
-						catch (IOException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-			}).start();
-
-			// Initialize tabs
-			new GlobalConfigTab().init();
-			new BotListTab().init();
-			new DebugRoomTab().init();
-			new DetailLogTab().init();
-			new GlobalLogTab().init();
-			// new NoticeListTab().init();
-			new ProblemListTab().init();
-			// new RunningBotsTab().init();
-			// new NoticeListTab().init();
-
-			// Initialize parts
-			new DebugAreaPart().init();
-			new MainAreaPart().init();
-			new MenuBarPart().init();
-			new SideAreaPart().init();
-			new StatusBarPart().init();
-			new ToastListPart().init();
-			new ToolAreaPart().init();
-
-			// Initialize actions
-			new AddBotLogItemAction().init();
-			new AddMainAreaTabAction().init();
-			new SaveBotScriptTabAction().init();
-			new ShowToastMessageAction().init();
-			new InputDetailLogAction().init();
-			new OpenBotLogTabAction().init();
-			new OpenDocumentTabAction().init();
-			new OpenProgramTabAction().init();
-			new OpenScriptTabAction().init();
-			new RefreshBotListAction().init();
-			new SendChatMessageAction().init();
-			new ShowToastMessageAction().init();
-			new UpdateCurrentPathAction().init();
-			new UpdateStatusBarAction().init();
-
-			new MainView(stage).init();
-			new MainWindow(stage).create();
-
-			CheckAppUpdateAction.execute();
-
-			OpenDocumentTabAction.execute(SharedValues.WELCOME_GUIDE_DOCUMENT);
-
-			// System.out.println(SharedValues.BOTS_FOLDER_FILE);
-
-			/* BotView botView = BotListTab.getComponent();
-
-			botView.getItems().add(new BotItem("TEST 1"));
-			botView.getItems().add(new BotItem("TEST 2"));
-			botView.getItems().add(new BotItem("TEST 3"));
-			botView.getItems().add(new BotItem("TEST 4"));
-			botView.getItems().add(new BotItem("TEST 5")); */
-
-			/* InputDetailLogAction.execute(" Compile started : \"TEST 1\" (1.7s)");
-			InputDetailLogAction.execute("> Task : Compile completed : \"TEST 1\" (1.7s)");
-			InputDetailLogAction.execute("> Task : Compile started : \"TEST 2\" (1.7s)");
-			InputDetailLogAction.execute("> Task : Compile completed : \"TEST 2\" (1.7s)");
-			InputDetailLogAction.execute("> Task : Compile started : \"TEST 3\" (1.7s)");
-			InputDetailLogAction.execute("> Task : Compile completed : \"TEST 3\" (1.7s)");
-			InputDetailLogAction.execute("> Task : Running bots ... : \"TEST 1\" (1.7s)");
-			InputDetailLogAction.execute("> Task : Running bots ... : \"TEST 2\" (1.7s)");
-			InputDetailLogAction.execute("> Task : Running bots ... : \"TEST 3\" (1.7s)"); */
-			// InputDetailLogAction.execute("Runtime Error : Cannot call method \"reply\" of undefined at \"TEST 1\":297 (response)");
-
-			RefreshBotListAction.execute();
-
-			if (GlobalSettings.getBoolean("program:start_auto_compile")) {
-				ScriptManager.preInit();
+			} else {
+				SharedValues.BOTS_FOLDER_FILE = new File(SharedValues.BOTS_FOLDER_PATH);
+				startMainView(stage);
 			}
 		}
 		catch (Throwable e) {
@@ -191,8 +97,124 @@ public class Launcher extends Application {
 				e.printStackTrace();
 			}
 		}
-	}
 
+	}
+	private void startMainView(Stage stage){
+
+		try {
+			WATCH_SERVICE = FileSystems.getDefault().newWatchService();
+
+			Paths.get(SharedValues.BOTS_FOLDER_FILE.getPath()).register(
+					WATCH_SERVICE,
+					ENTRY_CREATE,
+					ENTRY_DELETE,
+					ENTRY_MODIFY,
+					OVERFLOW
+			);
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		new Thread(() -> {
+			while (true) {
+				try {
+					WATCH_KEY = WATCH_SERVICE.take();
+				}
+				catch (InterruptedException e) {
+					break;
+				}
+
+				List<WatchEvent<?>> events = WATCH_KEY.pollEvents();
+
+				for (WatchEvent<?> event : events) {
+					Platform.runLater(() -> {
+						RefreshBotListAction.execute();
+					});
+				}
+
+				if (!WATCH_KEY.reset()) {
+					try {
+						WATCH_SERVICE.close();
+					}
+					catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}).start();
+
+		// Initialize tabs
+		new GlobalConfigTab().init();
+		new BotListTab().init();
+		new DebugRoomTab().init();
+		new DetailLogTab().init();
+		new GlobalLogTab().init();
+		// new NoticeListTab().init();
+		new ProblemListTab().init();
+		// new RunningBotsTab().init();
+		// new NoticeListTab().init();
+
+		// Initialize parts
+		new DebugAreaPart().init();
+		new MainAreaPart().init();
+		new MenuBarPart().init();
+		new SideAreaPart().init();
+		new StatusBarPart().init();
+		new ToastListPart().init();
+		new ToolAreaPart().init();
+
+		// Initialize actions
+		new AddBotLogItemAction().init();
+		new AddMainAreaTabAction().init();
+		new SaveBotScriptTabAction().init();
+		new ShowToastMessageAction().init();
+		new InputDetailLogAction().init();
+		new OpenBotLogTabAction().init();
+		new OpenDocumentTabAction().init();
+		new OpenProgramTabAction().init();
+		new OpenScriptTabAction().init();
+		new RefreshBotListAction().init();
+		new SendChatMessageAction().init();
+		new ShowToastMessageAction().init();
+		new UpdateCurrentPathAction().init();
+		new UpdateStatusBarAction().init();
+
+		new MainView(stage).init();
+		new MainWindow(stage).create();
+
+		CheckAppUpdateAction.execute();
+
+		OpenDocumentTabAction.execute(new Document("WELCOME GUIDE", new Page("welcome-guide-page")));
+
+		// System.out.println(SharedValues.BOTS_FOLDER_FILE);
+
+/* BotView botView = BotListTab.getComponent();
+
+botView.getItems().add(new BotItem("TEST 1"));
+botView.getItems().add(new BotItem("TEST 2"));
+botView.getItems().add(new BotItem("TEST 3"));
+botView.getItems().add(new BotItem("TEST 4"));
+botView.getItems().add(new BotItem("TEST 5")); */
+
+/* InputDetailLogAction.execute(" Compile started : \"TEST 1\" (1.7s)");
+InputDetailLogAction.execute("> Task : Compile completed : \"TEST 1\" (1.7s)");
+InputDetailLogAction.execute("> Task : Compile started : \"TEST 2\" (1.7s)");
+InputDetailLogAction.execute("> Task : Compile completed : \"TEST 2\" (1.7s)");
+InputDetailLogAction.execute("> Task : Compile started : \"TEST 3\" (1.7s)");
+InputDetailLogAction.execute("> Task : Compile completed : \"TEST 3\" (1.7s)");
+InputDetailLogAction.execute("> Task : Running bots ... : \"TEST 1\" (1.7s)");
+InputDetailLogAction.execute("> Task : Running bots ... : \"TEST 2\" (1.7s)");
+InputDetailLogAction.execute("> Task : Running bots ... : \"TEST 3\" (1.7s)"); */
+		// InputDetailLogAction.execute("Runtime Error : Cannot call method \"reply\" of undefined at \"TEST 1\":297 (response)");
+
+		RefreshBotListAction.execute();
+
+		if (GlobalSettings.getBoolean("program:start_auto_compile")) {
+			ScriptManager.preInit();
+		}
+
+	}
 	@Override
 	public void stop() {
 		// 프로그램을 종료해도 프로세서가 남아있는 현상 해결 해야됨. (해결 완료)

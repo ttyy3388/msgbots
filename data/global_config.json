@@ -21,10 +21,11 @@
 	"program":{
 		"version_name":"0.6.2",
 		"bot_path":null,
-		"compile_auto_save":true,
+		"compile_auto_save":"true",
 		"text_rendering":"LCD",
 		"version_code":1,
 		"start_auto_compile":"true",
+		"bots_path":null,
 		"color_theme":"dark"
 	}
 }

@@ -13,6 +13,7 @@ import javafx.stage.FileChooser;
 import org.beuwi.msgbots.platform.app.action.WriteImageFileAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenFileChooserAction;
+import org.beuwi.msgbots.platform.app.view.dialogs.ChooseBotsPathDialog;
 import org.beuwi.msgbots.platform.gui.enums.TextType;
 import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
@@ -57,6 +58,12 @@ public class OptionItem extends VBox {
 
 		if (getContent() instanceof Button) {
 			Button control = (Button) getContent();
+			if (getAddress().equals("control:button:choose_bots_path")){
+				control.setOnAction(event->{
+					OpenDialogBoxAction.execute(new ChooseBotsPathDialog());
+				});
+
+			}
 			if (getAddress().equals("control:button:change_bot_profile")) {
 				control.setOnAction(event -> {
 					File file = OpenFileChooserAction.execute("Change Bot Profile",
