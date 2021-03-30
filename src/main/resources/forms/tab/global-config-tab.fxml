@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?language javascript?>
+
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Separator?>
@@ -24,86 +26,110 @@
 <?import org.beuwi.msgbots.platform.gui.layout.VBox?>
 <?import org.beuwi.msgbots.platform.util.SharedValues?>
 
+<?import java.io.File?>
+
 <TabItem text="GLOBAL CONFIG" xmlns:fx="http://javafx.com/fxml">
 	<content>
-		<NaviView>
+		<NaviView styleClass="">
 			<tabs>
 				<NaviItem text="Program">
 					<content>
-						<OptionView title="Program">
-							<items>
-								<OptionItem address="control:button:choose_bots_path" title="봇 폴더 경로 변경">
-									<content>
-										<Button text="Change" styled="true" type="ACTION" minHeight="30.0"></Button>
-									</content>
-								</OptionItem>
-								<OptionItem address="global:program:color_theme" title="프로그램 테마 변경">
-									<content>
-										<ComboBox maxWidth="150">
-											<items>
-												<FXCollections fx:factory="observableArrayList">
-													<ThemeType fx:constant="DARK"></ThemeType>
-													<ThemeType fx:constant="LIGHT"></ThemeType>
-												</FXCollections>
-											</items>
-										</ComboBox>
-									</content>
-								</OptionItem>
-								<!-- <OptionItem address="global:program:text_rendering" title="텍스트 렌더링 방식">
-									<content>
-										<ComboBox maxWidth="150" >
-											<items>
-												<FXCollections fx:factory="observableArrayList">
-													<TextType fx:value="GRAY"></TextType>
-													<TextType fx:value="LCD"></TextType>
-												</FXCollections>
-											</items>
-										</ComboBox>
-									</content>
-								</OptionItem> -->
-								<OptionItem address="global:program:start_auto_compile" title="시작 시 자동 컴파일">
-									<content>
-										<CheckBox text="앱이 시작되었을 때 전원을 켜둔 스크립트를 자동으로 컴파일 합니다."></CheckBox>
-									</content>
-								</OptionItem>
-								<OptionItem address="global:program:compile_auto_save" title="리로드 시 자동 저장" >
-									<content>
-										<CheckBox text="리로드할 때 자동으로 세이브를 한 후 리로드를 합니다."></CheckBox>
-									</content>
-								</OptionItem>
-								<OptionItem title="기본 스크립트 수정" VBox.vgrow="ALWAYS">
-									<content>
-										<HBox spacing="10.0" VBox.vgrow="ALWAYS">
-											<children>
-												<VBox spacing="10.0" HBox.hgrow="ALWAYS">
+						<ScrollPane fitToWidth="true">
+							<content>
+								<OptionView title="Program">
+									<items>
+										<!-- <OptionItem address="control:button:cleanup_user_setting" title="프로그램 설정 초기화">
+											<content>
+												<Button text="Clean Up" styled="true" type="ACTION" minHeight="25.0"></Button>
+											</content>
+										</OptionItem> -->
+										<OptionItem address="control:button:choose_bots_path" title="봇 폴더 경로 변경">
+											<content>
+												<Button text="Change" styled="true" type="ACTION" minHeight="25.0"></Button>
+											</content>
+										</OptionItem>
+										<OptionItem address="global:program:color_theme" title="프로그램 테마 변경">
+											<content>
+												<ComboBox maxWidth="150">
+													<items>
+														<FXCollections fx:factory="observableArrayList">
+															<ThemeType fx:constant="DARK"></ThemeType>
+															<ThemeType fx:constant="LIGHT"></ThemeType>
+														</FXCollections>
+													</items>
+												</ComboBox>
+											</content>
+										</OptionItem>
+										<!-- <OptionItem address="global:program:text_rendering" title="텍스트 렌더링 방식">
+                                            <content>
+                                                <ComboBox maxWidth="150" >
+                                                    <items>
+                                                        <FXCollections fx:factory="observableArrayList">
+                                                            <TextType fx:value="GRAY"></TextType>
+                                                            <TextType fx:value="LCD"></TextType>
+                                                        </FXCollections>
+                                                    </items>
+                                                </ComboBox>
+                                            </content>
+                                        </OptionItem> -->
+										<OptionItem address="global:program:start_auto_compile" title="시작 시 자동 컴파일">
+											<content>
+												<CheckBox text="앱이 시작되었을 때 전원을 켜둔 스크립트를 자동으로 컴파일 합니다."></CheckBox>
+											</content>
+										</OptionItem>
+										<OptionItem address="global:program:compile_auto_save" title="리로드 시 자동 저장" >
+											<content>
+												<CheckBox text="리로드할 때 자동으로 세이브를 한 후 리로드를 합니다."></CheckBox>
+											</content>
+										</OptionItem>
+										<OptionItem title="기본 스크립트 수정" VBox.vgrow="ALWAYS">
+											<content>
+												<HBox spacing="10.0" VBox.vgrow="ALWAYS" minHeight="400.0">
 													<children>
-														<Label text="통합 매개변수 OFF"></Label>
-														<Editor VBox.vgrow="ALWAYS">
-															<file>
-																<SharedValues fx:constant="SCRIPT_DEFAULT_FILE"></SharedValues>
-															</file>
-														</Editor>
+														<OptionItem address="control:editor:edit_script_default" HBox.hgrow="ALWAYS" title="통합 매개변수 OFF">
+															<content>
+																<Editor></Editor>
+															</content>
+														</OptionItem>
+														<OptionItem address="control:editor:edit_script_unified" HBox.hgrow="ALWAYS" title="통합 매개변수 ON">
+															<content>
+																<Editor></Editor>
+															</content>
+														</OptionItem>
+														<!-- <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+															<children>
+																<Label text="통합 매개변수 OFF"></Label>
+																스크립트 로드는 자스로 구현하기엔 코드가 복잡해져서 "GlobalConfigTab"으로 옮김
+																<Editor fx:id="editor1" VBox.vgrow="ALWAYS"></Editor>
+																<fx:script>
+																	// 자바 클래스에 접근하려면 아래와 같이 "Java.type"으로 접근해야함
+																	var values = Java.type("org.beuwi.msgbots.platform.util.SharedValues");
+																	editor1.file = values.getFile("SCRIPT_DEFAULT_FILE");
+																</fx:script>
+															</children>
+														</VBox>
+														<VBox spacing="10.0" HBox.hgrow="ALWAYS">
+															<children>
+																<Label text="통합 매개변수 ON"></Label>
+																<Editor fx:id="editor2" VBox.vgrow="ALWAYS"></Editor>
+																<fx:script>
+																	// 자바 클래스에 접근하려면 아래와 같이 "Java.type"으로 접근해야함
+																	var values = Java.type("org.beuwi.msgbots.platform.util.SharedValues");
+																	editor2.file = values.getFile("SCRIPT_UNIFIED_FILE");
+																</fx:script>
+															</children>
+														</VBox> -->
 													</children>
-												</VBox>
-												<VBox spacing="10.0" HBox.hgrow="ALWAYS">
-													<children>
-														<Label text="통합 매개변수 ON"></Label>
-														<Editor VBox.vgrow="ALWAYS">
-															<file>
-																<SharedValues fx:constant="SCRIPT_UNIFIED_FILE"></SharedValues>
-															</file>
-														</Editor>
-													</children>
-												</VBox>
-											</children>
-										</HBox>
-									</content>
-								</OptionItem>
-							</items>
+												</HBox>
+											</content>
+										</OptionItem>
+									</items>
+								</OptionView>
+							</content>
 							<StackPane.margin>
 								<Insets left="15.0"></Insets>
 							</StackPane.margin>
-						</OptionView>
+						</ScrollPane>
 					</content>
 				</NaviItem>
 				<NaviItem text="Debug">
@@ -170,9 +196,9 @@
 												<CheckBox text="디버그 룸에서 전송자의 이름을 보이게 합니다."></CheckBox>
 											</content>
 										</OptionItem>
-										<OptionItem address="control:button:change_bot_profile" title="전송자 프로필 변경">
+										<OptionItem address="control:button:change_sender_profile" title="전송자 프로필 변경">
 											<content>
-												<Button text="Change" styled="true" type="ACTION" minHeight="30.0"></Button>
+												<Button text="Change" styled="true" type="ACTION" minHeight="25.0"></Button>
 											</content>
 										</OptionItem>
 										<Separator></Separator>
@@ -188,7 +214,7 @@
 										</OptionItem>
 										<OptionItem address="control:button:change_sender_profile" title="봇 프로필 변경">
 											<content>
-												<Button text="Change" styled="true" type="ACTION" minHeight="30.0"></Button>
+												<Button text="Change" styled="true" type="ACTION" minHeight="25.0"></Button>
 											</content>
 										</OptionItem>
 									</items>

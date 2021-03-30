@@ -24,10 +24,10 @@ public class CreateBotAction implements Action {
 
 			if (!isImport) {
 				if (!isUnified) {
-					content = FileManager.read(SharedValues.SCRIPT_DEFAULT_FILE);
+					content = FileManager.read(SharedValues.getFile("SCRIPT_DEFAULT_FILE"));
 				}
 				else {
-					content = FileManager.read(SharedValues.SCRIPT_UNIFIED_FILE);
+					content = FileManager.read(SharedValues.getFile("SCRIPT_DEFAULT_FILE"));
 				}
 			}
 
@@ -36,9 +36,8 @@ public class CreateBotAction implements Action {
 			// Create bot log file
 			FileManager.save(FileManager.getBotLog(name), "[]");
 			// Create bot setting file
-			FileManager.save
-			(
-				FileManager.getBotSetting(name),
+			FileManager.save(
+				FileManager.getBotConfig(name),
 				"{\"optimization\":1," +
 				"\"use_unified_params\":" + isUnified + "," +
 				"\"off_on_runtime_error\":" + isOffError + "," +

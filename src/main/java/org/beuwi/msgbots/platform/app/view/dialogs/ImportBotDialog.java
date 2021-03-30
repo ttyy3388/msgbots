@@ -68,14 +68,13 @@ public class ImportBotDialog extends DialogWrap {
 	}
 
 	@Override
-	public void open() {
+	protected void open() {
 		setContent(root);
 		setTitle("Import Script");
-		create();
 	}
 
 	@Override
-	public void action() {
+	protected void action() {
 		if (txfScriptName.getText().isEmpty()) {
 			return ;
 		}
@@ -86,6 +85,5 @@ public class ImportBotDialog extends DialogWrap {
 			chkIsUnified.isSelected(),
 			chkIsOffError.isSelected()
 		);
-		close();
 	}
 }

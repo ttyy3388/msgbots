@@ -48,14 +48,13 @@ public class CreateBotDialog extends DialogWrap {
 	}
 
 	@Override
-	public void open() {
+	protected void open() {
 		setContent(root);
 		setTitle("Create New Bot");
-		create();
 	}
 
 	@Override
-	public void action() {
+	protected void action() {
 		if (txfScriptName.getText().isEmpty()) {
 			return ;
 		}
@@ -65,6 +64,5 @@ public class CreateBotDialog extends DialogWrap {
 			chkIsUnified.isSelected(),
 			chkIsOffError.isSelected()
 		);
-		close();
 	}
 }

@@ -1,6 +1,5 @@
 package org.beuwi.msgbots.platform.gui.control;
 
-import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;

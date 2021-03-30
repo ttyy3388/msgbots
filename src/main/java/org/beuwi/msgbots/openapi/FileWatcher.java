@@ -1,7 +1,6 @@
 package org.beuwi.msgbots.openapi;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.WatchEvent;
@@ -17,7 +16,7 @@ import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
 
 public class FileWatcher extends Thread {
-	private WatchService WATCH_SERVICE;
+	private WatchService WATCH_SERVICE = null;
 	private WatchKey WATCH_KEY = null;
 
 	private Set<FileObserver> observers = new HashSet<>();
@@ -64,7 +63,7 @@ public class FileWatcher extends Thread {
 									modified();
 								}
 								else if (kind.equals(ENTRY_DELETE)) {
-									modified();
+									deleted();
 								}
 							}
 						}
@@ -83,7 +82,7 @@ public class FileWatcher extends Thread {
 				}
 			}).start();
 		}
-		catch (IOException e) {
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -91,15 +90,12 @@ public class FileWatcher extends Thread {
 	public void changed() {
 		// Do whatever action you want here
 	}
-
 	public void created() {
 		// Do whatever action you want here
 	}
-
 	public void deleted() {
 		// Do whatever action you want here
 	}
-
 	public void modified() {
 		// Do whatever action you want here
 	}

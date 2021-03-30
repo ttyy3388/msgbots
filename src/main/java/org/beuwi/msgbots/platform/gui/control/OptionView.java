@@ -12,7 +12,7 @@ import javafx.scene.layout.Priority;
 import org.beuwi.msgbots.platform.gui.layout.VBox;
 
 public class OptionView extends VBox {
-	private static final String DEFAULT_STYLE_CLASS = "pref-view";
+	private static final String DEFAULT_STYLE_CLASS = "option-view";
 
 	private static final int DEFAULT_SPACING_VALUE = 10;
 	private static final int DEFAULT_HEADER_HEIGHT = 50;

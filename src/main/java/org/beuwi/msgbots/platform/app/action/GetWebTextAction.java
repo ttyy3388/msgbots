@@ -1,14 +1,5 @@
 package org.beuwi.msgbots.platform.app.action;
 
-import org.beuwi.msgbots.openapi.JSONObject;
-import org.beuwi.msgbots.platform.app.impl.Action;
-import org.beuwi.msgbots.platform.app.view.actions.DisplayErrorDialogAction;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-
 /* public class GetWebTextAction  implements Action {
     @Override
     public void init() {

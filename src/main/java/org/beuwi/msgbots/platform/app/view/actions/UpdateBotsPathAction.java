@@ -2,7 +2,6 @@ package org.beuwi.msgbots.platform.app.view.actions;
 
 import org.beuwi.msgbots.platform.app.impl.Action;
 import org.beuwi.msgbots.platform.util.SharedValues;
-import org.beuwi.msgbots.setting.GlobalSettings;
 
 import java.io.File;
 
@@ -11,12 +10,13 @@ public class UpdateBotsPathAction implements Action {
     public void init() {
 
     }
-    public static void execute(){
-        SharedValues.BOTS_FOLDER_PATH = GlobalSettings.getString("program:bots_path");
-        if(SharedValues.BOTS_FOLDER_PATH==null){
-            throw new NullPointerException("BOTS_FOLDER_PATH must not be null");
+    public static void execute(String path){
+        if (path == null) {
+            throw new NullPointerException("Bots path must not be null");
         }
-        SharedValues.BOTS_FOLDER_FILE = new File(SharedValues.BOTS_FOLDER_PATH);
+        SharedValues.setValue("BOTS_FOLDER_PATH", path);
+        SharedValues.setValue("BOTS_FOLDER_FILE", new File(path));
+
         RefreshBotListAction.execute();
     }
 

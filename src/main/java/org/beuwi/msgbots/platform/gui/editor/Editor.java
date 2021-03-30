@@ -23,20 +23,25 @@ public final class Editor extends StackPane {
 	private final FileProperty fileProperty = new FileProperty(change -> {
 		File file = this.fileProperty.get();
 
-		if (file != null) {
-
+		// 파일이 존재하는 경우
+		if (file != null || file.exists()) {
 			// 한 파일만 지정 가능함
 			if (!check) {
 				setText(FileManager.read(file));
-				/* FileManager.link(file, () -> {
+				FileManager.link(file, () -> {
 					setText(FileManager.read(file));
-				}); */
+				});
 
 				check = true;
 			}
 			else {
 				throw new RuntimeException("File already setted");
 			}
+		}
+		// 파일이 존재하지 않다면 새로 쓸지 아니면 에러만 띄울지 무시할지 등 결정해야함
+		else {
+			// throw new RuntimeException();
+			return ;
 		}
 	});
 
@@ -126,7 +131,7 @@ public final class Editor extends StackPane {
 		this.fileProperty.set(file);
 	}
 
-	private void setText(String text) {
+	public void setText(String text) {
 		monaco.setText(text);
 	}
 

@@ -52,19 +52,17 @@ public class DisplayErrorDialog extends DialogWrap {
 	}
 
 	@Override
-	public void open() {
+	protected void open() {
 		setContent(root);
 		setTitle("Error");
-		create();
 	}
 
 	@Override
-	public void action() {
+	protected void action() {
 		/* if (txfScriptName.getText().isEmpty()) {
 			return ;
 		} */
 
 		CopyStringAction.execute(txaErrorMessage.getText());
-		close();
 	}
 }

@@ -4,10 +4,10 @@
 <?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
 
 <StackPane styleClass="main-area" minWidth="500.0" xmlns:fx="http://javafx.com/fxml">
-    <children>
-        <TabView>
-            <tabs>
-            </tabs>
-        </TabView>
-    </children>
+	<children>
+		<TabView>
+			<tabs>
+			</tabs>
+		</TabView>
+	</children>
 </StackPane>

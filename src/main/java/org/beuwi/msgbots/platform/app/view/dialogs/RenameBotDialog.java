@@ -53,19 +53,17 @@ public class RenameBotDialog extends DialogWrap {
 	}
 
 	@Override
-	public void open() {
+	protected void open() {
 		setContent(root);
 		setTitle("Rename bot");
-		create();
 	}
 
 	@Override
-	public void action() {
+	protected void action() {
 		if (txfScriptName.getText().isEmpty()) {
 			return ;
 		}
 
 		RenameBotAction.execute(name, txfScriptName.getText());
-		close();
 	}
 }

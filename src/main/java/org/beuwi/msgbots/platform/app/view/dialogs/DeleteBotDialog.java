@@ -43,15 +43,13 @@ public class DeleteBotDialog extends DialogWrap {
 	}
 
 	@Override
-	public void open() {
+	protected void open() {
 		setContent(root);
 		setTitle("Delete Bot");
-		create();
 	}
 
 	@Override
-	public void action() {
+	protected void action() {
 		DeleteBotAction.execute(name);
-		close();
 	}
 }

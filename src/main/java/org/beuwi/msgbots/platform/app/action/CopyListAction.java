@@ -1,8 +1,7 @@
 package org.beuwi.msgbots.platform.app.action;
 
-import javafx.application.Platform;
 import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
+
 import org.beuwi.msgbots.platform.app.impl.Action;
 
 import java.util.List;

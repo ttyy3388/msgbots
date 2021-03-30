@@ -60,17 +60,40 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane imple
 			while (change.next()) {
 				for (T item : change.getRemoved()) {
 					item.setView(null);
-					// this.selectTab(null);
 					headerArea.getItems().remove(item);
+					// 선택된 탭이 제거됐다면 이전 탭이나 다음 탭 선택
+					// 단 이럴 상황에서는 리스트 뷰에서 선택됐던 탭이 "New Tab"에서 "Old Tab"이 될 텐데
+					// 새 탭을 선택하면 Old Tab[null], New Tab[Tab Item]과 같이 된다. ?
+					if (item.isSelected()) {
+						int index = getTabs().indexOf(item),
+							size = getTabs().size();
+
+						// 탭이 한개만 남았다면
+						if (size == 1) {
+							// 첫 번째 탭 선택
+							selectTab(0);
+						}
+						// 탭 목록이 여러 개 라면
+						else if (size > 1 && index != -1) {
+							// 다음 탭이 있다면
+							if (size > index + 1) {
+								selectTab(index + 1);
+							}
+							// 이전 탭이 있다면
+							else if (size > index) {
+								selectTab(index - 1);
+							}
+						}
+					}
 				}
 				for (T item : change.getAddedSubList()) {
 					item.setView(this);
-					this.selectTab(item);
 					headerArea.getItems().add(item);
+					this.selectTab(item);
 				}
 			}
 
-			// 비어있다면 안보이도록
+			// 비어있다면 탭 뷰가 안보이도록
 			setVisible(!getTabs().isEmpty());
 		});
 
@@ -96,9 +119,13 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane imple
 			getChildren().setAll(root);
 		});
 
-		// 선택된 탭을 리스트 뷰에서도 선택된거로 인식되도록
+		/* headerArea.selectedItemProperty().addListener((observable, oldItem, newItem) -> {
+			System.out.println("(OLD ITEM : " + oldItem + "), (NEW ITEM : " + newItem + "), (TAB LIST : " + getTabs() + ")");
+		}); */
+
+		// 선택된 탭을 리스트 뷰에서도 선택된거로 인식하도록
 		selectedTabProperty().addListener(change -> {
-			headerArea.setSelectedItem(getSelectedTab());
+			headerArea.selectItem(getSelectedTab());
 		});
 		selectedTabProperty().addListener(change -> {
 			Node content = getSelectedTab().getContent();
@@ -110,17 +137,19 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane imple
 		// 해당 탭에 대한 선택됨 여부 변경
 		selectedTabProperty().addListener((observable, oldTab, newTab) -> {
 			if (oldTab != null) {
+				// 기존 탭 선택 취소
 				oldTab.selectedProperty().set(false);
 			}
-			newTab.selectedProperty().set(false);
+			// 새 탭 선택 처리
+			newTab.selectedProperty().set(true);
 		});
-		// 해당 탭에 대한 CSS PSEUDO CLASS 변경
-		selectedTabProperty().addListener((observable, oldTab, newTab) -> {
+		// 해당 탭에 대한 CSS PSEUDO CLASS 변경 <- 리스트 뷰에서 처리하므로 주석 처리
+		/* selectedTabProperty().addListener((observable, oldTab, newTab) -> {
 			if (oldTab != null) {
 				oldTab.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, false);
 			}
 			newTab.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, true);
-		});
+		}); */
 
 		if (tabs != null) {
 			addTab(tabs);
@@ -166,42 +195,53 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane imple
 			headerArea.scrollTo(headerArea.getSelectedItem());
 		}); */
 		headerArea.getStyleClass().add(HEADER_STYLE_CLASS);
-
 		contentArea.getStyleClass().add(CONTENT_STYLE_CLASS);
 
 		setSide(DEFAULT_SIDE_VALUE); // Default
 		setVisible(false);
+		// setDraggable(true);
 		// setMargin(DEFAULT_VIEW_MARGIN);
 		setPrefWidth(DEFAULT_VIEW_WIDTH);
 		setPrefHeight(DEFAULT_VIEW_HEIGHT);
 		getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 
+	/* public void setDraggable(boolean draggable) {
+		if (draggable) {
+			TabDragSupport support = new TabDragSupport(this);
+		}
+	} */
+
 	private final ObservableList<T> tabList = FXCollections.observableArrayList();
 	public ObservableList<T> getTabs() {
 		return tabList;
 	}
+	public void addTab(int index, T tab) {
+		boolean already = getTab(tab.getId()) != null;
+		// 이미 있으면 해당 탭 선택
+		if (already) {
+			selectTab(tab);
+		}
+		else {
+			getTabs().add(index, tab);
+		}
+	}
 	public void addTab(Collection<T> tabs) {
-		addTabList(tabs);
+		tabs.forEach(tab -> {
+			addTab(tabList.size(), tab);
+		});
 	}
 	public void addTab(T... tabs) {
-		addTabList(Arrays.asList(tabs));
+		addTab(Arrays.asList(tabs));
 	}
 	/* public void addTab(T tab) {
 		addTab(getTabs().size(), tab);
 	} */
-	private void addTabList(Collection<T> tabs) {
-		for (T tab : tabs) {
-			boolean already = getTab(tab.getId()) != null;
-			// 이미 있으면 해당 탭 선택
-			if (already) {
-				selectTab(tab);
-			}
-			else {
-				getTabs().add(tab);
-			}
-		}
-	}
+	/* private void addTabList(Collection<T> tabs) {
+		tabs.forEach(tab -> {
+			addTab(tabList.size(), tab);
+		});
+	} */
 
 	public void setTab(T... tabs) {
 		closeAllTabs();
@@ -232,31 +272,56 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane imple
 		return -1;
 	}
 
+	/* public void moveForward(T tab) {
+		int index = getTabs().indexOf(tab);
+		int size = getTabs().size();
+
+		List<T> list = getTabs();
+
+		// 만약 탭이 마지막 자리에 있다면 해당 값이 사이즈를 초과하므로 다음 탭이 있는 경우에만 통과됨
+		// if (size >= index + 1) {
+			T toMove = list.get(index);
+			list.set(index, list.get(index + 1));
+			list.set(index + 1, toMove);
+		// }
+
+		selectTab(tab);
+	}
+	public void moveBack(T tab) {
+		int index = getTabs().indexOf(tab);
+		int size = getTabs().size();
+
+		System.out.println(size + " : " + index);
+		// 만약 탭이 0번째 자리에 있다면 해당 값이 -1이므로 이전 탭이 있는 경우에만 통과됨
+		if (index - 1 >= 0) {
+			Collections.swap(getTabs(), index, index - 1);
+		}
+	} */
+
+	// 단일 탭 제거
+	public void closeTab(T tab) {
+		// 해당 탭 제거
+		getTabs().remove(tab);
+	}
+	// 다중 탭 제거
+	// 타겟 탭을 기준으로 삭제 후 선택 탭이 결정됨 (우측 탭 닫기, 다른 탭 닫기 등...)
 	public void closeTabList(Collection<T> tabs) {
-		List<T> targets = new ArrayList<>();
+		List<T> removeTabs = new ArrayList<>();
 		for (T tab : tabs) {
 			if (!tab.isClosable()) {
 				return ;
 			}
-
-			int index = getTabs().indexOf(tab),
-					size = getTabs().size();
-
-			if (size > 1 && index != -1) {
-				// If have a next tab
-				if (size > index + 1) {
-					selectTab(index + 1);
-				}
-				// If have a previous tab
-				else if (size > index) {
-					selectTab(index - 1);
-				}
-			}
-
-			targets.add(tab);
+			removeTabs.add(tab);
 		}
+		getTabs().removeAll(removeTabs);
 
-		getTabs().removeAll(targets);
+		// 현재는 탭이 남아있을 상황이 "다른 탭 닫기"밖에 없음
+		// 따라서 탭이 남아있다면 0번째 탭 선택
+		/* int size = getTabs().size();
+		System.out.println(size);
+		if (size == 1) {
+			selectTab(0);
+		} */
 	}
 	public void closeTab(T... tabs) {
 		closeTabList(Arrays.asList(tabs));
@@ -315,9 +380,9 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane imple
 	}
 
 	private final ObjectProperty<T> selectedTabProperty = new SimpleObjectProperty(null);
-	public void setSelectedTab(T tab) {
+	/* public void setSelectedTab(T tab) {
 		selectedTabProperty.set(tab);
-	}
+	} */
 	public T getSelectedTab() {
 		return selectedTabProperty.get();
 	}
@@ -328,7 +393,7 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane imple
 		selectedTabProperty.set(tab);
 	}
 	public void selectTab(int index) {
-		selectedTabProperty.set(getTab(index));
+		selectTab(getTab(index));
 	}
 	public void selectNextTab() {
 		selectNextTab(getSelectedTab());
@@ -373,4 +438,68 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane imple
 			selectTab(size - 1);
 		}
 	}
+
+	/* private class TabDragSupport {
+		// private final AtomicLong dragId = new AtomicLong();
+
+		private final StringProperty dragId = new SimpleStringProperty();
+
+		// Current Dragging Tab
+		private T target;
+
+		public TabDragSupport(TabViewBase<T> control) {
+			control.getTabs().forEach(item -> addDragHandlers(item));
+			control.getTabs().addListener((ListChangeListener<T>) change -> {
+				while (change.next()) {
+					if (change.wasAdded()) {
+						change.getAddedSubList().forEach(this::addDragHandlers);
+					}
+					if (change.wasRemoved()) {
+						change.getRemoved().forEach(this::removeDragHandler);
+					}
+				}
+			});
+		}
+
+		private void addDragHandlers(T tab) {
+			/* if (tab.getHeader() != null) {
+				Label label = new Label();
+				label.setGraphic(tab.getHeader());
+			} */
+
+			/* Node header = tab.getHeader();
+
+			header.setOnDragDetected(event -> {
+				Dragboard dragboard = header.startDragAndDrop(TransferMode.MOVE);
+				ClipboardContent content = new ClipboardContent();
+				content.putString(dragId.get());
+				dragboard.setContent(content);
+				dragboard.setDragView(header.snapshot(null, null));
+				target = tab;
+			});
+			header.setOnDragOver(event -> {
+				if (dragId.get().equals(event.getDragboard().getString())) {
+					event.acceptTransferModes(TransferMode.MOVE);
+				}
+			});
+			/* header.setOnDragDropped(event -> {
+				if (dragId.get().equals(event.getDragboard().getString())) {
+					int index = getTabs().indexOf(tab);
+					getTabs().add(index, target);
+				}
+			}); */
+		/* }
+
+		public void removeDragHandler(T tab) {
+			Node header = tab.getHeader();
+			header.setOnDragDetected(null);
+			header.setOnDragOver(null);
+			header.setOnDragDropped(null);
+			header.setOnDragDone(null);
+		}
+
+		public StringProperty dragIdProperty() {
+			return dragId;
+		}
+	} */
 }

@@ -7,12 +7,9 @@ import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.tabs.DetailLogTab;
 import org.beuwi.msgbots.platform.app.view.tabs.ProblemListTab;
-import org.beuwi.msgbots.platform.gui.control.Button;
 import org.beuwi.msgbots.platform.gui.control.TabView;
 import org.beuwi.msgbots.platform.gui.layout.AnchorPane;
-import org.beuwi.msgbots.platform.gui.layout.HBox;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
-import org.beuwi.msgbots.platform.util.AllSVGIcons;
 
 public class ToolAreaPart implements View {
 	private static ObservableMap<String, Object> namespace;

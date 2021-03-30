@@ -1,7 +1,6 @@
 package org.beuwi.msgbots.platform.gui.dialog;
 
-import javafx.event.EventHandler;
-import javafx.event.EventType;
+import javafx.event.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;

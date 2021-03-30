@@ -31,7 +31,7 @@ public class Utils extends ScriptableObject {
 			return Jsoup.connect(url)
 					.ignoreContentType(true)
 					.timeout(GlobalSettings.getInt("debug:html_load_timeout"))
-					.userAgent(SharedValues.DEFAULT_USER_AGENT)
+					.userAgent(SharedValues.getString("DEFAULT_USER_AGENT"))
 					.referrer("http://www.google.com")
 					.get().toString();
 		}
@@ -47,7 +47,7 @@ public class Utils extends ScriptableObject {
 			return Jsoup.connect(url)
 					.ignoreContentType(true)
 					.timeout(GlobalSettings.getInt("debug:html_load_timeout"))
-					.userAgent(SharedValues.DEFAULT_USER_AGENT)
+					.userAgent(SharedValues.getString("DEFAULT_USER_AGENT"))
 					.referrer("http://www.google.com")
 					.get();
 		}

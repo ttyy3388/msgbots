@@ -1,10 +1,7 @@
 package org.beuwi.msgbots.compiler.api;
 
-import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.view.actions.DisplayErrorDialogAction;
 import org.beuwi.msgbots.platform.util.SharedValues;
-
-import sun.misc.IOUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,7 +14,7 @@ public class ImageDB {
 
     public String getProfileBase64() {
 		try {
-			File file = SharedValues.PROFILE_BOT_FILE;
+			File file = SharedValues.getFile("PROFILE_BOT_FILE");
 			FileInputStream inputStream = new FileInputStream(file);
 			byte[] bytes = new byte[(int) file.length()];
 			inputStream.read(bytes);

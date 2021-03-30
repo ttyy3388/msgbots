@@ -1,8 +1,5 @@
 package org.beuwi.msgbots.openapi;
 
-import org.beuwi.msgbots.platform.app.view.actions.DisplayErrorDialogAction;
-
-import java.awt.AWTException;
 import java.awt.SystemTray;
 
 // Window Notification
@@ -17,8 +14,8 @@ public class WinMessage {
 		try {
 			tray.add(icon);
 		}
-		catch (AWTException e) {
-			DisplayErrorDialogAction.execute(e);
+		catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

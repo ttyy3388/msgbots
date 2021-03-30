@@ -23,6 +23,10 @@ public class Label extends javafx.scene.control.Label {
 		this(new ImageView(image));
 	}
 
+	/* public Label(Node node) {
+		this.setGraphic(node);
+	} */
+
 	public Label(ImageView image) {
 		this.setGraphic(image);
 	}

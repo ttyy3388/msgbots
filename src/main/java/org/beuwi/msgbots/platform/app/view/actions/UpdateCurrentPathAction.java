@@ -11,7 +11,7 @@ public class UpdateCurrentPathAction implements Action {
 
     @Override
     public void init() {
-        lblCurrentPath = (Label) StatusBarPart.getComponent("lblCurrentPath");
+        lblCurrentPath = StatusBarPart.getComponent("lblCurrentPath");
     }
 
     public static void execute(File file) {
@@ -24,6 +24,6 @@ public class UpdateCurrentPathAction implements Action {
 
     @Override
     public String getName() {
-        return "open.document.tab.action";
+        return "update.current.path.action";
     }
 }

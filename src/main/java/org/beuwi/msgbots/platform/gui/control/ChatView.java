@@ -5,7 +5,6 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.input.KeyEvent;
 
 import org.beuwi.msgbots.platform.app.action.CopyListAction;
-import org.beuwi.msgbots.platform.app.action.CopyStringAction;
 
 import java.util.ArrayList;
 import java.util.List;

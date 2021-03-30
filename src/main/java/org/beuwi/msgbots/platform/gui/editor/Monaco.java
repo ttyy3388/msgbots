@@ -1,10 +1,7 @@
 package org.beuwi.msgbots.platform.gui.editor;
 
 import javafx.application.Platform;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import javafx.concurrent.Worker;
 import javafx.concurrent.Worker.State;
 import javafx.scene.input.KeyEvent;
@@ -25,14 +22,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 public final class Monaco {
 	private static final String DEFAULT_RESOURCE_LOCATION = ResourceUtils.getURL("/monaco/index.html");
 
-	private final StringProperty language = new SimpleStringProperty(null);
-	private final StringProperty theme = new SimpleStringProperty(null);
+	// private final BooleanProperty minimapProperty = new SimpleBooleanProperty(true);
+	private final StringProperty languageProperty = new SimpleStringProperty(null);
+	private final StringProperty themeProperty = new SimpleStringProperty(null);
 	// 모나코에서 텍스트 변경 시 텍스트
-	private final StringProperty content = new SimpleStringProperty(null);
-	// 파일 변경이나 시작 시 기본 텍스트 : 즉, 외부에서 변경되는 텍스트
-	private final StringProperty text = new SimpleStringProperty(null);
+	// private final StringProperty contentProperty = new SimpleStringProperty(null);
+	private final StringProperty textProperty = new SimpleStringProperty(null);
 	// 원래는 cursor로 해도 되지만 cursorProperty랑 겹치기 때문에 caretProperty로 함
-	private final ObjectProperty<Position> caret = new SimpleObjectProperty(null);
+	private final ObjectProperty<Position> caretProperty = new SimpleObjectProperty(null);
 
 	// Monaco Window
 	private JSObject window = null;
@@ -71,7 +68,7 @@ public final class Monaco {
 	private final JFunction contentChangeListener = new JFunction(args -> {
 		String content = (String) editor.call("getValue");
 		if (content != null) {
-			contentProperty().set(content);
+			textProperty().set(content);
 		}
 		return null;
 	});
@@ -142,8 +139,9 @@ public final class Monaco {
 
 								this.execute("monaco.editor.setTheme('" + getTheme() + "')");
 								this.execute("monaco.editor.setModelLanguage(editor.getModel(),'" + getLanguage() + "')");
+								// this.execute("monaco.editor.updateOptions({minimap:{enabled:" + isMinimap() + ";}})");
 
-								// 외부에서 파일을 변경했을 때 발생
+								// 외부에서 파일을 변경하거나 텍스트 값을 변경했을 때 발생
 								textProperty().addListener(change -> {
 									// setValue()를 하면 초기화처럼 redo, undo 스택과 같은 메모리가 사라지기 때문에 다른 방법 사용
 									window.call("changeText", textProperty().get());
@@ -185,6 +183,9 @@ public final class Monaco {
 								themeProperty().addListener(change -> {
 									this.execute("monaco.editor.setTheme('" + getTheme() + "')");
 								});
+								/* minimapProperty().addListener(change -> {
+									this.execute("monaco.editor.updateOptions({minimap:{enabled:" + isMinimap() + "}})");
+								}); */
 
 								jsdone.set(true);
 							}
@@ -373,16 +374,20 @@ public final class Monaco {
 	}
 
 	protected void setText(String text) {
-		textProperty().set(text);
+		textProperty.set(text);
 	}
 
 	protected void setTheme(String theme) {
-		themeProperty().set(theme);
+		themeProperty.set(theme);
 	}
 
 	protected void setLanguage(String language) {
-		languageProperty().set(language);
+		languageProperty.set(language);
 	}
+
+	/* protected void setMinimap(boolean enabled) {
+		minimapProperty.set(enabled);
+	} */
 
 	/* protected void useMiniMap(boolean value) {
 		execute("editor.updateOptions({minimap:{enabled:" + value + ";}})");
@@ -402,16 +407,20 @@ public final class Monaco {
 
 	// 반환할 때 textProperty.get()이 아닌 contentProperty()을 하는 이유는 상단에 설명
 	protected String getText() {
-		return contentProperty().get();
+		return textProperty.get();
 	}
 
 	protected String getTheme() {
-		return themeProperty().get();
+		return themeProperty.get();
 	}
 
 	protected String getLanguage() {
-		return languageProperty().get();
+		return languageProperty.get();
 	}
+
+	/* protected boolean isMinimap() {
+		return minimapProperty.get();
+	} */
 
 	public Position getCaretPosition() {
 		int lineNumber = (int) execute("editor.getPosition().lineNumber");
@@ -424,22 +433,26 @@ public final class Monaco {
 	}
 
 	public StringProperty textProperty() {
-		return text;
+		return textProperty;
 	}
 
 	public StringProperty languageProperty() {
-		return language;
+		return languageProperty;
 	}
 
 	public StringProperty themeProperty() {
-		return theme;
+		return themeProperty;
 	}
 
-	public StringProperty contentProperty() {
-		return content;
-	}
+	/* public StringProperty contentProperty() {
+		return contentProperty;
+	} */
 
 	public ObjectProperty<Position> caretProperty() {
-		return caret;
+		return caretProperty;
 	}
+
+	/* public BooleanProperty minimapProperty() {
+		return minimapProperty;
+	} */
 }

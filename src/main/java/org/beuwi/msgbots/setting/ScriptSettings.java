@@ -15,7 +15,7 @@ public class ScriptSettings {
     private final File file;
 
     private ScriptSettings(String name) {
-        file = FileManager.getBotSetting(name);
+        file = FileManager.getBotConfig(name);
         json = new JSONObject(file);
     }
 
@@ -38,9 +38,10 @@ public class ScriptSettings {
 	public <T> void setData(String address, T value) {
 		// 기본 타입이 아닐 경우
 		if (!(value instanceof String ||
-				value instanceof Double ||
-				value instanceof Integer ||
-				value instanceof Long)) {
+			  value instanceof Double ||
+			  value instanceof Boolean ||
+			  value instanceof Integer ||
+			  value instanceof Long)) {
 			json.put(address, value.toString());
 		}
 		else {

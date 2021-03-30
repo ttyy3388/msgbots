@@ -6,8 +6,6 @@ import javafx.beans.property.StringProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 
@@ -78,15 +76,29 @@ public class TabItem extends TabItemBase {
 		});
 
 		menu = new ContextMenu(
-			new MenuItem("Close", "Ctrl + W", event -> getView().closeTab(this)),
-			new MenuItem("Close Others", event -> getView().closeOtherTabs(this)),
-			new MenuItem("Close All Tabs", event -> getView().closeAllTabs()),
+			new MenuItem("Close", "Ctrl + W", event -> {
+				getView().closeTab(this);
+			}),
+			new MenuItem("Close Others", event -> {
+				getView().closeOtherTabs(this);
+			}),
+			new MenuItem("Close All Tabs", event -> {
+				getView().closeAllTabs();
+			}),
 			new Separator(),
-			// new MenuItem("Move Tab to Right", event -> getView().moveToRightTab(this)),
-			// new MenuItem("Move Tab to Left", event -> getView().moveToLeftTab(this)),
-			// new Separator(),
-			new MenuItem("Select Next Tab", "Ctrl + Tab", event -> getView().selectNextTab(this)),
-			new MenuItem("Select Previous Tab", "Ctrl + Shift + Tab", event ->  getView().selectPrevTab(this))
+			new MenuItem("Move Forward", event -> {
+				// getView().moveForward(this)
+			}),
+			new MenuItem("Move Back", event -> {
+				// getView().moveBack(this)
+			}),
+			new Separator(),
+			new MenuItem("Select Next Tab", "Ctrl + Tab", event -> {
+				getView().selectNextTab(this);
+			}),
+			new MenuItem("Select Previous Tab", "Ctrl + Shift + Tab", event ->  {
+				getView().selectPrevTab(this);
+			})
 		);
 		menu.setNode(this);
 
@@ -110,14 +122,14 @@ public class TabItem extends TabItemBase {
 		button.setPrefWidth(DEFAULT_BUTTON_SIZE);
 		button.getStyleClass().add(BUTTON_STYLE_CLASS);
 
-		addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
+		/* addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
 			// 좌측 마우스 클릭 시
 			if (event.getButton().equals(MouseButton.PRIMARY)) {
 				if (getView() != null) {
 					getView().selectTab(this);
 				}
 			}
-		});
+		}); */
 
 		setPadding(DEFAULT_ITEM_PADDING);
 		// setMinWidth(DEFAULT_ITEM_WIDTH); // 너비 최소 지정

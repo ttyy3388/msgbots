@@ -32,14 +32,12 @@ public class ShowPageDialog extends DialogWrap {
     }
 
     @Override
-    public void open() {
+    protected void open() {
         setContent(root);
         setTitle(title);
-        create();
     }
 
     @Override
-    public void action() {
-        close();
+    protected void action() {
     }
 }

@@ -9,11 +9,8 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
-import javafx.event.Event;
 import javafx.scene.Node;
-import javafx.scene.control.ContextMenu;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -162,6 +159,11 @@ public class ListView<T> extends javafx.scene.control.ListView<T> {
 			}
 		});
 
+		selectedItemProperty().addListener(change -> {
+			/* if (getSelectedItem() == null) {
+				(new Exception()).printStackTrace();
+			} */
+		});
 		// 셀이 선택되었을 경우 자동으로 하위 아이템이 선택된거로 인식하도록
 		selectedItemProperty().addListener((observable, oldItem, newItem) -> {
 			if (newItem instanceof Node) {

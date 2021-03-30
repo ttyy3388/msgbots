@@ -12,19 +12,15 @@ public class SVGGlyph extends com.jfoenix.svg.SVGGlyph {
 	public SVGGlyph() {
 		this(null);
 	}
-
 	public SVGGlyph(String path) {
 		this(path, Color.valueOf("#CCCCCC"));
 	}
-
 	public SVGGlyph(String path, Color fill) {
 		this(path, fill, 12, 12);
 	}
-
 	public SVGGlyph(String path, double width, double height) {
 		this(path, Color.valueOf("#CCCCCC"), width, height);
 	}
-
 	public SVGGlyph(String path, Color fill, double width, double height) {
 		super(path);
 

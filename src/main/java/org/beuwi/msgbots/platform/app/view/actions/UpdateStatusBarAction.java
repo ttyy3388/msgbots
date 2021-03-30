@@ -18,6 +18,6 @@ public class UpdateStatusBarAction implements Action {
 
     @Override
     public String getName() {
-        return "open.document.tab.action";
+        return "update.status.bar.action";
     }
 }

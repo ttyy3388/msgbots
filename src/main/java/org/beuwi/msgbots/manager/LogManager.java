@@ -1,7 +1,6 @@
 package org.beuwi.msgbots.manager;
 
 import org.beuwi.msgbots.openapi.JSONArray;
-import org.beuwi.msgbots.platform.app.view.actions.AddBotLogItemAction;
 import org.beuwi.msgbots.platform.gui.control.LogItem;
 import org.beuwi.msgbots.platform.gui.enums.LogType;
 import org.beuwi.msgbots.platform.util.SharedValues;
@@ -31,15 +30,15 @@ public class LogManager {
 
 	// Load Global Log
 	public static List<LogItem> loadGlobal() {
-		return LogManager.load(SharedValues.GLOBAL_LOG_FILE);
+		return LogManager.load(SharedValues.getFile("GLOBAL_LOG_FILE"));
 	}
 	// Append Global Log
 	public static void appendGlobal(LogType type, String data) {
-		LogManager.append(type, SharedValues.GLOBAL_LOG_FILE, data, true);
+		LogManager.append(type, SharedValues.getFile("GLOBAL_LOG_FILE"), data, true);
 	}
 	// Clear Global Log
 	public static void clearGlobal() {
-		LogManager.clear(SharedValues.GLOBAL_LOG_FILE);
+		LogManager.clear(SharedValues.getFile("GLOBAL_LOG_FILE"));
 	}
 
 	// Load Bot Log
@@ -60,8 +59,9 @@ public class LogManager {
 	// file : log file
 	private static List<LogItem> load(File file) {
 		try {
+			// 파일이 없거나 제거됐다면 파일 생성
 			if (!file.exists()) {
-				return null;
+				FileManager.save(file, "[]");
 			}
 
 			List<LogItem> list = new ArrayList<>();
@@ -84,16 +84,19 @@ public class LogManager {
 	}
 
 	private static void append(LogType type, File file, String data, boolean global) {
+		// 파일이 없거나 제거됐다면 파일 생성
+		if (!file.exists()) {
+			FileManager.save(file, "[]");
+		}
+
 		String date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss ").format(new Date());
 
 		JSONObject object = new JSONObject();
-
 		object.put("type", type.toString());
 		object.put("data", data);
 		object.put("date", date);
 
 		JSONArray array = new JSONArray(file);
-
 		array.add(object);
 
 		if (global) {

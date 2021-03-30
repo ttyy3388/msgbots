@@ -15,8 +15,7 @@ public class FileObserver extends FileWatcher {
 		super(file);
 	}
 
-	/* public File getFile()
-	{
+	/* public File getFile() {
 		return file;
 	} */
 
@@ -26,7 +25,7 @@ public class FileObserver extends FileWatcher {
 		}
 	}
 
-    public void delListener(FileListener listener) {
+    public void removeListener(FileListener listener) {
 		synchronized (listeners) {
 			listeners.remove(listener);
 		}

@@ -294,9 +294,12 @@ require(['vs/editor/editor.main'], function() {
         // fontFamily: 'Consolas, \'D2Coding\', monospace';,
 		automaticLayout: true,
 		roundedSelection: false,
-		mouseWheelScrollSensitivity: 0.1,
+		mouseWheelScrollSensitivity: 0.02,
 		scrollBeyondLastLine: false,
 		contextmenu: true,
+        minimap: {
+            enabled: true
+        },
 		scrollbar: {
 			// Subtle shadows to the left & top. Defaults to true.
 			useShadows: true,
@@ -400,6 +403,8 @@ require(['vs/editor/editor.main'], function() {
 	}); */
 });
 
+// setValue()를 하면 초기화처럼 redo, undo 스택과 같은 메모리가 사라지기 때문에 다른 방법 사용
+// 그래서 changeText로 현제 모델에서 값만 바꿔주는 식으로 함
 function changeText(data) {
 	var range =  editor.getModel().getFullModelRange();
 	var id = { major: 1, minor: 1 };

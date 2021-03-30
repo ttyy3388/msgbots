@@ -1,24 +1,18 @@
 package org.beuwi.msgbots.platform.app.view.actions;
 
 import org.beuwi.msgbots.platform.app.impl.Action;
-import org.beuwi.msgbots.platform.app.view.parts.MainAreaPart;
 import org.beuwi.msgbots.platform.gui.control.Document;
-import org.beuwi.msgbots.platform.gui.control.TabView;
 
 public class OpenDocumentTabAction implements Action {
-    private static TabView control;
+    // private static TabView control;
 
     @Override
     public void init() {
-        control = MainAreaPart.getComponent();
+        // control = MainAreaPart.getComponent();
     }
 
     public static void execute(Document document) {
-        execute(control, document);
-    }
-
-    public static void execute(TabView control, Document document) {
-        control.addTab(document);
+        AddMainAreaTabAction.execute(document);
     }
 
     @Override

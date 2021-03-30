@@ -1,9 +1,6 @@
 package org.beuwi.msgbots.platform.app.view.actions;
 
 import org.beuwi.msgbots.platform.app.impl.Action;
-import org.beuwi.msgbots.platform.app.view.tabs.GlobalLogTab;
-import org.beuwi.msgbots.platform.gui.control.LogItem;
-import org.beuwi.msgbots.platform.gui.control.LogView;
 
 public class AddBotLogItemAction implements Action {
 	/* private static LogView control;

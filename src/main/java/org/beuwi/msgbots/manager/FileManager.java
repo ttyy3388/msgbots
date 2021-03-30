@@ -2,19 +2,13 @@ package org.beuwi.msgbots.manager;
 
 import org.beuwi.msgbots.openapi.FileListener;
 import org.beuwi.msgbots.openapi.FileObserver;
-import org.beuwi.msgbots.platform.app.view.actions.DisplayErrorDialogAction;
 import org.beuwi.msgbots.platform.util.SharedValues;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// 해당 클래스로 접근하는 파일들은 유저 커스텀 파일들임 ("ResourceUtils"와 반대)
 public class FileManager {
 	public static String getBaseName(File file) {
 		return getBaseName(file.getName());
@@ -31,7 +25,7 @@ public class FileManager {
 	}
 
 	public static File getDataFile(String name) {
-		File file = new File(SharedValues.DATA_FOLDER_PATH + File.separator + name);
+		File file = new File(SharedValues.getString("DATA_FOLDER_PATH") + File.separator + name);
 		return file;
 	}
 
@@ -41,11 +35,11 @@ public class FileManager {
 	} */
 
 	public static File[] getBotList() {
-		return SharedValues.BOTS_FOLDER_FILE.listFiles();
+		return SharedValues.getFile("BOTS_FOLDER_FILE").listFiles();
 	}
 
 	public static File[] getBotFiles() {
-		return SharedValues.BOTS_FOLDER_FILE.listFiles();
+		return SharedValues.getFile("BOTS_FOLDER_FILE").listFiles();
 	}
 
 	/* public static String[] getBotNames() {
@@ -64,7 +58,7 @@ public class FileManager {
 		// 스크립트, 로그, 셋팅 파일 3가지가 다 있어야 봇 폴더로 인식
 		if (FileManager.getBotScript(botName).exists() &&
 			FileManager.getBotLog(botName).exists() &&
-			FileManager.getBotSetting(botName).exists()) {
+			FileManager.getBotConfig(botName).exists()) {
 			return true;
 		}
 		else {
@@ -73,7 +67,7 @@ public class FileManager {
 	}
 
 	public static List<String> getBotNames() {
-		File[] files = SharedValues.BOTS_FOLDER_FILE.listFiles(File::isDirectory);
+		File[] files = SharedValues.getFile("BOTS_FOLDER_FILE").listFiles(File::isDirectory);
 		List<String> names = new ArrayList<>();
 
 		for (File file : files) {
@@ -86,14 +80,14 @@ public class FileManager {
 	}
 
 	public static File getBotFolder(String name) {
-		return new File(SharedValues.BOTS_FOLDER_FILE + File.separator  + getBaseName(name));
+		return new File(SharedValues.getFile("BOTS_FOLDER_FILE") + File.separator  + getBaseName(name));
 	}
 
 	public static File getBotScript(String name) {
 		return new File(getBotFolder(name).getPath() + File.separator + "index.js");
 	}
 
-	public static File getBotSetting(String name) {
+	public static File getBotConfig(String name) {
 		return new File(getBotFolder(name).getPath() + File.separator + "bot.json");
 	}
 
@@ -104,6 +98,9 @@ public class FileManager {
 	/* ----------------------------------------------------------------------------------- */
 
 	public static FileObserver link(File file, FileListener listener) {
+		/* if (file == null || !file.exists()) {
+			return null;
+		} */
 		FileObserver observer = new FileObserver(file);
 		observer.addListener(listener);
 		return observer;
@@ -173,13 +170,13 @@ public class FileManager {
 		return null;
 	}
 
-	public static String read(InputStreamReader inputReader) {
+	public static String read(InputStream inputReader) {
 		try {
 			if (inputReader == null) {
 				return null;
 			}
 
-			BufferedReader bufferedReader = new BufferedReader(inputReader);
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputReader));
 			String line = "", text = bufferedReader.readLine();
 
 			while ((line = bufferedReader.readLine()) != null) {

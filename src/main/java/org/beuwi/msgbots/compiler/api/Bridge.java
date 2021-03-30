@@ -1,8 +1,6 @@
 package org.beuwi.msgbots.compiler.api;
 
 import org.beuwi.msgbots.compiler.engine.ScriptEngine;
-import org.beuwi.msgbots.manager.FileManager;
-import org.beuwi.msgbots.setting.ScriptSettings;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.ScriptableObject;
 import org.mozilla.javascript.Undefined;

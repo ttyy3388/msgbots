@@ -21,13 +21,13 @@ public class OpenScriptTabAction implements Action {
 		String name = item.getName();
 		TabItem target = control.getTab(name);
 		// 이미 에디터 탭이 있으면 선택
-		if (target == null) {
+		if (target != null) {
+			control.selectTab(target);
+		}
+		else {
 			File file = item.getFile();
 			Editor editor = new Editor(file);
 			AddMainAreaTabAction.execute(new TabItem(name, editor));
-		}
-		else {
-			control.selectTab(target);
 		}
 	}
 

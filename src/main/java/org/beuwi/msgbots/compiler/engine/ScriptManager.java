@@ -5,10 +5,12 @@ import org.beuwi.msgbots.manager.BotManager;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.setting.GlobalSettings;
 
-public class ScriptManager extends ScriptEngine
-{
+public class ScriptManager extends ScriptEngine {
 	public static void run(String message) {
-		ScriptEngine.run("room", message, "sender",
+		ScriptEngine.run(
+			GlobalSettings.getString("debug:room_name"),
+			message,
+			GlobalSettings.getString("debug:sender_name"),
 			GlobalSettings.getBoolean("debug:is_group_chat"),
 			new ImageDB(),"packageName"
 		);

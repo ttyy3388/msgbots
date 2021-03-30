@@ -41,7 +41,7 @@
 				</ImageView>
 			</left>
 			<bottom>
-				<HBox fx:id="hbxButtonBar" fittable="true" spacing="10.0" prefHeight="25.0" alignment="CENTER_RIGHT">
+				<HBox fx:id="hbxButtonBar" fittable="true" spacing="10.0" prefHeight="28.0" alignment="CENTER_RIGHT">
 					<children>
 						<Button fx:id="btnAction" styled="true" type="ACTION" text="Action"></Button>
 						<Button fx:id="btnCancel" styled="true" type="CANCEL" text="Cancel"></Button>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+
+<?import org.beuwi.msgbots.platform.gui.control.Button?>
+<?import org.beuwi.msgbots.platform.gui.control.Label?>
+<?import org.beuwi.msgbots.platform.gui.control.TextField?>
+<?import org.beuwi.msgbots.platform.gui.layout.HBox?>
+<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
+
+<VBox spacing="10.0" prefWidth="450.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <children>
+        <Label text="봇 프로젝트들이 저장될 폴더를 선택합니다.(기본값 : 프로그램 폴더)"></Label>
+        <HBox fittable="true" prefHeight="30.0" spacing="10.0">
+            <children>
+                <TextField fx:id="txfFolderPath" HBox.hgrow="ALWAYS" editable="false"></TextField>
+                <Button fx:id="btnChooseDir" text="..." styled="true" type="ACTION" prefWidth="35.0"></Button>
+            </children>
+        </HBox>
+    </children>
+</VBox>

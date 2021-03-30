@@ -23,7 +23,10 @@ public class RefreshBotListAction implements Action {
 	}
 
 	public static void execute() {
-		if(botView==null)return;
+		if (botView == null) {
+			return ;
+		}
+
 		List<BotItem> botItems = botView.getItems();
 
 		if (botItems.size() != 0) {

@@ -4,7 +4,6 @@ import org.beuwi.msgbots.manager.LogManager;
 import org.beuwi.msgbots.platform.gui.enums.LogType;
 import org.mozilla.javascript.ScriptableObject;
 import org.mozilla.javascript.annotations.JSFunction;
-import org.mozilla.javascript.annotations.JSStaticFunction;
 
 public class GlobalLog extends ScriptableObject {
 	@Override

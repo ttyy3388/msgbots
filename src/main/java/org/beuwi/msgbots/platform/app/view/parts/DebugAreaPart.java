@@ -55,8 +55,8 @@ public class DebugAreaPart implements View {
 		return component;
 	}
 
-	public static Object getComponent(String key) {
-		return namespace.get(key);
+	public static <T> T getComponent(String key) {
+		return (T) namespace.get(key);
 	}
 
 	public static ObservableMap<String, Object> getNamespace() {

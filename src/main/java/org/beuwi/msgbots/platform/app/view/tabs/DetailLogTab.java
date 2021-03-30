@@ -14,6 +14,7 @@ public class DetailLogTab implements View {
 	private static FormLoader loader;
 	private static TabItem root;
 	private static TextArea component;
+	// private static Editor component;
 
 	@Override
 	public void init() {

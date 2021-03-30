@@ -72,7 +72,7 @@ public class MainView implements View {
 			super(MainView.getStage());
 
 			setContent(MainView.getRoot());
-			setTitle(SharedValues.DEFAULT_PROGRAM_TITLE);
+			setTitle(SharedValues.getString("DEFAULT_PROGRAM_TITLE"));
 			// setTheme(ThemeType.DARK);
 			setType(WindowType.WINDOW);
 		}

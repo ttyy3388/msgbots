@@ -29,9 +29,25 @@ public class GlobalConfigTab implements View {
 		root = loader.getRoot();
 		component = loader.getComponent();
 
+		// new ProgramNaviItem().init();
 		// new DesignNaviItem().init();
 		new BotsNaviItem().init();
 	}
+
+	/* private static class ProgramNaviItem implements View {
+		private static NaviItem root;
+
+		private static Editor editor1;
+		private static Editor editor2;
+
+		@Override
+		public void init() {
+			root = GlobalConfigTab.getComponent().getTab("Program");
+
+			editor1 = (Editor) namespace.get("editor1");
+			editor1 = (Editor) namespace.get("editor2");
+		}
+	} */
 
 	/* private static class DesignNaviItem implements View {
 		private static NaviItem root;
@@ -55,14 +71,14 @@ public class GlobalConfigTab implements View {
 			root = GlobalConfigTab.getComponent().getTab("Bots");
 			component = (NaviView) root.getContent();
 
-			FileManager.link(SharedValues.BOTS_FOLDER_FILE, () -> {
-				refresh();
+			FileManager.link(SharedValues.getFile("BOTS_FOLDER_FILE"), () -> {
+				refreshBotList();
 			});
-			
-			refresh();
+
+			refreshBotList();
 		}
 
-		private void refresh() {
+		private void refreshBotList() {
 			List<NaviItem> addItems = new ArrayList<>();
 			for (String name : FileManager.getBotNames()) {
 				final FormLoader loader = new FormLoader("view", "bot-option-view");

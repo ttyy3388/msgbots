@@ -20,14 +20,14 @@ public class MenuBarPart implements View {
 	private static ObservableMap<String, Object> namespace;
 	private static FormLoader loader;
 	private static StackPane root;
-	private static MenuBar component;
+	private static MenuBar control;
 
 	@Override
 	public void init() {
 		loader = new FormLoader("part", "menu-bar-part");
 		namespace = loader.getNamespace();
 		root = loader.getRoot();
-		component = loader.getComponent();
+		control = loader.getComponent();
 
 		MenuButton btnFileMenu = (MenuButton) namespace.get("btnFileMenu");
 		MenuButton btnEditMenu = (MenuButton) namespace.get("btnEditMenu");
@@ -85,11 +85,11 @@ public class MenuBarPart implements View {
 		// Help Menu Button
 		btnHelpMenu.setMenus(
 			new MenuItem("View License", event -> {
-				OpenBrowserAction.execute(SharedValues.VIEW_LICENSE_LINK);
+				OpenBrowserAction.execute(SharedValues.getString("VIEW_LICENSE_LINK"));
 			}),
 			new Separator(),
 			new MenuItem("Release Notes", event -> {
-				OpenBrowserAction.execute(SharedValues.RELEASE_NOTES_LINK);
+				OpenBrowserAction.execute(SharedValues.getString("RELEASE_NOTES_LINK"));
 			}),
 			new Separator(),
 			new MenuItem("About Program", event -> {
@@ -106,8 +106,8 @@ public class MenuBarPart implements View {
 		return root;
 	}
 
-	public static MenuBar getComponent() {
-		return component;
+	public static MenuBar getMainControl() {
+		return control;
 	}
 
 	public static <T> T getComponent(String key) {

@@ -10,14 +10,17 @@ import javafx.scene.Node;
 import javafx.scene.layout.Priority;
 import javafx.stage.FileChooser;
 
+import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.action.WriteImageFileAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenFileChooserAction;
 import org.beuwi.msgbots.platform.app.view.dialogs.ChooseBotsPathDialog;
+import org.beuwi.msgbots.platform.gui.editor.Editor;
 import org.beuwi.msgbots.platform.gui.enums.TextType;
 import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
 import org.beuwi.msgbots.platform.gui.layout.VBox;
+import org.beuwi.msgbots.platform.util.ResourceUtils;
 import org.beuwi.msgbots.platform.util.SharedValues;
 import org.beuwi.msgbots.setting.SharedSettings;
 
@@ -39,15 +42,13 @@ public class OptionItem extends VBox {
 	// value start_auto_compile
 	// private final StringProperty valueProperty = new SimpleStringProperty();
 
-	// Title Label
-	private final Label label = new Label();
-	// Content Panel
-	private final StackPane panel = new StackPane();
+	private final Label titleLabel = new Label();
+	private final StackPane contentPanel = new StackPane();
 
 	private OptionView parent;
 
 	{
-		VBox.setVgrow(panel, Priority.ALWAYS);
+		VBox.setVgrow(contentPanel, Priority.ALWAYS);
 	}
 
 	public void initValue() {
@@ -56,33 +57,80 @@ public class OptionItem extends VBox {
 			return ;
 		}
 
+		if (getContent() instanceof Editor) {
+			Editor control = (Editor) getContent();
+			if (getAddress().equals("control:editor:edit_script_default")) {
+				String content;
+				// 파일이 존재한다면(수정했던 이력이 있다면)
+				if (SharedValues.getFile("SCRIPT_DEFAULT_FILE").exists()) {
+					content = FileManager.read(SharedValues.getFile("SCRIPT_DEFAULT_FILE"));
+				}
+				else {
+					content = FileManager.read(ResourceUtils.getInputStream("/data/script_default.js"));
+				}
+				control.setText(content);
+				// 에디터는 포커스 이벤트가 안오므로 텍스트 변경으로 인식
+				control.textProperty().addListener(change -> {
+					File file = SharedValues.getFile("SCRIPT_DEFAULT_FILE");
+					// 처음 수정한다면
+					/* if (!file.exists()) {
+						FileManager.save(file, control.getText());
+					} */
+					FileManager.save(file, control.getText());
+				});
+				titleLabel.getStyleClass().remove("title");
+			}
+			else if (getAddress().equals("control:editor:edit_script_unified")) {
+				String content;
+				// 파일이 존재한다면(수정했던 이력이 있다면)
+				if (SharedValues.getFile("SCRIPT_UNIFIED_FILE").exists()) {
+					content = FileManager.read(SharedValues.getFile("SCRIPT_UNIFIED_FILE"));
+				}
+				else {
+					content = FileManager.read(ResourceUtils.getInputStream("/data/script_unified.js"));
+				}
+				control.setText(content);
+				// 에디터는 포커스 이벤트가 안오므로 텍스트 변경으로 인식
+				control.textProperty().addListener(change -> {
+					File file = SharedValues.getFile("SCRIPT_UNIFIED_FILE");
+					// 처음 수정한다면
+					/* if (!file.exists()) {
+						FileManager.save(file, control.getText());
+					} */
+					FileManager.save(file, control.getText());
+				});
+				titleLabel.getStyleClass().remove("title");
+			}
+		}
 		if (getContent() instanceof Button) {
 			Button control = (Button) getContent();
+			/* if (getAddress().equals("control:button:cleanup_user_setting")){
+				if (SharedValues.GLOBAL_CONFIG_FILE != null) {
+
+				}
+			} */
 			if (getAddress().equals("control:button:choose_bots_path")){
 				control.setOnAction(event->{
 					OpenDialogBoxAction.execute(new ChooseBotsPathDialog());
 				});
-
 			}
-			if (getAddress().equals("control:button:change_bot_profile")) {
+			else if (getAddress().equals("control:button:change_bot_profile")) {
 				control.setOnAction(event -> {
 					File file = OpenFileChooserAction.execute("Change Bot Profile",
 						new FileChooser.ExtensionFilter("Image File", "*.jpg", "*.png", "*.gif")
 					);
-
 					if (file != null) {
-						WriteImageFileAction.execute(file, "png", SharedValues.PROFILE_BOT_FILE);
+						WriteImageFileAction.execute(file, "png", SharedValues.getFile("PROFILE_BOT_FILE"));
 					}
 				});
 			}
-			if (getAddress().equals("control:button:change_sender_profile")) {
+			else if (getAddress().equals("control:button:change_sender_profile")) {
 				control.setOnAction(event -> {
 					File file = OpenFileChooserAction.execute("Change Sender Profile",
-							new FileChooser.ExtensionFilter("Image File", "*.jpg", "*.png", "*.gif")
+						new FileChooser.ExtensionFilter("Image File", "*.jpg", "*.png", "*.gif")
 					);
-
 					if (file != null) {
-						WriteImageFileAction.execute(file, "png", SharedValues.PROFILE_SENDER_FILE);
+						WriteImageFileAction.execute(file, "png", SharedValues.getFile("PROFILE_SENDER_FILE"));
 					}
 				});
 			}
@@ -135,7 +183,7 @@ public class OptionItem extends VBox {
 				// 프로그램 컬러 테마
 				control.selectItem(ThemeType.parse(SharedSettings.getData(getAddress())));
 			}
-			if (getAddress().equals("global:program:text_rendering")) {
+			else if (getAddress().equals("global:program:text_rendering")) {
 				// 텍스트 렌더링 타입
 				control.selectItem(TextType.parse(SharedSettings.getData(getAddress())));
 			}
@@ -146,25 +194,31 @@ public class OptionItem extends VBox {
 	}
 
 	public OptionItem(/* @NamedArg("type") PrefType type */) {
-		label.getStyleClass().add("title");
-		panel.getStyleClass().add("content");
-		panel.setAlignment(Pos.CENTER_LEFT);
+		titleLabel.getStyleClass().add("title");
+		contentPanel.getStyleClass().add("content");
+		contentPanel.setAlignment(Pos.CENTER_LEFT);
 
 		titleProperty().addListener(change -> {
-			label.setText(getTitle());
+			titleLabel.setText(getTitle());
 		});
 
 		contentProperty().addListener(change -> {
-			panel.getChildren().setAll(getContent());
+			contentPanel.getChildren().setAll(getContent());
 		});
 
 		addressProperty().addListener(event -> initValue());
 
 		// setPadding(DEFAULT_PADDING_VALUE);
 		setSpacing(DEFAULT_SPACING_VALUE);
-		getChildren().setAll(label, panel);
+		getChildren().setAll(titleLabel, contentPanel);
 		getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
+
+	// 유저가 설정한 옵션이 있으면 제일 먼저 가져오고
+	// 없으면 프로그램 기본 설정 가져옴
+	/* public <T> T getValue(String address) {
+		String custom = GlobalSettings.getDefaultConfig().getAdd
+	} */
 
 	public void setTitle(String title) {
 		titleProperty.set(title);

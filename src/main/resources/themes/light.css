@@ -205,6 +205,15 @@
 }
 
 /* OPTION ITEM */
+.option-item .label,
+.option-item .check-box {
+	-fx-text-fill: #CCCCCC;
+}
+.option-item .title {
+	-fx-text-fill: #FFFFFF;
+}
+
+/* OPTION ITEM */
 /* .option-item {
     -fx-border-color: #000000;
     -fx-border-width: 0 0 0 2;

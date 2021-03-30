@@ -1,11 +1,5 @@
 package org.beuwi.msgbots.platform.gui.enums;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.css.PseudoClass;
-import javafx.scene.Node;
-
 // 탭과 같이 유저가 추가한거랑 프로그램에서 추가한거랑 구분하는 용도임
 public enum ControlType {
     NORMAL {

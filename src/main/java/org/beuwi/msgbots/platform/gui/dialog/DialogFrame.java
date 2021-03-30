@@ -1,15 +1,14 @@
 package org.beuwi.msgbots.platform.gui.dialog;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import javafx.stage.StageStyle;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.gui.control.Button;
 import org.beuwi.msgbots.platform.gui.control.ContextMenu;
@@ -25,6 +24,10 @@ import org.beuwi.msgbots.platform.util.ResourceUtils;
 public abstract class DialogFrame extends BorderPane {
 	private static final String DEFAULT_STYLE_CLASS = "dialog-box";
 	private static final Insets DEFAULT_PADDING_INSETS = new Insets(5.0);
+
+	private EventHandler<ActionEvent> onActionHandler;
+	// private EventHandler<ActionEvent> onCloseHandler;
+	private EventHandler<ActionEvent> onOpenHandler;
 
 	// WINDOW
 	@FXML private BorderPane brpWinRoot;
@@ -132,6 +135,16 @@ public abstract class DialogFrame extends BorderPane {
 		}
 	} */
 
+	public void setOnAction(EventHandler<ActionEvent> handler) {
+		onActionHandler = handler;
+	}
+	public void setOnOpen(EventHandler<ActionEvent> handler) {
+		onOpenHandler = handler;
+	}
+	/* public void setOnClose(EventHandler<ActionEvent> handler) {
+		onCloseHandler = handler;
+	} */
+
 	// Use Action Button, Use Cancel Button
 	public void setUseButton(boolean action, boolean cancel) {
 		if (!action) {
@@ -176,11 +189,11 @@ public abstract class DialogFrame extends BorderPane {
 		/* ------------------------------------------------------ */
 
 		btnAction.addEventHandler(ActionEvent.ACTION, event -> {
-			this.action();
+			this.daction();
 		});
 
 		btnCancel.addEventHandler(ActionEvent.ACTION, event -> {
-			this.close();
+			this.dclose();
 		});
 
 		/* ------------------------------------------------------ */
@@ -205,8 +218,8 @@ public abstract class DialogFrame extends BorderPane {
 			switch (event.getCode()) {
 				case ESCAPE : stage.close(); break;
 				case ENTER :
-					this.action();
-					this.close();
+					this.daction();
+					this.dclose();
 					break;
 			}
 		});
@@ -219,11 +232,44 @@ public abstract class DialogFrame extends BorderPane {
 		frame.create();
 	}
 
-	public void close() {
+	public void dclose() {
+		// this.close();
 		stage.close();
 	}
 
-	public abstract void open();
+	// 상속용도
+	protected abstract void open();
+	protected abstract void action();
+	/* public void close() {
+
+	}; */
+
+	// 호출용도
+	public void dopen() {
+		open();
+		// "setOnOpen"이 설정됐으면
+		if (onOpenHandler != null) {
+			onOpenHandler.handle(null);
+		}
+		create();
+	}
+	// 호출용도
+	public void daction() {
+		action();
+		// "setOnAction"이 설정됐으면
+		if (onActionHandler != null) {
+			onActionHandler.handle(null);
+		}
+		dclose();
+	}
+
+	/* private void create() {
+		// onOpenHandler.handle(new ActionEvent());
+		onOpenHandler.handle(null);
+	}
 	// public abstract void init();
-	public abstract void action();
+	private void action() {
+		// onActionHandler.handle(new ActionEvent());
+		onActionHandler.handle(null);
+	} */
 }

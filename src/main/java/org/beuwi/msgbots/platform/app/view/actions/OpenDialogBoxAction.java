@@ -6,7 +6,7 @@ import org.beuwi.msgbots.platform.gui.dialog.DialogWrap;
 public class OpenDialogBoxAction implements Action {
 
     public static void execute(DialogWrap dialog) {
-        dialog.open();
+        dialog.dopen();
     }
 
     @Override

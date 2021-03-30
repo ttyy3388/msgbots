@@ -1,9 +1,5 @@
 package org.beuwi.msgbots.platform.gui.base;
 
-import javafx.beans.NamedArg;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-
 public class Anchor {
     /* public static final Anchor EMPTY = new Anchor(null, null, null, null);
 

@@ -56,6 +56,9 @@ public abstract class TabItemBase extends StackPane implements Control {
     public void setContent(Node content) {
         this.contentProperty.set(content);
     }
+    /* public <T extends Node> T getContent() {
+        return (T) contentProperty.get();
+    } */
     public Node getContent() {
         return contentProperty.get();
     }

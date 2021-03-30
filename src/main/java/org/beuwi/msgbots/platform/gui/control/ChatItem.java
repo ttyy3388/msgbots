@@ -1,13 +1,19 @@
 package org.beuwi.msgbots.platform.gui.control;
 
 import javafx.geometry.Pos;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Priority;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 import org.beuwi.msgbots.platform.app.action.CopyStringAction;
 import org.beuwi.msgbots.platform.gui.layout.HBox;
 import org.beuwi.msgbots.platform.gui.layout.VBox;
+import org.beuwi.msgbots.platform.util.ResourceUtils;
+import org.beuwi.msgbots.platform.util.SharedValues;
 import org.beuwi.msgbots.setting.GlobalSettings;
+
+import java.io.File;
 
 public class ChatItem extends HBox {
 	private static final String DEFAULT_STYLE_CLASS = "chat-item";
@@ -23,8 +29,8 @@ public class ChatItem extends HBox {
 
 	private final String message;
 
-	private final Circle profile;
-	private final Content content;
+	private final Circle profileCircle;
+	private final ChatContent chatContent;
 
 	private ChatView parent;
 
@@ -35,20 +41,28 @@ public class ChatItem extends HBox {
 	public ChatItem(String message, boolean isBot) {
 		this.message = message;
 
-        content = new Content(message, isBot);
-        profile = new Circle(35, 35, 20);
+		chatContent = new ChatContent(message, isBot);
+		profileCircle = new Circle(35, 35, 20);
 
-		profile.getStyleClass().add("profile");
+		profileCircle.getStyleClass().add("profile");
 
 		if (!isBot) {
 			// Sender Profile
-			// profile.setFill(new ImagePattern(SharedValues.PROFILE_SENDER_IMAGE));
+			File imageFile = SharedValues.getFile("PROFILE_SENDER_FILE");
+			// 유저가 이미지를 변경한 적이 있다면
+			if (imageFile.exists()) {
+				profileCircle.setFill(new ImagePattern(new Image(imageFile.toURI().toString())));
+			}
+			// 없다면 기본 이미지 로드
+			else {
+				profileCircle.setFill(new ImagePattern(ResourceUtils.getImage("profile")));
+			}
 
 			if (GlobalSettings.getBoolean("debug:show_sender_profile")) {
-				getChildren().setAll(content, profile);
+				getChildren().setAll(chatContent, profileCircle);
 			}
 			else {
-				getChildren().setAll(content);
+				getChildren().setAll(chatContent);
 			}
 
 			setAlignment(Pos.TOP_RIGHT);
@@ -56,13 +70,20 @@ public class ChatItem extends HBox {
 		}
 		else {
 			// Bot Profile
-			// profile.setFill(new ImagePattern(SharedValues.PROFILE_BOT_IMAGE));
-
+			File imageFile = SharedValues.getFile("PROFILE_BOT_FILE");
+			// 유저가 이미지를 변경한 적이 있다면
+			if (imageFile.exists()) {
+				profileCircle.setFill(new ImagePattern(new Image(imageFile.toURI().toString())));
+			}
+			// 없다면 기본 이미지 로드
+			else {
+				profileCircle.setFill(new ImagePattern(ResourceUtils.getImage("profile")));
+			}
 			if (GlobalSettings.getBoolean("debug:show_bot_profile")) {
-				getChildren().setAll(profile, content);
+				getChildren().setAll(profileCircle, chatContent);
 			}
 			else {
-				getChildren().setAll(content);
+				getChildren().setAll(chatContent);
 			}
 
 			setAlignment(Pos.TOP_LEFT);
@@ -88,56 +109,61 @@ public class ChatItem extends HBox {
 		this.parent = parent;
 	}
 
-	private class Content extends VBox {
+	private class ChatContent extends VBox {
 		// 텍스트 필드로 바꾸면 드래그가 가능하긴 함
-		private final Label comment = new Label();
-		private final Label name = new Label();
+		private final Label commentLabel = new Label();
+		private final Label nameLabel = new Label();
 
-		private final ContextMenu menu;
+		private final ContextMenu contextMenu;
 
 		{
-			VBox.setVgrow(comment, Priority.ALWAYS);
+			VBox.setVgrow(commentLabel, Priority.ALWAYS);
 		}
 
-		public Content(String message, boolean isBot) {
-            name.setText("DEBUG SENDER");
-            name.getStyleClass().add("name");
+		public ChatContent(String message, boolean isBot) {
+			String name = null;
+			if (!isBot) {
+				name = GlobalSettings.getString("debug:sender_name");
+			}
+			else {
+				name = GlobalSettings.getString("debug:bot_name");
+			}
+			nameLabel.setText(name);
+			nameLabel.getStyleClass().add("name");
 
-			menu = new ContextMenu(
+			contextMenu = new ContextMenu(
 				new MenuItem("Copy", event -> CopyStringAction.execute(message)),
 				new MenuItem("Delete", event -> parent.getItems().remove(this))
 			);
-			menu.setNode(comment);
+			contextMenu.setNode(commentLabel);
 
-			/* if (message.length() > 1000)
-			{
+			/* if (message.length() > 1000) {
 
 			}
-			else */
-			{
+			else */ {
 				// comment.setMaxWidth(220);
-				comment.setText(message);
-				comment.setWrapText(true);
-				comment.setMaxWidth(250);
-				comment.getStyleClass().add("comment");
+				commentLabel.setText(message);
+				commentLabel.setWrapText(true);
+				commentLabel.setMaxWidth(250);
+				commentLabel.getStyleClass().add("comment");
 			}
 
 			if (!isBot) {
 				if (GlobalSettings.getBoolean("debug:show_sender_name")) {
-					getChildren().setAll(name, comment);
+					getChildren().setAll(nameLabel, commentLabel);
 				}
 				else {
-					getChildren().setAll(comment);
+					getChildren().setAll(commentLabel);
 				}
 
 				setAlignment(Pos.CENTER_RIGHT);
 			}
 			else {
 				if (GlobalSettings.getBoolean("debug:show_bot_name")) {
-					getChildren().setAll(name, comment);
+					getChildren().setAll(nameLabel, commentLabel);
 				}
 				else {
-					getChildren().setAll(comment);
+					getChildren().setAll(commentLabel);
 				}
 
 				setAlignment(Pos.CENTER_LEFT);

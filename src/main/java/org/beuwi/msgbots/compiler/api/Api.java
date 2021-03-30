@@ -7,18 +7,13 @@ import org.beuwi.msgbots.compiler.engine.ScriptManager;
 import org.beuwi.msgbots.manager.BotManager;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.action.ShowWinMsgAction;
-import org.beuwi.msgbots.platform.app.view.actions.SendChatMessageAction;
 import org.beuwi.msgbots.platform.app.view.actions.ShowToastMessageAction;
 import org.beuwi.msgbots.platform.gui.control.ToastItem;
 import org.beuwi.msgbots.platform.gui.enums.ToastType;
-import org.beuwi.msgbots.platform.util.SharedValues;
 import org.beuwi.msgbots.setting.ScriptSettings;
 
 import org.mozilla.javascript.*;
 import org.mozilla.javascript.annotations.JSFunction;
-import org.mozilla.javascript.annotations.JSFunction;
-
-import java.io.File;
 
 public class Api extends ScriptableObject {
 	@Override
