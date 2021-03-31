@@ -6,11 +6,14 @@ import javafx.scene.Node;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
+import org.beuwi.msgbots.openapi.KeyMap;
+import org.beuwi.msgbots.platform.gui.control.ListView;
 import org.beuwi.msgbots.platform.gui.control.NaviItem;
 import org.beuwi.msgbots.platform.gui.control.NaviView;
 import org.beuwi.msgbots.platform.gui.control.OptionItem;
 import org.beuwi.msgbots.platform.gui.control.OptionView;
 import org.beuwi.msgbots.platform.gui.control.TabItem;
+import org.beuwi.msgbots.platform.util.GlobalKeyMaps;
 import org.beuwi.msgbots.platform.util.SharedValues;
 
 import java.util.ArrayList;
@@ -30,6 +33,7 @@ public class GlobalConfigTab implements View {
 		component = loader.getComponent();
 
 		// new ProgramNaviItem().init();
+		// new KeymapNaviItem().init();
 		// new DesignNaviItem().init();
 		new BotsNaviItem().init();
 	}
@@ -49,6 +53,20 @@ public class GlobalConfigTab implements View {
 		}
 	} */
 
+	/* private static class KeymapNaviItem implements View {
+		private static NaviItem root;
+		private static ListView control;
+
+		@Override
+		public void init() {
+			root = GlobalConfigTab.getComponent().getTab("Keymap");
+			control = (ListView) getComponent("lsvKeyMap");
+
+			List<KeyMap> keyMaps = GlobalKeyMaps.getKeyMaps();
+			control.getItems().setAll(keyMaps);
+		}
+	} */
+
 	/* private static class DesignNaviItem implements View {
 		private static NaviItem root;
 
@@ -64,12 +82,12 @@ public class GlobalConfigTab implements View {
 
 	private static class BotsNaviItem implements View {
 		private static NaviItem root;
-		private static NaviView component;
+		private static NaviView control;
 
 		@Override
 		public void init() {
 			root = GlobalConfigTab.getComponent().getTab("Bots");
-			component = (NaviView) root.getContent();
+			control = (NaviView) root.getContent();
 
 			FileManager.link(SharedValues.getFile("BOTS_FOLDER_FILE"), () -> {
 				refreshBotList();
@@ -93,7 +111,7 @@ public class GlobalConfigTab implements View {
 
 				addItems.add(new NaviItem(name, control));
 			}
-			component.addTab(addItems);
+			control.addTab(addItems);
 		}
 	}
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?language javascript?>
+<!-- <?language javascript?> -->
 
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
@@ -28,6 +28,7 @@
 
 <?import java.io.File?>
 
+<?import org.beuwi.msgbots.platform.gui.control.ListView?>
 <TabItem text="GLOBAL CONFIG" xmlns:fx="http://javafx.com/fxml">
 	<content>
 		<NaviView styleClass="">
@@ -226,11 +227,11 @@
 						</ScrollPane>
 					</content>
 				</NaviItem>
-				<NaviItem text="Design">
+				<!-- <NaviItem text="Design">
 					<content>
 						<OptionView title="Design">
 							<items>
-								<!-- <OptionItem title="커스텀 테마에서 적용되는 스타일입니다." VBox.vgrow="ALWAYS">
+								<OptionItem title="커스텀 테마에서 적용되는 스타일입니다." VBox.vgrow="ALWAYS">
 									<content>
 										<Editor language="css">
 											<file>
@@ -238,27 +239,33 @@
 											</file>
 										</Editor>
 									</content>
-								</OptionItem> -->
+								</OptionItem>
 							</items>
 							<StackPane.margin>
 								<Insets left="15.0"></Insets>
 							</StackPane.margin>
 						</OptionView>
 					</content>
-				</NaviItem>
+				</NaviItem> -->
 				<NaviItem text="Connect">
 					<content>
 						<OptionView title="ADB">
 							<items>
-								<!-- <OptionItem title="커스텀 테마에서 적용되는 스타일입니다." VBox.vgrow="ALWAYS">
+								<OptionItem address="global:connection:adb_auto_connect" title="AUTO CONNECT">
 									<content>
-										<Editor language="css">
-											<file>
-												<SharedValues fx:constant="CUSTOM_THEME_FILE"></SharedValues>
-											</file>
-										</Editor>
+										<CheckBox></CheckBox>
 									</content>
-								</OptionItem> -->
+								</OptionItem>
+								<OptionItem address="global:connection:socket_remote_port" title="SOCKET REMOTE PORT">
+									<content>
+										<TextField maxWidth="250"></TextField>
+									</content>
+								</OptionItem>
+								<OptionItem address="global:connection:socket_local_port" title="SOCKET LOCAL PORT">
+									<content>
+										<TextField maxWidth="250"></TextField>
+									</content>
+								</OptionItem>
 							</items>
 							<StackPane.margin>
 								<Insets left="15.0"></Insets>

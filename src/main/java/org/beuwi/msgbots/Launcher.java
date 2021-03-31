@@ -2,10 +2,12 @@ package org.beuwi.msgbots;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import org.beuwi.msgbots.compiler.engine.ScriptManager;
+import org.beuwi.msgbots.openapi.KeyMap;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.MainView.MainWindow;
 import org.beuwi.msgbots.platform.app.view.actions.*;
@@ -14,6 +16,7 @@ import org.beuwi.msgbots.platform.app.view.parts.*;
 import org.beuwi.msgbots.platform.app.view.tabs.*;
 import org.beuwi.msgbots.platform.gui.control.Document;
 import org.beuwi.msgbots.platform.gui.control.Page;
+import org.beuwi.msgbots.platform.util.GlobalKeyMaps;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 import org.beuwi.msgbots.platform.util.SharedValues;
 import org.beuwi.msgbots.setting.GlobalSettings;
@@ -69,9 +72,6 @@ public class Launcher extends Application {
 
 	@Override
 	public void start(Stage stage) {
-		// startWinService(stage);
-		// startMainView(stage);
-
 		try {
 			// 유저가 지정한 경로가 있다면
 			String path = GlobalSettings.getString("program:bots_path");
@@ -80,8 +80,7 @@ public class Launcher extends Application {
 			if (path == null || !(new File(path).isDirectory())) {
 				ChooseBotsPathDialog dialog = new ChooseBotsPathDialog();
 				dialog.setOnAction(event -> {
-					startFileWatcher();
-					startMainView(stage);
+					startProgram(stage);
 
 					// 원래는 "UpdateBotsPathAction" 클래스를 통해 호출되나
 					// BotView가 null인 상태이므로 메인 뷰를 로드한 후 직접 호출
@@ -94,8 +93,7 @@ public class Launcher extends Application {
 				SharedValues.setValue("BOTS_BOLDER_FILE", path);
 				// 폴더 업데이트
 				SharedValues.setValue("BOTS_FOLDER_FILE", new File(path));
-				startFileWatcher();
-				startMainView(stage);
+				startProgram(stage);
 			}
 		}
 		catch (Throwable e) {
@@ -108,7 +106,23 @@ public class Launcher extends Application {
 			}
 		}
 	}
-	
+
+	private void startProgram(Stage stage) {
+		registryKeyMaps(stage);
+		startFileWatcher();
+		startMainView(stage);
+	}
+	private void registryKeyMaps(Stage stage) {
+		List<KeyMap> keyMaps = GlobalKeyMaps.getKeyMaps();
+		// List<String> keys = new ArrayList<>(keyMaps.keySet());
+		for (KeyMap binder : keyMaps) {
+			stage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+				if (binder.getKey().match(event)) {
+					binder.getAction().handle(event);
+				}
+			});
+		}
+	}
 	private void startFileWatcher() {
 		try {
 			try {
@@ -169,7 +183,6 @@ public class Launcher extends Application {
 			}
 		}
 	}
-
 	private void startMainView(Stage stage) {
 		try {
 			// Initialize tabs
