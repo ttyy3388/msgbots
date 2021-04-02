@@ -8,6 +8,7 @@
 <?import org.beuwi.msgbots.platform.gui.control.Label?>
 <?import org.beuwi.msgbots.platform.gui.layout.BorderPane?>
 <?import org.beuwi.msgbots.platform.gui.layout.HBox?>
+<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
 
 <BorderPane fx:id="brpWinRoot" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<top>
@@ -32,7 +33,7 @@
 	</top>
 	<center>
 		<!-- Dialog Content -->
-		<BorderPane fx:id="brpWinMain" styleClass="content-area">
+		<BorderPane fx:id="brpWinMain"> <!-- styleClass="content-area" -->
 			<left>
 				<ImageView fx:id="imvDialogIcon" fitWidth="35.0" fitHeight="35.0">
 					<BorderPane.margin>
@@ -51,8 +52,9 @@
 					</BorderPane.margin>
 				</HBox>
 			</bottom>
+			<!-- Window Margin (Value : 15 or 10) -->
 			<BorderPane.margin>
-				<Insets top="15.0" right="15.0" bottom="15.0" left="15.0"></Insets>
+				<Insets top="15.0" right="15.0" left="15.0" bottom="15.0"></Insets>
 			</BorderPane.margin>
 		</BorderPane>
 	</center>

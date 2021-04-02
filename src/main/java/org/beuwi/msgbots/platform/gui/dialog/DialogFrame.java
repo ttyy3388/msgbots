@@ -16,6 +16,7 @@ import org.beuwi.msgbots.platform.gui.control.Label;
 import org.beuwi.msgbots.platform.gui.control.MenuItem;
 import org.beuwi.msgbots.platform.gui.layout.BorderPane;
 import org.beuwi.msgbots.platform.gui.layout.HBox;
+import org.beuwi.msgbots.platform.gui.layout.StackPane;
 import org.beuwi.msgbots.platform.gui.window.WindowFrame;
 import org.beuwi.msgbots.platform.gui.window.WindowType;
 import org.beuwi.msgbots.platform.util.AllSVGIcons;
@@ -23,7 +24,9 @@ import org.beuwi.msgbots.platform.util.ResourceUtils;
 
 public abstract class DialogFrame extends BorderPane {
 	private static final String DEFAULT_STYLE_CLASS = "dialog-box";
-	private static final Insets DEFAULT_PADDING_INSETS = new Insets(5.0);
+
+	// private static final Insets DEFAULT_PADDING_INSETS = new Insets(5.0);
+	// private static final Insets DEFAULT_CONTENT_MARGIN = new Insets(10, 10, 0, 10);
 
 	private EventHandler<ActionEvent> onActionHandler;
 	// private EventHandler<ActionEvent> onCloseHandler;
@@ -35,10 +38,10 @@ public abstract class DialogFrame extends BorderPane {
 	@FXML private ImageView imvWinIcon;
 	@FXML private Button btnWinClose;
 	@FXML private Label lblWinTitle;
-
 	@FXML private HBox hbxTitleBar;
 
 	// DIALOG
+	// @FXML private StackPane stpDialogMain;
 	@FXML private ImageView imvDialogIcon;
 	@FXML private HBox<Button> hbxButtonBar;
 
@@ -145,6 +148,12 @@ public abstract class DialogFrame extends BorderPane {
 		onCloseHandler = handler;
 	} */
 
+	// 필요한지에 대한 건 추후 생각
+	/* public void setMargin(double margin) {
+		BorderPane.setMargin(brpWinMain,
+			new Insets(10, margin, 10, margin));
+	} */
+
 	// Use Action Button, Use Cancel Button
 	public void setUseButton(boolean action, boolean cancel) {
 		if (!action) {
@@ -199,10 +208,12 @@ public abstract class DialogFrame extends BorderPane {
 		/* ------------------------------------------------------ */
 
 		switch (type) {
-			// None : Remove icon
-			case NONE : brpWinMain.getChildren().remove(imvDialogIcon); break;
+			// None : 아이콘 미포함
+			case NONE :
+				brpWinMain.getChildren().remove(imvDialogIcon);
+				break;
 
-			// Others : Display icon
+			// Others : 아이콘 지정
 			case EVENT : imvDialogIcon.setImage(ResourceUtils.getImage("event_big")); break;
 			case WARNING : imvDialogIcon.setImage(ResourceUtils.getImage("warning_big")); break;
 			case ERROR : imvDialogIcon.setImage(ResourceUtils.getImage("error_big")); break;

@@ -16,7 +16,6 @@ public class JSONObject extends org.json.simple.JSONObject {
 	}
 	public JSONObject(InputStream stream) {
 		this(FileManager.read(stream));
-		System.out.println(stream);
 	}
 	public JSONObject(String data) {
 		if (data == null || data.isEmpty()) {

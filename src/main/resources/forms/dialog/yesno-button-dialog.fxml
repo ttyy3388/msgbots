@@ -1,0 +1,25 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<?import org.beuwi.msgbots.platform.gui.control.Button?>
+<?import org.beuwi.msgbots.platform.gui.control.Label?>
+<?import org.beuwi.msgbots.platform.gui.layout.BorderPane?>
+<?import org.beuwi.msgbots.platform.gui.layout.HBox?>
+<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+	<bottom>
+		<HBox fx:id="hbxButtonBar" fittable="true" spacing="10.0" prefHeight="28.0" alignment="CENTER_RIGHT">
+			<children>
+				<Button fx:id="btnAction" styled="true" type="ACTION" text="Action"></Button>
+				<Button fx:id="btnCancel" styled="true" type="CANCEL" text="Cancel"></Button>
+			</children>
+			<BorderPane.margin>
+				<Insets top="10.0" right="10.0" left="10.0" bottom="10.0"></Insets>
+			</BorderPane.margin>
+		</HBox>
+	</bottom>
+</BorderPane> -->

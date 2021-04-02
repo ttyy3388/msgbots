@@ -2,20 +2,23 @@ package org.beuwi.msgbots;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import javafx.stage.Window;
 import org.beuwi.msgbots.compiler.engine.ScriptManager;
 import org.beuwi.msgbots.openapi.KeyMap;
 import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.MainView.MainWindow;
 import org.beuwi.msgbots.platform.app.view.actions.*;
-import org.beuwi.msgbots.platform.app.view.dialogs.ChooseBotsPathDialog;
+import org.beuwi.msgbots.platform.app.view.dialogs.StartProgramDialog;
 import org.beuwi.msgbots.platform.app.view.parts.*;
 import org.beuwi.msgbots.platform.app.view.tabs.*;
 import org.beuwi.msgbots.platform.gui.control.Document;
 import org.beuwi.msgbots.platform.gui.control.Page;
+import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.util.GlobalKeyMaps;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 import org.beuwi.msgbots.platform.util.SharedValues;
@@ -73,15 +76,16 @@ public class Launcher extends Application {
 	@Override
 	public void start(Stage stage) {
 		try {
+			registryListeners();
+
 			// 유저가 지정한 경로가 있다면
-			String path = GlobalSettings.getString("program:bots_path");
+			String path = GlobalSettings.getString("program:bot_dir_path");
 
 			// 지정한 경로가 없거나 폴더가 아니라 파일인 경우
 			if (path == null || !(new File(path).isDirectory())) {
-				ChooseBotsPathDialog dialog = new ChooseBotsPathDialog();
+				StartProgramDialog dialog = new StartProgramDialog();
 				dialog.setOnAction(event -> {
 					startProgram(stage);
-
 					// 원래는 "UpdateBotsPathAction" 클래스를 통해 호출되나
 					// BotView가 null인 상태이므로 메인 뷰를 로드한 후 직접 호출
 					RefreshBotListAction.execute();
@@ -90,9 +94,9 @@ public class Launcher extends Application {
 			}
 			else {
 				// 경로 업데이트
-				SharedValues.setValue("BOTS_BOLDER_FILE", path);
+				SharedValues.setValue("BOT_BOLDER_FILE", path);
 				// 폴더 업데이트
-				SharedValues.setValue("BOTS_FOLDER_FILE", new File(path));
+				SharedValues.setValue("BOT_FOLDER_FILE", new File(path));
 				startProgram(stage);
 			}
 		}
@@ -107,6 +111,29 @@ public class Launcher extends Application {
 		}
 	}
 
+	private void registryListeners() {
+		GlobalSettings.addChangeListener(() -> {
+			ThemeType theme = ThemeType.parse(GlobalSettings.getString("program:color_theme"));
+			/* 프로그램 테마가 변경 됐다면 모든 윈도우의 테마를 바꿈
+			 * 원래는 메인 윈도우 위에 띄우는 것이므로
+			 * 메인 윈도우의 테마만 변경해주면 다이얼로그들도 테마가 바뀌나
+			 * 프로그램 시작 이전에 뜬 다이얼로그는 메인 스테이지가 없으므로(Null)
+			 * 윈도우들을 가져와서 직접 씬을 가져와서 적용시켜야 함 */
+			// 이미 떠 있는 다이얼로그에 관해서는 신경쓰지 않음
+			if (MainView.getStage() == null) {
+				List<Window> windows = Window.getWindows();
+				windows.forEach(window -> {
+					Scene scene = window.getScene();
+					if (scene != null) {
+						ChangeColorThemeAction.execute(scene, theme);
+					}
+				});
+			}
+			else {
+				ChangeColorThemeAction.execute(theme);
+			}
+		});
+	}
 	private void startProgram(Stage stage) {
 		registryKeyMaps(stage);
 		startFileWatcher();
@@ -128,7 +155,7 @@ public class Launcher extends Application {
 			try {
 				WATCH_SERVICE = FileSystems.getDefault().newWatchService();
 
-				File file = SharedValues.getFile("BOTS_FOLDER_FILE");
+				File file = SharedValues.getFile("BOT_FOLDER_FILE");
 				// 해당 값이 null일 경우가 있나..? 하지만 혹시나 함
 				/* if (file == null) {
 					return ;
@@ -227,8 +254,6 @@ public class Launcher extends Application {
 			CheckAppUpdateAction.execute();
 
 			OpenDocumentTabAction.execute(new Document("WELCOME GUIDE", new Page("welcome-guide-page")));
-
-			// System.out.println(SharedValues.BOTS_FOLDER_FILE);
 
 			/* BotView botView = BotListTab.getComponent();
 

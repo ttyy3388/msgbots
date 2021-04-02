@@ -2,15 +2,23 @@
 
 <?import javafx.scene.control.CheckBox?>
 
+<?import org.beuwi.msgbots.platform.gui.control.Label?>
 <?import org.beuwi.msgbots.platform.gui.control.TextField?>
 <?import org.beuwi.msgbots.platform.gui.layout.VBox?>
 
 <VBox spacing="25.0" prefWidth="450.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<children>
-		<TextField fx:id="txfScriptName" prefHeight="30.0"></TextField>
+		<VBox spacing="5.0">
+			<children>
+				<Label text="BOT NAME"></Label>
+				<TextField fx:id="txfScriptName"></TextField>
+			</children>
+		</VBox>
 		<VBox spacing="20.0" VBox.vgrow="ALWAYS">
-			<CheckBox fx:id="chkIsUnified" text="통합된 매개변수를 사용합니다."></CheckBox>
-			<CheckBox fx:id="chkIsOffError" selected="true" text="런타임 에러 시 자동으로 봇의 전원을 끕니다. (권장)"></CheckBox>
+			<children>
+				<CheckBox fx:id="chkIsUnified" text="통합된 매개변수를 사용합니다."></CheckBox>
+				<CheckBox fx:id="chkIsOffError" selected="true" text="런타임 에러 시 자동으로 봇의 전원을 끕니다. (권장)"></CheckBox>
+			</children>
 		</VBox>
 	</children>
 </VBox>

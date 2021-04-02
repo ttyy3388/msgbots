@@ -19,12 +19,13 @@
 		"show_sender_profile":false
 	},
 	"program":{
+		"save_dir_path": null,
 		"version_name":"0.6.3",
 		"version_code":3,
 		"compile_auto_save":true,
 		"text_rendering":"LCD",
 		"start_auto_compile":true,
-		"bots_path":null,
+		"bot_dir_path":null,
 		"color_theme":"dark"
 	}
 }

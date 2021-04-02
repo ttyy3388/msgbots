@@ -207,10 +207,10 @@
 /* OPTION ITEM */
 .option-item .label,
 .option-item .check-box {
-	-fx-text-fill: #CCCCCC;
+	-fx-text-fill: #555555;
 }
 .option-item .title {
-	-fx-text-fill: #FFFFFF;
+	-fx-text-fill: #000000;
 }
 
 /* OPTION ITEM */

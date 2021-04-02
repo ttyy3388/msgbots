@@ -19,7 +19,7 @@ public class Button extends javafx.scene.control.Button {
 	private static final String ACTION_STYLE_CLASS = "action";
 	private static final String CANCEL_STYLE_CLASS = "cancel";
 
-	private static final int DEFAULT_MIN_WIDTH = 50;
+	// private static final int DEFAULT_MIN_WIDTH = 50;
 	private static final int DEFAULT_MIN_HEIGHT = 20;
 
 	private static final int DEFAULT_PREF_WIDTH = 70;
@@ -38,7 +38,7 @@ public class Button extends javafx.scene.control.Button {
 			pseudoClassStateChanged(STYLED_PSEUDO_CLASS, getStyled());
 
 			if (getStyled()) {
-				setMinWidth(DEFAULT_MIN_WIDTH);
+				// setMinWidth(DEFAULT_MIN_WIDTH);
 				setMinHeight(DEFAULT_MIN_HEIGHT);
 				// setPrefWidth(DEFAULT_PREF_WIDTH);
 				setPrefHeight(DEFAULT_PREF_HEIGHT);

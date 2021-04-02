@@ -201,10 +201,10 @@
 }
 
 /* OPTION ITEM */
-.option-item .text {
+/* .option-item .text {
 	/* JavaFX 버그 때문에 LCD로 회색 표시하면 글씨가 흐리게보여서 GRAY로 대체 */
-	-fx-font-smoothing-type: gray;
-}
+	/* -fx-font-smoothing-type: gray;
+} */
 .option-item .label,
 .option-item .check-box {
 	-fx-text-fill: #CCCCCC;

@@ -21,14 +21,14 @@ public class BotView extends ListView<BotItem> implements Control {
 			}),
 			new Separator(),
 			new MenuItem("Show in Explorer", "Shift + Alt + R", event -> {
-				OpenDesktopAction.execute(SharedValues.getFile("BOTS_FOLDER_FILE"));
+				OpenDesktopAction.execute(SharedValues.getFile("BOT_FOLDER_FILE"));
 			}),
 			new Separator(),
 			new MenuItem("Copy Path", "Ctrl + Alt + C", event -> {
-				CopyStringAction.execute(SharedValues.getString("BOTS_FOLDER_PATH"));
+				CopyStringAction.execute(SharedValues.getString("BOT_FOLDER_PATH"));
 			}),
 			new MenuItem("Copy Relative Path", "Ctrl + Shift + C", event -> {
-				CopyStringAction.execute(SharedValues.getString("BOTS_FOLDER_PATH"));
+				CopyStringAction.execute(SharedValues.getString("BOT_FOLDER_PATH"));
 			})
 		);
 		menu.setNode(this);

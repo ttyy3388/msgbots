@@ -4,7 +4,7 @@ public class TextField extends javafx.scene.control.TextField {
 	private static final String DEFAULT_STYLE_CLASS = "text-field";
 
     // private static final int DEFAULT_PREF_WIDTH = 200;
-    // private static final int DEFAULT_PREF_HEIGHT = 25;
+    // private static final int DEFAULT_MAX_HEIGHT = 25;
 
 	private final ContextMenu menu = new ContextMenu(
 		new MenuItem("Undo", "Ctrl + Z" , event -> this.undo()).disable(true).enable(undoableProperty()),
@@ -19,6 +19,7 @@ public class TextField extends javafx.scene.control.TextField {
 
 	public TextField() {
 		setContextMenu(menu);
+		// setMaxHeight(DEFAULT_MAX_HEIGHT);
 		// setMinHeight(DEFAULT_PREF_HEIGHT);
 		// setPrefWidth(DEFAULT_PREF_WIDTH);
 		// setPrefHeight(DEFAULT_PREF_HEIGHT);

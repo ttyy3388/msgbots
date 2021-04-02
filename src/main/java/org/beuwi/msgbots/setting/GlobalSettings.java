@@ -1,5 +1,10 @@
 package org.beuwi.msgbots.setting;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.event.EventHandler;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.openapi.JSONObject;
 import org.beuwi.msgbots.platform.gui.base.Listener;
@@ -45,6 +50,12 @@ public class GlobalSettings {
 	// 파일 변경 이벤트 시 호출
 	// private static final BooleanProperty changedProperty = new SimpleBooleanProperty(false);
 
+	// 외부에서 파일을 변경한 것에 한해 이벤트가 발생함
+	public static void addChangeListener(Listener listener) {
+		System.out.println(listener);
+		listeners.add(listener);
+	}
+
 	static {
 		// 생성된 파일이 있다면 값들을 불러옴
 		if (userFile.exists()) {
@@ -60,6 +71,7 @@ public class GlobalSettings {
 		FileManager.link(SharedValues.getValue("DATA_FOLDER_FILE"), () -> {
 			// 파일이 존재한다면 | 새로 생성됐다면 | 변경됐다면
 			if (userFile.exists()) {
+				listeners.forEach(Listener::changed); // Change Event
 				userData = new JSONObject(userFile);
 				// 혹시나 유저 데이터가 입력이 안된 경우가 있다면 ?
 				if (userData == null) {

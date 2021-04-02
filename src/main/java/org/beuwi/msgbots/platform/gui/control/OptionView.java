@@ -37,7 +37,14 @@ public class OptionView extends VBox {
 		// contentArea.getStyleClass().add("content");
 
 		titleProperty().addListener(change -> {
-			titleLabel.setText(getTitle());
+			String title = getTitle();
+			if (title != null) {
+				titleLabel.setText(title);
+				getChildren().add(0, titleLabel);
+			}
+			else {
+				getChildren().remove(titleLabel);
+			}
 		});
 		getItems().addListener((ListChangeListener<Node>) change -> {
 			contentArea.getChildren().setAll(getItems());
@@ -45,7 +52,7 @@ public class OptionView extends VBox {
 
 		setSpacing(DEFAULT_SPACING_VALUE);
 		getChildren().setAll(
-			titleLabel,
+			// titleLabel, : 제목이 입력돼야 추가되도록 변경함
 			contentArea
 		);
 		getStyleClass().addAll(DEFAULT_STYLE_CLASS);

@@ -14,8 +14,8 @@ public class UpdateBotsPathAction implements Action {
         if (path == null) {
             throw new NullPointerException("Bots path must not be null");
         }
-        SharedValues.setValue("BOTS_FOLDER_PATH", path);
-        SharedValues.setValue("BOTS_FOLDER_FILE", new File(path));
+        SharedValues.setValue("BOT_FOLDER_PATH", path);
+        SharedValues.setValue("BOT_FOLDER_FILE", new File(path));
 
         RefreshBotListAction.execute();
     }

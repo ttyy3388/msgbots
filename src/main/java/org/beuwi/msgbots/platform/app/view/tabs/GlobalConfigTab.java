@@ -89,7 +89,7 @@ public class GlobalConfigTab implements View {
 			root = GlobalConfigTab.getComponent().getTab("Bots");
 			control = (NaviView) root.getContent();
 
-			FileManager.link(SharedValues.getFile("BOTS_FOLDER_FILE"), () -> {
+			FileManager.link(SharedValues.getFile("BOT_FOLDER_FILE"), () -> {
 				refreshBotList();
 			});
 

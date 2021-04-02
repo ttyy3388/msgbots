@@ -42,6 +42,7 @@ public class FileWatcher extends Thread {
 						WATCH_KEY = WATCH_SERVICE.take();
 					}
 					catch (InterruptedException e) {
+						e.printStackTrace();
 						break;
 					}
 

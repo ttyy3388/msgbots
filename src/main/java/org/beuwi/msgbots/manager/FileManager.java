@@ -35,15 +35,15 @@ public class FileManager {
 	} */
 
 	public static File[] getBotList() {
-		return SharedValues.getFile("BOTS_FOLDER_FILE").listFiles();
+		return SharedValues.getFile("BOT_FOLDER_FILE").listFiles();
 	}
 
 	public static File[] getBotFiles() {
-		return SharedValues.getFile("BOTS_FOLDER_FILE").listFiles();
+		return SharedValues.getFile("BOT_FOLDER_FILE").listFiles();
 	}
 
 	/* public static String[] getBotNames() {
-		File[] files = SharedValues.BOTS_FOLDER_FILE.listFiles(File::isDirectory);
+		File[] files = SharedValues.BOT_FOLDER_FILE.listFiles(File::isDirectory);
 		String[] names = new String[files.length];
 
 		for (int i = 0 ; i < files.length ; i ++) {
@@ -67,7 +67,7 @@ public class FileManager {
 	}
 
 	public static List<String> getBotNames() {
-		File[] files = SharedValues.getFile("BOTS_FOLDER_FILE").listFiles(File::isDirectory);
+		File[] files = SharedValues.getFile("BOT_FOLDER_FILE").listFiles(File::isDirectory);
 		List<String> names = new ArrayList<>();
 
 		for (File file : files) {
@@ -80,7 +80,7 @@ public class FileManager {
 	}
 
 	public static File getBotFolder(String name) {
-		return new File(SharedValues.getFile("BOTS_FOLDER_FILE") + File.separator  + getBaseName(name));
+		return new File(SharedValues.getFile("BOT_FOLDER_FILE") + File.separator  + getBaseName(name));
 	}
 
 	public static File getBotScript(String name) {
@@ -110,6 +110,7 @@ public class FileManager {
 		try {
 			file.createNewFile();
 
+			// 마지막 줄에 개행 추가하는 부분
 			if (content != null) {
 				if (content.substring(content.length() -1) != System.lineSeparator()) {
 					content += System.getProperty("line.separator");
@@ -176,7 +177,7 @@ public class FileManager {
 				return null;
 			}
 
-			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputReader));
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputReader, "UTF-8"));
 			String line = "", text = bufferedReader.readLine();
 
 			while ((line = bufferedReader.readLine()) != null) {

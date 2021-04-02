@@ -8,13 +8,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 
 import javafx.scene.layout.Priority;
-import javafx.stage.FileChooser;
 
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.action.WriteImageFileAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenFileChooserAction;
-import org.beuwi.msgbots.platform.app.view.dialogs.ChooseBotsPathDialog;
+import org.beuwi.msgbots.platform.app.view.dialogs.ChooseFileDialog;
 import org.beuwi.msgbots.platform.gui.editor.Editor;
 import org.beuwi.msgbots.platform.gui.enums.TextType;
 import org.beuwi.msgbots.platform.gui.enums.ThemeType;
@@ -22,6 +21,7 @@ import org.beuwi.msgbots.platform.gui.layout.StackPane;
 import org.beuwi.msgbots.platform.gui.layout.VBox;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 import org.beuwi.msgbots.platform.util.SharedValues;
+import org.beuwi.msgbots.setting.GlobalSettings;
 import org.beuwi.msgbots.setting.SharedSettings;
 
 import java.io.File;
@@ -109,16 +109,15 @@ public class OptionItem extends VBox {
 
 				}
 			} */
-			if (getAddress().equals("control:button:choose_bots_path")){
+			if (getAddress().equals("control:button:choose_bot_path")){
 				control.setOnAction(event->{
-					OpenDialogBoxAction.execute(new ChooseBotsPathDialog());
+					// OpenDialogBoxAction.execute(new ChooseFileDialog());
 				});
 			}
 			else if (getAddress().equals("control:button:change_bot_profile")) {
 				control.setOnAction(event -> {
 					File file = OpenFileChooserAction.execute("Change Bot Profile",
-						new FileChooser.ExtensionFilter("Image File", "*.jpg", "*.png", "*.gif")
-					);
+						"Image File", "*.jpg", "*.png", "*.gif");
 					if (file != null) {
 						WriteImageFileAction.execute(file, "png", SharedValues.getFile("PROFILE_BOT_FILE"));
 					}
@@ -127,8 +126,7 @@ public class OptionItem extends VBox {
 			else if (getAddress().equals("control:button:change_sender_profile")) {
 				control.setOnAction(event -> {
 					File file = OpenFileChooserAction.execute("Change Sender Profile",
-						new FileChooser.ExtensionFilter("Image File", "*.jpg", "*.png", "*.gif")
-					);
+						"Image File", "*.jpg", "*.png", "*.gif");
 					if (file != null) {
 						WriteImageFileAction.execute(file, "png", SharedValues.getFile("PROFILE_SENDER_FILE"));
 					}
@@ -194,6 +192,9 @@ public class OptionItem extends VBox {
 	}
 
 	public OptionItem(/* @NamedArg("type") PrefType type */) {
+		// 외부에서 파일 값을 변경했을 경우
+		GlobalSettings.addChangeListener(this::initValue);
+
 		titleLabel.getStyleClass().add("title");
 		contentPanel.getStyleClass().add("content");
 		contentPanel.setAlignment(Pos.CENTER_LEFT);

@@ -30,11 +30,13 @@ public class SharedValues /* implements java.io.Serializable */ {
 			/* Paths */
 			values.put(false, "MAIN_FOLDER_PATH", System.getProperty("user.dir"));
 			values.put(false, "DATA_FOLDER_PATH", System.getProperty("user.dir") + File.separator + "data");
-			values.put(true, "BOTS_FOLDER_PATH", System.getProperty("user.dir") + File.separator + "bots");
+			values.put(true, "BOT_FOLDER_PATH", System.getProperty("user.dir") + File.separator + "bot");
+			values.put(true, "SAVE_FOLDER_PATH", System.getProperty("user.dir") + File.separator + "save");
 
 			values.put(false, "MAIN_FOLDER_FILE", new File(getString("MAIN_FOLDER_PATH"))); // 프로그램 폴더는 경로 강제
 			values.put(false, "DATA_FOLDER_FILE", new File(getString("DATA_FOLDER_PATH"))); // 데이터 폴더도 경로 강제
-			values.put(true, "BOTS_FOLDER_FILE", new File(getString("BOTS_FOLDER_PATH"))); // 봇 폴더는 커스텀 가능
+			values.put(true, "BOT_FOLDER_FILE", new File(getString("BOT_FOLDER_PATH")));  // 봇 폴더는 커스텀 가능
+			values.put(false, "SAVE_FOLDER_FILE", new File(getString("SAVE_FOLDER_PATH"))); // 세이브 폴더도 커스텀 가능
 
 			// put(false, "CUSTOM_THEME_PATH", "custom_theme.css"); // Strings.xml로 옮기기
 			values.put(false, "PROFILE_SENDER_PATH", "profile_sender.png"); // Strings.xml로 옮기기

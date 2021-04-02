@@ -4,6 +4,8 @@ import javafx.application.Platform;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.view.MainView;
@@ -17,22 +19,27 @@ import org.beuwi.msgbots.setting.GlobalSettings;
 
 import java.awt.Toolkit;
 import java.io.File;
+import java.util.List;
 
-public class ChooseBotsPathDialog extends DialogWrap {
+public class ChooseFileDialog extends DialogWrap {
     private final ObservableMap<String, Object> namespace;
     private final FormLoader loader;
     private final VBox root;
 
-    @FXML private TextField txfFolderPath;
-    @FXML private Button btnChooseDir;
+    @FXML private TextField txfFilePath;
+    @FXML private Button btnChooseFile;
 
     private final Button btnUpdate;
     private final Button btnCancel;
 
     private File file;
 
-    public ChooseBotsPathDialog() {
-        loader = new FormLoader("dialog", "choose-botspath-dialog", this);
+    public ChooseFileDialog(String description, String... extensions) {
+        this(new ExtensionFilter(description, extensions));
+    }
+
+    public ChooseFileDialog(ExtensionFilter filter) {
+        loader = new FormLoader("dialog", "choose-file-dialog", this);
         namespace = loader.getNamespace();
         root = loader.getRoot();
 
@@ -41,48 +48,34 @@ public class ChooseBotsPathDialog extends DialogWrap {
 
         btnUpdate.setText("Update");
 
-        btnChooseDir.setOnAction(event -> {
-            DirectoryChooser directoryChooser = new DirectoryChooser();
-            directoryChooser.setTitle("Choose Directory");
+        btnChooseFile.setOnAction(event -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Choose File");
 
-            file = directoryChooser.showDialog(MainView.getStage());
+            file = fileChooser.showOpenDialog(MainView.getStage());
 
             if (file != null) {
-                txfFolderPath.setText(file.getAbsolutePath());
+                txfFilePath.setText(file.getAbsolutePath());
             }
         });
 
-        String currentPath = SharedValues.getString("BOTS_FOLDER_PATH");
-        // 현재 지정된 경로가 있다면 그 경로를 보여줌 (기본값 : 프로그램폴더)
-        if (currentPath != null) {
-            txfFolderPath.setText(currentPath);
-        }
-        txfFolderPath.textProperty().addListener(change -> {
-            btnUpdate.setDisable(txfFolderPath.getText().isEmpty());
+        txfFilePath.textProperty().addListener(change -> {
+            btnUpdate.setDisable(txfFilePath.getText().isEmpty());
         });
 
         Platform.runLater(() -> {
-            txfFolderPath.requestFocus();
+            txfFilePath.requestFocus();
         });
     }
 
     @Override
     protected void open() {
         setContent(root);
-        setTitle("Choose Bots Path");
+        setTitle("Choose File");
     }
 
     @Override
     protected void action() {
-        if (txfFolderPath.getText().isEmpty()) {
-            return;
-        }
-        String path = txfFolderPath.getText();
-        if (!(new File(path).isDirectory())) {
-            Toolkit.getDefaultToolkit().beep();
-            return;
-        }
-        GlobalSettings.setData("program:bots_path", path);
-        UpdateBotsPathAction.execute(path);
+
     }
 }

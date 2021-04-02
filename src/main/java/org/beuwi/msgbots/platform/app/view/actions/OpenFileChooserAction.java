@@ -1,6 +1,8 @@
 package org.beuwi.msgbots.platform.app.view.actions;
 
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+
 import org.beuwi.msgbots.platform.app.impl.Action;
 import org.beuwi.msgbots.platform.app.view.MainView;
 
@@ -11,7 +13,11 @@ public class OpenFileChooserAction implements Action {
 	public void init() {
 	}
 
-	public static File execute(String title, FileChooser.ExtensionFilter filter) {
+	public static File execute(String title, String description, String... extensions) {
+		return execute(title, new ExtensionFilter(description, extensions));
+	}
+
+	public static File execute(String title, ExtensionFilter filter) {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.getExtensionFilters().add(filter);
 		fileChooser.setTitle(title);
