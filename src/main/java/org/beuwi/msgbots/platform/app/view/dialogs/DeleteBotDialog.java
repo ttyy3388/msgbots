@@ -1,7 +1,9 @@
 package org.beuwi.msgbots.platform.app.view.dialogs;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 
 import org.beuwi.msgbots.openapi.FormLoader;

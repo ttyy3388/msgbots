@@ -23,7 +23,7 @@ public class ImportBotDialog extends DialogWrap {
 	private final VBox root;
 
 	@FXML private TextField txfScriptName;
-	@FXML private Button btnScriptOpen;
+	@FXML private Button btnChooseScript;
 
 	// Use Unified Parameters
 	@FXML private CheckBox chkIsUnified;
@@ -46,7 +46,7 @@ public class ImportBotDialog extends DialogWrap {
 
 		btnImport.setText("Import");
 
-		btnScriptOpen.setOnAction(event -> {
+		btnChooseScript.setOnAction(event -> {
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JavaScript File", "*.js"));
 			fileChooser.setTitle("Import Script");
@@ -63,7 +63,7 @@ public class ImportBotDialog extends DialogWrap {
 		});
 
 		Platform.runLater(() -> {
-			txfScriptName.requestFocus();
+			btnChooseScript.requestFocus();
 		});
 	}
 

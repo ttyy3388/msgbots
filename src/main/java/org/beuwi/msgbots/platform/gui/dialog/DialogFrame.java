@@ -1,5 +1,6 @@
 package org.beuwi.msgbots.platform.gui.dialog;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -7,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import org.beuwi.msgbots.openapi.FormLoader;
@@ -68,7 +70,7 @@ public abstract class DialogFrame extends BorderPane {
 	// private Stage owner = null; // Default
 
 	private String title;
-	private Node content;
+	private Pane content;
 	private String footerText;
 
 	public DialogFrame() {
@@ -98,7 +100,7 @@ public abstract class DialogFrame extends BorderPane {
 		this.title = title;
 	}
 
-	public void setContent(Node content) {
+	public void setContent(Pane content) {
 		this.content = content;
 	}
 
@@ -236,11 +238,8 @@ public abstract class DialogFrame extends BorderPane {
 
 		stage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
 			switch (event.getCode()) {
-				case ESCAPE : stage.close(); break;
-				case ENTER :
-					this.daction();
-					this.dclose();
-					break;
+				case ESCAPE : dclose(); break;
+				case ENTER : daction(); break;
 			}
 		});
 
@@ -250,6 +249,12 @@ public abstract class DialogFrame extends BorderPane {
 		frame.setTitle(title);
 		frame.setType(WindowType.DIALOG);
 		frame.create();
+
+		// 다이얼 로그 박스에서 따로 포커스를 요청하지 않는 이상
+		// 윈도우 닫기 버튼에 포커스가 돼 있어서 엔터키 시 액션 함수가 실행되는게 아닌 그냥 닫기가 됨
+		// 그래서 해당 이유로 인해 다이얼로그에 포커스를 넘김
+		content.requestFocus();
+		// 아마 다이얼 로그 박스에서 포커스를 요청하려면 "Platform.runLater"를 이용해야 할 거임
 	}
 
 	public void dclose() {
