@@ -48,14 +48,17 @@ public class SharedValues /* implements java.io.Serializable */ {
 			values.put(false, "PROGRAM_DATA_PATH", "program_data.json"); // Strings.xml로 옮기기
 
 			// 아래 파일들은 생성이 안됐다면(유저가 값을 변경할 적이 없다면) 초기값은 NULL임
+			// ㄴ 초기값은 리소스에 내두고 파일 변경 시 데이터 폴더에 생성하는 방식으로 했었으나
+			// ㄴ 그렇게 하면 곳곳에 예외에 관한 코드를 작성해야 하기에 그렇게 까지 할 필요는 없을 거 같아 기존 방식 이용
+			// ㄴ 따라서 "04월 03"일부터 임시로 데이터 폴더에 처음부터 생성된 상태로 내뒀음
 			// put("CUSTOM_THEME_FILE", FileManager.getDataFile(getString("USER_CUSTOM_THEME_PATH"));
-			values.put(false, "PROFILE_SENDER_FILE", FileManager.getDataFile(getString("PROFILE_SENDER_PATH")));
-			values.put(false, "PROFILE_BOT_FILE", FileManager.getDataFile(getString("PROFILE_BOT_PATH")));
-			values.put(false, "GLOBAL_LOG_FILE", FileManager.getDataFile(getString("GLOBAL_LOG_PATH")));
-			values.put(false, "GLOBAL_CONFIG_FILE", FileManager.getDataFile(getString("GLOBAL_CONFIG_PATH")));
-			values.put(false, "SCRIPT_DEFAULT_FILE", FileManager.getDataFile(getString("SCRIPT_DEFAULT_PATH")));
-			values.put(false, "SCRIPT_UNIFIED_FILE", FileManager.getDataFile(getString("SCRIPT_UNIFIED_PATH")));
-			values.put(false, "PROGRAM_DATA_FILE", FileManager.getDataFile(getString("PROGRAM_DATA_PATH")));
+			values.put(true, "PROFILE_SENDER_FILE", FileManager.getDataFile(getString("PROFILE_SENDER_PATH")));
+			values.put(true, "PROFILE_BOT_FILE", FileManager.getDataFile(getString("PROFILE_BOT_PATH")));
+			values.put(true, "GLOBAL_LOG_FILE", FileManager.getDataFile(getString("GLOBAL_LOG_PATH")));
+			values.put(true, "GLOBAL_CONFIG_FILE", FileManager.getDataFile(getString("GLOBAL_CONFIG_PATH")));
+			values.put(true, "SCRIPT_DEFAULT_FILE", FileManager.getDataFile(getString("SCRIPT_DEFAULT_PATH")));
+			values.put(true, "SCRIPT_UNIFIED_FILE", FileManager.getDataFile(getString("SCRIPT_UNIFIED_PATH")));
+			values.put(true, "PROGRAM_DATA_FILE", FileManager.getDataFile(getString("PROGRAM_DATA_PATH")));
 		}
 		catch (Exception e) {
 			e.printStackTrace();

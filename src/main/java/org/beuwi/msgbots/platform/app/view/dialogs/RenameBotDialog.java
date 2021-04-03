@@ -59,11 +59,13 @@ public class RenameBotDialog extends DialogWrap {
 	}
 
 	@Override
-	protected void action() {
+	protected boolean action() {
 		if (txfScriptName.getText().isEmpty()) {
-			return ;
+			return false;
 		}
 
 		RenameBotAction.execute(name, txfScriptName.getText());
+
+		return true;
 	}
 }

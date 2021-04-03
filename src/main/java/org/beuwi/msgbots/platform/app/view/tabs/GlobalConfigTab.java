@@ -32,6 +32,8 @@ public class GlobalConfigTab implements View {
 		root = loader.getRoot();
 		component = loader.getComponent();
 
+		component.selectTab(0);
+
 		// new ProgramNaviItem().init();
 		// new KeymapNaviItem().init();
 		// new DesignNaviItem().init();

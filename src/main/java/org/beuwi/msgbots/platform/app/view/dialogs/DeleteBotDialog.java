@@ -49,7 +49,8 @@ public class DeleteBotDialog extends DialogWrap {
 	}
 
 	@Override
-	protected void action() {
+	protected boolean action() {
 		DeleteBotAction.execute(name);
+		return true;
 	}
 }

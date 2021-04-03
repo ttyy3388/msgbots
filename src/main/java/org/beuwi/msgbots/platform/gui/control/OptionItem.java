@@ -4,6 +4,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 
@@ -25,30 +26,34 @@ import org.beuwi.msgbots.setting.GlobalSettings;
 import org.beuwi.msgbots.setting.SharedSettings;
 
 import java.io.File;
+import java.util.List;
 
 // Option Box
-public class OptionItem extends VBox {
+public class OptionItem extends VBox<Node> {
 	private static final String DEFAULT_STYLE_CLASS = "option-item";
 
 	// private static final Insets DEFAULT_PADDING_VALUE = new Insets(10, 0, 10, 10);
-	private static final int DEFAULT_SPACING_VALUE = 10;
+	// private static final Insets DEFAULT_MARGIN_VALUE = new Insets(15);
+	private static final int DEFAULT_SPACING_VALUE = 5;
 
 	// Title [ Content ]
 	private final StringProperty titleProperty = new SimpleStringProperty();
 	private final ObjectProperty<Node> contentProperty = new SimpleObjectProperty<>();
+	private final StringProperty textProperty = new SimpleStringProperty();
 
 	// address : "type:head:value > "global:program:start_auto_compile"
 	private final StringProperty addressProperty = new SimpleStringProperty();
 	// value start_auto_compile
 	// private final StringProperty valueProperty = new SimpleStringProperty();
 
-	private final Label titleLabel = new Label();
-	private final StackPane contentPanel = new StackPane();
+	private final Label titleLabel = new Label(); // 간단한 제목 (밝음)
+	private final StackPane contentArea = new StackPane();
+	private final Label textLabel = new Label(); // 자세한 설명 (흐림)
 
 	private OptionView parent;
 
 	{
-		VBox.setVgrow(contentPanel, Priority.ALWAYS);
+		VBox.setVgrow(contentArea, Priority.ALWAYS);
 	}
 
 	public void initValue() {
@@ -60,7 +65,10 @@ public class OptionItem extends VBox {
 		if (getContent() instanceof Editor) {
 			Editor control = (Editor) getContent();
 			if (getAddress().equals("control:editor:edit_script_default")) {
-				String content;
+				// 초기값은 리소스에 내두고 파일 변경 시 데이터 폴더에 생성하는 방식으로 했었으나
+				// 그렇게 하면 곳곳에 예외에 관한 코드를 작성해야 하기에 그렇게 까지 할 필요는 없을 거 같아 기존 방식 이용
+				control.setFile(SharedValues.getFile("SCRIPT_DEFAULT_FILE"));
+				/* String content;
 				// 파일이 존재한다면(수정했던 이력이 있다면)
 				if (SharedValues.getFile("SCRIPT_DEFAULT_FILE").exists()) {
 					content = FileManager.read(SharedValues.getFile("SCRIPT_DEFAULT_FILE"));
@@ -72,16 +80,12 @@ public class OptionItem extends VBox {
 				// 에디터는 포커스 이벤트가 안오므로 텍스트 변경으로 인식
 				control.textProperty().addListener(change -> {
 					File file = SharedValues.getFile("SCRIPT_DEFAULT_FILE");
-					// 처음 수정한다면
-					/* if (!file.exists()) {
-						FileManager.save(file, control.getText());
-					} */
 					FileManager.save(file, control.getText());
-				});
-				titleLabel.getStyleClass().remove("title");
+				}); */
 			}
 			else if (getAddress().equals("control:editor:edit_script_unified")) {
-				String content;
+				control.setFile(SharedValues.getFile("SCRIPT_UNIFIED_FILE"));
+				/* String content;
 				// 파일이 존재한다면(수정했던 이력이 있다면)
 				if (SharedValues.getFile("SCRIPT_UNIFIED_FILE").exists()) {
 					content = FileManager.read(SharedValues.getFile("SCRIPT_UNIFIED_FILE"));
@@ -93,13 +97,8 @@ public class OptionItem extends VBox {
 				// 에디터는 포커스 이벤트가 안오므로 텍스트 변경으로 인식
 				control.textProperty().addListener(change -> {
 					File file = SharedValues.getFile("SCRIPT_UNIFIED_FILE");
-					// 처음 수정한다면
-					/* if (!file.exists()) {
-						FileManager.save(file, control.getText());
-					} */
 					FileManager.save(file, control.getText());
-				});
-				titleLabel.getStyleClass().remove("title");
+				}); */
 			}
 		}
 		if (getContent() instanceof Button) {
@@ -192,26 +191,52 @@ public class OptionItem extends VBox {
 	}
 
 	public OptionItem(/* @NamedArg("type") PrefType type */) {
-		// 외부에서 파일 값을 변경했을 경우
-		GlobalSettings.addChangeListener(this::initValue);
+		// 외부에서 파일 값을 변경했을 경우 : 보류(GlobalSettings 참조)
+		// GlobalSettings.addChangeListener(this::initValue);
 
-		titleLabel.getStyleClass().add("title");
-		contentPanel.getStyleClass().add("content");
-		contentPanel.setAlignment(Pos.CENTER_LEFT);
+		titleLabel.getStyleClass().add("title-label");
+		textLabel.getStyleClass().add("text-label");
+		contentArea.setAlignment(Pos.CENTER_LEFT);
+		contentArea.getStyleClass().add("content-area");
 
 		titleProperty().addListener(change -> {
 			titleLabel.setText(getTitle());
 		});
 
+		textProperty().addListener(change -> {
+			String text = getText();
+			List<Node> list = getChildren();
+			// 텍스트가 없는 경우 목록에서 제거함(빈공간이 남기때문에 제거)
+			if (text == null) {
+				// 목록에 이미 포함 돼 있다면 제거
+				if (list.contains(textLabel)) {
+					list.remove(textLabel);
+				}
+			}
+			// 텍스트가 입력된 경우
+			else {
+				// 목록에 없다면 두 번째에 추가
+				if (!list.contains(textLabel)) {
+					list.add(2, textLabel);
+				}
+				textLabel.setText(getText());
+			}
+		});
+
 		contentProperty().addListener(change -> {
-			contentPanel.getChildren().setAll(getContent());
+			contentArea.getChildren().setAll(getContent());
 		});
 
 		addressProperty().addListener(event -> initValue());
 
+		// setPadding(DEFAULT_MARGIN_VALUE);
 		// setPadding(DEFAULT_PADDING_VALUE);
 		setSpacing(DEFAULT_SPACING_VALUE);
-		getChildren().setAll(titleLabel, contentPanel);
+		getChildren().setAll(
+			titleLabel,
+			contentArea
+			// textLabel
+		);
 		getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 
@@ -224,6 +249,9 @@ public class OptionItem extends VBox {
 	public void setTitle(String title) {
 		titleProperty.set(title);
 	}
+	public void setText(String text) {
+		textProperty.set(text);
+	}
 	public void setContent(Node content) {
 		contentProperty.set(content);
 	}
@@ -234,6 +262,9 @@ public class OptionItem extends VBox {
 	public String getTitle() {
 		return titleProperty.get();
 	}
+	public String getText() {
+		return textProperty.get();
+	}
 	public String getAddress() {
 		return addressProperty.get();
 	}
@@ -243,6 +274,9 @@ public class OptionItem extends VBox {
 
 	public StringProperty titleProperty() {
 		return titleProperty;
+	}
+	public StringProperty textProperty() {
+		return textProperty;
 	}
 	public StringProperty addressProperty() {
 		return addressProperty;

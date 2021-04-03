@@ -76,9 +76,28 @@ public class Launcher extends Application {
 	@Override
 	public void start(Stage stage) {
 		try {
-			registryListeners();
+			// 제일 먼저 세팅된 값들을 업데이트 시켜줘야 함
+			updateSharedValues();
 
-			// 유저가 지정한 경로가 있다면
+			// 원래는 봇 폴더가 지정된지의 여부에 따라 다이얼로그를 띄었으나
+			// "Welcome to Program" 다이얼로그를 만든 후 "show_start_dialog"에 따라 구분함
+			// 해당 다이얼로그에서 경로를 따로 지정하지 않고 넘어갔다면 각 폴더(봇, 저장)를 기본 폴더로 지정한거로 인식함
+			if (GlobalSettings.getBoolean("program:show_start_dialog")) {
+				StartProgramDialog dialog = new StartProgramDialog();
+				dialog.setOnAction(event -> {
+					updateSharedValues(); // 설정이 변경되었으므로 한번 더 업데이트
+					startProgram(stage);
+					// 원래는 "UpdateBotsPathAction" 클래스를 통해 호출되나
+					// BotView가 null인 상태이므로 메인 뷰를 로드한 후 직접 호출
+					RefreshBotListAction.execute();
+				});
+				OpenDialogBoxAction.execute(dialog);
+			}
+			else {
+				startProgram(stage);
+			}
+
+			/* // 유저가 지정한 경로가 있다면
 			String path = GlobalSettings.getString("program:bot_dir_path");
 
 			// 지정한 경로가 없거나 폴더가 아니라 파일인 경우
@@ -94,11 +113,11 @@ public class Launcher extends Application {
 			}
 			else {
 				// 경로 업데이트
-				SharedValues.setValue("BOT_BOLDER_FILE", path);
+				SharedValues.setValue("BOT_FOLDER_FILE", path);
 				// 폴더 업데이트
 				SharedValues.setValue("BOT_FOLDER_FILE", new File(path));
 				startProgram(stage);
-			}
+			} */
 		}
 		catch (Throwable e) {
 			try {
@@ -111,14 +130,14 @@ public class Launcher extends Application {
 		}
 	}
 
-	private void registryListeners() {
+	/* private void registryListeners() {
 		GlobalSettings.addChangeListener(() -> {
 			ThemeType theme = ThemeType.parse(GlobalSettings.getString("program:color_theme"));
-			/* 프로그램 테마가 변경 됐다면 모든 윈도우의 테마를 바꿈
-			 * 원래는 메인 윈도우 위에 띄우는 것이므로
-			 * 메인 윈도우의 테마만 변경해주면 다이얼로그들도 테마가 바뀌나
-			 * 프로그램 시작 이전에 뜬 다이얼로그는 메인 스테이지가 없으므로(Null)
-			 * 윈도우들을 가져와서 직접 씬을 가져와서 적용시켜야 함 */
+			// 프로그램 테마가 변경 됐다면 모든 윈도우의 테마를 바꿈
+			// 원래는 메인 윈도우 위에 띄우는 것이므로
+			// 메인 윈도우의 테마만 변경해주면 다이얼로그들도 테마가 바뀌나
+			// 프로그램 시작 이전에 뜬 다이얼로그는 메인 스테이지가 없으므로(Null)
+			// 윈도우들을 가져와서 직접 씬을 가져와서 적용시켜야 함
 			// 이미 떠 있는 다이얼로그에 관해서는 신경쓰지 않음
 			if (MainView.getStage() == null) {
 				List<Window> windows = Window.getWindows();
@@ -133,11 +152,28 @@ public class Launcher extends Application {
 				ChangeColorThemeAction.execute(theme);
 			}
 		});
-	}
+	} */
 	private void startProgram(Stage stage) {
+		// updateSharedValues();
 		registryKeyMaps(stage);
 		startFileWatcher();
 		startMainView(stage);
+	}
+	private void updateSharedValues() {
+		// 봇 폴더를 유저가 지정한 적이 있다면 업데이트함
+		String botDirPath = GlobalSettings.getString("program:bot_dir_path");
+		if (botDirPath != null) {
+			System.out.println("Updated Value {BOT_FOLDER_PATH}: " + botDirPath);
+			SharedValues.setValue("BOT_FOLDER_PATH", botDirPath);
+			SharedValues.setValue("BOT_FOLDER_FILE", new File(botDirPath));
+		}
+		// 저장 폴더를 유저가 지정한 적이 있다면 업데이트함
+		String saveDirPath = GlobalSettings.getString("program:save_dir_path");
+		if (saveDirPath != null) {
+			System.out.println("Updated Value {SAVE_FOLDER_PATH}: " + botDirPath);
+			SharedValues.setValue("SAVE_FOLDER_PATH", saveDirPath);
+			SharedValues.setValue("SAVE_FOLDER_FILE", new File(saveDirPath));
+		}
 	}
 	private void registryKeyMaps(Stage stage) {
 		List<KeyMap> keyMaps = GlobalKeyMaps.getKeyMaps();
@@ -183,6 +219,7 @@ public class Launcher extends Application {
 					List<WatchEvent<?>> events = WATCH_KEY.pollEvents();
 
 					for (WatchEvent<?> event : events) {
+						// 추후 경로 변경 시 데이터 파일 업로드 하는 기능 구현해야 함 : "SharedValues" 클래스 참고
 						Platform.runLater(() -> {
 							RefreshBotListAction.execute();
 						});

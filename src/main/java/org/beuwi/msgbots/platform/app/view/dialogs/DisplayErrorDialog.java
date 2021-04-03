@@ -58,11 +58,13 @@ public class DisplayErrorDialog extends DialogWrap {
 	}
 
 	@Override
-	protected void action() {
+	protected boolean action() {
 		/* if (txfScriptName.getText().isEmpty()) {
 			return ;
 		} */
 
 		CopyStringAction.execute(txaErrorMessage.getText());
+
+		return true;
 	}
 }

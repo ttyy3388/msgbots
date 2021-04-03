@@ -6,29 +6,15 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Separator?>
 
-<?import org.beuwi.msgbots.platform.gui.control.Button?>
-<?import org.beuwi.msgbots.platform.gui.control.CheckBox?>
-<?import org.beuwi.msgbots.platform.gui.control.ComboBox?>
-<?import org.beuwi.msgbots.platform.gui.control.Label?>
-<?import org.beuwi.msgbots.platform.gui.control.NaviItem?>
-<?import org.beuwi.msgbots.platform.gui.control.NaviView?>
-<?import org.beuwi.msgbots.platform.gui.control.OptionItem?>
-<?import org.beuwi.msgbots.platform.gui.control.OptionView?>
-<?import org.beuwi.msgbots.platform.gui.control.TabItem?>
-<?import org.beuwi.msgbots.platform.gui.control.TextField?>
+<?import org.beuwi.msgbots.platform.gui.control.*?>
 <?import org.beuwi.msgbots.platform.gui.editor.Editor?>
 <?import org.beuwi.msgbots.platform.gui.enums.ThemeType?>
 <?import org.beuwi.msgbots.platform.gui.enums.TextType?>
-<?import org.beuwi.msgbots.platform.gui.layout.AnchorPane?>
-<?import org.beuwi.msgbots.platform.gui.layout.HBox?>
-<?import org.beuwi.msgbots.platform.gui.layout.ScrollPane?>
-<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
-<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
+<?import org.beuwi.msgbots.platform.gui.layout.*?>
 <?import org.beuwi.msgbots.platform.util.SharedValues?>
 
 <?import java.io.File?>
 
-<?import org.beuwi.msgbots.platform.gui.control.ListView?>
 <TabItem text="GLOBAL CONFIG" xmlns:fx="http://javafx.com/fxml">
 	<content>
 		<NaviView styleClass="">
@@ -44,11 +30,12 @@
 												<Button text="Clean Up" styled="true" type="ACTION" minHeight="25.0"></Button>
 											</content>
 										</OptionItem> -->
-										<OptionItem address="control:button:choose_bots_path" title="봇 폴더 경로 변경">
+										<!-- <OptionItem address="control:button:choose_bots_path"
+													title="봇 폴더 경로 변경">
 											<content>
 												<Button text="Change" styled="true" type="ACTION" minHeight="25.0"></Button>
 											</content>
-										</OptionItem>
+										</OptionItem> -->
 										<OptionItem address="global:program:color_theme" title="프로그램 테마 변경">
 											<content>
 												<ComboBox maxWidth="150">
@@ -73,12 +60,14 @@
                                                 </ComboBox>
                                             </content>
                                         </OptionItem> -->
-										<OptionItem address="global:program:start_auto_compile" title="시작 시 자동 컴파일">
+										<OptionItem address="global:program:start_auto_compile"
+													title="시작 시 자동 컴파일">
 											<content>
 												<CheckBox text="앱이 시작되었을 때 전원을 켜둔 스크립트를 자동으로 컴파일 합니다."></CheckBox>
 											</content>
 										</OptionItem>
-										<OptionItem address="global:program:compile_auto_save" title="리로드 시 자동 저장" >
+										<OptionItem address="global:program:compile_auto_save"
+													title="리로드 시 자동 저장">
 											<content>
 												<CheckBox text="리로드할 때 자동으로 세이브를 한 후 리로드를 합니다."></CheckBox>
 											</content>
@@ -87,12 +76,16 @@
 											<content>
 												<HBox spacing="10.0" VBox.vgrow="ALWAYS" minHeight="400.0">
 													<children>
-														<OptionItem address="control:editor:edit_script_default" HBox.hgrow="ALWAYS" title="통합 매개변수 OFF">
+														<OptionItem address="control:editor:edit_script_default"
+																	HBox.hgrow="ALWAYS"
+																	title="통합 매개변수 OFF">
 															<content>
 																<Editor></Editor>
 															</content>
 														</OptionItem>
-														<OptionItem address="control:editor:edit_script_unified" HBox.hgrow="ALWAYS" title="통합 매개변수 ON">
+														<OptionItem address="control:editor:edit_script_unified"
+																	HBox.hgrow="ALWAYS"
+																	title="통합 매개변수 ON">
 															<content>
 																<Editor></Editor>
 															</content>
@@ -127,9 +120,9 @@
 									</items>
 								</OptionView>
 							</content>
-							<StackPane.margin>
+							<!-- <StackPane.margin>
 								<Insets left="15.0"></Insets>
-							</StackPane.margin>
+							</StackPane.margin> -->
 						</ScrollPane>
 					</content>
 				</NaviItem>
@@ -221,9 +214,9 @@
 									</items>
 								</OptionView>
 							</content>
-							<StackPane.margin>
+							<!-- <StackPane.margin>
 								<Insets left="15.0"></Insets>
-							</StackPane.margin>
+							</StackPane.margin> -->
 						</ScrollPane>
 					</content>
 				</NaviItem>
@@ -267,9 +260,9 @@
 									</content>
 								</OptionItem>
 							</items>
-							<StackPane.margin>
+							<!-- <StackPane.margin>
 								<Insets left="15.0"></Insets>
-							</StackPane.margin>
+							</StackPane.margin> -->
 						</OptionView>
 					</content>
 				</NaviItem>

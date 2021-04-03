@@ -34,7 +34,7 @@ public abstract class DialogFrame extends BorderPane {
 
 	// WINDOW
 	@FXML private BorderPane brpWinRoot;
-	@FXML private BorderPane brpWinMain; // Window Content
+	@FXML private BorderPane brpWinContent;
 	@FXML private ImageView imvWinIcon;
 	@FXML private Button btnWinClose;
 	@FXML private Label lblWinTitle;
@@ -44,6 +44,10 @@ public abstract class DialogFrame extends BorderPane {
 	// @FXML private StackPane stpDialogMain;
 	@FXML private ImageView imvDialogIcon;
 	@FXML private HBox<Button> hbxButtonBar;
+
+	// FOOTER
+	@FXML private HBox hbxFooterArea;
+	@FXML private Label lblFooterText;
 
 	@FXML private Button btnAction;
 	@FXML private Button btnCancel;
@@ -65,6 +69,7 @@ public abstract class DialogFrame extends BorderPane {
 
 	private String title;
 	private Node content;
+	private String footerText;
 
 	public DialogFrame() {
 		this(DialogType.NONE);
@@ -164,6 +169,10 @@ public abstract class DialogFrame extends BorderPane {
 		}
 	}
 
+	public HBox getFooterArea() {
+		return hbxFooterArea;
+	}
+
 	public HBox<Button> getButtonBar() {
 		return hbxButtonBar;
 	}
@@ -187,7 +196,7 @@ public abstract class DialogFrame extends BorderPane {
 		super.setCenter(brpWinRoot);
 		event.setMovable(brpWinRoot);
 
-		brpWinMain.setCenter(content);
+		brpWinContent.setCenter(content);
 		lblWinTitle.setText(title);
 
 		btnWinClose.setGraphic(AllSVGIcons.get("Dialog.Close"));
@@ -210,7 +219,7 @@ public abstract class DialogFrame extends BorderPane {
 		switch (type) {
 			// None : 아이콘 미포함
 			case NONE :
-				brpWinMain.getChildren().remove(imvDialogIcon);
+				brpWinContent.getChildren().remove(imvDialogIcon);
 				break;
 
 			// Others : 아이콘 지정
@@ -250,7 +259,7 @@ public abstract class DialogFrame extends BorderPane {
 
 	// 상속용도
 	protected abstract void open();
-	protected abstract void action();
+	protected abstract boolean action();
 	/* public void close() {
 
 	}; */
@@ -266,12 +275,17 @@ public abstract class DialogFrame extends BorderPane {
 	}
 	// 호출용도
 	public void daction() {
-		action();
-		// "setOnAction"이 설정됐으면
-		if (onActionHandler != null) {
-			onActionHandler.handle(null);
+		// 액션이 성공해야지 창이 닫히도록 함
+		// 즉 다이얼로그가 액션에 대한 리턴 값을 넘겨줘야 함
+		boolean result = action();
+		if (result) {
+			// "setOnAction"이 설정됐으면
+			if (onActionHandler != null) {
+				onActionHandler.handle(null);
+			}
+
+			dclose();
 		}
-		dclose();
 	}
 
 	/* private void create() {

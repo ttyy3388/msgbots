@@ -13,6 +13,11 @@
 	-fx-font-size: 12;
 }
 
+/* FONT LABEL */
+.bold {
+	-fx-font-weight: bold;
+}
+
 /* FONT SMOOTHING TYPE */
 .text {
 	/* -fx-font-smoothing-type: gray; */
@@ -169,6 +174,12 @@
 .log-view .list-cell {
 	-fx-padding: 2.5 5 2.5 5;
 }
+
+/* OPTION ITEM */
+/* .option-item {
+	-fx-border-width: 0 0 0 2;
+	-fx-padding: 0 0 0 10;
+} */
 
 /* SEPARATOR */
 .separator .line {

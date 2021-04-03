@@ -33,7 +33,7 @@
 	</top>
 	<center>
 		<!-- Dialog Content -->
-		<BorderPane fx:id="brpWinMain"> <!-- styleClass="content-area" -->
+		<BorderPane fx:id="brpWinContent"> <!-- styleClass="content-area" -->
 			<left>
 				<ImageView fx:id="imvDialogIcon" fitWidth="35.0" fitHeight="35.0">
 					<BorderPane.margin>
@@ -42,10 +42,24 @@
 				</ImageView>
 			</left>
 			<bottom>
-				<HBox fx:id="hbxButtonBar" fittable="true" spacing="10.0" prefHeight="28.0" alignment="CENTER_RIGHT">
+				<HBox fittable="true" prefHeight="28.0">
 					<children>
-						<Button fx:id="btnAction" styled="true" type="ACTION" text="Action"></Button>
-						<Button fx:id="btnCancel" styled="true" type="CANCEL" text="Cancel"></Button>
+						<HBox fx:id="hbxFooterArea"
+							  HBox.hgrow="ALWAYS"
+							  fittable="true"
+							  alignment="CENTER_LEFT">
+							<children>
+							</children>
+						</HBox>
+						<HBox fx:id="hbxButtonBar"
+							  fittable="true"
+							  spacing="10.0"
+							  alignment="CENTER_RIGHT">
+							<children>
+								<Button fx:id="btnAction" styled="true" type="ACTION" text="Action"></Button>
+								<Button fx:id="btnCancel" styled="true" type="CANCEL" text="Cancel"></Button>
+							</children>
+						</HBox>
 					</children>
 					<BorderPane.margin>
 						<Insets top="15.0"></Insets>

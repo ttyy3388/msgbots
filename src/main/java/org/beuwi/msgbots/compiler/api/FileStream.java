@@ -1,10 +1,17 @@
 package org.beuwi.msgbots.compiler.api;
 
+import org.beuwi.msgbots.platform.util.SharedValues;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.ScriptableObject;
 import org.mozilla.javascript.annotations.JSStaticFunction;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 public class FileStream extends ScriptableObject {
     @Override
@@ -12,10 +19,14 @@ public class FileStream extends ScriptableObject {
         return "FileStream";
     }
 
+    private static String covertPath(String path) {
+    	return SharedValues.getString("SAVE_FOLDER_PATH") + File.separator + path;
+	}
+
 	@JSStaticFunction
 	public static String read(String path) {
     	try {
-			File file = new File(path);
+			File file = new File(covertPath(path));
 			if (!file.exists()) {
 				return null;
 			}
@@ -39,11 +50,11 @@ public class FileStream extends ScriptableObject {
 	@JSStaticFunction
 	public static String write(String path, String data) {
     	try {
-			File file = new File(path);
+			File file = new File(covertPath(path));
 			file.getParentFile().mkdirs();
 			file.createNewFile();
 
-			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, false), "UTF8"));
+			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, false), "UTF8"));
 			writer.write(data);
 			writer.close();
 
@@ -58,11 +69,11 @@ public class FileStream extends ScriptableObject {
 	@JSStaticFunction
 	public static String append(String path, String data) {
 		try {
-			File file = new File(path);
+			File file = new File(covertPath(path));
 			file.getParentFile().mkdirs();
 			file.createNewFile();
 
-			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, true), "UTF8"));
+			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true), "UTF8"));
 			writer.write(data);
 			writer.close();
 
@@ -77,7 +88,7 @@ public class FileStream extends ScriptableObject {
 	@JSStaticFunction
     public static Boolean remove(String path) {
 		try {
-			File file = new File(path);
+			File file = new File(covertPath(path));
 			if (!file.exists()) {
 				return false;
 			}
@@ -92,7 +103,7 @@ public class FileStream extends ScriptableObject {
     @JSStaticFunction
 	public static Boolean create(String path) {
 		try {
-			File file = new File(path);
+			File file = new File(covertPath(path));
 			file.getParentFile().mkdirs();
 			file.createNewFile();
 		}

@@ -12,6 +12,8 @@ public class ChangeColorThemeAction implements Action {
 		execute(MainView.getStage().getScene(), file);
 	} */
 	public static void execute(ThemeType type) {
+		System.out.println(type);
+		System.out.println(MainView.getStage());
 	    execute(MainView.getStage().getScene(), type);
 	}
 

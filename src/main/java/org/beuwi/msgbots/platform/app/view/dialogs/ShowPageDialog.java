@@ -38,6 +38,7 @@ public class ShowPageDialog extends DialogWrap {
     }
 
     @Override
-    protected void action() {
+    protected boolean action() {
+        return true;
     }
 }

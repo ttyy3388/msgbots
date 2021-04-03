@@ -17,5 +17,5 @@ public abstract class DialogWrap extends DialogFrame {
 	// public abstract void init();
 
 	@Override
-	protected abstract void action();
+	protected abstract boolean action();
 }

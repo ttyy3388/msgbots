@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?language javascript?>
-
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.Pane?>
 
 <?import org.beuwi.msgbots.platform.gui.control.Button?>
 <?import org.beuwi.msgbots.platform.gui.control.ComboBox?>
@@ -20,89 +20,101 @@
 <?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
 <?import org.beuwi.msgbots.platform.gui.layout.VBox?>
 
-<VBox prefWidth="600.0" prefHeight="500.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-    <children>
-        <NaviView VBox.vgrow="ALWAYS">
-            <tabs>
-                <NaviItem text="Preset">
-                    <content>
-                        <OptionView>
-                            <items>
-                                <HBox spacing="10.0">
-                                    <ImageView fx:id="imview" fitWidth="50.0" fitHeight="50.0"></ImageView>
-                                    <!-- 이미지 지정 -->
-                                    <fx:script>
-                                        var values = Java.type("org.beuwi.msgbots.platform.util.SharedValues");
-                                        imview.image = values.getValue("DEFAULT_PROGRAM_IMAGE");
-                                    </fx:script>
-                                    <VBox HBox.hgrow="ALWAYS">
-                                        <Label VBox.vgrow="ALWAYS"
-                                               alignment="TOP_LEFT"
-                                               styleClass="h4"
-                                               text="Messenger Bot Simulator"></Label>
-                                        <Label styleClass="h4" text="Ver. Beta 0.6.3"></Label>
-                                    </VBox>
-                                </HBox>
-                                <Separator></Separator>
-                                <OptionItem address="global:program:color_theme" title="프로그램 테마 변경">
-                                    <content>
-                                        <ComboBox maxWidth="150">
-                                            <items>
-                                                <FXCollections fx:factory="observableArrayList">
-                                                    <ThemeType fx:constant="DARK"></ThemeType>
-                                                    <ThemeType fx:constant="LIGHT"></ThemeType>
-                                                </FXCollections>
-                                            </items>
-                                        </ComboBox>
-                                    </content>
-                                </OptionItem>
-                                <Separator></Separator>
-                                <VBox spacing="5.0">
-                                    <children>
-                                        <Label text="저장 폴더"></Label>
-                                        <Label text="파일 스트림에서 저장될 루트 폴더를 선택합니다. (프로그램 경로 기본)"></Label>
-                                        <HBox fittable="true" spacing="10.0">
-                                            <children>
-                                                <TextField fx:id="txfSaveDirPath"
-                                                           HBox.hgrow="ALWAYS"
-                                                           editable="false"></TextField>
-                                                <Button fx:id="btnChooseSaveDir"
-                                                        text="..."
-                                                        styled="true"
-                                                        type="ACTION"></Button>
-                                            </children>
-                                        </HBox>
-                                    </children>
-                                </VBox>
-                                <VBox spacing="5.0">
-                                    <children>
-                                        <Label text="봇 폴더"></Label>
-                                        <Label text="생성한 봇들이 저장될 폴더를 선택합니다. (프로그램 경로 기본)"></Label>
-                                        <HBox fittable="true" spacing="10.0">
-                                            <children>
-                                                <TextField fx:id="txfBotDirPath"
-                                                           HBox.hgrow="ALWAYS"
-                                                           editable="false"></TextField>
-                                                <Button fx:id="btnChooseBotDir"
-                                                        text="..."
-                                                        styled="true"
-                                                        type="ACTION"></Button>
-                                            </children>
-                                        </HBox>
-                                    </children>
-                                </VBox>
-                            </items>
-                            <StackPane.margin>
-                                <Insets top="15.0" left="15.0"></Insets>
-                            </StackPane.margin>
-                        </OptionView>
-                    </content>
-                </NaviItem>
-                <NaviItem text="Manual">
-                    <content>
-                    </content>
-                </NaviItem>
-            </tabs>
-        </NaviView>
-    </children>
+<VBox spacing="15.0" prefWidth="600.0" prefHeight="500.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+	<children>
+		<HBox fittable="true"
+			  spacing="10.0"
+			  prefHeight="50.0">
+			<children>
+				<Pane prefWidth="2.5" style="-fx-background-color: #007ACC;"></Pane>
+				<ImageView fx:id="imageView"
+						   fitWidth="45.0"
+						   fitHeight="45.0">
+					<image>
+						<Image url="@../../images/program.png" />
+					</image>
+				</ImageView>
+				<!-- 이미지 지정 : JAR 변환 시 에러가 발생해서 보류 -->
+				<!-- <fx:script>
+					var values = Java.type("org.beuwi.msgbots.platform.util.SharedValues");
+					imgView.image = values.getValue("DEFAULT_PROGRAM_IMAGE");
+				</fx:script> -->
+				<VBox spacing="5.0">
+					<children>
+						<Label styleClass="bold, h3"
+							   text="Messenger Bot Simulator"></Label>
+						<Label styleClass="gray, h4"
+							   text="Version - Beta 0.6.4"></Label>
+					</children>
+				</VBox>
+			</children>
+		</HBox>
+		<NaviView fx:id="navConfigView">
+			<tabs>
+				<NaviItem text="Preset">
+					<content>
+						<OptionView>
+							<items>
+								<OptionItem address="global:program:color_theme"
+											title="프로그램 테마 변경"
+											text="재시작 시 적용되는 옵션입니다.">
+									<content>
+										<ComboBox maxWidth="150">
+											<items>
+												<FXCollections fx:factory="observableArrayList">
+													<ThemeType fx:constant="DARK"></ThemeType>
+													<ThemeType fx:constant="LIGHT"></ThemeType>
+												</FXCollections>
+											</items>
+										</ComboBox>
+									</content>
+								</OptionItem>
+								<OptionItem address=""
+											title="저장 폴더 지정"
+											text="파일 스트림의 기준이 될 루트 폴더를 선택합니다. (프로그램 경로 기본)">
+									<content>
+										<HBox fittable="true" spacing="10.0">
+											<children>
+												<TextField fx:id="txfSaveDirPath"
+														   HBox.hgrow="ALWAYS"
+														   editable="false"></TextField>
+												<Button fx:id="btnChooseSaveDir"
+														text="..."
+														styled="true"
+														type="ACTION"></Button>
+											</children>
+										</HBox>
+									</content>
+								</OptionItem>
+								<OptionItem address=""
+											title="봇 폴더 지정"
+											text="생성한 봇들이 저장될 폴더를 선택합니다. (프로그램 경로 기본)">
+									<content>
+										<HBox fittable="true" spacing="10.0">
+											<children>
+												<TextField fx:id="txfBotDirPath"
+														   HBox.hgrow="ALWAYS"
+														   editable="false"></TextField>
+												<Button fx:id="btnChooseBotDir"
+														text="..."
+														styled="true"
+														type="ACTION"></Button>
+											</children>
+										</HBox>
+									</content>
+								</OptionItem>
+							</items>
+							<StackPane.margin>
+								<Insets top="15.0" bottom="15.0"></Insets>
+							</StackPane.margin>
+						</OptionView>
+					</content>
+				</NaviItem>
+				<NaviItem text="Manual">
+					<content>
+					</content>
+				</NaviItem>
+			</tabs>
+		</NaviView>
+	</children>
 </VBox>

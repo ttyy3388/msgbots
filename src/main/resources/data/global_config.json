@@ -19,6 +19,7 @@
 		"show_sender_profile":false
 	},
 	"program":{
+		"show_start_dialog": true,
 		"save_dir_path": null,
 		"version_name":"0.6.3",
 		"version_code":3,

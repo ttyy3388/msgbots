@@ -1,14 +1,19 @@
 package org.beuwi.msgbots.platform.gui.control;
 
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Label extends javafx.scene.control.Label {
 	private static final String DEFAULT_STYLE_CLASS = "label";
 
+	private static final double DEFAULT_PREF_HEIGHT = 20.0;
+
 	{
+		setMinHeight(DEFAULT_PREF_HEIGHT);
 		setMaxWidth(Double.MAX_VALUE);
 		setMaxHeight(Double.MAX_VALUE);
+		setAlignment(Pos.CENTER_LEFT);
 	}
 
 	public Label() {

@@ -3,6 +3,7 @@ package org.beuwi.msgbots.platform.app.action;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.app.impl.Action;
 import org.beuwi.msgbots.platform.app.view.actions.DisplayErrorDialogAction;
+import org.beuwi.msgbots.platform.util.ResourceUtils;
 import org.beuwi.msgbots.platform.util.SharedValues;
 
 import java.io.File;
@@ -22,9 +23,19 @@ public class CreateBotAction implements Action {
 		else {
 			project.mkdir();
 
+			// 임폴트가 아닌 봇 생성이라면
 			if (!isImport) {
-				if (!isUnified) {
-					content = FileManager.read(SharedValues.getFile("SCRIPT_DEFAULT_FILE"));
+				// 통합된 매개변수 체크
+				if (isUnified) {
+					// 해당 부분 주석처리에 관해서 "SharedValues" 참고
+					/* File file = SharedValues.getFile("SCRIPT_UNIFIED_FILE");
+					if (file.exists()) {
+						content = FileManager.read(file);
+					}
+					else {
+						content = FileManager.read(ResourceUtils.getInputStream("script_unified.js"));
+					} */
+					content = FileManager.read(SharedValues.getFile("SCRIPT_UNIFIED_FILE"));
 				}
 				else {
 					content = FileManager.read(SharedValues.getFile("SCRIPT_DEFAULT_FILE"));

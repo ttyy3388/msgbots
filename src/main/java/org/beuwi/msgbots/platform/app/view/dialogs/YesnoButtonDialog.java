@@ -53,5 +53,5 @@ public abstract class YesnoButtonDialog extends DialogWrap {
     protected abstract void open();
 
     @Override
-    protected abstract void action();
+    protected abstract boolean action();
 }

@@ -4,6 +4,14 @@
 	-fx-text-fill: #FFFFFF;
 }
 
+/* COLOR LABEL */
+.white {
+	-fx-text-fill: #FFFFFF;
+}
+.gray {
+	-fx-text-fill: #CCCCCC;
+}
+
 /* TEXT RENDERING */
 .text {
 	-fx-font-smoothing-type: lcd;
@@ -205,12 +213,15 @@
 	/* JavaFX 버그 때문에 LCD로 회색 표시하면 글씨가 흐리게보여서 GRAY로 대체 */
 	/* -fx-font-smoothing-type: gray;
 } */
-.option-item .label,
-.option-item .check-box {
+.option-item .title-label {
+	-fx-text-fill: #FFFFFF;
+}
+.option-item .text-label {
 	-fx-text-fill: #CCCCCC;
 }
-.option-item .title {
-	-fx-text-fill: #FFFFFF;
+.option-item .content-area .label,
+.option-item .content-area .check-box {
+	-fx-text-fill: #CCCCCC;
 }
 
 /* SCROLL BAR */

@@ -45,16 +45,16 @@ public class GlobalSettings {
 	private static File userFile = SharedValues.getFile("GLOBAL_CONFIG_FILE");
 	private static JSONObject userData;
 
-	private static final List<Listener> listeners = new ArrayList<>();
+	// private static final List<Listener> listeners = new ArrayList<>();
 
 	// 파일 변경 이벤트 시 호출
 	// private static final BooleanProperty changedProperty = new SimpleBooleanProperty(false);
 
 	// 외부에서 파일을 변경한 것에 한해 이벤트가 발생함
-	public static void addChangeListener(Listener listener) {
-		System.out.println(listener);
+	/* public static void addChangeListener(Listener listener) {
 		listeners.add(listener);
-	}
+	} */
+	// 실시간 기능 구현 시 건들 부분(에디터 등)이 많아지므로 보류함
 
 	static {
 		// 생성된 파일이 있다면 값들을 불러옴
@@ -71,7 +71,7 @@ public class GlobalSettings {
 		FileManager.link(SharedValues.getValue("DATA_FOLDER_FILE"), () -> {
 			// 파일이 존재한다면 | 새로 생성됐다면 | 변경됐다면
 			if (userFile.exists()) {
-				listeners.forEach(Listener::changed); // Change Event
+				// listeners.forEach(Listener::changed); // Change Event
 				userData = new JSONObject(userFile);
 				// 혹시나 유저 데이터가 입력이 안된 경우가 있다면 ?
 				if (userData == null) {

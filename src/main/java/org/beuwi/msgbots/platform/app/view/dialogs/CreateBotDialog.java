@@ -54,9 +54,9 @@ public class CreateBotDialog extends DialogWrap {
 	}
 
 	@Override
-	protected void action() {
+	protected boolean action() {
 		if (txfScriptName.getText().isEmpty()) {
-			return ;
+			return false;
 		}
 
 		CreateBotAction.execute(
@@ -64,5 +64,7 @@ public class CreateBotDialog extends DialogWrap {
 			chkIsUnified.isSelected(),
 			chkIsOffError.isSelected()
 		);
+
+		return true;
 	}
 }

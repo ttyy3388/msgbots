@@ -4,6 +4,17 @@
 	-fx-text-fill: #000000;
 }
 
+/* COLOR LABEL */
+.white {
+	-fx-text-fill: #FFFFFF;
+}
+.gray {
+	-fx-text-fill: #555555;
+}
+.black {
+	-fx-text-fill: #000000;
+}
+
 /* TEXT RENDERING */
 .text {
 	-fx-font-smoothing-type: gray;
@@ -205,12 +216,20 @@
 }
 
 /* OPTION ITEM */
-.option-item .label,
-.option-item .check-box {
+.option-item {
+	/* -fx-border-color: transparent;
+	-fx-border-width: 0 0 0 2;
+	-fx-padding: 0 0 0 10; */
+}
+.option-item .title-label {
+	-fx-text-fill: #000000;
+}
+.option-item .text-label {
 	-fx-text-fill: #555555;
 }
-.option-item .title {
-	-fx-text-fill: #000000;
+.option-item .content-area .label,
+.option-item .content-area .check-box {
+	-fx-text-fill: #555555;
 }
 
 /* OPTION ITEM */

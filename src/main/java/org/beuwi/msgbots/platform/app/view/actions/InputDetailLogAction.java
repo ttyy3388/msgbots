@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class InputDetailLogAction implements Action {
-	private static final SimpleDateFormat formatter = new SimpleDateFormat ( "HH:mm:ss");
+	private static final SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
 	private static TextArea textArea;
 
 	@Override
