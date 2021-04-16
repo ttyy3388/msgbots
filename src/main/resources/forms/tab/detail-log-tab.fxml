@@ -16,11 +16,11 @@
 		</Editor> -->
 		<TextArea editable="false">
 			<StackPane.margin>
-				<Insets top="5.0" bottom="0.0"></Insets>
+				<Insets top="10.0" left="10.0"></Insets>
 			</StackPane.margin>
 		</TextArea>
 	</content>
 	<padding>
-		<Insets top="0.0" right="10.0" bottom="0.0" left="5.0"></Insets>
+		<Insets right="10.0" left="10.0"></Insets>
 	</padding>
 </TabItem>

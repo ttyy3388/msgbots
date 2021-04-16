@@ -103,6 +103,14 @@ public class OptionItem extends VBox<Node> {
 		}
 		if (getContent() instanceof Button) {
 			Button control = (Button) getContent();
+			/* if (getAddress().equals("control:button:choose_adb_file")){
+				File file = OpenFileChooserAction.execute("Choose Adb File",
+						"File", "*.exe");
+				// 파일 이름으로 체크함 "adb.exe"
+				if (file != null || file.getName() != "adb.exe") {
+					SharedSettings.setData(getAddress(), );
+				}
+			} */
 			/* if (getAddress().equals("control:button:cleanup_user_setting")){
 				if (SharedValues.GLOBAL_CONFIG_FILE != null) {
 
@@ -200,7 +208,24 @@ public class OptionItem extends VBox<Node> {
 		contentArea.getStyleClass().add("content-area");
 
 		titleProperty().addListener(change -> {
-			titleLabel.setText(getTitle());
+			String title = getTitle();
+			List<Node> list = getChildren();
+			// 텍스트가 없는 경우 목록에서 제거함(빈공간이 남기때문에 제거)
+			if (title == null) {
+				// 목록에 이미 포함 돼 있다면 제거
+				if (list.contains(titleLabel)) {
+					list.remove(titleLabel);
+				}
+			}
+			// 텍스트가 입력된 경우
+			else {
+				// 목록에 없다면 첫 번째에 추가
+				if (!list.contains(titleLabel)) {
+					list.add(0, titleLabel);
+				}
+
+				titleLabel.setText(title);
+			}
 		});
 
 		textProperty().addListener(change -> {
@@ -215,11 +240,12 @@ public class OptionItem extends VBox<Node> {
 			}
 			// 텍스트가 입력된 경우
 			else {
-				// 목록에 없다면 두 번째에 추가
+				// 목록에 없다면 끝에 추가
 				if (!list.contains(textLabel)) {
-					list.add(2, textLabel);
+					list.add(textLabel);
 				}
-				textLabel.setText(getText());
+
+				textLabel.setText(text);
 			}
 		});
 
@@ -233,7 +259,7 @@ public class OptionItem extends VBox<Node> {
 		// setPadding(DEFAULT_PADDING_VALUE);
 		setSpacing(DEFAULT_SPACING_VALUE);
 		getChildren().setAll(
-			titleLabel,
+			// titleLabel,
 			contentArea
 			// textLabel
 		);

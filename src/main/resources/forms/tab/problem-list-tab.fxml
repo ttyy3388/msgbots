@@ -8,6 +8,6 @@
 	<content>
 	</content>
 	<padding>
-		<Insets top="0.0" right="10.0" bottom="0.0" left="10.0"></Insets>
+		<Insets left="10.0"></Insets>
 	</padding>
 </TabItem>

@@ -3,7 +3,7 @@
 <?import org.beuwi.msgbots.platform.gui.control.TabView?>
 <?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
 
-<StackPane styleClass="main-area" minWidth="500.0" xmlns:fx="http://javafx.com/fxml">
+<StackPane styleClass="main-area" xmlns:fx="http://javafx.com/fxml">
 	<children>
 		<TabView>
 			<tabs>

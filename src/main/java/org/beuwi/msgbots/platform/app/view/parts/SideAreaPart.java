@@ -7,6 +7,7 @@ import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.app.view.tabs.BotListTab;
 import org.beuwi.msgbots.platform.gui.control.TabView;
 import org.beuwi.msgbots.platform.gui.layout.AnchorPane;
+import org.beuwi.msgbots.platform.gui.layout.ResizePane;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
 
 public class SideAreaPart implements View {
@@ -15,7 +16,7 @@ public class SideAreaPart implements View {
 
 	private static ObservableMap<String, Object> namespace;
 	private static FormLoader loader;
-	private static AnchorPane root;
+	private static ResizePane root;
 	private static TabView component;
 
 	private static StackPane resizebar;
@@ -27,13 +28,13 @@ public class SideAreaPart implements View {
 		root = loader.getRoot();
 		component = loader.getComponent();
 
-		resizebar = (StackPane) namespace.get("stpResizeBar");
+		/* resizebar = (StackPane) namespace.get("stpResizeBar");
 		resizebar.setOnMouseDragged(event -> {
 			double size = event.getSceneX();
 			if (root.getMinWidth() < size) {
 				root.setPrefWidth(size);
 			}
-		});
+		}); */
 
 		component.setTab(BotListTab.getRoot());
 
@@ -48,7 +49,7 @@ public class SideAreaPart implements View {
 		btnbar.addItem(check, power, compile); */
 	}
 
-	public static AnchorPane getRoot() {
+	public static ResizePane getRoot() {
 		return root;
 	}
 

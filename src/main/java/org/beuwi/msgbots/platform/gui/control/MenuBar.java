@@ -15,6 +15,7 @@ public class MenuBar extends HBox<MenuButton> {
         setFittable(true);
         setMinHeight(DEFAULT_MIN_HEIGHT);
         setPrefHeight(DEFAULT_PREF_HEIGHT);
+
         getStyleClass().add(DEFAULT_STYlE_CLASS);
     }
 

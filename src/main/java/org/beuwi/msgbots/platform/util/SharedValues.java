@@ -58,7 +58,14 @@ public class SharedValues /* implements java.io.Serializable */ {
 			values.put(true, "GLOBAL_CONFIG_FILE", FileManager.getDataFile(getString("GLOBAL_CONFIG_PATH")));
 			values.put(true, "SCRIPT_DEFAULT_FILE", FileManager.getDataFile(getString("SCRIPT_DEFAULT_PATH")));
 			values.put(true, "SCRIPT_UNIFIED_FILE", FileManager.getDataFile(getString("SCRIPT_UNIFIED_PATH")));
-			values.put(true, "PROGRAM_DATA_FILE", FileManager.getDataFile(getString("PROGRAM_DATA_PATH")));
+
+			// 프로그램 너비나 높이도 글로벌 값으로 냅둘건지에 대한건 추후 결정 (현재는 기록만 남김)
+			values.put(false, "PROGRAM_MAX_WIDTH", 0);
+			values.put(false, "PROGRAM_MAX_HEIGHT", 0);
+			values.put(false, "PROGRAM_PREF_WIDTH", 0);
+			values.put(false, "PROGRAM_PREF_HEIGHT", 0);
+			values.put(false, "PROGRAM_MIN_WIDTH", 0);
+			values.put(false, "PROGRAM_MIN_HEIGHT", 0);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
+import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.input.MouseButton;
@@ -144,7 +145,7 @@ public class ListView<T> extends javafx.scene.control.ListView<T> {
 					 }
 				 }
 			 }
-		 });
+		});
 
 		addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
 			if (event.getButton().equals(MouseButton.SECONDARY)) {

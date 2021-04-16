@@ -1,5 +1,7 @@
 {
 	"connection":{
+		"adb_file_path": null,
+		"adb_auto_connect": false,
 		"socket_remote_port":"9500",
 		"socket_local_port":"9500"
 	},

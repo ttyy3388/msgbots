@@ -192,7 +192,10 @@
 										</OptionItem>
 										<OptionItem address="control:button:change_sender_profile" title="전송자 프로필 변경">
 											<content>
-												<Button text="Change" styled="true" type="ACTION" minHeight="25.0"></Button>
+												<Button text="Change"
+														styled="true"
+														type="ACTION"
+														minHeight="25.0"></Button>
 											</content>
 										</OptionItem>
 										<Separator></Separator>
@@ -208,7 +211,10 @@
 										</OptionItem>
 										<OptionItem address="control:button:change_sender_profile" title="봇 프로필 변경">
 											<content>
-												<Button text="Change" styled="true" type="ACTION" minHeight="25.0"></Button>
+												<Button text="Change"
+														styled="true"
+														type="ACTION"
+														minHeight="25.0"></Button>
 											</content>
 										</OptionItem>
 									</items>
@@ -240,10 +246,32 @@
 						</OptionView>
 					</content>
 				</NaviItem> -->
-				<NaviItem text="Connect">
+				<NaviItem text="Connection">
 					<content>
-						<OptionView title="ADB">
+						<OptionView title="MDB">
 							<items>
+								<OptionItem title="ADB FILE PATH" address="global:connection:adb_file_path">
+									<content>
+										<TextField editable="false" maxWidth="250.0"></TextField>
+										<!-- <HBox spacing="10.0">
+											<children>
+												<OptionItem address="global:connection:adb_file_path"
+															HBox.hgrow="ALWAYS"
+															maxWidth="250.0">
+													<content>
+														<TextField></TextField>
+													</content>
+												</OptionItem>
+												<OptionItem address="control:connection:choose_adb_file">
+													<Button text="Change"
+															styled="true"
+															type="ACTION"
+															minHeight="25.0"></Button>
+												</OptionItem>
+											</children>
+										</HBox> -->
+									</content>
+								</OptionItem>
 								<OptionItem address="global:connection:adb_auto_connect" title="AUTO CONNECT">
 									<content>
 										<CheckBox></CheckBox>

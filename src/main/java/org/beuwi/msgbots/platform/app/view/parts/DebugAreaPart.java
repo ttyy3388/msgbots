@@ -9,6 +9,7 @@ import org.beuwi.msgbots.platform.app.view.MainView;
 import org.beuwi.msgbots.platform.app.view.tabs.DebugRoomTab;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalLogTab;
 import org.beuwi.msgbots.platform.gui.control.TabView;
+import org.beuwi.msgbots.platform.gui.layout.ResizePane;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
 
 public class DebugAreaPart implements View {
@@ -17,7 +18,7 @@ public class DebugAreaPart implements View {
 
 	private static ObservableMap<String, Object> namespace;
 	private static FormLoader loader;
-	private static AnchorPane root;
+	private static StackPane root;
 	private static TabView component;
 
 	private static StackPane resizebar;
@@ -30,7 +31,7 @@ public class DebugAreaPart implements View {
 		component = loader.getComponent();
 
 		// Resize Bar
-		resizebar = (StackPane) namespace.get("stpResizeBar");
+		/* resizebar = (StackPane) namespace.get("stpResizeBar");
 		resizebar.setOnMouseDragged(event -> {
 			double size = MainView.getStage().getWidth() - (event.getSceneX() + 16);
 
@@ -38,7 +39,7 @@ public class DebugAreaPart implements View {
 			if (root.getMinWidth() < size) {
 				root.setPrefWidth(size);
 			}
-		});
+		}); */
 
 		component.setTab(
 			DebugRoomTab.getRoot(),
@@ -47,7 +48,7 @@ public class DebugAreaPart implements View {
 		component.selectTab(DebugRoomTab.getRoot());
 	}
 
-	public static AnchorPane getRoot() {
+	public static StackPane getRoot() {
 		return root;
 	}
 

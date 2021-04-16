@@ -23,6 +23,19 @@ public class AnchorPane extends javafx.scene.layout.AnchorPane implements Layout
 		return findById(this, id);
 	};
 
+	public void setTopAnchor(double anchor) {
+		setTopAnchor(this, anchor);
+	}
+	public void setRightAnchor(double anchor) {
+		setRightAnchor(this, anchor);
+	}
+	public void setBottomAnchor(double anchor) {
+		setBottomAnchor(this, anchor);
+	}
+	public void setLeftAnchor(double anchor) {
+		setLeftAnchor(this, anchor);
+	}
+
 	/* public static void setAnchor(Node child, Anchor value) {
 		/* System.out.println(value.getTop() + " : " +
 				value.getRight() + " : " +

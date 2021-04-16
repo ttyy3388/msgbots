@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
+<?import javafx.geometry.Insets?>
 
-<?import org.beuwi.msgbots.platform.gui.base.Anchor?>
-<?import org.beuwi.msgbots.platform.gui.control.Button?>
-<?import org.beuwi.msgbots.platform.gui.control.TabView?>
-<?import org.beuwi.msgbots.platform.gui.layout.AnchorPane?>
-<?import org.beuwi.msgbots.platform.gui.layout.HBox?>
+<?import org.beuwi.msgbots.platform.gui.layout.ResizePane?>
 <?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
+<?import org.beuwi.msgbots.platform.gui.control.TabView?>
 
-<AnchorPane styleClass="tool-area" minHeight="30.0" prefHeight="250.0" xmlns:fx="http://javafx.com/fxml">
+<ResizePane styleClass="tool-area" type="TOP" prefHeight="250.0" xmlns:fx="http://javafx.com/fxml">
 	<children>
 		<TabView fx:id="tavMainView"
-                 AnchorPane.topAnchor="0.0"
-                 AnchorPane.rightAnchor="10.0"
-                 AnchorPane.bottomAnchor="10.0"
-                 AnchorPane.leftAnchor="10.0">
+				 ResizePane.topAnchor="0.0"
+				 ResizePane.rightAnchor="0.0"
+				 ResizePane.bottomAnchor="0.0"
+				 ResizePane.leftAnchor="0.0">
 			<tabs>
+				<!-- <fx:include source="../tab/debug-room-tab.fxml"></fx:include> -->
 			</tabs>
 		</TabView>
 		<!-- <HBox fx:id="hbxButtonBar"
@@ -27,7 +25,7 @@
 				<Button fx:id="btnAllReload" prefWidth="30.0"></Button>
 			</children>
 		</HBox> -->
-		<StackPane fx:id="stpResizeBar"
+		<!-- <StackPane fx:id="stpResizeBar"
                    AnchorPane.topAnchor="0.0"
                    AnchorPane.rightAnchor="0.0"
                    AnchorPane.leftAnchor="0.0"
@@ -35,6 +33,6 @@
 			<cursor>
 				<Cursor fx:constant="N_RESIZE"></Cursor>
 			</cursor>
-		</StackPane>
+		</StackPane> -->
 	</children>
-</AnchorPane>
+</ResizePane>

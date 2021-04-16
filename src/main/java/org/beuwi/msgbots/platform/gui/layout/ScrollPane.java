@@ -4,8 +4,8 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Node;
 import javafx.scene.input.ScrollEvent;
-
 import javafx.scene.layout.Pane;
+
 import org.beuwi.msgbots.platform.gui.base.Layout;
 
 public class ScrollPane extends javafx.scene.control.ScrollPane implements Layout {

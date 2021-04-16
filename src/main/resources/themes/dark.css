@@ -414,8 +414,14 @@
 	/* -fx-border-color: #414141;
 	-fx-border-width: 0 1 0 0; */
 }
+.tool-area .text-area .content {
+	-fx-padding: 0;
+}
 
 /* STATUS BAR */
 .status-bar {
 	-fx-background-color: #007ACC;
+}
+.status-bar:mdbmode {
+	-fx-background-color: #68217A;
 }

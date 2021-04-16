@@ -42,7 +42,7 @@ public class MainView implements View {
 
 		// Add parts
 		stpMenuBar.getChildren().add(MenuBarPart.getRoot());
-		stpInnerArea.getChildren().add(ToastListPart.getRoot());
+		// stpInnerArea.getChildren().add(ToastListPart.getRoot());
 		stpSideArea.getChildren().add(SideAreaPart.getRoot());
 		stpMainArea.getChildren().add(MainAreaPart.getRoot());
 		stpToolArea.getChildren().add(ToolAreaPart.getRoot());
@@ -61,10 +61,14 @@ public class MainView implements View {
 		root.setPrefHeight(900);
 
 		// 추후 윈도우 프레임으로 이전
-		stage.setMinWidth(800);
-		stage.setMinHeight(600);
+		// stage.setMinWidth(800);
+		// stage.setMinHeight(600);
 		// stage.setMaxWidth(1920);
-		stage.setMaxHeight(1080);
+		// stage.setMaxHeight(1080);
+	}
+
+	private class MainLayout extends StackPane {
+
 	}
 
 	public static class MainWindow extends WindowWrap {

@@ -22,8 +22,6 @@ public class MainAreaPart implements View {
 		namespace = loader.getNamespace();
 		root = loader.getRoot();
 		component = loader.getComponent();
-
-		root.setMinWidth(DEFAULT_MAX_WIDTH);
 	}
 
 	public static StackPane getRoot() {

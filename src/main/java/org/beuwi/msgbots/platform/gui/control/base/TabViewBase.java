@@ -249,6 +249,9 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane imple
 	}
 
 	public T getTab(int index) {
+		if (index == -1) {
+			return null;
+		}
 		return getTabs().get(index);
 	}
 	public T getTab(String id) {

@@ -274,6 +274,7 @@ public class Launcher extends Application {
 			new AddMainAreaTabAction().init();
 			new SaveBotScriptTabAction().init();
 			new ShowToastMessageAction().init();
+			new SwitchMDBModeAction().init();
 			new InputDetailLogAction().init();
 			new OpenBotLogTabAction().init();
 			new OpenDocumentTabAction().init();

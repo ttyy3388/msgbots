@@ -55,6 +55,7 @@ public class NaviItem extends TabItemBase {
 			label.setText(getText());
 		});
 
+		// 헤더 관련 옵션
 		setPadding(DEFAULT_ITEM_PADDING);
 		setMinWidth(DEFAULT_ITEM_WIDTH); // 너비 강제 지정
 		setPrefWidth(DEFAULT_ITEM_WIDTH); // 너비 강제 지정

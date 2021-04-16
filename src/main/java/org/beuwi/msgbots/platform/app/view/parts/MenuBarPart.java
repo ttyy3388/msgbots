@@ -11,6 +11,7 @@ import org.beuwi.msgbots.platform.app.view.actions.OpenProgramTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.RefreshBotListAction;
 import org.beuwi.msgbots.platform.app.view.dialogs.CreateBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.ImportBotDialog;
+import org.beuwi.msgbots.platform.app.view.dialogs.StartProgramDialog;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
 import org.beuwi.msgbots.platform.gui.control.*;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
@@ -87,17 +88,19 @@ public class MenuBarPart implements View {
 			new MenuItem("View License", event -> {
 				OpenBrowserAction.execute(SharedValues.getString("VIEW_LICENSE_LINK"));
 			}),
-			new Separator(),
 			new MenuItem("Release Notes", event -> {
 				OpenBrowserAction.execute(SharedValues.getString("RELEASE_NOTES_LINK"));
 			}),
-			new Separator(),
 			new MenuItem("About Program", event -> {
 				OpenDocumentTabAction.execute(new Document("ABOUT PROGRAM", new Page("about-program-page")));
 			}),
 			new Separator(),
 			new MenuItem("Welcome Guide", event -> {
 				OpenDocumentTabAction.execute(new Document("WELCOME GUIDE", new Page("welcome-guide-page")));
+			}),
+			new Separator(),
+			new MenuItem("Welcome to Program", event -> {
+				OpenDialogBoxAction.execute(new StartProgramDialog());
 			})
 		);
 	}

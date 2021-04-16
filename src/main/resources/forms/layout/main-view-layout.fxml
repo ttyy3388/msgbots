@@ -3,93 +3,164 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<?import org.beuwi.msgbots.platform.gui.layout.GridPane?>
 <?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
+<?import org.beuwi.msgbots.platform.gui.layout.GridPane?>
+<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
 
-<?import org.beuwi.msgbots.platform.gui.control.Page?>
-<?import org.beuwi.msgbots.platform.util.SharedValues?>
 <StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-	<GridPane>
-		<columnConstraints>
-			<ColumnConstraints hgrow="SOMETIMES"></ColumnConstraints>
-		</columnConstraints>
-		<rowConstraints>
-			<RowConstraints vgrow="SOMETIMES"></RowConstraints>
-			<RowConstraints vgrow="SOMETIMES"></RowConstraints>
-			<RowConstraints vgrow="SOMETIMES"></RowConstraints>
-		</rowConstraints>
-		<children>
-			<!-- Menu Bar Area -->
-			<StackPane fx:id="stpMenuBar"
-                       GridPane.columnIndex="0"
-                       GridPane.rowIndex="0"
-                       GridPane.columnSpan="1"
-                       GridPane.rowSpan="1"></StackPane>
-			<!-- Inner View Area -->
+	<children>
+		<GridPane>
+			<columnConstraints>
+				<ColumnConstraints></ColumnConstraints>
+			</columnConstraints>
+			<rowConstraints>
+				<RowConstraints></RowConstraints>
+				<RowConstraints></RowConstraints>
+				<RowConstraints></RowConstraints>
+			</rowConstraints>
+			<children>
+				<!-- Menu Bar Area -->
+				<StackPane fx:id="stpMenuBar"
+						   GridPane.columnIndex="0"
+						   GridPane.rowIndex="0"
+						   GridPane.columnSpan="1"
+						   GridPane.rowSpan="1"></StackPane>
+				<!-- Inner View Area -->
+				<StackPane fx:id="stpInnerArea"
+						   GridPane.columnIndex="0"
+						   GridPane.rowIndex="1"
+						   GridPane.columnSpan="1"
+						   GridPane.rowSpan="1"
+						   GridPane.hgrow="ALWAYS"
+						   GridPane.vgrow="ALWAYS">
+					<children>
+						<GridPane>
+							<columnConstraints>
+								<ColumnConstraints></ColumnConstraints>
+								<ColumnConstraints></ColumnConstraints>
+								<ColumnConstraints></ColumnConstraints>
+							</columnConstraints>
+							<rowConstraints>
+								<RowConstraints></RowConstraints>
+								<RowConstraints></RowConstraints>
+							</rowConstraints>
+							<children>
+								<!-- Side Area Part -->
+								<StackPane fx:id="stpSideArea"
+										   GridPane.columnIndex="0"
+										   GridPane.rowIndex="0"
+										   GridPane.columnSpan="1"
+										   GridPane.rowSpan="1"></StackPane>
+								<!-- Debug Area Part -->
+								<StackPane fx:id="stpDebugArea"
+										   GridPane.columnIndex="2"
+										   GridPane.rowIndex="0"
+										   GridPane.columnSpan="1"
+										   GridPane.rowSpan="2"></StackPane>
+								<!-- Tool Area Part [0, 1] -->
+								<StackPane fx:id="stpToolArea"
+										   GridPane.columnIndex="0"
+										   GridPane.rowIndex="1"
+										   GridPane.columnSpan="2"
+										   GridPane.rowSpan="1"></StackPane>
+								<StackPane GridPane.columnIndex="1"
+										   GridPane.rowIndex="0"
+										   GridPane.columnSpan="1"
+										   GridPane.rowSpan="1"
+										   GridPane.hgrow="ALWAYS"
+										   GridPane.vgrow="ALWAYS">
+									<children>
+										<!-- Program Start Page -->
+										<!-- <StackPane>
+                                            <children>
+                                                <SharedValues fx:constant="PROGRAM_START_PAGE"></SharedValues>
+                                            </children>
+                                        </StackPane> -->
+										<!-- Main Area Part -->
+										<StackPane fx:id="stpMainArea"></StackPane>
+									</children>
+								</StackPane>
+							</children>
+						</GridPane>
+					</children>
+				</StackPane>
+				<!-- Status Bar Area -->
+				<StackPane fx:id="stpStatusBar"
+						   GridPane.columnIndex="0"
+						   GridPane.rowIndex="2"
+						   GridPane.columnSpan="1"
+						   GridPane.rowSpan="1"></StackPane>
+			</children>
+		</GridPane>
+	</children>
+</StackPane>
+
+<!-- <StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+	<children>
+		<VBox>
+			<children>
+				<StackPane fx:id="stpMenuBar"></StackPane>
+				<SplitPane orientation="HORIZONTAL">
+					<items>
+						<SplitPane orientation="HORIZONTAL">
+							<items>
+								<SplitPane orientation="VERTICAL">
+									<items>
+										<SplitPane>
+											<items>
+												<StackPane fx:id="stpSideArea"></StackPane>
+												<StackPane fx:id="stpMainArea"></StackPane>
+											</items>
+										</SplitPane>
+										<StackPane fx:id="stpToolArea"></StackPane>
+									</items>
+								</SplitPane>
+							</items>
+						</SplitPane>
+						<StackPane fx:id="stpDebugArea"></StackPane>
+					</items>
+				</SplitPane>
+				<StackPane fx:id="stpStatusBar"></StackPane>
+			</children>
+		</VBox>
+	</children>
+</StackPane> -->
+
+<!-- <StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+	<children>
+		<VBox>
+			Menu Bar Part
+			<StackPane fx:id="stpMenuBar"></StackPane>
+			Inner View Part & [ Toast Area Part ]
 			<StackPane fx:id="stpInnerArea"
-                       GridPane.columnIndex="0"
-                       GridPane.rowIndex="1"
-                       GridPane.columnSpan="1"
-                       GridPane.rowSpan="1"
-                       GridPane.hgrow="ALWAYS"
-                       GridPane.vgrow="ALWAYS">
+					   VBox.vgrow="ALWAYS">
 				<children>
-					<GridPane>
-						<columnConstraints>
-							<ColumnConstraints hgrow="SOMETIMES"></ColumnConstraints>
-							<ColumnConstraints hgrow="SOMETIMES"></ColumnConstraints>
-							<ColumnConstraints hgrow="SOMETIMES"></ColumnConstraints>
-						</columnConstraints>
-						<rowConstraints>
-							<RowConstraints vgrow="SOMETIMES"></RowConstraints>
-							<RowConstraints vgrow="SOMETIMES"></RowConstraints>
-						</rowConstraints>
+					<HBox>
 						<children>
-							<!-- Side Area Part -->
-							<StackPane fx:id="stpSideArea"
-                                       GridPane.columnIndex="0"
-                                       GridPane.rowIndex="0"
-                                       GridPane.columnSpan="1"
-                                       GridPane.rowSpan="1"></StackPane>
-							<!-- Tool Area Part -->
-							<StackPane fx:id="stpToolArea"
-                                       GridPane.columnIndex="0"
-                                       GridPane.rowIndex="1"
-                                       GridPane.columnSpan="2"
-                                       GridPane.rowSpan="1"></StackPane>
-							<StackPane GridPane.columnIndex="1"
-									   GridPane.rowIndex="0"
-									   GridPane.columnSpan="1"
-									   GridPane.rowSpan="1"
-									   GridPane.hgrow="ALWAYS"
-									   GridPane.vgrow="ALWAYS">
+							<VBox HBox.hgrow="ALWAYS">
 								<children>
-									<!-- Program Start Page -->
-									<!-- <StackPane>
+									<HBox VBox.vgrow="ALWAYS">
 										<children>
-											<SharedValues fx:constant="PROGRAM_START_PAGE"></SharedValues>
+											Side Area Part
+											<StackPane fx:id="stpSideArea"></StackPane>
+											Main Area Part
+											<StackPane fx:id="stpMainArea"
+													   HBox.hgrow="ALWAYS">
+											</StackPane>
 										</children>
-									</StackPane> -->
-									<!-- Main Area Part -->
-									<StackPane fx:id="stpMainArea"></StackPane>
+									</HBox>
+									Tool Area Part
+									<StackPane fx:id="stpToolArea"></StackPane>
 								</children>
-							</StackPane>
-							<!-- Debug Area Part -->
-							<StackPane fx:id="stpDebugArea"
-                                       GridPane.columnIndex="2"
-                                       GridPane.rowIndex="0"
-                                       GridPane.columnSpan="1"
-                                       GridPane.rowSpan="2"></StackPane>
+							</VBox>
+							Debug Area Part
+							<StackPane fx:id="stpDebugArea"></StackPane>
 						</children>
-					</GridPane>
+					</HBox>
 				</children>
 			</StackPane>
-			<!-- Status Bar Area -->
-			<StackPane fx:id="stpStatusBar"
-                       GridPane.columnIndex="0"
-                       GridPane.rowIndex="2"
-                       GridPane.columnSpan="1"
-                       GridPane.rowSpan="1"></StackPane>
-		</children>
-	</GridPane>
-</StackPane>
+			Status Bar Area
+			<StackPane fx:id="stpStatusBar"></StackPane>
+		</VBox>
+	</children>
+</StackPane> -->

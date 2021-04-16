@@ -76,23 +76,23 @@ public class TabItem extends TabItemBase {
 		});
 
 		menu = new ContextMenu(
-			new MenuItem("Close", "Ctrl + W", event -> {
+			new MenuItem("Close Tab", "Ctrl + W", event -> {
 				getView().closeTab(this);
 			}),
-			new MenuItem("Close Others", event -> {
+			new MenuItem("Close Other Tabs", event -> {
 				getView().closeOtherTabs(this);
 			}),
 			new MenuItem("Close All Tabs", event -> {
 				getView().closeAllTabs();
 			}),
 			new Separator(),
-			new MenuItem("Move Forward", event -> {
+			/* new MenuItem("Move Forward", event -> {
 				// getView().moveForward(this)
 			}),
 			new MenuItem("Move Back", event -> {
 				// getView().moveBack(this)
 			}),
-			new Separator(),
+			new Separator(), */
 			new MenuItem("Select Next Tab", "Ctrl + Tab", event -> {
 				getView().selectNextTab(this);
 			}),
@@ -131,6 +131,7 @@ public class TabItem extends TabItemBase {
 			}
 		}); */
 
+		// 탭 헤더 관련 설정
 		setPadding(DEFAULT_ITEM_PADDING);
 		// setMinWidth(DEFAULT_ITEM_WIDTH); // 너비 최소 지정
 		// setPrefWidth(DEFAULT_ITEM_WIDTH);

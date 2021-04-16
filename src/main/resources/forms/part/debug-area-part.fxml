@@ -1,29 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.layout.Pane?>
-
-<?import org.beuwi.msgbots.platform.gui.base.Anchor?>
 <?import org.beuwi.msgbots.platform.gui.control.TabView?>
-<?import org.beuwi.msgbots.platform.gui.layout.AnchorPane?>
 <?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
 
-<AnchorPane styleClass="debug-area" minWidth="300.0" prefWidth="350.0" xmlns:fx="http://javafx.com/fxml">
+<StackPane styleClass="debug-area" minWidth="300.0" prefWidth="350.0" xmlns:fx="http://javafx.com/fxml">
 	<children>
-		<TabView AnchorPane.topAnchor="0.0"
-                 AnchorPane.rightAnchor="0.0"
-                 AnchorPane.bottomAnchor="0.0"
-                 AnchorPane.leftAnchor="0.0"
-                 fittable="true">
+		<TabView fittable="true">
 		</TabView>
-		<StackPane fx:id="stpResizeBar"
-                   AnchorPane.topAnchor="0.0"
-                   AnchorPane.bottomAnchor="0.0"
-                   AnchorPane.leftAnchor="0.0"
-                   prefWidth="5.0">
-			<cursor>
-				<Cursor fx:constant="E_RESIZE"></Cursor>
-			</cursor>
-		</StackPane>
 	</children>
-</AnchorPane>
+</StackPane>
