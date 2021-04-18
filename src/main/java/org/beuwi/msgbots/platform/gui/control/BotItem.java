@@ -1,5 +1,6 @@
 package org.beuwi.msgbots.platform.gui.control;
 
+import javafx.application.Platform;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.input.MouseButton;
@@ -24,7 +25,7 @@ public class BotItem extends GridPane {
 
 	private final CheckBox chbIsCompiled = new CheckBox();
 	private final Label lblBotName = new Label();
-	private final Button btnCompile = new Button();
+	private final Button btnBotReload = new Button();
 	
 	// Power Switch
 	private final ToggleSwitch tgbBotPower = new ToggleSwitch();
@@ -44,17 +45,17 @@ public class BotItem extends GridPane {
 
 		GridPane.setVgrow(chbIsCompiled, Priority.ALWAYS);
 		GridPane.setVgrow(lblBotName, Priority.ALWAYS);
-		GridPane.setVgrow(btnCompile, Priority.ALWAYS);
+		GridPane.setVgrow(btnBotReload, Priority.ALWAYS);
 		GridPane.setVgrow(tgbBotPower, Priority.ALWAYS);
 
 		GridPane.setHalignment(chbIsCompiled, HPos.CENTER);
 		GridPane.setHalignment(lblBotName, HPos.LEFT);
-		GridPane.setHalignment(btnCompile, HPos.CENTER);
+		GridPane.setHalignment(btnBotReload, HPos.CENTER);
 		GridPane.setHalignment(tgbBotPower, HPos.CENTER);
 
 		GridPane.setValignment(chbIsCompiled, VPos.CENTER);
 		GridPane.setValignment(lblBotName, VPos.CENTER);
-		GridPane.setValignment(btnCompile, VPos.CENTER);
+		GridPane.setValignment(btnBotReload, VPos.CENTER);
 		GridPane.setValignment(tgbBotPower, VPos.CENTER);
 
 		setDefaultColumn(20, 0, 30, 45);
@@ -112,7 +113,7 @@ public class BotItem extends GridPane {
 
 		addItem(chbIsCompiled,  0, 0);
 		addItem(lblBotName,  1, 0);
-		addItem(btnCompile, 2, 0);
+		addItem(btnBotReload, 2, 0);
 		addItem(tgbBotPower,  3, 0);
 
 		setOnMouseClicked(event -> {
@@ -124,8 +125,8 @@ public class BotItem extends GridPane {
 			UpdateCurrentPathAction.execute(file);
 		});
 
-		btnCompile.setGraphic(AllSVGIcons.get("Bot.Reload"));
-		btnCompile.setOnAction(event -> {
+		btnBotReload.setGraphic(AllSVGIcons.get("Bot.Reload"));
+		btnBotReload.setOnAction(event -> {
 			ScriptManager.initScript(name, true, false);
 		});
 
@@ -135,8 +136,8 @@ public class BotItem extends GridPane {
 		});
 
 		lblBotName.setPrefWidth(50);
-		btnCompile.setPrefWidth(30);
-		btnCompile.setPrefHeight(30);
+		btnBotReload.setPrefWidth(30);
+		btnBotReload.setPrefHeight(30);
 		tgbBotPower.setPrefWidth(45);
 
 		setId(name);

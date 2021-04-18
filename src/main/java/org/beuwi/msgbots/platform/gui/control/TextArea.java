@@ -34,6 +34,10 @@ public class TextArea extends javafx.scene.control.TextArea {
 	);
 
 	public TextArea() {
+		this(null);
+	}
+
+	public TextArea(String text) {
 		autoScrollProperty().addListener(change -> {
 			if (isAutoScroll()) {
 				textProperty().addListener(autoScrollListener);
@@ -42,6 +46,10 @@ public class TextArea extends javafx.scene.control.TextArea {
 				textProperty().removeListener(autoScrollListener);
 			}
 		});
+
+		if (text != null) {
+			setText(text);
+		}
 
 		setContextMenu(menu);
 		setPrefHeight(DEFAULT_PREF_WIDTH);

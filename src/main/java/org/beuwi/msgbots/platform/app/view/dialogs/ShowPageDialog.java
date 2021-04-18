@@ -13,20 +13,19 @@ public class ShowPageDialog extends DialogWrap {
     private final String title;
     private final Node page;
 
-    private final Button btnCopy;
-    private final Button btnClose;
-
+    // Default : 400, 500
     public ShowPageDialog(String title, Node page) {
+        this(title, page, 400, 500);
+    }
+
+    public ShowPageDialog(String title, Node page, double width, double height) {
         super(DialogType.NONE);
 
         this.title = title;
         this.page = page;
 
-        btnCopy = getActionButton();
-        btnClose = getCancelButton();
-
-        btnCopy.setText("");
-        btnClose.setText("Close");
+        root.setPrefWidth(width);
+        root.setPrefHeight(width);
 
         root.getChildren().setAll(page);
     }

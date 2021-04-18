@@ -202,23 +202,23 @@ public final class Monaco {
 		});
 	}
 
-	private void copy() {
+	protected void copy() {
 		CopyStringAction.execute(getSelectedText());
 	}
-	private void cut() {
+	protected void cut() {
 		// Cut action 만 실행하면 클립보드 복사가 안되기에 copy도 실행 즉, copy and delete
 		copy(); trigger("cut");
 	}
-	private void redo() {
+	protected void redo() {
 		trigger("redo");
 	}
-	private void undo() {
+	protected void undo() {
 		trigger("undo");
 	}
-	private void paste() {
+	protected void paste() {
 		trigger("paste");
 	}
-	private void selectAll() {
+	protected void selectAll() {
 		execute("editor.setSelection(editor.getModel().getFullModelRange())");
 	}
 

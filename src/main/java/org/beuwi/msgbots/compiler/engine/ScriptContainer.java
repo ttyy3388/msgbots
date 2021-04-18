@@ -15,8 +15,7 @@ public class ScriptContainer {
 	private Function onResume = null;
 	private Function onPause = null;
 
-	public void constructor(Function responder, ScriptableObject execScope, Function onStartCompile, ScriptableObject scope)
-	{
+	public void constructor(Function responder, ScriptableObject execScope, Function onStartCompile, ScriptableObject scope) {
 		this.responder = responder;
 		this.execScope = execScope;
 		this.onStartCompile = onStartCompile;

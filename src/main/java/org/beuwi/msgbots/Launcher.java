@@ -2,12 +2,10 @@ package org.beuwi.msgbots;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import javafx.stage.Window;
 import org.beuwi.msgbots.compiler.engine.ScriptManager;
 import org.beuwi.msgbots.openapi.KeyMap;
 import org.beuwi.msgbots.platform.app.view.MainView;
@@ -18,7 +16,6 @@ import org.beuwi.msgbots.platform.app.view.parts.*;
 import org.beuwi.msgbots.platform.app.view.tabs.*;
 import org.beuwi.msgbots.platform.gui.control.Document;
 import org.beuwi.msgbots.platform.gui.control.Page;
-import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.util.GlobalKeyMaps;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 import org.beuwi.msgbots.platform.util.SharedValues;
@@ -176,7 +173,7 @@ public class Launcher extends Application {
 		}
 	}
 	private void registryKeyMaps(Stage stage) {
-		List<KeyMap> keyMaps = GlobalKeyMaps.getKeyMaps();
+		List<KeyMap> keyMaps = GlobalKeyMaps.getList();
 		// List<String> keys = new ArrayList<>(keyMaps.keySet());
 		for (KeyMap binder : keyMaps) {
 			stage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
@@ -259,6 +256,7 @@ public class Launcher extends Application {
 			new ProblemListTab().init();
 			// new RunningBotsTab().init();
 			// new NoticeListTab().init();
+			new ViewKeymapsTab().init();
 
 			// Initialize parts
 			new DebugAreaPart().init();

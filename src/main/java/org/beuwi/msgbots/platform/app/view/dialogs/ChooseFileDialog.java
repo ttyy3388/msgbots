@@ -21,7 +21,7 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.util.List;
 
-public class ChooseFileDialog extends DialogWrap {
+public class ChooseFileDialog extends YesOrNoDialog {
     private final ObservableMap<String, Object> namespace;
     private final FormLoader loader;
     private final VBox root;

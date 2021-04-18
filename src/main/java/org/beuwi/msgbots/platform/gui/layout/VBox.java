@@ -28,14 +28,26 @@ public class VBox<T extends Node> extends javafx.scene.layout.VBox implements La
 
                     Insets margin = getMargin(VBox.this);
                     Insets padding = getPadding();
+                    Insets border = null;
+                    if (getBorder() != null) {
+                        border = getBorder().getInsets();
+                    }
+                    else {
+                        // 어차피 0을 빼주면 똑같으므로 해당 방법 사용
+                        border = new Insets(0, 0, 0, 0);
+                    }
 
+                    // 테두리 제거 너비
+                    if (border != null) {
+                        value -= (border.getLeft() + border.getRight());
+                    }
                     // 마진 제거 너비
                     if (margin != null) {
-                        value = value - (margin.getLeft() + margin.getRight());
+                        value -= (margin.getLeft() + margin.getRight());
                     }
                     // 패딩 제거 너비
                     if (padding != null) {
-                        value = value - (padding.getLeft() + padding.getRight());
+                        value -= (padding.getLeft() + padding.getRight());
                     }
 
                     ((Region) item).setPrefWidth(value);

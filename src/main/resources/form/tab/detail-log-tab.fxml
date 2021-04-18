@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+
+<?import org.beuwi.msgbots.platform.gui.control.TabItem?>
+<?import org.beuwi.msgbots.platform.gui.control.TextArea?>
+<?import org.beuwi.msgbots.platform.gui.editor.Editor?>
+<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
+
+<TabItem text="DETAILLOG" closable="false" xmlns:fx="http://javafx.com/fxml">
+	<content>
+		<!-- <Editor fx:id="edtDetailLog">
+			<StackPane.margin>
+				<Insets top="5.0" bottom="0.0"></Insets>
+			</StackPane.margin>
+		</Editor> -->
+		<TextArea editable="false">
+			<StackPane.margin>
+				<Insets top="10.0" left="5.0"></Insets>
+			</StackPane.margin>
+		</TextArea>
+	</content>
+	<padding>
+		<Insets right="10.0" left="10.0"></Insets>
+	</padding>
+</TabItem>

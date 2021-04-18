@@ -4,9 +4,9 @@ import javafx.stage.Stage;
 
 // Dialog Box Wrapper
 public abstract class DialogWrap extends DialogFrame {
-	public DialogWrap() {
+	/* public DialogWrap() {
 		super(DialogType.NONE);
-	}
+	} */
 
 	public DialogWrap(DialogType type) {
 		super(type, new Stage());

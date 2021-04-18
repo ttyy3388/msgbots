@@ -15,6 +15,7 @@ import org.beuwi.msgbots.setting.ScriptSettings;
 import org.mozilla.javascript.*;
 import org.mozilla.javascript.annotations.JSFunction;
 
+// 해당 클래스는 해당 패키지(org.beuwi.msgbots.compiler)의 내부에서만 접근해야 함
 public class Api extends ScriptableObject {
 	@Override
 	public String getClassName() {

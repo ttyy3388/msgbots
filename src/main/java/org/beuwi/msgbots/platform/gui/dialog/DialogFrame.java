@@ -1,6 +1,7 @@
 package org.beuwi.msgbots.platform.gui.dialog;
 
 import javafx.application.Platform;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -24,6 +25,8 @@ import org.beuwi.msgbots.platform.gui.window.WindowType;
 import org.beuwi.msgbots.platform.util.AllSVGIcons;
 import org.beuwi.msgbots.platform.util.ResourceUtils;
 
+import java.util.List;
+
 public abstract class DialogFrame extends BorderPane {
 	private static final String DEFAULT_STYLE_CLASS = "dialog-box";
 
@@ -45,14 +48,11 @@ public abstract class DialogFrame extends BorderPane {
 	// DIALOG
 	// @FXML private StackPane stpDialogMain;
 	@FXML private ImageView imvDialogIcon;
-	@FXML private HBox<Button> hbxButtonBar;
+	// @FXML private HBox<Button> hbxButtonBar;
 
 	// FOOTER
 	@FXML private HBox hbxFooterArea;
 	@FXML private Label lblFooterText;
-
-	@FXML private Button btnAction;
-	@FXML private Button btnCancel;
 
 	private final FormLoader loader;
 
@@ -161,30 +161,8 @@ public abstract class DialogFrame extends BorderPane {
 			new Insets(10, margin, 10, margin));
 	} */
 
-	// Use Action Button, Use Cancel Button
-	public void setUseButton(boolean action, boolean cancel) {
-		if (!action) {
-			hbxButtonBar.getChildren().remove(btnAction);
-		}
-		if (!cancel) {
-			hbxButtonBar.getChildren().remove(btnCancel);
-		}
-	}
-
 	public HBox getFooterArea() {
 		return hbxFooterArea;
-	}
-
-	public HBox<Button> getButtonBar() {
-		return hbxButtonBar;
-	}
-
-	public Button getActionButton() {
-		return btnAction;
-	}
-
-	public Button getCancelButton() {
-		return btnCancel;
 	}
 
 	private void initWinSize() {
@@ -208,13 +186,12 @@ public abstract class DialogFrame extends BorderPane {
 
 		/* ------------------------------------------------------ */
 
-		btnAction.addEventHandler(ActionEvent.ACTION, event -> {
-			this.daction();
-		});
-
-		btnCancel.addEventHandler(ActionEvent.ACTION, event -> {
-			this.dclose();
-		});
+		// 버튼이 모두 삭제됐다면
+		/* hbxButtonBar.getChildren().addListener((ListChangeListener) change -> {
+			if (hbxButtonBar.getChildren().size() < 1) {
+				brpWinContent.getChildren().remove(hbxButtonBar);
+			}
+		}); */
 
 		/* ------------------------------------------------------ */
 
@@ -276,7 +253,10 @@ public abstract class DialogFrame extends BorderPane {
 		if (onOpenHandler != null) {
 			onOpenHandler.handle(null);
 		}
-		create();
+		// 이미 생성됐다면 열기만 하도록
+		if (!frame.isCreated()) {
+			create();
+		}
 	}
 	// 호출용도
 	public void daction() {

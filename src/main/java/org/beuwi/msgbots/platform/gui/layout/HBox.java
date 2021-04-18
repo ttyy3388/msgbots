@@ -28,14 +28,26 @@ public class HBox<T> extends javafx.scene.layout.HBox implements Layout {
 
                     Insets margin = getMargin(HBox.this);
                     Insets padding = getPadding();
+                    Insets border = null;
+                    if (getBorder() != null) {
+                        border = getBorder().getInsets();
+                    }
+                    else {
+                        // 어차피 0을 빼주면 똑같으므로 해당 방법 사용
+                        border = new Insets(0, 0, 0, 0);
+                    }
 
+                    // 테두리 제거 높이
+                    if (border != null) {
+                        height -= (border.getTop() + border.getBottom());
+                    }
                     // 마진 제거 높이
                     if (margin != null) {
-                        height = height - (margin.getTop() + margin.getBottom());
+                        height -= (margin.getTop() + margin.getBottom());
                     }
                     // 패딩 제거 높이
                     if (padding != null) {
-                        height = height - (padding.getTop() + padding.getBottom());
+                        height -= (padding.getTop() + padding.getBottom());
                     }
 
                     ((Region) item).setPrefHeight(height);

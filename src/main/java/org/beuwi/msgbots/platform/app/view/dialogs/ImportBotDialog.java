@@ -17,7 +17,7 @@ import org.beuwi.msgbots.platform.gui.layout.VBox;
 
 import java.io.File;
 
-public class ImportBotDialog extends DialogWrap {
+public class ImportBotDialog extends YesOrNoDialog {
 	private final ObservableMap<String, Object> namespace;
 	private final FormLoader loader;
 	private final VBox root;

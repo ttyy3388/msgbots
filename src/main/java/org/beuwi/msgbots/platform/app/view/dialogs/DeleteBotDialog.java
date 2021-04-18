@@ -13,7 +13,7 @@ import org.beuwi.msgbots.platform.gui.control.Label;
 import org.beuwi.msgbots.platform.gui.dialog.DialogType;
 import org.beuwi.msgbots.platform.gui.dialog.DialogWrap;
 
-public class DeleteBotDialog extends DialogWrap {
+public class DeleteBotDialog extends YesOrNoDialog {
 	private final ObservableMap<String, Object> nameSpace;
 	private final FormLoader loader;
 	private final AnchorPane root;

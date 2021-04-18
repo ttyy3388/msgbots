@@ -12,7 +12,7 @@ import org.beuwi.msgbots.platform.gui.control.TextField;
 import org.beuwi.msgbots.platform.gui.dialog.DialogWrap;
 import org.beuwi.msgbots.platform.gui.layout.VBox;
 
-public class RenameBotDialog extends DialogWrap {
+public class RenameBotDialog extends YesOrNoDialog {
 	private final ObservableMap<String, Object> namespace;
 	private final FormLoader loader;
 	private final VBox root;

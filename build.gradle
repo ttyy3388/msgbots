@@ -61,7 +61,7 @@ jlink {
     }
 
     jpackage {
-        imageOptions += ['--icon', 'src/main/resources/icons/program.ico']
+        imageOptions += ['--icon', 'src/main/resources/icon/program.ico']
 
         /* installerOptions = [
                 '--vendor', 'beuwi',

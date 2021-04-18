@@ -13,6 +13,7 @@ import org.beuwi.msgbots.platform.app.view.dialogs.CreateBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.ImportBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.StartProgramDialog;
 import org.beuwi.msgbots.platform.app.view.tabs.GlobalConfigTab;
+import org.beuwi.msgbots.platform.app.view.tabs.ViewKeymapsTab;
 import org.beuwi.msgbots.platform.gui.control.*;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
 import org.beuwi.msgbots.platform.util.SharedValues;
@@ -79,12 +80,16 @@ public class MenuBarPart implements View {
 			new MenuItem("Compile"),
 			new MenuItem("Power On / Off"),
 			new Separator(),
-			new MenuItem("Show Global Log", "F8"),
-			new MenuItem("Open Debug Room", "F9")
+			new MenuItem("Show Global Log", "F8")
+			// new MenuItem("Open Debug Room", "F9")
 		);
 
 		// Help Menu Button
 		btnHelpMenu.setMenus(
+			new MenuItem("View Keymaps", event -> {
+				OpenProgramTabAction.execute(ViewKeymapsTab.getRoot());
+			}),
+			new Separator(),
 			new MenuItem("View License", event -> {
 				OpenBrowserAction.execute(SharedValues.getString("VIEW_LICENSE_LINK"));
 			}),

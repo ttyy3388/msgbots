@@ -39,7 +39,7 @@ public class GlobalSettings {
 	// private static final File file = SharedValues.GLOBAL_CONFIG_FILE;
 	// private static JSONObject json = new JSONObject(file);
 
-	private static final InputStream defaultFile = ResourceUtils.getInputStream("/data/global_config.json");
+	private static final InputStream defaultFile = ResourceUtils.getStream("/data/global_config.json");
 	private static final JSONObject defaultData = new JSONObject(defaultFile);
 
 	private static File userFile = SharedValues.getFile("GLOBAL_CONFIG_FILE");

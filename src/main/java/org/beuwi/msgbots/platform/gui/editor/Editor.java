@@ -9,6 +9,7 @@ import javafx.scene.input.KeyEvent;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.platform.gui.enums.ThemeType;
 import org.beuwi.msgbots.platform.gui.layout.StackPane;
+import org.beuwi.msgbots.platform.util.ProgramData;
 import org.beuwi.msgbots.setting.GlobalSettings;
 
 import java.io.File;
@@ -119,6 +120,25 @@ public final class Editor extends StackPane {
 		setLanguage("javascript");
 		getStyleClass().add("editor");
 		getChildren().setAll(monaco.getView());
+	}
+
+	public void cut() {
+		monaco.cut();
+	}
+	public void copy() {
+		monaco.copy();
+	}
+	public void undo() {
+		monaco.undo();
+	}
+	public void redo() {
+		monaco.redo();
+	}
+	public void save() {
+		File file = getFile();
+		if (file != null) {
+			FileManager.save(file, getText());
+		}
 	}
 
 	public void execute(String action) {

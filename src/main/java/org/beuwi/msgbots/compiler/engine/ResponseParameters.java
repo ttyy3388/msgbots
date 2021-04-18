@@ -12,7 +12,7 @@ public class ResponseParameters {
     public ImageDB ImageDB;
     public String packageName;
     
-    public ResponseParameters(String room, String msg, String sender, boolean isGroupChat, Replier replier, ImageDB imageDB, String packName) {
+    protected ResponseParameters(String room, String msg, String sender, boolean isGroupChat, Replier replier, ImageDB imageDB, String packName) {
         this.room = room;
         this.msg = msg;
         this.sender = sender;

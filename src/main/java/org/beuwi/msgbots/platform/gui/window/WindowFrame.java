@@ -23,6 +23,8 @@ public class WindowFrame {
 	private Region content;
 	private String title;
 
+	private boolean created = false;
+
 	public WindowFrame(Stage stage) {
 		this.stage = stage;
 	}
@@ -123,6 +125,12 @@ public class WindowFrame {
 				ChangeThemeAction.execute(getStage().getScene(), getTheme());
 			}
 		} */
+
+		created = true;
+	}
+
+	public boolean isCreated() {
+		return created;
 	}
 
 	public void open() {

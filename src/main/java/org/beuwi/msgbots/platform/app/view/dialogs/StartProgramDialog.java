@@ -24,7 +24,7 @@ import org.beuwi.msgbots.setting.GlobalSettings;
 import java.awt.Toolkit;
 import java.io.File;
 
-public class StartProgramDialog extends DialogWrap {
+public class StartProgramDialog extends YesOrNoDialog {
     private final ObservableMap<String, Object> namespace;
     private final FormLoader loader;
     private final VBox root;
@@ -76,7 +76,8 @@ public class StartProgramDialog extends DialogWrap {
         });
 
         navConfigView.selectTab(0);
-        getFooterArea().getChildren().add(chkFooter);
+
+        getFooterArea().getChildren().add(0, chkFooter);
     }
 
     @Override

@@ -15,7 +15,7 @@ import org.beuwi.msgbots.platform.gui.layout.VBox;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-public class DisplayErrorDialog extends DialogWrap {
+public class DisplayErrorDialog extends YesOrNoDialog {
 	private final ObservableMap<String, Object> namespace;
 	private final FormLoader loader;
 	private final VBox root;

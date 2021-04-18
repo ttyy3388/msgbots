@@ -3,14 +3,14 @@ package org.beuwi.msgbots.compiler.engine;
 import org.beuwi.msgbots.compiler.api.Api;
 import org.beuwi.msgbots.compiler.api.AppData;
 import org.beuwi.msgbots.compiler.api.Bridge;
-import org.beuwi.msgbots.compiler.api.DataBase;
 import org.beuwi.msgbots.compiler.api.Device;
 import org.beuwi.msgbots.compiler.api.FileStream;
 import org.beuwi.msgbots.compiler.api.GlobalLog;
 import org.beuwi.msgbots.compiler.api.ImageDB;
 import org.beuwi.msgbots.compiler.api.Log;
-import org.beuwi.msgbots.compiler.api.Replier;
 import org.beuwi.msgbots.compiler.api.Utils;
+import org.beuwi.msgbots.compiler.api.DataBase;
+import org.beuwi.msgbots.compiler.api.Replier;
 import org.beuwi.msgbots.manager.BotManager;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.manager.LogManager;
@@ -47,9 +47,7 @@ public class ScriptEngine {
 				continue ;
 			}
 
-			new Thread(() -> {
-				callResponder(name, room, message, sender, isGroupChat, imageDB, packageName);
-			}).start();
+			callResponder(name, room, message, sender, isGroupChat, imageDB, packageName);
 		}
 
 		InputDetailLogAction.execute("Message Send", message);
@@ -110,12 +108,12 @@ public class ScriptEngine {
 
 			int flags = ScriptableObject.EMPTY;
 
-			ScriptableObject.defineProperty(scope, "Api", 		 ScriptUtils.convert(new Api(scope, name)), flags);
-			ScriptableObject.defineProperty(scope, "Device", 	 ScriptUtils.convert(new Device(scope)), flags);
+			ScriptableObject.defineProperty(scope, "Api", 		ScriptUtils.convert(new Api(scope, name)), flags);
+			ScriptableObject.defineProperty(scope, "Device", 	ScriptUtils.convert(new Device(scope)), flags);
 			ScriptableObject.defineProperty(scope, "GlobalLog", ScriptUtils.convert(new GlobalLog(scope)), flags);
-			ScriptableObject.defineProperty(scope, "Log", 		 ScriptUtils.convert(new Log(scope, name)), flags);
+			ScriptableObject.defineProperty(scope, "Log", 		ScriptUtils.convert(new Log(scope, name)), flags);
 			ScriptableObject.defineProperty(scope, "DataBase",  ScriptUtils.convert(new DataBase(scope, name)), flags);
-			ScriptableObject.defineProperty(scope, "Utils", 	 ScriptUtils.convert(new Utils(scope)), flags);
+			ScriptableObject.defineProperty(scope, "Utils", 	ScriptUtils.convert(new Utils(scope)), flags);
 
 			ScriptableObject.defineClass(scope, AppData.class);
 			ScriptableObject.defineClass(scope, Bridge.class);
