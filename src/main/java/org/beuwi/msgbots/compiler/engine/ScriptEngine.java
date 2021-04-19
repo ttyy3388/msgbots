@@ -19,6 +19,7 @@ import org.beuwi.msgbots.platform.app.view.actions.InputDetailLogAction;
 import org.beuwi.msgbots.platform.app.view.actions.SaveBotScriptTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.ShowToastMessageAction;
 import org.beuwi.msgbots.platform.gui.control.ToastItem;
+import org.beuwi.msgbots.platform.gui.enums.LogType;
 import org.beuwi.msgbots.platform.gui.enums.ToastType;
 import org.beuwi.msgbots.setting.GlobalSettings;
 import org.beuwi.msgbots.setting.ScriptSettings;
@@ -50,11 +51,11 @@ public class ScriptEngine {
 			callResponder(name, room, message, sender, isGroupChat, imageDB, packageName);
 		}
 
-		InputDetailLogAction.execute("Message Send", message);
+		// InputDetailLogAction.execute(LogType.INFO,"Message Send", message);
 	}
 
 	protected static boolean initialize(String name, boolean isManual, boolean ignoreError) {
-		InputDetailLogAction.execute("Compile Start", name);
+		// InputDetailLogAction.execute(LogType.INFO, "Compile Start", name);
 
 		final long start = System.currentTimeMillis();
 
@@ -167,7 +168,7 @@ public class ScriptEngine {
 
 		BotManager.setCompiled(name, true);
 
-		InputDetailLogAction.execute("Compile Complete", name + " (" + (end - start) + ".ms)");
+		// InputDetailLogAction.execute(LogType.INFO, "Compile Complete", name + " (" + (end - start) + ".ms)");
 
 		LogManager.event("Compile Complete: " + name);
 
@@ -209,7 +210,7 @@ public class ScriptEngine {
 		final long end = System.currentTimeMillis();
 
 		if (GlobalSettings.getBoolean("debug:show_running_time")) {
-			InputDetailLogAction.execute("Running Time", name + " (" + (end - start) + ".ms)");
+			// InputDetailLogAction.execute(LogType.INFO,"Running Time", name + " (" + (end - start) + ".ms)");
 		}
 	}
 }

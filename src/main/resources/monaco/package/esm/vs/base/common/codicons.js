@@ -44,7 +44,7 @@ export class Codicon {
     get cssSelector() { return '.codicon.codicon-' + this.id; }
 }
 (function (Codicon) {
-    // built-in icons, with image name
+    // built-in icon, with image name
     Codicon.add = new Codicon('add', { character: '\\ea60' });
     Codicon.plus = new Codicon('plus', { character: '\\ea60' });
     Codicon.gistNew = new Codicon('gist-new', { character: '\\ea60' });

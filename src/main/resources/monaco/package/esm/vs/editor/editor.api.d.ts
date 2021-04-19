@@ -2763,7 +2763,7 @@ export namespace editor {
          */
         disableLayerHinting?: boolean;
         /**
-         * Disable the optimizations for monospace fonts.
+         * Disable the optimizations for monospace font.
          * Defaults to false.
          */
         disableMonospaceOptimizations?: boolean;
@@ -3701,7 +3701,7 @@ export namespace editor {
          */
         shareSuggestSelections?: boolean;
         /**
-         * Enable or disable icons in suggestions. Defaults to true.
+         * Enable or disable icon in suggestions. Defaults to true.
          */
         showIcons?: boolean;
         /**

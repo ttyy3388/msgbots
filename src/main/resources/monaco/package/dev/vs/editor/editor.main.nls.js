@@ -224,7 +224,7 @@ define("vs/editor/editor.main.nls", {
 		"Controls whether sorting favours words that appear close to the cursor.",
 		"Controls whether remembered suggestion selections are shared between multiple workspaces and windows (needs `#editor.suggestSelection#`).",
 		"Controls whether an active snippet prevents quick suggestions.",
-		"Controls whether to show or hide icons in suggestions.",
+		"Controls whether to show or hide icon in suggestions.",
 		"Controls how many suggestions IntelliSense will show before showing a scrollbar (maximum 15).",
 		"This setting is deprecated, please use separate settings like 'editor.suggest.showKeywords' or 'editor.suggest.showSnippets' instead.",
 		"When enabled IntelliSense shows `method`-suggestions.",
@@ -380,7 +380,7 @@ define("vs/editor/editor.main.nls", {
 		"Wrapped lines get +1 indentation toward the parent.",
 		"Wrapped lines get +2 indentation toward the parent.",
 		"Controls the indentation of wrapped lines.",
-		"Assumes that all characters are of the same width. This is a fast algorithm that works correctly for monospace fonts and certain scripts (like Latin characters) where glyphs are of equal width.",
+		"Assumes that all characters are of the same width. This is a fast algorithm that works correctly for monospace font and certain scripts (like Latin characters) where glyphs are of equal width.",
 		"Delegates wrapping points computation to the browser. This is a slow algorithm, that might cause freezes for large files, but it works correctly in all cases.",
 		"Controls the algorithm that computes wrapping points."
 	],
@@ -1050,7 +1050,7 @@ define("vs/editor/editor.main.nls", {
 	"vs/platform/theme/common/colorRegistry": [
 		"Overall foreground color. This color is only used if not overridden by a component.",
 		"Overall foreground color for error messages. This color is only used if not overridden by a component.",
-		"The default color for icons in the workbench.",
+		"The default color for icon in the workbench.",
 		"Overall border color for focused elements. This color is only used if not overridden by a component.",
 		"An extra border around elements to separate them from others for greater contrast.",
 		"An extra border around active elements to separate them from others for greater contrast.",

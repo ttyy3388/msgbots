@@ -1,6 +1,9 @@
 package org.beuwi.msgbots.platform.gui.editor;
 
 import javafx.beans.InvalidationListener;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ReadOnlyBooleanProperty;
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -141,6 +144,8 @@ public final class Editor extends StackPane {
 		}
 	}
 
+	/* --------------------------------------------------------- */
+
 	public void execute(String action) {
 		monaco.execute(action);
 	}
@@ -163,6 +168,25 @@ public final class Editor extends StackPane {
 		monaco.setLanguage(language);
 	}
 
+	public void setEditable(boolean editable) {
+		monaco.setEditable(editable);
+	}
+
+	public void setScrollTop(double value) {
+		monaco.setScrollTop(value);
+	}
+	public void setScrollLeft(double value) {
+		monaco.setScrollLeft(value);
+	}
+
+	public void setMinimapEnabled(boolean enabled) {
+		monaco.setMinimapEnabled(enabled);
+	}
+
+	public void appendText(String text) {
+		monaco.appendText(text);
+	}
+
 	public File getFile() {
 		return fileProperty.get();
 	}
@@ -179,8 +203,23 @@ public final class Editor extends StackPane {
 		return monaco.getLanguage();
 	}
 
-	public Position getCaretPosition() {
-		return caretProperty().get();
+	public Position getCursorPosition() {
+		return cursorPositionProperty().get();
+	}
+
+	public double getScrollTop() {
+		return monaco.getScrollTop();
+	}
+	public double getScrollLeft() {
+		return monaco.getScrollLeft();
+	}
+
+	public boolean isEditable() {
+		return monaco.isEditable();
+	}
+
+	public boolean isMinimapEnabled() {
+		return monaco.isMinimapEnabled();
 	}
 
 	public FileProperty fileProperty() {
@@ -191,6 +230,10 @@ public final class Editor extends StackPane {
 		return monaco.textProperty();
 	}
 
+	public ReadOnlyBooleanProperty editableProperty() {
+		return monaco.editableProperty();
+	}
+
 	public ReadOnlyStringProperty themeProperty() {
 		return monaco.themeProperty();
 	}
@@ -199,8 +242,19 @@ public final class Editor extends StackPane {
 		return monaco.languageProperty();
 	}
 
-	public ReadOnlyObjectProperty<Position> caretProperty() {
-		return monaco.caretProperty();
+	public ReadOnlyObjectProperty<Position> cursorPositionProperty() {
+		return monaco.cursorPositionProperty();
+	}
+
+	public ReadOnlyDoubleProperty scrollTopProperty() {
+		return monaco.scrollTopProperty();
+	}
+	public ReadOnlyDoubleProperty scrollLeftProperty() {
+		return monaco.scrollLeftProperty();
+	}
+
+	public ReadOnlyBooleanProperty minimapEnabledProperty() {
+		return monaco.minimapEnabledProperty();
 	}
 
 	private class FileProperty extends SimpleObjectProperty<File> {

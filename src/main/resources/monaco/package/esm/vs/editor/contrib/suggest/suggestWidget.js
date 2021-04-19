@@ -112,7 +112,7 @@ let ItemRenderer = class ItemRenderer {
         const data = Object.create(null);
         data.disposables = new DisposableStore();
         data.root = container;
-        data.root.classList.add('show-file-icons');
+        data.root.classList.add('show-file-icon');
         data.icon = append(container, $('.icon'));
         data.colorspan = append(data.icon, $('span.colorspan'));
         const text = append(container, $('.contents'));
@@ -457,7 +457,7 @@ let SuggestWidget = class SuggestWidget {
         this.toDispose.add(menu.onDidChange(() => renderMenu()));
         this.toDispose.add(menu);
         this.details = instantiationService.createInstance(SuggestionDetails, this.element, this, this.editor, markdownRenderer, kbToggleDetails);
-        const applyIconStyle = () => this.element.classList.toggle('no-icons', !this.editor.getOption(96 /* suggest */).showIcons);
+        const applyIconStyle = () => this.element.classList.toggle('no-icon', !this.editor.getOption(96 /* suggest */).showIcons);
         applyIconStyle();
         let renderer = instantiationService.createInstance(ItemRenderer, this, this.editor, kbToggleDetails);
         this.list = new List('SuggestWidget', this.listElement, this, [renderer], {

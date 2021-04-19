@@ -514,14 +514,14 @@
 /* ---------- Icon label ---------- */
 
 .monaco-icon-label {
-	display: flex; /* required for icons support :before rule */
+	display: flex; /* required for icon support :before rule */
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
 .monaco-icon-label::before {
 
-	/* svg icons rendered as background image */
+	/* svg icon rendered as background image */
 	background-size: 16px;
 	background-position: left center;
 	background-repeat: no-repeat;
@@ -531,7 +531,7 @@
 	line-height: inherit !important;
 	display: inline-block;
 
-	/* fonts icons */
+	/* font icon */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	vertical-align: top;
@@ -3661,7 +3661,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 
-/* Default standalone editor fonts */
+/* Default standalone editor font */
 .monaco-editor {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "HelveticaNeue-Light", system-ui, "Ubuntu", "Droid Sans", sans-serif;
 	--monaco-monospace-font: "SF Mono", Monaco, Menlo, Consolas, "Ubuntu Mono", "Liberation Mono", "DejaVu Sans Mono", "Courier New", monospace;

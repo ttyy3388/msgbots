@@ -391,7 +391,7 @@ function splitLargeTokens(lineContent, tokens, onlyAtSpaces) {
 }
 /**
  * Whitespace is rendered by "replacing" tokens with a special-purpose `mtkw` type that is later recognized in the rendering phase.
- * Moreover, a token is created for every visual indent because on some fonts the glyphs used for rendering whitespace (&rarr; or &middot;) do not have the same width as &nbsp;.
+ * Moreover, a token is created for every visual indent because on some font the glyphs used for rendering whitespace (&rarr; or &middot;) do not have the same width as &nbsp;.
  * The rendering phase will generate `style="width:..."` for these tokens.
  */
 function _applyRenderWhitespace(input, lineContent, len, tokens) {

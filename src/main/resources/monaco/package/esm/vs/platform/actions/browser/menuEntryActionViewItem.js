@@ -192,7 +192,7 @@ let MenuEntryActionViewItem = class MenuEntryActionViewItem extends ActionViewIt
         this._itemClassDispose.value = undefined;
         const icon = this._commandAction.checked && ((_a = item.toggled) === null || _a === void 0 ? void 0 : _a.icon) ? item.toggled.icon : item.icon;
         if (ThemeIcon.isThemeIcon(icon)) {
-            // theme icons
+            // theme icon
             const iconClass = ThemeIcon.asClassName(icon);
             if (this.label && iconClass) {
                 addClasses(this.label, iconClass);

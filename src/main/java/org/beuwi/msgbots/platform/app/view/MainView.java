@@ -42,7 +42,7 @@ public class MainView implements View {
 
 		// Add parts
 		stpMenuBar.getChildren().add(MenuBarPart.getRoot());
-		// stpInnerArea.getChildren().add(ToastListPart.getRoot());
+		stpInnerArea.getChildren().add(ToastListPart.getRoot());
 		stpSideArea.getChildren().add(SideAreaPart.getRoot());
 		stpMainArea.getChildren().add(MainAreaPart.getRoot());
 		stpToolArea.getChildren().add(ToolAreaPart.getRoot());

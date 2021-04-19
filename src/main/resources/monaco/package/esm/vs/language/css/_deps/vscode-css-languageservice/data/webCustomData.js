@@ -2617,7 +2617,7 @@ export var cssData = {
                 },
                 {
                     "name": "strict",
-                    "description": "Turns on all forms of containment for the element."
+                    "description": "Turns on all form of containment for the element."
                 },
                 {
                     "name": "content",
@@ -3650,7 +3650,7 @@ export var cssData = {
                 },
                 {
                     "name": "icon",
-                    "description": "The font used to label icons."
+                    "description": "The font used to label icon."
                 },
                 {
                     "name": "italic",
@@ -3724,7 +3724,7 @@ export var cssData = {
                     "url": "https://developer.mozilla.org/docs/Web/CSS/font"
                 }
             ],
-            "description": "Shorthand property for setting 'font-style', 'font-variant', 'font-weight', 'font-size', 'line-height', and 'font-family', at the same place in the style sheet. The syntax of this property is based on a traditional typographical shorthand notation to set multiple properties related to fonts.",
+            "description": "Shorthand property for setting 'font-style', 'font-variant', 'font-weight', 'font-size', 'line-height', and 'font-family', at the same place in the style sheet. The syntax of this property is based on a traditional typographical shorthand notation to set multiple properties related to font.",
             "restrictions": [
                 "font"
             ]
@@ -3865,7 +3865,7 @@ export var cssData = {
                 },
                 {
                     "name": "\"cpct\"",
-                    "description": "Centered CJK Punctuation. Used primarily in Chinese fonts."
+                    "description": "Centered CJK Punctuation. Used primarily in Chinese font."
                 },
                 {
                     "name": "\"cpsp\"",
@@ -3925,7 +3925,7 @@ export var cssData = {
                 },
                 {
                     "name": "\"flac\"",
-                    "description": "Flattened ascent forms. Applied to math formula layout."
+                    "description": "Flattened ascent form. Applied to math formula layout."
                 },
                 {
                     "name": "\"frac\"",
@@ -3933,7 +3933,7 @@ export var cssData = {
                 },
                 {
                     "name": "\"fwid\"",
-                    "description": "Full Widths. Applies to any script which can use monospaced forms."
+                    "description": "Full Widths. Applies to any script which can use monospaced form."
                 },
                 {
                     "name": "\"half\"",
@@ -3945,7 +3945,7 @@ export var cssData = {
                 },
                 {
                     "name": "\"halt\"",
-                    "description": "Alternate Half Widths. Used only in CJKV fonts."
+                    "description": "Alternate Half Widths. Used only in CJKV font."
                 },
                 {
                     "name": "\"hist\"",
@@ -3953,7 +3953,7 @@ export var cssData = {
                 },
                 {
                     "name": "\"hkna\"",
-                    "description": "Horizontal Kana Alternates. Applies only to fonts that support kana (hiragana and katakana)."
+                    "description": "Horizontal Kana Alternates. Applies only to font that support kana (hiragana and katakana)."
                 },
                 {
                     "name": "\"hlig\"",
@@ -3969,7 +3969,7 @@ export var cssData = {
                 },
                 {
                     "name": "\"hwid\"",
-                    "description": "Half Widths. Generally used only in CJKV fonts."
+                    "description": "Half Widths. Generally used only in CJKV font."
                 },
                 {
                     "name": "\"init\"",
@@ -3981,7 +3981,7 @@ export var cssData = {
                 },
                 {
                     "name": "\"ital\"",
-                    "description": "Italics. Applies mostly to Latin; note that many non-Latin fonts contain Latin as well."
+                    "description": "Italics. Applies mostly to Latin; note that many non-Latin font contain Latin as well."
                 },
                 {
                     "name": "\"jalt\"",
@@ -4033,7 +4033,7 @@ export var cssData = {
                 },
                 {
                     "name": "\"ltrm\"",
-                    "description": "Left-to-right mirrored forms."
+                    "description": "Left-to-right mirrored form."
                 },
                 {
                     "name": "\"mark\"",
@@ -4089,7 +4089,7 @@ export var cssData = {
                 },
                 {
                     "name": "\"palt\"",
-                    "description": "Proportional Alternate Widths. Used mostly in CJKV fonts."
+                    "description": "Proportional Alternate Widths. Used mostly in CJKV font."
                 },
                 {
                     "name": "\"pcap\"",
@@ -4097,7 +4097,7 @@ export var cssData = {
                 },
                 {
                     "name": "\"pkna\"",
-                    "description": "Proportional Kana. Generally used only in Japanese fonts."
+                    "description": "Proportional Kana. Generally used only in Japanese font."
                 },
                 {
                     "name": "\"pnum\"",
@@ -4113,7 +4113,7 @@ export var cssData = {
                 },
                 {
                     "name": "\"pstf\"",
-                    "description": "Post-base Forms. Required in scripts of south and southeast Asia that have post-base forms for consonants eg: Gurmukhi, Malayalam, Khmer."
+                    "description": "Post-base Forms. Required in scripts of south and southeast Asia that have post-base form for consonants eg: Gurmukhi, Malayalam, Khmer."
                 },
                 {
                     "name": "\"psts\"",
@@ -4125,7 +4125,7 @@ export var cssData = {
                 },
                 {
                     "name": "\"qwid\"",
-                    "description": "Quarter Widths. Generally used only in CJKV fonts."
+                    "description": "Quarter Widths. Generally used only in CJKV font."
                 },
                 {
                     "name": "\"rand\"",
@@ -4157,7 +4157,7 @@ export var cssData = {
                 },
                 {
                     "name": "\"rtlm\"",
-                    "description": "Right-to-left mirrored forms."
+                    "description": "Right-to-left mirrored form."
                 },
                 {
                     "name": "\"ruby\"",
@@ -4225,7 +4225,7 @@ export var cssData = {
                 },
                 {
                     "name": "\"twid\"",
-                    "description": "Third Widths. Generally used only in CJKV fonts."
+                    "description": "Third Widths. Generally used only in CJKV font."
                 },
                 {
                     "name": "\"unic\"",
@@ -4245,7 +4245,7 @@ export var cssData = {
                 },
                 {
                     "name": "\"vhal\"",
-                    "description": "Alternate Vertical Half Metrics. Used only in CJKV fonts."
+                    "description": "Alternate Vertical Half Metrics. Used only in CJKV font."
                 },
                 {
                     "name": "\"vjmo\"",
@@ -4253,7 +4253,7 @@ export var cssData = {
                 },
                 {
                     "name": "\"vkna\"",
-                    "description": "Vertical Kana Alternates. Applies only to fonts that support kana (hiragana and katakana)."
+                    "description": "Vertical Kana Alternates. Applies only to font that support kana (hiragana and katakana)."
                 },
                 {
                     "name": "\"vkrn\"",
@@ -4261,7 +4261,7 @@ export var cssData = {
                 },
                 {
                     "name": "\"vpal\"",
-                    "description": "Proportional Alternate Vertical Metrics. Used mostly in CJKV fonts."
+                    "description": "Proportional Alternate Vertical Metrics. Used mostly in CJKV font."
                 },
                 {
                     "name": "\"vrt2\"",
@@ -4342,7 +4342,7 @@ export var cssData = {
             "values": [
                 {
                     "name": "normal",
-                    "description": "Implies that when rendering with OpenType fonts the language of the document is used to infer the OpenType language system, used to select language specific features when rendering."
+                    "description": "Implies that when rendering with OpenType font the language of the document is used to infer the OpenType language system, used to select language specific features when rendering."
                 }
             ],
             "syntax": "normal | <string>",
@@ -4353,7 +4353,7 @@ export var cssData = {
                     "url": "https://developer.mozilla.org/docs/Web/CSS/font-language-override"
                 }
             ],
-            "description": "The value of 'normal' implies that when rendering with OpenType fonts the language of the document is used to infer the OpenType language system, used to select language specific features when rendering.",
+            "description": "The value of 'normal' implies that when rendering with OpenType font the language of the document is used to infer the OpenType language system, used to select language specific features when rendering.",
             "restrictions": [
                 "string"
             ]
@@ -4397,7 +4397,7 @@ export var cssData = {
                     "url": "https://developer.mozilla.org/docs/Web/CSS/font-size"
                 }
             ],
-            "description": "Indicates the desired height of glyphs from the font. For scalable fonts, the font-size is a scale factor applied to the EM unit of the font. (Note that certain glyphs may bleed outside their EM box.) For non-scalable fonts, the font-size is converted into absolute units and matched against the declared font-size of the font, using the same absolute coordinate space for both of the matched values.",
+            "description": "Indicates the desired height of glyphs from the font. For scalable font, the font-size is a scale factor applied to the EM unit of the font. (Note that certain glyphs may bleed outside their EM box.) For non-scalable font, the font-size is converted into absolute units and matched against the declared font-size of the font, using the same absolute coordinate space for both of the matched values.",
             "restrictions": [
                 "length",
                 "percentage"
@@ -4506,7 +4506,7 @@ export var cssData = {
                     "url": "https://developer.mozilla.org/docs/Web/CSS/font-style"
                 }
             ],
-            "description": "Allows italic or oblique faces to be selected. Italic forms are generally cursive in nature while oblique faces are typically sloped versions of the regular face.",
+            "description": "Allows italic or oblique faces to be selected. Italic form are generally cursive in nature while oblique faces are typically sloped versions of the regular face.",
             "restrictions": [
                 "enum"
             ]
@@ -4556,7 +4556,7 @@ export var cssData = {
                     "description": "Specifies a font that is labeled as a small-caps font. If a genuine small-caps font is not available, user agents should simulate a small-caps font."
                 }
             ],
-            "syntax": "normal | none | [ <common-lig-values> || <discretionary-lig-values> || <historical-lig-values> || <contextual-alt-values> || stylistic(<feature-value-name>) || historical-forms || styleset(<feature-value-name>#) || character-variant(<feature-value-name>#) || swash(<feature-value-name>) || ornaments(<feature-value-name>) || annotation(<feature-value-name>) || [ small-caps | all-small-caps | petite-caps | all-petite-caps | unicase | titling-caps ] || <numeric-figure-values> || <numeric-spacing-values> || <numeric-fraction-values> || ordinal || slashed-zero || <east-asian-variant-values> || <east-asian-width-values> || ruby ]",
+            "syntax": "normal | none | [ <common-lig-values> || <discretionary-lig-values> || <historical-lig-values> || <contextual-alt-values> || stylistic(<feature-value-name>) || historical-form || styleset(<feature-value-name>#) || character-variant(<feature-value-name>#) || swash(<feature-value-name>) || ornaments(<feature-value-name>) || annotation(<feature-value-name>) || [ small-caps | all-small-caps | petite-caps | all-petite-caps | unicase | titling-caps ] || <numeric-figure-values> || <numeric-spacing-values> || <numeric-fraction-values> || ordinal || slashed-zero || <east-asian-variant-values> || <east-asian-width-values> || ruby ]",
             "relevance": 63,
             "references": [
                 {
@@ -4577,15 +4577,15 @@ export var cssData = {
             "values": [
                 {
                     "name": "annotation()",
-                    "description": "Enables display of alternate annotation forms."
+                    "description": "Enables display of alternate annotation form."
                 },
                 {
                     "name": "character-variant()",
                     "description": "Enables display of specific character variants."
                 },
                 {
-                    "name": "historical-forms",
-                    "description": "Enables display of historical forms."
+                    "name": "historical-form",
+                    "description": "Enables display of historical form."
                 },
                 {
                     "name": "normal",
@@ -4608,7 +4608,7 @@ export var cssData = {
                     "description": "Enables display of swash glyphs."
                 }
             ],
-            "syntax": "normal | [ stylistic( <feature-value-name> ) || historical-forms || styleset( <feature-value-name># ) || character-variant( <feature-value-name># ) || swash( <feature-value-name> ) || ornaments( <feature-value-name> ) || annotation( <feature-value-name> ) ]",
+            "syntax": "normal | [ stylistic( <feature-value-name> ) || historical-form || styleset( <feature-value-name># ) || character-variant( <feature-value-name># ) || swash( <feature-value-name> ) || ornaments( <feature-value-name> ) || annotation( <feature-value-name> ) ]",
             "relevance": 50,
             "references": [
                 {
@@ -4616,7 +4616,7 @@ export var cssData = {
                     "url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-alternates"
                 }
             ],
-            "description": "For any given character, fonts can provide a variety of alternate glyphs in addition to the default glyph for that character. This property provides control over the selection of these alternate glyphs.",
+            "description": "For any given character, font can provide a variety of alternate glyphs in addition to the default glyph for that character. This property provides control over the selection of these alternate glyphs.",
             "restrictions": [
                 "enum"
             ]
@@ -4667,7 +4667,7 @@ export var cssData = {
                     "url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-caps"
                 }
             ],
-            "description": "Specifies control over capitalized forms.",
+            "description": "Specifies control over capitalized form.",
             "restrictions": [
                 "enum"
             ]
@@ -4687,19 +4687,19 @@ export var cssData = {
                 },
                 {
                     "name": "jis04",
-                    "description": "Enables rendering of JIS04 forms."
+                    "description": "Enables rendering of JIS04 form."
                 },
                 {
                     "name": "jis78",
-                    "description": "Enables rendering of JIS78 forms."
+                    "description": "Enables rendering of JIS78 form."
                 },
                 {
                     "name": "jis83",
-                    "description": "Enables rendering of JIS83 forms."
+                    "description": "Enables rendering of JIS83 form."
                 },
                 {
                     "name": "jis90",
-                    "description": "Enables rendering of JIS90 forms."
+                    "description": "Enables rendering of JIS90 form."
                 },
                 {
                     "name": "normal",
@@ -4715,11 +4715,11 @@ export var cssData = {
                 },
                 {
                     "name": "simplified",
-                    "description": "Enables rendering of simplified forms."
+                    "description": "Enables rendering of simplified form."
                 },
                 {
                     "name": "traditional",
-                    "description": "Enables rendering of traditional forms."
+                    "description": "Enables rendering of traditional form."
                 }
             ],
             "syntax": "normal | [ <east-asian-variant-values> || <east-asian-width-values> || ruby ]",
@@ -4856,7 +4856,7 @@ export var cssData = {
                 },
                 {
                     "name": "ordinal",
-                    "description": "Enables display of letter forms used with ordinal numbers."
+                    "description": "Enables display of letter form used with ordinal numbers."
                 },
                 {
                     "name": "proportional-nums",
@@ -4883,7 +4883,7 @@ export var cssData = {
                     "url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-numeric"
                 }
             ],
-            "description": "Specifies control over numerical forms.",
+            "description": "Specifies control over numerical form.",
             "restrictions": [
                 "enum"
             ]
@@ -14217,7 +14217,7 @@ export var cssData = {
                 },
                 {
                     "name": "plaintext",
-                    "description": "For the purposes of the Unicode bidirectional algorithm, the base directionality of each bidi paragraph for which the element forms the containing block is determined not by the element's computed 'direction'."
+                    "description": "For the purposes of the Unicode bidirectional algorithm, the base directionality of each bidi paragraph for which the element form the containing block is determined not by the element's computed 'direction'."
                 }
             ],
             "syntax": "normal | embed | isolate | bidi-override | isolate-override | plaintext",
@@ -14442,7 +14442,7 @@ export var cssData = {
                 },
                 {
                     "name": "U+2E80–2EFF",
-                    "description": "CJK Radicals Supplement. Alternative forms of Kangxi Radicals."
+                    "description": "CJK Radicals Supplement. Alternative form of Kangxi Radicals."
                 },
                 {
                     "name": "U+1100–11FF",
@@ -14522,7 +14522,7 @@ export var cssData = {
                 },
                 {
                     "name": "U+FB50–FDFF",
-                    "description": "Arabic Presentation Forms-A. Contextual forms / ligatures for Persian, Urdu, Sindhi, Central Asian languages, etc, Arabic pedagogical symbols, word ligatures."
+                    "description": "Arabic Presentation Forms-A. Contextual form / ligatures for Persian, Urdu, Sindhi, Central Asian languages, etc, Arabic pedagogical symbols, word ligatures."
                 },
                 {
                     "name": "U+1F600–1F64F",
@@ -18022,7 +18022,7 @@ export var cssData = {
                     "url": "https://developer.mozilla.org/docs/Web/CSS/font-optical-sizing"
                 }
             ],
-            "description": "The font-optical-sizing CSS property allows developers to control whether browsers render text with slightly differing visual representations to optimize viewing at different sizes, or not. This only works for fonts that have an optical size variation axis."
+            "description": "The font-optical-sizing CSS property allows developers to control whether browsers render text with slightly differing visual representations to optimize viewing at different sizes, or not. This only works for font that have an optical size variation axis."
         },
         {
             "name": "font-variation-settings",
@@ -19605,7 +19605,7 @@ export var cssData = {
                     "url": "https://developer.mozilla.org/docs/Web/CSS/@font-face"
                 }
             ],
-            "description": "Allows for linking to fonts that are automatically activated when needed. This permits authors to work around the limitation of 'web-safe' fonts, allowing for consistent rendering independent of the fonts available in a given user's environment."
+            "description": "Allows for linking to font that are automatically activated when needed. This permits authors to work around the limitation of 'web-safe' font, allowing for consistent rendering independent of the font available in a given user's environment."
         },
         {
             "name": "@font-feature-values",
@@ -19902,7 +19902,7 @@ export var cssData = {
                     "url": "https://developer.mozilla.org/docs/Web/CSS/:focus"
                 }
             ],
-            "description": "Applies while an element has the focus (accepts keyboard or mouse events, or other forms of input)."
+            "description": "Applies while an element has the focus (accepts keyboard or mouse events, or other form of input)."
         },
         {
             "name": ":fullscreen",

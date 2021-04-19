@@ -73,7 +73,7 @@ export class MinimapCharRendererFactory {
         // This is essentially an ad-hoc rescaling algorithm. Standard approaches
         // like bicubic interpolation are awesome for scaling between image sizes,
         // but don't work so well when scaling to very small pixel values, we end
-        // up with blurry, indistinct forms.
+        // up with blurry, indistinct form.
         //
         // The approach taken here is simply mapping each source pixel to the target
         // pixels, and taking the weighted values for all pixels in each, and then

@@ -226,6 +226,11 @@
     -fx-font-size: 13;
 }
 
+/* TOOLTIP */
+.tooltip {
+	-fx-padding: 10;
+}
+
 /* TOAST VIEW */
 /* .toast-view {
     -fx-padding: 2.5 0 2.5 0;

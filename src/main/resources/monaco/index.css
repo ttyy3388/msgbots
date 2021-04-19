@@ -3,38 +3,38 @@
 
 @font-face {
 	font-family: 'Consolas';
-	src: url('../fonts/consola.ttf');
+	src: url('../font/consola.ttf');
 }
 /* @font-face {
 	font-family: 'Consolas';
-	src: url('../fonts/consola-bold.ttf');
+	src: url('../font/consola-bold.ttf');
 } */
 @font-face {
 	font-family: 'D2Coding';
-	src: url('../fonts/d2coding.ttf');
+	src: url('../font/d2coding.ttf');
 }
 @font-face {
 	font-family: 'D2Coding';
 	font-weight: bold;
-	src: url('../fonts/d2coding-bold.ttf');
+	src: url('../font/d2coding-bold.ttf');
 }
 @font-face {
 	font-family: 'NanumGothic';
-	src: url('../fonts/nanumgothic.ttf');
+	src: url('../font/nanumgothic.ttf');
 }
 @font-face {
 	font-family: 'NanumGothic';
 	font-weight: bold;
-	src: url('../fonts/nanumgothic-bold.ttf');
+	src: url('../font/nanumgothic-bold.ttf');
 }
 @font-face {
 	font-family: 'Roboto';
-	src: url('../fonts/roboto.ttf');
+	src: url('../font/roboto.ttf');
 }
 @font-face {
 	font-family: 'Roboto';
 	font-weight: bold;
-	src: url('../fonts/roboto-bold.ttf');
+	src: url('../font/roboto-bold.ttf');
 }
 
 * {

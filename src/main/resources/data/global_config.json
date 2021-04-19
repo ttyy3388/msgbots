@@ -24,7 +24,7 @@
 		"show_start_dialog": true,
 		"save_dir_path": null,
 		"version_name":"0.6.6",
-		"version_code":6,
+		"version_code":5,
 		"compile_auto_save":true,
 		"text_rendering":"LCD",
 		"start_auto_compile":true,

@@ -1499,7 +1499,7 @@ class EditorSuggest extends BaseEditorOption {
             'editor.suggest.showIcons': {
                 type: 'boolean',
                 default: defaults.showIcons,
-                description: nls.localize('suggest.showIcons', "Controls whether to show or hide icons in suggestions.")
+                description: nls.localize('suggest.showIcons', "Controls whether to show or hide icon in suggestions.")
             },
             'editor.suggest.maxVisibleSuggestions': {
                 type: 'number',
@@ -2082,7 +2082,7 @@ export const EditorOptions = {
     })),
     wrappingStrategy: register(new EditorStringEnumOption(112 /* wrappingStrategy */, 'wrappingStrategy', 'simple', ['simple', 'advanced'], {
         enumDescriptions: [
-            nls.localize('wrappingStrategy.simple', "Assumes that all characters are of the same width. This is a fast algorithm that works correctly for monospace fonts and certain scripts (like Latin characters) where glyphs are of equal width."),
+            nls.localize('wrappingStrategy.simple', "Assumes that all characters are of the same width. This is a fast algorithm that works correctly for monospace font and certain scripts (like Latin characters) where glyphs are of equal width."),
             nls.localize('wrappingStrategy.advanced', "Delegates wrapping points computation to the browser. This is a slow algorithm, that might cause freezes for large files, but it works correctly in all cases.")
         ],
         description: nls.localize('wrappingStrategy', "Controls the algorithm that computes wrapping points.")

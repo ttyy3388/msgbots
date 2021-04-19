@@ -294,6 +294,13 @@
 	-fx-background-color: #252526;
 } */
 
+/* TOOLTIP */
+.tooltip {
+	-fx-background-color: #252526;
+	-fx-border-color: #555555;
+	-fx-border-width: 1;
+}
+
 /* NAVI ITEM */
 .navi-item:selected {
 	-fx-background-color: #0D293E;
@@ -412,6 +419,7 @@
 .tool-area .tab-view .tab-header-area {
 	-fx-background-color: #1E1E1E;
 }
+.tool-area .editor,
 .tool-area .text-area {
 	 -fx-border-width: 0;
 	/* -fx-border-color: #414141;

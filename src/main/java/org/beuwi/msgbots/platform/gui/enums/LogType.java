@@ -8,6 +8,13 @@ public enum LogType {
 		}
 	},
 
+	INFO {
+		@Override
+		public String toString() {
+			return "info";
+		}
+	},
+
 	EVENT {
 		@Override
 		public String toString() {

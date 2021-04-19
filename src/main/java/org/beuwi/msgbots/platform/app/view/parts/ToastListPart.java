@@ -2,6 +2,7 @@ package org.beuwi.msgbots.platform.app.view.parts;
 
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableMap;
+import javafx.scene.control.Tooltip;
 
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.platform.app.impl.View;
@@ -37,6 +38,7 @@ public class ToastListPart implements View {
 		button.setOnAction(event -> {
 			toast.getItems().removeAll(toast.getItems());
 		});
+		button.setTooltip(new Tooltip("Close All"));
 
 		root.setBackground(null);
 		// root.setMouseTransparent(true);

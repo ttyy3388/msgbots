@@ -3,26 +3,31 @@ package org.beuwi.msgbots.platform.app.view.actions;
 import org.beuwi.msgbots.platform.app.impl.Action;
 import org.beuwi.msgbots.platform.app.view.tabs.DetailLogTab;
 import org.beuwi.msgbots.platform.gui.control.TextArea;
+import org.beuwi.msgbots.platform.gui.editor.Editor;
+import org.beuwi.msgbots.platform.gui.enums.LogType;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class InputDetailLogAction implements Action {
 	private static final SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-	private static TextArea textArea;
+	private static Editor editor;
 
 	@Override
 	public void init() {
-		textArea = DetailLogTab.getComponent();
+		editor = DetailLogTab.getComponent();
 	}
 
 	public static void execute(String title, String text) {
-		execute(formatter.format(new Date()), title, text);
+		execute(LogType.INFO, title, text);
 	}
 
-	public static void execute(String time, String title, String text) {
-		// Append Text 부분에서 자꾸 에러가 나서 직접 컨트롤
-		textArea.setText(textArea.getText() + "[" + time + "] < " + title + " > : " + text + "\n");
+	public static void execute(LogType type, String title, String text) {
+		execute(type, formatter.format(new Date()), title, text);
+	}
+
+	public static void execute(LogType type, String time, String title, String text) {
+		editor.appendText("[" + time + "] [" + type.name() + "] [" + title + "] : " + text + "\n");
 	}
 
 	// Default log type : Event

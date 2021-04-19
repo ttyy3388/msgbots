@@ -782,7 +782,7 @@ export class QuickInputController extends Disposable {
         if (this.ui) {
             return this.ui;
         }
-        const container = dom.append(this.parentElement, $('.quick-input-widget.show-file-icons'));
+        const container = dom.append(this.parentElement, $('.quick-input-widget.show-file-icon'));
         container.tabIndex = -1;
         container.style.display = 'none';
         const styleSheet = dom.createStyleSheet(container);

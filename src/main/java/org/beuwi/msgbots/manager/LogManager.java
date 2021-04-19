@@ -1,6 +1,7 @@
 package org.beuwi.msgbots.manager;
 
 import org.beuwi.msgbots.openapi.JSONArray;
+import org.beuwi.msgbots.platform.app.view.actions.InputDetailLogAction;
 import org.beuwi.msgbots.platform.gui.control.LogItem;
 import org.beuwi.msgbots.platform.gui.enums.LogType;
 import org.beuwi.msgbots.platform.util.SharedValues;

@@ -80,14 +80,14 @@
 																	HBox.hgrow="ALWAYS"
 																	title="통합 매개변수 OFF">
 															<content>
-																<Editor></Editor>
+																<Editor minimapEnabled="false"></Editor>
 															</content>
 														</OptionItem>
 														<OptionItem address="control:editor:edit_script_unified"
 																	HBox.hgrow="ALWAYS"
 																	title="통합 매개변수 ON">
 															<content>
-																<Editor></Editor>
+																<Editor minimapEnabled="false"></Editor>
 															</content>
 														</OptionItem>
 														<!-- <VBox spacing="10.0" HBox.hgrow="ALWAYS">

@@ -14,11 +14,13 @@
 				<Insets top="5.0" bottom="0.0"></Insets>
 			</StackPane.margin>
 		</Editor> -->
-		<TextArea editable="false">
+		<Editor language="detail-log"
+				theme="detail-log"
+				minimapEnabled="false">
 			<StackPane.margin>
 				<Insets top="10.0" left="5.0"></Insets>
 			</StackPane.margin>
-		</TextArea>
+		</Editor>
 	</content>
 	<padding>
 		<Insets right="10.0" left="10.0"></Insets>

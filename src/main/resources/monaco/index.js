@@ -280,8 +280,33 @@ var source = [
 	'}',
 ].join('\n');
 
+
 require(['vs/editor/editor.main'], function() {
 	monaco.languages.typescript.javascriptDefaults.addExtraLib(source);
+});
+
+require(['vs/editor/editor.main'], function() {
+	monaco.languages.register({ id: 'detail-log' });
+	monaco.languages.setMonarchTokensProvider('detail-log', {
+		tokenizer: {
+			root: [
+				[/\[error.*/, "ERROR"],
+				[/\[notice.*/, "NOTICE"],
+				[/\[info.*/, "INFO"],
+				[/\[[a-zA-Z 0-9:]+\]/, "DATE"],
+			]
+		}
+	});
+	monaco.editor.defineTheme('detail-log', {
+		base: 'vs',
+		inherit: false,
+		rules: [
+			{ token: 'INFO', foreground: '007ACC' },
+			{ token: 'ERROR', foreground: 'FF0000' },
+			{ token: 'NOTICE', foreground: 'FFA500' },
+			{ token: 'DATE', foreground: '008800' },
+		]
+	});
 });
 
 require(['vs/editor/editor.main'], function() {
@@ -410,7 +435,7 @@ function changeText(data) {
 	var id = { major: 1, minor: 1 };
 	var text = data;
 	var op = { identifier: id, range: range, text: text, forceMoveMarkers: true };
-	editor.executeEdits("my-source", [op]);
+	editor.executeEdits("", [op]);
 }
 
 function getCode() {

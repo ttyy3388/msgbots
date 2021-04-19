@@ -7,14 +7,14 @@ import org.beuwi.msgbots.platform.app.impl.View;
 import org.beuwi.msgbots.platform.gui.control.Button;
 import org.beuwi.msgbots.platform.gui.control.TabItem;
 import org.beuwi.msgbots.platform.gui.control.TextArea;
+import org.beuwi.msgbots.platform.gui.editor.Editor;
 import org.beuwi.msgbots.platform.gui.layout.HBox;
 
 public class DetailLogTab implements View {
 	private static ObservableMap<String, Object> namespace;
 	private static FormLoader loader;
 	private static TabItem root;
-	private static TextArea component;
-	// private static Editor component;
+	private static Editor component;
 
 	@Override
 	public void init() {
@@ -23,7 +23,7 @@ public class DetailLogTab implements View {
 		root = loader.getRoot();
 		component = loader.getComponent();
 
-		component.setAutoScroll(true);
+		// component.setAutoScroll(true);
 
 		HBox header = (HBox) root.getHeader();
 		Button button = (Button) root.getButton();
@@ -35,7 +35,7 @@ public class DetailLogTab implements View {
 		return root;
 	}
 
-	public static TextArea getComponent() {
+	public static Editor getComponent() {
 		return component;
 	}
 
