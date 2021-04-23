@@ -9,10 +9,7 @@
 <ResizePane styleClass="tool-area" type="TOP" prefHeight="250.0" xmlns:fx="http://javafx.com/fxml">
 	<children>
 		<TabView fx:id="tavMainView"
-				 ResizePane.topAnchor="0.0"
-				 ResizePane.rightAnchor="0.0"
-				 ResizePane.bottomAnchor="0.0"
-				 ResizePane.leftAnchor="0.0">
+				 ResizePane.fitContent="true">
 			<tabs>
 				<!-- <fx:include source="../tab/debug-room-tab.fxml"></fx:include> -->
 			</tabs>

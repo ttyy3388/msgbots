@@ -18,9 +18,14 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ResizePane extends AnchorPane {
+	private static final Map<Node, Boolean> fitContentMap = new HashMap();
+	private static final Map<Node, Double[]> saveAnchorMap = new HashMap();
 
 	private final ObjectProperty<Side> typeProperty = new SimpleObjectProperty(null);
 
@@ -113,8 +118,9 @@ public class ResizePane extends AnchorPane {
         });
 		resizebar.setOnMouseDragged(event -> {
 			if (event.isConsumed() ||
-				stage == null ||
+				/* stage == null || */
 				scene == null) {
+				// System.out.println(event.isConsumed() + "2" + stage + "2" + scene);
 				return ;
 			}
 			// SceneY를 컨트롤 높이와 부수적인 요소(*)의 합으로 봄
@@ -173,12 +179,11 @@ public class ResizePane extends AnchorPane {
 			// 그냥 getLayoutX()를 호출하면 직계부모의 상대 위치만 가져오므로 의미없는 값을 반환함
 			// 따라서 씬의 상대 위치를 가져오기 위해서 "sceneToLocal"함수를 이용
 			// 또한 왜인지는 모르겠으나 (-)음수 값을 반환하므로 부호를 변환시켜 (+)양수로 계산
-			Bounds bounds = resizebar.sceneToLocal(
-					resizebar.getLayoutBounds());
+			Bounds bounds = resizebar.sceneToLocal(resizebar.getLayoutBounds());
 			double layoutX = -(bounds.getMinX());
 			double layoutY = -(bounds.getMinY());
 
-			System.out.println(
+			/* System.out.println(
 				"[StartY]:" + startY + " " +
 				"[SceneX]:" + sceneX + " " +
 				"[SceneY]:" + sceneY + " " +
@@ -193,7 +198,7 @@ public class ResizePane extends AnchorPane {
 				"[eventX]:" + event.getX() + " " +
 				"[eventY]:" + event.getY() + " " +
 				"[DeltaX]:" + deltaX + " " +
-				"[DeltaY]:" + deltaY);
+				"[DeltaY]:" + deltaY); */
 			/* // 드래그하고 있는 마우스의 노드 : getTarget();
 			// 드래그하고 있는 마우스의 위치에 있는 노드 : getPickResult();
 			Node pickResult = event.getPickResult().getIntersectedNode();
@@ -229,7 +234,7 @@ public class ResizePane extends AnchorPane {
 						setPrefWidth(value);
 				}
 			}
-			// LEFT OR RIGHT
+			// TOP OR BOTTOM
 			else {
 				// 해당 범위 안의 드래그만 반영되되도록(오차범위 +-10)
 				/* if (!((sceneY + 10) >= layoutY) ||
@@ -281,4 +286,46 @@ public class ResizePane extends AnchorPane {
 		public void handle(MouseEvent event) {
 		}
 	} */
+
+	public static boolean isFitContent(Node node) {
+		return fitContentMap.get(node);
+	}
+
+	public static void setFitContent(Node node, boolean value) {
+
+		if (value) {
+			// 맵에 저장
+			Double[] save = new Double[4];
+
+			// 원래 가지고 있던 값을 저장함
+			save[0] = AnchorPane.getTopAnchor(node);
+			save[1] = AnchorPane.getRightAnchor(node);
+			save[2] = AnchorPane.getBottomAnchor(node);
+			save[3] = AnchorPane.getLeftAnchor(node);
+
+			saveAnchorMap.put(node, save);
+			fitContentMap.put(node, value);
+
+			// 이후 완전히 달라붙도록 고정함
+			AnchorPane.setTopAnchor(node, 0.0);
+			AnchorPane.setRightAnchor(node, 0.0);
+			AnchorPane.setBottomAnchor(node, 0.0);
+			AnchorPane.setLeftAnchor(node, 0.0);
+		}
+		else {
+			Double[] save = saveAnchorMap.get(node);
+
+			// 저장했던 값을 복구함
+			AnchorPane.setTopAnchor(node, save[0]);
+			AnchorPane.setRightAnchor(node, save[1]);
+			AnchorPane.setBottomAnchor(node, save[2]);
+			AnchorPane.setLeftAnchor(node, save[3]);
+
+			// 맵에서 포함 돼 있다면 삭제
+			if (fitContentMap.containsKey(node)) {
+				fitContentMap.remove(node);
+				saveAnchorMap.remove(node);
+			}
+		}
+	}
 }

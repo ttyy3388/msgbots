@@ -269,6 +269,15 @@
 	-fx-background-color: rgba(100, 100, 100, 0.6);
 }
 
+.script-pane .debug-room {
+	-fx-border-color: #555555;
+	-fx-border-width: 0 1 0 0;
+}
+.script-pane .title-bar {
+	-fx-border-color: #FFFFFF;
+	-fx-border-width: 0 0 1 0;
+}
+
 /* SEPARATOR */
 .separator .line {
 	-fx-background-color: #888888;

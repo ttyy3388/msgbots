@@ -5,7 +5,7 @@
 
 <StackPane styleClass="debug-area" minWidth="300.0" prefWidth="350.0" xmlns:fx="http://javafx.com/fxml">
 	<children>
-		<TabView fittable="true">
+		<TabView fitHeader="true">
 		</TabView>
 	</children>
 </StackPane>

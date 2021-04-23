@@ -9,11 +9,8 @@
 			minWidth="200.0"
 			prefWidth="250.0" xmlns:fx="http://javafx.com/fxml">
 	<children>
-		<TabView fittable="true"
-				 ResizePane.topAnchor="0.0"
-				 ResizePane.rightAnchor="0.0"
-				 ResizePane.bottomAnchor="0.0"
-				 ResizePane.leftAnchor="0.0">
+		<TabView ResizePane.fitContent="true"
+				 fitHeader="true">
 		</TabView>
 	</children>
 </ResizePane>

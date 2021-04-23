@@ -51,11 +51,11 @@ public class ScriptEngine {
 			callResponder(name, room, message, sender, isGroupChat, imageDB, packageName);
 		}
 
-		// InputDetailLogAction.execute(LogType.INFO,"Message Send", message);
+		InputDetailLogAction.execute(LogType.INFO,"Message Send", message);
 	}
 
 	protected static boolean initialize(String name, boolean isManual, boolean ignoreError) {
-		// InputDetailLogAction.execute(LogType.INFO, "Compile Start", name);
+		InputDetailLogAction.execute(LogType.INFO, "Compile Start", name);
 
 		final long start = System.currentTimeMillis();
 
@@ -86,7 +86,7 @@ public class ScriptEngine {
 				Context.reportError(e.toString());
 			}
 
-			DisplayErrorToastAction.execute(e);
+			// DisplayErrorToastAction.execute(e);
 
 			return false;
 		}
@@ -151,15 +151,15 @@ public class ScriptEngine {
 				}
 			}
 
-			ShowToastMessageAction.execute(
+			/* ShowToastMessageAction.execute(
 				new ToastItem(
 					ToastType.ERROR,
 					"Compile Error : " + name,
 					e.toString()
 				)
-			);
+			); */
 
-			LogManager.error("Compile Error : " + e.toString() + " : " + name);
+			// LogManager.error("Compile Error : " + e.toString() + " : " + name);
 
 			return false;
 		}
@@ -168,9 +168,9 @@ public class ScriptEngine {
 
 		BotManager.setCompiled(name, true);
 
-		// InputDetailLogAction.execute(LogType.INFO, "Compile Complete", name + " (" + (end - start) + ".ms)");
+		InputDetailLogAction.execute(LogType.INFO, "Compile Complete", name + " (" + (end - start) + ".ms)");
 
-		LogManager.event("Compile Complete: " + name);
+		// LogManager.event("Compile Complete: " + name);
 
 		return true;
 	}
@@ -204,13 +204,13 @@ public class ScriptEngine {
 				BotManager.setPower(name, false);
 			}
 
-			LogManager.error("Runtime Error : " + e.toString() + " : " + name);
+			// LogManager.error("Runtime Error : " + e.toString() + " : " + name);
 		}
 
 		final long end = System.currentTimeMillis();
 
 		if (GlobalSettings.getBoolean("debug:show_running_time")) {
-			// InputDetailLogAction.execute(LogType.INFO,"Running Time", name + " (" + (end - start) + ".ms)");
+			InputDetailLogAction.execute(LogType.INFO,"Running Time", name + " (" + (end - start) + ".ms)");
 		}
 	}
 }

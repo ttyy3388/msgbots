@@ -25,8 +25,8 @@ public class TabView extends TabViewBase<TabItem> {
 	public TabView(TabItem... tabs) {
 		super(tabs);
 
-		fittableProperty().addListener(change -> {
-			headerArea.setFitWidth(isFittable());
+		fitHeaderProperty().addListener(change -> {
+			headerArea.setFitWidth(isFitHeader());
 		});
 
 		headerArea.setMinHeight(DEFAULT_HEADER_HEIGHT);
@@ -38,20 +38,22 @@ public class TabView extends TabViewBase<TabItem> {
 		// getStyleClass().add(DEFAULT_STYLE_CLASS);
 	}
 
-	private final BooleanProperty fittableProperty = new SimpleBooleanProperty();
+	// 해당 옵션을 활성화 하면 탭 아이템의 헤더 너비가 꽉 채워짐
+	// EX : [[Header]                 ] 에서 [[         Header        ]]
+	private final BooleanProperty fitHeaderProperty = new SimpleBooleanProperty();
 	/* private final InvalidationListener fittableListener = new InvalidationListener() {
 		@Override
 		public void invalidated(Observable observable) {
 
 		}
 	}; */
-	public void setFittable(boolean fittable) {
-		fittableProperty.set(fittable);
+	public void setFitHeader(boolean value) {
+		fitHeaderProperty.set(value);
 	}
-	public boolean isFittable() {
-		return fittableProperty.get();
+	public boolean isFitHeader() {
+		return fitHeaderProperty.get();
 	}
-	public BooleanProperty fittableProperty() {
-		return fittableProperty;
+	public BooleanProperty fitHeaderProperty() {
+		return fitHeaderProperty;
 	}
 }

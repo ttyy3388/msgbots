@@ -9,6 +9,7 @@ import org.beuwi.msgbots.platform.app.view.actions.OpenDialogBoxAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenDocumentTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.OpenProgramTabAction;
 import org.beuwi.msgbots.platform.app.view.actions.RefreshBotListAction;
+import org.beuwi.msgbots.platform.app.view.actions.ToggleViewPartAction;
 import org.beuwi.msgbots.platform.app.view.dialogs.CreateBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.ImportBotDialog;
 import org.beuwi.msgbots.platform.app.view.dialogs.StartProgramDialog;
@@ -70,9 +71,18 @@ public class MenuBarPart implements View {
 
 		// View Menu Button
 		btnViewMenu.setMenus(
-			new MenuItem("Toggle Menu Bar", "Alt + M").disable(true),
-			new MenuItem("Toggle Side Bar", "Alt + S").disable(true),
-			new MenuItem("Toggle Debug Area", "Alt + D").disable(true)
+			new MenuItem("Toggle Menu Bar", "Alt + M", event -> {
+				ToggleViewPartAction.execute(MenuBarPart.getRoot());
+			}),
+			new MenuItem("Toggle Side Bar", "Alt + S", event -> {
+				ToggleViewPartAction.execute(SideAreaPart.getRoot());
+			}),
+			new MenuItem("Toggle Debug Area", "Alt + D", event -> {
+				ToggleViewPartAction.execute(DebugAreaPart.getRoot());
+			}),
+			new MenuItem("Toggle Tool Area", "Alt + D", event -> {
+				ToggleViewPartAction.execute(ToolAreaPart.getRoot());
+			})
 		);
 
 		// Debug Menu Button

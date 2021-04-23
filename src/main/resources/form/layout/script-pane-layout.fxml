@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+
+<?import org.beuwi.msgbots.platform.gui.control.ChatView?>
+<?import org.beuwi.msgbots.platform.gui.control.TabItem?>
+<?import org.beuwi.msgbots.platform.gui.control.TextArea?>
+<?import org.beuwi.msgbots.platform.gui.control.Label?>
+<?import org.beuwi.msgbots.platform.gui.control.LogView?>
+<?import org.beuwi.msgbots.platform.gui.editor.Editor?>
+<?import org.beuwi.msgbots.platform.gui.layout.DebugRoom?>
+<?import org.beuwi.msgbots.platform.gui.layout.HBox?>
+<?import org.beuwi.msgbots.platform.gui.layout.ResizePane?>
+<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
+<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml">
+	<children>
+		<!-- 크기 30 고정 -->
+		<HBox fx:id="titleBar"
+			  styleClass="title-bar"
+			  minHeight="30.0"
+			  prefHeight="30.0">
+			<children>
+				<Label fx:id="pathLabel" HBox.hgrow="ALWAYS">
+					<HBox.margin>
+						<Insets left="5.0"></Insets>
+					</HBox.margin>
+				</Label>
+			</children>
+		</HBox>
+		<HBox VBox.vgrow="ALWAYS">
+			<children>
+				<ResizePane type="RIGHT">
+					<children>
+						<DebugRoom ResizePane.fitContent="true"></DebugRoom>
+					</children>
+				</ResizePane>
+				<VBox HBox.hgrow="ALWAYS">
+					<Editor fx:id="editor" VBox.vgrow="ALWAYS"></Editor>
+					<ResizePane fx:id="resizePane">
+						<children>
+							<LogView fx:id="logView" ResizePane.fitContent="true"></LogView>
+						</children>
+					</ResizePane>
+				</VBox>
+			</children>
+		</HBox>
+	</children>
+</VBox>
