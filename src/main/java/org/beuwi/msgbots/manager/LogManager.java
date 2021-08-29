@@ -1,93 +1,51 @@
 package org.beuwi.msgbots.manager;
 
-import org.beuwi.msgbots.openapi.JSONArray;
-import org.beuwi.msgbots.platform.app.view.actions.InputDetailLogAction;
-import org.beuwi.msgbots.platform.gui.control.LogItem;
-import org.beuwi.msgbots.platform.gui.enums.LogType;
-import org.beuwi.msgbots.platform.util.SharedValues;
-
-import org.json.simple.JSONObject;
-
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import org.beuwi.msgbots.base.Dfile;
+import org.beuwi.msgbots.base.enums.LogType;
+import org.beuwi.msgbots.openapi.Project;
+import org.beuwi.msgbots.utils.SharedValues;
 
 public class LogManager {
-	public static void event(String data) {
-		appendGlobal(LogType.EVENT, data);
+	public static void info(String data) {
+		// appendGlobal(LogType.INFO, data);
 	}
 
 	public static void debug( String data) {
-		appendGlobal(LogType.DEBUG, data);
+		// appendGlobal(LogType.DEBUG, data);
 	}
 
 	public static void error(String data) {
-		appendGlobal(LogType.ERROR, data);
+		// appendGlobal(LogType.ERROR, data);
 	}
 
 	/* ----------------------------------------------------------------------------------- */
 
-	// Load Global Log
-	public static List<LogItem> loadGlobal() {
-		return LogManager.load(SharedValues.getFile("GLOBAL_LOG_FILE"));
-	}
 	// Append Global Log
-	public static void appendGlobal(LogType type, String data) {
-		LogManager.append(type, SharedValues.getFile("GLOBAL_LOG_FILE"), data, true);
-	}
+	/* public static void appendGlobal(LogType type, String data) {
+		Dfile dfile = SharedValues.getDfile("GLOBAL_LOG_DFILE");
+		String date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss ").format(new Date());
+
+		JSONObject object = new JSONObject();
+		object.put("type", type.toString());
+		object.put("data", data);
+		object.put("date", date);
+
+		JSONArray array = new JSONArray(dfile.getData());
+		array.add(object);
+
+		dfile.setData(array.toJSONString());
+	} */
 	// Clear Global Log
 	public static void clearGlobal() {
-		LogManager.clear(SharedValues.getFile("GLOBAL_LOG_FILE"));
+		Dfile dfile = SharedValues.getDfile("GLOBAL_LOG_DFILE");
+		dfile.setData("[]");
 	}
 
-	// Load Bot Log
-	public static List<LogItem> load(String name) {
-		return LogManager.load(FileManager.getBotLog(name));
-	}
-	// Append Bot Log
-	public static void append(LogType type, String name, String data) {
-		LogManager.append(type, FileManager.getBotLog(name), data, false);
-	}
-	// Clear Bot Log
-	public static void clear(String name) {
-		LogManager.clear(FileManager.getBotLog(name));
-	}
-
-	/* ----------------------------------------------------------------------------------- */
-
-	// file : log file
-	private static List<LogItem> load(File file) {
-		try {
-			// 파일이 없거나 제거됐다면 파일 생성
-			if (!file.exists()) {
-				FileManager.save(file, "[]");
-			}
-
-			List<LogItem> list = new ArrayList<>();
-			JSONArray array = new JSONArray(file);
-
-			for (Object object : array) {
-				JSONObject json = (JSONObject) object;
-				if (!object.toString().equals("{}") || (json.size() > 0)) {
-					list.add(new LogItem((JSONObject) object));
-				}
-			}
-
-			return list;
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return new ArrayList<>();
-	}
-
-	private static void append(LogType type, File file, String data, boolean global) {
+	public static void append(Project project, LogType type, String data) {
+		/* File file = project.getFile("log.json");
 		// 파일이 없거나 제거됐다면 파일 생성
 		if (!file.exists()) {
-			FileManager.save(file, "[]");
+			FileManager.write(file, "[]");
 		}
 
 		String date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss ").format(new Date());
@@ -100,21 +58,10 @@ public class LogManager {
 		JSONArray array = new JSONArray(file);
 		array.add(object);
 
-		if (global) {
-			// AddBotLogItemAction.execute(new LogItem(type, data, date));
-		}
-		else {
-			/* AddBotLogItemAction.execute(
-			    FileManager.getBaseName(file.getName()),
-                new LogItem(type, data, date)
-            ); */
-		}
-
-		FileManager.save(file, array.toJSONString());
+		FileManager.write(file, array.toJSONString()); */
 	}
 
-	// file : log file
-	private static void clear(File file) {
-		FileManager.save(file, "[]");
+	public static void clear(Project project) {
+		FileManager.write(project.getFile("log.json"), "[]");
 	}
 }

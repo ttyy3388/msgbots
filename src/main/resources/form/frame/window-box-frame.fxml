@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<?import org.beuwi.msgbots.program.gui.control.Button?>
+<?import org.beuwi.msgbots.program.gui.control.Label?>
+<?import org.beuwi.msgbots.program.gui.layout.BorderPane?>
+<?import org.beuwi.msgbots.program.gui.layout.HBox?>
+<?import org.beuwi.msgbots.program.gui.layout.StackPane?>
+
+<fx:root type="StackPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+	<children>
+		<BorderPane fx:id="brpWinMain">
+			<top>
+				<HBox fx:id="hbxTitleBar"
+                      styleClass="title-bar"
+                      fittable="true"
+                      prefHeight="30.0">
+					<children>
+						<HBox HBox.hgrow="ALWAYS" alignment="CENTER_LEFT">
+							<children>
+								<ImageView fx:id="imvWinIcon"
+										   fitHeight="18.0"
+										   fitWidth="18.0"
+										   pickOnBounds="true">
+									<image>
+										<Image url="@../../image/program.png"></Image>
+									</image>
+									<HBox.margin>
+										<Insets left="6.0" right="6.0"></Insets>
+									</HBox.margin>
+								</ImageView>
+								<Label fx:id="lblWinTitle" text="{$h4}"></Label>
+							</children>
+						</HBox>
+						<Button fx:id="btnWinClose"
+                                HBox.hgrow="ALWAYS"
+                                prefWidth="45.0"></Button>
+					</children>
+				</HBox>
+			</top>
+		</BorderPane>
+	</children>
+</fx:root>

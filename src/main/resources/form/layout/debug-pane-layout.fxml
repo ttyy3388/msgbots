@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+
+<?import org.beuwi.msgbots.program.gui.control.Button?>
+<?import org.beuwi.msgbots.program.gui.control.ChatArea?>
+<?import org.beuwi.msgbots.program.gui.control.CheckBox?>
+<?import org.beuwi.msgbots.program.gui.control.NaviView?>
+<?import org.beuwi.msgbots.program.gui.control.NaviItem?>
+<?import org.beuwi.msgbots.program.gui.control.LogView?>
+<?import org.beuwi.msgbots.program.gui.control.OptionView?>
+<?import org.beuwi.msgbots.program.gui.control.OptionItem?>
+<?import org.beuwi.msgbots.program.gui.control.TabView?>
+<?import org.beuwi.msgbots.program.gui.control.TabItem?>
+<?import org.beuwi.msgbots.program.gui.control.TextField?>
+<?import org.beuwi.msgbots.program.gui.editor.Editor?>
+<?import org.beuwi.msgbots.program.gui.layout.HBox?>
+<?import org.beuwi.msgbots.program.gui.layout.ScrollPane?>
+<?import org.beuwi.msgbots.program.gui.layout.StackPane?>
+<?import org.beuwi.msgbots.program.gui.layout.SplitPane?>
+<?import org.beuwi.msgbots.program.gui.layout.VBox?>
+
+<fx:root type="SplitPane"
+		 side="LEFT"
+		 proportion="0.2"
+		 toggleable="false"
+		 xmlns="http://javafx.com/javafx"
+		 xmlns:fx="http://javafx.com/fxml">
+	<left>
+		<VBox>
+			<children>
+				<!-- <HBox fx:id="hbxToolBar"
+					   styleClass="tool-bar"
+					   prefHeight="30.0">
+					<children>
+						<Label fx:id="lblRoomName" visible="false" HBox.hgrow="ALWAYS">
+							<padding>
+								<Insets left="5.0"></Insets>
+							</padding>
+						</Label>
+						<ToggleButton fx:id="tgnBotPower" prefWidth="30.0"></ToggleButton>
+						<Button fx:id="btnBotCompile" prefWidth="30.0"></Button>
+						<Button fx:id="btnListClear" prefWidth="30.0"></Button>
+					</children>
+				</HBox> -->
+				<ChatArea fx:id="chatArea" VBox.vgrow="ALWAYS"></ChatArea>
+			</children>
+		</VBox>
+	</left>
+	<right>
+		<SplitPane side="RIGHT"
+				   proportion="0.2"
+				   toggleable="false"
+				   orientation="VERTICAL">
+			<left>
+				<TabView styleClass="upper-area">
+					<tabs>
+						<TabItem text="EDITOR" closable="false">
+							<content>
+								<Editor fx:id="editor"></Editor>
+							</content>
+							<padding>
+								<Insets right="15.0" left="15.0"></Insets>
+							</padding>
+						</TabItem>
+					</tabs>
+				</TabView>
+			</left>
+			<right>
+				<TabView styleClass="lower-area">
+					<tabs>
+						<TabItem text="LOG" closable="false">
+							<content>
+								<LogView fx:id="logView"></LogView>
+							</content>
+							<padding>
+								<Insets right="15.0" left="15.0"></Insets>
+							</padding>
+						</TabItem>
+						<TabItem text="CONTROL" closable="false">
+							<content>
+								<NaviView>
+									<tabs>
+										<NaviItem text="SENDER">
+											<content>
+												<ScrollPane fitToWidth="true">
+													<content>
+														<OptionView>
+															<items>
+																<OptionItem address="script.{$name}.senderName" title="전송자 이름">
+																	<control>
+																		<TextField maxWidth="180"></TextField>
+																	</control>
+																</OptionItem>
+																<OptionItem address="script.{$name}.showSenderProfile" title="전송자 프로필 보이기">
+																	<control>
+																		<CheckBox text="전송자의 프로필을 보이게 합니다."></CheckBox>
+																	</control>
+																</OptionItem>
+																<OptionItem address="script.{$name}.showSenderName" title="전송자 이름 보이기">
+																	<control>
+																		<CheckBox text="전송자의 이름을 보이게 합니다."></CheckBox>
+																	</control>
+																</OptionItem>
+																<OptionItem address="control.button.changeSenderProfile" title="전송자 프로필 변경">
+																	<control>
+																		<Button text="Change"
+																				styled="true"
+																				type="ACTION"
+																				minHeight="25.0"></Button>
+																	</control>
+																</OptionItem>
+															</items>
+														</OptionView>
+													</content>
+													<padding>
+														<Insets top="15.0" right="15.0" bottom="15.0" left="15.0"></Insets>
+													</padding>
+												</ScrollPane>
+											</content>
+										</NaviItem>
+										<NaviItem text="BOT">
+											<content>
+												<ScrollPane fitToWidth="true">
+													<content>
+														<OptionView>
+															<items>
+																<OptionItem address="script.{$name}.botName" title="봇 이름">
+																	<control>
+																		<TextField maxWidth="180"></TextField>
+																	</control>
+																</OptionItem>
+																<OptionItem address="script.{$name}.showBotProfile" title="봇 프로필 보이기">
+																	<control>
+																		<CheckBox text="봇의 프로필을 보이게 합니다."></CheckBox>
+																	</control>
+																</OptionItem>
+																<OptionItem address="script.{$name}.showBotName" title="봇 이름 보이기">
+																	<control>
+																		<CheckBox text="봇의 이름을 보이게 합니다."></CheckBox>
+																	</control>
+																</OptionItem>
+																<OptionItem address="control.button.changeSenderProfile" title="봇 프로필 변경">
+																	<control>
+																		<Button text="Change"
+																				styled="true"
+																				type="ACTION"
+																				minHeight="25.0"></Button>
+																	</control>
+																</OptionItem>
+															</items>
+														</OptionView>
+													</content>
+													<padding>
+														<Insets top="15.0" right="15.0" bottom="15.0" left="15.0"></Insets>
+													</padding>
+												</ScrollPane>
+											</content>
+										</NaviItem>
+									</tabs>
+									<StackPane.margin>
+										<Insets top="15.0" right="15.0" bottom="15.0" left="15.0"></Insets>
+									</StackPane.margin>
+								</NaviView>
+							</content>
+							<padding>
+								<Insets right="15.0" left="15.0"></Insets>
+							</padding>
+						</TabItem>
+					</tabs>
+				</TabView>
+			</right>
+		</SplitPane>
+	</right>
+</fx:root>

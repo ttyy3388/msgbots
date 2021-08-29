@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.beuwi.msgbots.platform.gui.control.TabView?>
-<?import org.beuwi.msgbots.platform.gui.layout.ResizePane?>
-<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
+<?import org.beuwi.msgbots.program.gui.control.TabView?>
+<?import org.beuwi.msgbots.program.gui.layout.StackPane?>
 
-<ResizePane styleClass="side-area"
-			type="RIGHT"
-			minWidth="200.0"
-			prefWidth="250.0" xmlns:fx="http://javafx.com/fxml">
+<fx:root type="StackPane"
+		 styleClass="side-area"
+		 minWidth="150"
+		 prefWidth="250"
+		 xmlns:fx="http://javafx.com/fxml">
 	<children>
-		<TabView ResizePane.fitContent="true"
-				 fitHeader="true">
+		<TabView fx:id="tabView" fitHeader="true">
 		</TabView>
 	</children>
-</ResizePane>
+</fx:root>

@@ -1,8 +1,8 @@
 plugins {
     id 'java'
     id 'application'
-    id 'org.openjfx.javafxplugin' version '0.0.9'
-    id 'org.beryx.jlink' version '2.23.5'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+    id 'org.beryx.jlink' version '2.24.0'
 }
 
 java {
@@ -12,17 +12,17 @@ java {
 }
 
 // gradle verison > 6.6.1 error
+// group 'org.beuwi.msgbot-simulator'
 
-// group 'org.beuwi.msgbots'
-
+// 현재 JavaFX 15는 에디터 로딩 시 깨져서 로딩되는 문제점이 있음
 javafx {
     version = '14'
-    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.web', 'javafx.swing' ]
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.web', 'javafx.swing']
 }
 
 
 application {
-    mainModule = "org.beuwi.msgbots"
+    mainModule = "msgbots"
     mainClassName = "org.beuwi.msgbots.Launcher"
 }
 
@@ -32,9 +32,14 @@ repositories {
 }
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // implementation group: 'net.java.dev.jna', name: 'jna', version: '5.8.0'
+    // implementation group: 'net.java.dev.jna', name: 'jna-platform', version: '5.8.0'
+
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
-    implementation group: 'com.jfoenix', name: 'jfoenix', version: '9.0.10'
-    implementation group: 'org.mozilla', name: 'rhino', version: '1.7.13'
+    // implementation group: 'com.jfoenix', name: 'jfoenix', version: '9.0.10' // 호환성이 안 좋아서 배제시킴
+    // implementation group: 'org.mozilla', name: 'rhino', version: '1.7.13'
     implementation (group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1') {
         exclude group: 'org.hamcrest', module: 'hamcrest-core'
     }
@@ -72,7 +77,7 @@ jlink {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'org.beuwi.msgbots.Launcher'
+        attributes 'Main-Class': "org.beuwi.msgbots.platform.Launcher"
     }
 
     /* from {

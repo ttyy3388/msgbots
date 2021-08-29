@@ -1,4 +1,4 @@
-open module org.beuwi.msgbots {
+open module platform {
     // Java
     requires java.desktop;
 
@@ -9,11 +9,15 @@ open module org.beuwi.msgbots {
     requires javafx.fxml;
     requires javafx.web;
 
-    requires com.jfoenix;
+    // requires org.json;
+    // requires com.jfoenix;
     requires json.simple;
     // requires org.json;
     requires org.jsoup;
-    requires rhino;
+    // requires rhino;
+
+    // requires com.sun.jna;
+    // requires com.sun.jna.platform;
 
     requires jdk.jsobject;
 

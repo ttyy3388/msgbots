@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.beuwi.msgbots.platform.gui.control.Label?>
-<?import org.beuwi.msgbots.platform.gui.control.TextField?>
-<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
+<?import org.beuwi.msgbots.program.gui.control.Label?>
+<?import org.beuwi.msgbots.program.gui.control.TextField?>
+<?import org.beuwi.msgbots.program.gui.layout.VBox?>
 
 <VBox spacing="10.0" prefHeight="50.0" prefWidth="400.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <children>

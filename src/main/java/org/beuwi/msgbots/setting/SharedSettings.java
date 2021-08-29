@@ -1,6 +1,6 @@
 package org.beuwi.msgbots.setting;
 
-import org.beuwi.msgbots.platform.gui.enums.OptionType;
+import org.beuwi.msgbots.base.enums.OptionType;
 
 public class SharedSettings {
 
@@ -8,34 +8,34 @@ public class SharedSettings {
 	// Address : "type:name:option" > "script:test1:ignore_api_off"
 
 	public static <T> T getData(String address) {
-		String[] data = address.split(":");
+		String[] data = address.split("\\.");
 
 		String type = data[0];
-		String name = data[1];
+		String head = data[1];
 		String option = data[2];
 
 		if (type.equals(OptionType.GLOBAL.toString())) {
-			return GlobalSettings.getData(name + ":" + option);
+			return GlobalSettings.getData(head + "." + option);
 		}
 		if (type.equals(OptionType.SCRIPT.toString())) {
-			return ScriptSettings.get(name).getData(option);
+			return ProjectSettings.get(head).getData(option);
 		}
 
 		throw new NullPointerException("this address does not exists");
 	}
 
 	public static <T> void setData(String address, T value) {
-		String[] data = address.split(":");
+		String[] data = address.split("\\.");
 
 		String type = data[0];
-		String name = data[1];
+		String head = data[1];
 		String option = data[2];
 
 		if (type.equals(OptionType.GLOBAL.toString())) {
-			GlobalSettings.setData(name + ":" + option, value);
+			GlobalSettings.setData(head + "." + option, value);
 		}
 		if (type.equals(OptionType.SCRIPT.toString())) {
-			ScriptSettings.get(name).setData(option, value);
+			ProjectSettings.get(head).setData(option, value);
 		}
 	}
 

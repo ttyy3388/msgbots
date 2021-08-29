@@ -3,30 +3,31 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.image.ImageView?>
 
-<?import org.beuwi.msgbots.platform.gui.control.Label?>
-<?import org.beuwi.msgbots.platform.gui.layout.HBox?>
-<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
-<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
+<?import org.beuwi.msgbots.program.gui.control.Button?>
+<?import org.beuwi.msgbots.program.gui.control.Label?>
+<?import org.beuwi.msgbots.program.gui.layout.HBox?>
+<?import org.beuwi.msgbots.program.gui.layout.StackPane?>
+<?import org.beuwi.msgbots.program.gui.layout.VBox?>
 
-<HBox fx:id="hbxBoxRoot" styleClass="root-pane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<fx:root type="HBox" spacing="5" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<children>
-		<StackPane alignment="TOP_CENTER">
+		<StackPane alignment="CENTER">
 			<children>
-				<ImageView fx:id="imvBoxIcon" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true">
-					<StackPane.margin>
-						<Insets top="0.0" right="10.0" left="5.0"></Insets>
-					</StackPane.margin>
+				<ImageView fx:id="imvIcon"
+						   fitHeight="16.0"
+						   fitWidth="16.0"
+						   pickOnBounds="true">
 				</ImageView>
 			</children>
+			<padding>
+				<Insets left="2.5" right="5.0"></Insets>
+			</padding>
 		</StackPane>
-		<VBox HBox.hgrow="ALWAYS">
-			<children>
-				<Label fx:id="lblBoxText" VBox.vgrow="ALWAYS"></Label>
-				<Label fx:id="lblBoxDate"></Label>
-			</children>
-		</VBox>
+		<Label fx:id="lblDate" styleClass="date-label"></Label>
+		<!-- <Label fx:id="lblTitle" styleClass="title-label"></Label> -->
+		<Label fx:id="lblText" styleClass="text-label" HBox.hgrow="ALWAYS"></Label>
 	</children>
 	<padding>
-		<Insets top="10.0" right="5.0" bottom="10.0" left="5.0"></Insets>
+		<Insets top="5.0" right="5.0" bottom="5.0" left="5.0"></Insets>
 	</padding>
-</HBox>
+</fx:root>

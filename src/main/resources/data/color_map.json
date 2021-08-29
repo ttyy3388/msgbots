@@ -1,0 +1,14 @@
+{
+	"base" : {
+	},
+	"light" : {
+		"icon-default": "#cccccc",
+		"icon-hover": "#000000",
+		"icon-focused": "#000000"
+	},
+	"dark" : {
+		"icon-default": "#8c8c8c",
+		"icon-hover": "#ffffff",
+		"icon-focused": "#ffffff"
+	}
+}

@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.beuwi.msgbots.platform.gui.control.TabView?>
-<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
+<?import org.beuwi.msgbots.program.gui.control.TabView?>
+<?import org.beuwi.msgbots.program.gui.layout.StackPane?>
 
-<StackPane styleClass="main-area" xmlns:fx="http://javafx.com/fxml">
+<fx:root type="StackPane"
+		 styleClass="main-area"
+		 minWidth="250"
+		 xmlns:fx="http://javafx.com/fxml">
 	<children>
-		<TabView>
+		<TabView fx:id="tabView">
 			<tabs>
 			</tabs>
 		</TabView>
 	</children>
-</StackPane>
+</fx:root>

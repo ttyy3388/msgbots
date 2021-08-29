@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.beuwi.msgbots.platform.gui.control.LogView?>
-<?import org.beuwi.msgbots.platform.gui.control.TabItem?>
+<?import javafx.geometry.Insets?>
 
-<TabItem text="GLOBAL LOG" closable="false" xmlns:fx="http://javafx.com/fxml">
+<?import org.beuwi.msgbots.program.gui.control.TabItem?>
+<?import org.beuwi.msgbots.program.gui.control.LogView?>
+
+<fx:root type="TabItem"
+		 text="GLOBAL LOG"
+		 closable="false"
+		 xmlns:fx="http://javafx.com/fxml">
 	<content>
-		<LogView fx:id="lgvLogList"></LogView>
+		<LogView fx:id="control"></LogView>
 	</content>
-</TabItem>
+	<padding>
+		<Insets right="10.0" left="10.0"></Insets>
+	</padding>
+</fx:root>

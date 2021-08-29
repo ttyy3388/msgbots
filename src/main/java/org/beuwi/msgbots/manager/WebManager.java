@@ -1,13 +1,13 @@
 package org.beuwi.msgbots.manager;
 
-import org.beuwi.msgbots.platform.app.view.actions.DisplayErrorDialogAction;
+import org.beuwi.msgbots.base.Manager;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class WebManager {
+public class WebManager implements Manager {
     public static String getText(String url) {
         try {
             URLConnection connection = new URL(url).openConnection();
@@ -30,7 +30,7 @@ public class WebManager {
             return text;
         }
         catch (Exception e) {
-            DisplayErrorDialogAction.execute(e);
+            e.printStackTrace();
         }
 
         return null;

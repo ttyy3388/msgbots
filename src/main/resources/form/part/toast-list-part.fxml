@@ -2,16 +2,17 @@
 
 <?import javafx.geometry.Insets?>
 
-<?import org.beuwi.msgbots.platform.gui.control.Button?>
-<?import org.beuwi.msgbots.platform.gui.control.ToastView?>
-<?import org.beuwi.msgbots.platform.gui.control.Label?>
-<?import org.beuwi.msgbots.platform.gui.layout.AnchorPane?>
-<?import org.beuwi.msgbots.platform.gui.layout.HBox?>
-<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
-<?import org.beuwi.msgbots.platform.gui.layout.ScrollPane?>
-<?import org.beuwi.msgbots.platform.gui.layout.ShadowPane?>
+<?import org.beuwi.msgbots.program.gui.control.Button?>
+<?import org.beuwi.msgbots.program.gui.control.ToastView?>
+<?import org.beuwi.msgbots.program.gui.control.Label?>
+<?import org.beuwi.msgbots.program.gui.layout.AnchorPane?>
+<?import org.beuwi.msgbots.program.gui.layout.HBox?>
+<?import org.beuwi.msgbots.program.gui.layout.VBox?>
+<?import org.beuwi.msgbots.program.gui.layout.ScrollPane?>
+<?import org.beuwi.msgbots.program.gui.layout.ShadowPane?>
+<?import org.beuwi.msgbots.program.gui.layout.StackPane?>
 
-<AnchorPane styleClass="toast-area" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<fx:root type="AnchorPane" styleClass="toast-area" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<children>
 		<ShadowPane AnchorPane.topAnchor="15.0"
                     AnchorPane.rightAnchor="5.0">
@@ -34,7 +35,7 @@
                                     fitToHeight="false"
                                     autoScroll="true" maxHeight="400.0" vvalue="1.0d">
 							<content>
-								<ToastView fx:id="tsvToastList">
+								<ToastView fx:id="listView">
 								</ToastView>
 							</content>
 						</ScrollPane>
@@ -43,4 +44,4 @@
 			</content>
 		</ShadowPane>
 	</children>
-</AnchorPane>
+</fx:root>

@@ -1,6 +1,6 @@
 package org.beuwi.msgbots.openapi;
 
-import java.awt.SystemTray;
+import java.awt.*;
 
 // Window Notification
 public class WinMessage {

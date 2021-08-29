@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.beuwi.msgbots.platform.gui.control.MenuBar?>
-<?import org.beuwi.msgbots.platform.gui.control.MenuButton?>
-<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
+<?import org.beuwi.msgbots.program.gui.control.MenuBar?>
+<?import org.beuwi.msgbots.program.gui.control.MenuButton?>
+<?import org.beuwi.msgbots.program.gui.layout.StackPane?>
 
-<StackPane minHeight="20.0" prefHeight="20.0" xmlns:fx="http://javafx.com/fxml">
+<fx:root type="StackPane"
+         minHeight="20.0"
+         prefHeight="20.0"
+         xmlns:fx="http://javafx.com/fxml">
 	<children>
         <MenuBar>
             <children>
-                <MenuButton fx:id="btnFileMenu" text="File"></MenuButton>
-                <MenuButton fx:id="btnEditMenu" text="Edit"></MenuButton>
-                <MenuButton fx:id="btnViewMenu" text="View"></MenuButton>
-                <MenuButton fx:id="btnDebugMenu" text="Debug"></MenuButton>
-                <MenuButton fx:id="btnHelpMenu" text="Help"></MenuButton>
+                <MenuButton fx:id="btnFile" text="File"></MenuButton>
+                <MenuButton fx:id="btnEdit" text="Edit"></MenuButton>
+                <MenuButton fx:id="btnView" text="View"></MenuButton>
+                <MenuButton fx:id="btnDebug" text="Debug"></MenuButton>
+                <MenuButton fx:id="btnHelp" text="Help"></MenuButton>
             </children>
         </MenuBar>
     </children>
-</StackPane>
+</fx:root>

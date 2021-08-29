@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.beuwi.msgbots.platform.gui.control.BotView?>
-<?import org.beuwi.msgbots.platform.gui.control.TabItem?>
+<?import org.beuwi.msgbots.program.gui.control.TabItem?>
+<?import org.beuwi.msgbots.program.gui.control.BotView?>
 
-<TabItem text="BOT LIST" closable="false" xmlns:fx="http://javafx.com/fxml">
+<fx:root type="TabItem"
+		 text="BOT LIST"
+		 closable="false"
+		 xmlns:fx="http://javafx.com/fxml">
 	<content>
-		<BotView fx:id="btvBotList"></BotView>
+		<BotView fx:id="botView"></BotView>
 	</content>
-</TabItem>
+</fx:root>

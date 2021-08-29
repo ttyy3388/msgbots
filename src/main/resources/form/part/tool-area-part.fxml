@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import org.beuwi.msgbots.program.gui.control.TabView?>
+<?import org.beuwi.msgbots.program.gui.layout.StackPane?>
 
-<?import org.beuwi.msgbots.platform.gui.layout.ResizePane?>
-<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
-<?import org.beuwi.msgbots.platform.gui.control.TabView?>
-
-<ResizePane styleClass="tool-area" type="TOP" prefHeight="250.0" xmlns:fx="http://javafx.com/fxml">
+<fx:root type="StackPane"
+		 styleClass="tool-area"
+		 minHeight="150"
+		 prefHeight="250"
+		 xmlns:fx="http://javafx.com/fxml">
 	<children>
-		<TabView fx:id="tavMainView"
-				 ResizePane.fitContent="true">
+		<TabView fx:id="tabView">
 			<tabs>
 				<!-- <fx:include source="../tab/debug-room-tab.fxml"></fx:include> -->
 			</tabs>
@@ -32,4 +32,4 @@
 			</cursor>
 		</StackPane> -->
 	</children>
-</ResizePane>
+</fx:root>

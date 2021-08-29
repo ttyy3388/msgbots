@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import org.beuwi.msgbots.program.gui.control.Button?>
+<?import org.beuwi.msgbots.program.gui.layout.BorderPane?>
+<?import org.beuwi.msgbots.program.gui.layout.HBox?>
 
-<?import org.beuwi.msgbots.platform.gui.control.Button?>
-<?import org.beuwi.msgbots.platform.gui.control.Label?>
-<?import org.beuwi.msgbots.platform.gui.layout.BorderPane?>
-<?import org.beuwi.msgbots.platform.gui.layout.HBox?>
-<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
-
-<BorderPane fx:id="brpDialogRoot" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<bottom>
 		<HBox fx:id="hbxButtonBar"
-			  HBox.hgrow="ALWAYS"
-			  fittable="true"
-			  spacing="10.0"
-			  alignment="CENTER_RIGHT">
+              HBox.hgrow="ALWAYS"
+              fittable="true"
+              spacing="10.0"
+              alignment="CENTER_RIGHT">
 			<children>
 				<Button fx:id="btnAction" styled="true" type="ACTION" text="Action"></Button>
 				<Button fx:id="btnCancel" styled="true" type="CANCEL" text="Cancel"></Button>

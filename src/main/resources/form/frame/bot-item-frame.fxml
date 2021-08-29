@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<?import org.beuwi.msgbots.program.gui.control.Button?>
+<?import org.beuwi.msgbots.program.gui.control.CheckBox?>
+<?import org.beuwi.msgbots.program.gui.control.Label?>
+<?import org.beuwi.msgbots.program.gui.control.ToggleButton?>
+<?import org.beuwi.msgbots.program.gui.layout.GridPane?>
+
+<fx:root type="GridPane" prefHeight="35.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+	<columnConstraints>
+	    <ColumnConstraints prefWidth="20.0"></ColumnConstraints>
+        <ColumnConstraints prefWidth="0.0"></ColumnConstraints>
+        <ColumnConstraints prefWidth="30.0"></ColumnConstraints>
+        <ColumnConstraints prefWidth="30.0"></ColumnConstraints>
+	</columnConstraints>
+	<children>
+		<CheckBox fx:id="chkCompiled"
+                  GridPane.halignment="CENTER"
+                  GridPane.valignment="CENTER"
+                  GridPane.vgrow="ALWAYS"
+                  GridPane.columnIndex="0"
+                  GridPane.rowIndex="0"></CheckBox>
+		<Label fx:id="lblName"
+               GridPane.halignment="LEFT"
+               GridPane.valignment="CENTER"
+               GridPane.vgrow="ALWAYS"
+               GridPane.columnIndex="1"
+               GridPane.rowIndex="0"
+               GridPane.hgrow="ALWAYS"></Label>
+		<Button fx:id="btnReload"
+                GridPane.halignment="CENTER"
+                GridPane.valignment="CENTER"
+                GridPane.vgrow="ALWAYS"
+                GridPane.columnIndex="2"
+                GridPane.rowIndex="0"></Button>
+		<ToggleButton fx:id="tgbPower"
+                      GridPane.halignment="CENTER"
+                      GridPane.valignment="CENTER"
+                      GridPane.vgrow="ALWAYS"
+                      GridPane.columnIndex="3"
+                      GridPane.rowIndex="0"></ToggleButton>
+	</children>
+</fx:root>

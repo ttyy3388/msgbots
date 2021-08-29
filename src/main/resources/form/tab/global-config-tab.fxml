@@ -4,20 +4,15 @@
 
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Separator?>
 
-<?import org.beuwi.msgbots.platform.gui.control.*?>
-<?import org.beuwi.msgbots.platform.gui.editor.Editor?>
-<?import org.beuwi.msgbots.platform.gui.enums.ThemeType?>
-<?import org.beuwi.msgbots.platform.gui.enums.TextType?>
-<?import org.beuwi.msgbots.platform.gui.layout.*?>
-<?import org.beuwi.msgbots.platform.util.SharedValues?>
+<?import org.beuwi.msgbots.program.gui.control.*?>
+<?import org.beuwi.msgbots.program.gui.editor.Editor?>
+<?import org.beuwi.msgbots.program.gui.enums.ThemeType?>
+<?import org.beuwi.msgbots.program.gui.layout.*?>
 
-<?import java.io.File?>
-
-<TabItem text="GLOBAL CONFIG" xmlns:fx="http://javafx.com/fxml">
+<fx:root type="TabItem" text="GLOBAL CONFIG" xmlns:fx="http://javafx.com/fxml">
 	<content>
-		<NaviView styleClass="">
+		<NaviView fx:id="control">
 			<tabs>
 				<NaviItem text="Program">
 					<content>
@@ -25,19 +20,19 @@
 							<content>
 								<OptionView title="Program">
 									<items>
-										<!-- <OptionItem address="control:button:cleanup_user_setting" title="프로그램 설정 초기화">
-											<content>
+										<!-- <OptionItem address="control.button.cleanupUseSetting" title="프로그램 설정 초기화">
+											<control>
 												<Button text="Clean Up" styled="true" type="ACTION" minHeight="25.0"></Button>
-											</content>
+											</control>
 										</OptionItem> -->
-										<!-- <OptionItem address="control:button:choose_bots_path"
+										<!-- <OptionItem address="control.button.chooseBotDirPath"
 													title="봇 폴더 경로 변경">
-											<content>
+											<control>
 												<Button text="Change" styled="true" type="ACTION" minHeight="25.0"></Button>
-											</content>
+											</control>
 										</OptionItem> -->
-										<OptionItem address="global:program:color_theme" title="프로그램 테마 변경">
-											<content>
+										<OptionItem address="global.program.colorTheme" title="프로그램 테마 변경">
+											<control>
 												<ComboBox maxWidth="150">
 													<items>
 														<FXCollections fx:factory="observableArrayList">
@@ -46,10 +41,10 @@
 														</FXCollections>
 													</items>
 												</ComboBox>
-											</content>
+											</control>
 										</OptionItem>
-										<!-- <OptionItem address="global:program:text_rendering" title="텍스트 렌더링 방식">
-                                            <content>
+										<!-- <OptionItem address="global.program.textRendering" title="텍스트 렌더링 방식">
+                                            <control>
                                                 <ComboBox maxWidth="150" >
                                                     <items>
                                                         <FXCollections fx:factory="observableArrayList">
@@ -58,46 +53,46 @@
                                                         </FXCollections>
                                                     </items>
                                                 </ComboBox>
-                                            </content>
+                                            </control>
                                         </OptionItem> -->
-										<OptionItem address="global:program:start_auto_compile"
-													title="시작 시 자동 컴파일">
-											<content>
+										<OptionItem address="global.program.startAutoCompile"
+                                                    title="시작 시 자동 컴파일">
+											<control>
 												<CheckBox text="앱이 시작되었을 때 전원을 켜둔 스크립트를 자동으로 컴파일 합니다."></CheckBox>
-											</content>
+											</control>
 										</OptionItem>
-										<OptionItem address="global:program:compile_auto_save"
-													title="리로드 시 자동 저장">
-											<content>
+										<OptionItem address="global.program.compileAutoSave"
+                                                    title="리로드 시 자동 저장">
+											<control>
 												<CheckBox text="리로드할 때 자동으로 세이브를 한 후 리로드를 합니다."></CheckBox>
-											</content>
+											</control>
 										</OptionItem>
 										<OptionItem title="기본 스크립트 수정" VBox.vgrow="ALWAYS">
 											<content>
 												<HBox spacing="10.0" VBox.vgrow="ALWAYS" minHeight="400.0">
 													<children>
-														<OptionItem address="control:editor:edit_script_default"
-																	HBox.hgrow="ALWAYS"
-																	title="통합 매개변수 OFF">
-															<content>
+														<OptionItem address="control.editor.editScriptDefault"
+                                                                    HBox.hgrow="ALWAYS"
+                                                                    title="통합 매개변수 OFF">
+															<control>
 																<Editor minimapEnabled="false"></Editor>
-															</content>
+															</control>
 														</OptionItem>
-														<OptionItem address="control:editor:edit_script_unified"
-																	HBox.hgrow="ALWAYS"
-																	title="통합 매개변수 ON">
-															<content>
+														<OptionItem address="control.editor.editScriptUnified"
+                                                                    HBox.hgrow="ALWAYS"
+                                                                    title="통합 매개변수 ON">
+															<control>
 																<Editor minimapEnabled="false"></Editor>
-															</content>
+															</control>
 														</OptionItem>
 														<!-- <VBox spacing="10.0" HBox.hgrow="ALWAYS">
 															<children>
 																<Label text="통합 매개변수 OFF"></Label>
 																스크립트 로드는 자스로 구현하기엔 코드가 복잡해져서 "GlobalConfigTab"으로 옮김
-																<Editor fx:id="editor1" VBox.vgrow="ALWAYS"></Editor>
+																<Editor fx.id="editor1" VBox.vgrow="ALWAYS"></Editor>
 																<fx:script>
 																	// 자바 클래스에 접근하려면 아래와 같이 "Java.type"으로 접근해야함
-																	var values = Java.type("org.beuwi.msgbots.platform.util.SharedValues");
+																	var values = Java.type("SharedValues");
 																	editor1.file = values.getFile("SCRIPT_DEFAULT_FILE");
 																</fx:script>
 															</children>
@@ -108,7 +103,7 @@
 																<Editor fx:id="editor2" VBox.vgrow="ALWAYS"></Editor>
 																<fx:script>
 																	// 자바 클래스에 접근하려면 아래와 같이 "Java.type"으로 접근해야함
-																	var values = Java.type("org.beuwi.msgbots.platform.util.SharedValues");
+																	var values = Java.type("SharedValues");
 																	editor2.file = values.getFile("SCRIPT_UNIFIED_FILE");
 																</fx:script>
 															</children>
@@ -132,90 +127,86 @@
 							<content>
 								<OptionView title="Debug">
 									<items>
-										<OptionItem address="global:debug:html_load_timeout" title="HTML 로드 시간 제한 (ms)">
-											<content>
+										<OptionItem address="global.debug.htmlLoadTimeout" title="HTML 로드 시간 제한 (ms)">
+											<control>
 												<TextField maxWidth="100"></TextField>
-											</content>
+											</control>
 										</OptionItem>
-										<Separator></Separator>
-										<OptionItem address="global:debug:show_compile_error" title="컴파일 에러 보기">
-											<content>
+										<OptionItem address="global.debug.showCompileError" title="컴파일 에러 보기">
+											<control>
 												<CheckBox text="컴파일 중 발생한 에러를 보여줍니다."></CheckBox>
-											</content>
+											</control>
 										</OptionItem>
-										<OptionItem address="global:debug:show_runtime_error" title="런타임 에러 보기">
-											<content>
+										<OptionItem address="global.debug.showRuntimeError" title="런타임 에러 보기">
+											<control>
 												<CheckBox text="실행 중 발생한 에러를 보여줍니다."></CheckBox>
-											</content>
+											</control>
 										</OptionItem>
-										<OptionItem address="global:debug:show_running_time" title="실행 시간 보기">
-											<content>
+										<OptionItem address="global.debug.showRunningTime" title="실행 시간 보기">
+											<control>
 												<CheckBox text="실행 시간을 보여줍니다."></CheckBox>
-											</content>
+											</control>
 										</OptionItem>
-										<Separator></Separator>
-										<OptionItem address="global:debug:room_name" title="방 이름">
-											<content>
-												<TextField maxWidth="250"></TextField>
-											</content>
+										<OptionItem address="global.debug.roomName" title="방 이름">
+											<control>
+												<TextField maxWidth="180"></TextField>
+											</control>
 										</OptionItem>
-										<OptionItem address="global:debug:sender_name" title="전송자 이름">
-											<content>
-												<TextField maxWidth="250"></TextField>
-											</content>
+										<OptionItem address="global.debug.senderName" title="전송자 이름">
+											<control>
+												<TextField maxWidth="180"></TextField>
+											</control>
 										</OptionItem>
-										<OptionItem address="global:debug:bot_name" title="봇 이름">
-											<content>
-												<TextField maxWidth="250"></TextField>
-											</content>
+										<OptionItem address="global.debug.botName" title="봇 이름">
+											<control>
+												<TextField maxWidth="180"></TextField>
+											</control>
 										</OptionItem>
-										<OptionItem address="global:debug:package_name" title="패키지 이름">
-											<content>
-												<TextField maxWidth="250"></TextField>
-											</content>
+										<OptionItem address="global.debug.packageName" title="패키지 이름">
+											<control>
+												<TextField maxWidth="180"></TextField>
+											</control>
 										</OptionItem>
-										<OptionItem address="global:debug:is_group_chat" title="그룹챗 여부">
-											<content>
+										<OptionItem address="global.debug.isGroupChat" title="그룹챗 여부">
+											<control>
 												<CheckBox text="그룹챗 여부를 설정합니다."></CheckBox>
-											</content>
+											</control>
 										</OptionItem>
-										<Separator></Separator>
-										<OptionItem address="global:debug:show_sender_profile" title="전송자 프로필 보이기">
-											<content>
+										<OptionItem address="global.debug.showSenderProfile" title="전송자 프로필 보이기">
+											<control>
 												<CheckBox text="디버그 룸에서 전송자의 프로필을 보이게 합니다."></CheckBox>
-											</content>
+											</control>
 										</OptionItem>
-										<OptionItem address="global:debug:show_sender_name" title="전송자 이름 보이기">
-											<content>
+										<OptionItem address="global.debug.showSenderName" title="전송자 이름 보이기">
+											<control>
 												<CheckBox text="디버그 룸에서 전송자의 이름을 보이게 합니다."></CheckBox>
-											</content>
+											</control>
 										</OptionItem>
-										<OptionItem address="control:button:change_sender_profile" title="전송자 프로필 변경">
-											<content>
+										<OptionItem address="control.button.changeSenderProfile" title="전송자 프로필 변경">
+											<control>
 												<Button text="Change"
-														styled="true"
-														type="ACTION"
-														minHeight="25.0"></Button>
-											</content>
+                                                        styled="true"
+                                                        type="ACTION"
+                                                        minHeight="25.0"></Button>
+											</control>
 										</OptionItem>
-										<Separator></Separator>
-										<OptionItem address="global:debug:show_bot_profile" title="봇 프로필 보이기">
-											<content>
+										<OptionItem address="global.debug.showBotProfile" title="봇 프로필 보이기">
+											<control>
 												<CheckBox text="디버그 룸에서 봇의 프로필을 보이게 합니다."></CheckBox>
-											</content>
+											</control>
 										</OptionItem>
-										<OptionItem address="global:debug:show_bot_name" title="봇 이름 보이기">
-											<content>
+										<OptionItem address="global.debug.showBotName" title="봇 이름 보이기">
+											<control>
 												<CheckBox text="디버그 룸에서 봇의 이름을 보이게 합니다."></CheckBox>
-											</content>
+											</control>
 										</OptionItem>
-										<OptionItem address="control:button:change_sender_profile" title="봇 프로필 변경">
-											<content>
+										<OptionItem address="control.button.changeSenderProfile" title="봇 프로필 변경">
+											<control>
 												<Button text="Change"
-														styled="true"
-														type="ACTION"
-														minHeight="25.0"></Button>
-											</content>
+                                                        styled="true"
+                                                        type="ACTION"
+                                                        minHeight="25.0"></Button>
+											</control>
 										</OptionItem>
 									</items>
 								</OptionView>
@@ -246,23 +237,23 @@
 						</OptionView>
 					</content>
 				</NaviItem> -->
-				<NaviItem text="Connection">
+				<NaviItem text="Mdb">
 					<content>
-						<OptionView title="MDB">
+						<OptionView title="Mdb">
 							<items>
-								<OptionItem title="ADB FILE PATH" address="global:connection:adb_file_path">
-									<content>
-										<TextField editable="false" maxWidth="250.0"></TextField>
+								<OptionItem address="global.mdb.adbFilePath" title="Adb File Path">
+									<control>
+										<TextField editable="false" maxWidth="180"></TextField>
 										<!-- <HBox spacing="10.0">
 											<children>
-												<OptionItem address="global:connection:adb_file_path"
+												<OptionItem address="global.connection.adbFilePath"
 															HBox.hgrow="ALWAYS"
 															maxWidth="250.0">
-													<content>
+													<control>
 														<TextField></TextField>
-													</content>
+													</control>
 												</OptionItem>
-												<OptionItem address="control:connection:choose_adb_file">
+												<OptionItem address="control.connection.chooseAdbFile">
 													<Button text="Change"
 															styled="true"
 															type="ACTION"
@@ -270,22 +261,22 @@
 												</OptionItem>
 											</children>
 										</HBox> -->
-									</content>
+									</control>
 								</OptionItem>
-								<OptionItem address="global:connection:adb_auto_connect" title="AUTO CONNECT">
-									<content>
+								<OptionItem address="global.mdb.adbAutoConnect" title="Auto Connect">
+									<control>
 										<CheckBox></CheckBox>
-									</content>
+									</control>
 								</OptionItem>
-								<OptionItem address="global:connection:socket_remote_port" title="SOCKET REMOTE PORT">
-									<content>
-										<TextField maxWidth="250"></TextField>
-									</content>
+								<OptionItem address="global.mdb.socketRemotePort" title="Socket Remote Port">
+									<control>
+										<TextField maxWidth="180"></TextField>
+									</control>
 								</OptionItem>
-								<OptionItem address="global:connection:socket_local_port" title="SOCKET LOCAL PORT">
-									<content>
-										<TextField maxWidth="250"></TextField>
-									</content>
+								<OptionItem address="global.mdb.socketLocalPort" title="Socket Local Port">
+									<control>
+										<TextField maxWidth="180"></TextField>
+									</control>
 								</OptionItem>
 							</items>
 							<!-- <StackPane.margin>
@@ -311,4 +302,4 @@
 			</StackPane.margin>
 		</NaviView>
 	</content>
-</TabItem>
+</fx:root>

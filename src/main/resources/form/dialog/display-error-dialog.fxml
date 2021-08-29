@@ -2,14 +2,21 @@
 
 <?import javafx.geometry.Insets?>
 
-<?import org.beuwi.msgbots.platform.gui.control.Label?>
-<?import org.beuwi.msgbots.platform.gui.control.TextArea?>
-<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
+<?import org.beuwi.msgbots.program.gui.control.Label?>
+<?import org.beuwi.msgbots.program.gui.control.TextArea?>
+<?import org.beuwi.msgbots.program.gui.layout.VBox?>
 
-<VBox spacing="15.0" prefWidth="400.0" prefHeight="200.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<VBox spacing="15.0"
+      prefWidth="400.0"
+      prefHeight="200.0"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml">
 	<children>
-		<Label fx:id="lblErrorHeader" styleClass="h4"></Label>
-	    <TextArea fx:id="txaErrorMessage" VBox.vgrow="ALWAYS" editable="false"></TextArea>
+		<Label fx:id="lblHeader"
+               styleClass="h4"></Label>
+	    <TextArea fx:id="txaMessage"
+                  VBox.vgrow="ALWAYS"
+                  editable="false"></TextArea>
     </children>
     <!-- <padding>
 	    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+
+<?import org.beuwi.msgbots.program.gui.control.ChatView?>
+<?import org.beuwi.msgbots.program.gui.control.TextArea?>
+<?import org.beuwi.msgbots.program.gui.layout.StackPane?>
+<?import org.beuwi.msgbots.program.gui.layout.VBox?>
+
+<fx:root type="VBox" minWidth="350" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+	<children>
+		<ChatView fx:id="listView" VBox.vgrow="ALWAYS"></ChatView>
+		<StackPane prefHeight="80.0">
+			<children>
+				<TextArea fx:id="textArea">
+					<!-- <padding>
+						<Insets top="5" right="5" bottom="5" left="5"></Insets>
+					</padding> -->
+				</TextArea>
+			</children>
+			<VBox.margin>
+				<Insets top="8" right="8" bottom="8" left="8"></Insets>
+			</VBox.margin>
+		</StackPane>
+	</children>
+</fx:root>

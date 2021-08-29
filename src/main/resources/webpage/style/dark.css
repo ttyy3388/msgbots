@@ -1,0 +1,21 @@
+/* DOCUMENT CSS */
+@CHARSET "UTF-8";
+
+@import "base.css";
+
+* {
+    color: #CCCCCC;
+}
+h1 {
+	color: #FFFFFF;
+}
+body {
+	background-color: #1E1E1E;
+}
+a:link {
+	color: #007ACC;
+}
+a:visited,
+a:active {
+	color: #007ACC;
+}

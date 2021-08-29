@@ -1,48 +1,13 @@
 /* DOCUMENT CSS */
 @CHARSET "UTF-8";
 
-@font-face {
-	font-family: 'Consolas';
-	src: url('../font/consola.ttf');
-}
-/* @font-face {
-	font-family: 'Consolas';
-	src: url('../font/consola-bold.ttf');
-} */
-@font-face {
-	font-family: 'D2Coding';
-	src: url('../font/d2coding.ttf');
-}
-@font-face {
-	font-family: 'D2Coding';
-	font-weight: bold;
-	src: url('../font/d2coding-bold.ttf');
-}
-@font-face {
-	font-family: 'NanumGothic';
-	src: url('../font/nanumgothic.ttf');
-}
-@font-face {
-	font-family: 'NanumGothic';
-	font-weight: bold;
-	src: url('../font/nanumgothic-bold.ttf');
-}
-@font-face {
-	font-family: 'Roboto';
-	src: url('../font/roboto.ttf');
-}
-@font-face {
-	font-family: 'Roboto';
-	font-weight: bold;
-	src: url('../font/roboto-bold.ttf');
-}
-
+/* CSS 에서는 폰트가 적용이 안돼서 JS 파일에서 적용시켜야 함 */
 * {
-	font-family: Consolas, 'D2Coding', monospace;
+	/* font-family: 'JetBrains Mono', 'D2Coding', monospace; */
+	font-family: NanumGothic, 'JetBrains Mono', monospace;
 }
 
 html, body {
-	background-color: white;
 	height: 100%;
 	margin: 0;
 }
@@ -53,3 +18,11 @@ body {
 #container {
 	height: 100%;
 }
+
+/* .mtk1 {
+	color: #7CDCFE; } */ /* TEXT COLOR */
+
+
+/* .monaco-editor .lines-content.monaco-editor-background {
+	margin-top: 4px;
+} */

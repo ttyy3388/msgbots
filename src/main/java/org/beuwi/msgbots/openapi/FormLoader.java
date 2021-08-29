@@ -1,56 +1,54 @@
 package org.beuwi.msgbots.openapi;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.Pane;
 
-import org.beuwi.msgbots.platform.app.view.actions.DisplayErrorDialogAction;
-import org.beuwi.msgbots.platform.gui.control.TabItem;
-import org.beuwi.msgbots.platform.gui.layout.ScrollPane;
-import org.beuwi.msgbots.platform.gui.layout.ShadowPane;
-import org.beuwi.msgbots.platform.util.ResourceUtils;
+import org.beuwi.msgbots.utils.ResourceUtils;
 
-import java.io.IOException;
 import java.net.URL;
 
 public class FormLoader extends FXMLLoader {
-	public FormLoader(String name) {
-		this("", name);
-	}
+	/* public FormLoader(String name) {
+		this(null, name);
+	} */
 
-	public FormLoader(String type, String name) {
-		this(type, name, null);
-	}
+	public FormLoader() {
+		// setController(controller);
 
-	public FormLoader(String type, String name, Object controller) {
-		URL location = ResourceUtils.getForm((type != "" ? (type + "/") : "") + name);
-
-		setLocation(location);
-		setController(controller);
-
-		try {
+		/* try {
 			this.load();
 		}
-		catch (IOException e) {
-			DisplayErrorDialogAction.execute(e);
-		}
-	}
-
-	public <T> T getComponent() {
-		if (getRoot() instanceof TabItem) {
-			return (T) ((TabItem) getRoot()).getContent();
-		}
-		if (getRoot() instanceof ScrollPane) {
-			return (T) ((ScrollPane) getRoot()).getContent();
-		}
-		if (getRoot() instanceof ShadowPane) {
-			return (T) ((ShadowPane) getRoot()).getContent();
-		}
-		/* if (getRoot() instanceof SideItem) {
-			VBox item = ((SideItem) getRoot()).getContent();
-			StackPane pane = (StackPane) item.getChildren().get(1);
-			return (T) pane.getChildren().get(0);
+		catch (Exception e) {
+			e.printStackTrace();
 		} */
-
-		return (T) ((Pane) getRoot()).getChildren().get(0);
 	}
+
+	public void setName(String name) {
+		if (name == null) {
+			throw new NullPointerException();
+		}
+		String data[] = name.split("-");
+		String type = data[data.length - 1];
+		if (type == null) {
+			throw new NullPointerException();
+		}
+		URL location = ResourceUtils.getForm(type + "/" + name);
+		setLocation(location);
+	}
+	
+	@Override
+	public <T> T load() {
+		T result = null;
+		try {
+			result = super.load();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+	/* public <T extends Node> T findById(String id) {
+		return (T) getNamespace().get(id);
+	} */
 }

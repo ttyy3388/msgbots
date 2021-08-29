@@ -1,112 +1,51 @@
 package org.beuwi.msgbots.manager;
 
-import org.beuwi.msgbots.openapi.FileListener;
-import org.beuwi.msgbots.openapi.FileObserver;
-import org.beuwi.msgbots.platform.util.SharedValues;
+import org.beuwi.msgbots.base.Manager;
+import org.beuwi.msgbots.base.file.FileListener;
+import org.beuwi.msgbots.base.file.FileObserver;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
-// 해당 클래스로 접근하는 파일들은 유저 커스텀 파일들임 ("ResourceUtils"와 반대)
-public class FileManager {
+// 해당 클래스로 접근하는 파일들은 유저 커스텀 파일들임 ([ResourceUtils] 클래스와 반대)
+public class FileManager implements Manager {
 	public static String getBaseName(File file) {
 		return getBaseName(file.getName());
 	}
-	public static String getExtension(File file) {
-		return getExtension(file.getName());
-	}
-
 	public static String getBaseName(String name) {
 		return name.contains(".") ? name.substring(0, name.lastIndexOf(".")) : name;
+	}
+
+	public static String getExtension(File file) {
+		return getExtension(file.getName());
 	}
 	public static String getExtension(String name) {
 		return name.contains(".") ? name.substring(name.lastIndexOf(".") + 1) : name;
 	}
 
-	public static File getDataFile(String name) {
-		File file = new File(SharedValues.getString("DATA_FOLDER_PATH") + File.separator + name);
-		return file;
-	}
-
-	// ResourceUtils.getData로 이전
-	/* public static File getDataFile(String name) {
-		return new File(SharedValues.DATA_FOLDER_FILE + File.separator + name);
-	} */
-
-	public static File[] getBotList() {
-		return SharedValues.getFile("BOT_FOLDER_FILE").listFiles();
-	}
-
-	public static File[] getBotFiles() {
-		return SharedValues.getFile("BOT_FOLDER_FILE").listFiles();
-	}
-
-	/* public static String[] getBotNames() {
-		File[] files = SharedValues.BOT_FOLDER_FILE.listFiles(File::isDirectory);
-		String[] names = new String[files.length];
-
-		for (int i = 0 ; i < files.length ; i ++) {
-			names[i] = files[i].getName();
-		}
-
-		return names;
-	} */
-
-	public static boolean isBotFolder(File folder) {
-		String botName = folder.getName();
-		// 스크립트, 로그, 셋팅 파일 3가지가 다 있어야 봇 폴더로 인식
-		if (FileManager.getBotScript(botName).exists() &&
-			FileManager.getBotLog(botName).exists() &&
-			FileManager.getBotConfig(botName).exists()) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
-	public static List<String> getBotNames() {
-		File[] files = SharedValues.getFile("BOT_FOLDER_FILE").listFiles(File::isDirectory);
-		List<String> names = new ArrayList<>();
-
-		for (File file : files) {
-			if (FileManager.isBotFolder(file)) {
-				names.add(file.getName());
-			}
-		}
-
-		return names;
-	}
-
-	public static File getBotFolder(String name) {
-		return new File(SharedValues.getFile("BOT_FOLDER_FILE") + File.separator  + getBaseName(name));
-	}
-
-	public static File getBotScript(String name) {
-		return new File(getBotFolder(name).getPath() + File.separator + "index.js");
-	}
-
-	public static File getBotConfig(String name) {
-		return new File(getBotFolder(name).getPath() + File.separator + "bot.json");
-	}
-
-	public static File getBotLog(String name) {
-		return new File(getBotFolder(name).getPath() + File.separator + "log.json");
-	}
-
 	/* ----------------------------------------------------------------------------------- */
 
 	public static FileObserver link(File file, FileListener listener) {
-		/* if (file == null || !file.exists()) {
-			return null;
-		} */
+		// 파일이 없을 경우는 없지만, 만약을 대비해서 추가함
+		if (file == null || !file.exists()) {
+			throw new NullPointerException();
+		}
 		FileObserver observer = new FileObserver(file);
 		observer.addListener(listener);
 		return observer;
 	}
 
-	public static String save(File file, String content) {
+	public static String write(String path, String content) {
+		return write(new File(path), content);
+	}
+
+	public static String write(File file, String content) {
 		try {
 			file.createNewFile();
 
@@ -117,9 +56,9 @@ public class FileManager {
 				}
 			}
 
-			BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, false), "UTF8"));
-			bufferedWriter.write(content);
-			bufferedWriter.close();
+			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, false), "UTF8"));
+			writer.write(content);
+			writer.close();
 
 			return content;
 		}
@@ -132,11 +71,11 @@ public class FileManager {
 
 	public static String append(File file, String content) {
 		try {
-			file.createNewFile();
+			// file.createNewFile();
 
-			BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true), "UTF8"));
-			bufferedWriter.write(content);
-			bufferedWriter.close();
+			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true), "UTF8"));
+			writer.write(content);
+			writer.close();
 
 			return content;
 		}
@@ -149,20 +88,7 @@ public class FileManager {
 
 	public static String read(File file) {
 		try {
-			if (!file.exists()) {
-				return null;
-			}
-
-			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
-			String line = "", text = bufferedReader.readLine();
-
-			while ((line = bufferedReader.readLine()) != null) {
-				text += "\n" + line;
-			}
-
-			bufferedReader.close();
-
-			return text;
+			return read(new FileInputStream(file));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -171,13 +97,13 @@ public class FileManager {
 		return null;
 	}
 
-	public static String read(InputStream inputReader) {
+	public static String read(InputStream stream) {
 		try {
-			if (inputReader == null) {
+			if (stream == null) {
 				return null;
 			}
 
-			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputReader, "UTF-8"));
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream, "UTF-8"));
 			String line = "", text = bufferedReader.readLine();
 
 			while ((line = bufferedReader.readLine()) != null) {

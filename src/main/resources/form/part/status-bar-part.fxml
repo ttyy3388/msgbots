@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.beuwi.msgbots.platform.gui.control.Label?>
-<?import org.beuwi.msgbots.platform.gui.layout.AnchorPane?>
-<?import org.beuwi.msgbots.platform.gui.layout.HBox?>
+<?import org.beuwi.msgbots.program.gui.control.Label?>
+<?import org.beuwi.msgbots.program.gui.layout.AnchorPane?>
+<?import org.beuwi.msgbots.program.gui.layout.HBox?>
 
-<AnchorPane styleClass="status-bar"
-			minHeight="20.0"
-			prefHeight="20.0"
-			xmlns:fx="http://javafx.com/fxml">
+<fx:root type="AnchorPane"
+		 styleClass="status-bar"
+		 minHeight="20.0"
+		 prefHeight="20.0"
+		 xmlns:fx="http://javafx.com/fxml">
 	<children>
 		<HBox AnchorPane.topAnchor="0.0"
-			  AnchorPane.rightAnchor="5.0"
+              AnchorPane.rightAnchor="5.0"
               AnchorPane.bottomAnchor="0.0"
               AnchorPane.leftAnchor="5.0">
 			<children>
 				<Label fx:id="lblCurrentPath"
-					   HBox.hgrow="ALWAYS"></Label>
+                       HBox.hgrow="ALWAYS"></Label>
 				<Label fx:id="lblInfoMessage"></Label>
 			</children>
 		</HBox>
@@ -23,4 +24,4 @@
 	<!-- <padding>
 		<Insets bottom="5.0" left="5.0" right="5.0" top="5.0"></Insets>
 	</padding> -->
-</AnchorPane>
+</fx:root>

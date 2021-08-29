@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.beuwi.msgbots.platform.gui.control.Label?>
-<?import org.beuwi.msgbots.platform.gui.layout.AnchorPane?>
+<?import org.beuwi.msgbots.program.gui.control.Label?>
+<?import org.beuwi.msgbots.program.gui.layout.AnchorPane?>
 
 <AnchorPane prefHeight="50.0" prefWidth="400.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <children>
-        <Label fx:id="lblDeleteMessage" text="Are you sure you want to delete '{}' ?" styleClass="h4" prefHeight="30.0"></Label>
+        <Label fx:id="lblMessage"
+               text="Are you sure you want to delete '{$name}' ?"
+               prefHeight="30.0"></Label>
     </children>
 </AnchorPane>

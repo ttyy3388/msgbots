@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import org.beuwi.msgbots.program.gui.control.TabItem?>
+<?import org.beuwi.msgbots.program.gui.control.ChatArea?>
 
-<?import org.beuwi.msgbots.platform.gui.control.ChatView?>
-<?import org.beuwi.msgbots.platform.gui.control.TabItem?>
-<?import org.beuwi.msgbots.platform.gui.control.TextArea?>
-<?import org.beuwi.msgbots.platform.gui.layout.DebugRoom?>
-<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
-<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
-
-<TabItem text="DEBUG ROOM" closable="false" xmlns:fx="http://javafx.com/fxml">
+<fx:root type="TabItem"
+		 text="DEBUG ROOM"
+		 closable="false"
+		 xmlns:fx="http://javafx.com/fxml">
 	<content>
-		<DebugRoom></DebugRoom>
+		<ChatArea fx:id="control"></ChatArea>
 	</content>
-</TabItem>
+</fx:root>
