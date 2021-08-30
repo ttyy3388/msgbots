@@ -6,9 +6,8 @@ plugins {
 }
 
 java {
-    // jdk 14
-    sourceCompatibility = JavaVersion.VERSION_14;
-    targetCompatibility = JavaVersion.VERSION_14;
+    sourceCompatibility = JavaVersion.VERSION_16;
+    targetCompatibility = JavaVersion.VERSION_16;
 }
 
 // gradle verison > 6.6.1 error
@@ -16,7 +15,7 @@ java {
 
 // 현재 JavaFX 15는 에디터 로딩 시 깨져서 로딩되는 문제점이 있음
 javafx {
-    version = '14'
+    version = '16'
     modules = ['javafx.controls', 'javafx.fxml', 'javafx.web', 'javafx.swing']
 }
 
