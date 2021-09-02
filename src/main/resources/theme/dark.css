@@ -249,23 +249,23 @@
 	-fx-border-color: orange-0;
 }
 
-/* OPTION ITEM */
-/* .option-item {
+/* CONFIG ITEM */
+/* .config-item {
 	-fx-border-color: transparent;
 	-fx-border-width: 0 0 0 2;
 }
-.option-item:hover {
+.config-item:hover {
 	-fx-border-color: blue-0;
 } */
-/* .option-item .text {
+/* .config-item .text {
 	/* JavaFX 버그 때문에 LCD로 회색 표시하면 글씨가 흐리게보여서 GRAY로 대체 */
 	/* -fx-font-smoothing-type: gray;
 } */
-.option-item .label,
-.option-item .check-box {
+.config-item .label,
+.config-item .check-box {
 	-fx-text-fill: white-2;
 }
-.option-item .title-label {
+.config-item .title-label {
 	-fx-text-fill: white-0;
 }
 

@@ -68,7 +68,7 @@
 											</control>
 										</ConfigItem>
 										<ConfigItem title="기본 스크립트 수정" VBox.vgrow="ALWAYS">
-											<content>
+											<control>
 												<HBox spacing="10.0" VBox.vgrow="ALWAYS" minHeight="400.0">
 													<children>
 														<ConfigItem type="CONTROL" address="editor.editScriptDefault"
@@ -110,7 +110,7 @@
 														</VBox> -->
 													</children>
 												</HBox>
-											</content>
+											</control>
 										</ConfigItem>
 									</items>
 								</ConfigView>

@@ -13,7 +13,7 @@
 			<control>
 				<TextField maxWidth="100"></TextField>
 			</control>
-			<content>
+			<text>
 				<VBox spacing="5">
 					<children>
 						<Label text="-1: Interpretive mode is always used."></Label>
@@ -21,7 +21,7 @@
 						<Label text="1-9: All optimizations are performed."></Label>
 					</children>
 				</VBox>
-			</content>
+			</text>
 		</ConfigItem>
 		<ConfigItem type="PROJECT" address="{$name}.offOnRuntimeError" title="런타임 에러 시 전원 끄기">
 			<control>

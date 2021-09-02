@@ -4,22 +4,23 @@ import javafx.application.Application;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import org.beuwi.msgbots.base.Dfile;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.manager.ScriptManager;
 import org.beuwi.msgbots.shared.SharedValues;
+import org.beuwi.msgbots.view.app.dialogs.StartProgramDialog;
 import org.beuwi.msgbots.view.util.ViewManager;
 import org.beuwi.msgbots.view.app.MainWindow;
 import org.beuwi.msgbots.view.app.actions.OpenDialogBoxAction;
 import org.beuwi.msgbots.view.app.actions.RefreshAllBotsAction;
-import org.beuwi.msgbots.view.app.dialogs.StartProgramDialog;
+import org.beuwi.msgbots.view.app.dialogs.LaunchAppDialog;
 import org.beuwi.msgbots.utils.ResourceUtils;
 import org.beuwi.msgbots.setting.GlobalSettings;
 
 import java.io.File;
 
 public class Launcher extends Application {
-	private final StartProgramDialog dialog = new StartProgramDialog();
+	private final LaunchAppDialog dialog1 = new LaunchAppDialog();
+	private StartProgramDialog dialog2;
 
 	@Override
 	public void init() {
@@ -35,7 +36,7 @@ public class Launcher extends Application {
 		SharedValues.register(true, "file.saveFolder", new File(SharedValues.getString("path.saveFolder"))); // 세이브 폴더 커스텀 가능
 
 		// 시작 다이얼로그 오픈
-		OpenDialogBoxAction.getInstance().execute(dialog);
+		OpenDialogBoxAction.getInstance().execute(dialog1);
 
 		// 텍스트 렌더링 관련
 		// System.setProperty("prism.text", "t2k");
@@ -82,9 +83,13 @@ public class Launcher extends Application {
 			.execute();
 
 		// 다이얼로그가 닫혀야 시작
-		dialog.setOnClose(event -> {
-			// Start Window
-			MainWindow.launch();
+		dialog1.setOnClose(event1 -> {
+			dialog2 = new StartProgramDialog();
+			dialog2.setOnAction(event2 -> {
+				// Start Window
+				MainWindow.launch();
+			});
+			dialog2.open();
 		});
 
 		// MdbManager.switching();

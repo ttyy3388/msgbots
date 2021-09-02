@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.Pane?>
+
+<?import org.beuwi.msgbots.base.type.ThemeType?>
+<?import org.beuwi.msgbots.view.gui.control.Button?>
+<?import org.beuwi.msgbots.view.gui.control.ComboBox?>
+<?import org.beuwi.msgbots.view.gui.control.ConfigItem?>
+<?import org.beuwi.msgbots.view.gui.control.ConfigView?>
+<?import org.beuwi.msgbots.view.gui.control.NaviView?>
+<?import org.beuwi.msgbots.view.gui.control.NaviItem?>
+<?import org.beuwi.msgbots.view.gui.control.Label?>
+<?import org.beuwi.msgbots.view.gui.control.TextField?>
+<?import org.beuwi.msgbots.view.gui.layout.HBox?>
+<?import org.beuwi.msgbots.view.gui.layout.StackPane?>
+<?import org.beuwi.msgbots.view.gui.layout.VBox?>
+
+<VBox spacing="15.0" prefWidth="600.0" prefHeight="500.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+	<children>
+		<HBox spacing="10.0" fitChild="true" prefHeight="50.0">
+			<children>
+				<Pane prefWidth="2.5" style="-fx-background-color: #007ACC;"></Pane>
+				<ImageView fx:id="imageView"
+						   fitWidth="45.0"
+						   fitHeight="45.0">
+					<image>
+						<Image url="@../../image/program.png" />
+					</image>
+				</ImageView>
+				<!-- 이미지 지정 : JAR 변환 시 에러가 발생해서 보류 -->
+				<!-- <fx:script>
+					var values = Java.type("org.beuwi.msgbots.platform.util.SharedValues");
+					imgView.image = values.getValue("DEFAULT_PROGRAM_IMAGE");
+				</fx:script> -->
+				<VBox spacing="5.0">
+					<children>
+						<Label styleClass="bold, h3" text="Messenger Bot Simulator"></Label>
+						<Label styleClass="gray, h4" text="Version - Beta 0.6.4"></Label>
+					</children>
+				</VBox>
+			</children>
+		</HBox>
+		<NaviView fx:id="navConfigView">
+			<tabs>
+				<NaviItem text="Preset">
+					<content>
+						<ConfigView>
+							<items>
+								<ConfigItem type="GLOBAL" address="program.colorTheme"
+											title="프로그램 테마 변경"
+											text="재시작 시 적용되는 옵션입니다.">
+									<control>
+										<ComboBox maxWidth="150">
+											<items>
+												<FXCollections fx:factory="observableArrayList">
+													<ThemeType fx:constant="DARK"></ThemeType>
+													<ThemeType fx:constant="LIGHT"></ThemeType>
+												</FXCollections>
+											</items>
+										</ComboBox>
+									</control>
+								</ConfigItem>
+								<ConfigItem type="CONTROL" address=""
+											title="저장 폴더 지정"
+											text="파일 스트림의 기준이 될 루트 폴더를 선택합니다. (프로그램 경로 기본)">
+									<control>
+										<HBox spacing="10.0" fitChild="true">
+											<children>
+												<TextField fx:id="txfSaveDirPath"
+														   HBox.hgrow="ALWAYS"
+														   editable="false"></TextField>
+												<Button fx:id="btnChooseSaveDir"
+														text="..."
+														styled="true"
+														type="ACTION"></Button>
+											</children>
+										</HBox>
+									</control>
+								</ConfigItem>
+								<ConfigItem type="CONTROL" address=""
+											title="봇 폴더 지정"
+											text="생성한 봇들이 저장될 폴더를 선택합니다. (프로그램 경로 기본)">
+									<control>
+										<HBox spacing="10.0" fitChild="true">
+											<children>
+												<TextField fx:id="txfBotDirPath"
+														   HBox.hgrow="ALWAYS"
+														   editable="false"></TextField>
+												<Button fx:id="btnChooseBotDir"
+														text="..."
+														styled="true"
+														type="ACTION"></Button>
+											</children>
+										</HBox>
+									</control>
+								</ConfigItem>
+							</items>
+							<StackPane.margin>
+								<Insets top="15.0" bottom="15.0"></Insets>
+							</StackPane.margin>
+						</ConfigView>
+					</content>
+				</NaviItem>
+				<NaviItem text="Manual">
+					<content>
+					</content>
+				</NaviItem>
+			</tabs>
+		</NaviView>
+	</children>
+</VBox>

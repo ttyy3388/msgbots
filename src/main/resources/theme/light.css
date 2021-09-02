@@ -209,29 +209,29 @@
 	-fx-background-color: white-3;
 }
 
-/* OPTION ITEM */
-.option-item {
+/* CONFIG ITEM */
+.config-item {
 	/* -fx-border-color: transparent;
 	-fx-border-width: 0 0 0 2;
 	-fx-padding: 0 0 0 10; */
 }
-.option-item .title-label {
+.config-item .title-label {
 	-fx-text-fill: black-0;
 }
-.option-item .text-label {
+.config-item .text-label {
 	-fx-text-fill: gray-2;
 }
-.option-item .control-area .label,
-.option-item .control-area .check-box {
+.config-item .control-area .label,
+.config-item .control-area .check-box {
 	-fx-text-fill: gray-2;
 }
 
-/* OPTION ITEM */
-/* .option-item {
+/* CONFIG ITEM */
+/* .config-item {
     -fx-border-color: black-0;
     -fx-border-width: 0 0 0 2;
 }
-.option-item:hover {
+.config-item:hover {
 	-fx-border-color: blue-0;
 } */
 

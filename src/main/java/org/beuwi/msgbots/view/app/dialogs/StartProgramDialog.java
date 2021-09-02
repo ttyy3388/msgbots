@@ -1,68 +1,88 @@
 package org.beuwi.msgbots.view.app.dialogs;
 
 import javafx.application.Platform;
+import javafx.collections.ObservableMap;
+import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 
-import org.beuwi.msgbots.view.gui.dialog.ShowPaneDialog;
-import org.beuwi.msgbots.view.gui.layout.BorderPane;
+import org.beuwi.msgbots.openapi.FormLoader;
+import org.beuwi.msgbots.setting.GlobalSettings;
+import org.beuwi.msgbots.shared.SharedValues;
 import org.beuwi.msgbots.utils.ResourceUtils;
+import org.beuwi.msgbots.view.app.actions.OpenFolderChooserAction;
+import org.beuwi.msgbots.view.gui.control.Button;
+import org.beuwi.msgbots.view.gui.control.CheckBox;
+import org.beuwi.msgbots.view.gui.control.NaviView;
+import org.beuwi.msgbots.view.gui.control.TextField;
+import org.beuwi.msgbots.view.gui.dialog.YesOrNoDialog;
+import org.beuwi.msgbots.view.gui.layout.BorderPane;
+import org.beuwi.msgbots.view.gui.layout.VBox;
 
-public class StartProgramDialog extends ShowPaneDialog {
-    private final BorderPane root = new BorderPane();
-    private final ImageView image = new ImageView(ResourceUtils.getImage("program_start"));
+import java.io.File;
+
+public class StartProgramDialog extends YesOrNoDialog {
+    private final ObservableMap<String, Object> namespace;
+    private final FormLoader loader;
+    private final VBox root;
+
+    @FXML private NaviView navConfigView;
+    // @FXML private NaviItem naiManualTab;
+    // @FXML private NaviItem naiPresetTab;
+
+    @FXML private TextField txfSaveDirPath;
+    @FXML private Button btnChooseSaveDir;
+    @FXML private TextField txfBotDirPath;
+    @FXML private Button btnChooseBotDir;
+
+    private final CheckBox chkShowStart = new CheckBox();
+
+    private final Button btnUpdate;
+    private final Button btnCancel;
+
+    private File fileSaveDir;
+    private File fileBotDir;
 
     // Image Size : 1323 X 756
     public StartProgramDialog() {
-        image.setFitWidth(661.5);
-        image.setFitHeight(378);
+        loader = new FormLoader();
+        loader.setName("start-program-dialog");
+        loader.setController(this);
+        loader.load();
 
-        // 모든 키 이벤트를 무시하도록 함
-        // addEventFilter(KeyEvent.ANY, Event::consume);
+        namespace = loader.getNamespace();
+        root = loader.getRoot();
 
-        root.setCenter(image);
-        // root.setBottom(progressBar);
-        // root.setPrefWidth(661.5);
-        // root.setPrefHeight(378);
+        btnUpdate = getActionButton();
+        btnCancel = getCancelButton();
 
-        setUseTitleBar(false);
-        setUseFooterBar(false);
-    }
+        btnUpdate.setText("Update");
 
-    /* public void update(int num) {
-        progressBar.setProgress(num * 0.01); // 1%
-    } */
+        txfBotDirPath.setText(SharedValues.getString("path.botFolder"));
+        txfSaveDirPath.setText(SharedValues.getString("path.saveFolder"));
+        chkShowStart.setText("시작 시 항상 이 다이얼로그 표시");
+        chkShowStart.setSelected(GlobalSettings.getBoolean("program.showStartDialog"));
 
-    // 외부에서 콘텐츠 지정이 불가능 하도록
-    @Override
-    public void setContent(Node content) {
-        return ;
-    }
-    @Override
-    public ImageView getContent() {
-        return image;
+        btnChooseBotDir.setOnAction(event -> {
+            fileBotDir = OpenFolderChooserAction.getInstance().execute("Choose Bot Directory");
+            if (fileBotDir != null) {
+                txfBotDirPath.setText(fileBotDir.getAbsolutePath());
+            }
+        });
+        btnChooseSaveDir.setOnAction(event -> {
+            fileSaveDir = OpenFolderChooserAction.getInstance().execute("Choose Save Directory");
+            if (fileSaveDir != null) {
+                txfSaveDirPath.setText(fileSaveDir.getAbsolutePath());
+            }
+        });
     }
 
     @Override
     protected boolean onOpen() {
-        super.setContent(root);
-        // 오픈 시 자동으로 사라지도록
-        /* fade.setNode(this);
-        fade.setFromValue(1.0);
-        fade.setToValue(0.0);
-        fade.setCycleCount(5);
-        fade.setAutoReverse(false);
-        fade.play();
-        fade.setOnFinished(event -> {
-            dclose();
-        }); */
-
-        // 5초 뒤에 닫음
-        new Thread(() -> {
-            try { Thread.sleep(5000); }
-            catch (Exception ignored) { }
-            Platform.runLater(this::close);
-        }).start();
+        setUseButton(true, false);
+        setContent(root);
+        setTitle("Welcome to Program");
+        // setMargin(0);
         return true;
     }
 

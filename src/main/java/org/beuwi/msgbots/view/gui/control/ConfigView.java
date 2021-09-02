@@ -67,7 +67,7 @@ public class ConfigView extends VBox {
 			// lblTitle, // 제목이 입력돼야 추가되도록 변경함
 			contentArea
 		);
-		getStyleClass().addAll("option-view");
+		getStyleClass().addAll("config-view");
 	}
 
 	private final StringProperty titleProperty = new SimpleStringProperty();

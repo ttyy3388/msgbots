@@ -38,7 +38,7 @@ public class ConfigItem extends VBox {
 	 */
 	private final StringProperty titleProperty = new SimpleStringProperty(); // 제목은 필수로 지정해야 하며, 없을 경우를 생각하지 않음
 	private final ObjectProperty<Node> controlProperty = new SimpleObjectProperty<>(); // 컨트롤은 필수로 지정해야 하며, 없을 경우를 생각하지 않음
-	private final ObjectProperty<Node> contentProperty = new SimpleObjectProperty<>();
+	// private final ObjectProperty<Node> contentProperty = new SimpleObjectProperty<>();
 	private final StringProperty textProperty = new SimpleStringProperty();
 
 	// address : "type.address(head.value)" > "global.program.startAutoCompile"
@@ -47,15 +47,15 @@ public class ConfigItem extends VBox {
 	// private final StringProperty valueProperty = new SimpleStringProperty();
 
 	private final Label titleLabel = new Label(); // 간단한 제목(밝음)
-	private final StackPane controlArea = new StackPane();
-	private final StackPane contentArea = new StackPane();
+	private final StackPane controlArea = new StackPane(); // 옵션 컨트롤
+	// private final StackPane contentArea = new StackPane();
 	private final Label textLabel = new Label(); // 자세한 설명(흐림)
 	
 	private ConfigView parent;
 
-	{
+	/* {
 		VBox.setVgrow(contentArea, Priority.ALWAYS);
-	}
+	} */
 
 	public void initValue() {
 		ConfigType type = getType();
@@ -157,9 +157,9 @@ public class ConfigItem extends VBox {
 		titleLabel.getStyleClass().add("title-label");
 		textLabel.getStyleClass().add("text-label");
 		controlArea.setAlignment(Pos.CENTER_LEFT);
-		contentArea.getStyleClass().add("control-area");
-		contentArea.setAlignment(Pos.CENTER_LEFT);
-		contentArea.getStyleClass().add("content-area");
+		controlArea.getStyleClass().add("control-area");
+		// contentArea.setAlignment(Pos.CENTER_LEFT);
+		// contentArea.getStyleClass().add("content-area");
 
 		titleProperty().addListener(change -> {
 			String title = getTitle();
@@ -184,7 +184,8 @@ public class ConfigItem extends VBox {
 			titleLabel.setText(title);
 		});
 
-		contentProperty().addListener(change -> {
+		/* contentProperty().addListener(change -> {
+			// 자식이 없는 경우는 생각하지 않으므로 폐기
 			Node content = getContent();
 			List<Node> list = getChildren();
 			// 자식이 없는 경우 목록에서 제거함(빈공간이 남기때문에 제거)
@@ -194,14 +195,13 @@ public class ConfigItem extends VBox {
 					list.remove(contentArea);
 				}
 			}
-			// 자식이 있는 경우
 			else {
 				// 목록에 없다면 두번째에 추가
 				if (!list.contains(contentArea)) {
-					list.add(2, contentArea);
+					list.add(1, contentArea);
 				}
 			}
-		});
+		}); */
 
 		textProperty().addListener(change -> {
 			String text = getText();
@@ -215,7 +215,7 @@ public class ConfigItem extends VBox {
 			}
 			// 텍스트가 입력된 경우
 			else {
-				// 목록에 없다면 끝에 추가
+				// 목록에 없다면 마지막에 추가
 				if (!list.contains(textLabel)) {
 					list.add(textLabel);
 				}
@@ -227,9 +227,9 @@ public class ConfigItem extends VBox {
 		controlProperty().addListener(change -> {
 			controlArea.getChildren().setAll(getControl());
 		});
-		contentProperty().addListener(change -> {
+		/* contentProperty().addListener(change -> {
 			contentArea.getChildren().setAll(getContent());
-		});
+		}); */
 
 		typeProperty().addListener(change -> initValue());
 		addressProperty().addListener(change -> initValue());
@@ -241,7 +241,7 @@ public class ConfigItem extends VBox {
 			titleLabel,
 			controlArea
 		);
-		getStyleClass().add("option-item");
+		getStyleClass().add("config-item");
 	}
 
 	// 유저가 설정한 옵션이 있으면 제일 먼저 가져오고
@@ -280,7 +280,7 @@ public class ConfigItem extends VBox {
 		return controlProperty.get();
 	}
 	
-	public ObjectProperty<Node> contentProperty() {
+	/* public ObjectProperty<Node> contentProperty() {
 		return contentProperty;
 	}
 	public void setContent(Node content) {
@@ -288,7 +288,7 @@ public class ConfigItem extends VBox {
 	}
 	public Node getContent() {
 		return contentProperty.get();
-	}
+	} */
 
 	public StringProperty addressProperty() {
 		return addressProperty;

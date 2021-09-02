@@ -57,7 +57,8 @@ public class DebugPane extends SplitView {
 
 		// 현재 세션에서 챗이 오는 경우는 무조건 봇이 보내는 경우만 존재하나 추후 효율성을 위해
 		session.setOnChatListener((message, isBot) -> {
-			chatView.getItems().add(new ChatItem(message, true));
+			// 봇이 전송한 메시지만 추가
+			if (isBot) chatView.getItems().add(new ChatItem(message, true));
 		});
 
 		chatView = chatArea.getChatView();
