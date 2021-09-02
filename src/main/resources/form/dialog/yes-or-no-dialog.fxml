@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.beuwi.msgbots.platform.gui.control.Button?>
-<?import org.beuwi.msgbots.platform.gui.layout.BorderPane?>
-<?import org.beuwi.msgbots.platform.gui.layout.HBox?>
+<?import org.beuwi.msgbots.view.gui.control.Button?>
+<?import org.beuwi.msgbots.view.gui.layout.BorderPane?>
+<?import org.beuwi.msgbots.view.gui.layout.HBox?>
 
 <BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<bottom>

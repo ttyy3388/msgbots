@@ -14,10 +14,6 @@ public class ResourceUtils {
     public static String getURL(@NamedArg("path") String path) {
         return ResourceUtils.class.getResource(path).toExternalForm();
     }
-
-    public static InputStream getData(@NamedArg("name") String name) {
-        return ResourceUtils.class.getResourceAsStream("/data/" + name);
-    }
     public static InputStream getFont(@NamedArg("name") String name) {
         return ResourceUtils.class.getResourceAsStream("/font/" + name + ".ttf");
     }

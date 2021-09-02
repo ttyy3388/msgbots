@@ -1,4 +1,4 @@
-open module platform {
+open module program {
     // Java
     requires java.desktop;
 
@@ -11,10 +11,9 @@ open module platform {
 
     // requires org.json;
     // requires com.jfoenix;
-    requires json.simple;
+    // requires json.simple;
     // requires org.json;
     requires org.jsoup;
-    // requires rhino;
 
     // requires com.sun.jna;
     // requires com.sun.jna.platform;
@@ -22,6 +21,9 @@ open module platform {
     requires jdk.jsobject;
 
     requires javafx.swing;
+
+    // requires rhino;
+    requires base;
 
     exports org.beuwi.msgbots;
 }

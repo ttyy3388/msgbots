@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.beuwi.msgbots.platform.gui.control.MenuBar?>
-<?import org.beuwi.msgbots.platform.gui.control.MenuButton?>
-<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
+<?import org.beuwi.msgbots.view.gui.control.MenuBar?>
+<?import org.beuwi.msgbots.view.gui.control.MenuButton?>
+<?import org.beuwi.msgbots.view.gui.layout.StackPane?>
 
 <fx:root type="StackPane"
          minHeight="20.0"

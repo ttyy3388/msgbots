@@ -1,7 +1,6 @@
 package org.beuwi.msgbots.openapi;
 
 import javafx.fxml.FXMLLoader;
-
 import org.beuwi.msgbots.utils.ResourceUtils;
 
 import java.net.URL;

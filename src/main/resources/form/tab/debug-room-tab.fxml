@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.beuwi.msgbots.platform.gui.control.TabItem?>
-<?import org.beuwi.msgbots.platform.gui.control.ChatArea?>
+<?import org.beuwi.msgbots.view.gui.control.TabItem?>
+<?import org.beuwi.msgbots.view.gui.control.ChatArea?>
 
 <fx:root type="TabItem"
 		 text="DEBUG ROOM"

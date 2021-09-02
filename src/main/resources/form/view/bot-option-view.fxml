@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.beuwi.msgbots.platform.gui.control.CheckBox?>
-<?import org.beuwi.msgbots.platform.gui.control.Label?>
-<?import org.beuwi.msgbots.platform.gui.control.ConfigItem?>
-<?import org.beuwi.msgbots.platform.gui.control.ConfigView?>
-<?import org.beuwi.msgbots.platform.gui.control.TextField?>
-<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
+<?import org.beuwi.msgbots.view.gui.control.CheckBox?>
+<?import org.beuwi.msgbots.view.gui.control.Label?>
+<?import org.beuwi.msgbots.view.gui.control.ConfigItem?>
+<?import org.beuwi.msgbots.view.gui.control.ConfigView?>
+<?import org.beuwi.msgbots.view.gui.control.TextField?>
+<?import org.beuwi.msgbots.view.gui.layout.VBox?>
 
 <ConfigView>
 	<items>

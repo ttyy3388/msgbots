@@ -3,7 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.image.ImageView?>
 
-<?import org.beuwi.msgbots.platform.gui.layout.BorderPane?>
+<?import org.beuwi.msgbots.view.gui.layout.BorderPane?>
 
 <BorderPane fx:id="brpBoxRoot" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<left>

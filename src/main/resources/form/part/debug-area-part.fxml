@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.beuwi.msgbots.platform.gui.control.TabView?>
-<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
+<?import org.beuwi.msgbots.view.gui.control.TabView?>
+<?import org.beuwi.msgbots.view.gui.layout.StackPane?>
 
 <fx:root type="StackPane"
 		 styleClass="debug-area"

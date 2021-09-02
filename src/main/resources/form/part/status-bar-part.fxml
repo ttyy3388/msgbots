@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.beuwi.msgbots.platform.gui.control.Label?>
-<?import org.beuwi.msgbots.platform.gui.layout.AnchorPane?>
-<?import org.beuwi.msgbots.platform.gui.layout.HBox?>
+<?import org.beuwi.msgbots.view.gui.control.Label?>
+<?import org.beuwi.msgbots.view.gui.layout.AnchorPane?>
+<?import org.beuwi.msgbots.view.gui.layout.HBox?>
 
 <fx:root type="AnchorPane"
 		 styleClass="status-bar"

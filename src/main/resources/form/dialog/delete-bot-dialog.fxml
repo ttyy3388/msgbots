@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.beuwi.msgbots.platform.gui.control.Label?>
-<?import org.beuwi.msgbots.platform.gui.layout.AnchorPane?>
+<?import org.beuwi.msgbots.view.gui.control.Label?>
+<?import org.beuwi.msgbots.view.gui.layout.AnchorPane?>
 
 <AnchorPane prefHeight="50.0" prefWidth="400.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <children>

@@ -39,9 +39,9 @@ dependencies {
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
     // implementation group: 'com.jfoenix', name: 'jfoenix', version: '9.0.10' // 호환성이 안 좋아서 배제시킴
     // implementation group: 'org.mozilla', name: 'rhino', version: '1.7.13'
-    implementation (group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1') {
+    /* implementation (group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1') {
         exclude group: 'org.hamcrest', module: 'hamcrest-core'
-    }
+    } */
 }
 
 compileJava {
@@ -76,7 +76,7 @@ jlink {
 
 jar {
     manifest {
-        attributes 'Main-Class': "org.beuwi.msgbots.platform.Launcher"
+        attributes 'Main-Class': "org.beuwi.msgbots.Launcher"
     }
 
     /* from {

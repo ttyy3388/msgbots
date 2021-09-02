@@ -2,13 +2,13 @@
 
 <?import javafx.geometry.Insets?>
 
-<?import org.beuwi.msgbots.platform.gui.control.ChatArea?>
-<?import org.beuwi.msgbots.platform.gui.control.LogView?>
-<?import org.beuwi.msgbots.platform.gui.control.TabView?>
-<?import org.beuwi.msgbots.platform.gui.control.TabItem?>
-<?import org.beuwi.msgbots.platform.gui.editor.Editor?>
-<?import org.beuwi.msgbots.platform.gui.control.SplitView?>
-<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
+<?import org.beuwi.msgbots.view.gui.control.ChatArea?>
+<?import org.beuwi.msgbots.view.gui.control.LogView?>
+<?import org.beuwi.msgbots.view.gui.control.TabView?>
+<?import org.beuwi.msgbots.view.gui.control.TabItem?>
+<?import org.beuwi.msgbots.view.gui.editor.Editor?>
+<?import org.beuwi.msgbots.view.gui.control.SplitView?>
+<?import org.beuwi.msgbots.view.gui.layout.VBox?>
 
 <fx:root type="SplitView"
 		 side="LEFT"

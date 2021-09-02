@@ -1,6 +1,6 @@
 package org.beuwi.msgbots.openapi;
 
-import java.awt.Toolkit;
+import java.awt.*;
 
 public class TrayIcon extends java.awt.TrayIcon {
 	public TrayIcon() {

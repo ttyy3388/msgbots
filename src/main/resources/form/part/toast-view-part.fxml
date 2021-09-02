@@ -2,15 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 
-<?import org.beuwi.msgbots.platform.gui.control.Button?>
-<?import org.beuwi.msgbots.platform.gui.control.ToastView?>
-<?import org.beuwi.msgbots.platform.gui.control.Label?>
-<?import org.beuwi.msgbots.platform.gui.layout.AnchorPane?>
-<?import org.beuwi.msgbots.platform.gui.layout.HBox?>
-<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
-<?import org.beuwi.msgbots.platform.gui.control.ScrollView?>
-<?import org.beuwi.msgbots.platform.gui.control.ShadowView?>
-<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
+<?import org.beuwi.msgbots.view.gui.control.Button?>
+<?import org.beuwi.msgbots.view.gui.control.ToastView?>
+<?import org.beuwi.msgbots.view.gui.control.Label?>
+<?import org.beuwi.msgbots.view.gui.layout.AnchorPane?>
+<?import org.beuwi.msgbots.view.gui.layout.HBox?>
+<?import org.beuwi.msgbots.view.gui.layout.VBox?>
+<?import org.beuwi.msgbots.view.gui.control.ScrollView?>
+<?import org.beuwi.msgbots.view.gui.control.ShadowView?>
+<?import org.beuwi.msgbots.view.gui.layout.StackPane?>
 
 <fx:root type="AnchorPane" styleClass="toast-area" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<children>

@@ -4,11 +4,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 
-<?import org.beuwi.msgbots.platform.gui.control.Button?>
-<?import org.beuwi.msgbots.platform.gui.control.Label?>
-<?import org.beuwi.msgbots.platform.gui.layout.BorderPane?>
-<?import org.beuwi.msgbots.platform.gui.layout.HBox?>
-<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
+<?import org.beuwi.msgbots.view.gui.control.Button?>
+<?import org.beuwi.msgbots.view.gui.control.Label?>
+<?import org.beuwi.msgbots.view.gui.layout.BorderPane?>
+<?import org.beuwi.msgbots.view.gui.layout.HBox?>
+<?import org.beuwi.msgbots.view.gui.layout.StackPane?>
 
 <fx:root type="StackPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<children>

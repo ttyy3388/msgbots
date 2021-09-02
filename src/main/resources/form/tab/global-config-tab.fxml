@@ -5,10 +5,10 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 
-<?import org.beuwi.msgbots.platform.gui.control.*?>
-<?import org.beuwi.msgbots.platform.gui.editor.Editor?>
+<?import org.beuwi.msgbots.view.gui.control.*?>
+<?import org.beuwi.msgbots.view.gui.editor.Editor?>
 <?import org.beuwi.msgbots.base.type.ThemeType?>
-<?import org.beuwi.msgbots.platform.gui.layout.*?>
+<?import org.beuwi.msgbots.view.gui.layout.*?>
 
 <fx:root type="TabItem" text="GLOBAL CONFIG" xmlns:fx="http://javafx.com/fxml">
 	<content>

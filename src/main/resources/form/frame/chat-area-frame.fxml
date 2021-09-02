@@ -2,10 +2,10 @@
 
 <?import javafx.geometry.Insets?>
 
-<?import org.beuwi.msgbots.platform.gui.control.ChatView?>
-<?import org.beuwi.msgbots.platform.gui.control.TextArea?>
-<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
-<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
+<?import org.beuwi.msgbots.view.gui.control.ChatView?>
+<?import org.beuwi.msgbots.view.gui.control.TextArea?>
+<?import org.beuwi.msgbots.view.gui.layout.StackPane?>
+<?import org.beuwi.msgbots.view.gui.layout.VBox?>
 
 <fx:root type="VBox" minWidth="350" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<children>

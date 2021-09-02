@@ -2,11 +2,11 @@
 
 <?import javafx.scene.control.CheckBox?>
 
-<?import org.beuwi.msgbots.platform.gui.control.Button?>
-<?import org.beuwi.msgbots.platform.gui.control.Label?>
-<?import org.beuwi.msgbots.platform.gui.control.TextField?>
-<?import org.beuwi.msgbots.platform.gui.layout.HBox?>
-<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
+<?import org.beuwi.msgbots.view.gui.control.Button?>
+<?import org.beuwi.msgbots.view.gui.control.Label?>
+<?import org.beuwi.msgbots.view.gui.control.TextField?>
+<?import org.beuwi.msgbots.view.gui.layout.HBox?>
+<?import org.beuwi.msgbots.view.gui.layout.VBox?>
 
 <VBox spacing="25.0" prefWidth="450.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<children>

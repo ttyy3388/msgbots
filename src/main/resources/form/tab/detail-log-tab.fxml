@@ -2,11 +2,11 @@
 
 <?import javafx.geometry.Insets?>
 
-<?import org.beuwi.msgbots.platform.gui.control.TabItem?>
-<?import org.beuwi.msgbots.platform.gui.editor.Editor?>
-<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
+<?import org.beuwi.msgbots.view.gui.control.TabItem?>
+<?import org.beuwi.msgbots.view.gui.editor.Editor?>
+<?import org.beuwi.msgbots.view.gui.layout.StackPane?>
 
-<?import org.beuwi.msgbots.platform.gui.control.LogView?>
+<?import org.beuwi.msgbots.view.gui.control.LogView?>
 <fx:root type="TabItem"
 		 text="DETAIL LOG"
 		 closable="false"

@@ -2,9 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 
-<?import org.beuwi.msgbots.platform.gui.control.Label?>
-<?import org.beuwi.msgbots.platform.gui.control.TextArea?>
-<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
+<?import org.beuwi.msgbots.view.gui.control.Label?>
+<?import org.beuwi.msgbots.view.gui.control.TextArea?>
+<?import org.beuwi.msgbots.view.gui.layout.VBox?>
 
 <VBox spacing="15.0"
       prefWidth="400.0"
