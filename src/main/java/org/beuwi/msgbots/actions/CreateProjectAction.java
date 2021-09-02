@@ -1,5 +1,6 @@
 package org.beuwi.msgbots.actions;
 
+import org.beuwi.msgbots.base.JObject;
 import org.beuwi.msgbots.base.impl.Executor;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.manager.ProjectManager;
@@ -15,7 +16,7 @@ public class CreateProjectAction implements Executor {
     }
 
 	public void execute(String name, String content, boolean isImport, boolean isUnified, boolean isOffError) {
-        File folder = new File(SharedValues.getString("BOT_FOLDER_PATH") + File.separator + name);
+        File folder = new File(SharedValues.getString("path.botFolder") + File.separator + name);
         if (ProjectManager.exists(name)) {
             // DisplayErrorDialogAction.execute(new IOException("Bot " + name + " already exists"));
         }
@@ -29,22 +30,24 @@ public class CreateProjectAction implements Executor {
             if (!isImport) {
                 // 통합된 매개변수 체크
                 if (isUnified) {
-                    content = SharedValues.getDfile("SCRIPT_UNIFIED_DFILE").getData();
+                    content = SharedValues.getDfile("dfile.scriptUnified").getData();
                 } else {
-                    content = SharedValues.getDfile("SCRIPT_DEFAULT_DFILE").getData();
+                    content = SharedValues.getDfile("dfile.scriptDefault").getData();
                 }
             }
 
             String path = folder + File.separator;
-            String config = "{\"optimization\":1," +
-                    "\"useUnifiedParams\":" + isUnified + "," +
-                    "\"offOnRuntimeError\":" + isOffError + "," +
-                    "\"power\":false," +
-                    "\"ignoreApiOff\":false}";
+
+            JObject config = new JObject();
+            config.put("optimization", 1);
+            config.put("useUnifiedParams", isUnified);
+            config.put("offOnRuntimeError", isOffError);
+            config.put("power", false);
+            config.put("ignoreApiOff", false);
 
             FileManager.write(path + "index.js", content); // Create bot script file
             FileManager.write(path + "log.json", "[]"); // Create bot log file
-            FileManager.write(path + "bot.json", config); // Create bot setting file
+            FileManager.write(path + "bot.json", config.toString()); // Create bot setting file
         }
     }
 

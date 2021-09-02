@@ -12,8 +12,6 @@ import org.beuwi.msgbots.view.gui.dialog.YesOrNoDialog;
 import org.beuwi.msgbots.view.gui.type.DialogType;
 
 public class DeleteBotDialog extends YesOrNoDialog {
-	private static DeleteBotDialog instance = null;
-
 	private final ObservableMap<String, Object> namespace;
 	private final FormLoader loader;
 	private final AnchorPane root;
@@ -23,10 +21,12 @@ public class DeleteBotDialog extends YesOrNoDialog {
 	private final Button btnDelete;
 	private final Button btnCancel;
 
-	private static String name;
+	private final String name;
 
-	private DeleteBotDialog() {
+	public DeleteBotDialog(String name) {
 		super(DialogType.INFO);
+
+		this.name = name;
 
 		loader = new FormLoader();
 		loader.setName("delete-bot-dialog");
@@ -64,13 +64,5 @@ public class DeleteBotDialog extends YesOrNoDialog {
 	@Override
 	protected boolean onClose() {
 		return true;
-	}
-
-	public static DeleteBotDialog getInstance(String name) {
-		if (instance == null) {
-			instance = new DeleteBotDialog();
-		}
-		DeleteBotDialog.name = name;
-		return instance;
 	}
 }

@@ -12,8 +12,6 @@ import org.beuwi.msgbots.view.gui.dialog.YesOrNoDialog;
 import org.beuwi.msgbots.view.gui.layout.VBox;
 
 public class RenameBotDialog extends YesOrNoDialog {
-	private static RenameBotDialog instance = null;
-
 	private final ObservableMap<String, Object> namespace;
 	private final FormLoader loader;
 	private final VBox root;
@@ -26,13 +24,15 @@ public class RenameBotDialog extends YesOrNoDialog {
 	private final Button btnCancel;
 	private final Label lblMessage;
 
-	private static String name;
+	private final String name;
 
-	public RenameBotDialog() {
+	public RenameBotDialog(String name) {
 		loader = new FormLoader();
 		loader.setName("rename-bot-dialog");
 		loader.setController(this);
 		loader.load();
+
+		this.name = name;
 
 		namespace = loader.getNamespace();
 		root = loader.getRoot();
@@ -83,11 +83,11 @@ public class RenameBotDialog extends YesOrNoDialog {
 		return true;
 	}
 
-	public static RenameBotDialog getInstance(String name) {
+	/* public static RenameBotDialog getInstance(String name) {
 		if (instance == null) {
 			instance = new RenameBotDialog();
 		}
 		RenameBotDialog.name = name;
 		return instance;
-	}
+	} */
 }

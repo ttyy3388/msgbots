@@ -58,10 +58,10 @@ public class BotItem extends GridPane {
 			}).toMenuItem(),
 			MenuItem.getSeparator(),
 			StdActions.RENAME_BOT.handler(event -> {
-				OpenDialogBoxAction.getInstance().execute(RenameBotDialog.getInstance(project.getName()));
+				OpenDialogBoxAction.getInstance().execute(new RenameBotDialog(project.getName()));
 			}).toMenuItem(),
 			StdActions.DELETE_BOT.handler(event -> {
-				OpenDialogBoxAction.getInstance().execute(DeleteBotDialog.getInstance(project.getName()));
+				OpenDialogBoxAction.getInstance().execute(new DeleteBotDialog(project.getName()));
 			}).toMenuItem(),
 			MenuItem.getSeparator(),
 			// 설정 탭을 띄우고, 탭에서 해당 봇을 설정에 포커스가 가도록

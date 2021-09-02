@@ -19,12 +19,12 @@ public enum StdActions {
     COPY_RELATIVE_PATH("Copy Relative Path"),
     BOT_SETTING("Settings"),
     CREATE_BOT("New Bot", KeyBinding.CREATE_BOT, event -> {
-        OpenDialogBoxAction.getInstance().execute(CreateBotDialog.getInstance());
+        OpenDialogBoxAction.getInstance().execute(new CreateBotDialog());
     }),
     DELETE_BOT("Delete", KeyBinding.DELETE_BOT),
     RENAME_BOT("Rename"),
     IMPORT_SCRIPT("Import Bot", KeyBinding.IMPORT_SCRIPT, event -> {
-        OpenDialogBoxAction.getInstance().execute(ImportScriptDialog.getInstance());
+        OpenDialogBoxAction.getInstance().execute(new ImportScriptDialog());
     }),
     SAVE("Save", KeyBinding.SAVE, event -> {
         // SaveOpenedEditorAction.getInstance().execute();

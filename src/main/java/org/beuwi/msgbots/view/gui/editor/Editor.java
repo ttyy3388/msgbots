@@ -22,6 +22,11 @@ public class Editor extends Monaco {
 			if (!check) {
 				setText(FileManager.read(file));
 				FileManager.link(file, () -> {
+					// 삭제됐을 때 읽어오기 방지
+					if (!file.exists()) {
+						// FileManager.unlink(file);
+						return ;
+					}
 					setText(FileManager.read(file));
 				});
 				check = true;

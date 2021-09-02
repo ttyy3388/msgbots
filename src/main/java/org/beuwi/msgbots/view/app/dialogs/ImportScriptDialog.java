@@ -15,8 +15,6 @@ import org.beuwi.msgbots.view.gui.layout.VBox;
 import java.io.File;
 
 public class ImportScriptDialog extends YesOrNoDialog {
-	private static ImportScriptDialog instance = null;
-
 	private final ObservableMap<String, Object> namespace;
 	private final FormLoader loader;
 	private final VBox root;
@@ -35,7 +33,7 @@ public class ImportScriptDialog extends YesOrNoDialog {
 
 	private File file;
 
-	private ImportScriptDialog() {
+	public ImportScriptDialog() {
 		loader = new FormLoader();
 		loader.setName("import-script-dialog");
 		loader.setController(this);
@@ -96,12 +94,5 @@ public class ImportScriptDialog extends YesOrNoDialog {
 	@Override
 	protected boolean onClose() {
 		return true;
-	}
-
-	public static ImportScriptDialog getInstance() {
-		if (instance == null) {
-			instance = new ImportScriptDialog();
-		}
-		return instance;
 	}
 }

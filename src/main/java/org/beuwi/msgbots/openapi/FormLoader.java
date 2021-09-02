@@ -26,7 +26,7 @@ public class FormLoader extends FXMLLoader {
 			throw new NullPointerException();
 		}
 		String data[] = name.split("-");
-		String type = data[data.length - 1];
+		String type = data[data.length - 1]; // 마지막 인덱스를 가져옴
 		if (type == null) {
 			throw new NullPointerException();
 		}

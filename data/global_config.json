@@ -1,6 +1,6 @@
 {
 	"program":{
 		"colorTheme":"dark",
-		"startAutoCompile":false
+		"startAutoCompile":true
 	}
 }

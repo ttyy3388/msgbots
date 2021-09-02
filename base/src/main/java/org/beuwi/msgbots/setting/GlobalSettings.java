@@ -45,7 +45,6 @@ public class GlobalSettings {
 				map1 = object1.getMap(name);
 				if (map1.get(option) != null) {
 					map = map1;
-					System.out.println(map1);
 				}
 			}
 		}

@@ -12,8 +12,6 @@ import org.beuwi.msgbots.view.gui.dialog.YesOrNoDialog;
 import org.beuwi.msgbots.view.gui.layout.VBox;
 
 public class CreateBotDialog extends YesOrNoDialog {
-	private static CreateBotDialog instance = null;
-
 	private final ObservableMap<String, Object> namespace;
 	private final FormLoader loader;
 	private final VBox root;
@@ -25,7 +23,7 @@ public class CreateBotDialog extends YesOrNoDialog {
 	private final Button btnCreate;
 	private final Button btnCancel;
 
-	private CreateBotDialog() {
+	public CreateBotDialog() {
 		loader = new FormLoader();
 		loader.setName("create-bot-dialog");
 		loader.setController(this);
@@ -75,12 +73,5 @@ public class CreateBotDialog extends YesOrNoDialog {
 	@Override
 	protected boolean onClose() {
 		return true;
-	}
-
-	public static CreateBotDialog getInstance() {
-		if (instance == null) {
-			instance = new CreateBotDialog();
-		}
-		return instance;
 	}
 }
