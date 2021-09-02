@@ -9,7 +9,7 @@
 
 <ConfigView>
 	<items>
-		<ConfigItem address="project.{$name}.optimization" title="Optimization (-1 ~ 10)">
+		<ConfigItem type="PROJECT" address="{$name}.optimization" title="Optimization (-1 ~ 10)">
 			<control>
 				<TextField maxWidth="100"></TextField>
 			</control>
@@ -23,17 +23,17 @@
 				</VBox>
 			</content>
 		</ConfigItem>
-		<ConfigItem address="project.{$name}.offOnRuntimeError" title="런타임 에러 시 전원 끄기">
+		<ConfigItem type="PROJECT" address="{$name}.offOnRuntimeError" title="런타임 에러 시 전원 끄기">
 			<control>
 				<CheckBox text="런타임 에러 시, 자동으로 봇의 전원을 끕니다. (권장)"></CheckBox>
 			</control>
 		</ConfigItem>
-		<ConfigItem address="project.{$name}.useUnifiedParams" title="통합된 매개변수">
+		<ConfigItem type="PROJECT" address="{$name}.useUnifiedParams" title="통합된 매개변수">
 			<control>
 				<CheckBox text="통합된 매개변수를 사용하며 초심자에게는 권장하지 않습니다."></CheckBox>
 			</control>
 		</ConfigItem>
-		<ConfigItem address="project.{$name}.ignoreApiOff" title="Api Off 무시">
+		<ConfigItem type="PROJECT" address="{$name}.ignoreApiOff" title="Api Off 무시">
 			<control>
 				<CheckBox text="Api.off() 함수의 영향을 받지 않습니다."></CheckBox>
 			</control>

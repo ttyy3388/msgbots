@@ -41,12 +41,12 @@ public class SharedValues /* implements java.io.Serializable */ {
 			/* Dfile */
 			register(true, "dfile.customTheme", new Dfile("custom_theme.css"));
 			register(true, "dfile.colorMap", new Dfile("color_map.json"));
-			register(true, "dfile.senderProfile", new Dfile("profile_sender.png"));
-			register(true, "dfile.botProfile", new Dfile("profile_bot.png"));
+			register(true, "dfile.profileSender", new Dfile("profile_sender.png"));
+			register(true, "dfile.profileBot", new Dfile("profile_bot.png"));
 			register(true, "dfile.globalLog", new Dfile("global_log.json"));
 			register(true, "dfile.globalConfig", new Dfile("global_config.json"));
-			register(true, "dfile.defaultScript", new Dfile("script_default.js"));
-			register(true, "dfile.unifiedScript", new Dfile("script_unified.js"));
+			register(true, "dfile.scriptDefault", new Dfile("script_default.js"));
+			register(true, "dfile.scriptUnified", new Dfile("script_unified.js"));
 
 			/* Resource */
 			/* register(false, "resource.lightTheme", ResourceUtils.getTheme("light"));

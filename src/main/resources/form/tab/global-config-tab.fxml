@@ -20,18 +20,18 @@
 							<content>
 								<ConfigView title="Program">
 									<items>
-										<!-- <OptionItem address="control.button.cleanupUseSetting" title="프로그램 설정 초기화">
+										<!-- <OptionItem type="CONTROL" address="button.cleanupUseSetting" title="프로그램 설정 초기화">
 											<control>
 												<Button text="Clean Up" styled="true" type="ACTION" minHeight="25.0"></Button>
 											</control>
 										</OptionItem> -->
-										<!-- <OptionItem address="control.button.chooseBotDirPath"
+										<!-- <OptionItem type="CONTROL" address="button.chooseBotDirPath"
 													title="봇 폴더 경로 변경">
 											<control>
 												<Button text="Change" styled="true" type="ACTION" minHeight="25.0"></Button>
 											</control>
 										</OptionItem> -->
-										<ConfigItem address="global.program.colorTheme" title="프로그램 테마 변경">
+										<ConfigItem type="GLOBAL" address="program.colorTheme" title="프로그램 테마 변경" text="재시작 시 적용됩니다.">
 											<control>
 												<ComboBox maxWidth="150">
 													<items>
@@ -43,7 +43,7 @@
 												</ComboBox>
 											</control>
 										</ConfigItem>
-										<!-- <OptionItem address="global.program.textRendering" title="텍스트 렌더링 방식">
+										<!-- <OptionItem type="GLOBAL" address="program.textRendering" title="텍스트 렌더링 방식">
                                             <control>
                                                 <ComboBox maxWidth="150" >
                                                     <items>
@@ -55,13 +55,13 @@
                                                 </ComboBox>
                                             </control>
                                         </OptionItem> -->
-										<ConfigItem address="global.program.startAutoCompile"
+										<ConfigItem type="GLOBAL" address="program.startAutoCompile"
 													title="시작 시 자동 컴파일">
 											<control>
 												<CheckBox text="앱이 시작되었을 때 전원을 켜둔 스크립트를 자동으로 컴파일 합니다."></CheckBox>
 											</control>
 										</ConfigItem>
-										<ConfigItem address="global.program.compileAutoSave"
+										<ConfigItem type="GLOBAL" address="program.compileAutoSave"
 													title="리로드 시 자동 저장">
 											<control>
 												<CheckBox text="리로드할 때 자동으로 세이브를 한 후 리로드를 합니다."></CheckBox>
@@ -71,14 +71,14 @@
 											<content>
 												<HBox spacing="10.0" VBox.vgrow="ALWAYS" minHeight="400.0">
 													<children>
-														<ConfigItem address="control.editor.editScriptDefault"
+														<ConfigItem type="CONTROL" address="editor.editScriptDefault"
 																	HBox.hgrow="ALWAYS"
 																	title="통합 매개변수 OFF">
 															<control>
 																<Editor></Editor>
 															</control>
 														</ConfigItem>
-														<ConfigItem address="control.editor.editScriptUnified"
+														<ConfigItem type="CONTROL" address="editor.editScriptUnified"
 																	HBox.hgrow="ALWAYS"
 																	title="통합 매개변수 ON">
 															<control>
@@ -127,62 +127,62 @@
 							<content>
 								<ConfigView title="Debug">
 									<items>
-										<ConfigItem address="global.debug.htmlLoadTimeout" title="HTML 로드 시간 제한 (ms)">
+										<ConfigItem type="GLOBAL" address="debug.htmlLoadTimeout" title="HTML 로드 시간 제한 (ms)">
 											<control>
 												<TextField maxWidth="100"></TextField>
 											</control>
 										</ConfigItem>
-										<ConfigItem address="global.debug.showCompileError" title="컴파일 에러 보기">
+										<ConfigItem type="GLOBAL" address="debug.showCompileError" title="컴파일 에러 보기">
 											<control>
 												<CheckBox text="컴파일 중 발생한 에러를 보여줍니다."></CheckBox>
 											</control>
 										</ConfigItem>
-										<ConfigItem address="global.debug.showRuntimeError" title="런타임 에러 보기">
+										<ConfigItem type="GLOBAL" address="debug.showRuntimeError" title="런타임 에러 보기">
 											<control>
 												<CheckBox text="실행 중 발생한 에러를 보여줍니다."></CheckBox>
 											</control>
 										</ConfigItem>
-										<ConfigItem address="global.debug.showRunningTime" title="실행 시간 보기">
+										<ConfigItem type="GLOBAL" address="debug.showRunningTime" title="실행 시간 보기">
 											<control>
 												<CheckBox text="실행 시간을 보여줍니다."></CheckBox>
 											</control>
 										</ConfigItem>
-										<ConfigItem address="global.debug.roomName" title="방 이름">
+										<ConfigItem type="GLOBAL" address="debug.roomName" title="방 이름">
 											<control>
 												<TextField maxWidth="180"></TextField>
 											</control>
 										</ConfigItem>
-										<ConfigItem address="global.debug.senderName" title="전송자 이름">
+										<ConfigItem type="GLOBAL" address="debug.senderName" title="전송자 이름">
 											<control>
 												<TextField maxWidth="180"></TextField>
 											</control>
 										</ConfigItem>
-										<ConfigItem address="global.debug.botName" title="봇 이름">
+										<ConfigItem type="GLOBAL" address="debug.botName" title="봇 이름">
 											<control>
 												<TextField maxWidth="180"></TextField>
 											</control>
 										</ConfigItem>
-										<ConfigItem address="global.debug.packageName" title="패키지 이름">
+										<ConfigItem type="GLOBAL" address="debug.packageName" title="패키지 이름">
 											<control>
 												<TextField maxWidth="180"></TextField>
 											</control>
 										</ConfigItem>
-										<ConfigItem address="global.debug.isGroupChat" title="그룹챗 여부">
+										<ConfigItem type="GLOBAL" address="debug.isGroupChat" title="그룹챗 여부">
 											<control>
 												<CheckBox text="그룹챗 여부를 설정합니다."></CheckBox>
 											</control>
 										</ConfigItem>
-										<ConfigItem address="global.debug.showSenderProfile" title="전송자 프로필 보이기">
+										<ConfigItem type="GLOBAL" address="debug.showSenderProfile" title="전송자 프로필 보이기">
 											<control>
 												<CheckBox text="디버그 룸에서 전송자의 프로필을 보이게 합니다."></CheckBox>
 											</control>
 										</ConfigItem>
-										<ConfigItem address="global.debug.showSenderName" title="전송자 이름 보이기">
+										<ConfigItem type="GLOBAL" address="debug.showSenderName" title="전송자 이름 보이기">
 											<control>
 												<CheckBox text="디버그 룸에서 전송자의 이름을 보이게 합니다."></CheckBox>
 											</control>
 										</ConfigItem>
-										<ConfigItem address="control.button.changeSenderProfile" title="전송자 프로필 변경">
+										<ConfigItem type="CONTROL" address="button.changeSenderProfile" title="전송자 프로필 변경">
 											<control>
 												<Button text="Change"
                                                         styled="true"
@@ -190,17 +190,17 @@
                                                         minHeight="25.0"></Button>
 											</control>
 										</ConfigItem>
-										<ConfigItem address="global.debug.showBotProfile" title="봇 프로필 보이기">
+										<ConfigItem type="GLOBAL" address="debug.showBotProfile" title="봇 프로필 보이기">
 											<control>
 												<CheckBox text="디버그 룸에서 봇의 프로필을 보이게 합니다."></CheckBox>
 											</control>
 										</ConfigItem>
-										<ConfigItem address="global.debug.showBotName" title="봇 이름 보이기">
+										<ConfigItem type="GLOBAL" address="debug.showBotName" title="봇 이름 보이기">
 											<control>
 												<CheckBox text="디버그 룸에서 봇의 이름을 보이게 합니다."></CheckBox>
 											</control>
 										</ConfigItem>
-										<ConfigItem address="control.button.changeSenderProfile" title="봇 프로필 변경">
+										<ConfigItem address="button.changeSenderProfile" title="봇 프로필 변경">
 											<control>
 												<Button text="Change"
                                                         styled="true"
@@ -241,19 +241,19 @@
 					<content>
 						<ConfigView title="Mdb">
 							<items>
-								<ConfigItem address="global.mdb.adbFilePath" title="Adb File Path">
+								<ConfigItem type="GLOBAL" address="mdb.adbFilePath" title="Adb File Path">
 									<control>
 										<TextField editable="false" maxWidth="180"></TextField>
 										<!-- <HBox spacing="10.0">
 											<children>
-												<OptionItem address="global.connection.adbFilePath"
+												<OptionItem type="GLOBAL" address="connection.adbFilePath"
 															HBox.hgrow="ALWAYS"
 															maxWidth="250.0">
 													<control>
 														<TextField></TextField>
 													</control>
 												</OptionItem>
-												<OptionItem address="control.connection.chooseAdbFile">
+												<OptionItem type="CONTROL" address="connection.chooseAdbFile">
 													<Button text="Change"
 															styled="true"
 															type="ACTION"
@@ -263,17 +263,17 @@
 										</HBox> -->
 									</control>
 								</ConfigItem>
-								<ConfigItem address="global.mdb.adbAutoConnect" title="Auto Connect">
+								<ConfigItem type="GLOBAL" address="mdb.adbAutoConnect" title="Auto Connect">
 									<control>
 										<CheckBox></CheckBox>
 									</control>
 								</ConfigItem>
-								<ConfigItem address="global.mdb.socketRemotePort" title="Socket Remote Port">
+								<ConfigItem type="GLOBAL" address="mdb.socketRemotePort" title="Socket Remote Port">
 									<control>
 										<TextField maxWidth="180"></TextField>
 									</control>
 								</ConfigItem>
-								<ConfigItem address="global.mdb.socketLocalPort" title="Socket Local Port">
+								<ConfigItem type="GLOBAL" address="mdb.socketLocalPort" title="Socket Local Port">
 									<control>
 										<TextField maxWidth="180"></TextField>
 									</control>

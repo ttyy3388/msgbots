@@ -9,6 +9,8 @@ import javafx.scene.Node;
 import javafx.scene.layout.Priority;
 
 import org.beuwi.msgbots.base.Dfile;
+import org.beuwi.msgbots.base.type.ConfigType;
+import org.beuwi.msgbots.base.type.ThemeType;
 import org.beuwi.msgbots.setting.SharedSettings;
 import org.beuwi.msgbots.shared.SharedValues;
 import org.beuwi.msgbots.view.gui.editor.Editor;
@@ -39,8 +41,9 @@ public class ConfigItem extends VBox {
 	private final ObjectProperty<Node> contentProperty = new SimpleObjectProperty<>();
 	private final StringProperty textProperty = new SimpleStringProperty();
 
-	// address : "type.head.value" > "global.program.startAutoCompile"
-	private final StringProperty addressProperty = new SimpleStringProperty();
+	// address : "type.address(head.value)" > "global.program.startAutoCompile"
+	private final ObjectProperty<ConfigType> typeProperty = new SimpleObjectProperty(null);
+	private final StringProperty addressProperty = new SimpleStringProperty(null);
 	// private final StringProperty valueProperty = new SimpleStringProperty();
 
 	private final Label titleLabel = new Label(); // 간단한 제목(밝음)
@@ -55,26 +58,35 @@ public class ConfigItem extends VBox {
 	}
 
 	public void initValue() {
+		ConfigType type = getType();
 		String address = getAddress();
 		Node control = getControl();
-		System.out.println(address);
-		// 주소에 "{$name}"과 같이 변수 삽입 부분이 남아있다면 작동 X
-		if (address.contains("{&") && address.contains("}")) {
+
+		// 체크 1: 기본 값이 올바르게 지정되어 있는지 체크
+		if (type == null || address == null) {
+			return ;
+		}
+
+		// 체크 2: 주소에 "{$name}"과 같이 변수 삽입 부분이 남아있다면 작동 X
+		if (address.contains("{$") && address.contains("}")) {
 			return ;
 		}
 
 		if (control instanceof Editor) {
 			Editor editor = (Editor) control;
-			if (getAddress().equals("control.editor.editScriptDefault")) {
-				Dfile dfile = SharedValues.getDfile("SCRIPT_DEFAULT_DFILE");
+			/* if (!ConfigType.CONTROL.equals(type)) {
+				return ;
+			} */
+			if (address.equals("editor.editScriptDefault")) {
+				Dfile dfile = SharedValues.getDfile("dfile.scriptDefault");
 				editor.setText(dfile.getData());
 				// 에디터는 포커스 이벤트가 안오므로 텍스트 변경으로 인식
 				editor.textProperty().addListener(change -> {
 					dfile.setData(editor.getText());
 				});
 			}
-			else if (getAddress().equals("control:editor.editScriptUnified")) {
-				Dfile dfile = SharedValues.getDfile("SCRIPT_UNIFIED_DFILE");
+			else if (address.equals("editor.editScriptUnified")) {
+				Dfile dfile = SharedValues.getDfile("dfile.scriptUnified");
 				editor.setText(dfile.getData());
 				// 에디터는 포커스 이벤트가 안오므로 텍스트 변경으로 인식
 				editor.textProperty().addListener(change -> {
@@ -83,40 +95,57 @@ public class ConfigItem extends VBox {
 			}
 		}
 		else if (control instanceof Button) {
+			Button button = (Button) control;
 		}
-		else if (control instanceof CheckBox) {
+
+		// 아래에는 컨트롤이 접근하면 안되는 부분들임
+		if (ConfigType.CONTROL.equals(type)) {
+			return ;
+		}
+
+		if (control instanceof CheckBox) {
 			CheckBox checkbox = (CheckBox) control;
-			checkbox.setSelected(SharedSettings.getBoolean(address));
+			checkbox.setSelected(SharedSettings.getBoolean(type, address));
 			checkbox.selectedProperty().addListener(change -> {
-				SharedSettings.setData(address, checkbox.isSelected());
+				SharedSettings.setData(type, address, checkbox.isSelected());
+			});
+		}
+		else if (control instanceof ComboBox) {
+			ComboBox combobox = (ComboBox) control;
+			// 프로그램 컬러 테마
+			if (address.equals("program.colorTheme")) {
+				combobox.selectItem(ThemeType.parse(SharedSettings.getData(type, address)));
+			}
+			combobox.selectedItemProperty().addListener(change -> {
+				SharedSettings.setData(type, address, combobox.getSelectedItem().toString());
 			});
 		}
 		else if (control instanceof TextArea) {
 			TextArea textbox = (TextArea) control;
-			textbox.setText(SharedSettings.getString(address));
+			textbox.setText(SharedSettings.getString(type, address));
 			textbox.focusedProperty().addListener(change -> {
-				SharedSettings.setData(address, textbox.getText());
+				SharedSettings.setData(type, address, textbox.getText());
 			});
 		}
 		else if (control instanceof TextField) {
 			TextField textbox = (TextField) control;
-			textbox.setText(SharedSettings.getString(address));
+			textbox.setText(SharedSettings.getString(type, address));
 			textbox.focusedProperty().addListener(change -> {
-				SharedSettings.setData(address, textbox.getText());
+				SharedSettings.setData(type, address, textbox.getText());
 			});
 		}
 		else if (control instanceof ToggleButton) {
 			ToggleButton button = (ToggleButton) control;
-			button.setSelected(SharedSettings.getBoolean(address));
+			button.setSelected(SharedSettings.getBoolean(type, address));
 			button.selectedProperty().addListener(change -> {
-				SharedSettings.setData(address, button.isSelected());
+				SharedSettings.setData(type, address, button.isSelected());
 			});
 		}
 		else if (control instanceof Slider) {
 			Slider slider = (Slider) control;
-			slider.setValue(SharedSettings.getInt(address));
+			slider.setValue(SharedSettings.getInt(type, address));
 			slider.focusedProperty().addListener(change -> {
-				SharedSettings.setData(address, slider.getValue());
+				SharedSettings.setData(type, address, slider.getValue());
 			});
 		}
 	}
@@ -186,9 +215,9 @@ public class ConfigItem extends VBox {
 			}
 			// 텍스트가 입력된 경우
 			else {
-				// 목록에 없다면 끝(3)에 추가
+				// 목록에 없다면 끝에 추가
 				if (!list.contains(textLabel)) {
-					list.add(3, textLabel);
+					list.add(textLabel);
 				}
 
 				textLabel.setText(text);
@@ -201,6 +230,8 @@ public class ConfigItem extends VBox {
 		contentProperty().addListener(change -> {
 			contentArea.getChildren().setAll(getContent());
 		});
+
+		typeProperty().addListener(change -> initValue());
 		addressProperty().addListener(change -> initValue());
 
 		// setPadding(DEFAULT_MARGIN_VALUE);
@@ -267,5 +298,15 @@ public class ConfigItem extends VBox {
 	}
 	public String getAddress() {
 		return addressProperty.get();
+	}
+
+	public ObjectProperty<ConfigType> typeProperty() {
+		return typeProperty;
+	}
+	public void setType(ConfigType type) {
+		typeProperty.set(type);
+	}
+	public ConfigType getType() {
+		return typeProperty.get();
 	}
 }

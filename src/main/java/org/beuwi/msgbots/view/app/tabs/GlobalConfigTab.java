@@ -7,6 +7,7 @@ import org.beuwi.msgbots.base.Project;
 import org.beuwi.msgbots.base.impl.View;
 import org.beuwi.msgbots.manager.ProjectManager;
 import org.beuwi.msgbots.openapi.FormLoader;
+import org.beuwi.msgbots.view.gui.control.ConfigItem;
 import org.beuwi.msgbots.view.gui.control.ConfigView;
 import org.beuwi.msgbots.view.gui.control.NaviItem;
 import org.beuwi.msgbots.view.gui.control.NaviView;
@@ -60,9 +61,9 @@ public class GlobalConfigTab extends TabItem implements View {
 
 				String name = project.getName();
 				ConfigView control = loader.getRoot();
-				/* for (OptionItem item : control.getItems()) {
+				for (ConfigItem item : control.getItems()) {
 					item.setAddress(item.getAddress().replace("{$name}", name));
-				} */
+				}
 				control.setTitle(name);
 				list.add(new NaviItem(name, control));
 			}

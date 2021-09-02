@@ -1,11 +1,13 @@
 package org.beuwi.msgbots.base;
 
+import jdk.nashorn.internal.scripts.JO;
 import org.beuwi.msgbots.manager.FileManager;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
 
 public class JObject extends JSONObject {
@@ -69,6 +71,13 @@ public class JObject extends JSONObject {
 	public void putMap(Map map) {
 		putAll(map);
 	}
+
+	/* public static JObject parse(JSONObject json) {
+		// Convert to JObject
+		JObject jobject = new JObject();
+		jobject.putAll(json);
+		return jobject;
+	} */
 
 	@Override
 	public String toString() {

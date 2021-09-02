@@ -1,7 +1,7 @@
 package org.beuwi.msgbots.base.type;
 
 public enum ConfigType {
-    GLOBAL("global"), PROJECT("project");
+    GLOBAL("global"), PROJECT("project"), CONTROL("control");
 
     private final String name;
     ConfigType(String name) {

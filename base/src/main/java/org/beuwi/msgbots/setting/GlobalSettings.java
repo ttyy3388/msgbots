@@ -38,10 +38,15 @@ public class GlobalSettings {
 
 		// 만약 유저 세팅 파일이 생성되었다면
 		if (dfile.isCreated()) {
-			JObject user = new JObject(dfile.toFile());
-			// 파일에 해당 값이 있다면 가져옴
-			if (user.getMap(option) != null) {
-				map = user.getMap(name);
+			JObject object1 = new JObject(dfile.toFile());
+			Map map1 = null;
+			// 해당 파일에 해당 값이 존재한다면 가져옴
+			if (object1.get(name) != null) {
+				map1 = object1.getMap(name);
+				if (map1.get(option) != null) {
+					map = map1;
+					System.out.println(map1);
+				}
 			}
 		}
 

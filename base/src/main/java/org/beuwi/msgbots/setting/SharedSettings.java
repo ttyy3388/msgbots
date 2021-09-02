@@ -4,50 +4,50 @@ import org.beuwi.msgbots.base.type.ConfigType;
 
 public class SharedSettings {
 
-	// address : "type.head.value" > "global.program.startAutoCompile"
-	// Address : "type:name:option" > "project.name.ignore_api_off"
+	// 아래 주석의 주소(Address)들은 이전에 쓰던 방식임
+	// "type.head.value" > "global.program.startAutoCompile"
+	// "type:name:option" > "project.name.ignore_api_off"
 
-	public static <T> T getData(String address) {
+	public static <T> T getData(ConfigType type, String address) {
 		String[] data = address.split("\\.");
 
-		String type = data[0];
-		String head = data[1];
-		String option = data[2];
+		// String type = data[0];
+		String name = data[0];
+		String option = data[1];
 
-		switch (ConfigType.convert(type)) {
-			case GLOBAL :
-				GlobalSettings.getData(head + "." + option); break;
-			case PROJECT :
-				ProjectSettings.getSetting(head).getData(option); break;
+		if (ConfigType.GLOBAL.equals(type)) {
+			return GlobalSettings.getData(address);
+		}
+		if (ConfigType.PROJECT.equals(type)) {
+			return ProjectSettings.getSetting(name).getData(option);
 		}
 
-		throw new NullPointerException("this address does not exists");
+		throw new NullPointerException("wrong access");
 	}
 
-	public static <T> void setData(String address, T value) {
+	public static <T> void setData(ConfigType type, String address, T value) {
 		String[] data = address.split("\\.");
 
-		String type = data[0];
-		String head = data[1];
-		String option = data[2];
+		// String type = data[0];
+		String name = data[0];
+		String option = data[1];
 
-		switch (ConfigType.convert(type)) {
-			case GLOBAL :
-				GlobalSettings.setData(head + "." + option, value); break;
-			case PROJECT :
-				ProjectSettings.getSetting(head).setData(option, value);  break;
+		switch (type) {
+			case GLOBAL: GlobalSettings.setData(address, value); break;
+			case PROJECT: ProjectSettings.getSetting(name).setData(option, value); break;
+			case CONTROL: break;
 		}
 	}
 
-	public static int getInt(String address) {
-		return Integer.valueOf("" + getData(address));
+	public static int getInt(ConfigType type, String address) {
+		return Integer.valueOf("" + getData(type, address));
 	}
 
-	public static String getString(String address) {
-		return String.valueOf("" + getData(address));
+	public static String getString(ConfigType type, String address) {
+		return String.valueOf("" + getData(type, address));
 	}
 
-	public static boolean getBoolean(String address) {
-		return Boolean.valueOf("" + getData(address));
+	public static boolean getBoolean(ConfigType type, String address) {
+		return Boolean.valueOf("" + getData(type, address));
 	}
 }

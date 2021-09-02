@@ -36,7 +36,7 @@ public class Dfile {
     }
     // 프로그램 안 (기본 파일) : [Read Only]
     public InputStream toResource() {
-        return Dfile.class.getResourceAsStream("/data/" + name);
+        return Dfile.class.getResourceAsStream("/default/" + name);
     }
 
     public String getData() {

@@ -87,12 +87,12 @@ public class ChatItem extends HBox {
 
 			// 1000 글자가 넘으면 메시지 자르고 전체보기 버튼 추가
 			if (message.length() > 500) {
-				TextArea textarea = new TextArea(message);
-				textarea.setEditable(false);
-				textarea.setWrapText(true);
-				textarea.setPrefWidth(400);
-				textarea.setPrefHeight(500);
-				textarea.setMaxHeight(700);
+				TextArea textArea = new TextArea(message);
+				textArea.setEditable(false);
+				textArea.setWrapText(true);
+				textArea.setPrefWidth(400);
+				textArea.setPrefHeight(500);
+				textArea.setMaxHeight(700);
 				Button btnView = new Button("VIEW ALL");
 				btnView.setPrefHeight(25);
 				btnView.getStyleClass().add("view-button");

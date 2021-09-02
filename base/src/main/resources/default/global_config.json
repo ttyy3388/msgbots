@@ -1,5 +1,5 @@
 {
-	"adb":{
+	"mdb":{
 		"filePath": null,
 		"autoConnect": false,
 		"socketRemotePort":"9500",
