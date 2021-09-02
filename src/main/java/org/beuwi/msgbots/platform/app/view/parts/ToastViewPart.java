@@ -1,0 +1,74 @@
+package org.beuwi.msgbots.platform.app.view.parts;
+
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableMap;
+import javafx.fxml.FXML;
+import javafx.scene.control.Tooltip;
+
+import org.beuwi.msgbots.openapi.FormLoader;
+import org.beuwi.msgbots.base.impl.View;
+import org.beuwi.msgbots.platform.gui.control.Button;
+import org.beuwi.msgbots.platform.gui.control.ToastItem;
+import org.beuwi.msgbots.platform.gui.control.ToastView;
+import org.beuwi.msgbots.platform.gui.layout.AnchorPane;
+import org.beuwi.msgbots.platform.utils.AllSVGIcons;
+
+public class ToastViewPart extends AnchorPane implements View {
+	private static ToastViewPart instance = null;
+
+	private final ObservableMap<String, Object> namespace;
+	private final FormLoader loader;
+	// private final AnchorPane root;
+
+	@FXML private ToastView listView;
+
+	public ToastViewPart() {
+		loader = new FormLoader();
+		loader.setName("toast-view-part");
+		loader.setRoot(this);
+		loader.setController(this);
+		loader.load();
+
+		namespace = loader.getNamespace();
+		// root = loader.getRoot();
+
+		listView.getItems().addListener((ListChangeListener<ToastItem>) change -> {
+			// 아이템이 없으면 안보이도록
+			setVisible(!listView.getItems().isEmpty());
+		});
+
+		Button button = (Button) namespace.get("btnListClear");
+		button.setGraphic(AllSVGIcons.get("Box.Close"));
+		button.setOnAction(event -> {
+			listView.getItems().clear();
+		});
+		button.setTooltip(new Tooltip("Close All"));
+
+		setVisible(false);
+		// 루트는 선택되면 안되고, 안의 토스트 뷰가 선택되어야 하기 때문
+		setBackground(null);
+		// setMouseTransparent(true);
+		setPickOnBounds(false);
+
+		/* component.setVisible(false);
+		component.setBackground(null);
+		// component.setMouseTransparent(true);
+		component.setPickOnBounds(false); */
+	}
+
+	@Override
+	public Object findById(String id) {
+		return namespace.get(id);
+	}
+
+	public ToastView getToastView() {
+		return listView;
+	}
+
+	public static ToastViewPart getInstance() {
+		if (instance == null) {
+			instance = new ToastViewPart();
+		}
+		return instance;
+	}
+}

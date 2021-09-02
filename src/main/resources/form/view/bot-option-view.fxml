@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import org.beuwi.msgbots.platform.gui.control.CheckBox?>
+<?import org.beuwi.msgbots.platform.gui.control.Label?>
+<?import org.beuwi.msgbots.platform.gui.control.ConfigItem?>
+<?import org.beuwi.msgbots.platform.gui.control.ConfigView?>
+<?import org.beuwi.msgbots.platform.gui.control.TextField?>
+<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
 
-<?import org.beuwi.msgbots.program.gui.control.CheckBox?>
-<?import org.beuwi.msgbots.program.gui.control.Label?>
-<?import org.beuwi.msgbots.program.gui.control.OptionItem?>
-<?import org.beuwi.msgbots.program.gui.control.OptionView?>
-<?import org.beuwi.msgbots.program.gui.control.TextField?>
-<?import org.beuwi.msgbots.program.gui.layout.StackPane?>
-<?import org.beuwi.msgbots.program.gui.layout.VBox?>
-
-<OptionView>
+<ConfigView>
 	<items>
-		<OptionItem address="script.{$name}.optimization" title="Optimization (-1 ~ 10)">
+		<ConfigItem address="project.{$name}.optimization" title="Optimization (-1 ~ 10)">
 			<control>
 				<TextField maxWidth="100"></TextField>
 			</control>
@@ -25,21 +22,21 @@
 					</children>
 				</VBox>
 			</content>
-		</OptionItem>
-		<OptionItem address="script.{$name}.offOnRuntimeError" title="런타임 에러 시 전원 끄기">
+		</ConfigItem>
+		<ConfigItem address="project.{$name}.offOnRuntimeError" title="런타임 에러 시 전원 끄기">
 			<control>
 				<CheckBox text="런타임 에러 시, 자동으로 봇의 전원을 끕니다. (권장)"></CheckBox>
 			</control>
-		</OptionItem>
-		<OptionItem address="script.{$name}.useUnifiedParams" title="통합된 매개변수">
+		</ConfigItem>
+		<ConfigItem address="project.{$name}.useUnifiedParams" title="통합된 매개변수">
 			<control>
 				<CheckBox text="통합된 매개변수를 사용하며 초심자에게는 권장하지 않습니다."></CheckBox>
 			</control>
-		</OptionItem>
-		<OptionItem address="script.{$name}.ignoreApiOff" title="Api Off 무시">
+		</ConfigItem>
+		<ConfigItem address="project.{$name}.ignoreApiOff" title="Api Off 무시">
 			<control>
 				<CheckBox text="Api.off() 함수의 영향을 받지 않습니다."></CheckBox>
 			</control>
-		</OptionItem>
+		</ConfigItem>
 	</items>
-</OptionView>
+</ConfigView>

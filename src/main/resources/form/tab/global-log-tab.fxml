@@ -2,8 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 
-<?import org.beuwi.msgbots.program.gui.control.TabItem?>
-<?import org.beuwi.msgbots.program.gui.control.LogView?>
+<?import org.beuwi.msgbots.platform.gui.control.TabItem?>
+<?import org.beuwi.msgbots.platform.gui.control.LogView?>
 
 <fx:root type="TabItem"
 		 text="GLOBAL LOG"

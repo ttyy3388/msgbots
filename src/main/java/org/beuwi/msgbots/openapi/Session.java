@@ -1,6 +1,6 @@
 package org.beuwi.msgbots.openapi;
 
-import org.beuwi.msgbots.base.enums.LogType;
+import org.beuwi.msgbots.base.type.LogType;
 
 // 채팅 룸(GUI & Compiler)과의 소통을 위한 것임
 public class Session {

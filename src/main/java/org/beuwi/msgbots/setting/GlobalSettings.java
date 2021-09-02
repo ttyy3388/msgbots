@@ -24,9 +24,8 @@ import java.util.Map;
 
 // 기존에는 파일 변경 시 감지했지만 시작 시 값으로 진행함. -> 다시 실시간 감지로 변경
 public class GlobalSettings {
-	private static final Dfile dfile = SharedValues.getDfile("GLOBAL_CONFIG_DFILE");
-
 	// 프로그램 기본 세팅
+	private static final Dfile dfile = SharedValues.getDfile("dfile.globalConfig");
 	private static final JObject config = new JObject(dfile.toResource());
 
 	protected static <T> T getData(String address) {
@@ -35,23 +34,16 @@ public class GlobalSettings {
 		String name = data[0];
 		String option = data[1];
 
-		Map map = null;
-		// 유저 세팅 파일이 생성되었다면
+		// 프로그램의 기본값을 가져옴
+		Map map = config.getMap(name);
+
+		// 만약 유저 세팅 파일이 생성되었다면
 		if (dfile.isCreated()) {
 			JObject user = new JObject(dfile.toFile());
-
-			// 유저 세팅에 있다면 값을 가져옴
+			// 파일에 해당 값이 있다면 가져옴
 			if (user.getMap(option) != null) {
 				map = user.getMap(name);
 			}
-			// 아니면 프로그램 기본값
-			else {
-				map = config.getMap(name);
-			}
-		}
-		// 아니면 프로그램의 기본값을 가져옴
-		else {
-			map = config.getMap(name);
 		}
 
 		// throw new NullPointerException("this address does not exists");

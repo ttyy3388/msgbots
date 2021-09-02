@@ -32,12 +32,12 @@ public class Dfile {
 
     // 프로그램 밖 (유저 파일) : [Write, Read]
     public File toFile() {
-        File folder = SharedValues.getFile("DATA_FOLDER_FILE");
+        File folder = SharedValues.getFile("file.dataFolder");
         return new File( folder + File.separator + name);
     }
     // 프로그램 안 (기본 파일) : [Read Only]
     public InputStream toResource() {
-        return ResourceUtils.getStream(name);
+        return ResourceUtils.getData(name);
     }
 
     public String getData() {
@@ -50,7 +50,7 @@ public class Dfile {
         }
         // 아니라면 기본 값을 위해 리소스 파일을 반환
         else {
-            result = FileManager.read(ResourceUtils.getStream(name));
+            result = FileManager.read(ResourceUtils.getData(name));
         }
 
         return result;

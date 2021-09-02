@@ -1,4 +1,4 @@
-package org.beuwi.msgbots.base.enums;
+package org.beuwi.msgbots.base.type;
 
 public enum LogType {
     INFO {

@@ -2,18 +2,18 @@
 
 <?import javafx.scene.control.CheckBox?>
 
-<?import org.beuwi.msgbots.program.gui.control.Button?>
-<?import org.beuwi.msgbots.program.gui.control.Label?>
-<?import org.beuwi.msgbots.program.gui.control.TextField?>
-<?import org.beuwi.msgbots.program.gui.layout.HBox?>
-<?import org.beuwi.msgbots.program.gui.layout.VBox?>
+<?import org.beuwi.msgbots.platform.gui.control.Button?>
+<?import org.beuwi.msgbots.platform.gui.control.Label?>
+<?import org.beuwi.msgbots.platform.gui.control.TextField?>
+<?import org.beuwi.msgbots.platform.gui.layout.HBox?>
+<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
 
 <VBox spacing="25.0" prefWidth="450.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<children>
 		<VBox spacing="5.0">
 			<children>
 				<Label text="BOT NAME"></Label>
-				<HBox fittable="true" spacing="10.0">
+				<HBox fitChild="true" spacing="10.0">
 					<children>
 						<TextField fx:id="txfScriptName"
 								   HBox.hgrow="ALWAYS"
@@ -27,9 +27,7 @@
 				</HBox>
 			</children>
 		</VBox>
-		<VBox VBox.vgrow="ALWAYS"
-			  fittable="true"
-			  spacing="20.0">
+		<VBox VBox.vgrow="ALWAYS" fitChild="true" spacing="20.0">
 			<children>
 				<CheckBox fx:id="chkIsUnified"
 						  text="통합된 매개변수를 사용합니다."></CheckBox>

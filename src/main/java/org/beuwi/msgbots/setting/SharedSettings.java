@@ -1,11 +1,11 @@
 package org.beuwi.msgbots.setting;
 
-import org.beuwi.msgbots.base.enums.OptionType;
+import org.beuwi.msgbots.base.type.ConfigType;
 
 public class SharedSettings {
 
-	// Address : "type:name:option" > "global:program:start_auto_compile"
-	// Address : "type:name:option" > "script:test1:ignore_api_off"
+	// address : "type.head.value" > "global.program.startAutoCompile"
+	// Address : "type:name:option" > "project.name.ignore_api_off"
 
 	public static <T> T getData(String address) {
 		String[] data = address.split("\\.");
@@ -14,11 +14,9 @@ public class SharedSettings {
 		String head = data[1];
 		String option = data[2];
 
-		if (type.equals(OptionType.GLOBAL.toString())) {
-			return GlobalSettings.getData(head + "." + option);
-		}
-		if (type.equals(OptionType.SCRIPT.toString())) {
-			return ProjectSettings.get(head).getData(option);
+		switch (ConfigType.convert(type)) {
+			case GLOBAL -> GlobalSettings.getData(head + "." + option);
+			case PROJECT ->  ProjectSettings.getSetting(head).getData(option);
 		}
 
 		throw new NullPointerException("this address does not exists");
@@ -31,11 +29,9 @@ public class SharedSettings {
 		String head = data[1];
 		String option = data[2];
 
-		if (type.equals(OptionType.GLOBAL.toString())) {
-			GlobalSettings.setData(head + "." + option, value);
-		}
-		if (type.equals(OptionType.SCRIPT.toString())) {
-			ProjectSettings.get(head).setData(option, value);
+		switch (ConfigType.convert(type)) {
+			case GLOBAL -> GlobalSettings.setData(head + "." + option, value);
+			case PROJECT ->  ProjectSettings.getSetting(head).setData(option, value);
 		}
 	}
 

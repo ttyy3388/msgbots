@@ -1,7 +1,7 @@
 package org.beuwi.msgbots.base;
 
 import org.beuwi.msgbots.base.Project;
-import org.beuwi.msgbots.base.enums.LogType;
+import org.beuwi.msgbots.base.type.LogType;
 
 // 채팅 룸(GUI & Compiler)과의 소통을 위한 것임
 public class Session {

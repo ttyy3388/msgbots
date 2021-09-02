@@ -1,10 +1,10 @@
 /* DOCUMENT CSS */
 @CHARSET "UTF-8";
 
-/* CSS 에서는 폰트가 적용이 안돼서 JS 파일에서 적용시켜야 함 */
 * {
-	/* font-family: 'JetBrains Mono', 'D2Coding', monospace; */
-	font-family: NanumGothic, 'JetBrains Mono', monospace;
+	font-family: 'JetBrains Mono', 'D2Coding', monospace;
+	/* font-family: NanumGothic, 'JetBrains Mono', monospace; */
+	/* font-family: Consolas, "Courier New", monospace; */
 }
 
 html, body {
@@ -21,8 +21,6 @@ body {
 
 /* .mtk1 {
 	color: #7CDCFE; } */ /* TEXT COLOR */
-
-
 /* .monaco-editor .lines-content.monaco-editor-background {
 	margin-top: 4px;
 } */

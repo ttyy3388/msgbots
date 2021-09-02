@@ -3,11 +3,11 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<?import org.beuwi.msgbots.program.gui.control.Button?>
-<?import org.beuwi.msgbots.program.gui.control.CheckBox?>
-<?import org.beuwi.msgbots.program.gui.control.Label?>
-<?import org.beuwi.msgbots.program.gui.control.ToggleButton?>
-<?import org.beuwi.msgbots.program.gui.layout.GridPane?>
+<?import org.beuwi.msgbots.platform.gui.control.Button?>
+<?import org.beuwi.msgbots.platform.gui.control.CheckBox?>
+<?import org.beuwi.msgbots.platform.gui.control.Label?>
+<?import org.beuwi.msgbots.platform.gui.control.ToggleButton?>
+<?import org.beuwi.msgbots.platform.gui.layout.GridPane?>
 
 <fx:root type="GridPane" prefHeight="35.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<columnConstraints>

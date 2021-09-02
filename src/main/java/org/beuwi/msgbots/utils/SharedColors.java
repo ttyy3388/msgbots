@@ -7,7 +7,7 @@ import org.beuwi.msgbots.base.JObject;
 import org.beuwi.msgbots.setting.GlobalSettings;
 
 public class SharedColors {
-    private static final Dfile dfile = SharedValues.getDfile("COLOR_MAP_DFILE");
+    private static final Dfile dfile = SharedValues.getDfile("dfile.colorMap");
     private static final String theme = GlobalSettings.getString("program.colorTheme");
     private static final JObject json = new JObject(dfile.toResource());
 

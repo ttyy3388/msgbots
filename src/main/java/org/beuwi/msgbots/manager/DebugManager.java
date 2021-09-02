@@ -1,20 +1,49 @@
 package org.beuwi.msgbots.manager;
 
-// 프로그램과 소통하기 위한 것으로 프로그램에서만 접근함
-/* public class DebugManager extends Debugger implements Manager {
-    public static void setOnChatListener(Project project, OnChatListener listener) {
-        Debugger.setOnChatListener(project, listener);
+import org.beuwi.msgbots.base.Manager;
+import org.beuwi.msgbots.openapi.Project;
+
+public class DebugManager implements Manager {
+    public static void run(String message) {
+		/* ScriptEngine.run(
+			ProjectManager.getList(),
+			message,
+			GlobalSettings.getString("debug.roomName"),
+			GlobalSettings.getString("debug.senderName"),
+			GlobalSettings.getBoolean("debug.isGroupChat"),
+			new ImageDB(),
+			GlobalSettings.getString("debug.packageName")
+		); */
     }
-    public static void setOnToastListener(Project project, OnToastListener listener) {
-        Debugger.setOnToastListener(project, listener);
+    public static void run(Project project, String message) {
+		/* ScriptEngine.run(
+			project,
+			message,
+			GlobalSettings.getString("debug.roomName"),
+			GlobalSettings.getString("debug.senderName"),
+			GlobalSettings.getBoolean("debug.isGroupChat"),
+			new ImageDB(),
+			GlobalSettings.getString("debug.packageName")
+		); */
     }
-    public static void setOnLogListener(Project project, OnLogListener listener) {
-        Debugger.setOnLogListener(project, listener);
+
+    public static void preInit() {
+		/* for (Project project : ProjectManager.getList()) {
+			if (!project.getPower()) {
+				continue ;
+			}
+			ScriptEngine.initialize(project, true, false);
+		} */
     }
-    public static void setOnErrorListener(Project project, onErrorListener listener) {
-        Debugger.setOnErrorListener(project, listener);
+
+    public static void initAll(boolean isManual) {
+		/* for (Project project : ProjectManager.getList()) {
+			ScriptEngine.initialize(project, isManual, true);
+		} */
     }
-    public static void setOnCompileListener(Project project, onCompileListener listener) {
-        Debugger.setOnCompileListener(project, listener);
+
+    public static boolean initScript(Project project, boolean isManual, boolean ignoreError) {
+        /*  return ScriptEngine.initialize(project, isManual, ignoreError); */
+        return false;
     }
-} */
+}

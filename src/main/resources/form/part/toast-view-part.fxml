@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+
+<?import org.beuwi.msgbots.platform.gui.control.Button?>
+<?import org.beuwi.msgbots.platform.gui.control.ToastView?>
+<?import org.beuwi.msgbots.platform.gui.control.Label?>
+<?import org.beuwi.msgbots.platform.gui.layout.AnchorPane?>
+<?import org.beuwi.msgbots.platform.gui.layout.HBox?>
+<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
+<?import org.beuwi.msgbots.platform.gui.control.ScrollView?>
+<?import org.beuwi.msgbots.platform.gui.control.ShadowView?>
+<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
+
+<fx:root type="AnchorPane" styleClass="toast-area" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+	<children>
+		<ShadowView AnchorPane.topAnchor="15.0"
+					AnchorPane.rightAnchor="5.0">
+			<content>
+				<VBox styleClass="toast-box">
+					<children>
+						<HBox styleClass="title-bar" prefHeight="35.0">
+							<children>
+								<Label HBox.hgrow="ALWAYS" text="TOAST MESSAGES">
+									<HBox.margin>
+										<Insets left="10.0"></Insets>
+									</HBox.margin>
+								</Label>
+								<Button fx:id="btnListClear" prefWidth="35.0"></Button>
+							</children>
+						</HBox>
+						<ScrollView VBox.vgrow="ALWAYS"
+									hbarPolicy="NEVER"
+									fitToWidth="true"
+									fitToHeight="false"
+									autoScroll="true" maxHeight="400.0" vvalue="1.0d">
+							<content>
+								<ToastView fx:id="listView">
+								</ToastView>
+							</content>
+						</ScrollView>
+					</children>
+				</VBox>
+			</content>
+		</ShadowView>
+	</children>
+</fx:root>

@@ -1,8 +1,15 @@
 # Monaco Editor Changelog
 
+## [0.21.3] (18.01.2021)
+
+Fixes a regression in suggestions where the browser clipboard API would be accessed by incomplete suggestion lists (see https://github.com/microsoft/vscode/commit/96d61842bae1e5dd11f9ff6139fad9e3e5141401).
+
 ## [0.21.2] (27.09.2020)
 
 Fixes [a regression in monaco-css](https://github.com/microsoft/monaco-editor/issues/2158).
+
+### Breaking changes
+* `monaco.uri` methods `file, from, isUri, joinPath, parse, revive` are now static. Changing `new monaco.uri.method` to `monaco.uri.method` resolves 'TypeError: monaco.Uri.file is not a constructor at...' errors.
 
 ## [0.21.1] (24.09.2020)
 

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.beuwi.msgbots.program.gui.control.TabView?>
-<?import org.beuwi.msgbots.program.gui.layout.StackPane?>
+<?import org.beuwi.msgbots.platform.gui.control.TabView?>
+<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
 
 <fx:root type="StackPane"
+		 styleClass="debug-area"
 		 minWidth="300"
 		 prefWidth="350"
-		 styleClass="debug-area"
 		 xmlns:fx="http://javafx.com/fxml">
 	<children>
 		<TabView fx:id="tabView" fitHeader="true">

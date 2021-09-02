@@ -2,11 +2,13 @@ package org.beuwi.msgbots.base;
 
 import org.beuwi.msgbots.manager.FileManager;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.File;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 public class JArray extends JSONArray {
 	public JArray() {
@@ -26,7 +28,14 @@ public class JArray extends JSONArray {
 
 		try {
 			if (data != null) {
-				addAll((List) new JSONParser().parse(data));
+				Object object = new JSONParser().parse(data);
+				if (object instanceof JSONObject) {
+					// Convert to JObject
+					JSONObject json = (JSONObject) object;
+					JObject jobject = new JObject();
+					jobject.putAll(json);
+					this.addAll((List) jobject);
+				}
 			}
 		}
 		catch (Exception e) {

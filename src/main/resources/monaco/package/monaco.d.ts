@@ -2765,7 +2765,7 @@ declare namespace monaco.editor {
          */
         disableLayerHinting?: boolean;
         /**
-         * Disable the optimizations for monospace font.
+         * Disable the optimizations for monospace fonts.
          * Defaults to false.
          */
         disableMonospaceOptimizations?: boolean;
@@ -3703,7 +3703,7 @@ declare namespace monaco.editor {
          */
         shareSuggestSelections?: boolean;
         /**
-         * Enable or disable icon in suggestions. Defaults to true.
+         * Enable or disable icons in suggestions. Defaults to true.
          */
         showIcons?: boolean;
         /**

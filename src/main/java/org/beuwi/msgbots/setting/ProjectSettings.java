@@ -6,15 +6,14 @@ import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.manager.ProjectManager;
 
 public class ProjectSettings {
-	public static ProjectSettings get(String name) {
+	public static ProjectSettings getSetting(String name) {
 		Project project = ProjectManager.findByName(name);
 		if (project == null) {
-			System.out.println(name);
 			throw new NullPointerException();
 		}
 		return new ProjectSettings(project);
 	}
-	public static ProjectSettings get(Project project) {
+	public static ProjectSettings getSetting(Project project) {
         return new ProjectSettings(project);
     }
 

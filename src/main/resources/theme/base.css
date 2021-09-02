@@ -96,7 +96,7 @@
 
 /* SKIN */
 .scroll-bar {
-	-fx-skin: 'org.beuwi.msgbots.platform.program.gui.skin.ScrollBarSkin';
+	-fx-skin: 'org.beuwi.msgbots.platform.gui.skin.ScrollBarSkin';
 }
 
 /* CURSOR */

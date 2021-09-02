@@ -15,7 +15,7 @@ import java.util.List;
 public class ProjectManager implements Manager {
 	private static final ObservableList<Project> list = FXCollections.observableArrayList();
 
-	public static void registry(Project project) {
+	public static void register(Project project) {
 		List<String> names = getNames();
 		// 이름 또한 유일 키 이므로, 이름으로 검사함
 		if (names.contains(project.getName())) {

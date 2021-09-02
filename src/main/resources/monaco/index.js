@@ -9,10 +9,10 @@ var scrollChangeListener;
 require.config({ paths: { 'vs': './package/min/vs' }});
 
 require(['vs/editor/editor.main'], function () {
-	monaco.languages.typescript.javascriptDefaults.addExtraLib(readFile("index.d.ts"));
+	monaco.languages.typescript.javascriptDefaults.addExtraLib(readfile("index.d.ts"));
 });
 
-function readFile(path) {
+function readfile(path) {
 	var file = new XMLHttpRequest();
 	var text = null;
 	file.open("GET", path, false);
@@ -43,7 +43,7 @@ require(['vs/editor/editor.main'], function () {
 		rules: [
 			// { token: 'delimiter', foreground: 'D4D4D4' },
 			// js
-			{ token: '', foreground: '9CDCFE' },
+			// { token: '', foreground: '9CDCFE' },
 			/* { token: 'type', foreground: 'dcdcaa' },
 			// log
 			{ token: 'info', foreground: '007ACC' },
@@ -79,6 +79,7 @@ require(['vs/editor/editor.main'], function() {
 });
 
 var editor;
+
 require(['vs/editor/editor.main'], function() {
 	editor = monaco.editor.create(document.getElementById('container'), {
 		theme: 'dark',
@@ -87,14 +88,13 @@ require(['vs/editor/editor.main'], function() {
 		// fontFamily: 'Consolas', // 한글 입력 시 물음표가 뜨는 버그가 있음
 		fontSize: '14px',
 		// lineHeight: '25px',
-		// fontFamily: 'Consolas, \'D2Coding\', monospace',
 		automaticLayout: true,
 		roundedSelection: false,
 		mouseWheelScrollSensitivity: 0.02,
 		scrollBeyondLastLine: false,
 		contextmenu: true,
 		minimap: {
-			enabled: true
+			enabled: false,
 		},
 		scrollbar: {
 			// Subtle shadows to the left & top. Defaults to true.
@@ -150,12 +150,13 @@ require(['vs/editor/editor.main'], function() {
 });
 
 // setValue()를 하면 초기화처럼 redo, undo 스택과 같은 메모리가 사라지기 때문에 다른 방법 사용
-// 그래서 changeText로 현제 모델에서 값만 바꿔주는 식으로 함
-function changeText(data) {
+// 그래서 setText로 현제 모델에서 값만 바꿔주는 식으로 함
+function setText(data) {
 	var range =  editor.getModel().getFullModelRange();
 	var id = { major: 1, minor: 1 };
 	var text = data;
 	var option = { identifier: id, range: range, text: text, forceMoveMarkers: true };
+
 	editor.executeEdits("", [option]);
 }
 

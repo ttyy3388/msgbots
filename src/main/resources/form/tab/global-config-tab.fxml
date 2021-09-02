@@ -5,10 +5,10 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 
-<?import org.beuwi.msgbots.program.gui.control.*?>
-<?import org.beuwi.msgbots.program.gui.editor.Editor?>
-<?import org.beuwi.msgbots.program.gui.enums.ThemeType?>
-<?import org.beuwi.msgbots.program.gui.layout.*?>
+<?import org.beuwi.msgbots.platform.gui.control.*?>
+<?import org.beuwi.msgbots.platform.gui.editor.Editor?>
+<?import org.beuwi.msgbots.base.type.ThemeType?>
+<?import org.beuwi.msgbots.platform.gui.layout.*?>
 
 <fx:root type="TabItem" text="GLOBAL CONFIG" xmlns:fx="http://javafx.com/fxml">
 	<content>
@@ -16,9 +16,9 @@
 			<tabs>
 				<NaviItem text="Program">
 					<content>
-						<ScrollPane fitToWidth="true">
+						<ScrollView fitToWidth="true">
 							<content>
-								<OptionView title="Program">
+								<ConfigView title="Program">
 									<items>
 										<!-- <OptionItem address="control.button.cleanupUseSetting" title="프로그램 설정 초기화">
 											<control>
@@ -31,7 +31,7 @@
 												<Button text="Change" styled="true" type="ACTION" minHeight="25.0"></Button>
 											</control>
 										</OptionItem> -->
-										<OptionItem address="global.program.colorTheme" title="프로그램 테마 변경">
+										<ConfigItem address="global.program.colorTheme" title="프로그램 테마 변경">
 											<control>
 												<ComboBox maxWidth="150">
 													<items>
@@ -42,7 +42,7 @@
 													</items>
 												</ComboBox>
 											</control>
-										</OptionItem>
+										</ConfigItem>
 										<!-- <OptionItem address="global.program.textRendering" title="텍스트 렌더링 방식">
                                             <control>
                                                 <ComboBox maxWidth="150" >
@@ -55,36 +55,36 @@
                                                 </ComboBox>
                                             </control>
                                         </OptionItem> -->
-										<OptionItem address="global.program.startAutoCompile"
-                                                    title="시작 시 자동 컴파일">
+										<ConfigItem address="global.program.startAutoCompile"
+													title="시작 시 자동 컴파일">
 											<control>
 												<CheckBox text="앱이 시작되었을 때 전원을 켜둔 스크립트를 자동으로 컴파일 합니다."></CheckBox>
 											</control>
-										</OptionItem>
-										<OptionItem address="global.program.compileAutoSave"
-                                                    title="리로드 시 자동 저장">
+										</ConfigItem>
+										<ConfigItem address="global.program.compileAutoSave"
+													title="리로드 시 자동 저장">
 											<control>
 												<CheckBox text="리로드할 때 자동으로 세이브를 한 후 리로드를 합니다."></CheckBox>
 											</control>
-										</OptionItem>
-										<OptionItem title="기본 스크립트 수정" VBox.vgrow="ALWAYS">
+										</ConfigItem>
+										<ConfigItem title="기본 스크립트 수정" VBox.vgrow="ALWAYS">
 											<content>
 												<HBox spacing="10.0" VBox.vgrow="ALWAYS" minHeight="400.0">
 													<children>
-														<OptionItem address="control.editor.editScriptDefault"
-                                                                    HBox.hgrow="ALWAYS"
-                                                                    title="통합 매개변수 OFF">
+														<ConfigItem address="control.editor.editScriptDefault"
+																	HBox.hgrow="ALWAYS"
+																	title="통합 매개변수 OFF">
 															<control>
-																<Editor minimapEnabled="false"></Editor>
+																<Editor></Editor>
 															</control>
-														</OptionItem>
-														<OptionItem address="control.editor.editScriptUnified"
-                                                                    HBox.hgrow="ALWAYS"
-                                                                    title="통합 매개변수 ON">
+														</ConfigItem>
+														<ConfigItem address="control.editor.editScriptUnified"
+																	HBox.hgrow="ALWAYS"
+																	title="통합 매개변수 ON">
 															<control>
-																<Editor minimapEnabled="false"></Editor>
+																<Editor></Editor>
 															</control>
-														</OptionItem>
+														</ConfigItem>
 														<!-- <VBox spacing="10.0" HBox.hgrow="ALWAYS">
 															<children>
 																<Label text="통합 매개변수 OFF"></Label>
@@ -111,110 +111,110 @@
 													</children>
 												</HBox>
 											</content>
-										</OptionItem>
+										</ConfigItem>
 									</items>
-								</OptionView>
+								</ConfigView>
 							</content>
 							<!-- <StackPane.margin>
 								<Insets left="15.0"></Insets>
 							</StackPane.margin> -->
-						</ScrollPane>
+						</ScrollView>
 					</content>
 				</NaviItem>
 				<NaviItem text="Debug">
 					<content>
-						<ScrollPane fitToWidth="true">
+						<ScrollView fitToWidth="true">
 							<content>
-								<OptionView title="Debug">
+								<ConfigView title="Debug">
 									<items>
-										<OptionItem address="global.debug.htmlLoadTimeout" title="HTML 로드 시간 제한 (ms)">
+										<ConfigItem address="global.debug.htmlLoadTimeout" title="HTML 로드 시간 제한 (ms)">
 											<control>
 												<TextField maxWidth="100"></TextField>
 											</control>
-										</OptionItem>
-										<OptionItem address="global.debug.showCompileError" title="컴파일 에러 보기">
+										</ConfigItem>
+										<ConfigItem address="global.debug.showCompileError" title="컴파일 에러 보기">
 											<control>
 												<CheckBox text="컴파일 중 발생한 에러를 보여줍니다."></CheckBox>
 											</control>
-										</OptionItem>
-										<OptionItem address="global.debug.showRuntimeError" title="런타임 에러 보기">
+										</ConfigItem>
+										<ConfigItem address="global.debug.showRuntimeError" title="런타임 에러 보기">
 											<control>
 												<CheckBox text="실행 중 발생한 에러를 보여줍니다."></CheckBox>
 											</control>
-										</OptionItem>
-										<OptionItem address="global.debug.showRunningTime" title="실행 시간 보기">
+										</ConfigItem>
+										<ConfigItem address="global.debug.showRunningTime" title="실행 시간 보기">
 											<control>
 												<CheckBox text="실행 시간을 보여줍니다."></CheckBox>
 											</control>
-										</OptionItem>
-										<OptionItem address="global.debug.roomName" title="방 이름">
+										</ConfigItem>
+										<ConfigItem address="global.debug.roomName" title="방 이름">
 											<control>
 												<TextField maxWidth="180"></TextField>
 											</control>
-										</OptionItem>
-										<OptionItem address="global.debug.senderName" title="전송자 이름">
+										</ConfigItem>
+										<ConfigItem address="global.debug.senderName" title="전송자 이름">
 											<control>
 												<TextField maxWidth="180"></TextField>
 											</control>
-										</OptionItem>
-										<OptionItem address="global.debug.botName" title="봇 이름">
+										</ConfigItem>
+										<ConfigItem address="global.debug.botName" title="봇 이름">
 											<control>
 												<TextField maxWidth="180"></TextField>
 											</control>
-										</OptionItem>
-										<OptionItem address="global.debug.packageName" title="패키지 이름">
+										</ConfigItem>
+										<ConfigItem address="global.debug.packageName" title="패키지 이름">
 											<control>
 												<TextField maxWidth="180"></TextField>
 											</control>
-										</OptionItem>
-										<OptionItem address="global.debug.isGroupChat" title="그룹챗 여부">
+										</ConfigItem>
+										<ConfigItem address="global.debug.isGroupChat" title="그룹챗 여부">
 											<control>
 												<CheckBox text="그룹챗 여부를 설정합니다."></CheckBox>
 											</control>
-										</OptionItem>
-										<OptionItem address="global.debug.showSenderProfile" title="전송자 프로필 보이기">
+										</ConfigItem>
+										<ConfigItem address="global.debug.showSenderProfile" title="전송자 프로필 보이기">
 											<control>
 												<CheckBox text="디버그 룸에서 전송자의 프로필을 보이게 합니다."></CheckBox>
 											</control>
-										</OptionItem>
-										<OptionItem address="global.debug.showSenderName" title="전송자 이름 보이기">
+										</ConfigItem>
+										<ConfigItem address="global.debug.showSenderName" title="전송자 이름 보이기">
 											<control>
 												<CheckBox text="디버그 룸에서 전송자의 이름을 보이게 합니다."></CheckBox>
 											</control>
-										</OptionItem>
-										<OptionItem address="control.button.changeSenderProfile" title="전송자 프로필 변경">
+										</ConfigItem>
+										<ConfigItem address="control.button.changeSenderProfile" title="전송자 프로필 변경">
 											<control>
 												<Button text="Change"
                                                         styled="true"
                                                         type="ACTION"
                                                         minHeight="25.0"></Button>
 											</control>
-										</OptionItem>
-										<OptionItem address="global.debug.showBotProfile" title="봇 프로필 보이기">
+										</ConfigItem>
+										<ConfigItem address="global.debug.showBotProfile" title="봇 프로필 보이기">
 											<control>
 												<CheckBox text="디버그 룸에서 봇의 프로필을 보이게 합니다."></CheckBox>
 											</control>
-										</OptionItem>
-										<OptionItem address="global.debug.showBotName" title="봇 이름 보이기">
+										</ConfigItem>
+										<ConfigItem address="global.debug.showBotName" title="봇 이름 보이기">
 											<control>
 												<CheckBox text="디버그 룸에서 봇의 이름을 보이게 합니다."></CheckBox>
 											</control>
-										</OptionItem>
-										<OptionItem address="control.button.changeSenderProfile" title="봇 프로필 변경">
+										</ConfigItem>
+										<ConfigItem address="control.button.changeSenderProfile" title="봇 프로필 변경">
 											<control>
 												<Button text="Change"
                                                         styled="true"
                                                         type="ACTION"
                                                         minHeight="25.0"></Button>
 											</control>
-										</OptionItem>
+										</ConfigItem>
 									</items>
-								</OptionView>
+								</ConfigView>
 							</content>
 							<!-- <StackPane.margin>
 								<Insets left="15.0"></Insets>
 							</StackPane.margin> -->
-						</ScrollPane>
+						</ScrollView>
 					</content>
 				</NaviItem>
 				<!-- <NaviItem text="Design">
@@ -237,11 +237,11 @@
 						</OptionView>
 					</content>
 				</NaviItem> -->
-				<NaviItem text="Mdb">
+				<NaviItem text="Mdb" disable="true">
 					<content>
-						<OptionView title="Mdb">
+						<ConfigView title="Mdb">
 							<items>
-								<OptionItem address="global.mdb.adbFilePath" title="Adb File Path">
+								<ConfigItem address="global.mdb.adbFilePath" title="Adb File Path">
 									<control>
 										<TextField editable="false" maxWidth="180"></TextField>
 										<!-- <HBox spacing="10.0">
@@ -262,27 +262,27 @@
 											</children>
 										</HBox> -->
 									</control>
-								</OptionItem>
-								<OptionItem address="global.mdb.adbAutoConnect" title="Auto Connect">
+								</ConfigItem>
+								<ConfigItem address="global.mdb.adbAutoConnect" title="Auto Connect">
 									<control>
 										<CheckBox></CheckBox>
 									</control>
-								</OptionItem>
-								<OptionItem address="global.mdb.socketRemotePort" title="Socket Remote Port">
+								</ConfigItem>
+								<ConfigItem address="global.mdb.socketRemotePort" title="Socket Remote Port">
 									<control>
 										<TextField maxWidth="180"></TextField>
 									</control>
-								</OptionItem>
-								<OptionItem address="global.mdb.socketLocalPort" title="Socket Local Port">
+								</ConfigItem>
+								<ConfigItem address="global.mdb.socketLocalPort" title="Socket Local Port">
 									<control>
 										<TextField maxWidth="180"></TextField>
 									</control>
-								</OptionItem>
+								</ConfigItem>
 							</items>
 							<!-- <StackPane.margin>
 								<Insets left="15.0"></Insets>
 							</StackPane.margin> -->
-						</OptionView>
+						</ConfigView>
 					</content>
 				</NaviItem>
 				<NaviItem text="Bots">

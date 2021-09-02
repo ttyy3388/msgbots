@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.beuwi.msgbots.program.gui.layout.HBox?>
-<?import org.beuwi.msgbots.program.gui.layout.SplitPane?>
-<?import org.beuwi.msgbots.program.gui.layout.StackPane?>
-<?import org.beuwi.msgbots.program.gui.layout.VBox?>
+<?import org.beuwi.msgbots.platform.gui.layout.HBox?>
+<?import org.beuwi.msgbots.platform.gui.control.SplitView?>
+<?import org.beuwi.msgbots.platform.gui.layout.StackPane?>
+<?import org.beuwi.msgbots.platform.gui.layout.VBox?>
 
 <fx:root type="StackPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<children>
@@ -16,12 +16,12 @@
 					<children>
 						<HBox>
 							<children>
-								<SplitPane HBox.hgrow="ALWAYS"
-										   side="RIGHT"
-										   proportion="0.2"
-										   orientation="VERTICAL">
+								<SplitView HBox.hgrow="ALWAYS"
+                                           side="RIGHT"
+                                           proportion="0.2"
+                                           orientation="VERTICAL">
 									<left>
-										<SplitPane side="LEFT" proportion="0.2" showDivider="false">
+										<SplitView side="LEFT" proportion="0.2">
 											<left>
 												<!-- Side Area Part -->
 												<StackPane fx:id="stpSideArea"></StackPane>
@@ -30,13 +30,13 @@
 												<!-- Main Area Part -->
 												<StackPane fx:id="stpMainArea" HBox.hgrow="ALWAYS"></StackPane>
 											</right>
-										</SplitPane>
+										</SplitView>
 									</left>
 									<right>
 										<!-- Tool Area Part [0, 1] -->
 										<StackPane fx:id="stpToolArea"></StackPane>
 									</right>
-								</SplitPane>
+								</SplitView>
 								<!-- Debug Area Part -->
 								<StackPane fx:id="stpDebugArea"></StackPane>
 							</children>
