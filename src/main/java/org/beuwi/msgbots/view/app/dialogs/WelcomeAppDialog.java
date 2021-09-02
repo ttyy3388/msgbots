@@ -21,7 +21,7 @@ import org.beuwi.msgbots.view.gui.layout.VBox;
 
 import java.io.File;
 
-public class StartProgramDialog extends YesOrNoDialog {
+public class WelcomeAppDialog extends YesOrNoDialog {
     private final ObservableMap<String, Object> namespace;
     private final FormLoader loader;
     private final VBox root;
@@ -44,9 +44,9 @@ public class StartProgramDialog extends YesOrNoDialog {
     private File fileBotDir;
 
     // Image Size : 1323 X 756
-    public StartProgramDialog() {
+    public WelcomeAppDialog() {
         loader = new FormLoader();
-        loader.setName("start-program-dialog");
+        loader.setName("welcome-app-dialog");
         loader.setController(this);
         loader.load();
 

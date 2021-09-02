@@ -217,6 +217,8 @@ abstract class DialogFrame extends WindowWrapper {
 	protected abstract boolean onClose();
 
 	private boolean created = false;
+	private boolean closed = false;
+
 	// 호출용도
 	public void open() {
 		// Init 실행 후 Open 함수 실행
@@ -224,12 +226,14 @@ abstract class DialogFrame extends WindowWrapper {
 		// [setOnInit]이 설정됐으면
 		if (onInitHandler != null) {
 			onInitHandler.handle(null);
+			onInitHandler = null; // 핸들러 초기화
 		}
 
 		onOpen();
 		// [setOnOpen]이 설정됐으면
 		if (onOpenHandler != null) {
 			onOpenHandler.handle(null);
+			onOpenHandler = null; // 핸들러 초기화
 		}
 
 		// 처음 생성 시에만 호출
@@ -249,15 +253,19 @@ abstract class DialogFrame extends WindowWrapper {
 			// [setOnAction]이 설정됐으면
 			if (onActionHandler != null) {
 				onActionHandler.handle(null);
+				onActionHandler = null; // 핸들러 초기화
 			}
 			close();
 		}
 	}
 	protected void close() {
 		onClose();
-		// [setOnClose]이 설정됐으면
-		if (onCloseHandler != null) {
-			onCloseHandler.handle(null);
+		if (!closed) {
+			// [setOnClose]이 설정됐으면
+			if (onCloseHandler != null) {
+				onCloseHandler.handle(null);
+				onCloseHandler = null; // 핸들러 초기화(중복 핸들 방지)
+			}
 		}
 		// this.close();
 		stage.close();
