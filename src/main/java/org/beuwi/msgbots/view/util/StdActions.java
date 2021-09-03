@@ -8,6 +8,8 @@ import org.beuwi.msgbots.view.app.actions.AddMainAreaTabAction;
 import org.beuwi.msgbots.view.app.actions.OpenDialogBoxAction;
 import org.beuwi.msgbots.view.app.actions.OpenWebViewTabAction;
 import org.beuwi.msgbots.view.app.actions.ReloadAllBotsAction;
+import org.beuwi.msgbots.view.app.actions.SaveAllEditorsAction;
+import org.beuwi.msgbots.view.app.actions.SaveOpenedEditorAction;
 import org.beuwi.msgbots.view.app.actions.ToggleDebugAreaAction;
 import org.beuwi.msgbots.view.app.dialogs.CreateBotDialog;
 import org.beuwi.msgbots.view.app.dialogs.ImportScriptDialog;
@@ -32,10 +34,10 @@ public enum StdActions {
 		OpenDialogBoxAction.getInstance().execute(new ImportScriptDialog());
 	}),
 	SAVE("Save", KeyBinding.SAVE, event -> {
-		// SaveOpenedEditorAction.getInstance().execute();
+		SaveOpenedEditorAction.getInstance().execute();
 	}),
 	SAVE_ALL("Save All", KeyBinding.SAVE_ALL, event -> {
-		// SaveAllEditorsAction.getInstance().execute();
+		SaveAllEditorsAction.getInstance().execute();
 	}),
 	SETTINGS("Settings", KeyBinding.REFRESH_ALL_BOTS, event -> {
 		AddMainAreaTabAction.getInstance().execute(GlobalConfigTab.getInstance());
