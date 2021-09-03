@@ -17,6 +17,7 @@ public enum StdActions {
     COPY("Copy", KeyBinding.COPY),
     COPY_TEXT("Copy Text", KeyBinding.COPY),
     COPY_PATH("Copy Path"),
+    DELETE("Delete"),
     COPY_RELATIVE_PATH("Copy Relative Path"),
     BOT_SETTING("Settings"),
     CREATE_BOT("New Bot", KeyBinding.CREATE_BOT, event -> {

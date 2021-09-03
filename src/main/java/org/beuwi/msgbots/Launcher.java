@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.manager.ScriptManager;
 import org.beuwi.msgbots.shared.SharedValues;
-import org.beuwi.msgbots.view.app.dialogs.WelcomeAppDialog;
+import org.beuwi.msgbots.view.app.dialogs.WelcomeToDialog;
 import org.beuwi.msgbots.view.util.ViewManager;
 import org.beuwi.msgbots.view.app.MainWindow;
 import org.beuwi.msgbots.view.app.actions.OpenDialogBoxAction;
@@ -20,7 +20,7 @@ import java.io.File;
 
 public class Launcher extends Application {
 	private final LaunchAppDialog dialog1 = new LaunchAppDialog();
-	private WelcomeAppDialog dialog2;
+	private WelcomeToDialog dialog2;
 
 	@Override
 	public void init() {
@@ -84,7 +84,7 @@ public class Launcher extends Application {
 
 		// 다이얼로그가 닫혀야 시작
 		dialog1.setOnClose(event1 -> {
-			dialog2 = new WelcomeAppDialog();
+			dialog2 = new WelcomeToDialog();
 			dialog2.setOnClose(event2 -> {
 				// Start Window
 				MainWindow.launch();

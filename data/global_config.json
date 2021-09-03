@@ -1,4 +1,11 @@
 {
+	"debug":{
+		"showBotName":true,
+		"showBotProfile":true,
+		"showSenderProfile":false,
+		"showSenderName":true,
+		"isGroupChat":true
+	},
 	"program":{
 		"colorTheme":"dark",
 		"startAutoCompile":true

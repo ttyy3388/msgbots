@@ -8,12 +8,16 @@ import javafx.scene.layout.Priority;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
+import org.beuwi.msgbots.actions.CopyClipboardAction;
 import org.beuwi.msgbots.base.Dfile;
 import org.beuwi.msgbots.setting.GlobalSettings;
 import org.beuwi.msgbots.shared.SharedValues;
+import org.beuwi.msgbots.view.gui.dialog.YesOrNoDialog;
 import org.beuwi.msgbots.view.gui.layout.HBox;
+import org.beuwi.msgbots.view.gui.layout.StackPane;
 import org.beuwi.msgbots.view.gui.layout.VBox;
 import org.beuwi.msgbots.utils.ResourceUtils;
+import org.beuwi.msgbots.view.util.StdActions;
 
 public class ChatItem extends HBox {
 	private final String message;
@@ -31,6 +35,15 @@ public class ChatItem extends HBox {
 	public ChatItem(String message, boolean isBot) {
 		content = new ChatContent(message, isBot);
 		profile = new Circle(35, 35, 20);
+
+		new ContextMenu(
+			StdActions.COPY.handler(event -> {
+				CopyClipboardAction.getInstance().execute(message);
+			}).toMenuItem(),
+			StdActions.DELETE.handler(event -> {
+				parent.getItems().remove(this);
+			}).toMenuItem()
+		).setNode(this);
 
 		this.message = message;
 		this.isBot = isBot;
@@ -119,6 +132,27 @@ public class ChatItem extends HBox {
 				textArea.setMaxHeight(700);
 				Button btnView = new Button("VIEW ALL");
 				btnView.setPrefHeight(25);
+				btnView.setOnAction(event -> {
+					new YesOrNoDialog() {
+						@Override
+						protected boolean onOpen() {
+							setUseButton(true, false);
+							getActionButton().setText("Copy");
+							setContent(new StackPane(textArea));
+							setTitle("View All");
+							return true;
+						}
+						@Override
+						protected boolean onAction() {
+							CopyClipboardAction
+								.getInstance()
+								.execute(textArea.getText());
+							return true;
+						}
+						@Override protected boolean onInit() { return false; }
+						@Override protected boolean onClose() { return false; }
+					};
+				});
 				btnView.getStyleClass().add("view-button");
 				boxComment.getChildren().add(new Separator());
 				boxComment.getChildren().add(btnView);
