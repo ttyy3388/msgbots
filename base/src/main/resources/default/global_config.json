@@ -28,7 +28,7 @@
 		"compileAutoSave":true,
 		"textRenderingType":"LCD",
 		"startAutoCompile":true,
-		"botFolderPath":null,
+		"botDirPath":null,
 		"colorTheme":"dark"
 	}
 }

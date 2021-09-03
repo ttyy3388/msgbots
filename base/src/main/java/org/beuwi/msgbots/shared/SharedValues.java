@@ -59,7 +59,7 @@ public class SharedValues /* implements java.io.Serializable */ {
 	}
 
 	public static void register(boolean modifiable, String key, Object value) {
-		values.put(modifiable, key, value);
+		values.register(modifiable, key, value);
 	}
 
 	public static <T> T getValue(String key) {
@@ -116,17 +116,15 @@ public class SharedValues /* implements java.io.Serializable */ {
 
 		@Override
 		public V put(K key, V value) {
-			this.put(false, key, value);
-			return null;
-		}
-
-		// [modifiable]이 [true]라면 [final]처럼 간주함 (값변경 X)
-		public void put(boolean modifiable, K key, V value) {
+			// 기존에 없는 값일 경우
+			if (!map.containsKey(key)) {
+				throw new NullPointerException("wrong access key '" + key + "'");
+			}
 			// 기존에 있는 값일 경우
-			if (map.containsKey(key)) {
-				boolean check = Boolean.TRUE.equals(map.get(key));
+			else {
+				boolean modifiable = map.get(key);
 				// 수정이 불가능한데 값을 수정하려고 했다면
-				if (!check) {
+				if (!modifiable) {
 					throw new RuntimeException("cannot assign " + key + " value to final variable " + value);
 				}
 				// 수정이 가능하다면
@@ -135,11 +133,18 @@ public class SharedValues /* implements java.io.Serializable */ {
 					super.put(key, value);
 				}
 			}
-			// 새 값일 경우
+			return null;
+		}
+
+		// [modifiable]이 [true]라면 [final]처럼 간주함 (값변경 X)
+		public void register(boolean modifiable, K key, V value) {
+			// 이미 등록되어 있는 경우 중복 오류
+			if (map.containsKey(key)) {
+				throw new RuntimeException("the '" + key + "' key is already registered");
+			}
 			else {
 				map.put(key, modifiable);
 				super.put(key, value);
-				// report error
 			}
 		}
 

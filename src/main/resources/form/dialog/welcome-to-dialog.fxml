@@ -66,23 +66,6 @@
 									</control>
 								</ConfigItem>
 								<ConfigItem type="CONTROL" address=""
-											title="저장 폴더 지정"
-											text="파일 스트림의 기준이 될 루트 폴더를 선택합니다. (프로그램 경로 기본)">
-									<control>
-										<HBox spacing="10.0" fitChild="true">
-											<children>
-												<TextField fx:id="txfSaveDirPath"
-														   HBox.hgrow="ALWAYS"
-														   editable="false"></TextField>
-												<Button fx:id="btnChooseSaveDir"
-														text="..."
-														styled="true"
-														type="ACTION"></Button>
-											</children>
-										</HBox>
-									</control>
-								</ConfigItem>
-								<ConfigItem type="CONTROL" address=""
 											title="봇 폴더 지정"
 											text="생성한 봇들이 저장될 폴더를 선택합니다. (프로그램 경로 기본)">
 									<control>
@@ -92,6 +75,23 @@
 														   HBox.hgrow="ALWAYS"
 														   editable="false"></TextField>
 												<Button fx:id="btnChooseBotDir"
+														text="..."
+														styled="true"
+														type="ACTION"></Button>
+											</children>
+										</HBox>
+									</control>
+								</ConfigItem>
+								<ConfigItem type="CONTROL" address=""
+											title="저장 폴더 지정"
+											text="파일 스트림의 기준이 될 루트 폴더를 선택합니다. (프로그램 경로 기본)">
+									<control>
+										<HBox spacing="10.0" fitChild="true">
+											<children>
+												<TextField fx:id="txfSaveDirPath"
+														   HBox.hgrow="ALWAYS"
+														   editable="false"></TextField>
+												<Button fx:id="btnChooseSaveDir"
 														text="..."
 														styled="true"
 														type="ACTION"></Button>

@@ -82,4 +82,36 @@
 	"date":"2021\/09\/03 16:05:44 ",
 	"data":"Compile Complete: WELCOME3",
 	"type":"info"
+}, {
+	"date":"2021\/09\/03 16:07:39 ",
+	"data":"Compile Complete: WELCOME1",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 16:07:39 ",
+	"data":"Compile Complete: WELCOME2",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 16:07:39 ",
+	"data":"Compile Complete: WELCOME3",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 16:10:58 ",
+	"data":"test",
+	"type":"debug"
+}, {
+	"date":"2021\/09\/03 16:11:05 ",
+	"data":"test",
+	"type":"error"
+}, {
+	"date":"2021\/09\/03 16:13:07 ",
+	"data":"Runtime Error: org.mozilla.javascript.EcmaError: ReferenceError: \"aaaaaa\" is not defined. (WELCOME2#12) : WELCOME2",
+	"type":"error"
+}, {
+	"date":"2021\/09\/03 16:13:07 ",
+	"data":"Runtime Error: org.mozilla.javascript.EcmaError: ReferenceError: \"aaaaaa\" is not defined. (WELCOME2#12) : WELCOME2",
+	"type":"error"
+}, {
+	"date":"2021\/09\/03 16:13:08 ",
+	"data":"Runtime Error: org.mozilla.javascript.EcmaError: ReferenceError: \"aaaaaa\" is not defined. (WELCOME2#12) : WELCOME2",
+	"type":"error"
 }]

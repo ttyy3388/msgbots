@@ -7,7 +7,11 @@ import javafx.stage.Stage;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.manager.ScriptManager;
 import org.beuwi.msgbots.shared.SharedValues;
+import org.beuwi.msgbots.view.app.actions.AddMainAreaTabAction;
+import org.beuwi.msgbots.view.app.actions.CheckAppUpdateAction;
 import org.beuwi.msgbots.view.app.dialogs.WelcomeToDialog;
+import org.beuwi.msgbots.view.gui.control.TabItem;
+import org.beuwi.msgbots.view.gui.control.WebPage;
 import org.beuwi.msgbots.view.util.ViewManager;
 import org.beuwi.msgbots.view.app.MainWindow;
 import org.beuwi.msgbots.view.app.actions.OpenDialogBoxAction;
@@ -25,15 +29,8 @@ public class Launcher extends Application {
 	@Override
 	public void init() {
 		// 전역 값 등록(가장 먼저)
-		SharedValues.register(false, "program.image", ResourceUtils.getImage("program"));
-		SharedValues.register(false, "path.mainFolder", System.getProperty("user.dir"));
-		SharedValues.register(false, "path.dataFolder", System.getProperty("user.dir") + File.separator + "data");
-		SharedValues.register(true, "path.botFolder", System.getProperty("user.dir") + File.separator + "bots"); // 봇 폴더 커스텀 가능
-		SharedValues.register(true, "path.saveFolder", System.getProperty("user.dir") + File.separator + "save"); // 세이브 폴더 커스텀 가능
-		SharedValues.register(false, "file.mainFolder", new File(SharedValues.getString("path.mainFolder"))); // 프로그램 폴더 경로 강제
-		SharedValues.register(false, "file.dataFolder", new File(SharedValues.getString("path.dataFolder"))); // 데이터 폴더 경로 강제
-		SharedValues.register(true, "file.botFolder", new File(SharedValues.getString("path.botFolder"))); // 봇 폴더 커스텀 가능
-		SharedValues.register(true, "file.saveFolder", new File(SharedValues.getString("path.saveFolder"))); // 세이브 폴더 커스텀 가능
+		registerValues();
+		updateValues();
 
 		// 시작 다이얼로그 오픈
 		OpenDialogBoxAction.getInstance().execute(dialog1);
@@ -63,12 +60,6 @@ public class Launcher extends Application {
 				GlobalSettings.getString("program.colorTheme")
 			)
 		);
-
-		// 파일 옵저버 등록
-		FileManager.link(
-			SharedValues.getFile("file.botFolder"),
-			RefreshAllBotsAction.getInstance()::execute
-		);
 	}
 
 	@Override
@@ -77,24 +68,72 @@ public class Launcher extends Application {
 		MainWindow.init(stage);
 		// ActionManager.init();
 
-		// 봇 목록 초기화
-		RefreshAllBotsAction
-			.getInstance()
-			.execute();
+		// 해당 다이얼로그에서 경로를 따로 지정하지 않고 넘어갔다면
+		// 각 폴더(Bot, Save)를 기본 폴더로 지정한거로 인식함
+		if (GlobalSettings.getBoolean("program.showStartDialog")) {
+			dialog2 = new WelcomeToDialog();
+			dialog2.setOnClose(event2 -> {
+				updateValues(); // 값이 변경됐으므로 업데이트
+				startProgram();
+			});
+		}
 
 		// 다이얼로그가 닫혀야 시작
 		dialog1.setOnClose(event1 -> {
-			dialog2 = new WelcomeToDialog();
-			dialog2.setOnClose(event2 -> {
-				// Start Window
-				MainWindow.launch();
-			});
-
-			dialog2.open();
+			if (dialog2 != null) {
+				dialog2.open();
+			}
+			else {
+				startProgram();
+			}
 		});
+	}
 
+	private void registerValues() {
+		SharedValues.register(false, "program.image", ResourceUtils.getImage("program"));
+		SharedValues.register(false, "path.mainFolder", System.getProperty("user.dir"));
+		SharedValues.register(false, "path.dataFolder", System.getProperty("user.dir") + File.separator + "data");
+		SharedValues.register(true, "path.botFolder", System.getProperty("user.dir") + File.separator + "bots"); // 봇 폴더 커스텀 가능
+		SharedValues.register(true, "path.saveFolder", System.getProperty("user.dir") + File.separator + "save"); // 세이브 폴더 커스텀 가능
+		SharedValues.register(false, "file.mainFolder", new File(SharedValues.getString("path.mainFolder"))); // 프로그램 폴더 경로 강제
+		SharedValues.register(false, "file.dataFolder", new File(SharedValues.getString("path.dataFolder"))); // 데이터 폴더 경로 강제
+		SharedValues.register(true, "file.botFolder", new File(SharedValues.getString("path.botFolder"))); // 봇 폴더 커스텀 가능
+		SharedValues.register(true, "file.saveFolder", new File(SharedValues.getString("path.saveFolder"))); // 세이브 폴더 커스텀 가능
+	}
+	private void updateValues() {
+		// 봇 폴더를 유저가 지정한 적이 있다면 업데이트함
+		String path1 = GlobalSettings.getString("program.botFolderPath");
+		if (path1 != null) {
+			SharedValues.setValue("path.botFolder", path1);
+			SharedValues.setValue("file.botFolder", new File(path1));
+		}
+		// 저장 폴더를 유저가 지정한 적이 있다면 업데이트함
+		String path2 = GlobalSettings.getString("program.saveFolderPath");
+		if (path2 != null) {
+			SharedValues.setValue("path.saveFolder", path2);
+			SharedValues.setValue("file.saveFolder", new File(path2));
+		}
+	}
+
+	private void startProgram() {
+		// 파일 옵저버 등록
+		FileManager.link(
+			SharedValues.getFile("file.botFolder"),
+			RefreshAllBotsAction.getInstance()::execute
+		);
+
+		// 봇 목록 초기화
+		RefreshAllBotsAction
+				.getInstance()
+				.execute();
+
+		// Start Window
+		MainWindow.launch();
 		// MdbManager.switching();
-		ScriptManager.preInit();
+
+		if (GlobalSettings.getBoolean("program.startAutoCompile")) {
+			ScriptManager.preInit();
+		}
 	}
 
 	public static void main(String[] args) {

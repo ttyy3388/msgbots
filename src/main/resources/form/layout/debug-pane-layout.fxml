@@ -67,13 +67,14 @@
 								<Insets right="15.0" left="15.0"></Insets>
 							</padding>
 						</TabItem>
-						<TabItem text="CONTROL" closable="false">
+						<!-- <TabItem text="CONTROL" closable="false">
 							<content>
+
 							</content>
 							<padding>
 								<Insets right="15.0" left="15.0"></Insets>
 							</padding>
-						</TabItem>
+						</TabItem> -->
 					</tabs>
 				</TabView>
 			</right>

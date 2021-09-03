@@ -1,5 +1,7 @@
 package org.beuwi.msgbots.view.app.actions;
 
+import javafx.scene.layout.Pane;
+
 import org.beuwi.msgbots.base.impl.Executor;
 import org.beuwi.msgbots.view.app.parts.MainAreaPart;
 import org.beuwi.msgbots.view.gui.control.TabItem;
@@ -9,6 +11,10 @@ public class AddMainAreaTabAction implements Executor {
 	private static AddMainAreaTabAction instance = null;
 
 	private final TabView tabView = MainAreaPart.getInstance().getTabView();
+
+	public void execute(String title, Pane content) {
+		execute(title, content);
+	}
 
 	public void execute(TabItem tabItem) {
 		tabView.addTab(tabItem);

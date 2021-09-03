@@ -8,6 +8,7 @@
 	},
 	"program":{
 		"colorTheme":"dark",
-		"startAutoCompile":true
+		"startAutoCompile":true,
+		"showStartDialog":true
 	}
 }

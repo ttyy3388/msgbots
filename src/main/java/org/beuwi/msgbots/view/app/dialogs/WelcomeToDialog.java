@@ -59,6 +59,8 @@ public class WelcomeToDialog extends YesOrNoDialog {
 
         btnUpdate.setText("Update");
 
+        navConfigView.selectTab(0);
+
         txfBotDirPath.setText(SharedValues.getString("path.botFolder"));
         txfSaveDirPath.setText(SharedValues.getString("path.saveFolder"));
         chkShowStart.setText("시작 시 항상 이 다이얼로그 표시");
@@ -77,7 +79,7 @@ public class WelcomeToDialog extends YesOrNoDialog {
             }
         });
 
-        navConfigView.selectTab(0);
+        getFooterBar().getChildren().add(0, chkShowStart);
     }
 
     @Override
@@ -96,6 +98,27 @@ public class WelcomeToDialog extends YesOrNoDialog {
 
     @Override
     protected boolean onAction() {
+        String path1 = txfBotDirPath.getText();
+        String path2 = txfSaveDirPath.getText();
+
+        // 빈 칸이 나올 경우가 없긴 한데 혹시나 해서
+        if (path1 == null || path2 == null) {
+            return false;
+        }
+
+        GlobalSettings.setData("program.showStartDialog", chkShowStart.isSelected());
+
+
+        // 선택한 경로가 존재하지 않거나 폴더가 아닐 경우
+        if (!(new File(path1).isDirectory()) ||
+            !(new File(path2).isDirectory())) {
+            // Toolkit.getDefaultToolkit().beep(); // 비프음 출력
+            return false;
+        }
+
+        GlobalSettings.setData("program.botFolderPath", path1);
+        GlobalSettings.setData("program.saveFolderPath", path2);
+
         return true;
     }
 
