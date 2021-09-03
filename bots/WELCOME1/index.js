@@ -10,7 +10,7 @@
  */
 
 function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
-    try {
+    dsafsftry {
         replier.reply(eval(msg));
     }
     catch(e) {

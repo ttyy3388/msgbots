@@ -5,6 +5,9 @@ import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tooltip;
 
+import org.beuwi.msgbots.base.Session;
+import org.beuwi.msgbots.base.type.LogType;
+import org.beuwi.msgbots.base.type.ToastType;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.base.impl.View;
 import org.beuwi.msgbots.view.gui.control.Button;
@@ -31,6 +34,17 @@ public class ToastViewPart extends AnchorPane implements View {
 
 		namespace = loader.getNamespace();
 		// root = loader.getRoot();
+
+		// 글로벌 세션을 가져옴
+		final Session session = Session.GLOBAL;
+		session.setOnLogListener((type, date, data) -> {
+			System.out.println(type + " : " + data);
+			// 에러 로그가 입력됐다면
+			if (type.equals(LogType.ERROR)) {
+				ToastItem item = new ToastItem(ToastType.ERROR, "Script Error", data);
+				listView.getItems().add(item);
+			}
+		});
 
 		listView.getItems().addListener((ListChangeListener<ToastItem>) change -> {
 			// 아이템이 없으면 안보이도록

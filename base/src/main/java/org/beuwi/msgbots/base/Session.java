@@ -5,6 +5,7 @@ import org.beuwi.msgbots.base.type.ToastType;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 // 채팅 룸(GUI & Compiler)과의 소통을 위한 것임
 public class Session {
@@ -16,11 +17,11 @@ public class Session {
     private String name;
     private boolean global;
 
-    private OnChatListener onChatListener;
-    private OnLogListener onLogListener;
-    private OnErrorListener onErrorListener;
-    private OnCompileListener onCompileListener;
-    private OnToastListener onToastListener;
+    private List<OnChatListener> onChatListeners;
+    private List<OnLogListener> onLogListeners;
+    private List<OnErrorListener> onErrorListeners;
+    private List<OnCompileListener> onCompileListeners;
+    private List<OnToastListener> onToastListeners;
 
     public Session(Project project) {
         this(project.getName(), false);
@@ -34,25 +35,28 @@ public class Session {
     // 어차피 컴파일러에서 챗 보내는 경우는 봇이 보내는 경우밖에 없으므로
     // "IsBot()"은 항상 TRUE 값을 반환하므로 생략함
     public void chat(String message, boolean isBot) {
-        OnChatListener listener = onChatListener;
-        if (listener != null) {
-            listener.onEvent(message, isBot);
+        for (OnChatListener listener : onChatListeners) {
+            if (listener != null) {
+                listener.onEvent(message, isBot);
+            }
         }
     }
 
     public void log(LogType type, String data) {
         String date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss ").format(new Date());
-        OnLogListener listener = onLogListener;
-        if (listener != null) {
-            listener.onEvent(type, date, data);
+        for (OnLogListener listener : onLogListeners) {
+            if (listener != null) {
+                listener.onEvent(type, date, data);
+            }
         }
     }
 
     // Notice 이름도 좋을듯?
     public void toast(ToastType type, String title, String content) {
-        OnToastListener listener = onToastListener;
-        if (listener != null) {
-            listener.onEvent(type, title, content);
+        for (OnToastListener listener : onToastListeners) {
+            if (listener != null) {
+                listener.onEvent(type, title, content);
+            }
         }
     }
 
@@ -72,20 +76,20 @@ public class Session {
         void onEvent(ToastType type, String title, String content);
     }
 
-    public void setOnChatListener(OnChatListener listener) {
-        onChatListener = listener;
+    public void addOnChatListener(OnChatListener listener) {
+        onChatListeners.add(listener);
     }
-    public void setOnLogListener(OnLogListener listener) {
-        onLogListener = listener;
+    public void addOnLogListener(OnLogListener listener) {
+        onLogListeners.add(listener);
     }
-    public void setOnErrorListener(OnErrorListener listener) {
-        onErrorListener = listener;
+    public void addOnErrorListener(OnErrorListener listener) {
+        onErrorListeners.add(listener);
     }
-    public void setOnCompileListener(OnCompileListener listener) {
-        onCompileListener = listener;
+    public void addOnCompileListener(OnCompileListener listener) {
+        onCompileListeners.add(listener);
     }
-    public void setOnToastListener(OnToastListener listener) {
-        onToastListener = listener;
+    public void addOnToastListener(OnToastListener listener) {
+        onToastListeners.add(listener);
     }
 
     public String getName() {
