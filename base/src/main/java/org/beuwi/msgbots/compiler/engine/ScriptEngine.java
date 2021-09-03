@@ -4,7 +4,7 @@ import org.beuwi.msgbots.base.Project;
 import org.beuwi.msgbots.base.Session;
 import org.beuwi.msgbots.base.type.LogType;
 import org.beuwi.msgbots.compiler.api.ImageDB;
-import org.beuwi.msgbots.compiler.api.Logger;
+import org.beuwi.msgbots.base.Logger;
 import org.beuwi.msgbots.compiler.api.Replier;
 
 import org.beuwi.msgbots.setting.ProjectSettings;
@@ -18,9 +18,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ScriptEngine {
-	protected static HashMap<String, ScriptContainer> container = new HashMap<>();
-	protected static HashMap<String, Boolean> compiling = new HashMap<>();
-	protected static ScriptableObject execScope = null;
+	protected static final HashMap<String, ScriptContainer> container = new HashMap<>();
+	protected static final  HashMap<String, Boolean> compiling = new HashMap<>();
+	protected static ScriptableObject execscope = null;
+
+	protected static final Logger logger = Session.GLOBAL.getLogger();
 
 	// 전역 디버그 룸에서 호출
 	protected static void run(List<Project> list, String message, String room, String sender, boolean isGroupChat, ImageDB imageDB, String packageName) {
@@ -47,9 +49,9 @@ public class ScriptEngine {
 	}
 
 	protected static boolean initialize(Project project, boolean isManual, boolean ignoreError) {
-		final Session session = Session.GLOBAL;
+		// final Session session = Session.GLOBAL;
 		final String name = project.getName();
-		final Logger logger = new Logger(session);
+		// final Logger logger = session.getLogger();
 
 		compiling.put(name, true);
 
@@ -78,7 +80,7 @@ public class ScriptEngine {
 		try {
 			if (container.get(name) != null) {
 				if (container.get(name).getOnStartCompile() != null) {
-					container.get(name).getOnStartCompile().call(context, execScope, execScope, new Object[] { });
+					container.get(name).getOnStartCompile().call(context, execscope, execscope, new Object[] { });
 				}
 			}
 
@@ -98,7 +100,7 @@ public class ScriptEngine {
 			ScriptableObject.defineClass(scope, Bridge.class);
 			ScriptableObject.defineClass(scope, FileStream.class); */
 
-			execScope = scope;
+			execscope = scope;
 
 			script.exec(context, scope);
 
@@ -151,9 +153,6 @@ public class ScriptEngine {
 		// 전역 디버그 룸에서 호출 시 글로벌 세션 삽입
 		Session session = global ? Session.GLOBAL : project.getSession();
 		Replier replier = new Replier(session);
-		Logger logger = new Logger(session);
-
-		session.log(LogType.INFO, "test");
 
 		try {
 			context.setWrapFactory(new PrimitiveWrapFactory());

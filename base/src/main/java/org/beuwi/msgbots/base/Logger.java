@@ -1,12 +1,11 @@
-package org.beuwi.msgbots.compiler.api;
+package org.beuwi.msgbots.base;
 
-import org.beuwi.msgbots.base.Session;
 import org.beuwi.msgbots.base.type.LogType;
 
 // 컴파일러에서 로그를 남기기 위한 클래스
 public class Logger {
     private final Session session;
-    public Logger(Session session) {
+    protected Logger(Session session) {
         this.session = session;
     }
 

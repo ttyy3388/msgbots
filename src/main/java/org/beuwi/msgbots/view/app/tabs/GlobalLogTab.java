@@ -46,10 +46,10 @@ public class GlobalLogTab extends TabItem implements View {
 		List<LogItem> list = new ArrayList<>();
 		Dfile dfile = SharedValues.getDfile("dfile.globalLog");
 		JArray array = new JArray(dfile.getData());
-		for (Object object : array) {
-			JObject json = (JObject) object;
-			if (!object.toString().equals("{}") || (json.size() > 0)) {
-				list.add(new LogItem((JObject) object));
+		for (JObject object : array) {
+			if (!object.toString().equals("{}") ||
+				(object.size() > 0)) {
+				list.add(new LogItem(object));
 			}
 		}
 		control.getItems().setAll(list);

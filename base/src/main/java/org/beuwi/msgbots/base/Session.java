@@ -10,6 +10,8 @@ import java.util.Date;
 public class Session {
     public static final Session GLOBAL = new Session("GLOBAL", true);
 
+    private final Logger logger = new Logger(this);
+
     private Project project;
     private String name;
     private boolean global;
@@ -88,6 +90,10 @@ public class Session {
 
     public String getName() {
         return name;
+    }
+
+    public Logger getLogger() {
+        return logger;
     }
 
     /* public Project getProject() {
