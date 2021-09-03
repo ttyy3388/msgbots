@@ -11,6 +11,7 @@ import org.beuwi.msgbots.view.app.actions.ReloadAllBotsAction;
 import org.beuwi.msgbots.view.app.actions.SaveAllEditorsAction;
 import org.beuwi.msgbots.view.app.actions.SaveOpenedEditorAction;
 import org.beuwi.msgbots.view.app.actions.ToggleDebugAreaAction;
+import org.beuwi.msgbots.view.app.actions.TriggerOpenedEditorAction;
 import org.beuwi.msgbots.view.app.dialogs.CreateBotDialog;
 import org.beuwi.msgbots.view.app.dialogs.ImportScriptDialog;
 import org.beuwi.msgbots.view.app.tabs.GlobalConfigTab;
@@ -19,7 +20,6 @@ import org.beuwi.msgbots.view.gui.control.WebPage;
 
 // Standard Actions
 public enum StdActions {
-	COPY("Copy", KeyBinding.COPY),
 	COPY_TEXT("Copy Text", KeyBinding.COPY),
 	COPY_PATH("Copy Path"),
 	DELETE("Delete"),
@@ -42,12 +42,21 @@ public enum StdActions {
 	SETTINGS("Settings", KeyBinding.REFRESH_ALL_BOTS, event -> {
 		AddMainAreaTabAction.getInstance().execute(GlobalConfigTab.getInstance());
 	}),
-	UNDO("Undo", KeyBinding.UNDO, event -> {
-
+	COPY("Copy", KeyBinding.COPY, event -> {
+		TriggerOpenedEditorAction.getInstance().execute("copy");
 	}),
-	REDO("Redo", KeyBinding.REDO),
-	CUT("Cut", KeyBinding.CUT),
-	PASTE("Paste", KeyBinding.PASTE),
+	UNDO("Undo", KeyBinding.UNDO, event -> {
+		TriggerOpenedEditorAction.getInstance().execute("undo");
+	}),
+	REDO("Redo", KeyBinding.REDO, event -> {
+		TriggerOpenedEditorAction.getInstance().execute("redo");
+	}),
+	CUT("Cut", KeyBinding.CUT, event -> {
+		TriggerOpenedEditorAction.getInstance().execute("cut");
+	}),
+	PASTE("Paste", KeyBinding.PASTE, event -> {
+		TriggerOpenedEditorAction.getInstance().execute("paste");
+	}),
 	SELECT_ALL("Select All", KeyBinding.SELECT_ALL),
 	COMPILE("Compile", KeyBinding.COMPILE),
 	COMPILE_ALL("Compile All", KeyBinding.EMPTY, event -> {
