@@ -39,7 +39,7 @@ public class DebugRoomTab extends TabItem implements View {
 
 		final Session session = Session.GLOBAL;
 
-		session.setOnChatListener((message, isBot) -> {
+		session.addOnChatListener((message, isBot) -> {
 			view.getItems().add(new ChatItem(message, true));
 		});
 

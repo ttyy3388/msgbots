@@ -57,12 +57,12 @@ public class DebugPane extends SplitView {
 		// editor.setLanguage("javascript");
 
 		// 현재 세션에서 챗이 오는 경우는 무조건 봇이 보내는 경우만 존재하나 추후 효율성을 위해
-		session.setOnChatListener((message, isBot) -> {
+		session.addOnChatListener((message, isBot) -> {
 			// 봇이 전송한 메시지만 추가
 			if (isBot) chatView.getItems().add(new ChatItem(message, true));
 		});
 
-		session.setOnLogListener((type, date, data) -> {
+		session.addOnLogListener((type, date, data) -> {
 			logView.getItems().add(new LogItem(type, date, data));
 		});
 

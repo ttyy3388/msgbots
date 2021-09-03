@@ -4,6 +4,7 @@ import org.beuwi.msgbots.base.type.LogType;
 import org.beuwi.msgbots.base.type.ToastType;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,11 +18,11 @@ public class Session {
     private String name;
     private boolean global;
 
-    private List<OnChatListener> onChatListeners;
-    private List<OnLogListener> onLogListeners;
-    private List<OnErrorListener> onErrorListeners;
-    private List<OnCompileListener> onCompileListeners;
-    private List<OnToastListener> onToastListeners;
+    private List<OnChatListener> onChatListeners = new ArrayList<>();
+    private List<OnLogListener> onLogListeners = new ArrayList<>();
+    private List<OnErrorListener> onErrorListeners = new ArrayList<>();
+    private List<OnCompileListener> onCompileListeners = new ArrayList<>();
+    private List<OnToastListener> onToastListeners = new ArrayList<>();
 
     public Session(Project project) {
         this(project.getName(), false);

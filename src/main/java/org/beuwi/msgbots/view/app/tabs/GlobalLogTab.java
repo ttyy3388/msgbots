@@ -38,7 +38,7 @@ public class GlobalLogTab extends TabItem implements View {
 
 		// Connect Session
 		final Session session = Session.GLOBAL;
-		session.setOnLogListener((type, data, date) -> {
+		session.addOnLogListener((type, data, date) -> {
 			LogItem item = new LogItem(type, data, date);
 			control.getItems().add(item);
 		});
