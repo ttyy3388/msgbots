@@ -38,6 +38,7 @@ public class ToastViewPart extends AnchorPane implements View {
 		// 글로벌 세션을 가져옴
 		final Session session = Session.GLOBAL;
 		session.addOnLogListener((type, date, data) -> {
+			// System.out.println(type + " : " + data);
 			// 에러 로그가 입력됐다면
 			if (type.equals(LogType.ERROR)) {
 				ToastItem item = new ToastItem(ToastType.ERROR, "Script Error", data);
