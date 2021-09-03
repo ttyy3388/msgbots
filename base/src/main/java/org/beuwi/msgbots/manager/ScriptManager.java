@@ -33,6 +33,10 @@ public class ScriptManager extends ScriptEngine implements Manager {
 	}
 
 	public static void preInit() {
+		if (GlobalSettings.getBoolean("program.startAutoCompile")) {
+			return ;
+		}
+
 		for (Project project : ProjectManager.getList()) {
 			if (!project.getPower()) {
 				continue ;

@@ -3,10 +3,14 @@ package org.beuwi.msgbots.view.gui.control;
 import javafx.css.PseudoClass;
 import javafx.geometry.Pos;
 import javafx.scene.control.Separator;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Priority;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
+import org.beuwi.msgbots.base.Dfile;
+import org.beuwi.msgbots.setting.GlobalSettings;
+import org.beuwi.msgbots.shared.SharedValues;
 import org.beuwi.msgbots.view.gui.layout.HBox;
 import org.beuwi.msgbots.view.gui.layout.VBox;
 import org.beuwi.msgbots.utils.ResourceUtils;
@@ -32,17 +36,37 @@ public class ChatItem extends HBox {
 		this.isBot = isBot;
 
 		profile.getStyleClass().add("profile");
+
+		// 기본 값 : 프로그램 기본 이미지
 		profile.setFill(new ImagePattern(ResourceUtils.getImage("profile")));
 
 		if (!isBot) {
+			Dfile dfile = SharedValues.getDfile("dfile.profileSender");
+			if (dfile.isCreated()) {
+				profile.setFill(new ImagePattern(new Image(dfile.toFile().toURI().toString())));
+			}
+
 			setAlignment(Pos.TOP_RIGHT);
-			getChildren().setAll(content /*, profile */);
+			getChildren().setAll(content);
 			pseudoClassStateChanged(PseudoClass.getPseudoClass("human"), true);
+
+			if (GlobalSettings.getBoolean("debug.showSenderProfile")) {
+				getChildren().add(profile);
+			}
 		}
 		else {
+			Dfile dfile = SharedValues.getDfile("dfile.profileBot");
+			if (dfile.isCreated()) {
+				profile.setFill(new ImagePattern(new Image(dfile.toFile().toURI().toString())));
+			}
+
 			setAlignment(Pos.TOP_LEFT);
-			getChildren().setAll(profile, content);
+			getChildren().setAll(content);
 			pseudoClassStateChanged(PseudoClass.getPseudoClass("bot"), true);
+
+			if (GlobalSettings.getBoolean("debug.showBotProfile")) {
+				getChildren().add(0, profile);
+			}
 		}
 
 		setSpacing(10);
@@ -103,11 +127,14 @@ public class ChatItem extends HBox {
 				lblComment.setText(message.substring(0, 500) + "...");
 			}
 
+			boolean showName = false;
 			Pos alignment = null;
 			if (!isBot) {
+				showName = GlobalSettings.getBoolean("debug.showSenderName");
 				alignment = Pos.CENTER_RIGHT;
 			}
 			else {
+				showName = GlobalSettings.getBoolean("debug.showBotName");
 				alignment = Pos.CENTER_LEFT;
 			}
 			
@@ -116,7 +143,9 @@ public class ChatItem extends HBox {
 			setFitChild(false);
 			setFillWidth(false);
 			getStyleClass().add("content");
-			getChildren().setAll(lblName, boxComment);
+
+			if (showName) getChildren().setAll(lblName, boxComment);
+			else getChildren().setAll(boxComment);
 		}
 	}
 

@@ -8,6 +8,7 @@ import org.beuwi.msgbots.compiler.api.Log;
 import org.beuwi.msgbots.compiler.api.Replier;
 
 import org.beuwi.msgbots.compiler.api.Utils;
+import org.beuwi.msgbots.setting.GlobalSettings;
 import org.beuwi.msgbots.setting.ProjectSettings;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
