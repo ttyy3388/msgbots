@@ -22,4 +22,64 @@
 	"date":"2021\/09\/03 15:58:55 ",
 	"data":"Runtime Error: org.mozilla.javascript.EcmaError: ReferenceError: \"aaaaaa\" is not defined. (WELCOME2#12) : WELCOME2",
 	"type":"error"
+}, {
+	"date":"2021\/09\/03 16:00:14 ",
+	"data":"Compile Complete: WELCOME1",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 16:00:14 ",
+	"data":"Compile Complete: WELCOME2",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 16:00:14 ",
+	"data":"Compile Complete: WELCOME3",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 16:01:32 ",
+	"data":"Runtime Error: org.mozilla.javascript.EcmaError: ReferenceError: \"aaaaaa\" is not defined. (WELCOME2#12) : WELCOME2",
+	"type":"error"
+}, {
+	"date":"2021\/09\/03 16:01:33 ",
+	"data":"Runtime Error: org.mozilla.javascript.EcmaError: ReferenceError: \"aaaaaa\" is not defined. (WELCOME2#12) : WELCOME2",
+	"type":"error"
+}, {
+	"date":"2021\/09\/03 16:01:34 ",
+	"data":"Runtime Error: org.mozilla.javascript.EcmaError: ReferenceError: \"aaaaaa\" is not defined. (WELCOME2#12) : WELCOME2",
+	"type":"error"
+}, {
+	"date":"2021\/09\/03 16:03:48 ",
+	"data":"Compile Complete: WELCOME1",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 16:03:48 ",
+	"data":"Compile Complete: WELCOME2",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 16:03:48 ",
+	"data":"Compile Complete: WELCOME3",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 16:05:14 ",
+	"data":"Compile Complete: WELCOME1",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 16:05:14 ",
+	"data":"Compile Complete: WELCOME2",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 16:05:14 ",
+	"data":"Compile Complete: WELCOME3",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 16:05:44 ",
+	"data":"Compile Complete: WELCOME1",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 16:05:44 ",
+	"data":"Compile Complete: WELCOME2",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 16:05:44 ",
+	"data":"Compile Complete: WELCOME3",
+	"type":"info"
 }]

@@ -22,7 +22,7 @@ public class RenameProjectAction implements Executor {
         if (ProjectManager.exists(after)) {
             // DisplayErrorDialogAction.execute(new IOException("already exists"));
         }
-        String path = SharedValues.getString("BOT_FOLDER_PATH") + File.separator;
+        String path = SharedValues.getString("path.botFolder") + File.separator;
         File beforeFile = new File(path + before);
         File afterFile = new File(path + after);
         return beforeFile.renameTo(afterFile);

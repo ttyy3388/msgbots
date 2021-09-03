@@ -94,8 +94,8 @@ public class TabItem extends TabItemBase<TabView> {
 			}).toMenuItem(),
 			StdActions.CLOSE_ALL_TABS.handler(event -> {
 				getView().closeAllTabs();
-			}).toMenuItem(),
-			MenuItem.getSeparator()
+			}).toMenuItem()
+			// MenuItem.getSeparator()
 			/* StdActions.OPEN_TAB_TO_DIALOG.handler(event -> {
 				OpenTabToDialogAction.getInstance().execute(this);
 			}).toMenuItem() */
