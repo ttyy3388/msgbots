@@ -57,7 +57,7 @@ public class ProjectSettings {
 				json.put(address, value);
 			}
 
-			FileManager.write(project.getFile("log.json"), json.toString());
+			FileManager.write(project.getFile("bot.json"), json.toString());
 		}
 	}
 }

@@ -3,6 +3,5 @@
 	"offOnRuntimeError":true,
 	"power":true,
 	"ignoreApiOff":false,
-	"optimization":1,
-	"allowBridge": false
+	"optimization":1
 }

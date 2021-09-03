@@ -40,10 +40,10 @@ public class LogView extends ListView<LogItem> {
         }
         List<LogItem> list = new ArrayList<>();
         JArray array = new JArray(file);
-        for (Object object : array) {
-            JObject json = (JObject) object;
-            if (!object.toString().equals("{}") || (json.size() > 0)) {
-                list.add(new LogItem((JObject) object));
+        for (JObject object : array) {
+            if (!object.toString().equals("{}") ||
+                (object.size() > 0)) {
+                list.add(new LogItem(object));
             }
         }
         getItems().setAll(list);

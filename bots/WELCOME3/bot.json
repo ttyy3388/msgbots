@@ -2,7 +2,6 @@
 	"useUnifiedParams":false,
 	"offOnRuntimeError":true,
 	"power":true,
-	"ignoreApiOff":false,
-	"optimization":1,
-	"allowBridge": false
+	"ignoreApiOff":true,
+	"optimization":1
 }
