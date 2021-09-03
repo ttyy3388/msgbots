@@ -2,11 +2,12 @@ package org.beuwi.msgbots.compiler.engine;
 
 import org.beuwi.msgbots.base.Project;
 import org.beuwi.msgbots.base.Session;
-import org.beuwi.msgbots.base.type.LogType;
-import org.beuwi.msgbots.compiler.api.ImageDB;
+import org.beuwi.msgbots.compiler.api.*;
 import org.beuwi.msgbots.base.Logger;
+import org.beuwi.msgbots.compiler.api.Log;
 import org.beuwi.msgbots.compiler.api.Replier;
 
+import org.beuwi.msgbots.compiler.api.Utils;
 import org.beuwi.msgbots.setting.ProjectSettings;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
@@ -18,9 +19,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ScriptEngine {
-	protected static final HashMap<String, ScriptContainer> container = new HashMap<>();
-	protected static final  HashMap<String, Boolean> compiling = new HashMap<>();
-	protected static ScriptableObject execscope = null;
+	public static final HashMap<String, ScriptContainer> container = new HashMap<>();
+	public static final  HashMap<String, Boolean> compiling = new HashMap<>();
+	public static ScriptableObject execscope = null;
 
 	protected static final Logger logger = Session.GLOBAL.getLogger();
 
@@ -89,16 +90,16 @@ public class ScriptEngine {
 
 			int flags = ScriptableObject.EMPTY;
 
-			/* ScriptableObject.defineProperty(scope, "Api", 		ScriptUtils.convert(new Api(scope, name)), flags);
+			ScriptableObject.defineProperty(scope, "Api", 		ScriptUtils.convert(new Api(scope)), flags);
 			ScriptableObject.defineProperty(scope, "Device", 	ScriptUtils.convert(new Device(scope)), flags);
 			ScriptableObject.defineProperty(scope, "GlobalLog", ScriptUtils.convert(new GlobalLog(scope)), flags);
-			ScriptableObject.defineProperty(scope, "Log", 		ScriptUtils.convert(new Log(scope, name)), flags);
+			ScriptableObject.defineProperty(scope, "Log", 		ScriptUtils.convert(new Log(scope, project)), flags);
 			ScriptableObject.defineProperty(scope, "DataBase",  ScriptUtils.convert(new DataBase(scope, name)), flags);
 			ScriptableObject.defineProperty(scope, "Utils", 	ScriptUtils.convert(new Utils(scope)), flags);
 
 			ScriptableObject.defineClass(scope, AppData.class);
 			ScriptableObject.defineClass(scope, Bridge.class);
-			ScriptableObject.defineClass(scope, FileStream.class); */
+			ScriptableObject.defineClass(scope, FileStream.class);
 
 			execscope = scope;
 

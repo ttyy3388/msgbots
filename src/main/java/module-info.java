@@ -13,7 +13,7 @@ open module program {
     // requires com.jfoenix;
     // requires json.simple;
     // requires org.json;
-    requires org.jsoup;
+    // requires org.jsoup;
 
     // requires com.sun.jna;
     // requires com.sun.jna.platform;

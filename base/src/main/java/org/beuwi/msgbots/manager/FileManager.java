@@ -16,22 +16,27 @@ import java.io.OutputStreamWriter;
 // 해당 클래스로 접근하는 파일들은 유저 커스텀 파일들임 ([ResourceUtils] 클래스와 반대)
 public class FileManager implements Manager {
 	public static String getBaseName(File file) {
-		String name = file.getName();
-		String result = name;
-		if (name.contains(".")) {
-			result = name.substring(0, name.lastIndexOf("."));
-		}
-		return result;
+		return getBaseName(file.getName());
+	}
+	public static String getBaseName(String name) {
+		return name.contains(".") ? name.substring(0, name.lastIndexOf(".")) : name;
 	}
 
 	public static String getExtension(File file) {
+		return getExtension(file.getName());
+	}
+	public static String getExtension(String name) {
+		return name.contains(".") ? name.substring(name.lastIndexOf(".") + 1) : name;
+	}
+
+	/* public static String getExtension(File file) {
 		String name = file.getName();
 		String result = name;
 		if (name.contains(".")) {
 			result = name.substring(name.lastIndexOf(".") + 1);
 		}
 		return result;
-	}
+	} */
 
 	/* ----------------------------------------------------------------------------------- */
 

@@ -36,7 +36,7 @@ dependencies {
     // implementation group: 'net.java.dev.jna', name: 'jna', version: '5.8.0'
     // implementation group: 'net.java.dev.jna', name: 'jna-platform', version: '5.8.0'
 
-    implementation group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
+    // implementation group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
     // implementation group: 'com.jfoenix', name: 'jfoenix', version: '9.0.10' // 호환성이 안 좋아서 배제시킴
     // implementation group: 'org.mozilla', name: 'rhino', version: '1.7.13'
     /* implementation (group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1') {

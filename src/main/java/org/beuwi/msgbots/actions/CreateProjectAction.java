@@ -44,6 +44,7 @@ public class CreateProjectAction implements Executor {
             config.put("offOnRuntimeError", isOffError);
             config.put("power", false);
             config.put("ignoreApiOff", false);
+            config.put("allowBridge", false);
 
             FileManager.write(path + "index.js", content); // Create bot script file
             FileManager.write(path + "log.json", "[]"); // Create bot log file

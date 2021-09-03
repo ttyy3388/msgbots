@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.stage.FileChooser;
 
+import org.beuwi.msgbots.actions.CreateProjectAction;
+import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.view.util.ViewManager;
 import org.beuwi.msgbots.view.gui.control.Button;
@@ -76,12 +78,12 @@ public class ImportScriptDialog extends YesOrNoDialog {
 			return false;
 		}
 
-		/* CreateProjectAction.execute(
+		CreateProjectAction.getInstance().execute(
 			txfScriptName.getText(),
 			FileManager.read(file), true,
 			chkIsUnified.isSelected(),
 			chkIsOffError.isSelected()
-		); */
+		);
 
 		return true;
 	}

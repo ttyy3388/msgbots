@@ -3,8 +3,11 @@ package org.beuwi.msgbots.view.gui.layout;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 
+import org.beuwi.msgbots.base.JArray;
+import org.beuwi.msgbots.base.JObject;
 import org.beuwi.msgbots.base.Project;
 import org.beuwi.msgbots.base.Session;
+import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.manager.ScriptManager;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.view.gui.control.ChatArea;
@@ -15,6 +18,7 @@ import org.beuwi.msgbots.view.gui.control.LogView;
 import org.beuwi.msgbots.view.gui.control.SplitView;
 import org.beuwi.msgbots.view.gui.editor.Editor;
 
+import java.io.File;
 import java.util.List;
 
 public class DebugPane extends SplitView {
@@ -59,11 +63,33 @@ public class DebugPane extends SplitView {
 		// 현재 세션에서 챗이 오는 경우는 무조건 봇이 보내는 경우만 존재하나 추후 효율성을 위해
 		session.addOnChatListener((message, isBot) -> {
 			// 봇이 전송한 메시지만 추가
-			if (isBot) chatView.getItems().add(new ChatItem(message, true));
+			if (isBot) {
+				ChatItem item = new ChatItem(message, true);
+				chatView.getItems().add(item);
+			}
 		});
 
 		session.addOnLogListener((type, date, data) -> {
-			logView.getItems().add(new LogItem(type, date, data));
+			// 로그 아이템 추가
+			LogItem item = new LogItem(type, date, data);
+			logView.getItems().add(item);
+
+			// 로그 파일 저장
+			File file = project.getFile("log.json");
+			// 제거됐다면 파일 생성
+			if (!file.exists()) {
+				FileManager.write(file, "[]");
+			}
+
+			JObject object = new JObject();
+			object.put("type", type.toString());
+			object.put("data", data);
+			object.put("date", date);
+
+			JArray array = new JArray(file);
+			array.add(object);
+
+			FileManager.write(file, array.toString());
 		});
 
 		chatView = chatArea.getChatView();

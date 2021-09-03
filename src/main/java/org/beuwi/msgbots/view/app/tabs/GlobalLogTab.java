@@ -36,24 +36,35 @@ public class GlobalLogTab extends TabItem implements View {
 		namespace = loader.getNamespace();
 		// root = loader.getRoot();
 
-		// Connect Session
-		final Session session = Session.GLOBAL;
-		session.addOnLogListener((type, data, date) -> {
-			LogItem item = new LogItem(type, data, date);
-			control.getItems().add(item);
-		});
-
+		final Dfile dfile = SharedValues.getDfile("dfile.globalLog");
 		// Initialize List
 		List<LogItem> list = new ArrayList<>();
-		Dfile dfile = SharedValues.getDfile("dfile.globalLog");
 		JArray array = new JArray(dfile.getData());
 		for (JObject object : array) {
 			if (!object.toString().equals("{}") ||
-				(object.size() > 0)) {
+					(object.size() > 0)) {
 				list.add(new LogItem(object));
 			}
 		}
 		control.getItems().setAll(list);
+
+		// Connect Session & Save
+		final Session session = Session.GLOBAL;
+		session.addOnLogListener((type, data, date) -> {
+			LogItem item = new LogItem(type, data, date);
+			control.getItems().add(item);
+
+			JObject object = new JObject();
+			object.put("type", type.toString());
+			object.put("data", data);
+			object.put("date", date);
+
+			// Add Log
+			array.add(object);
+
+			// File Save
+			dfile.setData(array.toString());
+		});
 	}
 
 	public LogView getLogView() {
