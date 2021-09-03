@@ -7,6 +7,7 @@ import javafx.scene.input.KeyEvent;
 
 import org.beuwi.msgbots.keyboard.KeyBinding;
 import org.beuwi.msgbots.manager.FileManager;
+import org.beuwi.msgbots.setting.GlobalSettings;
 
 import java.io.File;
 
@@ -68,8 +69,8 @@ public class Editor extends Monaco {
 			setFile(file);
 		}
 
-		// String theme = GlobalSettings.getString("program.colorTheme");
-		// setTheme(theme.toLowerCase());
+		String theme = GlobalSettings.getString("program.colorTheme");
+		setTheme(theme.toLowerCase());
 		setLanguage("javascript");
 		getStyleClass().add("editor");
 	}

@@ -33,6 +33,13 @@ function readfile(path) {
 // 참고3: "https://github.com/microsoft/monaco-languages/blob/main/src/javascript/javascript.ts"
 // 중요(※): "https://github.com/microsoft/vscode/blob/b6f87798570cef6d99554fe10c747e9f6b02a274/src/vs/editor/standalone/common/themes.ts"
 require(['vs/editor/editor.main'], function () {
+	monaco.editor.defineTheme('light', {
+		base: 'vs',
+		inherit: true,
+		rules: [
+
+		],
+	});
 	monaco.editor.defineTheme('dark', {
 		base: 'vs-dark',
 		inherit: true,

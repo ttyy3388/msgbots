@@ -1,7 +1,0 @@
-{
-	"useUnifiedParams":false,
-	"ignoreApiOff":false,
-	"power":true,
-	"offOnRuntimeError":false,
-	"optimization":1
-}

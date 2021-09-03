@@ -1,14 +1,6 @@
 {
-	"debug":{
-		"showBotName":true,
-		"showBotProfile":true,
-		"showSenderProfile":false,
-		"showSenderName":true,
-		"isGroupChat":true
-	},
 	"program":{
-		"colorTheme":"dark",
-		"startAutoCompile":true,
+		"colorTheme":"light",
 		"saveFolderPath":"C:\\Develop Files\\Java\\IntelliJ\\Messenger Bot Simulator\\msgbots\\save",
 		"showStartDialog":true,
 		"botFolderPath":"C:\\Develop Files\\Java\\IntelliJ\\Messenger Bot Simulator\\msgbots\\bots"

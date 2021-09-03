@@ -1,6 +1,6 @@
 /* 숫자는 구분하기 위한 용도로 의미 X */
 .root {
-	black-0: #000000;
+	/* black-0: #000000;
 	black-1: #1e1e1e;
 	white-0: #ffffff;
 	white-1: #cccccc;
@@ -33,7 +33,7 @@
 	trans-1: rgba(100, 100, 100, 0.4);
 	trans-2: rgba(100, 100, 100, 0.5);
 	trans-3: rgba(100, 100, 100, 0.6);
-	trans-4: rgba(255, 255, 255, 0.2);
+	trans-4: rgba(255, 255, 255, 0.2); */
 }
 .root {
 	-fx-font-family: 'NanumGothic';
@@ -289,6 +289,9 @@
 /* TOOL AREA */
 .tool-area .tab-item {
     -fx-cursor: hand;
+}
+.tool-area .text-area .content {
+	-fx-padding: 0;
 }
 
 .debug-pane .tool-bar {

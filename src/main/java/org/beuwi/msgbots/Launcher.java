@@ -7,11 +7,8 @@ import javafx.stage.Stage;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.manager.ScriptManager;
 import org.beuwi.msgbots.shared.SharedValues;
-import org.beuwi.msgbots.view.app.actions.AddMainAreaTabAction;
-import org.beuwi.msgbots.view.app.actions.CheckAppUpdateAction;
 import org.beuwi.msgbots.view.app.actions.OpenWebViewTabAction;
 import org.beuwi.msgbots.view.app.dialogs.WelcomeToDialog;
-import org.beuwi.msgbots.view.gui.control.TabItem;
 import org.beuwi.msgbots.view.gui.control.WebPage;
 import org.beuwi.msgbots.view.util.ViewManager;
 import org.beuwi.msgbots.view.app.MainWindow;
@@ -91,7 +88,6 @@ public class Launcher extends Application {
 	}
 
 	private void registerValues() {
-		SharedValues.register(false, "program.image", ResourceUtils.getImage("program"));
 		SharedValues.register(false, "path.mainFolder", System.getProperty("user.dir"));
 		SharedValues.register(false, "path.dataFolder", System.getProperty("user.dir") + File.separator + "data");
 		SharedValues.register(true, "path.botFolder", System.getProperty("user.dir") + File.separator + "bots"); // 봇 폴더 커스텀 가능
@@ -100,6 +96,8 @@ public class Launcher extends Application {
 		SharedValues.register(false, "file.dataFolder", new File(SharedValues.getString("path.dataFolder"))); // 데이터 폴더 경로 강제
 		SharedValues.register(true, "file.botFolder", new File(SharedValues.getString("path.botFolder"))); // 봇 폴더 커스텀 가능
 		SharedValues.register(true, "file.saveFolder", new File(SharedValues.getString("path.saveFolder"))); // 세이브 폴더 커스텀 가능
+		SharedValues.register(false, "program.image", ResourceUtils.getImage("program"));
+		// SharedValues.register(false, "program.theme", GlobalSettings.getString("program.colorTheme"));
 	}
 	private void updateValues() {
 		// 봇 폴더를 유저가 지정한 적이 있다면 업데이트함

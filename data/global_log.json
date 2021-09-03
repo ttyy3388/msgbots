@@ -1,273 +1,133 @@
 [{
-	"date":"2021\/09\/03 15:58:29 ",
-	"data":"Compile Complete: WELCOME1",
+	"date":"2021\/09\/03 18:56:58 ",
+	"data":"Compile Complete: WELCOME",
 	"type":"info"
 }, {
-	"date":"2021\/09\/03 15:58:29 ",
-	"data":"Compile Complete: WELCOME2",
+	"date":"2021\/09\/03 18:58:02 ",
+	"data":"Compile Complete: WELCOME",
 	"type":"info"
 }, {
-	"date":"2021\/09\/03 15:58:29 ",
-	"data":"Compile Complete: WELCOME3",
+	"date":"2021\/09\/03 18:59:33 ",
+	"data":"Compile Complete: WELCOME",
 	"type":"info"
 }, {
-	"date":"2021\/09\/03 15:58:38 ",
-	"data":"Runtime Error: org.mozilla.javascript.EcmaError: ReferenceError: \"aaaaaa\" is not defined. (WELCOME2#12) : WELCOME2",
+	"date":"2021\/09\/03 19:14:09 ",
+	"data":"Compile Complete: WELCOME",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 19:15:38 ",
+	"data":"Compile Complete: WELCOME",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 19:17:34 ",
+	"data":"Compile Complete: WELCOME",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 19:18:41 ",
+	"data":"Compile Complete: WELCOME",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 19:19:45 ",
+	"data":"Compile Complete: WELCOME",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 19:23:16 ",
+	"data":"Compile Complete: WELCOME",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 19:24:49 ",
+	"data":"Compile Complete: WELCOME",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 19:29:30 ",
+	"data":"Compile Complete: WELCOME",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 19:30:42 ",
+	"data":"Compile Complete: WELCOME",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 19:50:35 ",
+	"data":"Compile Complete: WELCOME",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 19:51:28 ",
+	"data":"Compile Complete: WELCOME",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 19:51:31 ",
+	"data":"Compile Complete: WELCOME",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 19:51:32 ",
+	"data":"Compile Complete: WELCOME",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 19:51:35 ",
+	"data":"Compile Complete: WELCOME",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 19:51:35 ",
+	"data":"Compile Complete: WELCOME",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 19:51:36 ",
+	"data":"Compile Complete: WELCOME",
+	"type":"info"
+}, {
+	"date":"2021\/09\/03 19:51:40 ",
+	"data":"Compile Error: org.mozilla.javascript.EvaluatorException: missing ; before statement (WELCOME#12) : WELCOME",
 	"type":"error"
 }, {
-	"date":"2021\/09\/03 15:58:53 ",
-	"data":"Runtime Error: org.mozilla.javascript.EcmaError: ReferenceError: \"aaaaaa\" is not defined. (WELCOME2#12) : WELCOME2",
+	"date":"2021\/09\/03 19:51:41 ",
+	"data":"Compile Error: org.mozilla.javascript.EvaluatorException: missing ; before statement (WELCOME#12) : WELCOME",
 	"type":"error"
 }, {
-	"date":"2021\/09\/03 15:58:55 ",
-	"data":"Runtime Error: org.mozilla.javascript.EcmaError: ReferenceError: \"aaaaaa\" is not defined. (WELCOME2#12) : WELCOME2",
+	"date":"2021\/09\/03 19:51:41 ",
+	"data":"Compile Error: org.mozilla.javascript.EvaluatorException: missing ; before statement (WELCOME#12) : WELCOME",
 	"type":"error"
 }, {
-	"date":"2021\/09\/03 16:00:14 ",
-	"data":"Compile Complete: WELCOME1",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 16:00:14 ",
-	"data":"Compile Complete: WELCOME2",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 16:00:14 ",
-	"data":"Compile Complete: WELCOME3",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 16:01:32 ",
-	"data":"Runtime Error: org.mozilla.javascript.EcmaError: ReferenceError: \"aaaaaa\" is not defined. (WELCOME2#12) : WELCOME2",
+	"date":"2021\/09\/03 19:51:41 ",
+	"data":"Compile Error: org.mozilla.javascript.EvaluatorException: missing ; before statement (WELCOME#12) : WELCOME",
 	"type":"error"
 }, {
-	"date":"2021\/09\/03 16:01:33 ",
-	"data":"Runtime Error: org.mozilla.javascript.EcmaError: ReferenceError: \"aaaaaa\" is not defined. (WELCOME2#12) : WELCOME2",
+	"date":"2021\/09\/03 19:56:42 ",
+	"data":"Compile Error: org.mozilla.javascript.EvaluatorException: missing ; before statement (WELCOME#12) : WELCOME",
 	"type":"error"
 }, {
-	"date":"2021\/09\/03 16:01:34 ",
-	"data":"Runtime Error: org.mozilla.javascript.EcmaError: ReferenceError: \"aaaaaa\" is not defined. (WELCOME2#12) : WELCOME2",
+	"date":"2021\/09\/03 19:59:30 ",
+	"data":"Compile Error: org.mozilla.javascript.EvaluatorException: missing ; before statement (WELCOME#12) : WELCOME",
 	"type":"error"
 }, {
-	"date":"2021\/09\/03 16:03:48 ",
-	"data":"Compile Complete: WELCOME1",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 16:03:48 ",
-	"data":"Compile Complete: WELCOME2",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 16:03:48 ",
-	"data":"Compile Complete: WELCOME3",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 16:05:14 ",
-	"data":"Compile Complete: WELCOME1",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 16:05:14 ",
-	"data":"Compile Complete: WELCOME2",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 16:05:14 ",
-	"data":"Compile Complete: WELCOME3",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 16:05:44 ",
-	"data":"Compile Complete: WELCOME1",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 16:05:44 ",
-	"data":"Compile Complete: WELCOME2",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 16:05:44 ",
-	"data":"Compile Complete: WELCOME3",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 16:07:39 ",
-	"data":"Compile Complete: WELCOME1",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 16:07:39 ",
-	"data":"Compile Complete: WELCOME2",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 16:07:39 ",
-	"data":"Compile Complete: WELCOME3",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 16:10:58 ",
-	"data":"test",
-	"type":"debug"
-}, {
-	"date":"2021\/09\/03 16:11:05 ",
-	"data":"test",
+	"date":"2021\/09\/03 20:00:34 ",
+	"data":"Compile Error: org.mozilla.javascript.EvaluatorException: missing ; before statement (WELCOME#12) : WELCOME",
 	"type":"error"
 }, {
-	"date":"2021\/09\/03 16:13:07 ",
-	"data":"Runtime Error: org.mozilla.javascript.EcmaError: ReferenceError: \"aaaaaa\" is not defined. (WELCOME2#12) : WELCOME2",
+	"date":"2021\/09\/03 20:01:42 ",
+	"data":"Compile Error: org.mozilla.javascript.EvaluatorException: missing ; before statement (WELCOME#12) : WELCOME",
 	"type":"error"
 }, {
-	"date":"2021\/09\/03 16:13:07 ",
-	"data":"Runtime Error: org.mozilla.javascript.EcmaError: ReferenceError: \"aaaaaa\" is not defined. (WELCOME2#12) : WELCOME2",
+	"date":"2021\/09\/03 20:03:54 ",
+	"data":"Compile Error: org.mozilla.javascript.EvaluatorException: missing ; before statement (WELCOME#12) : WELCOME",
 	"type":"error"
 }, {
-	"date":"2021\/09\/03 16:13:08 ",
-	"data":"Runtime Error: org.mozilla.javascript.EcmaError: ReferenceError: \"aaaaaa\" is not defined. (WELCOME2#12) : WELCOME2",
+	"date":"2021\/09\/03 20:04:03 ",
+	"data":"Compile Error: org.mozilla.javascript.EvaluatorException: missing ; before statement (WELCOME#12) : WELCOME",
 	"type":"error"
 }, {
-	"date":"2021\/09\/03 17:25:11 ",
-	"data":"Compile Complete: WELCOME1",
+	"date":"2021\/09\/03 20:04:07 ",
+	"data":"Compile Complete: WELCOME",
 	"type":"info"
 }, {
-	"date":"2021\/09\/03 17:25:12 ",
-	"data":"Compile Complete: WELCOME2",
+	"date":"2021\/09\/03 20:04:23 ",
+	"data":"Compile Complete: WELCOME",
 	"type":"info"
 }, {
-	"date":"2021\/09\/03 17:25:12 ",
-	"data":"Compile Complete: WELCOME3",
+	"date":"2021\/09\/03 20:09:25 ",
+	"data":"Compile Complete: WELCOME",
 	"type":"info"
 }, {
-	"date":"2021\/09\/03 17:29:34 ",
-	"data":"Compile Complete: WELCOME1",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 17:29:34 ",
-	"data":"Compile Complete: WELCOME2",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 17:29:34 ",
-	"data":"Compile Complete: WELCOME3",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 17:33:27 ",
-	"data":"Compile Complete: WELCOME1",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 17:33:27 ",
-	"data":"Compile Complete: WELCOME2",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 17:33:27 ",
-	"data":"Compile Complete: WELCOME3",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 17:48:16 ",
-	"data":"Compile Complete: WELCOME1",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 17:48:16 ",
-	"data":"Compile Complete: WELCOME2",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 17:48:16 ",
-	"data":"Compile Complete: WELCOME3",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 17:52:20 ",
-	"data":"Compile Complete: WELCOME1",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 17:52:20 ",
-	"data":"Compile Complete: WELCOME2",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 17:52:20 ",
-	"data":"Compile Complete: WELCOME3",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 17:56:17 ",
-	"data":"Compile Complete: WELCOME1",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 17:56:17 ",
-	"data":"Compile Complete: WELCOME2",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 17:56:17 ",
-	"data":"Compile Complete: WELCOME3",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 17:59:20 ",
-	"data":"Compile Complete: WELCOME1",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 17:59:20 ",
-	"data":"Compile Complete: WELCOME2",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 17:59:20 ",
-	"data":"Compile Complete: WELCOME3",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 18:02:57 ",
-	"data":"Compile Complete: WELCOME1",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 18:02:57 ",
-	"data":"Compile Complete: WELCOME2",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 18:02:57 ",
-	"data":"Compile Complete: WELCOME3",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 18:04:09 ",
-	"data":"Compile Complete: WELCOME1",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 18:04:09 ",
-	"data":"Compile Complete: WELCOME2",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 18:04:09 ",
-	"data":"Compile Complete: WELCOME3",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 18:05:47 ",
-	"data":"Compile Complete: WELCOME1",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 18:05:48 ",
-	"data":"Compile Complete: WELCOME2",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 18:05:48 ",
-	"data":"Compile Complete: WELCOME3",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 18:15:11 ",
-	"data":"Compile Complete: WELCOME1",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 18:15:11 ",
-	"data":"Compile Complete: WELCOME2",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 18:15:12 ",
-	"data":"Compile Complete: WELCOME3",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 18:21:58 ",
-	"data":"Compile Complete: WELCOME1",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 18:21:58 ",
-	"data":"Compile Complete: WELCOME2",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 18:21:58 ",
-	"data":"Compile Complete: WELCOME3",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 18:24:22 ",
-	"data":"Compile Complete: WELCOME1",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 18:24:22 ",
-	"data":"Compile Complete: WELCOME2",
-	"type":"info"
-}, {
-	"date":"2021\/09\/03 18:24:22 ",
-	"data":"Compile Complete: WELCOME3",
+	"date":"2021\/09\/03 20:10:09 ",
+	"data":"Compile Complete: WELCOME",
 	"type":"info"
 }]

@@ -39,6 +39,7 @@ public class ImportScriptDialog extends YesOrNoDialog {
 		loader = new FormLoader();
 		loader.setName("import-script-dialog");
 		loader.setController(this);
+		loader.load();
 
 		namespace = loader.getNamespace();
 		root = loader.getRoot();
