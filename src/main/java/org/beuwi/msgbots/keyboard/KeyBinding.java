@@ -28,6 +28,12 @@ public enum KeyBinding {
 	TOGGLE_DEBUG_AREA("Toggle Debug Area", "", KeyCategory.VIEW),
 	// TOGGLE_TOOL_AREA("Toggle Tool Area", "", KeyCategory.VIEW),
 
+	CLOSE_TAB("Close Tab", "Ctrl + W", KeyCategory.EDITOR),
+	CLOSE_OTHER_TABS("Close Other Tabs", "", KeyCategory.EDITOR),
+	CLOSE_ALL_TABS("Close All Tabs", "", KeyCategory.EDITOR),
+	SELECT_NEXT_TAB("Select Next Tab", "Ctrl + Tab", KeyCategory.EDITOR),
+	SELECT_PREV_TAB("Select Previous Tab", "Ctrl + Shift + Tab", KeyCategory.EDITOR),
+
 	COMPILE("Compile", "", KeyCategory.DEBUG),
 	TOGGLE_POWER("Power On / Off", "", KeyCategory.DEBUG),
 

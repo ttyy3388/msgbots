@@ -9,6 +9,7 @@ import org.beuwi.msgbots.manager.ScriptManager;
 import org.beuwi.msgbots.shared.SharedValues;
 import org.beuwi.msgbots.view.app.actions.AddMainAreaTabAction;
 import org.beuwi.msgbots.view.app.actions.CheckAppUpdateAction;
+import org.beuwi.msgbots.view.app.actions.OpenWebViewTabAction;
 import org.beuwi.msgbots.view.app.dialogs.WelcomeToDialog;
 import org.beuwi.msgbots.view.gui.control.TabItem;
 import org.beuwi.msgbots.view.gui.control.WebPage;
@@ -72,7 +73,7 @@ public class Launcher extends Application {
 		// 각 폴더(Bot, Save)를 기본 폴더로 지정한거로 인식함
 		if (GlobalSettings.getBoolean("program.showStartDialog")) {
 			dialog2 = new WelcomeToDialog();
-			dialog2.setOnClose(event2 -> {
+			dialog2.setOnAction(event2 -> {
 				updateValues(); // 값이 변경됐으므로 업데이트
 				startProgram();
 			});
@@ -123,9 +124,13 @@ public class Launcher extends Application {
 		);
 
 		// 봇 목록 초기화
-		RefreshAllBotsAction
-				.getInstance()
-				.execute();
+		RefreshAllBotsAction.getInstance().execute();
+		// 앱 업데이트 체크
+		// CheckAppUpdateAction.getInstance().execute();
+		// 가이드 페이지 오픈
+		OpenWebViewTabAction.getInstance().execute(
+			"WELCOME GUIDE", new WebPage("welcome-guide-page")
+		);
 
 		// Start Window
 		MainWindow.launch();

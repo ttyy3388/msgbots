@@ -8,15 +8,18 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.Priority;
 
+import org.beuwi.msgbots.actions.WriteImageFileAction;
 import org.beuwi.msgbots.base.Dfile;
 import org.beuwi.msgbots.base.type.ConfigType;
 import org.beuwi.msgbots.base.type.ThemeType;
 import org.beuwi.msgbots.setting.SharedSettings;
 import org.beuwi.msgbots.shared.SharedValues;
+import org.beuwi.msgbots.view.app.actions.OpenFileChooserAction;
 import org.beuwi.msgbots.view.gui.editor.Editor;
 import org.beuwi.msgbots.view.gui.layout.StackPane;
 import org.beuwi.msgbots.view.gui.layout.VBox;
 
+import java.io.File;
 import java.util.List;
 
 /*
@@ -72,6 +75,7 @@ public class ConfigItem extends VBox {
 			return ;
 		}
 
+		// 아래는 컨트롤(ConfigType: Control)을 위한 부분
 		if (control instanceof Editor) {
 			Editor editor = (Editor) control;
 			/* if (!ConfigType.CONTROL.equals(type)) {
@@ -96,6 +100,24 @@ public class ConfigItem extends VBox {
 		}
 		else if (control instanceof Button) {
 			Button button = (Button) control;
+			if (address.equals("button.changeBotProfile")) {
+				button.setOnAction(event -> {
+					File file = OpenFileChooserAction.getInstance().execute("Change Bot Profile",
+							"Image File", "*.jpg", "*.png", "*.gif");
+					if (file != null) {
+						WriteImageFileAction.getInstance().execute(file, SharedValues.getFile("file.profileBot"), "png");
+					}
+				});
+			}
+			else if (address.equals("button.changeSenderProfile")) {
+				button.setOnAction(event -> {
+					File file = OpenFileChooserAction.getInstance().execute("Change Sender Profile",
+							"Image File", "*.jpg", "*.png", "*.gif");
+					if (file != null) {
+						WriteImageFileAction.getInstance().execute(file, SharedValues.getFile("file.profileSender"), "png");
+					}
+				});
+			}
 		}
 
 		// 아래에는 컨트롤이 접근하면 안되는 부분들임

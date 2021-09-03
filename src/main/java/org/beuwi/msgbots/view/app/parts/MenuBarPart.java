@@ -61,9 +61,9 @@ public class MenuBarPart extends StackPane implements View {
 
 		btnDebug.setMenuItems(
 			StdActions.COMPILE_ALL.toMenuItem(),
-			StdActions.TOGGLE_POWER.toMenuItem(),
-			MenuItem.getSeparator(),
-			StdActions.ADB_CONNECT.toMenuItem()
+			StdActions.TOGGLE_POWER.toMenuItem()
+			/* MenuItem.getSeparator(),
+			StdActions.ADB_CONNECT.toMenuItem() */
 		);
 
 		btnHelp.setMenuItems(

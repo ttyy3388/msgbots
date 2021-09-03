@@ -15,6 +15,9 @@ import org.beuwi.msgbots.actions.OpenBrowserAction;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.utils.ResourceUtils;
 import org.beuwi.msgbots.setting.GlobalSettings;
+import org.beuwi.msgbots.view.app.actions.OpenDialogBoxAction;
+import org.beuwi.msgbots.view.app.dialogs.CreateBotDialog;
+import org.beuwi.msgbots.view.app.dialogs.ImportScriptDialog;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -35,8 +38,8 @@ public class WebPane extends StackPane {
 			switch (clazz) {
 				case "open.dialog.action" :
 					switch (param) {
-						// case "create.bot.dialog": OpenDialogBoxAction.getInstance().execute(new CreateBotDialog()); break;
-						// case "import.bot.dialog": OpenDialogBoxAction.getInstance().execute(new ImportBotDialog()); break;
+						case "create.bot.dialog": OpenDialogBoxAction.getInstance().execute(new CreateBotDialog()); break;
+						case "import.bot.dialog": OpenDialogBoxAction.getInstance().execute(new ImportScriptDialog()); break;
 					}
 					break;
 				case "open.browser.action" : OpenBrowserAction.getInstance().execute(param); break;
@@ -94,6 +97,7 @@ public class WebPane extends StackPane {
 							Object object = engine.executeScript("window");
 							Document document = engine.getDocument();
 							if (object instanceof JSObject && document != null) {
+								JSObject jsobj = (JSObject) object;
 								jsdone.set(true);
 								Element element = document.getDocumentElement();
 								// 테마 스타일 적용
@@ -102,16 +106,19 @@ public class WebPane extends StackPane {
 								InputStream stream = ResourceUtils.getStream("/webpage/style/" + theme + ".css");
 								String data = FileManager.read(stream);
 								style.setTextContent(data);
+								// 아래 방식을 쓰면 읽어와서 적용시키기 때문에 깜빡거림
 								// element.setNodeValue("@import url(\"../style/dark.css\");");
 								/* element.appendChild(
 										document.createTextNode("@import url(\"../style/dark.css\");")); */
+								// style.setTextContent("@import url(\"../style/" + theme + ".css\");");
 								element.appendChild(style);
 
 								/* style.appendChild(content);
 								document.getElementsByTagName("style")
 										.item(0).appendChild(style); */
 
-								((JSObject) object).setMember("program", bridge);
+								jsobj.setMember("program", bridge);
+
 								// 해당 구역(스타일 적용)이 가장 마지막에 되므로 로딩이 완료된거로 처리함
 								loadComplete();
 							}

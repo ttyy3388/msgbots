@@ -9,9 +9,11 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
 import javafx.geometry.Side;
 import javafx.scene.Node;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 
+import org.beuwi.msgbots.keyboard.KeyBinding;
 import org.beuwi.msgbots.view.gui.control.ListView;
 import org.beuwi.msgbots.view.gui.layout.HBox;
 import org.beuwi.msgbots.view.gui.layout.StackPane;
@@ -46,7 +48,7 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane {
 		this(null);
 	}
 	public TabViewBase(T... tabs) {
-		// 추후 추가된 탭 아이템의 헤더 높이나 길이에 따라
+				// 추후 추가된 탭 아이템의 헤더 높이나 길이에 따라
 		// 헤더 영역이 유동적으로 변하는 코드를 작성해야 할 필요가 있을 거 같음
 		// 테두리 지정이나 모종의 이유로 헤더 높이가 변할 가능성이 있을 거 같음
 		getTabs().addListener((ListChangeListener<T>) change -> {
@@ -114,6 +116,14 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane {
 
 			// 탭 선택 시 해당 탭을 리스트 뷰에서도 선택된거로 인식하도록
 			headerArea.selectItem(newTab);
+		});
+
+		addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+			switch (KeyBinding.matching(event)) {
+				case CLOSE_TAB -> closeCurrentTab();
+				case SELECT_NEXT_TAB -> selectNextTab(getSelectedTab());
+				case SELECT_PREV_TAB -> selectPrevTab(getSelectedTab());
+			}
 		});
 
 		if (tabs != null) {
@@ -252,10 +262,38 @@ public abstract class TabViewBase<T extends TabItemBase> extends StackPane {
 		selectTab(getTab(index));
 	}
 	public void selectNextTab(T tab) {
-		selectTab(getTabs().indexOf(tab) + 1);
+		List<T> list = getTabs();
+		int size = list.size();
+		int index = list.indexOf(tab);
+		if (index == -1) { return; }
+		// 남아있는 탭이 두 개 이상일때만
+		if (size > 1) {
+			// 선택한 탭이 마지막 인덱스라면
+			if (index == (size - 1)) {
+				selectTab(0); // 첫번째 탭 선택
+			}
+			else {
+				// 아니라면 다음 탭 선택
+				selectTab(index + 1);
+			}
+		}
 	}
 	public void selectPrevTab(T tab) {
-		selectTab(getTabs().indexOf(tab) - 1);
+		List<T> list = getTabs();
+		int size = list.size();
+		int index = list.indexOf(tab);
+		if (index == -1) { return; }
+		// 남아있는 탭이 두 개 이상일때만
+		if (size > 1) {
+			// 선택한 탭이 첫번째 인덱스라면
+			if (index == 0) {
+				selectTab(size - 1); // 마지막 탭 선택
+			}
+			else {
+				// 아니라면 이전 탭 선택
+				selectTab(index - 1);
+			}
+		}
 	}
 
 	public T getTab(int index) {

@@ -57,7 +57,7 @@ public class WelcomeToDialog extends YesOrNoDialog {
         btnUpdate = getActionButton();
         btnCancel = getCancelButton();
 
-        btnUpdate.setText("Update");
+        btnUpdate.setText("Update And Launch");
 
         navConfigView.selectTab(0);
 
@@ -107,7 +107,6 @@ public class WelcomeToDialog extends YesOrNoDialog {
         }
 
         GlobalSettings.setData("program.showStartDialog", chkShowStart.isSelected());
-
 
         // 선택한 경로가 존재하지 않거나 폴더가 아닐 경우
         if (!(new File(path1).isDirectory()) ||

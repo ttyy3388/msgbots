@@ -1,7 +1,9 @@
 /* DOCUMENT CSS */
 @CHARSET "UTF-8";
 
-@import "base.css";
+/* 문자열로 적용을 시키기 때문에,
+	html 경로 기준으로 상대경로를 작성해야 함 */
+@import "../style/base.css";
 
 * {
     color: #333333;

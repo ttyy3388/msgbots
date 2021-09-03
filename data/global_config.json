@@ -9,6 +9,8 @@
 	"program":{
 		"colorTheme":"dark",
 		"startAutoCompile":true,
-		"showStartDialog":true
+		"saveFolderPath":"C:\\Develop Files\\Java\\IntelliJ\\Messenger Bot Simulator\\msgbots\\save",
+		"showStartDialog":true,
+		"botFolderPath":"C:\\Develop Files\\Java\\IntelliJ\\Messenger Bot Simulator\\msgbots\\bots"
 	}
 }

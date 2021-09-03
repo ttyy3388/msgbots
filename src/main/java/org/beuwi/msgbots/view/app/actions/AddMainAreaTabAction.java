@@ -13,7 +13,7 @@ public class AddMainAreaTabAction implements Executor {
 	private final TabView tabView = MainAreaPart.getInstance().getTabView();
 
 	public void execute(String title, Pane content) {
-		execute(title, content);
+		execute(new TabItem(title, content));
 	}
 
 	public void execute(TabItem tabItem) {

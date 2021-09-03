@@ -55,6 +55,12 @@
                                                 </ComboBox>
                                             </control>
                                         </OptionItem> -->
+										<ConfigItem type="GLOBAL" address="program.showStartDialog"
+													title="시작 시 프리셋 창 열기">
+											<control>
+												<CheckBox text="시작 시 경로 등 기본 설정을 할 수 있는 윈도우를 엽니다."></CheckBox>
+											</control>
+										</ConfigItem>
 										<ConfigItem type="GLOBAL" address="program.startAutoCompile"
 													title="시작 시 자동 컴파일">
 											<control>
@@ -200,7 +206,7 @@
 												<CheckBox text="디버그 룸에서 봇의 이름을 보이게 합니다."></CheckBox>
 											</control>
 										</ConfigItem>
-										<ConfigItem address="button.changeSenderProfile" title="봇 프로필 변경">
+										<ConfigItem type="CONTROL" address="button.changeSenderProfile" title="봇 프로필 변경">
 											<control>
 												<Button text="Change"
                                                         styled="true"
