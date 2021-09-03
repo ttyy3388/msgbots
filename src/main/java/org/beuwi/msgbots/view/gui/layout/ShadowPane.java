@@ -1,20 +1,22 @@
-package org.beuwi.msgbots.view.gui.control;
+package org.beuwi.msgbots.view.gui.layout;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
-import org.beuwi.msgbots.view.gui.layout.StackPane;
 
 // 상속을 금지함 (StyleClass 등 처리해야할 게 많아지기 때문임)
-public final class ShadowView extends StackPane {
+public final class ShadowPane extends StackPane {
+
+    // 굳이 ShadowArea 안에 ContentArea를 두는 이유는 ContentArea에 Shadow를 입히면 안 내용물에도 그림자가 생기기 때문임
+    private final StackPane shadowArea = new StackPane();
     private final StackPane contentArea = new StackPane();
 
-    public ShadowView() {
+    public ShadowPane() {
         this(null);
     }
 
-    public ShadowView(Node content) {
+    public ShadowPane(Node content) {
         contentProperty().addListener(change -> {
             Node node = getContent();
             if (node != null) {
@@ -29,11 +31,13 @@ public final class ShadowView extends StackPane {
         // 창 띄울 때 흰 화면 방지
         setBackground(null);
 
+        shadowArea.getChildren().add(contentArea);
         // contentArea.getStyleClass().add("root");
+        shadowArea.getStyleClass().add("shadow-area");
         contentArea.getStyleClass().add("content-area");
 
         setPadding(new Insets(5));
-        getChildren().setAll(contentArea);
+        getChildren().setAll(shadowArea);
         getStyleClass().add("shadow-pane");
     }
 

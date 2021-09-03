@@ -3,6 +3,9 @@ package org.beuwi.msgbots.base;
 import org.beuwi.msgbots.base.type.LogType;
 import org.beuwi.msgbots.base.type.ToastType;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 // 채팅 룸(GUI & Compiler)과의 소통을 위한 것임
 public class Session {
     public static final Session GLOBAL = new Session("GLOBAL", true);
@@ -34,10 +37,12 @@ public class Session {
             listener.onEvent(message, isBot);
         }
     }
-    public void log(LogType type, String data, String date) {
+
+    public void log(LogType type, String data) {
+        String date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss ").format(new Date());
         OnLogListener listener = onLogListener;
         if (listener != null) {
-            listener.onEvent(type, data, date);
+            listener.onEvent(type, date, data);
         }
     }
 

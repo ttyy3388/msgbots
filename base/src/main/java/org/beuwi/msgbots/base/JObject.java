@@ -72,12 +72,12 @@ public class JObject extends JSONObject {
 		putAll(map);
 	}
 
-	/* public static JObject parse(JSONObject json) {
+	public static JObject convert(JSONObject json) {
 		// Convert to JObject
 		JObject jobject = new JObject();
 		jobject.putAll(json);
 		return jobject;
-	} */
+	}
 
 	@Override
 	public String toString() {

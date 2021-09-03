@@ -23,10 +23,10 @@ public enum KeyBinding {
 	PASTE("Paste", "Ctrl + V", KeyCategory.EDIT),
 	SELECT_ALL("Select All", "Ctrl + A", KeyCategory.EDIT),
 
-	TOGGLE_MENU_BAR("Toggle Menu Bar", "", KeyCategory.VIEW),
-	TOGGLE_SIDE_BAR("Toggle Side Bar", "", KeyCategory.VIEW),
+	// TOGGLE_MENU_BAR("Toggle Menu Bar", "", KeyCategory.VIEW),
+	// TOGGLE_SIDE_BAR("Toggle Side Bar", "", KeyCategory.VIEW),
 	TOGGLE_DEBUG_AREA("Toggle Debug Area", "", KeyCategory.VIEW),
-	TOGGLE_TOOL_AREA("Toggle Tool Area", "", KeyCategory.VIEW),
+	// TOGGLE_TOOL_AREA("Toggle Tool Area", "", KeyCategory.VIEW),
 
 	COMPILE("Compile", "", KeyCategory.DEBUG),
 	TOGGLE_POWER("Power On / Off", "", KeyCategory.DEBUG),

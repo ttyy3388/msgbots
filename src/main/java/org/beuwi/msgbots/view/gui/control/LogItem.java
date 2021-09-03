@@ -9,6 +9,7 @@ import org.beuwi.msgbots.base.type.LogType;
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.view.gui.layout.HBox;
 import org.beuwi.msgbots.utils.ResourceUtils;
+import org.json.simple.JSONObject;
 
 public class LogItem extends HBox {
 	// private static final int DEFAULT_WIDTH = 250;
@@ -24,7 +25,8 @@ public class LogItem extends HBox {
 
 	private LogView parent;
 
-	public LogItem(JObject object) {
+	// JSONOjbect, JObejct 호환
+	public <JSON extends JSONObject> LogItem(JSON object) {
 		this(
 			String.valueOf(object.get("type")),
 			String.valueOf(object.get("date")),

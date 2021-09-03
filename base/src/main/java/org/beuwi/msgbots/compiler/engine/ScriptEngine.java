@@ -2,9 +2,12 @@ package org.beuwi.msgbots.compiler.engine;
 
 import org.beuwi.msgbots.base.Project;
 import org.beuwi.msgbots.base.Session;
+import org.beuwi.msgbots.base.type.LogType;
 import org.beuwi.msgbots.compiler.api.ImageDB;
+import org.beuwi.msgbots.compiler.api.Logger;
 import org.beuwi.msgbots.compiler.api.Replier;
 
+import org.beuwi.msgbots.setting.ProjectSettings;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ImporterTopLevel;
@@ -44,7 +47,10 @@ public class ScriptEngine {
 	}
 
 	protected static boolean initialize(Project project, boolean isManual, boolean ignoreError) {
+		final Session session = Session.GLOBAL;
 		final String name = project.getName();
+		final Logger logger = new Logger(session);
+
 		compiling.put(name, true);
 
 		int optimization = 1;
@@ -122,10 +128,15 @@ public class ScriptEngine {
 					Context.reportError(e.toString());
 				}
 			}
+
+			logger.error("Compile Error: " + e.toString() + " : " + name);
+
 			return false;
 		}
 
 		project.setCompiled(true);
+
+		logger.info("Compile Complete: " + name);
 
 		return true;
 	}
@@ -140,6 +151,9 @@ public class ScriptEngine {
 		// 전역 디버그 룸에서 호출 시 글로벌 세션 삽입
 		Session session = global ? Session.GLOBAL : project.getSession();
 		Replier replier = new Replier(session);
+		Logger logger = new Logger(session);
+
+		session.log(LogType.INFO, "test");
 
 		try {
 			context.setWrapFactory(new PrimitiveWrapFactory());
@@ -147,12 +161,21 @@ public class ScriptEngine {
 			context.setOptimizationLevel(container.get(name).getOptimization());
 
 			if (responder != null) {
-				responder.call(context, scope, scope, new Object[] { room, message, sender, isGroupChat, replier, imageDB, packageName });
+				if (ProjectSettings.get(project).getBoolean("useUnifiedParams")) {
+					responder.call(context, scope, scope, new Object[] { new ResponseParameters(room, message, sender, isGroupChat, replier, imageDB, packageName) });
+				}
+				else {
+					responder.call(context, scope, scope, new Object[] { room, message, sender, isGroupChat, replier, imageDB, packageName });
+				}
 			}
 
 			Context.exit();
 		}
 		catch (Throwable e) {
+			if (ProjectSettings.get(project).getBoolean("offOnRuntimeError")) {
+				project.setPower(false);
+			}
+			logger.error("Runtime Error: " + e.toString() + " : " + name);
 		}
 	}
 }

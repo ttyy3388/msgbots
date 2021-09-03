@@ -6,7 +6,7 @@
 <fx:root type="StackPane"
 		 styleClass="side-area"
 		 minWidth="150"
-		 prefWidth="250"
+		 prefWidth="220"
 		 xmlns:fx="http://javafx.com/fxml">
 	<children>
 		<TabView fx:id="tabView" fitHeader="true">

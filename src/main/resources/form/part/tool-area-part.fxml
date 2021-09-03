@@ -5,7 +5,6 @@
 
 <fx:root type="StackPane"
 		 styleClass="tool-area"
-		 minHeight="150"
 		 prefHeight="250"
 		 xmlns:fx="http://javafx.com/fxml">
 	<children>

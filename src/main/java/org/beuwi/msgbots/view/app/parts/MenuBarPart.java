@@ -54,9 +54,9 @@ public class MenuBarPart extends StackPane implements View {
 		);
 
 		btnView.setMenuItems(
-			StdActions.TOGGLE_SIDE_BAR.toMenuItem(),
-			StdActions.TOGGLE_DEBUG_AREA.toMenuItem(),
-			StdActions.TOGGLE_TOOL_AREA.toMenuItem()
+			// StdActions.TOGGLE_SIDE_BAR.toMenuItem(),
+			StdActions.TOGGLE_DEBUG_AREA.toMenuItem()
+			// StdActions.TOGGLE_TOOL_AREA.toMenuItem()
 		);
 
 		btnDebug.setMenuItems(

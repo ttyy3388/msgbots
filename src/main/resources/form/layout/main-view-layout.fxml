@@ -21,7 +21,7 @@
                                            proportion="0.2"
                                            orientation="VERTICAL">
 									<left>
-										<SplitView side="LEFT" proportion="0.2">
+										<SplitView side="LEFT" proportion="0.18">
 											<left>
 												<!-- Side Area Part -->
 												<StackPane fx:id="stpSideArea"></StackPane>

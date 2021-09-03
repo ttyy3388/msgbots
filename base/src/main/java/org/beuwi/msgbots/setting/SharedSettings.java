@@ -19,7 +19,7 @@ public class SharedSettings {
 			return GlobalSettings.getData(address);
 		}
 		if (ConfigType.PROJECT.equals(type)) {
-			return ProjectSettings.getSetting(name).getData(option);
+			return ProjectSettings.get(name).getData(option);
 		}
 
 		throw new NullPointerException("wrong access");
@@ -34,7 +34,7 @@ public class SharedSettings {
 
 		switch (type) {
 			case GLOBAL: GlobalSettings.setData(address, value); break;
-			case PROJECT: ProjectSettings.getSetting(name).setData(option, value); break;
+			case PROJECT: ProjectSettings.get(name).setData(option, value); break;
 			case CONTROL: break;
 		}
 	}

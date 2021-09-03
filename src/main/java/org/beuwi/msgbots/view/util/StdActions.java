@@ -6,6 +6,7 @@ import org.beuwi.msgbots.keyboard.KeyBinding;
 import org.beuwi.msgbots.view.app.actions.AddMainAreaTabAction;
 import org.beuwi.msgbots.view.app.actions.OpenDialogBoxAction;
 import org.beuwi.msgbots.view.app.actions.ReloadAllBotsAction;
+import org.beuwi.msgbots.view.app.actions.ToggleDebugAreaAction;
 import org.beuwi.msgbots.view.app.dialogs.CreateBotDialog;
 import org.beuwi.msgbots.view.app.dialogs.ImportScriptDialog;
 import org.beuwi.msgbots.view.app.tabs.GlobalConfigTab;
@@ -52,18 +53,18 @@ public enum StdActions {
     CLOSE_ALL_TABS("Close All Tabs"),
     OPEN_TAB_TO_DIALOG("Open Tab To Dialog"),
     REFRESH_ALL_BOTS("Refresh All Bots", KeyBinding.REFRESH_ALL_BOTS),
-    TOGGLE_MENU_BAR("Toggle Menu Bar", KeyBinding.TOGGLE_MENU_BAR, event -> {
-        // ToggleMenuBarAction.getInstance().execute();
-    }),
-    TOGGLE_SIDE_BAR("Toggle Side Bar", KeyBinding.TOGGLE_SIDE_BAR, event -> {
-        // ToggleSideAreaAction.getInstance().execute();
-    }),
+    /* TOGGLE_MENU_BAR("Toggle Menu Bar", KeyBinding.TOGGLE_MENU_BAR, event -> {
+        ToggleMenuBarAction.getInstance().execute();
+    }), */
+    /* TOGGLE_SIDE_BAR("Toggle Side Bar", KeyBinding.TOGGLE_SIDE_BAR, event -> {
+        ToggleSideAreaAction.getInstance().execute();
+    }), */
     TOGGLE_DEBUG_AREA("Toggle Debug Area", KeyBinding.TOGGLE_DEBUG_AREA, event -> {
-        // ToggleDebugAreaAction.getInstance().execute();
+        ToggleDebugAreaAction.getInstance().execute();
     }),
-    TOGGLE_TOOL_AREA("Toggle Tool Area", KeyBinding.TOGGLE_TOOL_AREA, event -> {
-        // ToggleToolAreaAction.getInstance().execute();
-    }),
+    /* TOGGLE_TOOL_AREA("Toggle Tool Area", KeyBinding.TOGGLE_TOOL_AREA, event -> {
+        ToggleToolAreaAction.getInstance().execute();
+    }), */
     VIEW_KEYMAPS("View Keymaps", KeyBinding.VIEW_KEYMAPS),
     VIEW_LICENSE("View License", KeyBinding.VIEW_LICENSE),
     RELEASE_NOTES("Release Notes", KeyBinding.RELEASE_NOTES),

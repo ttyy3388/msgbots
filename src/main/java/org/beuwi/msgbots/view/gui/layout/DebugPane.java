@@ -10,6 +10,7 @@ import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.view.gui.control.ChatArea;
 import org.beuwi.msgbots.view.gui.control.ChatItem;
 import org.beuwi.msgbots.view.gui.control.ChatView;
+import org.beuwi.msgbots.view.gui.control.LogItem;
 import org.beuwi.msgbots.view.gui.control.LogView;
 import org.beuwi.msgbots.view.gui.control.SplitView;
 import org.beuwi.msgbots.view.gui.editor.Editor;
@@ -59,6 +60,10 @@ public class DebugPane extends SplitView {
 		session.setOnChatListener((message, isBot) -> {
 			// 봇이 전송한 메시지만 추가
 			if (isBot) chatView.getItems().add(new ChatItem(message, true));
+		});
+
+		session.setOnLogListener((type, date, data) -> {
+			logView.getItems().add(new LogItem(type, date, data));
 		});
 
 		chatView = chatArea.getChatView();

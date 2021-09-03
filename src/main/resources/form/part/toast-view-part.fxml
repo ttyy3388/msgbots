@@ -9,12 +9,12 @@
 <?import org.beuwi.msgbots.view.gui.layout.HBox?>
 <?import org.beuwi.msgbots.view.gui.layout.VBox?>
 <?import org.beuwi.msgbots.view.gui.control.ScrollView?>
-<?import org.beuwi.msgbots.view.gui.control.ShadowView?>
+<?import org.beuwi.msgbots.view.gui.layout.ShadowPane?>
 <?import org.beuwi.msgbots.view.gui.layout.StackPane?>
 
 <fx:root type="AnchorPane" styleClass="toast-area" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<children>
-		<ShadowView AnchorPane.topAnchor="15.0"
+		<ShadowPane AnchorPane.topAnchor="15.0"
 					AnchorPane.rightAnchor="5.0">
 			<content>
 				<VBox styleClass="toast-box">
@@ -42,6 +42,6 @@
 					</children>
 				</VBox>
 			</content>
-		</ShadowView>
+		</ShadowPane>
 	</children>
 </fx:root>

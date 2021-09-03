@@ -1,6 +1,5 @@
 package org.beuwi.msgbots.view.app.tabs;
 
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 
@@ -9,9 +8,7 @@ import org.beuwi.msgbots.base.JArray;
 import org.beuwi.msgbots.base.JObject;
 import org.beuwi.msgbots.base.Session;
 import org.beuwi.msgbots.base.impl.View;
-import org.beuwi.msgbots.manager.ScriptManager;
 import org.beuwi.msgbots.openapi.FormLoader;
-import org.beuwi.msgbots.view.gui.control.ChatItem;
 import org.beuwi.msgbots.view.gui.control.LogItem;
 import org.beuwi.msgbots.view.gui.control.LogView;
 import org.beuwi.msgbots.view.gui.control.TabItem;

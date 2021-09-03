@@ -302,8 +302,10 @@
 .shadow-pane {
 	-fx-background-color: transparent;
 }
-.shadow-pane .content-area {
+.shadow-pane .shadow-area {
 	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 0, 1);
+}
+.shadow-pane .content-area {
 }
 
 /* SLIDER */
