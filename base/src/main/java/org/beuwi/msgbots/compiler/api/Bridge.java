@@ -1,10 +1,7 @@
 package org.beuwi.msgbots.compiler.api;
 
-import org.beuwi.msgbots.base.Project;
 import org.beuwi.msgbots.compiler.engine.ScriptEngine;
 
-import org.beuwi.msgbots.manager.ProjectManager;
-import org.beuwi.msgbots.setting.ProjectSettings;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.ScriptableObject;
 import org.mozilla.javascript.Undefined;
@@ -41,18 +38,6 @@ public class Bridge extends ScriptableObject {
 
 	@JSStaticFunction
 	public static Boolean isAllowed(String inputName) {
-		if (Undefined.isUndefined(inputName)) {
-			return null;
-		}
-		else {
-			String scriptName = Utils.toScriptName(inputName);
-			Project project = ProjectManager.findByName(scriptName);
-			if (project != null) {
-				return ProjectSettings.get(project).getBoolean("allowBridge");
-			}
-			else {
-				return false;
-			}
-		}
+		return false;
 	}
 }
