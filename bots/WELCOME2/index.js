@@ -10,7 +10,7 @@
  */
 
 function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
-    a
+    aaaaaa
     try {
         replier.reply(eval(msg));
     }

@@ -21,7 +21,7 @@ public class Session {
     private List<OnChatListener> onChatListeners = new ArrayList<>();
     private List<OnLogListener> onLogListeners = new ArrayList<>();
     private List<OnErrorListener> onErrorListeners = new ArrayList<>();
-    private List<OnCompileListener> onCompileListeners = new ArrayList<>();
+    private List<OnMessageListener> onMessageListeners = new ArrayList<>();
     private List<OnToastListener> onToastListeners = new ArrayList<>();
 
     public Session(Project project) {
@@ -39,6 +39,15 @@ public class Session {
         for (OnChatListener listener : onChatListeners) {
             if (listener != null) {
                 listener.onEvent(message, isBot);
+            }
+        }
+    }
+
+    // 주의: 프로그램과 소통을 위한 기능으로, Chat과는 완전 다름
+    public void message(String message) {
+        for (OnMessageListener listener : onMessageListeners) {
+            if (listener != null) {
+                listener.onEvent(message);
             }
         }
     }
@@ -61,6 +70,7 @@ public class Session {
         }
     }
 
+    // 디버그룸과 소통하기 위한 리스너
     public interface OnChatListener {
         void onEvent(String message, boolean isBot);
     }
@@ -70,8 +80,9 @@ public class Session {
     public interface OnErrorListener {
         void onEvent();
     }
-    public interface OnCompileListener {
-        void onEvent();
+    // 프로그램과 소통하기 위한 리스너
+    public interface OnMessageListener {
+        void onEvent(String message);
     }
     public interface OnToastListener {
         void onEvent(ToastType type, String title, String content);
@@ -86,8 +97,8 @@ public class Session {
     public void addOnErrorListener(OnErrorListener listener) {
         onErrorListeners.add(listener);
     }
-    public void addOnCompileListener(OnCompileListener listener) {
-        onCompileListeners.add(listener);
+    public void addOnMessageListener(OnMessageListener listener) {
+        onMessageListeners.add(listener);
     }
     public void addOnToastListener(OnToastListener listener) {
         onToastListeners.add(listener);

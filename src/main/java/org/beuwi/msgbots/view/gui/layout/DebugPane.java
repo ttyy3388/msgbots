@@ -10,6 +10,7 @@ import org.beuwi.msgbots.base.Session;
 import org.beuwi.msgbots.manager.FileManager;
 import org.beuwi.msgbots.manager.ScriptManager;
 import org.beuwi.msgbots.openapi.FormLoader;
+import org.beuwi.msgbots.setting.GlobalSettings;
 import org.beuwi.msgbots.view.gui.control.ChatArea;
 import org.beuwi.msgbots.view.gui.control.ChatItem;
 import org.beuwi.msgbots.view.gui.control.ChatView;
@@ -36,7 +37,9 @@ public class DebugPane extends SplitView {
 	// @FXML private OptionView settings;
 	private ChatView chatView;
 
+	// private final Project project;
 	private final Session session;
+	// private final File script;
 
 	public DebugPane(Project project) {
 		loader = new FormLoader();
@@ -59,6 +62,15 @@ public class DebugPane extends SplitView {
 
 		editor.setFile(project.getFile("index.js"));
 		// editor.setLanguage("javascript");
+
+		// 컴파일러 쪽에서 보내는 상황(Message) 수신
+		session.addOnMessageListener((message) -> {
+			if (message.equals("Compile Start")) {
+				if (GlobalSettings.getBoolean("program.compileAutoSave")) {
+					editor.save();
+				}
+			}
+		});
 
 		// 현재 세션에서 챗이 오는 경우는 무조건 봇이 보내는 경우만 존재하나 추후 효율성을 위해
 		session.addOnChatListener((message, isBot) -> {

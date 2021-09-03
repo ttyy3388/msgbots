@@ -21,7 +21,7 @@ import java.util.List;
 
 public class ScriptEngine {
 	public static final HashMap<String, ScriptContainer> container = new HashMap<>();
-	public static final  HashMap<String, Boolean> compiling = new HashMap<>();
+	public static final HashMap<String, Boolean> compiling = new HashMap<>();
 	public static ScriptableObject execscope = null;
 
 	protected static final Logger logger = Session.GLOBAL.getLogger();
@@ -51,9 +51,10 @@ public class ScriptEngine {
 	}
 
 	protected static boolean initialize(Project project, boolean isManual, boolean ignoreError) {
-		// final Session session = Session.GLOBAL;
+		final Session session = project.getSession();
 		final String name = project.getName();
 		// final Logger logger = session.getLogger();
+		session.message("Compile Start"); // 컴파일 시작을 프로그램(View)에 전송함
 
 		compiling.put(name, true);
 
