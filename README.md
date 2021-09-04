@@ -14,7 +14,7 @@
 
 ![img_1.png](img_1.png)
 
-### 개발 중단 직전
+### Version 0.7.0
 
 ![img_2.png](img_2.png)
 
