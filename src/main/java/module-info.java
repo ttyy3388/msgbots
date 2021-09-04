@@ -1,4 +1,4 @@
-open module program {
+open module msgbots {
     // Java
     requires java.desktop;
 
@@ -25,5 +25,6 @@ open module program {
     // requires rhino;
     requires base;
 
-    exports org.beuwi.msgbots;
+    // opens org.beuwi.msgbots;
+    // exports org.beuwi.msgbots to javafx.graphics;
 }

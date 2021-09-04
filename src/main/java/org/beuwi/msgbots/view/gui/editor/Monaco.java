@@ -166,7 +166,7 @@ class Monaco extends WebPane {
 	}
 	public void cut() {
 		// Cut action 만 실행하면 클립보드 복사가 안되기에 copy도 실행 즉, copy and delete
-		copy(); trigger("cut");
+		trigger("cut"); copy();
 	}
 	public void redo() {
 		trigger("redo");
@@ -185,9 +185,9 @@ class Monaco extends WebPane {
 		return execute("editor.trigger('', '" + action + "')");
 	}
 	protected Object execute(String action) {
-		if (engine == null) {
+		/* if (engine == null) {
 			throw new NullPointerException("not initialized engine");
-		}
+		} */
 
 		try {
 			engine.executeScript("editor");
