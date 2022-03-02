@@ -64,7 +64,7 @@ public class ChatArea extends VBox {
 
         setMinWidth(300);
         setPrefWidth(350);
-        getStyleClass().add("chat-area");
+        addStyleClass("chat-area");
 	}
 
 	public ChatView getChatView() {

@@ -5,7 +5,6 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.concurrent.Worker;
-
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
@@ -51,7 +50,6 @@ public class WebPane extends StackPane {
 	private final WebEngine engine;
 	private final Worker worker;
 
-	private final BooleanProperty loadedProperty = new SimpleBooleanProperty(false);
 	private final String theme = GlobalSettings.getString("program.colorTheme");
 
 	public WebPane() {
@@ -78,7 +76,7 @@ public class WebPane extends StackPane {
 
 		// 테마 스타일 적용, 여기서 테마는 프로그램 테마임(모나코 테마랑 다름!)
 		// 따라서 시작할 때 한 번만 적용되며 구분을 위해 따로 빼서 구현했음
-		worker.stateProperty().addListener(event -> {
+		addChangeListener(getFXProperty(worker, "state"), change -> {
 			Worker.State state = worker.getState();
 			if (state.equals(Worker.State.SUCCEEDED)) {
 				AtomicBoolean jsdone = new AtomicBoolean(false);
@@ -136,17 +134,16 @@ public class WebPane extends StackPane {
 		// 로딩이 다 돼야 보이도록
 		browser.setVisible(false);
 
-		getChildren().setAll(browser);
-		getStyleClass().add("web-page");
+		initChildren(browser);
+		addStyleClass("web-page");
 	}
 
 	public void loadHtml(String url) {
 		engine.load(url);
 	}
-
 	// 웹 뷰 로딩 성공 시
 	private void loadComplete() {
-		setLoaded(true);
+		this.setLoaded(true);
 		browser.setVisible(true);
 	}
 
@@ -164,13 +161,14 @@ public class WebPane extends StackPane {
 		return theme;
 	} */
 
+	private final BooleanProperty loadedProperty = new SimpleBooleanProperty(false);
+	public final ReadOnlyBooleanProperty loadedProperty() {
+		return loadedProperty;
+	}
 	private void setLoaded(boolean value) {
 		loadedProperty.set(value);
 	}
 	public boolean isLoaded() {
 		return loadedProperty.get();
-	}
-	public ReadOnlyBooleanProperty loadedProperty() {
-		return loadedProperty;
 	}
 }

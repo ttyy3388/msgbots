@@ -20,7 +20,7 @@
 	</left>
 	<bottom>
 		<HBox fx:id="hbxFooterBar"
-			  fitChild="true"
+			  fitContent="true"
               prefHeight="28.0">
 			<children>
 				<Label fx:id="lblFooterText" HBox.hgrow="ALWAYS"></Label>

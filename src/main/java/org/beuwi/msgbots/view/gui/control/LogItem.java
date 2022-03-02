@@ -53,11 +53,13 @@ public class LogItem extends HBox {
 		lblText.setText(data);
 		// lblText.setWrapText(true);
 
-		imvIcon.setImage(ResourceUtils.getImage(type.toString()));
+		String string = type.toString();
+
+		imvIcon.setImage(ResourceUtils.getImage(string));
 
 		setMinHeight(DEFAULT_HEIGHT);
-		pseudoClassStateChanged(PseudoClass.getPseudoClass(type.toString()), true);
-		getStyleClass().add("log-item");
+		setPseudoClass(string, true);
+		addStyleClass("log-item");
 	}
 
 	public void setView(LogView parent) {

@@ -1,6 +1,5 @@
 package org.beuwi.msgbots.view.gui.control;
 
-import javafx.css.PseudoClass;
 import javafx.event.EventTarget;
 import javafx.geometry.Side;
 import javafx.scene.Node;
@@ -8,14 +7,16 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
-public class ContextMenu extends javafx.scene.control.ContextMenu {
+import org.beuwi.msgbots.view.gui.control.base.ContextMenuBase;
+
+public class ContextMenu extends ContextMenuBase {
 	public ContextMenu() {
 		this(null);
 	}
 
 	public ContextMenu(MenuItem... items) {
 		if (items != null) {
-			getItems().setAll(items);
+			initItems(items);
 		}
 	}
 
@@ -31,8 +32,8 @@ public class ContextMenu extends javafx.scene.control.ContextMenu {
 				}
 			});
 			
-			this.showingProperty().addListener(change -> {
-				button.pseudoClassStateChanged(PseudoClass.getPseudoClass("showing"), isShowing());
+			addChangeListener("showing", change -> {
+				button.setPseudoClass("showing", isShowing());
 			});
 		}
 		else {

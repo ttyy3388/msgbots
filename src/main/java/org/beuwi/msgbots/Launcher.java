@@ -27,7 +27,7 @@ public class Launcher extends Application {
 	@Override
 	public void init() {
 		// 전역 값 등록(가장 먼저)
-		registerValues();
+		registryValues();
 		updateValues();
 
 		// 시작 다이얼로그 오픈
@@ -87,7 +87,7 @@ public class Launcher extends Application {
 		});
 	}
 
-	private void registerValues() {
+	private void registryValues() {
 		SharedValues.register(false, "path.mainFolder", System.getProperty("user.dir"));
 		SharedValues.register(false, "path.dataFolder", System.getProperty("user.dir") + File.separator + "data");
 		SharedValues.register(true, "path.botFolder", System.getProperty("user.dir") + File.separator + "bots"); // 봇 폴더 커스텀 가능
@@ -127,7 +127,7 @@ public class Launcher extends Application {
 		// CheckAppUpdateAction.getInstance().execute();
 		// 가이드 페이지 오픈
 		OpenWebViewTabAction.getInstance().execute(
-			"WELCOME GUIDE", new WebPage("welcome-guide-page")
+			"WELCOME GUIDE", WebPage.getPage("welcome-guide-page")
 		);
 
 		// Start Window

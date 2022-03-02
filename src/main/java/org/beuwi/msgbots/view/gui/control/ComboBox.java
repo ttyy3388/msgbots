@@ -3,12 +3,14 @@ package org.beuwi.msgbots.view.gui.control;
 import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
 
-public class ComboBox<T> extends javafx.scene.control.ComboBox<T> {
+import org.beuwi.msgbots.view.gui.control.base.ComboBoxBase;
+
+public class ComboBox<T> extends ComboBoxBase<T> {
 	public ComboBox() {
 		setMinHeight(25);
 		setPrefWidth(200);
 		setPrefHeight(25);
-		// getStyleClass().addAll("combo-box");
+		// addStyleClass("combo-box");
 	}
 
 	public void selectNext() {

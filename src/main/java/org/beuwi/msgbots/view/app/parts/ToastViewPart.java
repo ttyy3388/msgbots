@@ -3,6 +3,7 @@ package org.beuwi.msgbots.view.app.parts;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
 
 import org.beuwi.msgbots.base.Session;
@@ -19,7 +20,7 @@ import org.beuwi.msgbots.view.util.AllSVGIcons;
 public class ToastViewPart extends AnchorPane implements View {
 	private static ToastViewPart instance = null;
 
-	private final ObservableMap<String, Object> namespace;
+	private final ObservableMap<String, Node> namespace;
 	private final FormLoader loader;
 	// private final AnchorPane root;
 
@@ -71,7 +72,7 @@ public class ToastViewPart extends AnchorPane implements View {
 	}
 
 	@Override
-	public Object findById(String id) {
+	public Node findById(String id) {
 		return namespace.get(id);
 	}
 

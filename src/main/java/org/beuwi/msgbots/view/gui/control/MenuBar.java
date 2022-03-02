@@ -6,7 +6,7 @@ import org.beuwi.msgbots.view.gui.layout.HBox;
 
 public class MenuBar extends HBox {
     public MenuBar() {
-        setFitChild(true);
+        setFitContent(true);
         setMinHeight(20);
         setPrefHeight(20);
         getStyleClass().add("menu-bar");

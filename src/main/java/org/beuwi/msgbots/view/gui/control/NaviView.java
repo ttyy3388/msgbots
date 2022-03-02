@@ -6,8 +6,8 @@ import org.beuwi.msgbots.view.gui.control.base.TabViewBase;
 import org.beuwi.msgbots.view.gui.layout.StackPane;
 
 public class NaviView extends TabViewBase<NaviItem> {
-	private final ListView<NaviItem> headerArea = getHeaderArea();
-	private final StackPane contentArea = getContentArea();
+	private final ListView<NaviItem> header = getHeaderArea();
+	private final StackPane content = getContentArea();
 
 	public NaviView() {
 		this(null);
@@ -16,13 +16,14 @@ public class NaviView extends TabViewBase<NaviItem> {
 	public NaviView(NaviItem... items) {
 		super(items);
 
-		headerArea.setMinWidth(150);
-		headerArea.setMaxWidth(150);
+		header.setMinWidth(150);
+		header.setPrefWidth(150);
+		header.setMaxWidth(150);
 
 		setSide(Side.LEFT);
 		// setMargin(150);
 		setPrefWidth(500);
 		setPrefHeight(600);
-		getStyleClass().add("navi-view");
+		addStyleClass("navi-view");
 	}
 }

@@ -14,12 +14,17 @@ public class OpenDebugTabAction implements Executor {
 
 	public void execute(Project project) {
 		String botName = project.getName();
+		TabItem tabItem = tabView.getTab(botName);
+
 		// 이미 해당 탭이 추가 돼 있다면 선택
-		if (tabView.findById(botName) != -1) {
-		    tabView.selectTab(tabView.findById(botName));
+		if (tabItem != null) {
+		    tabView.selectTab(tabItem);
 		}
 		else {
-			tabView.addTab(new TabItem(botName, GUIManager.toViewPane(project)));
+			tabItem = new TabItem();
+			tabItem.setText(botName);
+			tabItem.setContent(GUIManager.toViewPane(project));
+			tabView.addTab(tabItem);
 		}
 	}
 

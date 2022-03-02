@@ -8,9 +8,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.SVGPath;
 
-public class SVGGlyph extends Pane {
-	// private final Paint color = SharedColors.getColor("icon-default");
+import org.beuwi.msgbots.view.gui.control.base.SVGGlyphBase;
 
+public class SVGGlyph extends SVGGlyphBase {
+	// private final Paint color = SharedColors.getColor("icon-default");
 
 	private final SVGPath shape = new SVGPath();
 
@@ -23,14 +24,14 @@ public class SVGGlyph extends Pane {
 	}
 
 	public SVGGlyph(String path, double width, double height) {
-		pathProperty().addListener(change -> {
+		addChangeListener("path", change -> {
 			String content = getPath();
 			if (content != null && !content.isEmpty()) {
 				shape.setContent(content);
 			}
 		});
 
-		fillProperty().addListener(change -> {
+		addChangeListener("fill", change -> {
 			Paint fill = getFill();
 			if (fill != null) {
 				shape.setFill(fill);
@@ -41,7 +42,7 @@ public class SVGGlyph extends Pane {
 			setPath(path);
 		}
 
-		/* parentProperty().addListener(change -> {
+		/* addChangeListener("parent", change -> {
 			// 부모 이벤트를 받아서 아이콘 색 변경에 활용함
 			Parent parent = getParent();
 			if (parent != null) {
@@ -72,7 +73,7 @@ public class SVGGlyph extends Pane {
 		// setFill(Color.BLACK); // Moved CSS
         setSize(width, height);
 		setShape(shape);
-        getStyleClass().add("icon");
+        addStyleClass("icon");
 	}
 
 	public void setSize(double width, double height) {
@@ -82,24 +83,24 @@ public class SVGGlyph extends Pane {
 	}
 
 	private final ObjectProperty<Paint> fillProperty = new SimpleObjectProperty<>();
+	public final ObjectProperty<Paint> fillProperty() {
+		return fillProperty;
+	}
 	public void setFill(Paint fill) {
 		fillProperty.set(fill);
 	}
 	public Paint getFill() {
 		return fillProperty.get();
 	}
-	public ObjectProperty<Paint> fillProperty() {
-		return fillProperty;
-	}
 
 	private final StringProperty pathProperty = new SimpleStringProperty();
+	public final StringProperty pathProperty() {
+		return pathProperty;
+	}
 	public void setPath(String path) {
 		pathProperty.set(path);
 	}
 	public String getPath() {
 		return pathProperty.get();
-	}
-	public StringProperty pathProperty() {
-		return pathProperty;
 	}
 }

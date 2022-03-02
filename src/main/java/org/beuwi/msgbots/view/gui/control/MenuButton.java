@@ -19,7 +19,7 @@ public class MenuButton extends Button {
 			setText(text);
 		}
 
-		getStyleClass().add("menu-button");
+		addStyleClass("menu-button");
 	}
 
 	public void setContextMenu(ContextMenu menu) {

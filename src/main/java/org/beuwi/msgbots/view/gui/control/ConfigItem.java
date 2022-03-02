@@ -85,7 +85,7 @@ public class ConfigItem extends VBox {
 				Dfile dfile = SharedValues.getDfile("dfile.scriptDefault");
 				editor.setText(dfile.getData());
 				// 에디터는 포커스 이벤트가 안오므로 텍스트 변경으로 인식
-				editor.textProperty().addListener(change -> {
+				editor.addChangeListener("text", change -> {
 					dfile.setData(editor.getText());
 				});
 			}
@@ -93,7 +93,7 @@ public class ConfigItem extends VBox {
 				Dfile dfile = SharedValues.getDfile("dfile.scriptUnified");
 				editor.setText(dfile.getData());
 				// 에디터는 포커스 이벤트가 안오므로 텍스트 변경으로 인식
-				editor.textProperty().addListener(change -> {
+				editor.addChangeListener("text", change -> {
 					dfile.setData(editor.getText());
 				});
 			}
@@ -128,7 +128,7 @@ public class ConfigItem extends VBox {
 		if (control instanceof CheckBox) {
 			CheckBox checkbox = (CheckBox) control;
 			checkbox.setSelected(SharedSettings.getBoolean(type, address));
-			checkbox.selectedProperty().addListener(change -> {
+			checkbox.addChangeListener("selected", change -> {
 				SharedSettings.setData(type, address, checkbox.isSelected());
 			});
 		}
@@ -138,35 +138,35 @@ public class ConfigItem extends VBox {
 			if (address.equals("program.colorTheme")) {
 				combobox.selectItem(ThemeType.parse(SharedSettings.getData(type, address)));
 			}
-			combobox.selectedItemProperty().addListener(change -> {
+			combobox.addChangeListener("selectedItem", change -> {
 				SharedSettings.setData(type, address, combobox.getSelectedItem().toString());
 			});
 		}
 		else if (control instanceof TextArea) {
 			TextArea textbox = (TextArea) control;
 			textbox.setText(SharedSettings.getString(type, address));
-			textbox.focusedProperty().addListener(change -> {
+			textbox.addChangeListener("focused", change -> {
 				SharedSettings.setData(type, address, textbox.getText());
 			});
 		}
 		else if (control instanceof TextField) {
 			TextField textbox = (TextField) control;
 			textbox.setText(SharedSettings.getString(type, address));
-			textbox.focusedProperty().addListener(change -> {
+			textbox.addChangeListener("focused", change -> {
 				SharedSettings.setData(type, address, textbox.getText());
 			});
 		}
 		else if (control instanceof ToggleButton) {
 			ToggleButton button = (ToggleButton) control;
 			button.setSelected(SharedSettings.getBoolean(type, address));
-			button.selectedProperty().addListener(change -> {
+			button.addChangeListener("selected", change -> {
 				SharedSettings.setData(type, address, button.isSelected());
 			});
 		}
 		else if (control instanceof Slider) {
 			Slider slider = (Slider) control;
 			slider.setValue(SharedSettings.getInt(type, address));
-			slider.focusedProperty().addListener(change -> {
+			slider.addChangeListener("focused", change -> {
 				SharedSettings.setData(type, address, slider.getValue());
 			});
 		}
@@ -176,14 +176,14 @@ public class ConfigItem extends VBox {
 		// 외부에서 파일 값을 변경했을 경우 : 보류(GlobalSettings 참조)
 		// GlobalSettings.addChangeListener(this::initValue);
 
-		titleLabel.getStyleClass().add("title-label");
-		textLabel.getStyleClass().add("text-label");
+		titleLabel.addStyleClass("title-label");
+		textLabel.addStyleClass("text-label");
 		controlArea.setAlignment(Pos.CENTER_LEFT);
-		controlArea.getStyleClass().add("control-area");
+		controlArea.addStyleClass("control-area");
 		// contentArea.setAlignment(Pos.CENTER_LEFT);
-		// contentArea.getStyleClass().add("content-area");
+		// contentArea.addStyleClass("content-area");
 
-		titleProperty().addListener(change -> {
+		addChangeListener("title", change -> {
 			String title = getTitle();
 			/* List<Node> list = getChildren();
 			// 텍스트가 없는 경우 목록에서 제거함(빈공간이 남기때문에 제거)
@@ -206,7 +206,7 @@ public class ConfigItem extends VBox {
 			titleLabel.setText(title);
 		});
 
-		/* contentProperty().addListener(change -> {
+		/* addChangeListener("content", change -> {
 			// 자식이 없는 경우는 생각하지 않으므로 폐기
 			Node content = getContent();
 			List<Node> list = getChildren();
@@ -225,7 +225,7 @@ public class ConfigItem extends VBox {
 			}
 		}); */
 
-		textProperty().addListener(change -> {
+		addChangeListener("text", change -> {
 			String text = getText();
 			List<Node> list = getChildren();
 			// 텍스트가 없는 경우 목록에서 제거함(빈공간이 남기때문에 제거)
@@ -246,24 +246,24 @@ public class ConfigItem extends VBox {
 			}
 		});
 
-		controlProperty().addListener(change -> {
-			controlArea.getChildren().setAll(getControl());
+		addChangeListener("control", change -> {
+			controlArea.initChildren(getControl());
 		});
 		/* contentProperty().addListener(change -> {
 			contentArea.getChildren().setAll(getContent());
 		}); */
 
-		typeProperty().addListener(change -> initValue());
-		addressProperty().addListener(change -> initValue());
+		addChangeListener("type", change ->  initValue());
+		addChangeListener("address", change ->  initValue());
 
 		// setPadding(DEFAULT_MARGIN_VALUE);
 		// setPadding(DEFAULT_PADDING_VALUE);
 		setSpacing(8);
-		getChildren().setAll(
+		initChildren(
 			titleLabel,
 			controlArea
 		);
-		getStyleClass().add("config-item");
+		initStyleClass("config-item");
 	}
 
 	// 유저가 설정한 옵션이 있으면 제일 먼저 가져오고

@@ -181,7 +181,10 @@
 }
 .debug-pane .tab-view {
 }
-.debug-pane .tab-view > .header-area {
+.debug-pane .tab-view > .inner-area {
+
+}
+.debug-pane .tab-view > .inner-area > .header-area {
 	-fx-background-color: transparent;
 }
 .debug-pane .tab-item {
@@ -358,10 +361,10 @@
 .tab-view {
 	-fx-background-color: #1e1e1e;
 }
-.tab-view > .header-area {
+.tab-view > .inner-area > .header-area {
 	-fx-background-color: #252526;
 }
-.tab-view > .content-area {
+.tab-view > .inner-area > .content-area {
 	-fx-background-color: #1e1e1e;
 }
 
@@ -391,10 +394,10 @@
 .navi-view {
 	-fx-background-color: #1e1e1e;
 }
-.navi-view > .header-area {
+.navi-view > .inner-area > .header-area {
 	-fx-background-color: #252526;
 }
-.navi-view > .content-area {
+.navi-view > .inner-area > .content-area {
 	-fx-background-color: #1e1e1e;
 }
 
@@ -478,7 +481,7 @@
 .tool-area .tab-item:selected > .header > .text-label {
 	-fx-border-color: #ffffff;
 }
-.tool-area .tab-view > .header-area {
+.tool-area .tab-view > .inner-area > .header-area {
 	-fx-background-color: #1e1e1e;
 }
 .tool-area .editor,

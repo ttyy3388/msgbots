@@ -1,6 +1,7 @@
 package org.beuwi.msgbots.shared;
 
 import javafx.scene.image.Image;
+
 import org.beuwi.msgbots.base.Dfile;
 
 import java.io.File;

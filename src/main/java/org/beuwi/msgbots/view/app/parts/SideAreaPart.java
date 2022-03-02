@@ -2,6 +2,7 @@ package org.beuwi.msgbots.view.app.parts;
 
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.base.impl.View;
@@ -15,7 +16,7 @@ public class SideAreaPart extends StackPane implements View {
 	// private static final int MAX_WIDTH = 000;
 	private static final int TOGGLE_WIDTH = 100;
 
-	private final ObservableMap<String, Object> namespace;
+	private final ObservableMap<String, Node> namespace;
 	private final FormLoader loader;
 
 	@FXML private TabView tabView;
@@ -49,7 +50,7 @@ public class SideAreaPart extends StackPane implements View {
 	}
 
 	@Override
-	public Object findById(String id) {
+	public Node findById(String id) {
 		return namespace.get(id);
 	}
 

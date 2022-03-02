@@ -61,7 +61,7 @@ class WindowFrame extends StackPane {
 			content = new ShadowPane(content); // 그림자 효과 적용을 위해
 			builder.setContent(content);
 		} */
-		getStyleClass().add("window-box");
+		addStyleClass("window-box");
 	}
 
 	public void setTitle(String title) {

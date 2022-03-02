@@ -22,7 +22,7 @@
 
 <VBox spacing="15.0" prefWidth="600.0" prefHeight="500.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<children>
-		<HBox spacing="10.0" fitChild="true" prefHeight="50.0">
+		<HBox spacing="10.0" fitContent="true" prefHeight="50.0">
 			<children>
 				<Pane prefWidth="2.5" style="-fx-background-color: #007ACC;"></Pane>
 				<ImageView fx:id="imageView"
@@ -69,7 +69,7 @@
 											title="봇 폴더 지정"
 											text="생성한 봇들이 저장될 폴더를 선택합니다. (프로그램 경로 기본)">
 									<control>
-										<HBox spacing="10.0" fitChild="true">
+										<HBox spacing="10.0" fitContent="true">
 											<children>
 												<TextField fx:id="txfBotDirPath"
 														   HBox.hgrow="ALWAYS"
@@ -86,7 +86,7 @@
 											title="저장 폴더 지정"
 											text="파일 스트림의 기준이 될 루트 폴더를 선택합니다. (프로그램 경로 기본)">
 									<control>
-										<HBox spacing="10.0" fitChild="true">
+										<HBox spacing="10.0" fitContent="true">
 											<children>
 												<TextField fx:id="txfSaveDirPath"
 														   HBox.hgrow="ALWAYS"

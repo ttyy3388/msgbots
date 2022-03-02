@@ -3,12 +3,11 @@ package org.beuwi.msgbots.view.gui.control;
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ReadOnlyBooleanProperty;
-import javafx.beans.property.ReadOnlyIntegerProperty;
-import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.css.PseudoClass;
 import javafx.scene.Node;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.SelectionModel;
@@ -16,63 +15,61 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
+import org.beuwi.msgbots.view.gui.control.base.ListViewBase;
+
 import java.util.List;
 
-public class ListView<T> extends javafx.scene.control.ListView<T> {
-	private static final PseudoClass SELECTED_PSEUDO_CLASS = PseudoClass.getPseudoClass("selected");
-
+public class ListView<T> extends ListViewBase<T> {
 	private final BooleanProperty fitWidthProperty = new SimpleBooleanProperty();
-	private final InvalidationListener fitWidthListener = observable -> {
-		List<T> items = getItems();
-		for (T item : items) {
-			if (item instanceof Pane) {
-				double width = getPrefWidth();
-				Pane pane = (Pane) item;
-				pane.setPrefWidth(width / items.size()); // 너비를 아이템 갯수로 나눔
-			}
-		};
-	};
+	public final ReadOnlyBooleanProperty fitWidthProperty() {
+		return fitWidthProperty;
+	}
 	public void setFitWidth(boolean fitWidth) {
 		fitWidthProperty.set(fitWidth);
 	}
 	public boolean isFitWidth() {
 		return fitWidthProperty.get();
 	}
-	public ReadOnlyBooleanProperty fitWidthProperty() {
-		return fitWidthProperty;
-	}
-
-	private final BooleanProperty fitHeightProperty = new SimpleBooleanProperty();
-	private final InvalidationListener fitHeightListener = observable -> {
+	private final InvalidationListener fitWidthListener = observable -> {
 		List<T> items = getItems();
 		for (T item : items) {
-			if (item instanceof Pane) {
-				double height = getPrefHeight();
-				Pane pane = (Pane) item;
-				pane.setPrefHeight(height / items.size()); // 높이를 아이템 갯수로 나눔
+			if (item instanceof Pane pane) {
+				double width = getPrefWidth();
+				pane.setPrefWidth(width / items.size()); // 너비를 아이템 갯수로 나눔
 			}
 		};
 	};
+
+	private final BooleanProperty fitHeightProperty = new SimpleBooleanProperty();
+	public final ReadOnlyBooleanProperty fitHeightProperty() {
+		return fitHeightProperty;
+	}
 	public void setFitHeight(boolean fitWidth) {
 		fitHeightProperty.set(fitWidth);
 	}
 	public boolean isFitHeight() {
 		return fitHeightProperty.get();
 	}
-	public ReadOnlyBooleanProperty fitHeightProperty() {
-		return fitHeightProperty;
-	}
+	private final InvalidationListener fitHeightListener = observable -> {
+		List<T> items = getItems();
+		for (T item : items) {
+			if (item instanceof Pane pane) {
+				double height = getPrefHeight();
+				pane.setPrefHeight(height / items.size()); // 높이를 아이템 갯수로 나눔
+			}
+		};
+	};
 
 	// 해당 프로펄티가 활성화일 때는 자동으로 추가된 아이템으로 스크롤함
 	private final BooleanProperty autoScrollProperty = new SimpleBooleanProperty();
+	private ReadOnlyBooleanProperty autoScrollProperty() {
+		return autoScrollProperty;
+	}
 	public void setAutoScroll(boolean value) {
 		autoScrollProperty.set(value);
 	}
 	public boolean isAutoScroll() {
 		return autoScrollProperty.get();
-	}
-	public ReadOnlyBooleanProperty autoScrollProperty() {
-		return autoScrollProperty;
 	}
 
 	/* public void setUseVbar(boolean value) {
@@ -81,25 +78,34 @@ public class ListView<T> extends javafx.scene.control.ListView<T> {
 	} */
 
 	public ListView() {
-		fitWidthProperty().addListener(change -> {
+		getItems().addListener((ListChangeListener<T>) change -> {
+			while (change.next()) {
+				for (T item : change.getAddedSubList()) {
+					if (isAutoScroll()) {
+						scrollTo(item);
+					}
+				}
+			}
+		});
+		addChangeListener("fitWidth", change -> {
 			if (isFitWidth()) {
 				getItems().addListener(fitWidthListener);
-				prefWidthProperty().addListener(fitWidthListener);
+				getFXProperty("prefWidth").addListener(fitWidthListener);
 			}
 			else {
 				getItems().removeListener(fitWidthListener);
-				prefWidthProperty().removeListener(fitWidthListener);
+				getFXProperty("prefWidth").removeListener(fitWidthListener);
 			}
 		});
 
-		fitHeightProperty().addListener(change -> {
+		addChangeListener("fitHeight", change -> {
 			if (isFitHeight()) {
 				getItems().addListener(fitHeightListener);
-				prefWidthProperty().addListener(fitHeightListener);
+				getFXProperty("prefHeight").addListener(fitHeightListener);
 			}
 			else {
 				getItems().removeListener(fitHeightListener);
-				prefWidthProperty().removeListener(fitHeightListener);
+				getFXProperty("prefHeight").removeListener(fitHeightListener);
 			}
 		});
 
@@ -112,28 +118,17 @@ public class ListView<T> extends javafx.scene.control.ListView<T> {
 			}
 		});
 
-		getItems().addListener((ListChangeListener<T>) change -> {
-			while (change.next()) {
-				for (T item : change.getAddedSubList()) {
-					if (isAutoScroll()) {
-						scrollTo(item);
-					}
-				}
-			}
-		});
-
 		SelectionModel<T> model = getSelectionModel();
 		// 셀이 선택되었을 경우 자동으로 하위 아이템이 선택된거로 인식하도록
-		model.selectedItemProperty().addListener((observable, oldItem, newItem) -> {
-			if (newItem instanceof Node) {
-				((Node) newItem).pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, true);
-			}
-			if (oldItem instanceof Node) {
-				((Node) oldItem).pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, false);
+		addChangeListener(getFXProperty(model, "selectedItem"), (ChangeListener<Node>) (observable, oldItem, newItem) -> {
+			setPseudoClass(newItem, "selected", true);
+			if (oldItem != null) {
+				setPseudoClass(oldItem, "selected", false);
 			}
 		});
 	}
 
+	@Override
 	public Node findById(String id) {
 		for (T item : getItems()) {
 			if (item instanceof Node) {
@@ -158,6 +153,7 @@ public class ListView<T> extends javafx.scene.control.ListView<T> {
 	public void selectAll() {
 		getSelectionModel().selectAll();
 	}
+
 	public void setSelectedItem(T item) {
 		getSelectionModel().select(item);
 	}
@@ -170,13 +166,11 @@ public class ListView<T> extends javafx.scene.control.ListView<T> {
 	public int getSelectedIndex() {
 		return getSelectionModel().getSelectedIndex();
 	}
+
+	public ObservableList<Integer> getSelectedIndices() {
+		return getSelectionModel().getSelectedIndices();
+	}
 	public ObservableList<T> getSelectedItems() {
 		return getSelectionModel().getSelectedItems();
-	}
-	public ReadOnlyObjectProperty<T> selectedItemProperty() {
-		return getSelectionModel().selectedItemProperty();
-	}
-	public ReadOnlyIntegerProperty selectedIndexProperty() {
-		return getSelectionModel().selectedIndexProperty();
 	}
 }

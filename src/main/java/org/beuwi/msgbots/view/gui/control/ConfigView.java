@@ -23,22 +23,22 @@ public class ConfigView extends VBox {
 	private final Label lblTitle = new Label();
 
 	// "Content"안에 "OptionItem"들이 들어감
-	private final VBox contentArea = new VBox();
+	private final VBox vbxContent = new VBox();
 
 	{
-		VBox.setVgrow(contentArea, Priority.ALWAYS);
+		VBox.setVgrow(vbxContent, Priority.ALWAYS);
 	}
 
 	public ConfigView() {
 		lblTitle.setMinHeight(50);
-		lblTitle.getStyleClass().add("h2");
-		lblTitle.getStyleClass().add("bold");
+		lblTitle.addStyleClass("h2");
+		lblTitle.addStyleClass("bold");
 
-		contentArea.getChildren().setAll(getChildren());
-		contentArea.setSpacing(30);
-		// contentArea.getStyleClass().add("content");
+		vbxContent.setSpacing(30);
+		vbxContent.initChildren(getChildren());
+		// vbxContent.addStyleClass("content");
 
-		titleProperty().addListener(change -> {
+		addChangeListener("title", change -> {
 			String title = getTitle();
 			List<Node> list = getChildren();
 			// 텍스트가 없는 경우 목록에서 제거함(빈공간이 남기때문에 제거)
@@ -58,38 +58,38 @@ public class ConfigView extends VBox {
 		});
 
 		getItems().addListener((ListChangeListener<Node>) change -> {
-			contentArea.getChildren().setAll(getItems());
+			vbxContent.initChildren(getItems());
 		});
 
 		setPadding(new Insets(0, 15, 0, 15));
 		// setSpacing(DEFAULT_SPACING_VALUE);
-		getChildren().setAll(
+		initChildren(
 			// lblTitle, // 제목이 입력돼야 추가되도록 변경함
-			contentArea
+			vbxContent
 		);
-		getStyleClass().addAll("config-view");
+		addStyleClass("config-view");
 	}
 
 	private final StringProperty titleProperty = new SimpleStringProperty();
+	public final StringProperty titleProperty() {
+		return titleProperty;
+	}
 	public void setTitle(String title) {
 		this.titleProperty.set(title);
 	}
 	public String getTitle() {
 		return titleProperty.get();
 	}
-	public StringProperty titleProperty() {
-		return titleProperty;
-	}
 
 	/* private final ObjectProperty<PrefType> typeProperty = new SimpleObjectProperty();
+	public final ObjectProperty<PrefType> typeProperty() {
+		return typeProperty;
+	}
 	public void setType(PrefType type) {
 		typeProperty.set(type);
 	}
 	public PrefType getType() {
 		return typeProperty.get();
-	}
-	public ObjectProperty<PrefType> typeProperty() {
-		return typeProperty;
 	} */
 
 	public ObservableList<ConfigItem> getItems() {

@@ -3,6 +3,7 @@ package org.beuwi.msgbots.view.app.tabs;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 
 import org.beuwi.msgbots.base.Session;
 import org.beuwi.msgbots.base.impl.View;
@@ -20,7 +21,7 @@ public class DebugRoomTab extends TabItem implements View {
 
 	private static DebugRoomTab instance = null;
 
-	private final ObservableMap<String, Object> namespace;
+	private final ObservableMap<String, Node> namespace;
 	private final FormLoader loader;
 
 	@FXML private ChatArea control;
@@ -40,7 +41,7 @@ public class DebugRoomTab extends TabItem implements View {
 		final Session session = Session.GLOBAL;
 
 		session.addOnChatListener((message, isBot) -> {
-			view.getItems().add(new ChatItem(message, true));
+			view.addItems(new ChatItem(message, true));
 		});
 
 		view.getItems().addListener((ListChangeListener<ChatItem>) change -> {
@@ -60,7 +61,7 @@ public class DebugRoomTab extends TabItem implements View {
 	}
 
 	@Override
-	public Object findById(String id) {
+	public Node findById(String id) {
 		return namespace.get(id);
 	}
 

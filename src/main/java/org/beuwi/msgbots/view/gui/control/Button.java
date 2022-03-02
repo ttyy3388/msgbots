@@ -4,15 +4,33 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.css.PseudoClass;
 import javafx.geometry.Insets;
 
+import org.beuwi.msgbots.view.gui.control.base.ButtonBase;
 import org.beuwi.msgbots.view.gui.type.ButtonType;
 
-public class Button extends javafx.scene.control.Button {
-	private static final PseudoClass STYLED_PSEUDO_CLASS = PseudoClass.getPseudoClass("styled");
-	private static final PseudoClass ACTION_PSEUDO_CLASS = PseudoClass.getPseudoClass("action");
-	private static final PseudoClass CANCEL_PSEUDO_CLASS = PseudoClass.getPseudoClass("cancel");
+public class Button extends ButtonBase {
+	private final ObjectProperty<ButtonType> typeProperty = new SimpleObjectProperty(null);
+	public final ObjectProperty<ButtonType> typeProperty() {
+		return typeProperty;
+	}
+	public void setType(ButtonType type) {
+		typeProperty.set(type);
+	}
+	public ButtonType getType() {
+		return typeProperty.get();
+	}
+
+	private final BooleanProperty styledProperty = new SimpleBooleanProperty(false);
+	public final BooleanProperty styledProperty() {
+		return styledProperty;
+	}
+	public void setStyled(boolean styled) {
+		styledProperty.set(styled);
+	}
+	public boolean isStyled() {
+		return styledProperty.get();
+	}
 
 	public Button() {
 		this(null);
@@ -23,7 +41,7 @@ public class Button extends javafx.scene.control.Button {
 			setText(text);
 		}
 
-		styledProperty().addListener(change -> {
+		addChangeListener("styled", change -> {
 			boolean styled = isStyled();
 
 			// 기본 타입 지정
@@ -36,44 +54,23 @@ public class Button extends javafx.scene.control.Button {
 				setPrefHeight(25);
 			}
 
-			pseudoClassStateChanged(STYLED_PSEUDO_CLASS, styled);
+			setPseudoClass("styled", styled);
 		});
 
-		typeProperty().addListener(change -> {
+		addChangeListener("type", change -> {
 			ButtonType type = getType();
-		    pseudoClassStateChanged(ACTION_PSEUDO_CLASS, type.equals(ButtonType.ACTION));
-			pseudoClassStateChanged(CANCEL_PSEUDO_CLASS, type.equals(ButtonType.CANCEL));
+			setPseudoClass("action", type.equals(ButtonType.ACTION));
+			setPseudoClass("cancel", type.equals(ButtonType.CANCEL));
 		});
 
 		// 텍스트가 입력됐으면 여백 값 입력
-		textProperty().addListener(change -> {
-			if (getText() != null) {
+		addChangeListener("text", change -> {
+			String value = getText();
+			if (value != null) {
 				setPadding(new Insets(0, 10, 0, 10));
 			}
 		});
 
 		// setType(Type.CANCEL);
-	}
-
-	private final ObjectProperty<ButtonType> typeProperty = new SimpleObjectProperty(null);
-	public void setType(ButtonType type) {
-		typeProperty.set(type);
-	}
-	public ButtonType getType() {
-		return typeProperty.get();
-	}
-	public ObjectProperty<ButtonType> typeProperty() {
-		return typeProperty;
-	}
-
-	private final BooleanProperty styledProperty = new SimpleBooleanProperty(false);
-	public void setStyled(boolean styled) {
-		styledProperty.set(styled);
-	}
-	public boolean isStyled() {
-		return styledProperty.get();
-	}
-	public BooleanProperty styledProperty() {
-		return styledProperty;
 	}
 }

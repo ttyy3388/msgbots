@@ -1,8 +1,9 @@
 package org.beuwi.msgbots.view.gui.control;
 
+import org.beuwi.msgbots.view.gui.control.base.TextFieldBase;
 import org.beuwi.msgbots.view.util.StdActions;
 
-public class TextField extends javafx.scene.control.TextField {
+public class TextField extends TextFieldBase {
 	public TextField() {
 		this(null);
 	}

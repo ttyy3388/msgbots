@@ -1,4 +1,4 @@
-open module msgbots {
+open module org.beuwi.msgbots {
     // Java
     requires java.desktop;
 

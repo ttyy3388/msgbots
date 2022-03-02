@@ -18,8 +18,7 @@ public class TriggerOpenedEditorAction implements Executor {
 		TabItem item = control.getSelectedTab();
 		if (item != null) {
 			Node content = item.getContent();
-			if (content instanceof DebugPane) {
-				DebugPane pane = (DebugPane) content;
+			if (content instanceof DebugPane pane) {
 				Editor editor = pane.getEditor();
 				switch (trigger) {
 					case "undo" -> editor.undo();

@@ -34,7 +34,7 @@ public class BotView extends ListView<BotItem> {
 			}
 		});
 
-		getStyleClass().add("bot-view");
+		addStyleClass("bot-view");
 	}
 
 	@Override

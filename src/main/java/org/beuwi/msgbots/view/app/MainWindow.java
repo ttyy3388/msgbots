@@ -1,5 +1,6 @@
 package org.beuwi.msgbots.view.app;
 
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import org.beuwi.msgbots.view.app.views.MainView;
@@ -24,12 +25,12 @@ public class MainWindow extends WindowBuilder {
 		// pane.setMinWidth(800);
 		// pane.setMinHeight(600);
 		// Root 노드는 절대 Stage 사이즈를 넘을 수 없음
-			/* stage.widthProperty().addListener(change -> {
-				pane.setMaxWidth(stage.getWidth());
-			});
-			stage.heightProperty().addListener(change -> {
-				pane.setMaxHeight(stage.getHeight());
-			}); */
+		/* stage.widthProperty().addListener(change -> {
+			pane.setMaxWidth(stage.getWidth());
+		});
+		stage.heightProperty().addListener(change -> {
+			pane.setMaxHeight(stage.getHeight());
+		}); */
 
 		// Compute Stage Sizes
 		stage.setMinWidth(800);

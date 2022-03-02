@@ -85,22 +85,22 @@ public enum StdActions {
 	VIEW_KEYMAPS("View Keymaps", KeyBinding.VIEW_KEYMAPS),
 	VIEW_LICENSE("View License", KeyBinding.VIEW_LICENSE, event -> {
 		OpenWebViewTabAction.getInstance().execute(
-			"VIEW LICENSE", new WebPage("view-license-page")
+			"VIEW LICENSE", WebPage.getPage("view-license-page")
 		);
 	}),
 	RELEASE_NOTES("Release Notes", KeyBinding.RELEASE_NOTES, event -> {
 		OpenWebViewTabAction.getInstance().execute(
-			"RELEASE NOTES", new WebPage("release-notes-page")
+			"RELEASE NOTES", WebPage.getPage("release-notes-page")
 		);
 	}),
 	ABOUT_PROGRAM("About Program", KeyBinding.ABOUT_PROGRAM, event -> {
 		OpenWebViewTabAction.getInstance().execute(
-			"ABOUT PROGRAM", new WebPage("about-program-page")
+			"ABOUT PROGRAM", WebPage.getPage("about-program-page")
 		);
 	}),
 	WELCOME_GUIDE("Welcome Guide", KeyBinding.WELCOME_GUIDE, event -> {
         OpenWebViewTabAction.getInstance().execute(
-            "WELCOME GUIDE", new WebPage("welcome-guide-page")
+            "WELCOME GUIDE", WebPage.getPage("welcome-guide-page")
         );
     }),
 	ADB_CONNECT("Adb Connect"),

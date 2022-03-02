@@ -1,14 +1,18 @@
 package org.beuwi.msgbots.base;
 
+import javafx.beans.InvalidationListener;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import org.beuwi.msgbots.manager.FileManager;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Project {
+public class Project /* implements FXProperty */ {
 	private final Map<String, File> files = new HashMap<>();
 
 	private final File directory;
@@ -93,25 +97,25 @@ public class Project {
 	}
 
 	private final BooleanProperty powerProperty = new SimpleBooleanProperty(false);
+	public final BooleanProperty powerProperty() {
+		return powerProperty;
+	}
 	public void setPower(boolean value) {
 		powerProperty.set(value);
 	}
 	public boolean getPower() {
 		return powerProperty.get();
 	}
-	public BooleanProperty powerProperty() {
-		return powerProperty;
-	}
 
 	private final BooleanProperty compiledProperty = new SimpleBooleanProperty(false);
+	public final BooleanProperty compiledProperty() {
+		return compiledProperty;
+	}
 	public void setCompiled(boolean value) {
 		compiledProperty.set(value);
 	}
 	public boolean isCompiled() {
 		return compiledProperty.get();
-	}
-	public BooleanProperty compiledProperty() {
-		return compiledProperty;
 	}
 
 	// To GUI

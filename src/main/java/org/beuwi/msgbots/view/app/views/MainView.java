@@ -2,6 +2,7 @@ package org.beuwi.msgbots.view.app.views;
 
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.base.impl.View;
@@ -17,7 +18,7 @@ import org.beuwi.msgbots.view.gui.layout.StackPane;
 public class MainView extends StackPane implements View {
     private static MainView instance = null;
 
-    private final ObservableMap<String, Object> namespace;
+    private final ObservableMap<String, Node> namespace;
     private final FormLoader loader;
 
     @FXML private StackPane stpMenuBar;
@@ -39,17 +40,17 @@ public class MainView extends StackPane implements View {
         // root = loader.getRoot();
 
         // Add parts
-        stpMenuBar.getChildren().add(MenuBarPart.getInstance());
-        stpInnerArea.getChildren().add(ToastViewPart.getInstance());
-        stpSideArea.getChildren().add(SideAreaPart.getInstance());
-        stpMainArea.getChildren().add(MainAreaPart.getInstance());
-        stpToolArea.getChildren().add(ToolAreaPart.getInstance());
-        stpDebugArea.getChildren().add(DebugAreaPart.getInstance());
-        stpStatusBar.getChildren().add(StatusBarPart.getInstance());
+        stpMenuBar.addChildren(MenuBarPart.getInstance());
+        stpInnerArea.addChildren(ToastViewPart.getInstance());
+        stpSideArea.addChildren(SideAreaPart.getInstance());
+        stpMainArea.addChildren(MainAreaPart.getInstance());
+        stpToolArea.addChildren(ToolAreaPart.getInstance());
+        stpDebugArea.addChildren(DebugAreaPart.getInstance());
+        stpStatusBar.addChildren(StatusBarPart.getInstance());
     }
 
     @Override
-    public Object findById(String id) {
+    public Node findById(String id) {
         return namespace.get(id);
     }
 

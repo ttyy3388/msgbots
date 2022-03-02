@@ -2,15 +2,17 @@ package org.beuwi.msgbots.view.gui.layout;
 
 import javafx.scene.Node;
 
-public class StackPane extends javafx.scene.layout.StackPane {
+import org.beuwi.msgbots.view.gui.layout.base.StackPaneBase;
+
+public class StackPane extends StackPaneBase {
 	public StackPane() {
 		this(null);
 	}
 	public StackPane(Node... children) {
 		if (children != null) {
-			getChildren().setAll(children);
+			initChildren(children);
 		}
 
-		getStyleClass().add("stack-pane");
+		addStyleClass("stack-pane");
 	}
 }

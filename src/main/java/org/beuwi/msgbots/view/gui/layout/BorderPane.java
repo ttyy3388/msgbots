@@ -3,7 +3,9 @@ package org.beuwi.msgbots.view.gui.layout;
 import javafx.beans.NamedArg;
 import javafx.scene.Node;
 
-public class BorderPane extends javafx.scene.layout.BorderPane {
+import org.beuwi.msgbots.view.gui.layout.base.BorderPaneBase;
+
+public class BorderPane extends BorderPaneBase {
     {
         getStyleClass().add("border-pane");
     }

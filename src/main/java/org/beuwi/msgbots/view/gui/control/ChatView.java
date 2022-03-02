@@ -37,6 +37,6 @@ public class ChatView extends ListView<ChatItem> {
 
 		setAutoScroll(true);
 		// setSelectionMode(SelectionMode.SINGLE);
-		getStyleClass().add("chat-view");
+		addStyleClass("chat-view");
 	}
 }

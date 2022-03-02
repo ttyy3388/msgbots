@@ -2,6 +2,7 @@ package org.beuwi.msgbots.view.gui.control;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
@@ -10,9 +11,6 @@ import org.beuwi.msgbots.view.gui.layout.VBox;
 
 // 원래는 리스트 뷰를 사용하는게 맞으나 높이 문제로 인해 "VBox" 사용
 public class ToastView extends VBox {
-	private static final PseudoClass SELECTED_PSEUDO_CLASS = PseudoClass.getPseudoClass("selected");
-
-	private final ObjectProperty<ToastItem> selectedItemProperty = new SimpleObjectProperty(null);
 
 	public ToastView() {
 		getItems().addListener((ListChangeListener<ToastItem>) change -> {
@@ -24,12 +22,12 @@ public class ToastView extends VBox {
 			// setVisible(!getChildren().isEmpty());
 		});
 
-		selectedItemProperty().addListener((observable, oldItem, newItem) -> {
+		addChangeListener("selectedItem", (ChangeListener<? extends ToastItem>) (observable, oldItem, newItem) -> {
 			if (oldItem != null) {
-				oldItem.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, false);
+				oldItem.setPseudoClass("selected", false);
 			}
 			if (newItem != null) {
-				newItem.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, true);
+				newItem.setPseudoClass("selected", false);
 			}
 		});
 
@@ -40,7 +38,7 @@ public class ToastView extends VBox {
 		setMaxHeight(Double.MAX_VALUE);
 		// setPrefHeight(500);
 
-	    getStyleClass().add("toast-view");
+	    addStyleClass("toast-view");
 	}
 
 	// ListView처럼 동작해야 하므로 getItems로 재선언
@@ -51,13 +49,15 @@ public class ToastView extends VBox {
 	public void selectItem(ToastItem item) {
 		setSelectedItem(item);
 	}
+
+	private final ObjectProperty<ToastItem> selectedItemProperty = new SimpleObjectProperty(null);
+	public ObjectProperty<ToastItem> selectedItemProperty() {
+		return selectedItemProperty;
+	}
 	public void setSelectedItem(ToastItem item) {
 		selectedItemProperty.set(item);
 	}
 	public ToastItem getSelectedItem() {
 		return selectedItemProperty.get();
-	}
-	public ObjectProperty<ToastItem> selectedItemProperty() {
-		return selectedItemProperty;
 	}
 }

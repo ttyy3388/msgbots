@@ -14,7 +14,7 @@ import org.beuwi.msgbots.view.util.StdActions;
 
 import java.util.List;
 
-public class TabItem extends TabItemBase<TabView> {
+public class TabItem extends TabItemBase {
 	private final HBox header = new HBox();
 	private final Label label = new Label();
 
@@ -34,10 +34,11 @@ public class TabItem extends TabItemBase<TabView> {
 		this(title, new Pane());
 	}
 	public TabItem(String title, Node content) {
-		textProperty().addListener(change -> {
+		addChangeListener("text", change -> {
 			label.setText(getText());
 		});
-		closableProperty().addListener(change -> {
+
+		addChangeListener("closable", change -> {
 			// button.setVisible(isClosable());
 			// button.setDisable(!isClosable());
 			Insets padding = this.getPadding();
@@ -72,7 +73,8 @@ public class TabItem extends TabItemBase<TabView> {
 				}
 			}
 		});
-		textProperty().addListener(change -> {
+
+		addChangeListener("text", change -> {
 			this.setId(getText());
 		});
 
@@ -83,39 +85,31 @@ public class TabItem extends TabItemBase<TabView> {
 		if (content != null) {
 			setContent(content);
 		}
+
 		setHeader(header);
 
 		menu = new ContextMenu(
 			StdActions.CLOSE_TAB.handler(event -> {
 				getView().closeTab(this);
-			}).toMenuItem().enable(closableProperty()),
-			StdActions.CLOSE_OTHER_TABS.handler(event -> {
-				getView().closeOtherTabs(this);
-			}).toMenuItem(),
-			StdActions.CLOSE_ALL_TABS.handler(event -> {
-				getView().closeAllTabs();
-			}).toMenuItem()
-			// MenuItem.getSeparator()
-			/* StdActions.OPEN_TAB_TO_DIALOG.handler(event -> {
-				OpenTabToDialogAction.getInstance().execute(this);
-			}).toMenuItem() */
+			}).toMenuItem().enable(getFXProperty("closable"))
 		);
 		menu.setNode(this);
 
 		// label.setText(control.getText());
 		label.setMinWidth(30);
 		label.setAlignment(Pos.CENTER);
-		label.getStyleClass().add("text-label");
+		label.addStyleClass("text-label");
 
 		// header.setSpacing(10);
 		// header.setPrefWidth(80);
-		header.getChildren().setAll(label, button);
-		header.getStyleClass().add("header");
+		header.initChildren(label, button);
+		header.addStyleClass("header");
 
 		button.setOnAction(event -> {
+			TabView view = (TabView) getView();
 			// [getView]가 [null]일 경우는 없을 거 같지만 대비
-			if (getView() != null) {
-				getView().closeTab(this);
+			if (view != null) {
+				view.closeTab(this);
 			}
 		});
 		button.setGraphic(AllSVGIcons.get("Tab.Close"));
@@ -131,7 +125,7 @@ public class TabItem extends TabItemBase<TabView> {
 		setMinHeight(30);
 		setPrefHeight(30);
 		setMaxHeight(30);
-		getStyleClass().add("tab-item");
+		addStyleClass("tab-item");
 	}
 
 	// Action button
@@ -139,13 +133,13 @@ public class TabItem extends TabItemBase<TabView> {
 		return button;
 	}
 
+	public final StringProperty textProperty() {
+		return label.textProperty();
+	}
 	public void setText(String text) {
 		label.setText(text);
 	}
 	public String getText() {
 		return label.getText();
-	}
-	public StringProperty textProperty() {
-		return label.textProperty();
 	}
 }

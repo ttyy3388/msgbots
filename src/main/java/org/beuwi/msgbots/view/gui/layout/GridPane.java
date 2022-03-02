@@ -4,7 +4,9 @@ import javafx.scene.Node;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.RowConstraints;
 
-public class GridPane extends javafx.scene.layout.GridPane {
+import org.beuwi.msgbots.view.gui.layout.base.GridPaneBase;
+
+public class GridPane extends GridPaneBase {
     {
         getStyleClass().add("grid-pane");
     }

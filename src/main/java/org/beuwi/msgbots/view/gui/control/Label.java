@@ -3,7 +3,9 @@ package org.beuwi.msgbots.view.gui.control;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Label extends javafx.scene.control.Label {
+import org.beuwi.msgbots.view.gui.control.base.LabelBase;
+
+public class Label extends LabelBase {
 
 	{
 		setMaxWidth(Double.MAX_VALUE);

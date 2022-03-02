@@ -1,6 +1,9 @@
 package org.beuwi.msgbots.openapi;
 
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+
 import org.beuwi.msgbots.utils.ResourceUtils;
 
 import java.net.URL;
@@ -46,8 +49,12 @@ public class FormLoader extends FXMLLoader {
 		return result;
 	}
 
-
-	/* public <T extends Node> T findById(String id) {
-		return (T) getNamespace().get(id);
+	/* public Node findById(String id) {
+		return (Node) getNamespace().get(id);
 	} */
+
+	@Override
+	public ObservableMap getNamespace() {
+		return (ObservableMap) super.getNamespace();
+	}
 }

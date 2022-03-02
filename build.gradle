@@ -6,8 +6,8 @@ plugins {
 }
 
 java {
-	sourceCompatibility = JavaVersion.VERSION_16;
-	targetCompatibility = JavaVersion.VERSION_16;
+	sourceCompatibility = JavaVersion.VERSION_17;
+	targetCompatibility = JavaVersion.VERSION_17;
 }
 
 // gradle verison > 6.6.1 error
@@ -15,14 +15,14 @@ java {
 
 // 현재 JavaFX 15는 에디터 로딩 시 깨져서 로딩되는 문제점이 있음
 javafx {
-	version = '16'
+	version = '17'
 	modules = ['javafx.controls', 'javafx.fxml', 'javafx.web', 'javafx.swing']
 }
 
 
 application {
-	mainModule = "msgbots"
-	mainClassName = "org.beuwi.msgbots.Launcher"
+	mainModule.set('org.beuwi.msgbots')
+	mainClass.set('org.beuwi.msgbots.Launcher')
 }
 
 repositories {
@@ -47,44 +47,11 @@ dependencies {
 compileJava {
 	options.encoding = "UTF-8"
 	options.compilerArgs << "-Xlint:none"
-
-    moduleOptions {
-        addExports = [
-                'javafx.control/com.sun.javafx.scene.control' : 'org.beuwi.msgbots',
-                'javafx.graphics/com.sun.javafx.scene' : 'org.beuwi.msgbots',
-                'javafx.base/com.sun.javafx.event' : 'org.beuwi.msgbots',
-        ]
-    }
 }
 
 
 run {
-
-    moduleOptions {
-        addExports = [
-                'javafx.control/com.sun.javafx.scene.control' : 'org.beuwi.msgbots',
-                'javafx.graphics/com.sun.javafx.scene' : 'org.beuwi.msgbots',
-                'javafx.base/com.sun.javafx.event' : 'org.beuwi.msgbots',
-        ]
-    }
-	/* moduleOptions {
-		addExports = [
-				'javafx.control/com.sun.javafx.scene.control' : 'org.beuwi.msgbots',
-				'javafx.graphics/com.sun.javafx.scene' : 'org.beuwi.msgbots',
-				'javafx.base/com.sun.javafx.event' : 'org.beuwi.msgbots',
-		]
-		addOpens = [
-				'javafx.control/com.sun.javafx.scene.control' : 'org.beuwi.msgbots',
-				'javafx.graphics/com.sun.javafx.scene' : 'org.beuwi.msgbots',
-				'javafx.base/com.sun.javafx.event' : 'org.beuwi.msgbots',
-		]
-	} */
-	/* jvmArgs '--add-exports', 'javafx.web/com.sun.webkit=ALL-UNNAMED',
-			'--add-exports', 'javafx.graphics/com.sun.javafx.scene.graphics=ALL-UNNAMED',
-			'--add-exports', 'javafx.base/com.sun.javafx.event=ALL-UNNAMED',
-			'--add-exports', 'javafx.graphics/com.sun.javafx.iio=ALL-UNNAMED',
-			'--add-exports', 'javafx.graphics/com.sun.javafx.iio.common=ALL-UNNAMED',
-			'--add-exports', 'javafx.controls/com.sun.javafx.scene.control=ALL-UNNAMED' */
+	jvmArgs '--add-opens', 'javafx.web/javafx.scene.web=org.beuwi.msgbots'
 }
 
 jlink {

@@ -12,7 +12,9 @@ public class OpenWebViewTabAction implements Executor {
     private final TabView tabView = MainAreaPart.getInstance().getTabView();
 
     public void execute(String title, Pane content) {
-        execute(new TabItem(title, content));
+        execute(tabView.containsTab(title) ?
+                tabView.getTab(title) :
+                new TabItem(title, content));
     }
 
     public void execute(TabItem tabItem) {

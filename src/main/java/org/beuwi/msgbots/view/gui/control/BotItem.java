@@ -1,5 +1,7 @@
 package org.beuwi.msgbots.view.gui.control;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -81,10 +83,10 @@ public class BotItem extends GridPane {
 			}).toMenuItem()
 		).setNode(this);
 
-		project.powerProperty().addListener((observable, oldValue, newValue) -> {
+		addChangeListener(getFXProperty(project, "power"), (ChangeListener<Boolean>) (observable, oldValue, newValue) -> {
 			tgbPower.setSelected(newValue);
 		});
-		project.compiledProperty().addListener((observable, oldValue, newValue) -> {
+		addChangeListener(getFXProperty(project, "compiled"), (ChangeListener<Boolean>) (observable, oldValue, newValue) -> {
 			chkCompiled.setSelected(newValue);
 		});
 
@@ -94,7 +96,7 @@ public class BotItem extends GridPane {
 		});
 
 		tgbPower.setGraphic(AllSVGIcons.get("Bot.Power", 15, 15));
-		tgbPower.selectedProperty().addListener((observable, oldValue, newValue) -> {
+		addChangeListener(getFXProperty(tgbPower, "selected"), (ChangeListener<Boolean>) (observable, oldValue, newValue) -> {
 			project.setPower(newValue);
 		});
 
@@ -104,7 +106,7 @@ public class BotItem extends GridPane {
 		chkCompiled.setSelected(project.isCompiled());
 
 		setId(project.getName());
-		getStyleClass().add("bot-item");
+		addStyleClass("bot-item");
 	}
 
 	public BotView getView() {
@@ -117,26 +119,4 @@ public class BotItem extends GridPane {
 	public String getName() {
 		return lblName.getText();
 	}
-
-	/* private final BooleanProperty powerProperty = new SimpleBooleanProperty();
-	public void setPower(boolean power) {
-		powerProperty.set(power);
-	}
-	public boolean getPower() {
-		return powerProperty.get();
-	}
-	public ReadOnlyBooleanProperty powerProperty() {
-		return powerProperty;
-	}
-
-	private final BooleanProperty compiledProperty = new SimpleBooleanProperty();
-	public void setCompiled(boolean compiled) {
-		compiledProperty.set(compiled);
-	}
-	public boolean isCompiled() {
-		return compiledProperty.get();
-	}
-	public ReadOnlyBooleanProperty compiledProperty() {
-		return compiledProperty;
-	} */
 }

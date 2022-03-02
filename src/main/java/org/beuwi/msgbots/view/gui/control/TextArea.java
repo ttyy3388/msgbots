@@ -1,8 +1,9 @@
 package org.beuwi.msgbots.view.gui.control;
 
+import org.beuwi.msgbots.view.gui.control.base.TextAreaBase;
 import org.beuwi.msgbots.view.util.StdActions;
 
-public class TextArea extends javafx.scene.control.TextArea {
+public class TextArea extends TextAreaBase {
 	public TextArea() {
 		this(null);
 	}

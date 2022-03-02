@@ -1,7 +1,9 @@
 package org.beuwi.msgbots.view.gui.control;
 
-public class CheckBox extends javafx.scene.control.CheckBox {
+import org.beuwi.msgbots.view.gui.control.base.CheckBoxBase;
+
+public class CheckBox extends CheckBoxBase {
     /* {
-        getStyleClass().add("check-box");
+        addStyleClass("check-box");
     } */
 }

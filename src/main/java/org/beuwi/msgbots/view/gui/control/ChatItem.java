@@ -61,7 +61,7 @@ public class ChatItem extends HBox {
 
 			setAlignment(Pos.TOP_RIGHT);
 			getChildren().setAll(content);
-			pseudoClassStateChanged(PseudoClass.getPseudoClass("human"), true);
+			setPseudoClass("human", true);
 
 			if (GlobalSettings.getBoolean("debug.showSenderProfile")) {
 				getChildren().add(profile);
@@ -75,7 +75,7 @@ public class ChatItem extends HBox {
 
 			setAlignment(Pos.TOP_LEFT);
 			getChildren().setAll(content);
-			pseudoClassStateChanged(PseudoClass.getPseudoClass("bot"), true);
+			setPseudoClass("bot", true);
 
 			if (GlobalSettings.getBoolean("debug.showBotProfile")) {
 				getChildren().add(0, profile);
@@ -83,7 +83,7 @@ public class ChatItem extends HBox {
 		}
 
 		setSpacing(10);
-		getStyleClass().add("chat-item");
+		addStyleClass("chat-item");
 	}
 
 	public ChatView getView() {
@@ -137,7 +137,8 @@ public class ChatItem extends HBox {
 						@Override
 						protected boolean onOpen() {
 							setUseButton(true, false);
-							getActionButton().setText("Copy");
+							Button btnAction = getActionButton();
+							btnAction.setText("Copy");
 							setContent(new StackPane(textArea));
 							setTitle("View All");
 							return true;
@@ -153,9 +154,9 @@ public class ChatItem extends HBox {
 						@Override protected boolean onClose() { return false; }
 					};
 				});
-				btnView.getStyleClass().add("view-button");
-				boxComment.getChildren().add(new Separator());
-				boxComment.getChildren().add(btnView);
+				btnView.addStyleClass("view-button");
+				boxComment.addChildren(new Separator());
+				boxComment.addChildren(btnView);
 
 				// 1000 글자 메시지 자르고 "..." 입력
 				lblComment.setText(message.substring(0, 500) + "...");
@@ -174,7 +175,7 @@ public class ChatItem extends HBox {
 			
 			setSpacing(5);
 			setAlignment(alignment);
-			setFitChild(false);
+			setFitContent(false);
 			setFillWidth(false);
 			getStyleClass().add("content");
 

@@ -1,7 +1,7 @@
 {
 	"program":{
-		"saveFolderPath":"C:\\Develop Files\\Java\\IntelliJ\\Messenger Bot Simulator\\msgbots\\save",
+		"saveFolderPath":"D:\\Develop Files\\Java\\IntelliJ\\Messenger Bot Simulator\\msgbots\\save",
 		"showStartDialog":true,
-		"botFolderPath":"C:\\Develop Files\\Java\\IntelliJ\\Messenger Bot Simulator\\msgbots\\bots"
+		"botFolderPath":"D:\\Develop Files\\Java\\IntelliJ\\Messenger Bot Simulator\\msgbots\\bots"
 	}
 }

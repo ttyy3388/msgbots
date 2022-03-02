@@ -29,8 +29,8 @@ public class Slider extends HBox {
 		});
 
 		setValue(Math.round(getValue()));
-		getChildren().setAll(slider, label);
-		// getStyleClass().add("slider");
+		initChildren(slider, label);
+		// addStyleClass("slider");
 	}
 
 	public void setMin(double value) {

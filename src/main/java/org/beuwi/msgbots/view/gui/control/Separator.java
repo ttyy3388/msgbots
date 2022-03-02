@@ -1,7 +1,9 @@
 package org.beuwi.msgbots.view.gui.control;
 
-public class Separator extends javafx.scene.control.Separator {
+import org.beuwi.msgbots.view.gui.control.base.SeparatorBase;
+
+public class Separator extends SeparatorBase {
     public Separator() {
-        // getStyleClass().add("separator");
+        // addStyleClass("separator");
     }
 }

@@ -1,4 +1,6 @@
 package org.beuwi.msgbots.view.gui.control;
 
-public class ToggleButton extends javafx.scene.control.ToggleButton {
+import org.beuwi.msgbots.view.gui.control.base.ToggleButtonBase;
+
+public class ToggleButton extends ToggleButtonBase {
 }

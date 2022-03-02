@@ -2,6 +2,7 @@ package org.beuwi.msgbots.view.app.parts;
 
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 
 import org.beuwi.msgbots.openapi.FormLoader;
 import org.beuwi.msgbots.base.impl.View;
@@ -13,7 +14,7 @@ import org.beuwi.msgbots.view.util.StdActions;
 public class MenuBarPart extends StackPane implements View {
 	private static MenuBarPart instance = null;
 
-	private final ObservableMap<String, Object> namespace;
+	private final ObservableMap<String, Node> namespace;
 	private final FormLoader loader;
 
 	@FXML private MenuButton btnFile;
@@ -78,7 +79,7 @@ public class MenuBarPart extends StackPane implements View {
 	}
 
 	@Override
-	public Object findById(String id) {
+	public Node findById(String id) {
 		return namespace.get(id);
 	}
 

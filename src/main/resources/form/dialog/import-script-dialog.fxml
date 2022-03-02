@@ -13,7 +13,7 @@
 		<VBox spacing="5.0">
 			<children>
 				<Label text="BOT NAME"></Label>
-				<HBox fitChild="true" spacing="10.0">
+				<HBox fitContent="true" spacing="10.0">
 					<children>
 						<TextField fx:id="txfScriptName"
 								   HBox.hgrow="ALWAYS"
@@ -27,7 +27,7 @@
 				</HBox>
 			</children>
 		</VBox>
-		<VBox VBox.vgrow="ALWAYS" fitChild="true" spacing="20.0">
+		<VBox VBox.vgrow="ALWAYS" fitContent="true" spacing="20.0">
 			<children>
 				<CheckBox fx:id="chkIsUnified"
 						  text="통합된 매개변수를 사용합니다."></CheckBox>

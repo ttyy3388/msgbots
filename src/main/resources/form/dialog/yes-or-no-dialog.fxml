@@ -8,7 +8,7 @@
 	<bottom>
 		<HBox fx:id="hbxButtonBar"
               HBox.hgrow="ALWAYS"
-			  fitChild="true"
+			  fitContent="true"
               spacing="10.0"
               alignment="CENTER_RIGHT">
 			<children>

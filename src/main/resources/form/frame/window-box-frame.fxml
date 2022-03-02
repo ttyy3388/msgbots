@@ -16,7 +16,7 @@
 			<top>
 				<HBox fx:id="hbxTitleBar"
                       styleClass="title-bar"
-                      fitChild="true"
+                      fitContent="true"
                       prefHeight="30.0">
 					<children>
 						<HBox HBox.hgrow="ALWAYS" alignment="CENTER_LEFT">

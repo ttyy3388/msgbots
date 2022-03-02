@@ -2,6 +2,7 @@ package org.beuwi.msgbots.view.app.parts;
 
 import javafx.collections.ObservableMap;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -14,7 +15,7 @@ import org.beuwi.msgbots.view.gui.layout.AnchorPane;
 public class StatusBarPart extends AnchorPane implements View {
 	private static StatusBarPart instance = null;
 
-	private final ObservableMap<String, Object> namespace;
+	private final ObservableMap<String, Node> namespace;
 	private final FormLoader loader;
 
 	private StatusBarPart() {
@@ -29,7 +30,7 @@ public class StatusBarPart extends AnchorPane implements View {
 	}
 
 	@Override
-	public Object findById(String id) {
+	public Node findById(String id) {
 		return namespace.get(id);
 	}
 

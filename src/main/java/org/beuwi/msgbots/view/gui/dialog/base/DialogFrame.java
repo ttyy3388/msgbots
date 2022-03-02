@@ -98,7 +98,7 @@ abstract class DialogFrame extends WindowWrapper {
 		this.type = type;
 		this.stage = stage;
 
-		getStyleClass().add("dialog-box");
+		addStyleClass("dialog-box");
 	}
 
 	/*

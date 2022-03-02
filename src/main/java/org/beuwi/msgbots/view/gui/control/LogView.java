@@ -30,7 +30,7 @@ public class LogView extends ListView<LogItem> {
             }
         });
 
-        getStyleClass().add("log-view");
+        addStyleClass("log-view");
     }
 
     public void load(File file) {
@@ -46,7 +46,7 @@ public class LogView extends ListView<LogItem> {
                 list.add(new LogItem(object));
             }
         }
-        getItems().setAll(list);
+        addItems(list);
     }
 
     public void load(Project project) {

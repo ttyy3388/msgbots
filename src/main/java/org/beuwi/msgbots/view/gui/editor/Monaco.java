@@ -113,17 +113,17 @@ class Monaco extends WebPane {
 
 								// 초반에 값을 설정해 놓을 경우가 있는 것들을 적어둠
 								// 프로펄티는 값이 변경돼야 호출되는데 초기값들은 값 변경으로 인식이 안되기 때문에
-								execute("monaco.editor.setTheme('" + getTheme() + "')");
+								/* execute("monaco.editor.setTheme('" + getTheme() + "')");
 								execute("monaco.editor.setModelLanguage(editor.getModel(),'" + getLanguage() + "')");
 								// 자동완성 기능을 위해서 넣음
 								// execute("monaco.languages.typescript.javascriptDefaults.addExtraLib(" + autoCompleteContent + ")");
 								// 어떤건 monaco.editor고 어떤건 editor로 접근해야 함 (updateOptions)
 								execute("editor.updateOptions({readOnly:" + !isEditable() + "})");
 								execute("editor.updateOptions({lineNumbers:'" + (isLineNumberEnabled() ? "on" : "off") + "'})");
-								execute("editor.updateOptions({folding:" + isLineNumberEnabled() + "})");
+								execute("editor.updateOptions({folding:" + isLineNumberEnabled() + "})"); */
 
 								// 외부에서 파일을 변경하거나 텍스트 값을 변경했을 때 발생
-								textProperty().addListener(change -> {
+								/* textProperty().addListener(change -> {
 									// setValue()를 하면 초기화처럼 redo, undo 스택과 같은 메모리가 사라지기 때문에 다른 방법 사용
 									window.call("setText", textProperty().get());
 								});
@@ -145,7 +145,7 @@ class Monaco extends WebPane {
 								lineNumberEnabledProperty().addListener(change -> {
 									execute("editor.updateOptions({lineNumbers:'" + (isLineNumberEnabled() ? "on" : "off") + "'})");
 									execute("editor.updateOptions({folding:" + isLineNumberEnabled() + "})");
-								});
+								}); */
 							}
 						});
 

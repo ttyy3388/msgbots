@@ -60,7 +60,7 @@ public class DebugPane extends SplitView {
 			item.setAddress(item.getAddress().replace("{$name}", name));
 		} */
 
-		editor.setFile(project.getFile("index.js"));
+		// editor.setFile(project.getFile("index.js"));
 		// editor.setLanguage("javascript");
 
 		// 컴파일러 쪽에서 보내는 상황(Message) 수신
@@ -120,7 +120,7 @@ public class DebugPane extends SplitView {
 			}
 		});
 
-		getStyleClass().add("debug-pane");
+		addStyleClass("debug-pane");
 	}
 
 	public Editor getEditor() {

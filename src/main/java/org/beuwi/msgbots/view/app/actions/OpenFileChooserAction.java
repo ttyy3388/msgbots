@@ -17,7 +17,8 @@ public class OpenFileChooserAction implements Executor {
 
     public File execute(String title, ExtensionFilter filter) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(filter);
+        fileChooser.getExtensionFilters()
+                   .add(filter);
         fileChooser.setTitle(title);
 
         return fileChooser.showOpenDialog(ViewManager.getStage());

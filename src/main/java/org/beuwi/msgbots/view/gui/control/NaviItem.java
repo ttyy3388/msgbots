@@ -9,7 +9,7 @@ import javafx.scene.layout.Priority;
 import org.beuwi.msgbots.view.gui.control.base.TabItemBase;
 import org.beuwi.msgbots.view.gui.layout.HBox;
 
-public class NaviItem extends TabItemBase<NaviView> {
+public class NaviItem extends TabItemBase {
 	// private static final int DEFAULT_ITEM_WIDTH = 150;
 	// private static final int DEFAULT_ITEM_HEIGHT = 30;
 	// private static final Pos DEFAULT_HEADER_ALIGNMENT = Pos.CENTER;
@@ -41,11 +41,11 @@ public class NaviItem extends TabItemBase<NaviView> {
 
         // label.setText(control.getText());
         // label.setAlignment(Pos.CENTER);
-       	label.getStyleClass().add("text-label");
-		header.getStyleClass().add("header");
-		header.getChildren().setAll(label);
+       	label.addStyleClass("text-label");
+		header.addStyleClass("header");
+		header.initChildren(label);
 
-		textProperty().addListener(change -> {
+		addChangeListener("text", change -> {
 			this.setId(getText());
 			label.setText(getText());
 		});
@@ -60,7 +60,7 @@ public class NaviItem extends TabItemBase<NaviView> {
 		setMinHeight(30);
 		setPrefHeight(30);
 		setMaxHeight(30);
-		getStyleClass().add("navi-item");
+		addStyleClass("navi-item");
 	}
 
 	public void setText(String text) {
@@ -69,6 +69,7 @@ public class NaviItem extends TabItemBase<NaviView> {
 	public String getText() {
 		return label.getText();
 	}
+
 	public StringProperty textProperty() {
 		return label.textProperty();
 	}
